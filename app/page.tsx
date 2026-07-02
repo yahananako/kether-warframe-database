@@ -19,25 +19,25 @@ type IconType =
   | "archwing"
   | "mod";
 
-const navItems: { label: string; type: IconType }[] = [
-  { label: "總覽", type: "overview" },
-  { label: "戰甲", type: "warframe" },
-  { label: "主要武器", type: "primary" },
-  { label: "次要武器", type: "secondary" },
-  { label: "近戰武器", type: "melee" },
-  { label: "同伴", type: "companion" },
-  { label: "曲翼", type: "archwing" },
-  { label: "MOD資料庫", type: "mod" }
+const navItems: { label: string; type: IconType; href: string }[] = [
+  { label: "總覽", type: "overview", href: "/database/overview" },
+  { label: "戰甲", type: "warframe", href: "/database/warframes" },
+  { label: "主要武器", type: "primary", href: "/database/primary" },
+  { label: "次要武器", type: "secondary", href: "/database/secondary" },
+  { label: "近戰武器", type: "melee", href: "/database/melee" },
+  { label: "同伴", type: "companion", href: "/database/companions" },
+  { label: "曲翼", type: "archwing", href: "/database/archwing" },
+  { label: "MOD資料庫", type: "mod", href: "/database/mods" }
 ];
 
 const summary = [
-  ["戰甲", "58"],
-  ["主要武器", "292"],
-  ["次要武器", "206"],
-  ["近戰武器", "287"],
-  ["同伴", "57"],
-  ["曲翼", "13"],
-  ["MOD", "1,672"]
+  ["目前已匯入資料", "281"],
+  ["資料來源", "Google Sheets"],
+  ["價格更新", "每日 4:00"],
+  ["Discord 入口", "已啟用"],
+  ["個人已購買", "v0.6 開放"],
+  ["完成度計算", "v0.6 開放"],
+  ["多群組支援", "規劃中"]
 ];
 
 function WfIcon({ type }: { type: IconType }) {
@@ -80,7 +80,6 @@ function WfIcon({ type }: { type: IconType }) {
         <path {...common} d="M17 27 V23 H32 V27" />
         <path {...common} d="M21 35 L17 46 H28 L32 35" />
         <path {...common} d="M47 36 L52 45" />
-        <path {...common} d="M8 31 L5 35" />
       </svg>
     );
   }
@@ -116,7 +115,6 @@ function WfIcon({ type }: { type: IconType }) {
         <path {...common} d="M24 48 L21 58" />
         <path {...common} d="M39 48 L42 58" />
         <path {...common} d="M13 40 L7 35" />
-        <path {...common} d="M46 34 H46.5" />
       </svg>
     );
   }
@@ -154,9 +152,21 @@ export default function HomePage() {
 
       <header className="topbar">
         <div className="topbar-left">
-          <Menu size={22} />
+          <details className="menu-drawer">
+            <summary aria-label="開啟選單">
+              <Menu size={22} />
+            </summary>
+            <nav className="menu-popup">
+              <a href="/">首頁</a>
+              {navItems.map((item) => (
+                <a key={item.label} href={item.href}>{item.label}</a>
+              ))}
+              <a href="https://discord.gg/MFhTb8XMZ" target="_blank">Discord 群組</a>
+            </nav>
+          </details>
           <span>KETHER</span>
         </div>
+
         <div className="topbar-right">
           <Search size={21} />
           <Bell size={20} />
@@ -180,14 +190,14 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="nav-panel">
+      <section className="nav-panel" id="navigation">
         <div className="panel-tag">1　導航區</div>
         <div className="nav-grid">
           {navItems.map((item) => (
-            <button className="nav-card" key={item.label}>
+            <a className="nav-card" key={item.label} href={item.href}>
               <WfIcon type={item.type} />
               <strong>{item.label}</strong>
-            </button>
+            </a>
           ))}
         </div>
       </section>
@@ -211,10 +221,10 @@ export default function HomePage() {
             <Info size={28} />
             <div>
               <h3>使用說明</h3>
-              <p>・點選上方按鈕可前往各資料表。</p>
-              <p>・所有資料會由網站讀取，不直接顯示原始表格。</p>
-              <p>・未來會加入 Discord 登入與個人完成度。</p>
-              <p>・手機與電腦版都會完整支援。</p>
+              <p>・點選上方按鈕可前往各資料頁。</p>
+              <p>・網站只讀取資料，不直接顯示原始表格。</p>
+              <p>・已購買與完成度會做成個人化功能。</p>
+              <p>・未來支援多 Discord 群組付費開通。</p>
             </div>
           </div>
         </article>
@@ -222,7 +232,7 @@ export default function HomePage() {
         <article className="info-card summary-card">
           <div className="card-title">
             <ClipboardList size={18} />
-            <span>3　資料總覽</span>
+            <span>3　資料庫狀態</span>
           </div>
 
           <div className="summary-table">
@@ -235,8 +245,8 @@ export default function HomePage() {
           </div>
 
           <div className="total-row">
-            <span>總計項目數</span>
-            <b>2,585</b>
+            <span>目前版本</span>
+            <b>v0.3</b>
           </div>
         </article>
 
@@ -246,9 +256,9 @@ export default function HomePage() {
             <span>4　備註</span>
           </div>
 
-          <p>・可在此記錄重要事項、更新內容或個人備註。</p>
-          <div className="note-lines" />
-          <div className="note-lines" />
+          <p>・目前為首頁與分類頁雛形。</p>
+          <p>・下一階段會串接 Google Sheets 真資料。</p>
+          <p>・完成度將依 Discord 使用者個人紀錄計算。</p>
           <div className="note-lines" />
           <div className="note-lines" />
           <div className="watermark">K</div>
