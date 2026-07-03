@@ -1877,3 +1877,109 @@ a.nav-card {
     border-radius: 18px;
   }
 }
+
+/* v2.3.3 首頁未來科技背景 */
+.homepage-sci-fi {
+  position: relative;
+  min-height: 100vh;
+  background:
+    linear-gradient(
+      rgba(246, 249, 251, 0.78),
+      rgba(246, 249, 251, 0.92)
+    ),
+    url("/home-ui-bg.png?v=233") center top / cover fixed no-repeat;
+}
+
+/* 讓首頁內容浮在背景上 */
+.homepage-sci-fi > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* 首頁橫版圖外框 */
+.homepage-sci-fi .home-hero-image-banner {
+  border: 1px solid rgba(70, 82, 92, 0.42) !important;
+  border-radius: 22px !important;
+  background: rgba(255, 255, 255, 0.72) !important;
+  box-shadow:
+    0 18px 48px rgba(18, 28, 38, 0.14),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.72) !important;
+}
+
+/* 通用科技框框：套在首頁卡片 / 區塊 / 面板 */
+.homepage-sci-fi section:not(.home-hero-image-banner),
+.homepage-sci-fi article,
+.homepage-sci-fi [class*="card"],
+.homepage-sci-fi [class*="Card"],
+.homepage-sci-fi [class*="panel"],
+.homepage-sci-fi [class*="Panel"] {
+  border: 1px solid rgba(70, 82, 92, 0.32) !important;
+  border-radius: 18px !important;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.82),
+      rgba(245, 248, 250, 0.68)
+    ) !important;
+  box-shadow:
+    0 14px 32px rgba(18, 28, 38, 0.10),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.68) !important;
+  backdrop-filter: blur(3px);
+}
+
+/* 首頁分類按鍵框 */
+.homepage-sci-fi a[href^="/database"],
+.homepage-sci-fi a[href="/overview"],
+.homepage-sci-fi a[href="/"] {
+  border: 1px solid rgba(70, 82, 92, 0.34) !important;
+  border-radius: 16px !important;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.88),
+      rgba(239, 243, 246, 0.72)
+    ) !important;
+  box-shadow:
+    0 10px 22px rgba(18, 28, 38, 0.10),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.78) !important;
+}
+
+/* 科技角落感：區塊左上角裝飾 */
+.homepage-sci-fi section:not(.home-hero-image-banner)::before,
+.homepage-sci-fi article::before,
+.homepage-sci-fi [class*="card"]::before,
+.homepage-sci-fi [class*="Card"]::before,
+.homepage-sci-fi [class*="panel"]::before,
+.homepage-sci-fi [class*="Panel"]::before {
+  content: "";
+  position: absolute;
+  width: 34px;
+  height: 18px;
+  top: -1px;
+  left: -1px;
+  border-top: 3px solid rgba(35, 45, 55, 0.72);
+  border-left: 3px solid rgba(35, 45, 55, 0.72);
+  border-radius: 16px 0 0 0;
+  pointer-events: none;
+}
+
+/* 手機版 */
+@media (max-width: 680px) {
+  .homepage-sci-fi {
+    background:
+      linear-gradient(
+        rgba(246, 249, 251, 0.82),
+        rgba(246, 249, 251, 0.95)
+      ),
+      url("/home-ui-bg.png?v=233") center top / auto 100% fixed no-repeat;
+  }
+
+  .homepage-sci-fi section:not(.home-hero-image-banner),
+  .homepage-sci-fi article,
+  .homepage-sci-fi [class*="card"],
+  .homepage-sci-fi [class*="Card"],
+  .homepage-sci-fi [class*="panel"],
+  .homepage-sci-fi [class*="Panel"] {
+    border-radius: 16px !important;
+  }
+}
