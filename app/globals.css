@@ -1771,3 +1771,71 @@ a.nav-card {
   border-radius: 28px !important;
   box-shadow: 0 18px 42px rgba(20, 32, 45, 0.2) !important;
 }
+
+/* v2.2.7 首頁 Logo 最終版：只顯示一個 */
+.home-clan-logo-final {
+  position: relative !important;
+  z-index: 20 !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  margin: 18px auto 28px !important;
+  width: 100% !important;
+}
+
+.home-clan-logo-final img {
+  width: min(180px, 44vw) !important;
+  height: auto !important;
+  display: block !important;
+  border-radius: 28px !important;
+  box-shadow: 0 18px 42px rgba(20, 32, 45, 0.2) !important;
+}
+
+/* 把舊的重複 Logo 區塊藏起來 */
+.home-clan-logo-force,
+.home-clan-logo,
+.clan-logo-real {
+  display: none !important;
+}
+
+
+/* v2.2.8 logo duplicate fix: hide every old placeholder logo */
+.logo-mark,
+.clan-logo,
+.clan-logo-real,
+.clan-logo-img,
+.home-clan-logo,
+.home-clan-logo-force {
+  display: none !important;
+  visibility: hidden !important;
+  width: 0 !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  opacity: 0 !important;
+}
+
+/* keep only the final homepage clan logo */
+.home-clan-logo-final {
+  position: relative !important;
+  z-index: 20 !important;
+  display: flex !important;
+  visibility: visible !important;
+  justify-content: center !important;
+  align-items: center !important;
+  margin: 18px auto 28px !important;
+  width: 100% !important;
+  height: auto !important;
+  opacity: 1 !important;
+}
+
+.home-clan-logo-final img {
+  width: min(180px, 44vw) !important;
+  height: auto !important;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  border-radius: 28px !important;
+  box-shadow: 0 18px 42px rgba(20, 32, 45, 0.2) !important;
+}
