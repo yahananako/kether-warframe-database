@@ -2100,3 +2100,92 @@ a.nav-card {
 .homepage-sci-fi img {
   visibility: visible;
 }
+
+/* v2.3.7 安全科技框工具包：只有指定 class 才會生效 */
+
+/* 大型區塊外框 */
+.home-tech-panel {
+  position: relative;
+  border: 1px solid rgba(64, 76, 88, 0.28);
+  border-radius: 18px;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.86),
+      rgba(245, 248, 250, 0.72)
+    );
+  box-shadow:
+    0 14px 34px rgba(18, 28, 38, 0.10),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.70);
+  overflow: hidden;
+}
+
+/* 小型卡片外框 */
+.home-tech-card {
+  position: relative;
+  border: 1px solid rgba(64, 76, 88, 0.24);
+  border-radius: 16px;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.90),
+      rgba(242, 246, 249, 0.78)
+    );
+  box-shadow:
+    0 10px 24px rgba(18, 28, 38, 0.08),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.78);
+  overflow: hidden;
+}
+
+/* 分類按鍵外框 */
+.home-tech-button {
+  position: relative;
+  border: 1px solid rgba(64, 76, 88, 0.26);
+  border-radius: 16px;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.92),
+      rgba(241, 245, 248, 0.80)
+    );
+  box-shadow:
+    0 8px 18px rgba(18, 28, 38, 0.08),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.75);
+}
+
+/* 科技角飾，只給有 home-tech-corner 的元素 */
+.home-tech-corner::before {
+  content: "";
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: 34px;
+  height: 22px;
+  border-top: 3px solid rgba(35, 45, 55, 0.72);
+  border-left: 3px solid rgba(35, 45, 55, 0.72);
+  border-radius: 10px 0 0 0;
+  pointer-events: none;
+}
+
+.home-tech-corner::after {
+  content: "";
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  width: 34px;
+  height: 22px;
+  border-right: 3px solid rgba(35, 45, 55, 0.42);
+  border-bottom: 3px solid rgba(35, 45, 55, 0.42);
+  border-radius: 0 0 10px 0;
+  pointer-events: none;
+}
+
+/* 手機版角飾縮小 */
+@media (max-width: 680px) {
+  .home-tech-corner::before,
+  .home-tech-corner::after {
+    width: 22px;
+    height: 14px;
+    border-width: 2px;
+  }
+}
