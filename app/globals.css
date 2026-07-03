@@ -569,3 +569,251 @@ a.nav-card {
     display: grid;
   }
 }
+
+.category-page-v04 {
+  display: grid;
+  align-content: start;
+  gap: 24px;
+}
+
+.db-page-header {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 24px;
+  align-items: center;
+  padding-top: 24px;
+}
+
+.db-back,
+.db-version-chip {
+  text-decoration: none;
+  color: var(--ink);
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,0.88);
+  border-radius: 999px;
+  padding: 10px 16px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.db-title-block {
+  text-align: center;
+}
+
+.db-title-block p {
+  margin: 0;
+  color: #7d8994;
+  letter-spacing: 0.35em;
+  font-weight: 900;
+}
+
+.db-title-block h1 {
+  margin: 10px 0;
+  font-size: clamp(48px, 6vw, 86px);
+}
+
+.db-title-block span {
+  color: #55616f;
+  font-size: 18px;
+}
+
+.db-kpi-grid {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+
+.db-kpi-grid article {
+  background: rgba(255,255,255,0.88);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 18px;
+  box-shadow: 0 12px 30px rgba(20, 32, 45, 0.08);
+}
+
+.db-kpi-grid span {
+  display: block;
+  color: #66717d;
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+
+.db-kpi-grid strong {
+  font-size: 20px;
+}
+
+.db-tool-panel {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 16px;
+}
+
+.db-tool-panel input {
+  flex: 1;
+  min-width: 260px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 13px 18px;
+  font-size: 16px;
+}
+
+.db-tool-panel button,
+.link-button {
+  border: 1px solid var(--line);
+  background: white;
+  color: var(--ink);
+  border-radius: 999px;
+  padding: 12px 18px;
+  font-weight: 900;
+}
+
+.db-table-card {
+  position: relative;
+  z-index: 2;
+  background: rgba(255,255,255,0.92);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 18px 42px rgba(20, 32, 45, 0.1);
+}
+
+.db-table-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 18px;
+  padding: 22px 24px;
+  border-bottom: 1px solid var(--line);
+}
+
+.db-table-title h2 {
+  margin: 0 0 4px;
+}
+
+.db-table-title p {
+  margin: 0;
+  color: #66717d;
+}
+
+.db-table-title span {
+  background: #eef5f8;
+  border: 1px solid #cddae3;
+  border-radius: 999px;
+  padding: 8px 12px;
+  font-weight: 900;
+  white-space: nowrap;
+}
+
+.db-table {
+  display: grid;
+}
+
+.db-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 2fr 0.8fr 0.8fr 0.9fr;
+  border-bottom: 1px solid #e1e7ed;
+}
+
+.db-row span {
+  padding: 14px;
+  border-right: 1px solid #e1e7ed;
+}
+
+.db-row span:last-child {
+  border-right: 0;
+}
+
+.db-head {
+  background: #eef3f7;
+  font-weight: 900;
+}
+
+.owned-pill {
+  display: inline-block;
+  background: #f1f4f7;
+  border: 1px solid #d6dee6;
+  border-radius: 999px;
+  padding: 6px 10px;
+  color: #66717d;
+}
+
+.mobile-cards {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .db-page-header {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .db-back,
+  .db-version-chip {
+    justify-self: center;
+  }
+
+  .db-kpi-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .desktop-table {
+    display: none;
+  }
+
+  .mobile-cards {
+    display: grid;
+    gap: 14px;
+    padding: 16px;
+  }
+
+  .mobile-data-card {
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 16px;
+    background: white;
+  }
+
+  .mobile-data-card h3 {
+    margin: 0 0 4px;
+  }
+
+  .mobile-data-card p {
+    margin: 0 0 8px;
+    color: #66717d;
+  }
+
+  .mobile-data-card small {
+    display: block;
+    margin-bottom: 12px;
+  }
+
+  .mobile-data-card div {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+  }
+}
+
+@media (max-width: 560px) {
+  .db-kpi-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .db-tool-panel {
+    display: grid;
+  }
+
+  .db-tool-panel input {
+    min-width: 0;
+  }
+}
