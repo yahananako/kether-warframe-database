@@ -20,55 +20,44 @@ export async function supabaseAdminFetch(path: string, init: RequestInit = {}) {
       apikey: SUPABASE_SERVICE_ROLE_KEY,
       Authorization: `Bearer ${SUPABASE_SERVICE_ROLE_KEY}`,
       "Content-Type": "application/json",
-      Prefer: "return=representation",
+      Prefer: "resolution=merge-duplicates,return=representation",
       ...(init.headers ?? {})
     },
     cache: "no-store"
   });
 }
 
-async function readExistingUser() {
-  const response = await supabaseAdminFetch(
-    `users?select=*&discord_user_id=eq.${TEST_DISCORD_USER_ID}&limit=1`
-  );
-
-  if (!response.ok) {
-    const text = await response.text();
-    throw new Error(`Read test user failed: HTTP ${response.status} ${text}`);
-  }
-
-  const users = await response.json();
-  return users?.[0] ?? null;
-}
-
 export async function ensureTestUser() {
-  const existing = await readExistingUser();
-
-  if (existing) {
-    return existing;
-  }
-
-  const response = await supabaseAdminFetch("users", {
+  const response = await supabaseAdminFetch("users?on_conflict=discord_user_id", {
     method: "POST",
     body: JSON.stringify({
       discord_user_id: TEST_DISCORD_USER_ID,
       discord_username: TEST_DISCORD_USERNAME,
-      avatar_url: null
+      avatar_url: null,
+      updated_at: new Date().toISOString()
     })
   });
 
   if (!response.ok) {
     const text = await response.text();
-    throw new Error(`Create test user failed: HTTP ${response.status} ${text}`);
+    throw new Error(`Upsert test user failed: HTTP ${response.status} ${text}`);
   }
 
   const users = await response.json();
+
+  if (!users?.[0]) {
+    throw new Error("Test user upsert returned no data");
+  }
+
   return users[0];
 }
 
 export async function getKetherGuild() {
   const response = await supabaseAdminFetch(
-    `guilds?select=id,discord_guild_id,guild_name,subscription_status&discord_guild_id=eq.${KETHER_GUILD_ID}&limit=1`
+    `guilds?select=id,discord_guild_id,guild_name,subscription_status&discord_guild_id=eq.${KETHER_GUILD_ID}&limit=1`,
+    {
+      method: "GET"
+    }
   );
 
   if (!response.ok) {
@@ -85,20 +74,6 @@ export async function getKetherGuild() {
   return guilds[0];
 }
 
-async function readExistingOwnedItem(userId: string, guildId: string, itemKey: string) {
-  const response = await supabaseAdminFetch(
-    `user_owned_items?select=*&user_id=eq.${userId}&guild_id=eq.${guildId}&item_key=eq.${encodeURIComponent(itemKey)}&limit=1`
-  );
-
-  if (!response.ok) {
-    const text = await response.text();
-    throw new Error(`Read owned item failed: HTTP ${response.status} ${text}`);
-  }
-
-  const items = await response.json();
-  return items?.[0] ?? null;
-}
-
 export async function upsertOwnedItem(input: {
   itemKey: string;
   category: string;
@@ -107,34 +82,30 @@ export async function upsertOwnedItem(input: {
 }) {
   const user = await ensureTestUser();
   const guild = await getKetherGuild();
-  const existing = await readExistingOwnedItem(user.id, guild.id, input.itemKey);
 
-  const payload = {
-    user_id: user.id,
-    guild_id: guild.id,
-    item_key: input.itemKey,
-    category: input.category,
-    section: input.section,
-    owned: input.owned,
-    updated_at: new Date().toISOString()
-  };
-
-  const response = existing
-    ? await supabaseAdminFetch(`user_owned_items?id=eq.${existing.id}`, {
-        method: "PATCH",
-        body: JSON.stringify(payload)
-      })
-    : await supabaseAdminFetch("user_owned_items", {
-        method: "POST",
-        body: JSON.stringify(payload)
-      });
+  const response = await supabaseAdminFetch("user_owned_items?on_conflict=user_id,guild_id,item_key", {
+    method: "POST",
+    body: JSON.stringify({
+      user_id: user.id,
+      guild_id: guild.id,
+      item_key: input.itemKey,
+      category: input.category,
+      section: input.section,
+      owned: input.owned,
+      updated_at: new Date().toISOString()
+    })
+  });
 
   if (!response.ok) {
     const text = await response.text();
-    throw new Error(`Save owned item failed: HTTP ${response.status} ${text}`);
+    throw new Error(`Upsert owned item failed: HTTP ${response.status} ${text}`);
   }
 
   const rows = await response.json();
+
+  if (!rows?.[0]) {
+    throw new Error("Owned item upsert returned no data");
+  }
 
   return {
     user,
@@ -148,7 +119,10 @@ export async function listOwnedItems() {
   const guild = await getKetherGuild();
 
   const response = await supabaseAdminFetch(
-    `user_owned_items?select=*&user_id=eq.${user.id}&guild_id=eq.${guild.id}&order=updated_at.desc`
+    `user_owned_items?select=*&user_id=eq.${user.id}&guild_id=eq.${guild.id}&order=updated_at.desc`,
+    {
+      method: "GET"
+    }
   );
 
   if (!response.ok) {

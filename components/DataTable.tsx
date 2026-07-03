@@ -1,10 +1,15 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import type { SheetRow } from "../lib/sheets";
 
 type FilterMode = "all" | "owned" | "missing" | "priced" | "unpriced";
 type SortMode = "none" | "priceHigh" | "priceLow" | "name";
+
+type OwnedApiItem = {
+  item_key: string;
+  owned: boolean;
+};
 
 function priceNumber(value: string): number | null {
   const number = Number(String(value || "").replace(/[^\d.]/g, ""));
@@ -21,26 +26,132 @@ function hasPrice(value: string): boolean {
   return priceNumber(value) !== null;
 }
 
-function isOwned(value: string): boolean {
+function textOwned(value: string): boolean {
   return String(value || "").includes("已購買");
 }
 
-export default function DataTable({ rows }: { rows: SheetRow[] }) {
+function makeSlugBase(name: string): string {
+  return name
+    .trim()
+    .replace(/[’']/g, "")
+    .replace(/&/g, "and")
+    .replace(/[^A-Za-z0-9 ]/g, "")
+    .replace(/\s+/g, "_")
+    .toLowerCase();
+}
+
+function itemKeyFromRow(row: SheetRow): string {
+  if (row.marketUrl) {
+    const last = row.marketUrl.split("/").filter(Boolean).pop();
+    if (last) return last;
+  }
+
+  const base = makeSlugBase(row.englishName || row.chineseName);
+  return base || makeSlugBase(`${row.section}-${row.chineseName}`);
+}
+
+function displayOwned(value: boolean): string {
+  return value ? "已購買" : "未購買";
+}
+
+export default function DataTable({
+  rows,
+  category
+}: {
+  rows: SheetRow[];
+  category: string;
+}) {
   const [query, setQuery] = useState("");
   const [filter, setFilter] = useState<FilterMode>("all");
   const [sortMode, setSortMode] = useState<SortMode>("none");
   const [section, setSection] = useState("all");
+  const [ownedMap, setOwnedMap] = useState<Record<string, boolean>>({});
+  const [loadingOwned, setLoadingOwned] = useState(true);
+  const [savingKey, setSavingKey] = useState<string | null>(null);
+  const [ownedMessage, setOwnedMessage] = useState("測試使用者模式");
 
-  const sections = useMemo(() => {
-    const list = rows
-      .map((row) => row.section || "未分類")
-      .filter(Boolean);
+  useEffect(() => {
+    let active = true;
 
-    return Array.from(new Set(list));
-  }, [rows]);
+    async function loadOwnedItems() {
+      try {
+        const response = await fetch("/api/user-owned/list", {
+          cache: "no-store"
+        });
+
+        const data = await response.json();
+
+        if (!active) return;
+
+        if (!response.ok || !data.ok) {
+          setOwnedMessage(data.message || "個人已購買資料讀取失敗");
+          setLoadingOwned(false);
+          return;
+        }
+
+        const nextMap: Record<string, boolean> = {};
+        for (const item of data.items as OwnedApiItem[]) {
+          nextMap[item.item_key] = Boolean(item.owned);
+        }
+
+        setOwnedMap(nextMap);
+        setOwnedMessage(`已連接個人進度：${data.count ?? 0} 筆`);
+        setLoadingOwned(false);
+      } catch {
+        if (!active) return;
+        setOwnedMessage("個人已購買資料讀取失敗");
+        setLoadingOwned(false);
+      }
+    }
+
+    loadOwnedItems();
+
+    return () => {
+      active = false;
+    };
+  }, []);
+
+  const rowsWithOwned = useMemo(() => {
+    return rows.map((row) => {
+      const key = itemKeyFromRow(row);
+      const owned = key in ownedMap ? ownedMap[key] : textOwned(row.owned);
+
+      return {
+        ...row,
+        itemKey: key,
+        personalOwned: owned
+      };
+    });
+  }, [rows, ownedMap]);
+
+  const sectionStats = useMemo(() => {
+    const map = new Map<string, { section: string; total: number; priced: number; owned: number }>();
+
+    for (const row of rowsWithOwned) {
+      const key = row.section || "未分類";
+
+      if (!map.has(key)) {
+        map.set(key, {
+          section: key,
+          total: 0,
+          priced: 0,
+          owned: 0
+        });
+      }
+
+      const current = map.get(key)!;
+      current.total += 1;
+      if (hasPrice(row.price)) current.priced += 1;
+      if (row.personalOwned) current.owned += 1;
+    }
+
+    return Array.from(map.values()).sort((a, b) => b.total - a.total);
+  }, [rowsWithOwned]);
+
+  const sections = sectionStats.map((item) => item.section);
 
   const filteredRows = useMemo(() => {
-    let result = rows.filter((row) => {
+    let result = rowsWithOwned.filter((row) => {
       const text = [
         row.section,
         row.chineseName,
@@ -48,20 +159,19 @@ export default function DataTable({ rows }: { rows: SheetRow[] }) {
         row.description,
         row.priority,
         row.price,
-        row.owned,
+        displayOwned(row.personalOwned),
         row.source,
         row.note
       ].join(" ").toLowerCase();
 
       const matchQuery = text.includes(query.trim().toLowerCase());
       const matchSection = section === "all" || row.section === section;
-      const owned = isOwned(row.owned);
       const priced = hasPrice(row.price);
 
       const matchFilter =
         filter === "all" ||
-        (filter === "owned" && owned) ||
-        (filter === "missing" && !owned) ||
+        (filter === "owned" && row.personalOwned) ||
+        (filter === "missing" && !row.personalOwned) ||
         (filter === "priced" && priced) ||
         (filter === "unpriced" && !priced);
 
@@ -85,13 +195,100 @@ export default function DataTable({ rows }: { rows: SheetRow[] }) {
     }
 
     return result;
-  }, [rows, query, filter, sortMode, section]);
+  }, [rowsWithOwned, query, filter, sortMode, section]);
 
-  const pricedCount = rows.filter((row) => hasPrice(row.price)).length;
-  const ownedCount = rows.filter((row) => isOwned(row.owned)).length;
+  const pricedCount = rowsWithOwned.filter((row) => hasPrice(row.price)).length;
+  const ownedCount = rowsWithOwned.filter((row) => row.personalOwned).length;
+
+  async function toggleOwned(row: (typeof rowsWithOwned)[number]) {
+    const nextOwned = !row.personalOwned;
+    const previous = ownedMap[row.itemKey];
+
+    setSavingKey(row.itemKey);
+    setOwnedMap((current) => ({
+      ...current,
+      [row.itemKey]: nextOwned
+    }));
+
+    try {
+      const response = await fetch("/api/user-owned/toggle", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          itemKey: row.itemKey,
+          category,
+          section: row.section || "未分類",
+          owned: nextOwned
+        })
+      });
+
+      const data = await response.json();
+
+      if (!response.ok || !data.ok) {
+        setOwnedMap((current) => {
+          const clone = { ...current };
+          if (previous === undefined) {
+            delete clone[row.itemKey];
+          } else {
+            clone[row.itemKey] = previous;
+          }
+          return clone;
+        });
+
+        setOwnedMessage(data.message || "儲存失敗");
+        return;
+      }
+
+      setOwnedMessage(`${row.chineseName || row.englishName}：${displayOwned(nextOwned)}`);
+    } catch {
+      setOwnedMap((current) => {
+        const clone = { ...current };
+        if (previous === undefined) {
+          delete clone[row.itemKey];
+        } else {
+          clone[row.itemKey] = previous;
+        }
+        return clone;
+      });
+
+      setOwnedMessage("儲存失敗，請稍後再試");
+    } finally {
+      setSavingKey(null);
+    }
+  }
 
   return (
     <>
+      <section className="owned-sync-banner">
+        <span>{loadingOwned ? "讀取個人進度中..." : ownedMessage}</span>
+        <b>測試使用者：kether-test-user</b>
+      </section>
+
+      <section className="section-stats-panel">
+        <button
+          className={section === "all" ? "section-stat-card is-active" : "section-stat-card"}
+          onClick={() => setSection("all")}
+        >
+          <span>全部區塊</span>
+          <strong>{rowsWithOwned.length}</strong>
+          <small>有價格 {pricedCount}｜已購買 {ownedCount}</small>
+        </button>
+
+        {sectionStats.map((item) => (
+          <button
+            className={section === item.section ? "section-stat-card is-active" : "section-stat-card"}
+            key={item.section}
+            onClick={() => setSection(item.section)}
+          >
+            <span>{item.section}</span>
+            <strong>{item.total}</strong>
+            <small>有價格 {item.priced}｜已購買 {item.owned}</small>
+          </button>
+        ))}
+      </section>
+
       <section className="db-tool-panel enhanced-tools">
         <input
           placeholder="搜尋區塊 / 中文名 / 英文名 / 用途 / 價格..."
@@ -138,11 +335,11 @@ export default function DataTable({ rows }: { rows: SheetRow[] }) {
           <div>
             <h2>資料表</h2>
             <p>
-              目前顯示 {filteredRows.length} / {rows.length} 筆資料。
-              區塊 {sections.length} 個，有價格 {pricedCount} 筆，已購買 {ownedCount} 筆。
+              目前顯示 {filteredRows.length} / {rowsWithOwned.length} 筆資料。
+              區塊 {sections.length} 個，有價格 {pricedCount} 筆，個人已購買 {ownedCount} 筆。
             </p>
           </div>
-          <span>Google Sheets 只讀模式</span>
+          <span>Supabase 個人進度測試模式</span>
         </div>
 
         <div className="db-table desktop-table">
@@ -158,7 +355,7 @@ export default function DataTable({ rows }: { rows: SheetRow[] }) {
 
           {filteredRows.map((row, index) => {
             const priced = hasPrice(row.price);
-            const owned = isOwned(row.owned);
+            const saving = savingKey === row.itemKey;
 
             return (
               <div className="db-row" key={`${row.section}-${row.englishName}-${index}`}>
@@ -172,9 +369,14 @@ export default function DataTable({ rows }: { rows: SheetRow[] }) {
                   </b>
                 </span>
                 <span>
-                  <b className={owned ? "owned-pill owned-ok" : "owned-pill"}>
-                    {row.owned || "未購買"}
-                  </b>
+                  <button
+                    className={row.personalOwned ? "owned-toggle owned-ok" : "owned-toggle"}
+                    onClick={() => toggleOwned(row)}
+                    disabled={Boolean(savingKey)}
+                    title={row.itemKey}
+                  >
+                    {saving ? "儲存中..." : displayOwned(row.personalOwned)}
+                  </button>
                 </span>
                 <span>
                   {row.marketUrl ? (
@@ -193,7 +395,7 @@ export default function DataTable({ rows }: { rows: SheetRow[] }) {
         <div className="mobile-cards">
           {filteredRows.map((row, index) => {
             const priced = hasPrice(row.price);
-            const owned = isOwned(row.owned);
+            const saving = savingKey === row.itemKey;
 
             return (
               <article className="mobile-data-card" key={`${row.section}-${row.englishName}-mobile-${index}`}>
@@ -203,7 +405,14 @@ export default function DataTable({ rows }: { rows: SheetRow[] }) {
                 <small>{row.description || row.note || "—"}</small>
                 <div>
                   <span>價格：{displayPrice(row.price)}</span>
-                  <b className={owned ? "owned-ok-text" : ""}>{row.owned || "未購買"}</b>
+                  <button
+                    className={row.personalOwned ? "owned-toggle owned-ok" : "owned-toggle"}
+                    onClick={() => toggleOwned(row)}
+                    disabled={Boolean(savingKey)}
+                    title={row.itemKey}
+                  >
+                    {saving ? "儲存中..." : displayOwned(row.personalOwned)}
+                  </button>
                 </div>
                 {row.marketUrl && (
                   <a className="mobile-market-link" href={row.marketUrl} target="_blank" rel="noreferrer">
