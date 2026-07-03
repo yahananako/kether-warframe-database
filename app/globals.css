@@ -2317,3 +2317,34 @@ a.nav-card {
     border-width: 2px !important;
   }
 }
+
+/* v2.4.1 用圖片檔套四個統計卡片白銀科技框
+   只抓「剛好 4 個子項目的 grid」，也就是首頁統計卡片區 */
+.homepage-sci-fi .grid:has(> :nth-child(4)):not(:has(> :nth-child(5))) > * {
+  position: relative !important;
+  min-height: 126px !important;
+  padding: 1.35rem 1.6rem !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  background:
+    url("/stat-card-silver-frame-filled.png?v=241") center center / 100% 100% no-repeat !important;
+  border: none !important;
+  border-radius: 18px !important;
+  box-shadow: none !important;
+  overflow: hidden !important;
+}
+
+/* 統計卡片文字保持在框框上層 */
+.homepage-sci-fi .grid:has(> :nth-child(4)):not(:has(> :nth-child(5))) > * > * {
+  position: relative !important;
+  z-index: 2 !important;
+}
+
+/* 手機版縮小高度 */
+@media (max-width: 680px) {
+  .homepage-sci-fi .grid:has(> :nth-child(4)):not(:has(> :nth-child(5))) > * {
+    min-height: 112px !important;
+    padding: 1rem 1.25rem !important;
+  }
+}
