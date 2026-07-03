@@ -1582,3 +1582,149 @@ a.nav-card {
     text-align: center;
   }
 }
+
+.clan-logo-real {
+  display: flex;
+  justify-content: center;
+  margin: 10px auto 18px;
+}
+
+.clan-logo-real img {
+  width: min(190px, 46vw);
+  height: auto;
+  border-radius: 28px;
+  box-shadow: 0 18px 42px rgba(20, 32, 45, 0.18);
+  display: block;
+}
+
+.watermark-logo {
+  position: absolute;
+  right: 28px;
+  bottom: 20px;
+  width: min(180px, 38vw);
+  height: auto;
+  opacity: 0.06;
+  pointer-events: none;
+  filter: grayscale(1);
+}
+
+@media (max-width: 680px) {
+  .clan-logo-real img {
+    width: min(150px, 50vw);
+    border-radius: 24px;
+  }
+
+  .watermark-logo {
+    width: 130px;
+    right: 16px;
+    bottom: 14px;
+  }
+}
+
+/* v2.2.3 強制替換首頁假 K Logo */
+.clan-logo-real {
+  display: flex;
+  justify-content: center;
+  margin: 10px auto 18px;
+}
+
+.clan-logo-real img,
+.clan-logo-img {
+  width: min(190px, 46vw);
+  height: auto;
+  border-radius: 28px;
+  box-shadow: 0 18px 42px rgba(20, 32, 45, 0.18);
+  display: block;
+}
+
+/* 若舊 logo-mark 還殘留，直接把 K 變成氏族 Logo */
+.logo-mark {
+  background-image: url("/kether-clan-logo.png") !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  color: transparent !important;
+  font-size: 0 !important;
+}
+
+/* 底部浮水印改用氏族 Logo */
+.watermark-logo {
+  position: absolute;
+  right: 28px;
+  bottom: 20px;
+  width: min(180px, 38vw);
+  height: auto;
+  opacity: 0.06;
+  pointer-events: none;
+  filter: grayscale(1);
+}
+
+@media (max-width: 680px) {
+  .clan-logo-real img,
+  .clan-logo-img {
+    width: min(150px, 50vw);
+    border-radius: 24px;
+  }
+
+  .watermark-logo {
+    width: 130px;
+    right: 16px;
+    bottom: 14px;
+  }
+}
+
+/* v2.2.4 clan logo final override */
+.clan-logo-real {
+  display: flex !important;
+  justify-content: center !important;
+  margin: 10px auto 18px !important;
+}
+
+.clan-logo-real img,
+.clan-logo-img {
+  width: min(190px, 46vw) !important;
+  height: auto !important;
+  border-radius: 28px !important;
+  box-shadow: 0 18px 42px rgba(20, 32, 45, 0.18) !important;
+  display: block !important;
+}
+
+/* 如果舊 K 還殘留，直接把 K 的外殼變成氏族 Logo */
+.logo-mark {
+  background: url("/kether-clan-logo.png") center / cover no-repeat !important;
+  color: transparent !important;
+  font-size: 0 !important;
+  text-indent: -9999px !important;
+  overflow: hidden !important;
+}
+
+.logo-mark::before,
+.logo-mark::after {
+  display: none !important;
+  content: none !important;
+}
+
+.watermark-logo {
+  position: absolute !important;
+  right: 28px !important;
+  bottom: 20px !important;
+  width: min(180px, 38vw) !important;
+  height: auto !important;
+  opacity: 0.06 !important;
+  pointer-events: none !important;
+  filter: grayscale(1) !important;
+}
+
+@media (max-width: 680px) {
+  .clan-logo-real img,
+  .clan-logo-img {
+    width: min(150px, 50vw) !important;
+    border-radius: 24px !important;
+  }
+
+  .watermark-logo {
+    width: 130px !important;
+    right: 16px !important;
+    bottom: 14px !important;
+  }
+}
