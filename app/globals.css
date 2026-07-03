@@ -2021,3 +2021,45 @@ a.nav-card {
     opacity: 0.55 !important;
   }
 }
+
+/* v2.3.5 安全回復：關閉 v2.3.3 / v2.3.4 的首頁背景與自動科技框，避免版面錯亂 */
+.homepage-sci-fi {
+  background: #f6f8fa !important;
+  background-image: none !important;
+  background-attachment: scroll !important;
+}
+
+/* 取消自動套到所有 section / article / card / panel 的科技框 */
+.homepage-sci-fi section:not(.home-hero-image-banner),
+.homepage-sci-fi article,
+.homepage-sci-fi [class*="card"],
+.homepage-sci-fi [class*="Card"],
+.homepage-sci-fi [class*="panel"],
+.homepage-sci-fi [class*="Panel"] {
+  border: initial !important;
+  border-radius: initial !important;
+  background: initial !important;
+  box-shadow: initial !important;
+  backdrop-filter: initial !important;
+}
+
+/* 取消左上角科技角飾 */
+.homepage-sci-fi section:not(.home-hero-image-banner)::before,
+.homepage-sci-fi article::before,
+.homepage-sci-fi [class*="card"]::before,
+.homepage-sci-fi [class*="Card"]::before,
+.homepage-sci-fi [class*="panel"]::before,
+.homepage-sci-fi [class*="Panel"]::before {
+  content: none !important;
+  display: none !important;
+}
+
+/* 分類按鍵恢復原本樣式，不再硬套外框 */
+.homepage-sci-fi a[href^="/database"],
+.homepage-sci-fi a[href="/overview"],
+.homepage-sci-fi a[href="/"] {
+  border: initial !important;
+  border-radius: initial !important;
+  background: initial !important;
+  box-shadow: initial !important;
+}
