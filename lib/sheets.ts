@@ -185,7 +185,37 @@ export async function fetchSheetRows(category: string): Promise<{
     const parsed = parseCsv(text);
     const rows = parsed
       .map(normalizeRow)
-      .filter((item): item is SheetRow => Boolean(item));
+      .filter((item): item is SheetRow => Boolean(item))
+      .filter((item) => {
+        const joined = [
+          item.chineseName,
+          item.englishName,
+          item.description,
+          item.priority,
+          item.price,
+          item.tradeText,
+          item.owned,
+          item.source,
+          item.note
+        ].join(" ").trim();
+
+        const blockedKeywords = [
+          "製作者",
+          "ヤハ奈々子",
+          "Clan Database Core",
+          "KETHER OF PARADISO",
+          "網站版本",
+          "使用說明",
+          "更新日期"
+        ];
+
+        if (blockedKeywords.some((keyword) => joined.includes(keyword))) return false;
+        if (!item.chineseName || !item.englishName) return false;
+        if (item.chineseName === "—" || item.englishName === "—") return false;
+        if (item.chineseName === "-" || item.englishName === "-") return false;
+
+        return true;
+      });
 
     return { config, rows };
   } catch (error) {
