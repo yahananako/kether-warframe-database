@@ -1839,3 +1839,41 @@ a.nav-card {
   border-radius: 28px !important;
   box-shadow: 0 18px 42px rgba(20, 32, 45, 0.2) !important;
 }
+
+/* v2.2.9 首頁繪師橫版圖 */
+.home-hero-image-banner {
+  position: relative;
+  z-index: 4;
+  width: min(1120px, calc(100% - 32px));
+  margin: 22px auto 26px;
+  border-radius: 24px;
+  overflow: hidden;
+  border: 1px solid rgba(178, 144, 86, 0.28);
+  box-shadow: 0 20px 54px rgba(20, 32, 45, 0.16);
+  background: rgba(255, 255, 255, 0.86);
+}
+
+.home-hero-image-banner img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* 保險：舊首頁 Logo 全部藏起來，只留橫版圖 */
+.logo-mark,
+.clan-logo,
+.clan-logo-real,
+.clan-logo-img,
+.home-clan-logo,
+.home-clan-logo-force,
+.home-clan-logo-final {
+  display: none !important;
+}
+
+@media (max-width: 680px) {
+  .home-hero-image-banner {
+    width: calc(100% - 22px);
+    margin: 18px auto 22px;
+    border-radius: 18px;
+  }
+}

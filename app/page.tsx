@@ -108,14 +108,14 @@ export default async function HomePage() {
         </div>
       </header>
 
+      <section className="home-hero-image-banner" aria-label="KETHER OF PARADISO Warframe Database">
+        <img src="/home-hero-banner.png?v=229" alt="KETHER OF PARADISO Warframe Database 首頁橫版圖" />
+      </section>
+
+
       <section className="hero">
 <h2>KETHER OF PARADISO</h2>
-
-        <div className="home-clan-logo-final">
-          <img src="/kether-clan-logo.png?final=227" alt="KETHER OF PARADISO 氏族 Logo" />
-        </div>
-<h1>Warframe 資料庫首頁</h1>
-        <div className="divider">
+<div className="divider">
           <span />
           <b>◆</b>
           <span />
@@ -239,7 +239,7 @@ export default async function HomePage() {
 
           <div className="total-row">
             <span>網站版本</span>
-            <b>v2.2.8</b>
+            <b>v2.2.9</b>
           </div>
         </article>
 
@@ -249,7 +249,7 @@ export default async function HomePage() {
             <span>5　備註</span>
           </div>
 
-          <p>・v2.2.8 已加入首頁自動資料總控台。</p>
+          <p>・v2.2.9 已加入首頁自動資料總控台。</p>
           <p>・下一階段可做 Discord 登入前置與個人化資料庫設計。</p>
           <p>・完成度目前讀取表格欄位，未來會改為個人獨立紀錄。</p>
           <div className="note-lines" />
