@@ -2189,3 +2189,68 @@ a.nav-card {
     border-width: 2px;
   }
 }
+
+/* v2.3.9 修正：讓指定的四個統計卡片科技框覆蓋 v2.3.5 救版 reset */
+.homepage-sci-fi .home-tech-card {
+  position: relative !important;
+  border: 1px solid rgba(64, 76, 88, 0.34) !important;
+  border-radius: 18px !important;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.92),
+      rgba(242, 246, 249, 0.82)
+    ) !important;
+  box-shadow:
+    0 12px 28px rgba(18, 28, 38, 0.10),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.78) !important;
+  overflow: hidden !important;
+  padding: 1.25rem !important;
+}
+
+/* v2.3.9 科技角飾解除封印 */
+.homepage-sci-fi .home-tech-card.home-tech-corner::before {
+  content: "" !important;
+  display: block !important;
+  position: absolute !important;
+  top: 10px !important;
+  left: 10px !important;
+  width: 34px !important;
+  height: 22px !important;
+  border-top: 3px solid rgba(35, 45, 55, 0.72) !important;
+  border-left: 3px solid rgba(35, 45, 55, 0.72) !important;
+  border-radius: 10px 0 0 0 !important;
+  pointer-events: none !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.homepage-sci-fi .home-tech-card.home-tech-corner::after {
+  content: "" !important;
+  display: block !important;
+  position: absolute !important;
+  right: 10px !important;
+  bottom: 10px !important;
+  width: 34px !important;
+  height: 22px !important;
+  border-right: 3px solid rgba(35, 45, 55, 0.42) !important;
+  border-bottom: 3px solid rgba(35, 45, 55, 0.42) !important;
+  border-radius: 0 0 10px 0 !important;
+  pointer-events: none !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+@media (max-width: 680px) {
+  .homepage-sci-fi .home-tech-card {
+    padding: 1rem !important;
+    border-radius: 16px !important;
+  }
+
+  .homepage-sci-fi .home-tech-card.home-tech-corner::before,
+  .homepage-sci-fi .home-tech-card.home-tech-corner::after {
+    width: 22px !important;
+    height: 14px !important;
+    border-width: 2px !important;
+  }
+}
