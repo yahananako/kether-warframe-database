@@ -233,7 +233,7 @@ export default async function HomePage() {
 
           <div className="total-row">
             <span>網站版本</span>
-            <b>v2.4.1</b>
+            <b>v2.4.2</b>
           </div>
         </article>
 
@@ -243,7 +243,7 @@ export default async function HomePage() {
             <span>5　備註</span>
           </div>
 
-          <p>・v2.4.1 已加入首頁自動資料總控台。</p>
+          <p>・v2.4.2 已加入首頁自動資料總控台。</p>
           <p>・下一階段可做 Discord 登入前置與個人化資料庫設計。</p>
           <p>・完成度目前讀取表格欄位，未來會改為個人獨立紀錄。</p>
           <div className="note-lines" />
@@ -257,6 +257,69 @@ export default async function HomePage() {
         <b>KETHER OF PARADISO</b>
         <span />
       </footer>
+    
+      <script
+        id="v242-stat-frame-script"
+        dangerouslySetInnerHTML={{
+          __html: `
+            (() => {
+              const labels = ["總資料數", "有價格資料", "已購買", "目前完成度"];
+
+              function findLabelElements(label) {
+                return [...document.querySelectorAll(".homepage-sci-fi *")].filter((el) => {
+                  const ownText = [...el.childNodes]
+                    .filter((node) => node.nodeType === Node.TEXT_NODE)
+                    .map((node) => node.textContent.trim())
+                    .join("");
+                  return ownText === label;
+                });
+              }
+
+              function chooseCard(el, label) {
+                let current = el;
+                let best = null;
+
+                for (let i = 0; i < 7 && current && current !== document.body; i++) {
+                  const rect = current.getBoundingClientRect();
+                  const text = current.innerText || "";
+
+                  if (
+                    text.includes(label) &&
+                    rect.width >= 120 &&
+                    rect.height >= 45 &&
+                    rect.width <= window.innerWidth * 0.95 &&
+                    text.length <= 80
+                  ) {
+                    best = current;
+                  }
+
+                  current = current.parentElement;
+                }
+
+                return best;
+              }
+
+              function applyFrames() {
+                labels.forEach((label) => {
+                  const elements = findLabelElements(label);
+
+                  elements.forEach((el) => {
+                    const card = chooseCard(el, label);
+                    if (card) {
+                      card.classList.add("stat-frame-image");
+                    }
+                  });
+                });
+              }
+
+              requestAnimationFrame(applyFrames);
+              setTimeout(applyFrames, 300);
+              setTimeout(applyFrames, 1000);
+            })();
+          `,
+        }}
+      />
+
     </main>
   );
 }

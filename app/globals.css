@@ -2376,3 +2376,31 @@ a.nav-card {
     padding: 1rem 1.25rem !important;
   }
 }
+
+/* v2.4.2 實體圖片白銀框：由首頁腳本精準套到四個統計卡片 */
+.homepage-sci-fi .stat-frame-image {
+  position: relative !important;
+  min-height: 126px !important;
+  padding: 1.35rem 1.6rem !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  background:
+    url("/stat-card-silver-frame-filled.png?v=242") center center / 100% 100% no-repeat !important;
+  border: none !important;
+  border-radius: 18px !important;
+  box-shadow: none !important;
+  overflow: hidden !important;
+}
+
+.homepage-sci-fi .stat-frame-image > * {
+  position: relative !important;
+  z-index: 2 !important;
+}
+
+@media (max-width: 680px) {
+  .homepage-sci-fi .stat-frame-image {
+    min-height: 112px !important;
+    padding: 1rem 1.25rem !important;
+  }
+}
