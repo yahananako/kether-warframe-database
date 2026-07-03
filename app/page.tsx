@@ -233,7 +233,7 @@ export default async function HomePage() {
 
           <div className="total-row">
             <span>網站版本</span>
-            <b>v2.4.6</b>
+            <b>v2.4.5</b>
           </div>
         </article>
 
@@ -243,7 +243,7 @@ export default async function HomePage() {
             <span>5　備註</span>
           </div>
 
-          <p>・v2.4.6 已加入首頁自動資料總控台。</p>
+          <p>・v2.4.5 已加入首頁自動資料總控台。</p>
           <p>・下一階段可做 Discord 登入前置與個人化資料庫設計。</p>
           <p>・完成度目前讀取表格欄位，未來會改為個人獨立紀錄。</p>
           <div className="note-lines" />
@@ -499,187 +499,6 @@ export default async function HomePage() {
               requestAnimationFrame(applyAll);
               setTimeout(applyAll, 300);
               setTimeout(applyAll, 1000);
-            })();
-          `,
-        }}
-      />
-
-    
-      <script
-        id="v246-home-layer-fix-script"
-        dangerouslySetInnerHTML={{
-          __html: `
-            (() => {
-              const root = document.querySelector(".homepage-sci-fi");
-              if (!root) return;
-
-              function norm(text) {
-                return (text || "").replace(/\\s+/g, " ").trim();
-              }
-
-              function getRect(el) {
-                try {
-                  return el.getBoundingClientRect();
-                } catch {
-                  return { width: 0, height: 0, top: 9999 };
-                }
-              }
-
-              function commonAncestor(elements) {
-                if (!elements.length) return null;
-                const paths = elements.map((el) => {
-                  const path = [];
-                  let cur = el;
-                  while (cur && cur !== document.body) {
-                    path.push(cur);
-                    cur = cur.parentElement;
-                  }
-                  return path;
-                });
-
-                for (const node of paths[0]) {
-                  if (paths.every((p) => p.includes(node))) return node;
-                }
-                return null;
-              }
-
-              function findTextElement(label) {
-                const all = [...root.querySelectorAll("*")];
-                return all.find((el) => {
-                  const own = [...el.childNodes]
-                    .filter((n) => n.nodeType === Node.TEXT_NODE)
-                    .map((n) => norm(n.textContent))
-                    .join("");
-                  return own === label;
-                }) || all.find((el) => norm(el.innerText) === label);
-              }
-
-              function applyZoneByLabels(title, labels) {
-                const els = labels.map(findTextElement).filter(Boolean);
-                if (!els.length) return false;
-
-                let zone = commonAncestor(els);
-                if (!zone) return false;
-
-                // 如果抓到太小，就往上找一層合理容器
-                for (let i = 0; i < 5 && zone && zone !== root; i++) {
-                  const rect = getRect(zone);
-                  const text = norm(zone.innerText);
-
-                  if (
-                    rect.width >= 220 &&
-                    rect.height >= 60 &&
-                    labels.every((l) => text.includes(l))
-                  ) {
-                    zone.classList.add("home-art-zone-frame");
-                    zone.setAttribute("data-zone-title", title);
-                    return true;
-                  }
-
-                  zone = zone.parentElement;
-                }
-
-                return false;
-              }
-
-              function applyZoneByText(title, mustHave, maybeHave = []) {
-                const candidates = [...root.querySelectorAll("section, article, div")]
-                  .map((el) => {
-                    const text = norm(el.innerText);
-                    const rect = getRect(el);
-                    return { el, text, rect, area: rect.width * rect.height };
-                  })
-                  .filter(({ text, rect }) => {
-                    if (!mustHave.every((m) => text.includes(m))) return false;
-                    if (maybeHave.length && !maybeHave.some((m) => text.includes(m))) return false;
-                    if (rect.width < 180 || rect.height < 60) return false;
-                    if (text.length > 2200) return false;
-                    return true;
-                  })
-                  .sort((a, b) => a.area - b.area);
-
-                const target = candidates[0]?.el;
-                if (!target) return false;
-
-                target.classList.add("home-art-zone-frame");
-                target.setAttribute("data-zone-title", title);
-                return true;
-              }
-
-              function fixMenuLayer() {
-                // 找上方導覽列：通常包含登入 / Discord / 搜尋 / 漢堡
-                const candidates = [...root.querySelectorAll("header, nav, div")]
-                  .map((el) => {
-                    const text = norm(el.innerText);
-                    const rect = getRect(el);
-                    return { el, text, rect, area: rect.width * rect.height };
-                  })
-                  .filter(({ text, rect }) => {
-                    const hit = text.includes("登入") || text.includes("Discord");
-                    return hit && rect.top <= 160 && rect.width >= 200 && rect.height <= 160;
-                  })
-                  .sort((a, b) => a.area - b.area);
-
-                const bar = candidates[0]?.el;
-                if (bar) {
-                  bar.classList.add("home-top-overlay");
-                }
-
-                // 展開的選單如果是 nav / menu，就變浮層
-                root.querySelectorAll("[aria-expanded='true'], [data-state='open'], [role='menu']").forEach((el) => {
-                  let panel = el;
-                  for (let i = 0; i < 3 && panel; i++) {
-                    const rect = getRect(panel);
-                    if (rect.width >= 160 && rect.height >= 40) {
-                      panel.classList.add("home-menu-floating");
-                      break;
-                    }
-                    panel = panel.parentElement;
-                  }
-                });
-              }
-
-              function restoreWatermark() {
-                if (root.querySelector(".home-clan-watermark")) return;
-                const wm = document.createElement("div");
-                wm.className = "home-clan-watermark";
-                wm.textContent = "KETHER OF PARADISO";
-                root.appendChild(wm);
-              }
-
-              function applyAll() {
-                // 清掉舊標題狀態，重新掛
-                root.querySelectorAll(".home-art-zone-frame").forEach((el) => {
-                  el.classList.remove("home-art-zone-frame");
-                  el.removeAttribute("data-zone-title");
-                });
-
-                // 1 導覽區
-                applyZoneByLabels("1  導覽區", ["總覽", "戰甲", "主要武器", "次要武器"]);
-
-                // 2 數據區
-                applyZoneByLabels("2  數據區", ["總資料數", "有價格資料", "已購買", "目前完成度"]);
-
-                // 3 資料區
-                applyZoneByText("3  資料區", ["資料來源", "分頁數"], ["區塊", "價格更新", "Discord"]);
-
-                // 4 備註區
-                applyZoneByText("4  備註區", ["備註"], ["v2.", "下一階段", "可在此", "記錄", "完成度"]);
-
-                fixMenuLayer();
-                restoreWatermark();
-
-                // 版圖不擋點擊
-                root.querySelectorAll("img[src*='home-hero-banner']").forEach((img) => {
-                  img.style.pointerEvents = "none";
-                  img.style.zIndex = "20";
-                });
-              }
-
-              requestAnimationFrame(applyAll);
-              setTimeout(applyAll, 300);
-              setTimeout(applyAll, 1000);
-              document.addEventListener("click", () => setTimeout(applyAll, 80), true);
             })();
           `,
         }}
