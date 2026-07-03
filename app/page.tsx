@@ -233,7 +233,7 @@ export default async function HomePage() {
 
           <div className="total-row">
             <span>網站版本</span>
-            <b>v2.4.4</b>
+            <b>v2.4.5</b>
           </div>
         </article>
 
@@ -243,7 +243,7 @@ export default async function HomePage() {
             <span>5　備註</span>
           </div>
 
-          <p>・v2.4.4 已加入首頁自動資料總控台。</p>
+          <p>・v2.4.5 已加入首頁自動資料總控台。</p>
           <p>・下一階段可做 Discord 登入前置與個人化資料庫設計。</p>
           <p>・完成度目前讀取表格欄位，未來會改為個人獨立紀錄。</p>
           <div className="note-lines" />
@@ -383,6 +383,122 @@ export default async function HomePage() {
                 img.style.pointerEvents = "none";
                 img.style.zIndex = "20";
               });
+            })();
+          `,
+        }}
+      />
+
+    
+      <script
+        id="v245-home-art-layer-script"
+        dangerouslySetInnerHTML={{
+          __html: `
+            (() => {
+              const root = document.querySelector(".homepage-sci-fi");
+              if (!root) return;
+
+              function cleanOldZones() {
+                root.querySelectorAll(".home-art-zone-frame").forEach((el) => {
+                  el.classList.remove("home-art-zone-frame");
+                  el.removeAttribute("data-zone-title");
+                });
+              }
+
+              function normalize(text) {
+                return (text || "").replace(/\\s+/g, " ").trim();
+              }
+
+              function findZone(labelGroups) {
+                const nodes = [...root.querySelectorAll("section, article, div")];
+                const candidates = [];
+
+                for (const el of nodes) {
+                  const text = normalize(el.innerText);
+                  if (!text) continue;
+
+                  const rect = el.getBoundingClientRect();
+                  if (rect.width < 160 || rect.height < 40) continue;
+
+                  let score = 0;
+                  for (const group of labelGroups) {
+                    const groupHit = group.every((label) => text.includes(label));
+                    if (groupHit) score += group.length;
+                  }
+
+                  if (score <= 0) continue;
+
+                  // 避免抓到整個首頁太大的容器
+                  const area = rect.width * rect.height;
+                  const rootArea = window.innerWidth * Math.max(window.innerHeight, 720);
+                  if (area > rootArea * 0.85) continue;
+
+                  candidates.push({ el, score, area, textLength: text.length });
+                }
+
+                candidates.sort((a, b) => {
+                  if (b.score !== a.score) return b.score - a.score;
+                  return a.area - b.area;
+                });
+
+                return candidates[0]?.el || null;
+              }
+
+              function applyZone(title, labelGroups) {
+                const zone = findZone(labelGroups);
+                if (!zone) return false;
+
+                zone.classList.add("home-art-zone-frame");
+                zone.setAttribute("data-zone-title", title);
+                return true;
+              }
+
+              function applyAll() {
+                cleanOldZones();
+
+                // 1 導覽區
+                applyZone("1  導覽區", [
+                  ["總覽", "戰甲", "主要武器", "次要武器"],
+                  ["近戰武器", "同伴", "曲翼"]
+                ]);
+
+                // 2 數據區
+                applyZone("2  數據區", [
+                  ["總資料數", "有價格資料"],
+                  ["已購買", "目前完成度"],
+                  ["390", "304", "0%"]
+                ]);
+
+                // 3 資料區
+                applyZone("3  資料區", [
+                  ["資料來源", "分頁數", "區塊"],
+                  ["價格更新", "Discord"]
+                ]);
+
+                // 4 備註區
+                applyZone("4  備註區", [
+                  ["備註"],
+                  ["v2.", "下一階段"],
+                  ["可在此", "記錄"],
+                  ["完成度", "個人"]
+                ]);
+
+                // 頂部可點擊元素永遠最高
+                root.querySelectorAll("header, nav, button, a, [role='button']").forEach((el) => {
+                  el.style.position = "relative";
+                  el.style.zIndex = "5000";
+                  el.style.pointerEvents = "auto";
+                });
+
+                // 首頁版圖不可擋點擊
+                root.querySelectorAll("img[src*='home-hero-banner']").forEach((img) => {
+                  img.style.pointerEvents = "none";
+                  img.style.zIndex = "20";
+                });
+              }
+
+              requestAnimationFrame(applyAll);
+              setTimeout(applyAll, 300);
+              setTimeout(applyAll, 1000);
             })();
           `,
         }}

@@ -2336,3 +2336,51 @@ a.nav-card {
     font-size: 0.82rem !important;
   }
 }
+
+/* v2.4.5 修正手機菜單圖層：菜單展開時改浮層，不再推動首頁版圖 */
+.homepage-sci-fi header {
+  z-index: 5000 !important;
+}
+
+/* 手機版：如果 header 內有展開的選單，就讓 header 浮在最上層 */
+@media (max-width: 820px) {
+  .homepage-sci-fi header:has([aria-expanded="true"]),
+  .homepage-sci-fi header:has([data-state="open"]) {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    z-index: 5000 !important;
+    max-height: 100vh !important;
+    overflow-y: auto !important;
+    background: rgba(246, 248, 250, 0.96) !important;
+    backdrop-filter: blur(8px) !important;
+    box-shadow: 0 12px 32px rgba(18, 28, 38, 0.14) !important;
+  }
+
+  /* 常見手機選單容器：浮在內容上，不佔版面 */
+  .homepage-sci-fi header [role="menu"],
+  .homepage-sci-fi header [data-state="open"],
+  .homepage-sci-fi header nav[data-state="open"] {
+    z-index: 5001 !important;
+    pointer-events: auto !important;
+  }
+}
+
+/* v2.4.5 四大區塊框框微調：避免標題消失 */
+.homepage-sci-fi .home-art-zone-frame {
+  position: relative !important;
+  z-index: 30 !important;
+  overflow: visible !important;
+}
+
+.homepage-sci-fi .home-art-zone-frame::before {
+  display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  z-index: 60 !important;
+}
+
+.homepage-sci-fi .home-art-zone-frame::after {
+  pointer-events: none !important;
+}
