@@ -2063,3 +2063,40 @@ a.nav-card {
   background: initial !important;
   box-shadow: initial !important;
 }
+
+/* v2.3.6 清除首頁殘留裝飾層：上方線條、巨大背景樹形、角落裝飾 */
+.homepage-sci-fi::before,
+.homepage-sci-fi::after {
+  content: none !important;
+  display: none !important;
+  background: none !important;
+}
+
+/* 關閉首頁內用 absolute / pointer-events-none 做的背景裝飾，不影響正常按鈕 */
+.homepage-sci-fi [class*="pointer-events-none"][class*="absolute"],
+.homepage-sci-fi [class*="absolute"][class*="inset"],
+.homepage-sci-fi [class*="decor"],
+.homepage-sci-fi [class*="ornament"],
+.homepage-sci-fi [class*="watermark"],
+.homepage-sci-fi [class*="corner"] {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+/* 再保險：首頁背景恢復乾淨底色 */
+.homepage-sci-fi {
+  background: #f6f8fa !important;
+  background-image: none !important;
+}
+
+/* 保留首頁真正內容 */
+.homepage-sci-fi header,
+.homepage-sci-fi nav,
+.homepage-sci-fi main,
+.homepage-sci-fi section,
+.homepage-sci-fi article,
+.homepage-sci-fi a,
+.homepage-sci-fi img {
+  visibility: visible;
+}
