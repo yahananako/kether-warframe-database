@@ -29,10 +29,20 @@ export default function DataTable({ rows }: { rows: SheetRow[] }) {
   const [query, setQuery] = useState("");
   const [filter, setFilter] = useState<FilterMode>("all");
   const [sortMode, setSortMode] = useState<SortMode>("none");
+  const [section, setSection] = useState("all");
+
+  const sections = useMemo(() => {
+    const list = rows
+      .map((row) => row.section || "未分類")
+      .filter(Boolean);
+
+    return Array.from(new Set(list));
+  }, [rows]);
 
   const filteredRows = useMemo(() => {
     let result = rows.filter((row) => {
       const text = [
+        row.section,
         row.chineseName,
         row.englishName,
         row.description,
@@ -44,6 +54,7 @@ export default function DataTable({ rows }: { rows: SheetRow[] }) {
       ].join(" ").toLowerCase();
 
       const matchQuery = text.includes(query.trim().toLowerCase());
+      const matchSection = section === "all" || row.section === section;
       const owned = isOwned(row.owned);
       const priced = hasPrice(row.price);
 
@@ -54,7 +65,7 @@ export default function DataTable({ rows }: { rows: SheetRow[] }) {
         (filter === "priced" && priced) ||
         (filter === "unpriced" && !priced);
 
-      return matchQuery && matchFilter;
+      return matchQuery && matchSection && matchFilter;
     });
 
     if (sortMode === "priceHigh") {
@@ -74,7 +85,7 @@ export default function DataTable({ rows }: { rows: SheetRow[] }) {
     }
 
     return result;
-  }, [rows, query, filter, sortMode]);
+  }, [rows, query, filter, sortMode, section]);
 
   const pricedCount = rows.filter((row) => hasPrice(row.price)).length;
   const ownedCount = rows.filter((row) => isOwned(row.owned)).length;
@@ -83,10 +94,17 @@ export default function DataTable({ rows }: { rows: SheetRow[] }) {
     <>
       <section className="db-tool-panel enhanced-tools">
         <input
-          placeholder="搜尋中文名 / 英文名 / 用途 / 價格..."
+          placeholder="搜尋區塊 / 中文名 / 英文名 / 用途 / 價格..."
           value={query}
           onChange={(event) => setQuery(event.target.value)}
         />
+
+        <select className="section-select" value={section} onChange={(event) => setSection(event.target.value)}>
+          <option value="all">全部區塊</option>
+          {sections.map((item) => (
+            <option value={item} key={item}>{item}</option>
+          ))}
+        </select>
 
         <button className={filter === "all" ? "is-active" : ""} onClick={() => setFilter("all")}>
           全部
@@ -121,7 +139,7 @@ export default function DataTable({ rows }: { rows: SheetRow[] }) {
             <h2>資料表</h2>
             <p>
               目前顯示 {filteredRows.length} / {rows.length} 筆資料。
-              有價格 {pricedCount} 筆，已購買 {ownedCount} 筆。
+              區塊 {sections.length} 個，有價格 {pricedCount} 筆，已購買 {ownedCount} 筆。
             </p>
           </div>
           <span>Google Sheets 只讀模式</span>
@@ -129,6 +147,7 @@ export default function DataTable({ rows }: { rows: SheetRow[] }) {
 
         <div className="db-table desktop-table">
           <div className="db-row db-head">
+            <span>區塊</span>
             <span>中文名</span>
             <span>英文名</span>
             <span>用途 / 說明</span>
@@ -142,7 +161,8 @@ export default function DataTable({ rows }: { rows: SheetRow[] }) {
             const owned = isOwned(row.owned);
 
             return (
-              <div className="db-row" key={`${row.englishName}-${index}`}>
+              <div className="db-row" key={`${row.section}-${row.englishName}-${index}`}>
+                <span><b className="section-pill">{row.section || "未分類"}</b></span>
                 <span>{row.chineseName || "未命名"}</span>
                 <span>{row.englishName || "—"}</span>
                 <span>{row.description || row.note || "—"}</span>
@@ -176,7 +196,8 @@ export default function DataTable({ rows }: { rows: SheetRow[] }) {
             const owned = isOwned(row.owned);
 
             return (
-              <article className="mobile-data-card" key={`${row.englishName}-mobile-${index}`}>
+              <article className="mobile-data-card" key={`${row.section}-${row.englishName}-mobile-${index}`}>
+                <b className="section-pill">{row.section || "未分類"}</b>
                 <h3>{row.chineseName || "未命名"}</h3>
                 <p>{row.englishName || "—"}</p>
                 <small>{row.description || row.note || "—"}</small>
@@ -198,7 +219,7 @@ export default function DataTable({ rows }: { rows: SheetRow[] }) {
         {filteredRows.length === 0 && (
           <div className="empty-state">
             <h2>沒有找到資料</h2>
-            <p>請調整搜尋字或篩選條件。</p>
+            <p>請調整搜尋字、區塊或篩選條件。</p>
           </div>
         )}
       </section>

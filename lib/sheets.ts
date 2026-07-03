@@ -1,4 +1,5 @@
 export type SheetRow = {
+  section: string;
   chineseName: string;
   englishName: string;
   description: string;
@@ -58,9 +59,9 @@ export const SHEET_GIDS: Record<string, { gid: string; sheetName: string; title:
   },
   mods: {
     gid: "2143967540",
-    sheetName: "總覽",
+    sheetName: "多分頁彙整",
     title: "MOD資料庫",
-    subtitle: "MOD 資料庫頁面預留，之後可拆成獨立分頁或讀取多分頁區塊。"
+    subtitle: "暫時從各資料分頁中彙整疑似 MOD 資料，之後可改接獨立 MOD 分頁。"
   }
 };
 
@@ -109,43 +110,151 @@ function parseCsv(csv: string): string[][] {
   return rows;
 }
 
-function toMarketSlug(name: string): string {
-  const clean = name
+function makeSlugBase(name: string): string {
+  return name
     .trim()
     .replace(/[’']/g, "")
+    .replace(/&/g, "and")
     .replace(/[^A-Za-z0-9 ]/g, "")
     .replace(/\s+/g, "_")
     .toLowerCase();
-
-  if (!clean) return "";
-
-  if (name.includes(" Prime") && !name.startsWith("Primed ") && !clean.endsWith("_set")) {
-    return `${clean}_set`;
-  }
-
-  return clean;
 }
 
-function normalizeRow(row: string[]): SheetRow | null {
+function shouldUseSetLink(name: string, category: string): boolean {
+  if (!name.includes(" Prime")) return false;
+  if (name.startsWith("Primed ")) return false;
+  if (category === "mods") return false;
+
+  return ["warframes", "primary", "secondary", "melee", "companions", "archwing"].includes(category);
+}
+
+function toMarketSlug(name: string, category: string): string {
+  const base = makeSlugBase(name);
+  if (!base) return "";
+
+  if (shouldUseSetLink(name, category) && !base.endsWith("_set")) {
+    return `${base}_set`;
+  }
+
+  return base;
+}
+
+function isMetaText(value: string): boolean {
+  const blockedKeywords = [
+    "製作者",
+    "ヤハ奈々子",
+    "Clan Database Core",
+    "KETHER OF PARADISO",
+    "網站版本",
+    "使用說明",
+    "更新日期",
+    "目前資料數",
+    "資料來源",
+    "Discord 入口",
+    "完成度",
+    "多群組支援"
+  ];
+
+  return blockedKeywords.some((keyword) => value.includes(keyword));
+}
+
+function cleanSectionName(value: string): string {
+  const cleaned = value
+    .replace(/^[\s▣■◆●▶▷◇★☆\-—=【\[]+/g, "")
+    .replace(/[】\]]+$/g, "")
+    .trim();
+
+  return cleaned || "未分類";
+}
+
+function detectSectionTitle(row: string[]): string | null {
+  const first = String(row[0] || "").trim();
+  const second = String(row[1] || "").trim();
+  const rest = row.slice(1).map((cell) => String(cell || "").trim());
+  const nonEmptyRest = rest.filter(Boolean);
+
+  if (!first) return null;
+  if (isMetaText(first)) return null;
+  if (first === "中文名" || second === "英文名") return null;
+
+  const hasMarker = /^[▣■◆●▶▷◇★☆【\[]/.test(first);
+  const onlyFirstCell = nonEmptyRest.length === 0;
+
+  if (hasMarker || onlyFirstCell) {
+    return cleanSectionName(first);
+  }
+
+  return null;
+}
+
+function isHeaderOrFooterRow(row: SheetRow): boolean {
+  const joined = [
+    row.section,
+    row.chineseName,
+    row.englishName,
+    row.description,
+    row.priority,
+    row.price,
+    row.tradeText,
+    row.owned,
+    row.source,
+    row.note
+  ].join(" ").trim();
+
+  if (isMetaText(joined)) return true;
+  if (!row.chineseName || !row.englishName) return true;
+  if (row.chineseName === "—" || row.englishName === "—") return true;
+  if (row.chineseName === "-" || row.englishName === "-") return true;
+  if (row.chineseName === "中文名" || row.englishName === "英文名") return true;
+  if (row.chineseName.startsWith("▣")) return true;
+
+  return false;
+}
+
+function isLikelyMod(row: SheetRow): boolean {
+  const text = `${row.section} ${row.chineseName} ${row.englishName} ${row.description} ${row.source} ${row.note}`;
+
+  const modKeywords = [
+    "Mod",
+    "MOD",
+    "Primed ",
+    "Archon ",
+    "Galvanized ",
+    "Amalgam ",
+    "Augur ",
+    "Gladiator ",
+    "Vigilante ",
+    "Hunter ",
+    "Umbral ",
+    "Sacrificial ",
+    "Riven",
+    "Peculiar",
+    "Aura",
+    "Stance",
+    "角鬥士",
+    "激昂",
+    "執政官",
+    "預言",
+    "靈氣",
+    "架式",
+    "裂罅",
+    "犧牲",
+    "暗影"
+  ];
+
+  return modKeywords.some((keyword) => text.includes(keyword));
+}
+
+function normalizeRow(row: string[], category: string, section: string): SheetRow | null {
   const chineseName = String(row[0] || "").trim();
   const englishName = String(row[1] || "").trim();
 
   if (!chineseName && !englishName) return null;
-  if (chineseName === "中文名" || englishName === "英文名") return null;
-  if (chineseName.startsWith("▣")) return null;
-  if (chineseName.includes("分類") && englishName.includes("英文")) return null;
 
-  // 排除表格底部署名、分隔線、說明列
-  if (chineseName.includes("製作者")) return null;
-  if (chineseName.includes("ヤハ奈々子")) return null;
-  if (chineseName.includes("KETHER OF PARADISO")) return null;
-  if (chineseName.includes("Clan Database Core")) return null;
-  if (chineseName === "—" || chineseName === "-" || chineseName === "－") return null;
-  if (!englishName || englishName === "—" || englishName === "-" || englishName === "－") return null;
+  const slug = toMarketSlug(englishName, category);
 
-  const slug = toMarketSlug(englishName);
-
-  return {
+  const item: SheetRow = {
+    section: section || "未分類",
     chineseName,
     englishName,
     description: String(row[2] || "").trim(),
@@ -157,9 +266,13 @@ function normalizeRow(row: string[]): SheetRow | null {
     note: String(row[8] || "").trim(),
     marketUrl: slug ? `https://warframe.market/items/${slug}` : ""
   };
+
+  if (isHeaderOrFooterRow(item)) return null;
+
+  return item;
 }
 
-export async function fetchSheetRows(category: string): Promise<{
+async function fetchOneSheet(category: string): Promise<{
   config: typeof SHEET_GIDS[string];
   rows: SheetRow[];
   error?: string;
@@ -183,46 +296,63 @@ export async function fetchSheetRows(category: string): Promise<{
     }
 
     const parsed = parseCsv(text);
-    const rows = parsed
-      .map(normalizeRow)
-      .filter((item): item is SheetRow => Boolean(item))
-      .filter((item) => {
-        const joined = [
-          item.chineseName,
-          item.englishName,
-          item.description,
-          item.priority,
-          item.price,
-          item.tradeText,
-          item.owned,
-          item.source,
-          item.note
-        ].join(" ").trim();
+    const rows: SheetRow[] = [];
+    let currentSection = config.title;
 
-        const blockedKeywords = [
-          "製作者",
-          "ヤハ奈々子",
-          "Clan Database Core",
-          "KETHER OF PARADISO",
-          "網站版本",
-          "使用說明",
-          "更新日期"
-        ];
+    for (const rawRow of parsed) {
+      const sectionTitle = detectSectionTitle(rawRow);
 
-        if (blockedKeywords.some((keyword) => joined.includes(keyword))) return false;
-        if (!item.chineseName || !item.englishName) return false;
-        if (item.chineseName === "—" || item.englishName === "—") return false;
-        if (item.chineseName === "-" || item.englishName === "-") return false;
+      if (sectionTitle) {
+        currentSection = sectionTitle;
+        continue;
+      }
 
-        return true;
-      });
+      const item = normalizeRow(rawRow, category, currentSection);
+      if (item) rows.push(item);
+    }
 
     return { config, rows };
-  } catch (error) {
+  } catch {
     return {
       config,
       rows: [],
       error: "讀取失敗：網站暫時無法連線到 Google Sheets。"
     };
   }
+}
+
+export async function fetchSheetRows(category: string): Promise<{
+  config: typeof SHEET_GIDS[string];
+  rows: SheetRow[];
+  error?: string;
+}> {
+  if (category !== "mods") {
+    return fetchOneSheet(category);
+  }
+
+  const sourceCategories = ["warframes", "primary", "secondary", "melee", "companions", "archwing"];
+  const results = await Promise.all(sourceCategories.map((item) => fetchOneSheet(item)));
+
+  const merged = results
+    .flatMap((result) => result.rows)
+    .filter(isLikelyMod);
+
+  const seen = new Set<string>();
+  const uniqueRows = merged.filter((row) => {
+    const key = `${row.chineseName}|${row.englishName}`;
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  }).map((row) => {
+    const slug = toMarketSlug(row.englishName, "mods");
+    return {
+      ...row,
+      marketUrl: slug ? `https://warframe.market/items/${slug}` : ""
+    };
+  });
+
+  return {
+    config: SHEET_GIDS.mods,
+    rows: uniqueRows
+  };
 }

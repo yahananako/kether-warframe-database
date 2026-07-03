@@ -894,3 +894,28 @@ a.nav-card {
   font-style: normal;
   font-weight: 800;
 }
+
+
+.section-select {
+  border: 1px solid var(--line);
+  background: white;
+  color: var(--ink);
+  border-radius: 999px;
+  padding: 12px 18px;
+  font-weight: 900;
+  min-width: 160px;
+}
+
+.section-pill {
+  display: inline-block;
+  background: #f2f6fa;
+  border: 1px solid #d3dee8;
+  border-radius: 999px;
+  padding: 6px 10px;
+  color: #425162;
+  font-weight: 900;
+}
+
+.db-row {
+  grid-template-columns: 0.9fr 1fr 1fr 2fr 0.8fr 0.8fr 0.9fr;
+}
