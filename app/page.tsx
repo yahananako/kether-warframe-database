@@ -233,7 +233,7 @@ export default async function HomePage() {
 
           <div className="total-row">
             <span>網站版本</span>
-            <b>v2.4.3</b>
+            <b>v2.4.4</b>
           </div>
         </article>
 
@@ -243,7 +243,7 @@ export default async function HomePage() {
             <span>5　備註</span>
           </div>
 
-          <p>・v2.4.3 已加入首頁自動資料總控台。</p>
+          <p>・v2.4.4 已加入首頁自動資料總控台。</p>
           <p>・下一階段可做 Discord 登入前置與個人化資料庫設計。</p>
           <p>・完成度目前讀取表格欄位，未來會改為個人獨立紀錄。</p>
           <div className="note-lines" />
@@ -315,6 +315,74 @@ export default async function HomePage() {
               requestAnimationFrame(applyFrames);
               setTimeout(applyFrames, 300);
               setTimeout(applyFrames, 1000);
+            })();
+          `,
+        }}
+      />
+
+    
+      <script
+        id="v244-home-art-layer-script"
+        dangerouslySetInnerHTML={{
+          __html: `
+            (() => {
+              const root = document.querySelector(".homepage-sci-fi");
+              if (!root) return;
+
+              function findZone(labels) {
+                const nodes = [...root.querySelectorAll("section, article, div")];
+
+                const candidates = nodes
+                  .map((el) => {
+                    const text = (el.innerText || "").replace(/\\s+/g, " ").trim();
+                    const rect = el.getBoundingClientRect();
+                    return { el, text, rect, area: rect.width * rect.height };
+                  })
+                  .filter(({ text, rect }) => {
+                    return labels.every((label) => text.includes(label)) &&
+                      rect.width >= 180 &&
+                      rect.height >= 45 &&
+                      text.length <= 1800;
+                  })
+                  .sort((a, b) => a.area - b.area);
+
+                return candidates[0]?.el || null;
+              }
+
+              function applyZone(title, labels) {
+                const zone = findZone(labels);
+                if (!zone) return;
+
+                zone.classList.add("home-art-zone-frame");
+                zone.setAttribute("data-zone-title", title);
+              }
+
+              // 1 導覽區：分類按鍵區
+              applyZone("1  導覽區", ["總覽", "戰甲", "主要武器", "次要武器"]);
+
+              // 2 數據區：四個統計數據
+              applyZone("2  數據區", ["總資料數", "有價格資料", "已購買", "目前完成度"]);
+
+              // 3 資料區：資料來源 / 分頁 / 區塊 / 更新資訊
+              applyZone("3  資料區", ["資料來源", "分頁數", "區塊"]);
+
+              // 4 備註區：備註內容
+              applyZone("4  備註區", ["可在此", "記錄"]);
+
+              // 保險：頂部可點擊元素永遠在最上層
+              const topItems = root.querySelectorAll("header, nav, button, a, [role='button']");
+              topItems.forEach((el) => {
+                el.style.position = "relative";
+                el.style.zIndex = "1000";
+                el.style.pointerEvents = "auto";
+              });
+
+              // 版圖不擋點擊
+              const heroImages = root.querySelectorAll("img[src*='home-hero-banner']");
+              heroImages.forEach((img) => {
+                img.style.pointerEvents = "none";
+                img.style.zIndex = "20";
+              });
             })();
           `,
         }}

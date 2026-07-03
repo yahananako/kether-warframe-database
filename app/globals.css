@@ -2213,3 +2213,126 @@ a.nav-card {
   flex-direction: unset !important;
   justify-content: unset !important;
 }
+
+/* v2.4.4 首頁美工圖層修復：背景最低，內容中層，選單最高 */
+.homepage-sci-fi {
+  position: relative !important;
+  isolation: isolate !important;
+  overflow-x: hidden !important;
+  background:
+    linear-gradient(
+      rgba(246, 248, 250, 0.86),
+      rgba(246, 248, 250, 0.96)
+    ),
+    url("/home-ui-bg.png?v=244") center top / 100% auto repeat-y !important;
+  background-attachment: scroll !important;
+}
+
+/* 首頁所有主要內容在中層 */
+.homepage-sci-fi > * {
+  position: relative !important;
+  z-index: 10 !important;
+}
+
+/* 首頁版圖不可擋點擊 */
+.homepage-sci-fi img[src*="home-hero-banner"],
+.homepage-sci-fi .home-hero-image-banner {
+  position: relative !important;
+  z-index: 20 !important;
+  pointer-events: none !important;
+}
+
+/* 頂部選單、按鈕、導覽永遠在最上層，可點擊 */
+.homepage-sci-fi header,
+.homepage-sci-fi nav,
+.homepage-sci-fi button,
+.homepage-sci-fi a,
+.homepage-sci-fi [role="button"],
+.homepage-sci-fi [aria-label*="menu"],
+.homepage-sci-fi [aria-label*="search"],
+.homepage-sci-fi [aria-label*="Menu"],
+.homepage-sci-fi [aria-label*="Search"] {
+  position: relative !important;
+  z-index: 1000 !important;
+  pointer-events: auto !important;
+}
+
+/* v2.4.4 四大區塊外框 */
+.homepage-sci-fi .home-art-zone-frame {
+  position: relative !important;
+  z-index: 30 !important;
+  margin-top: 2.2rem !important;
+  padding: 2.8rem 1rem 1.15rem !important;
+  border: 1px solid rgba(54, 65, 76, 0.32) !important;
+  border-radius: 20px !important;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.78),
+      rgba(244, 247, 249, 0.68)
+    ) !important;
+  box-shadow:
+    0 14px 36px rgba(18, 28, 38, 0.10),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.70) !important;
+  overflow: visible !important;
+}
+
+/* 區塊標題牌：1 導覽區 / 2 數據區 / 3 資料區 / 4 備註區 */
+.homepage-sci-fi .home-art-zone-frame::before {
+  content: attr(data-zone-title);
+  position: absolute !important;
+  top: -1px !important;
+  left: -1px !important;
+  min-width: 132px !important;
+  height: 34px !important;
+  padding: 0 1rem !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: linear-gradient(135deg, #24313d, #4a5965) !important;
+  color: #ffffff !important;
+  font-weight: 900 !important;
+  font-size: 0.95rem !important;
+  letter-spacing: 0.08em !important;
+  border-radius: 18px 0 18px 0 !important;
+  box-shadow: 0 8px 18px rgba(18, 28, 38, 0.18) !important;
+  z-index: 40 !important;
+}
+
+/* 區塊右下角小裝飾，不擋點擊 */
+.homepage-sci-fi .home-art-zone-frame::after {
+  content: "";
+  position: absolute !important;
+  right: 14px !important;
+  bottom: 14px !important;
+  width: 42px !important;
+  height: 24px !important;
+  border-right: 2px solid rgba(54, 65, 76, 0.26) !important;
+  border-bottom: 2px solid rgba(54, 65, 76, 0.26) !important;
+  border-radius: 0 0 12px 0 !important;
+  pointer-events: none !important;
+}
+
+/* 手機版 */
+@media (max-width: 680px) {
+  .homepage-sci-fi {
+    background:
+      linear-gradient(
+        rgba(246, 248, 250, 0.90),
+        rgba(246, 248, 250, 0.98)
+      ),
+      url("/home-ui-bg.png?v=244") center top / 100% auto repeat-y !important;
+  }
+
+  .homepage-sci-fi .home-art-zone-frame {
+    margin-top: 1.8rem !important;
+    padding: 2.55rem 0.85rem 1rem !important;
+    border-radius: 18px !important;
+  }
+
+  .homepage-sci-fi .home-art-zone-frame::before {
+    min-width: 116px !important;
+    height: 30px !important;
+    font-size: 0.82rem !important;
+  }
+}
