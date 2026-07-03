@@ -1207,3 +1207,141 @@ a.nav-card {
     grid-template-columns: 1fr;
   }
 }
+
+.profile-page {
+  display: grid;
+  align-content: start;
+  gap: 28px;
+}
+
+.profile-header {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 24px;
+  align-items: center;
+  padding-top: 32px;
+}
+
+.profile-header p {
+  margin: 0;
+  letter-spacing: 0.35em;
+  color: #7d8994;
+  font-weight: 900;
+}
+
+.profile-header h1 {
+  margin: 8px 0;
+  font-size: clamp(44px, 7vw, 88px);
+}
+
+.profile-header span {
+  color: #55616f;
+  font-size: 18px;
+}
+
+.profile-hero {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  background: rgba(255,255,255,0.92);
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  padding: 42px 28px;
+  box-shadow: 0 18px 42px rgba(20, 32, 45, 0.12);
+}
+
+.profile-hero h2 {
+  margin: 16px 0 10px;
+  font-size: clamp(30px, 5vw, 54px);
+}
+
+.profile-hero p {
+  max-width: 900px;
+  margin: 0 auto;
+  color: #55616f;
+  line-height: 1.8;
+}
+
+.profile-progress-grid {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+
+.profile-progress-grid article {
+  background: rgba(255,255,255,0.9);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 18px;
+  box-shadow: 0 12px 30px rgba(20, 32, 45, 0.08);
+}
+
+.profile-progress-grid span {
+  display: block;
+  color: #66717d;
+  font-weight: 900;
+  margin-bottom: 8px;
+}
+
+.profile-progress-grid strong {
+  display: block;
+  font-size: 22px;
+  margin-bottom: 8px;
+}
+
+.profile-progress-grid p {
+  margin: 0;
+  color: #66717d;
+  line-height: 1.6;
+}
+
+.profile-system-grid {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.profile-system-grid article {
+  background: rgba(255,255,255,0.9);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 24px;
+  box-shadow: 0 14px 34px rgba(20, 32, 45, 0.08);
+}
+
+.profile-system-grid h3 {
+  margin: 14px 0 8px;
+}
+
+.profile-system-grid p {
+  margin: 0;
+  color: #66717d;
+  line-height: 1.7;
+}
+
+@media (max-width: 1000px) {
+  .profile-progress-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .profile-system-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 680px) {
+  .profile-header {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .profile-progress-grid {
+    grid-template-columns: 1fr;
+  }
+}
