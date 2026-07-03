@@ -1983,3 +1983,41 @@ a.nav-card {
     border-radius: 16px !important;
   }
 }
+
+/* v2.3.4 修正首頁背景跑圖：取消 cover fixed，避免手機版放大裁切 */
+.homepage-sci-fi {
+  background:
+    linear-gradient(
+      rgba(246, 249, 251, 0.72),
+      rgba(246, 249, 251, 0.90)
+    ),
+    url("/home-ui-bg.png?v=234") center top / 100% auto repeat-y !important;
+  background-attachment: scroll !important;
+}
+
+/* 手機版：背景維持完整寬度，不再放大裁切 */
+@media (max-width: 680px) {
+  .homepage-sci-fi {
+    background:
+      linear-gradient(
+        rgba(246, 249, 251, 0.80),
+        rgba(246, 249, 251, 0.96)
+      ),
+      url("/home-ui-bg.png?v=234") center top / 100% auto repeat-y !important;
+    background-attachment: scroll !important;
+  }
+
+  /* 手機版避免科技角飾太搶畫面 */
+  .homepage-sci-fi section:not(.home-hero-image-banner)::before,
+  .homepage-sci-fi article::before,
+  .homepage-sci-fi [class*="card"]::before,
+  .homepage-sci-fi [class*="Card"]::before,
+  .homepage-sci-fi [class*="panel"]::before,
+  .homepage-sci-fi [class*="Panel"]::before {
+    width: 22px !important;
+    height: 12px !important;
+    border-top-width: 2px !important;
+    border-left-width: 2px !important;
+    opacity: 0.55 !important;
+  }
+}
