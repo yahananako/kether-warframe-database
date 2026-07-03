@@ -135,6 +135,14 @@ function normalizeRow(row: string[]): SheetRow | null {
   if (chineseName.startsWith("▣")) return null;
   if (chineseName.includes("分類") && englishName.includes("英文")) return null;
 
+  // 排除表格底部署名、分隔線、說明列
+  if (chineseName.includes("製作者")) return null;
+  if (chineseName.includes("ヤハ奈々子")) return null;
+  if (chineseName.includes("KETHER OF PARADISO")) return null;
+  if (chineseName.includes("Clan Database Core")) return null;
+  if (chineseName === "—" || chineseName === "-" || chineseName === "－") return null;
+  if (!englishName || englishName === "—" || englishName === "-" || englishName === "－") return null;
+
   const slug = toMarketSlug(englishName);
 
   return {
