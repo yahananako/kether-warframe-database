@@ -83,6 +83,7 @@ export default async function HomePage() {
               <Link href="/">首頁</Link>
               <Link href="/login">Discord 登入</Link>
               <Link href="/profile">個人進度</Link>
+              <Link href="/db-status">資料庫狀態</Link>
               {navItems.map((item) => (
                 <Link key={item.label} href={item.href}>
                   {item.label}
@@ -237,7 +238,7 @@ export default async function HomePage() {
 
           <div className="total-row">
             <span>網站版本</span>
-            <b>v2.1.3</b>
+            <b>v2.1.5</b>
           </div>
         </article>
 
@@ -247,7 +248,7 @@ export default async function HomePage() {
             <span>5　備註</span>
           </div>
 
-          <p>・v2.1.3 已加入首頁自動資料總控台。</p>
+          <p>・v2.1.5 已加入首頁自動資料總控台。</p>
           <p>・下一階段可做 Discord 登入前置與個人化資料庫設計。</p>
           <p>・完成度目前讀取表格欄位，未來會改為個人獨立紀錄。</p>
           <div className="note-lines" />
