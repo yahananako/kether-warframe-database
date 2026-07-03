@@ -279,7 +279,7 @@ export default async function HomePage() {
             <span>4　備註</span>
           </div>
 
-          <p>・目前為 v2.0.6，首頁統計會自動讀取 Google Sheets。</p>
+          <p>・目前為 v2.0.7，首頁統計會自動讀取 Google Sheets。</p>
           <p>・分類頁已串接 Google Sheets 真資料。</p>
           <p>・目前表格完成度為 {completion}%，未來會改成 Discord 個人化紀錄。</p>
           <div className="note-lines" />

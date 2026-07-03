@@ -853,3 +853,44 @@ a.nav-card {
   border-radius: 999px;
   padding: 10px 14px;
 }
+
+.enhanced-tools button.is-active {
+  background: #111820;
+  color: white;
+  border-color: #111820;
+  box-shadow: 0 8px 18px rgba(17, 24, 32, 0.18);
+}
+
+.price-pill {
+  display: inline-block;
+  background: #eef8fb;
+  border: 1px solid #c7e2ed;
+  border-radius: 999px;
+  padding: 6px 10px;
+  color: #007fa8;
+  font-weight: 900;
+}
+
+.price-empty {
+  background: #f4f6f8;
+  border-color: #d6dee6;
+  color: #7d8994;
+}
+
+.owned-ok {
+  background: #edf8ef;
+  border-color: #bcdcc4;
+  color: #247a38;
+}
+
+.owned-ok-text {
+  color: #247a38;
+}
+
+.mobile-hint {
+  margin-top: 10px;
+  display: block;
+  color: #7d8994;
+  font-style: normal;
+  font-weight: 800;
+}
