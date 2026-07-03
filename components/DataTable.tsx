@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import type { SheetRow } from "@/lib/sheets";
+import type { SheetRow } from "../lib/sheets";
 
 type FilterMode = "all" | "owned" | "missing";
 

@@ -1,6 +1,6 @@
 import Link from "next/link";
-import DataTable from "@/components/DataTable";
-import { fetchSheetRows } from "@/lib/sheets";
+import DataTable from "../../../components/DataTable";
+import { fetchSheetRows } from "../../../lib/sheets";
 
 export default async function CategoryPage({
   params
