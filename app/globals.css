@@ -1728,3 +1728,46 @@ a.nav-card {
     bottom: 14px !important;
   }
 }
+
+/* v2.2.5 首頁上方氏族版圖 Logo */
+.home-clan-logo {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  justify-content: center;
+  margin: 8px auto 18px;
+}
+
+.home-clan-logo img {
+  width: min(185px, 46vw);
+  height: auto;
+  border-radius: 28px;
+  box-shadow: 0 18px 42px rgba(20, 32, 45, 0.18);
+  display: block;
+}
+
+@media (max-width: 680px) {
+  .home-clan-logo img {
+    width: min(145px, 48vw);
+    border-radius: 24px;
+  }
+}
+
+/* v2.2.6 強制首頁 Logo 顯示 */
+.home-clan-logo-force {
+  position: relative !important;
+  z-index: 20 !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  margin: 8px auto 18px !important;
+  width: 100% !important;
+}
+
+.home-clan-logo-force img {
+  width: min(170px, 42vw) !important;
+  height: auto !important;
+  display: block !important;
+  border-radius: 28px !important;
+  box-shadow: 0 18px 42px rgba(20, 32, 45, 0.2) !important;
+}
