@@ -24,7 +24,7 @@ export default async function CategoryPage({
           <span>{config.subtitle}</span>
         </div>
 
-        <div className="db-version-chip">網站版本 v2.0.5</div>
+        <div className="db-version-chip">網站版本 v2.0.6</div>
       </header>
 
       <section className="db-kpi-grid">

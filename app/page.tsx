@@ -8,6 +8,7 @@ import {
   Pencil,
   MessageCircle
 } from "lucide-react";
+import { fetchSheetRows } from "../lib/sheets";
 
 type IconType =
   | "overview"
@@ -30,15 +31,6 @@ const navItems: { label: string; type: IconType; href: string }[] = [
   { label: "MOD資料庫", type: "mod", href: "/database/mods" }
 ];
 
-const summary = [
-  ["目前已匯入資料", "281"],
-  ["資料來源", "Google Sheets"],
-  ["價格更新", "每日 4:00"],
-  ["Discord 入口", "已啟用"],
-  ["個人已購買", "v2.0.6 開放"],
-  ["完成度計算", "v2.0.6 開放"],
-  ["多群組支援", "規劃中"]
-];
 
 function WfIcon({ type }: { type: IconType }) {
   const common = {
@@ -142,7 +134,38 @@ function WfIcon({ type }: { type: IconType }) {
   );
 }
 
-export default function HomePage() {
+export default async function HomePage() {
+  const statCategories = [
+    { key: "warframes", label: "戰甲" },
+    { key: "primary", label: "主要武器" },
+    { key: "secondary", label: "次要武器" },
+    { key: "melee", label: "近戰武器" },
+    { key: "companions", label: "同伴" },
+    { key: "archwing", label: "曲翼" }
+  ];
+
+  const statResults = await Promise.all(
+    statCategories.map(async (item) => {
+      const result = await fetchSheetRows(item.key);
+      const owned = result.rows.filter((row) => row.owned.includes("已購買")).length;
+
+      return {
+        label: item.label,
+        count: result.rows.length,
+        owned
+      };
+    })
+  );
+
+  const totalRows = statResults.reduce((sum, item) => sum + item.count, 0);
+  const ownedRows = statResults.reduce((sum, item) => sum + item.owned, 0);
+  const completion = totalRows > 0 ? Math.round((ownedRows / totalRows) * 100) : 0;
+
+  const summary = statResults.map((item) => [
+    item.label,
+    item.count.toLocaleString("zh-TW")
+  ]);
+
   return (
     <main className="page-shell">
       <div className="corner corner-lt" />
@@ -245,8 +268,8 @@ export default function HomePage() {
           </div>
 
           <div className="total-row">
-            <span>網站版本</span>
-            <b>v2.0.5</b>
+            <span>總計資料數</span>
+            <b>{totalRows.toLocaleString("zh-TW")}</b>
           </div>
         </article>
 
@@ -256,9 +279,9 @@ export default function HomePage() {
             <span>4　備註</span>
           </div>
 
-          <p>・目前為首頁與分類頁雛形。</p>
-          <p>・下一階段會串接 Google Sheets 真資料。</p>
-          <p>・完成度將依 Discord 使用者個人紀錄計算。</p>
+          <p>・目前為 v2.0.6，首頁統計會自動讀取 Google Sheets。</p>
+          <p>・分類頁已串接 Google Sheets 真資料。</p>
+          <p>・目前表格完成度為 {completion}%，未來會改成 Discord 個人化紀錄。</p>
           <div className="note-lines" />
           <div className="note-lines" />
           <div className="watermark">K</div>
