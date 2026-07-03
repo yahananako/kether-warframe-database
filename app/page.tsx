@@ -246,7 +246,7 @@ export default function HomePage() {
 
           <div className="total-row">
             <span>網站版本</span>
-            <b>v2.0.4</b>
+            <b>v2.0.5</b>
           </div>
         </article>
 

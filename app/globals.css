@@ -817,3 +817,39 @@ a.nav-card {
     min-width: 0;
   }
 }
+
+.db-warning {
+  position: relative;
+  z-index: 2;
+  background: #fff7e6;
+  border: 1px solid #f1cc77;
+  border-radius: 16px;
+  padding: 16px 18px;
+  color: #6d4b00;
+}
+
+.db-warning p {
+  margin: 6px 0 0;
+}
+
+.link-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.link-button:disabled {
+  opacity: 0.5;
+}
+
+.mobile-market-link {
+  margin-top: 12px;
+  display: inline-flex;
+  color: var(--ink);
+  text-decoration: none;
+  font-weight: 900;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 10px 14px;
+}
