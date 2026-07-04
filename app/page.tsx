@@ -99,8 +99,8 @@ export default async function HomePage() {
         </div>
 
         <div className="topbar-right">
-          <Search size={21} />
-          <Bell size={20} />
+          <Link href="/search" aria-label="搜尋資料庫" title="搜尋資料庫"><Search size={21} /></Link>
+          <Link href="/notifications" aria-label="更新公告" title="更新公告"><Bell size={20} /></Link>
           <Link className="login-mini" href="/login">登入</Link>
           <a className="discord-mini" href="https://discord.gg/MFhTb8XMZ" target="_blank" rel="noreferrer">
             <MessageCircle size={18} />
@@ -267,7 +267,7 @@ export default async function HomePage() {
 
           <div className="total-row">
             <span>網站版本</span>
-            <b>v2.5.35</b>
+            <b>v2.5.36</b>
           </div>
         </article>
 
@@ -277,7 +277,7 @@ export default async function HomePage() {
             <span>5　備註</span>
           </div>
 
-          <p>・v2.5.35 已加入首頁自動資料總控台。</p>
+          <p>・v2.5.36 已加入首頁自動資料總控台。</p>
           <p>・下一階段可做 Discord 登入前置與個人化資料庫設計。</p>
           <p>・完成度目前讀取表格欄位，未來會改為個人獨立紀錄。</p>
           <div className="note-lines" />
