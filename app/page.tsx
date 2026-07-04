@@ -269,7 +269,7 @@ export default async function HomePage() {
 
           <div className="total-row">
             <span>網站版本</span>
-            <b>v2.5.49</b>
+            <b>v2.5.50</b>
           </div>
         </article>
 
@@ -279,9 +279,9 @@ export default async function HomePage() {
             <span>5　備註</span>
           </div>
 
-          <p>・v2.5.49 已修正首頁備註文字，網站版面維持穩定版。</p>
-          <p>・目前先暫停 Discord OAuth，優先整理網站穩定性與手機版顯示。</p>
-          <p>・完成度目前讀取 Google Sheets 欄位，個人紀錄功能之後再獨立實裝。</p>
+          <p>・v2.5.50 已加入首頁自動資料總控台。</p>
+          <p>・下一階段可做 Discord 登入前置與個人化資料庫設計。</p>
+          <p>・完成度目前讀取表格欄位，未來會改為個人獨立紀錄。</p>
           <div className="note-lines" />
           <div className="note-lines" />
           <img className="watermark watermark-logo" src="/kether-clan-logo.png" alt="" aria-hidden="true" />
