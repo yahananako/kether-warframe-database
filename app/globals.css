@@ -2515,3 +2515,71 @@ a.nav-card {
   letter-spacing: 0.55em !important;
   pointer-events: none !important;
 }
+
+/* v2.5.1 修正：氏族浮水印強制回來 */
+.homepage-sci-fi::after {
+  content: "KETHER OF PARADISO" !important;
+  display: block !important;
+  position: relative !important;
+  z-index: 25 !important;
+  width: 100% !important;
+  margin: 3rem auto 1.6rem !important;
+  text-align: center !important;
+  color: rgba(54, 65, 76, 0.72) !important;
+  font-weight: 900 !important;
+  font-size: 1.05rem !important;
+  letter-spacing: 0.55em !important;
+  pointer-events: none !important;
+  background: none !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* v2.5.1 修正：手機漢堡菜單改成小型浮層，不吃整個畫面 */
+@media (max-width: 820px) {
+  .homepage-sci-fi details[open] {
+    position: fixed !important;
+    top: 12px !important;
+    left: 12px !important;
+    right: auto !important;
+    bottom: auto !important;
+    width: min(82vw, 320px) !important;
+    max-width: 320px !important;
+    max-height: 68vh !important;
+    overflow-y: auto !important;
+    z-index: 9000 !important;
+    padding: 0.75rem !important;
+    background: rgba(255, 255, 255, 0.96) !important;
+    border: 1px solid rgba(54, 65, 76, 0.24) !important;
+    border-radius: 18px !important;
+    box-shadow: 0 16px 34px rgba(18, 28, 38, 0.18) !important;
+    backdrop-filter: blur(8px) !important;
+  }
+
+  .homepage-sci-fi details[open] summary {
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 9001 !important;
+    cursor: pointer !important;
+  }
+
+  .homepage-sci-fi details[open] nav,
+  .homepage-sci-fi details[open] ul,
+  .homepage-sci-fi details[open] div {
+    max-width: 100% !important;
+  }
+
+  /* 避免菜單內項目撐爆畫面 */
+  .homepage-sci-fi details[open] a,
+  .homepage-sci-fi details[open] button {
+    max-width: 100% !important;
+    white-space: normal !important;
+  }
+}
+
+/* 桌面版不動 details，避免影響原本排版 */
+@media (min-width: 821px) {
+  .homepage-sci-fi details[open] {
+    position: relative !important;
+  }
+}
