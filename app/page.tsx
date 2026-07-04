@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { Search,
+import {
+  Search,
   Bell,
   Menu,
   CalendarDays,
@@ -13,7 +14,8 @@ import { Search,
   Dog,
   Feather,
   Layers,
-  Gem, type LucideIcon } from "lucide-react";
+  Gem
+} from "lucide-react";
 import { fetchSheetRows } from "../lib/sheets";
 import HomeSearchFloating from "../components/HomeSearchFloating";
 import HomeNotificationsFloating from "../components/HomeNotificationsFloating";
@@ -36,28 +38,6 @@ function isOwned(value: string): boolean {
 function hasPrice(value: string): boolean {
   const number = Number(String(value || "").replace(/[^\d.]/g, ""));
   return Number.isFinite(number) && number > 0;
-}
-
-function SectionBadge({
-  label
-}: {
-  icon: LucideIcon;
-  label: string;
-}) {
-  return (
-    <span
-      style={{
-        color: "#ffffff",
-        fontSize: 14,
-        fontWeight: 900,
-        letterSpacing: "0.06em",
-        lineHeight: 1,
-        whiteSpace: "nowrap"
-      }}
-    >
-      {label}
-    </span>
-  );
 }
 
 export default async function HomePage() {
@@ -140,7 +120,7 @@ export default async function HomePage() {
 </section>
 
       <section className="home-kpi-grid home-zone home-zone-stats">
-        <div className="panel-tag"><SectionBadge icon={ClipboardList} label="數據區" /></div>
+        <div className="panel-tag">2　數據區</div>
         <article>
           <span>總資料數</span>
           <strong>{totalRows.toLocaleString("zh-TW")}</strong>
@@ -160,7 +140,7 @@ export default async function HomePage() {
       </section>
 
       <section className="nav-panel home-zone home-zone-nav" id="navigation">
-        <div className="panel-tag"><SectionBadge icon={Menu} label="導航區" /></div>
+        <div className="panel-tag">1　導航區</div>
         <div className="nav-grid">
           {navItems.map((item) => {
             const Icon = item.icon;
@@ -177,7 +157,7 @@ export default async function HomePage() {
       <section className="home-category-panel">
         <div className="card-title">
           <ClipboardList size={18} />
-          <span><SectionBadge icon={Layers} label="分類資料狀態" /></span>
+          <span>2　分類資料狀態</span>
         </div>
 
         <div className="home-category-grid">
@@ -200,12 +180,13 @@ export default async function HomePage() {
       </section>
 
       <section className="dashboard-grid home-zone home-zone-info home-zone-notes">
-        <div className="panel-tag"><SectionBadge icon={Layers} label="資料區" /></div>
+        <div className="panel-tag">3　資料區</div>
         
 <div className="home-info-split">
   <article className="info-card home-site-info-card">
     <div className="card-title">
-      <SectionBadge icon={Info} label="網站資訊區" />
+      <span>3</span>
+      <span>網站資訊區</span>
     </div>
 
     <div className="home-info-date-row">
@@ -226,7 +207,8 @@ export default async function HomePage() {
 
   <article className="info-card home-warframe-info-card">
     <div className="card-title">
-      <SectionBadge icon={MessageCircle} label="Warframe 官方資訊區" />
+      <span>3</span>
+      <span>Warframe 官方資訊區</span>
     </div>
 
     <div className="home-official-links">
@@ -259,7 +241,7 @@ export default async function HomePage() {
         <article className="info-card summary-card">
           <div className="card-title">
             <ClipboardList size={18} />
-            <span><SectionBadge icon={ClipboardList} label="資料庫狀態" /></span>
+            <span>4　資料庫狀態</span>
           </div>
 
           <div className="summary-table">
@@ -287,17 +269,17 @@ export default async function HomePage() {
 
           <div className="total-row">
             <span>網站版本</span>
-            <b>v2.5.47</b>
+            <b>v2.5.48</b>
           </div>
         </article>
 
         <article className="info-card notes-card">
           <div className="card-title">
             <Pencil size={18} />
-            <span><SectionBadge icon={Pencil} label="備註" /></span>
+            <span>5　備註</span>
           </div>
 
-          <p>・v2.5.47 修正首頁區塊徽章重複圖示、位置與文字顏色。</p>
+          <p>・v2.5.48 已加入首頁自動資料總控台。</p>
           <p>・下一階段可做 Discord 登入前置與個人化資料庫設計。</p>
           <p>・完成度目前讀取表格欄位，未來會改為個人獨立紀錄。</p>
           <div className="note-lines" />
