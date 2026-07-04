@@ -18,6 +18,7 @@ import {
 } from "lucide-react";
 import { fetchSheetRows } from "../lib/sheets";
 import HomeSearchFloating from "../components/HomeSearchFloating";
+import HomeNotificationsFloating from "../components/HomeNotificationsFloating";
 
 const navItems = [
   { label: "總覽", key: "overview", href: "/database/overview", icon: Gem },
@@ -101,7 +102,7 @@ export default async function HomePage() {
 
         <div className="topbar-right">
           <HomeSearchFloating />
-          <Link href="/notifications" aria-label="更新公告" title="更新公告"><Bell size={20} /></Link>
+          <HomeNotificationsFloating />
           <Link className="login-mini" href="/login">登入</Link>
           <a className="discord-mini" href="https://discord.gg/MFhTb8XMZ" target="_blank" rel="noreferrer">
             <MessageCircle size={18} />
@@ -268,7 +269,7 @@ export default async function HomePage() {
 
           <div className="total-row">
             <span>網站版本</span>
-            <b>v2.5.42</b>
+            <b>v2.5.43</b>
           </div>
         </article>
 
@@ -278,7 +279,7 @@ export default async function HomePage() {
             <span>5　備註</span>
           </div>
 
-          <p>・v2.5.42 已加入首頁自動資料總控台。</p>
+          <p>・v2.5.43 已加入首頁自動資料總控台。</p>
           <p>・下一階段可做 Discord 登入前置與個人化資料庫設計。</p>
           <p>・完成度目前讀取表格欄位，未來會改為個人獨立紀錄。</p>
           <div className="note-lines" />
