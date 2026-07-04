@@ -3487,3 +3487,39 @@ a.nav-card {
     background-size: 100% 100% !important;
   }
 }
+
+/* v2.5.18 提高固定科技背景濃度
+   修正 v2.5.17 背景太透明
+*/
+.homepage-sci-fi > .home-fixed-bg {
+  background-color: #f6f8fa !important;
+  background-image:
+    linear-gradient(
+      rgba(246, 248, 250, 0.16),
+      rgba(246, 248, 250, 0.34)
+    ),
+    url("/home-ui-bg.png?v=2518") !important;
+
+  background-size: 100% 100% !important;
+  background-position: center center !important;
+  background-repeat: no-repeat !important;
+
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* 手機 / 平板也提高背景濃度 */
+@media (max-width: 820px) {
+  .homepage-sci-fi > .home-fixed-bg {
+    background-image:
+      linear-gradient(
+        rgba(246, 248, 250, 0.14),
+        rgba(246, 248, 250, 0.32)
+      ),
+      url("/home-ui-bg.png?v=2518") !important;
+
+    background-size: 100% 100% !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+  }
+}
