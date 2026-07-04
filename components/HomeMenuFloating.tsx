@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { useEffect, useState } from "react";
 import {
   Menu,
@@ -38,6 +37,8 @@ export default function HomeMenuFloating() {
   useEffect(() => {
     if (!open) return;
 
+    const oldOverflow = document.body.style.overflow;
+
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") setOpen(false);
     };
@@ -46,10 +47,19 @@ export default function HomeMenuFloating() {
     window.addEventListener("keydown", onKeyDown);
 
     return () => {
-      document.body.style.overflow = "";
+      document.body.style.overflow = oldOverflow;
       window.removeEventListener("keydown", onKeyDown);
     };
   }, [open]);
+
+  function goTo(href: string) {
+    setOpen(false);
+    window.location.assign(href);
+  }
+
+  function openDiscord() {
+    window.open("https://discord.gg", "_blank", "noopener,noreferrer");
+  }
 
   return (
     <>
@@ -82,6 +92,8 @@ export default function HomeMenuFloating() {
 
       {open && (
         <div
+          role="presentation"
+          onClick={() => setOpen(false)}
           style={{
             position: "fixed",
             inset: 0,
@@ -91,41 +103,28 @@ export default function HomeMenuFloating() {
             WebkitBackdropFilter: "blur(8px)"
           }}
         >
-          <button
-            type="button"
-            aria-label="關閉選單背景"
-            onClick={() => setOpen(false)}
-            style={{
-              position: "absolute",
-              inset: 0,
-              width: "100%",
-              height: "100%",
-              border: "0",
-              background: "transparent",
-              cursor: "default"
-            }}
-          />
-
           <aside
             role="dialog"
             aria-label="網站導覽選單"
+            onClick={(event) => event.stopPropagation()}
             style={{
               position: "fixed",
               top: 88,
               left: 18,
+              zIndex: 10000,
               width: "min(92vw, 430px)",
               maxHeight: "calc(100vh - 120px)",
               overflowY: "auto",
               borderRadius: 30,
               border: "1px solid rgba(255, 255, 255, 0.78)",
               background:
-                "linear-gradient(145deg, rgba(255,255,255,0.80), rgba(238,246,250,0.52))",
+                "linear-gradient(145deg, rgba(255,255,255,0.84), rgba(238,246,250,0.58))",
               boxShadow:
                 "0 26px 80px rgba(15,23,42,0.24), inset 0 1px 0 rgba(255,255,255,0.86)",
               backdropFilter: "blur(26px) saturate(155%)",
               WebkitBackdropFilter: "blur(26px) saturate(155%)",
-              overflow: "hidden",
-              color: "#263445"
+              color: "#263445",
+              pointerEvents: "auto"
             }}
           >
             <div
@@ -217,56 +216,58 @@ export default function HomeMenuFloating() {
                   const Icon = item.icon;
 
                   return (
-                    <Link
+                    <button
                       key={item.href}
-                      href={item.href}
-                      onClick={() => setOpen(false)}
+                      type="button"
+                      onClick={() => goTo(item.href)}
                       style={{
                         minHeight: 58,
                         borderRadius: 20,
                         border: "1px solid rgba(255,255,255,0.78)",
                         background: "rgba(255,255,255,0.62)",
                         color: "#263445",
-                        textDecoration: "none",
                         display: "flex",
                         alignItems: "center",
                         gap: 10,
                         padding: "12px 14px",
                         fontSize: 14,
                         fontWeight: 900,
-                        boxShadow: "0 8px 20px rgba(15,23,42,0.07)"
+                        boxShadow: "0 8px 20px rgba(15,23,42,0.07)",
+                        cursor: "pointer",
+                        textAlign: "left"
                       }}
                     >
                       <Icon size={20} strokeWidth={2.3} />
                       {item.label}
-                    </Link>
+                    </button>
                   );
                 })}
               </div>
 
-              <a
-                href="https://discord.gg"
-                target="_blank"
-                rel="noreferrer"
+              <button
+                type="button"
+                onClick={openDiscord}
                 style={{
+                  width: "100%",
                   marginTop: 14,
                   height: 48,
+                  border: "0",
                   borderRadius: 20,
                   background: "#263445",
                   color: "white",
                   fontSize: 14,
                   fontWeight: 900,
-                  textDecoration: "none",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
                   gap: 8,
-                  boxShadow: "0 12px 26px rgba(15,23,42,0.24)"
+                  boxShadow: "0 12px 26px rgba(15,23,42,0.24)",
+                  cursor: "pointer"
                 }}
               >
                 <MessageCircle size={18} />
                 Discord 入口
-              </a>
+              </button>
             </div>
           </aside>
         </div>
