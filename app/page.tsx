@@ -179,31 +179,62 @@ export default async function HomePage() {
 
       <section className="dashboard-grid home-zone home-zone-info home-zone-notes">
         <div className="panel-tag">3　資料區</div>
-        <article className="info-card">
-          <div className="card-title">
-            <Info size={18} />
-            <span>3　資訊區</span>
-          </div>
+        
+<div className="home-info-split">
+  <article className="info-card home-site-info-card">
+    <div className="card-title">
+      <span>3</span>
+      <span>網站資訊區</span>
+    </div>
 
-          <div className="info-row">
-            <CalendarDays size={34} />
-            <span>更新日期</span>
-            <b>2026/7/3</b>
-          </div>
+    <div className="home-info-date-row">
+      <span>更新日期</span>
+      <strong>2026/7/3</strong>
+    </div>
 
-          <div className="line" />
+    <div className="home-info-subblock">
+      <h3>使用說明</h3>
+      <ul>
+        <li>首頁資料會自動讀取 Google Sheets。</li>
+        <li>分類頁支援區塊、搜尋、價格與已購買篩選。</li>
+        <li>目前為只讀模式，個人化會在 Discord 登入後實裝。</li>
+        <li>手機版與電腦版都會持續優化。</li>
+      </ul>
+    </div>
+  </article>
 
-          <div className="guide">
-            <Info size={28} />
-            <div>
-              <h3>使用說明</h3>
-              <p>・首頁資料會自動讀取 Google Sheets。</p>
-              <p>・分類頁支援區塊、搜尋、價格與已購買篩選。</p>
-              <p>・目前為只讀模式，個人化會在 Discord 登入後實裝。</p>
-              <p>・手機版與電腦版都會持續優化。</p>
-            </div>
-          </div>
-        </article>
+  <article className="info-card home-warframe-info-card">
+    <div className="card-title">
+      <span>3</span>
+      <span>Warframe 官方資訊區</span>
+    </div>
+
+    <div className="home-official-links">
+      <a href="https://www.warframe.com" target="_blank" rel="noreferrer">
+        Warframe 官方網站
+      </a>
+      <a href="https://www.warframe.com/news" target="_blank" rel="noreferrer">
+        官方新聞
+      </a>
+      <a href="https://www.warframe.com/updates" target="_blank" rel="noreferrer">
+        更新紀錄
+      </a>
+      <a href="https://forums.warframe.com" target="_blank" rel="noreferrer">
+        官方論壇
+      </a>
+    </div>
+
+    <div className="home-info-subblock">
+      <h3>官方資訊用途</h3>
+      <ul>
+        <li>查詢官方更新公告。</li>
+        <li>追蹤版本更新與活動消息。</li>
+        <li>後續可擴充成官方新聞摘要區。</li>
+      </ul>
+    </div>
+  </article>
+</div>
+
 
         <article className="info-card summary-card">
           <div className="card-title">
@@ -236,7 +267,7 @@ export default async function HomePage() {
 
           <div className="total-row">
             <span>網站版本</span>
-            <b>v2.5.31</b>
+            <b>v2.5.32</b>
           </div>
         </article>
 
@@ -246,7 +277,7 @@ export default async function HomePage() {
             <span>5　備註</span>
           </div>
 
-          <p>・v2.5.31 已加入首頁自動資料總控台。</p>
+          <p>・v2.5.32 已加入首頁自動資料總控台。</p>
           <p>・下一階段可做 Discord 登入前置與個人化資料庫設計。</p>
           <p>・完成度目前讀取表格欄位，未來會改為個人獨立紀錄。</p>
           <div className="note-lines" />
