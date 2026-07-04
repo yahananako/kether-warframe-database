@@ -3523,3 +3523,66 @@ a.nav-card {
     background-repeat: no-repeat !important;
   }
 }
+
+/* v2.5.23 移除舊底部氏族浮水印 */
+.homepage-sci-fi::after {
+  content: none !important;
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+}
+
+.home-clan-watermark,
+.clan-signature,
+.bottom-clan-name,
+.home-bottom-brand,
+.footer-brand {
+  display: none !important;
+}
+
+/* v2.5.23 正式底部網址與 Website by 簽名 */
+.home-footer-signature {
+  width: 100%;
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 28px auto 22px;
+  padding: 14px 18px 28px;
+  position: relative;
+  z-index: 20;
+  text-align: center;
+  font-size: 14px;
+  line-height: 1.7;
+  color: rgba(58, 68, 82, 0.88);
+}
+
+.home-footer-link {
+  color: rgba(58, 68, 82, 0.92);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(90, 104, 124, 0.25);
+  padding-bottom: 2px;
+}
+
+.home-footer-designer {
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.home-footer-divider {
+  opacity: 0.45;
+}
+
+@media (max-width: 768px) {
+  .home-footer-signature {
+    flex-direction: column;
+    gap: 4px;
+    font-size: 12px;
+    padding-bottom: 24px;
+  }
+
+  .home-footer-divider {
+    display: none;
+  }
+}
