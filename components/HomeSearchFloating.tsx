@@ -49,15 +49,15 @@ export default function HomeSearchFloating() {
         title="搜尋資料庫"
         onClick={() => setOpen(true)}
         style={{
-          width: 34,
-          height: 34,
+          width: 32,
+          height: 32,
           border: "0",
           padding: "0",
           margin: "0",
           outline: "0",
           background: "transparent",
           boxShadow: "none",
-          color: "#111827",
+          color: "#6b21a8",
           display: "inline-flex",
           alignItems: "center",
           justifyContent: "center",
@@ -67,7 +67,7 @@ export default function HomeSearchFloating() {
           WebkitTapHighlightColor: "transparent"
         }}
       >
-        <Search size={28} strokeWidth={2.25} />
+        <Search size={25} strokeWidth={2.15} />
       </button>
 
       {open && (
