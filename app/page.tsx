@@ -120,7 +120,7 @@ export default async function HomePage() {
 </section>
 
       <section className="home-kpi-grid home-zone home-zone-stats">
-        <div className="panel-tag">2　數據區</div>
+        <div className="panel-tag">數據區</div>
         <article>
           <span>總資料數</span>
           <strong>{totalRows.toLocaleString("zh-TW")}</strong>
@@ -140,7 +140,7 @@ export default async function HomePage() {
       </section>
 
       <section className="nav-panel home-zone home-zone-nav" id="navigation">
-        <div className="panel-tag">1　導航區</div>
+        <div className="panel-tag">導航區</div>
         <div className="nav-grid">
           {navItems.map((item) => {
             const Icon = item.icon;
@@ -157,7 +157,7 @@ export default async function HomePage() {
       <section className="home-category-panel">
         <div className="card-title">
           <ClipboardList size={18} />
-          <span>2　分類資料狀態</span>
+          <span>分類資料狀態</span>
         </div>
 
         <div className="home-category-grid">
@@ -180,7 +180,7 @@ export default async function HomePage() {
       </section>
 
       <section className="dashboard-grid home-zone home-zone-info home-zone-notes">
-        <div className="panel-tag">3　資料區</div>
+        <div className="panel-tag">資料區</div>
         
 <div className="home-info-split">
   <article className="info-card home-site-info-card">
@@ -241,7 +241,7 @@ export default async function HomePage() {
         <article className="info-card summary-card">
           <div className="card-title">
             <ClipboardList size={18} />
-            <span>4　資料庫狀態</span>
+            <span>資料庫狀態</span>
           </div>
 
           <div className="summary-table">
@@ -276,7 +276,7 @@ export default async function HomePage() {
         <article className="info-card notes-card">
           <div className="card-title">
             <Pencil size={18} />
-            <span>5　備註</span>
+            <span>備註</span>
           </div>
 
           <p>・v2.5.52 已加入首頁自動資料總控台。</p>
