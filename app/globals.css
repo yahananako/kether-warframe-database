@@ -2737,3 +2737,98 @@ a.nav-card {
     color: #111820 !important;
   }
 }
+
+/* v2.5.5 精準修正手機菜單透明度
+   真正底層：menu-drawer
+   真正上層：menu-popup
+*/
+@media (max-width: 820px) {
+  /* 最底層白底：完全透明、完全看不見 */
+  .homepage-sci-fi .menu-drawer,
+  .homepage-sci-fi .menu-drawer[open],
+  .homepage-sci-fi details.menu-drawer,
+  .homepage-sci-fi details.menu-drawer[open],
+  .homepage-sci-fi .menu-drawer::before,
+  .homepage-sci-fi .menu-drawer::after {
+    background: transparent !important;
+    background-color: transparent !important;
+    background-image: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    outline: none !important;
+  }
+
+  /* menu-drawer 只負責定位，不再變成白色大板 */
+  .homepage-sci-fi details.menu-drawer[open] {
+    position: fixed !important;
+    top: 12px !important;
+    left: 14px !important;
+    right: auto !important;
+    bottom: auto !important;
+    width: min(82vw, 360px) !important;
+    max-width: 360px !important;
+    max-height: 78vh !important;
+    overflow: visible !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    z-index: 9000 !important;
+  }
+
+  /* 漢堡按鈕本身透明 */
+  .homepage-sci-fi .menu-drawer summary {
+    background: transparent !important;
+    background-color: transparent !important;
+    box-shadow: none !important;
+    border: none !important;
+    outline: none !important;
+  }
+
+  /* 上層真正菜單卡：更淡、更透明 */
+  .homepage-sci-fi .menu-popup {
+    margin-top: 0.85rem !important;
+    width: min(78vw, 320px) !important;
+    max-width: 320px !important;
+    max-height: 68vh !important;
+    overflow-y: auto !important;
+
+    background:
+      linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.18),
+        rgba(245, 248, 250, 0.08)
+      ) !important;
+    background-color: rgba(255, 255, 255, 0.10) !important;
+    backdrop-filter: blur(10px) saturate(1.02) !important;
+    -webkit-backdrop-filter: blur(10px) saturate(1.02) !important;
+
+    border: 1px solid rgba(255, 255, 255, 0.14) !important;
+    border-radius: 18px !important;
+    box-shadow:
+      0 8px 22px rgba(0, 0, 0, 0.06),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.06) !important;
+  }
+
+  /* 內層不要再自己長白底 */
+  .homepage-sci-fi .menu-popup *,
+  .homepage-sci-fi .menu-popup div,
+  .homepage-sci-fi .menu-popup ul,
+  .homepage-sci-fi .menu-popup li {
+    background-color: transparent !important;
+    background-image: none !important;
+  }
+
+  /* 菜單文字保持可讀，不加大白底 */
+  .homepage-sci-fi .menu-popup a,
+  .homepage-sci-fi .menu-popup button {
+    background: rgba(255, 255, 255, 0.025) !important;
+    border-radius: 14px !important;
+    color: #111820 !important;
+  }
+
+  .homepage-sci-fi .menu-popup a:hover,
+  .homepage-sci-fi .menu-popup button:hover {
+    background: rgba(255, 255, 255, 0.10) !important;
+  }
+}
