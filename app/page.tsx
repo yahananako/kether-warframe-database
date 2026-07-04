@@ -116,7 +116,8 @@ export default async function HomePage() {
       <section className="hero">
 </section>
 
-      <section className="home-kpi-grid">
+      <section className="home-kpi-grid home-zone home-zone-stats">
+        <div className="panel-tag">2　數據區</div>
         <article>
           <span>總資料數</span>
           <strong>{totalRows.toLocaleString("zh-TW")}</strong>
@@ -135,7 +136,7 @@ export default async function HomePage() {
         </article>
       </section>
 
-      <section className="nav-panel" id="navigation">
+      <section className="nav-panel home-zone home-zone-nav" id="navigation">
         <div className="panel-tag">1　導航區</div>
         <div className="nav-grid">
           {navItems.map((item) => {
@@ -175,7 +176,8 @@ export default async function HomePage() {
         </div>
       </section>
 
-      <section className="dashboard-grid">
+      <section className="dashboard-grid home-zone home-zone-info home-zone-notes">
+        <div className="panel-tag">3　資料區</div>
         <article className="info-card">
           <div className="card-title">
             <Info size={18} />
@@ -233,7 +235,7 @@ export default async function HomePage() {
 
           <div className="total-row">
             <span>網站版本</span>
-            <b>v2.4.9</b>
+            <b>v2.5.0</b>
           </div>
         </article>
 
@@ -243,7 +245,7 @@ export default async function HomePage() {
             <span>5　備註</span>
           </div>
 
-          <p>・v2.4.9 已加入首頁自動資料總控台。</p>
+          <p>・v2.5.0 已加入首頁自動資料總控台。</p>
           <p>・下一階段可做 Discord 登入前置與個人化資料庫設計。</p>
           <p>・完成度目前讀取表格欄位，未來會改為個人獨立紀錄。</p>
           <div className="note-lines" />
@@ -257,6 +259,8 @@ export default async function HomePage() {
         <b>KETHER OF PARADISO</b>
         <span />
       </footer>
-</main>
+
+      <div className="home-clan-watermark">KETHER OF PARADISO</div>
+    </main>
   );
 }
