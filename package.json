@@ -1,6 +1,6 @@
 {
   "name": "kether-warframe-database",
-  "version": "2.5.45",
+  "version": "2.5.46",
   "private": true,
   "scripts": {
     "dev": "next dev",
