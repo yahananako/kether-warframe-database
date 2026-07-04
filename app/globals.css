@@ -2876,3 +2876,141 @@ a.nav-card {
     background: rgba(255, 255, 255, 0.06) !important;
   }
 }
+
+/* v2.5.7 固定首頁背景，不跟卷軸跑 */
+.homepage-sci-fi {
+  position: relative !important;
+  isolation: isolate !important;
+  min-height: 100svh !important;
+  overflow-x: hidden !important;
+  background: transparent !important;
+}
+
+/* 固定背景層：永遠貼在視窗，不跟內容捲動 */
+.homepage-sci-fi::before {
+  content: "" !important;
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: -1 !important;
+  pointer-events: none !important;
+  background:
+    linear-gradient(
+      rgba(246, 248, 250, 0.82),
+      rgba(246, 248, 250, 0.94)
+    ),
+    url("/home-ui-bg.png?v=257") center center / cover no-repeat !important;
+  opacity: 1 !important;
+  transform: translateZ(0) !important;
+}
+
+/* 首頁內容更緊湊，讓文字更容易塞進畫面 */
+.homepage-sci-fi .home-hero-image-banner {
+  margin-top: 0.6rem !important;
+  margin-bottom: 0.8rem !important;
+}
+
+.homepage-sci-fi .home-hero-image-banner img {
+  width: 100% !important;
+  max-height: clamp(180px, 32vh, 360px) !important;
+  object-fit: cover !important;
+  object-position: center !important;
+}
+
+/* 四大區塊間距縮小 */
+.homepage-sci-fi .home-zone {
+  margin-top: 1.05rem !important;
+  padding-top: 2.35rem !important;
+  padding-bottom: 0.85rem !important;
+}
+
+/* 統計區壓縮 */
+.homepage-sci-fi .home-zone-stats {
+  margin-top: 0.95rem !important;
+}
+
+.homepage-sci-fi .home-kpi-grid {
+  gap: 0.75rem !important;
+}
+
+.homepage-sci-fi .home-kpi-grid article {
+  min-height: auto !important;
+  padding-top: 0.85rem !important;
+  padding-bottom: 0.85rem !important;
+}
+
+/* 導覽區壓縮 */
+.homepage-sci-fi .nav-grid {
+  gap: 0.75rem !important;
+}
+
+.homepage-sci-fi .nav-card {
+  min-height: auto !important;
+  padding-top: 0.85rem !important;
+  padding-bottom: 0.85rem !important;
+}
+
+/* 資料區與備註區更緊湊 */
+.homepage-sci-fi .summary-table,
+.homepage-sci-fi .notes-card {
+  margin-top: 0 !important;
+}
+
+.homepage-sci-fi .summary-row {
+  padding-top: 0.55rem !important;
+  padding-bottom: 0.55rem !important;
+}
+
+.homepage-sci-fi .notes-card p {
+  margin-top: 0.35rem !important;
+  margin-bottom: 0.35rem !important;
+}
+
+/* 手機版：再壓一點高度 */
+@media (max-width: 820px) {
+  .homepage-sci-fi::before {
+    background:
+      linear-gradient(
+        rgba(246, 248, 250, 0.84),
+        rgba(246, 248, 250, 0.96)
+      ),
+      url("/home-ui-bg.png?v=257") center center / cover no-repeat !important;
+  }
+
+  .homepage-sci-fi .home-hero-image-banner {
+    margin-top: 0.35rem !important;
+    margin-bottom: 0.55rem !important;
+  }
+
+  .homepage-sci-fi .home-hero-image-banner img {
+    max-height: clamp(150px, 26vh, 260px) !important;
+  }
+
+  .homepage-sci-fi .home-zone {
+    margin-top: 0.85rem !important;
+    padding-top: 2.15rem !important;
+    padding-left: 0.75rem !important;
+    padding-right: 0.75rem !important;
+    padding-bottom: 0.75rem !important;
+  }
+
+  .homepage-sci-fi .home-kpi-grid {
+    gap: 0.55rem !important;
+  }
+
+  .homepage-sci-fi .home-kpi-grid article {
+    padding: 0.7rem 0.8rem !important;
+  }
+
+  .homepage-sci-fi .nav-grid {
+    gap: 0.55rem !important;
+  }
+
+  .homepage-sci-fi .nav-card {
+    padding: 0.7rem 0.8rem !important;
+  }
+
+  .homepage-sci-fi .summary-row {
+    padding-top: 0.45rem !important;
+    padding-bottom: 0.45rem !important;
+  }
+}
