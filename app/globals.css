@@ -4569,3 +4569,120 @@ a.nav-card {
     font-size: 1.12rem !important;
   }
 }
+
+/* v2.5.31 精準修正分類資料狀態卡片網格
+   實際 className：
+   - home-category-grid
+   - home-category-card
+*/
+
+/* 分類資料狀態：桌機 4x2 */
+.homepage-sci-fi .home-category-grid {
+  display: grid !important;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  gap: 0.85rem !important;
+  width: 100% !important;
+  align-items: stretch !important;
+  box-sizing: border-box !important;
+}
+
+/* 分類卡片：白銀科技小卡 */
+.homepage-sci-fi .home-category-card {
+  min-height: 138px !important;
+  padding: 0.9rem 0.65rem !important;
+
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.38rem !important;
+
+  text-align: center !important;
+  text-decoration: none !important;
+
+  border: 2px solid rgba(220, 230, 240, 0.88) !important;
+  outline: 1px solid rgba(82, 96, 112, 0.22) !important;
+  outline-offset: -5px !important;
+  border-radius: 18px !important;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.62),
+      rgba(240, 246, 250, 0.36)
+    ) !important;
+
+  box-shadow:
+    0 8px 18px rgba(20, 30, 42, 0.06),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.72) !important;
+
+  overflow: hidden !important;
+}
+
+/* 分類圖示保留 */
+.homepage-sci-fi .home-category-card svg {
+  width: 34px !important;
+  height: 34px !important;
+  margin-bottom: 0.25rem !important;
+  stroke-width: 1.8 !important;
+  color: rgba(14, 24, 34, 0.96) !important;
+  stroke: rgba(14, 24, 34, 0.96) !important;
+}
+
+/* 分類名稱 */
+.homepage-sci-fi .home-category-card h3 {
+  font-size: 1.04rem !important;
+  line-height: 1.25 !important;
+  font-weight: 900 !important;
+  margin: 0 !important;
+  color: rgba(17, 24, 32, 0.96) !important;
+}
+
+/* 總筆數 / 區塊數 / 有價格 */
+.homepage-sci-fi .home-category-card p {
+  font-size: 0.78rem !important;
+  line-height: 1.35 !important;
+  margin: 0 !important;
+  color: rgba(68, 80, 96, 0.88) !important;
+}
+
+/* 完成度 */
+.homepage-sci-fi .home-category-card strong {
+  display: block !important;
+  font-size: 1.25rem !important;
+  line-height: 1.2 !important;
+  font-weight: 900 !important;
+  margin-top: 0.15rem !important;
+  color: rgba(12, 18, 26, 0.98) !important;
+}
+
+/* 手機 / 分割畫面：2x4 */
+@media (max-width: 900px) {
+  .homepage-sci-fi .home-category-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 0.65rem !important;
+  }
+
+  .homepage-sci-fi .home-category-card {
+    min-height: 124px !important;
+    padding: 0.78rem 0.5rem !important;
+    border-radius: 16px !important;
+  }
+
+  .homepage-sci-fi .home-category-card svg {
+    width: 30px !important;
+    height: 30px !important;
+  }
+
+  .homepage-sci-fi .home-category-card h3 {
+    font-size: 0.96rem !important;
+  }
+
+  .homepage-sci-fi .home-category-card p {
+    font-size: 0.72rem !important;
+  }
+
+  .homepage-sci-fi .home-category-card strong {
+    font-size: 1.12rem !important;
+  }
+}
