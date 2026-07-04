@@ -39,35 +39,24 @@ function hasPrice(value: string): boolean {
 }
 
 function SectionBadge({
-  icon: Icon,
   label
 }: {
   icon: LucideIcon;
   label: string;
 }) {
   return (
-    <>
-      <Icon
-        size={18}
-        strokeWidth={2.35}
-        style={{
-          color: "#ffffff",
-          flexShrink: 0
-        }}
-      />
-      <span
-        style={{
-          color: "#ffffff",
-          fontSize: 14,
-          fontWeight: 900,
-          letterSpacing: "0.06em",
-          lineHeight: 1,
-          whiteSpace: "nowrap"
-        }}
-      >
-        {label}
-      </span>
-    </>
+    <span
+      style={{
+        color: "#ffffff",
+        fontSize: 14,
+        fontWeight: 900,
+        letterSpacing: "0.06em",
+        lineHeight: 1,
+        whiteSpace: "nowrap"
+      }}
+    >
+      {label}
+    </span>
   );
 }
 
