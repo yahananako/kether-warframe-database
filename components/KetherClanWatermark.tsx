@@ -3,15 +3,14 @@ export default function KetherClanWatermark() {
     <div
       aria-hidden="true"
       style={{
-        position: "fixed",
-        left: "50%",
-        top: "52%",
-        transform: "translate(-50%, -50%)",
-        width: "min(62vw, 620px)",
-        opacity: 0.12,
+        position: "absolute",
+        right: "7%",
+        top: "44%",
+        width: "min(28vw, 280px)",
+        opacity: 0.055,
         pointerEvents: "none",
         userSelect: "none",
-        zIndex: 6,
+        zIndex: 1,
         mixBlendMode: "multiply"
       }}
     >
@@ -22,7 +21,7 @@ export default function KetherClanWatermark() {
           width: "100%",
           height: "auto",
           display: "block",
-          filter: "grayscale(100%) contrast(1.08)"
+          filter: "grayscale(100%) contrast(1.05)"
         }}
       />
     </div>
