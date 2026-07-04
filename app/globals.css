@@ -3586,3 +3586,60 @@ a.nav-card {
     display: none;
   }
 }
+
+/* v2.5.24 底部署名靠近網址尾端 */
+.home-footer-signature {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: center !important;
+  align-items: baseline !important;
+  gap: 6px !important;
+  flex-wrap: nowrap !important;
+  width: fit-content !important;
+  max-width: calc(100% - 28px) !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  text-align: center !important;
+}
+
+.home-footer-link,
+.home-footer-designer,
+.home-footer-divider {
+  display: inline-flex !important;
+  align-items: baseline !important;
+  white-space: nowrap !important;
+}
+
+.home-footer-divider {
+  opacity: 0.35 !important;
+  margin: 0 2px !important;
+}
+
+/* 手機版：仍然貼近網址尾端，不再上下分開 */
+@media (max-width: 768px) {
+  .home-footer-signature {
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    gap: 4px !important;
+    font-size: 11px !important;
+    line-height: 1.5 !important;
+    max-width: calc(100% - 22px) !important;
+    overflow: hidden !important;
+  }
+
+  .home-footer-link {
+    max-width: 58vw !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+  }
+
+  .home-footer-divider {
+    display: inline-flex !important;
+  }
+
+  .home-footer-designer {
+    white-space: nowrap !important;
+    flex-shrink: 0 !important;
+  }
+}
