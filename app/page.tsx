@@ -115,7 +115,6 @@ export default async function HomePage() {
         <div
   style={{
     width: "100%",
-    aspectRatio: "16 / 9",
     borderRadius: 28,
     overflow: "hidden",
     border: "1px solid rgba(255, 255, 255, 0.72)",
@@ -124,7 +123,7 @@ export default async function HomePage() {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    padding: 10
+    padding: 0
   }}
 >
   <img
@@ -132,7 +131,7 @@ export default async function HomePage() {
     alt="KETHER OF PARADISO Warframe Database 首頁橫版圖"
     style={{
       width: "100%",
-      height: "100%",
+      height: "auto",
       objectFit: "contain",
       objectPosition: "center",
       display: "block",
@@ -296,7 +295,7 @@ export default async function HomePage() {
 
           <div className="total-row">
             <span>網站版本</span>
-            <b>v2.5.54</b>
+            <b>v2.5.55</b>
           </div>
         </article>
 
@@ -306,7 +305,7 @@ export default async function HomePage() {
             <span>備註</span>
           </div>
 
-          <p>・v2.5.54 已加入首頁自動資料總控台。</p>
+          <p>・v2.5.55 已加入首頁自動資料總控台。</p>
           <p>・下一階段可做 Discord 登入前置與個人化資料庫設計。</p>
           <p>・完成度目前讀取表格欄位，未來會改為個人獨立紀錄。</p>
           <div className="note-lines" />
