@@ -3443,3 +3443,47 @@ a.nav-card {
     background-repeat: no-repeat !important;
   }
 }
+
+/* v2.5.17 修正固定背景高度
+   避免 100svh 在手機 / 分割畫面下讓背景太早結束
+*/
+.homepage-sci-fi > .home-fixed-bg {
+  position: fixed !important;
+  top: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  left: 0 !important;
+
+  width: 100vw !important;
+  height: 100dvh !important;
+  min-height: 100vh !important;
+
+  z-index: 0 !important;
+  display: block !important;
+  pointer-events: none !important;
+  overflow: hidden !important;
+
+  background-color: #f6f8fa !important;
+  background-image:
+    linear-gradient(
+      rgba(246, 248, 250, 0.36),
+      rgba(246, 248, 250, 0.62)
+    ),
+    url("/home-ui-bg.png?v=2517") !important;
+
+  background-size: 100% 100% !important;
+  background-position: center center !important;
+  background-repeat: no-repeat !important;
+
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* 手機 / 平板：同樣使用動態視窗高度，不用 svh */
+@media (max-width: 820px) {
+  .homepage-sci-fi > .home-fixed-bg {
+    height: 100dvh !important;
+    min-height: 100vh !important;
+    background-size: 100% 100% !important;
+  }
+}
