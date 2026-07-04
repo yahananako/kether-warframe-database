@@ -4007,3 +4007,146 @@ a.nav-card {
       linear-gradient(rgba(96,112,128,0.62), rgba(96,112,128,0.62)) right bottom / 3px 46px no-repeat !important;
   }
 }
+
+/* v2.5.28 修正 v2.5.27：標題變形與右下角多餘線條 */
+
+/* 關掉造成多餘角線、右下線條、標題拉長的偽元素 */
+.homepage-sci-fi .home-zone::before,
+.homepage-sci-fi .home-zone::after,
+.homepage-sci-fi .nav-panel::before,
+.homepage-sci-fi .nav-panel::after,
+.homepage-sci-fi .home-kpi-grid::before,
+.homepage-sci-fi .home-kpi-grid::after,
+.homepage-sci-fi .info-card::before,
+.homepage-sci-fi .info-card::after,
+.homepage-sci-fi .summary-table::before,
+.homepage-sci-fi .summary-table::after,
+.homepage-sci-fi .notes-card::before,
+.homepage-sci-fi .notes-card::after,
+.homepage-sci-fi .nav-card::before,
+.homepage-sci-fi .nav-card::after,
+.homepage-sci-fi .home-kpi-grid article::before,
+.homepage-sci-fi .home-kpi-grid article::after,
+.homepage-sci-fi .panel-tag::before,
+.homepage-sci-fi .panel-tag::after,
+.homepage-sci-fi .card-title::before,
+.homepage-sci-fi .card-title::after {
+  content: none !important;
+  display: none !important;
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* 保留白銀外框，但是改成乾淨版 */
+.homepage-sci-fi .home-zone,
+.homepage-sci-fi .nav-panel,
+.homepage-sci-fi .home-kpi-grid,
+.homepage-sci-fi .info-card,
+.homepage-sci-fi .summary-table,
+.homepage-sci-fi .notes-card {
+  position: relative !important;
+  border: 2px solid rgba(220, 230, 240, 0.92) !important;
+  outline: 1px solid rgba(82, 96, 112, 0.25) !important;
+  outline-offset: -6px !important;
+  border-radius: 22px !important;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.58),
+      rgba(240, 246, 250, 0.36)
+    ) !important;
+  box-shadow:
+    0 12px 28px rgba(20, 30, 42, 0.08),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.70) !important;
+  overflow: visible !important;
+}
+
+/* 小卡片白銀框保留，不再額外畫角線 */
+.homepage-sci-fi .nav-card,
+.homepage-sci-fi .home-kpi-grid article {
+  border: 2px solid rgba(220, 230, 240, 0.90) !important;
+  outline: 1px solid rgba(82, 96, 112, 0.22) !important;
+  outline-offset: -5px !important;
+  border-radius: 18px !important;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.64),
+      rgba(240, 246, 250, 0.40)
+    ) !important;
+  box-shadow:
+    0 8px 20px rgba(20, 30, 42, 0.07),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.74) !important;
+}
+
+/* 標題牌恢復正常，不准再變箭頭 */
+.homepage-sci-fi .panel-tag,
+.homepage-sci-fi .card-title,
+.homepage-sci-fi .notes-card .card-title,
+.homepage-sci-fi .info-card.notes-card .card-title {
+  width: fit-content !important;
+  max-width: max-content !important;
+  min-width: 108px !important;
+  min-height: 32px !important;
+
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+
+  padding: 6px 16px !important;
+  margin: 0 0 14px 0 !important;
+
+  position: relative !important;
+  top: auto !important;
+  left: auto !important;
+  right: auto !important;
+  bottom: auto !important;
+
+  transform: none !important;
+  clip-path: none !important;
+
+  border-radius: 12px !important;
+  background:
+    linear-gradient(
+      135deg,
+      rgba(38, 50, 62, 0.96),
+      rgba(82, 98, 114, 0.92)
+    ) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(235, 242, 248, 0.82) !important;
+  box-shadow:
+    0 8px 18px rgba(16, 28, 42, 0.18),
+    inset 0 0 0 1px rgba(255,255,255,0.24) !important;
+
+  font-weight: 900 !important;
+  letter-spacing: 0.06em !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  z-index: 80 !important;
+}
+
+/* 標題內圖示文字保持白色 */
+.homepage-sci-fi .panel-tag *,
+.homepage-sci-fi .card-title *,
+.homepage-sci-fi .notes-card .card-title *,
+.homepage-sci-fi .info-card.notes-card .card-title * {
+  color: #ffffff !important;
+  stroke: #ffffff !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+@media (max-width: 820px) {
+  .homepage-sci-fi .panel-tag,
+  .homepage-sci-fi .card-title,
+  .homepage-sci-fi .notes-card .card-title,
+  .homepage-sci-fi .info-card.notes-card .card-title {
+    min-width: 92px !important;
+    min-height: 28px !important;
+    padding: 5px 12px !important;
+    font-size: 0.82rem !important;
+    border-radius: 10px !important;
+  }
+}
