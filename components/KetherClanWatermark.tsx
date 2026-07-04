@@ -5,14 +5,13 @@ export default function KetherClanWatermark() {
       style={{
         position: "fixed",
         left: "50%",
-        top: "56%",
+        top: "52%",
         transform: "translate(-50%, -50%)",
-        width: "min(58vw, 560px)",
-        maxWidth: "560px",
-        opacity: 0.065,
+        width: "min(62vw, 620px)",
+        opacity: 0.12,
         pointerEvents: "none",
         userSelect: "none",
-        zIndex: 0,
+        zIndex: 6,
         mixBlendMode: "multiply"
       }}
     >
@@ -23,7 +22,7 @@ export default function KetherClanWatermark() {
           width: "100%",
           height: "auto",
           display: "block",
-          filter: "grayscale(100%) contrast(1.05)"
+          filter: "grayscale(100%) contrast(1.08)"
         }}
       />
     </div>
