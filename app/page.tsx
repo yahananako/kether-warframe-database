@@ -1,6 +1,5 @@
 import Link from "next/link";
-import {
-  Search,
+import { Search,
   Bell,
   Menu,
   CalendarDays,
@@ -14,8 +13,7 @@ import {
   Dog,
   Feather,
   Layers,
-  Gem
-} from "lucide-react";
+  Gem, type LucideIcon } from "lucide-react";
 import { fetchSheetRows } from "../lib/sheets";
 import HomeSearchFloating from "../components/HomeSearchFloating";
 import HomeNotificationsFloating from "../components/HomeNotificationsFloating";
@@ -39,6 +37,44 @@ function hasPrice(value: string): boolean {
   const number = Number(String(value || "").replace(/[^\d.]/g, ""));
   return Number.isFinite(number) && number > 0;
 }
+
+function SectionBadge({
+  icon: Icon,
+  label
+}: {
+  icon: LucideIcon;
+  label: string;
+}) {
+  return (
+    <div
+      style={{
+        display: "inline-flex",
+        alignItems: "center",
+        gap: 9,
+        borderRadius: 14,
+        background: "linear-gradient(135deg, rgba(37, 50, 65, 0.96), rgba(55, 70, 86, 0.92))",
+        color: "white",
+        padding: "8px 16px",
+        boxShadow: "0 8px 18px rgba(15, 23, 42, 0.18)",
+        border: "1px solid rgba(255, 255, 255, 0.18)",
+        width: "fit-content"
+      }}
+    >
+      <Icon size={18} strokeWidth={2.35} />
+      <span
+        style={{
+          fontSize: 14,
+          fontWeight: 900,
+          letterSpacing: "0.06em",
+          lineHeight: 1
+        }}
+      >
+        {label}
+      </span>
+    </div>
+  );
+}
+
 
 export default async function HomePage() {
   const dataCategories = navItems.filter((item) => item.key !== "overview");
@@ -269,7 +305,7 @@ export default async function HomePage() {
 
           <div className="total-row">
             <span>網站版本</span>
-            <b>v2.5.43</b>
+            <b>v2.5.44</b>
           </div>
         </article>
 
@@ -279,7 +315,7 @@ export default async function HomePage() {
             <span>5　備註</span>
           </div>
 
-          <p>・v2.5.43 已加入首頁自動資料總控台。</p>
+          <p>・v2.5.44 已將首頁區塊標題改為圖示化樣式。</p>
           <p>・下一階段可做 Discord 登入前置與個人化資料庫設計。</p>
           <p>・完成度目前讀取表格欄位，未來會改為個人獨立紀錄。</p>
           <div className="note-lines" />
