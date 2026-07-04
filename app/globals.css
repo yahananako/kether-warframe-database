@@ -1,0 +1,4828 @@
+:root {
+  --ink: #111820;
+  --muted: #66717d;
+  --line: #cfd7df;
+  --line-dark: #2d3945;
+  --panel: rgba(255, 255, 255, 0.82);
+  --panel-strong: rgba(255, 255, 255, 0.95);
+  --accent: #00a8d8;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(circle at 20% 25%, rgba(0, 168, 216, 0.08), transparent 22%),
+    radial-gradient(circle at 80% 25%, rgba(0, 168, 216, 0.08), transparent 22%),
+    linear-gradient(135deg, #eef2f6 0%, #ffffff 48%, #e9eef3 100%);
+  color: var(--ink);
+  font-family: Arial, "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+}
+
+.page-shell {
+  position: relative;
+  width: min(100vw, 1920px);
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 34px 64px 26px;
+  overflow: hidden;
+  border: 8px solid rgba(32, 45, 58, 0.92);
+  background:
+    linear-gradient(90deg, rgba(32,45,58,0.08) 1px, transparent 1px),
+    linear-gradient(rgba(32,45,58,0.06) 1px, transparent 1px);
+  background-size: 44px 44px;
+}
+
+.page-shell::before,
+.page-shell::after {
+  content: "";
+  position: absolute;
+  top: 145px;
+  width: 260px;
+  height: 390px;
+  opacity: 0.08;
+  background: var(--ink);
+  clip-path: polygon(50% 0, 78% 30%, 66% 32%, 92% 76%, 56% 58%, 50% 100%, 44% 58%, 8% 76%, 34% 32%, 22% 30%);
+}
+
+.page-shell::before {
+  left: 60px;
+}
+
+.page-shell::after {
+  right: 60px;
+}
+
+.topbar {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #2a3642;
+}
+
+.topbar-left,
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.topbar-left span {
+  letter-spacing: 0.28em;
+  font-weight: 700;
+  color: #aab3bd;
+}
+
+.discord-mini {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--ink);
+  text-decoration: none;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 8px 14px;
+  background: rgba(255,255,255,0.66);
+}
+
+.hero {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding-top: 18px;
+}
+
+.clan-logo {
+  width: 146px;
+  height: 146px;
+  margin: 0 auto 16px;
+  border-radius: 28px;
+  background: linear-gradient(135deg, #05080c, #222832);
+  box-shadow: 0 16px 36px rgba(17, 24, 32, 0.25);
+  display: grid;
+  place-items: center;
+}
+
+.logo-mark {
+  width: 94px;
+  height: 94px;
+  border: 4px solid white;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: white;
+  font-size: 50px;
+  font-weight: 900;
+}
+
+.hero h2 {
+  margin: 0;
+  font-size: clamp(24px, 3vw, 42px);
+  letter-spacing: 0.05em;
+}
+
+.hero h1 {
+  margin: 22px 0 12px;
+  font-size: clamp(44px, 6vw, 78px);
+  letter-spacing: 0.04em;
+}
+
+.divider {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+}
+
+.divider span {
+  width: min(28vw, 380px);
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--line-dark), transparent);
+}
+
+.nav-panel,
+.info-card {
+  position: relative;
+  z-index: 2;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,0.8),
+    0 18px 42px rgba(20, 32, 45, 0.1);
+  backdrop-filter: blur(6px);
+}
+
+.nav-panel {
+  margin-top: 28px;
+  padding: 30px 24px 22px;
+  border-radius: 12px;
+}
+
+.panel-tag,
+.card-title {
+  position: absolute;
+  left: -1px;
+  top: -1px;
+  background: linear-gradient(90deg, #263240, #55616f);
+  color: white;
+  padding: 10px 26px;
+  font-weight: 800;
+  clip-path: polygon(0 0, 86% 0, 100% 50%, 86% 100%, 0 100%);
+}
+
+.nav-grid {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 14px;
+}
+
+.nav-card {
+  min-height: 142px;
+  border: 1px solid #bfc9d3;
+  border-radius: 10px;
+  background: linear-gradient(180deg, #ffffff, #edf2f6);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  cursor: pointer;
+  color: var(--ink);
+  box-shadow: inset 0 0 0 1px white, 0 10px 20px rgba(20, 32, 45, 0.09);
+}
+
+.nav-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.nav-card strong {
+  font-size: 22px;
+}
+
+.dashboard-grid {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1.05fr 1fr 1.15fr;
+  gap: 28px;
+  margin-top: 30px;
+}
+
+.info-card {
+  min-height: 300px;
+  border-radius: 14px;
+  padding: 76px 34px 28px;
+}
+
+.card-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.info-row {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 18px;
+  font-size: 20px;
+}
+
+.line {
+  height: 1px;
+  margin: 26px 0;
+  background: repeating-linear-gradient(90deg, var(--line), var(--line) 6px, transparent 6px, transparent 12px);
+}
+
+.guide {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 20px;
+}
+
+.guide h3 {
+  margin: 0 0 10px;
+}
+
+.guide p {
+  margin: 8px 0;
+  color: #313b46;
+}
+
+.summary-table {
+  border: 1px solid #dde3e8;
+}
+
+.summary-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  padding: 10px 18px;
+  border-bottom: 1px solid #dde3e8;
+}
+
+.summary-row:last-child {
+  border-bottom: 0;
+}
+
+.total-row {
+  margin-top: 14px;
+  border-radius: 8px;
+  background: linear-gradient(180deg, #edf2f6, #dde5ec);
+  padding: 16px 20px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 24px;
+}
+
+.notes-card {
+  position: relative;
+}
+
+.note-lines {
+  height: 34px;
+  border-bottom: 1px dashed #c9d1d9;
+}
+
+.watermark {
+  position: absolute;
+  right: 44px;
+  bottom: 28px;
+  font-size: 120px;
+  font-weight: 900;
+  color: rgba(17, 24, 32, 0.06);
+}
+
+footer {
+  position: relative;
+  z-index: 2;
+  margin-top: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+  letter-spacing: 0.5em;
+  color: #53606d;
+}
+
+footer span {
+  width: 260px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #6f7d8a, transparent);
+}
+
+.corner {
+  position: absolute;
+  width: 72px;
+  height: 72px;
+  border-color: #d7eef7;
+  opacity: 0.9;
+}
+
+.corner-lt {
+  left: 18px;
+  top: 18px;
+  border-left: 3px solid;
+  border-top: 3px solid;
+}
+
+.corner-rt {
+  right: 18px;
+  top: 18px;
+  border-right: 3px solid;
+  border-top: 3px solid;
+}
+
+.corner-lb {
+  left: 18px;
+  bottom: 18px;
+  border-left: 3px solid;
+  border-bottom: 3px solid;
+}
+
+.corner-rb {
+  right: 18px;
+  bottom: 18px;
+  border-right: 3px solid;
+  border-bottom: 3px solid;
+}
+
+@media (max-width: 1100px) {
+  .page-shell {
+    padding: 24px 20px;
+  }
+
+  .nav-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 680px) {
+  .page-shell {
+    border-width: 4px;
+  }
+
+  .topbar {
+    gap: 12px;
+  }
+
+  .topbar-left span {
+    display: none;
+  }
+
+  .hero h1 {
+    font-size: 36px;
+  }
+
+  .nav-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .nav-card {
+    min-height: 118px;
+  }
+
+  .nav-card strong {
+    font-size: 18px;
+  }
+
+  footer span {
+    display: none;
+  }
+}
+
+a.nav-card {
+  text-decoration: none;
+}
+
+.wf-svg {
+  width: 54px;
+  height: 54px;
+  color: #111820;
+  filter: drop-shadow(0 4px 5px rgba(20, 32, 45, 0.12));
+}
+
+.nav-card:hover .wf-svg {
+  color: #007fa8;
+}
+
+.menu-drawer {
+  position: relative;
+}
+
+.menu-drawer summary {
+  list-style: none;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+}
+
+.menu-drawer summary::-webkit-details-marker {
+  display: none;
+}
+
+.menu-popup {
+  position: absolute;
+  top: 36px;
+  left: 0;
+  z-index: 20;
+  width: 240px;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 18px 42px rgba(20, 32, 45, 0.18);
+  backdrop-filter: blur(10px);
+  display: grid;
+  gap: 6px;
+}
+
+.menu-popup a {
+  color: var(--ink);
+  text-decoration: none;
+  padding: 10px 12px;
+  border-radius: 10px;
+  font-weight: 700;
+}
+
+.menu-popup a:hover {
+  background: #eef5f8;
+  color: #007fa8;
+}
+
+.category-page {
+  display: grid;
+  align-content: start;
+  gap: 28px;
+}
+
+.category-header {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  gap: 20px;
+  padding-top: 30px;
+}
+
+.category-header p {
+  margin: 0;
+  letter-spacing: 0.35em;
+  color: #7d8994;
+  font-weight: 800;
+}
+
+.category-header h1 {
+  margin: 0;
+  font-size: clamp(44px, 7vw, 86px);
+}
+
+.category-header span {
+  color: #55616f;
+  font-size: 18px;
+}
+
+.back-link {
+  width: fit-content;
+  color: var(--ink);
+  text-decoration: none;
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,0.86);
+  padding: 10px 16px;
+  border-radius: 999px;
+  font-weight: 800;
+}
+
+.category-tools {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 18px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+}
+
+.category-tools input {
+  flex: 1;
+  min-width: 220px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 12px 18px;
+  font-size: 16px;
+}
+
+.category-tools button {
+  border: 1px solid var(--line);
+  background: white;
+  border-radius: 999px;
+  padding: 12px 18px;
+  font-weight: 800;
+}
+
+.category-table {
+  position: relative;
+  z-index: 2;
+  background: var(--panel-strong);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.table-head {
+  display: grid;
+  grid-template-columns: 1.2fr 1.2fr 0.8fr 0.8fr 1fr;
+  gap: 1px;
+  background: #d8e1e9;
+  font-weight: 900;
+}
+
+.table-head span {
+  background: #f6f9fb;
+  padding: 14px;
+}
+
+.empty-state {
+  min-height: 280px;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  color: #53606d;
+}
+
+@media (max-width: 680px) {
+  .table-head {
+    display: none;
+  }
+
+  .category-tools {
+    display: grid;
+  }
+}
+
+.category-page-v04 {
+  display: grid;
+  align-content: start;
+  gap: 24px;
+}
+
+.db-page-header {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 24px;
+  align-items: center;
+  padding-top: 24px;
+}
+
+.db-back,
+.db-version-chip {
+  text-decoration: none;
+  color: var(--ink);
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,0.88);
+  border-radius: 999px;
+  padding: 10px 16px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.db-title-block {
+  text-align: center;
+}
+
+.db-title-block p {
+  margin: 0;
+  color: #7d8994;
+  letter-spacing: 0.35em;
+  font-weight: 900;
+}
+
+.db-title-block h1 {
+  margin: 10px 0;
+  font-size: clamp(48px, 6vw, 86px);
+}
+
+.db-title-block span {
+  color: #55616f;
+  font-size: 18px;
+}
+
+.db-kpi-grid {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+
+.db-kpi-grid article {
+  background: rgba(255,255,255,0.88);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 18px;
+  box-shadow: 0 12px 30px rgba(20, 32, 45, 0.08);
+}
+
+.db-kpi-grid span {
+  display: block;
+  color: #66717d;
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+
+.db-kpi-grid strong {
+  font-size: 20px;
+}
+
+.db-tool-panel {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 16px;
+}
+
+.db-tool-panel input {
+  flex: 1;
+  min-width: 260px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 13px 18px;
+  font-size: 16px;
+}
+
+.db-tool-panel button,
+.link-button {
+  border: 1px solid var(--line);
+  background: white;
+  color: var(--ink);
+  border-radius: 999px;
+  padding: 12px 18px;
+  font-weight: 900;
+}
+
+.db-table-card {
+  position: relative;
+  z-index: 2;
+  background: rgba(255,255,255,0.92);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 18px 42px rgba(20, 32, 45, 0.1);
+}
+
+.db-table-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 18px;
+  padding: 22px 24px;
+  border-bottom: 1px solid var(--line);
+}
+
+.db-table-title h2 {
+  margin: 0 0 4px;
+}
+
+.db-table-title p {
+  margin: 0;
+  color: #66717d;
+}
+
+.db-table-title span {
+  background: #eef5f8;
+  border: 1px solid #cddae3;
+  border-radius: 999px;
+  padding: 8px 12px;
+  font-weight: 900;
+  white-space: nowrap;
+}
+
+.db-table {
+  display: grid;
+}
+
+.db-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 2fr 0.8fr 0.8fr 0.9fr;
+  border-bottom: 1px solid #e1e7ed;
+}
+
+.db-row span {
+  padding: 14px;
+  border-right: 1px solid #e1e7ed;
+}
+
+.db-row span:last-child {
+  border-right: 0;
+}
+
+.db-head {
+  background: #eef3f7;
+  font-weight: 900;
+}
+
+.owned-pill {
+  display: inline-block;
+  background: #f1f4f7;
+  border: 1px solid #d6dee6;
+  border-radius: 999px;
+  padding: 6px 10px;
+  color: #66717d;
+}
+
+.mobile-cards {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .db-page-header {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .db-back,
+  .db-version-chip {
+    justify-self: center;
+  }
+
+  .db-kpi-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .desktop-table {
+    display: none;
+  }
+
+  .mobile-cards {
+    display: grid;
+    gap: 14px;
+    padding: 16px;
+  }
+
+  .mobile-data-card {
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 16px;
+    background: white;
+  }
+
+  .mobile-data-card h3 {
+    margin: 0 0 4px;
+  }
+
+  .mobile-data-card p {
+    margin: 0 0 8px;
+    color: #66717d;
+  }
+
+  .mobile-data-card small {
+    display: block;
+    margin-bottom: 12px;
+  }
+
+  .mobile-data-card div {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+  }
+}
+
+@media (max-width: 560px) {
+  .db-kpi-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .db-tool-panel {
+    display: grid;
+  }
+
+  .db-tool-panel input {
+    min-width: 0;
+  }
+}
+
+.db-warning {
+  position: relative;
+  z-index: 2;
+  background: #fff7e6;
+  border: 1px solid #f1cc77;
+  border-radius: 16px;
+  padding: 16px 18px;
+  color: #6d4b00;
+}
+
+.db-warning p {
+  margin: 6px 0 0;
+}
+
+.link-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.link-button:disabled {
+  opacity: 0.5;
+}
+
+.mobile-market-link {
+  margin-top: 12px;
+  display: inline-flex;
+  color: var(--ink);
+  text-decoration: none;
+  font-weight: 900;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 10px 14px;
+}
+
+.enhanced-tools button.is-active {
+  background: #111820;
+  color: white;
+  border-color: #111820;
+  box-shadow: 0 8px 18px rgba(17, 24, 32, 0.18);
+}
+
+.price-pill {
+  display: inline-block;
+  background: #eef8fb;
+  border: 1px solid #c7e2ed;
+  border-radius: 999px;
+  padding: 6px 10px;
+  color: #007fa8;
+  font-weight: 900;
+}
+
+.price-empty {
+  background: #f4f6f8;
+  border-color: #d6dee6;
+  color: #7d8994;
+}
+
+.owned-ok {
+  background: #edf8ef;
+  border-color: #bcdcc4;
+  color: #247a38;
+}
+
+.owned-ok-text {
+  color: #247a38;
+}
+
+.mobile-hint {
+  margin-top: 10px;
+  display: block;
+  color: #7d8994;
+  font-style: normal;
+  font-weight: 800;
+}
+
+
+.section-select {
+  border: 1px solid var(--line);
+  background: white;
+  color: var(--ink);
+  border-radius: 999px;
+  padding: 12px 18px;
+  font-weight: 900;
+  min-width: 160px;
+}
+
+.section-pill {
+  display: inline-block;
+  background: #f2f6fa;
+  border: 1px solid #d3dee8;
+  border-radius: 999px;
+  padding: 6px 10px;
+  color: #425162;
+  font-weight: 900;
+}
+
+.db-row {
+  grid-template-columns: 0.9fr 1fr 1fr 2fr 0.8fr 0.8fr 0.9fr;
+}
+
+
+.home-kpi-grid {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  margin-top: 24px;
+}
+
+.home-kpi-grid article {
+  background: rgba(255,255,255,0.9);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 18px;
+  box-shadow: 0 12px 30px rgba(20, 32, 45, 0.08);
+}
+
+.home-kpi-grid span {
+  display: block;
+  color: #66717d;
+  font-weight: 900;
+  margin-bottom: 8px;
+}
+
+.home-kpi-grid strong {
+  font-size: 28px;
+}
+
+.home-category-panel {
+  position: relative;
+  z-index: 2;
+  margin-top: 30px;
+  padding: 76px 28px 28px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  box-shadow: 0 18px 42px rgba(20, 32, 45, 0.1);
+}
+
+.home-category-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+.home-category-card {
+  color: var(--ink);
+  text-decoration: none;
+  background: rgba(255,255,255,0.92);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 16px;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 14px;
+}
+
+.home-category-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.home-category-card h3 {
+  margin: 0 0 4px;
+}
+
+.home-category-card p {
+  margin: 0;
+  color: #66717d;
+  font-size: 14px;
+}
+
+.home-category-card strong {
+  font-size: 22px;
+}
+
+@media (max-width: 1000px) {
+  .home-kpi-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .home-category-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .home-kpi-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .home-category-card {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+}
+
+.login-mini {
+  display: inline-flex;
+  align-items: center;
+  color: var(--ink);
+  text-decoration: none;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 8px 14px;
+  background: rgba(255,255,255,0.66);
+  font-weight: 900;
+}
+
+.auth-page {
+  display: grid;
+  align-content: start;
+  gap: 28px;
+}
+
+.auth-header {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 24px;
+  align-items: center;
+  padding-top: 32px;
+}
+
+.auth-header p {
+  margin: 0;
+  letter-spacing: 0.35em;
+  color: #7d8994;
+  font-weight: 900;
+}
+
+.auth-header h1 {
+  margin: 8px 0;
+  font-size: clamp(44px, 7vw, 88px);
+}
+
+.auth-header span {
+  color: #55616f;
+  font-size: 18px;
+}
+
+.auth-hero-card {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  background: rgba(255,255,255,0.92);
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  padding: 42px 28px;
+  box-shadow: 0 18px 42px rgba(20, 32, 45, 0.12);
+}
+
+.auth-hero-card h2,
+.auth-hero-card h1 {
+  margin: 16px 0 10px;
+  font-size: clamp(30px, 5vw, 54px);
+}
+
+.auth-hero-card p {
+  max-width: 860px;
+  margin: 0 auto;
+  color: #55616f;
+  line-height: 1.8;
+}
+
+.auth-actions {
+  margin-top: 28px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.auth-primary,
+.auth-secondary,
+.auth-disabled {
+  min-height: 46px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  text-decoration: none;
+  border-radius: 999px;
+  padding: 12px 20px;
+  font-weight: 900;
+  border: 1px solid var(--line);
+}
+
+.auth-primary {
+  background: #111820;
+  color: white;
+  border-color: #111820;
+}
+
+.auth-secondary {
+  background: white;
+  color: var(--ink);
+}
+
+.auth-disabled {
+  background: #eef3f7;
+  color: #7d8994;
+  cursor: not-allowed;
+}
+
+.auth-grid {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.auth-grid article,
+.auth-flow {
+  background: rgba(255,255,255,0.9);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 24px;
+  box-shadow: 0 14px 34px rgba(20, 32, 45, 0.08);
+}
+
+.auth-grid h3 {
+  margin: 14px 0 8px;
+}
+
+.auth-grid p {
+  margin: 0;
+  color: #66717d;
+  line-height: 1.7;
+}
+
+.auth-flow {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  gap: 14px;
+}
+
+.auth-flow h2 {
+  margin: 0 0 6px;
+}
+
+.auth-flow div {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 14px;
+  align-items: center;
+  border: 1px solid #e1e7ed;
+  border-radius: 14px;
+  background: white;
+  padding: 14px;
+}
+
+.auth-flow span {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: #111820;
+  color: white;
+  font-weight: 900;
+}
+
+.auth-flow p {
+  margin: 0;
+  font-weight: 800;
+}
+
+.unauthorized-card {
+  margin-top: 90px;
+}
+
+@media (max-width: 820px) {
+  .auth-header {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .auth-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.profile-page {
+  display: grid;
+  align-content: start;
+  gap: 28px;
+}
+
+.profile-header {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 24px;
+  align-items: center;
+  padding-top: 32px;
+}
+
+.profile-header p {
+  margin: 0;
+  letter-spacing: 0.35em;
+  color: #7d8994;
+  font-weight: 900;
+}
+
+.profile-header h1 {
+  margin: 8px 0;
+  font-size: clamp(44px, 7vw, 88px);
+}
+
+.profile-header span {
+  color: #55616f;
+  font-size: 18px;
+}
+
+.profile-hero {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  background: rgba(255,255,255,0.92);
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  padding: 42px 28px;
+  box-shadow: 0 18px 42px rgba(20, 32, 45, 0.12);
+}
+
+.profile-hero h2 {
+  margin: 16px 0 10px;
+  font-size: clamp(30px, 5vw, 54px);
+}
+
+.profile-hero p {
+  max-width: 900px;
+  margin: 0 auto;
+  color: #55616f;
+  line-height: 1.8;
+}
+
+.profile-progress-grid {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+
+.profile-progress-grid article {
+  background: rgba(255,255,255,0.9);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 18px;
+  box-shadow: 0 12px 30px rgba(20, 32, 45, 0.08);
+}
+
+.profile-progress-grid span {
+  display: block;
+  color: #66717d;
+  font-weight: 900;
+  margin-bottom: 8px;
+}
+
+.profile-progress-grid strong {
+  display: block;
+  font-size: 22px;
+  margin-bottom: 8px;
+}
+
+.profile-progress-grid p {
+  margin: 0;
+  color: #66717d;
+  line-height: 1.6;
+}
+
+.profile-system-grid {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.profile-system-grid article {
+  background: rgba(255,255,255,0.9);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 24px;
+  box-shadow: 0 14px 34px rgba(20, 32, 45, 0.08);
+}
+
+.profile-system-grid h3 {
+  margin: 14px 0 8px;
+}
+
+.profile-system-grid p {
+  margin: 0;
+  color: #66717d;
+  line-height: 1.7;
+}
+
+@media (max-width: 1000px) {
+  .profile-progress-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .profile-system-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 680px) {
+  .profile-header {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .profile-progress-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.db-status-page {
+  display: grid;
+  align-content: start;
+  gap: 28px;
+}
+
+.db-status-hero {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  background: rgba(255,255,255,0.92);
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  padding: 42px 28px;
+  box-shadow: 0 18px 42px rgba(20, 32, 45, 0.12);
+}
+
+.db-status-hero.ok {
+  border-color: #bde4c4;
+}
+
+.db-status-hero.error {
+  border-color: #f0c0c0;
+}
+
+.db-status-hero h2 {
+  margin: 16px 0 10px;
+  font-size: clamp(30px, 5vw, 54px);
+}
+
+.db-status-hero p {
+  max-width: 860px;
+  margin: 0 auto;
+  color: #55616f;
+  line-height: 1.8;
+}
+
+.db-status-grid {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.status-card {
+  background: rgba(255,255,255,0.9);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 22px;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 16px;
+  align-items: start;
+  box-shadow: 0 14px 34px rgba(20, 32, 45, 0.08);
+}
+
+.status-card.ok {
+  border-color: #bde4c4;
+}
+
+.status-card.error {
+  border-color: #f0c0c0;
+}
+
+.status-card h3 {
+  margin: 0 0 8px;
+}
+
+.status-card p {
+  margin: 0;
+  color: #66717d;
+  line-height: 1.6;
+  word-break: break-word;
+}
+
+.db-status-next {
+  position: relative;
+  z-index: 2;
+  background: rgba(255,255,255,0.9);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 24px;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 18px;
+  align-items: center;
+  box-shadow: 0 14px 34px rgba(20, 32, 45, 0.08);
+}
+
+.db-status-next h2 {
+  margin: 0 0 8px;
+}
+
+.db-status-next p {
+  margin: 0;
+  color: #66717d;
+  line-height: 1.7;
+}
+
+@media (max-width: 900px) {
+  .db-status-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .db-status-next {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+}
+
+.kether-plan-card {
+  position: relative;
+  z-index: 2;
+  background: rgba(255,255,255,0.92);
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  padding: 28px;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 22px;
+  box-shadow: 0 18px 42px rgba(20, 32, 45, 0.12);
+}
+
+.kether-plan-card.ok {
+  border-color: #bde4c4;
+}
+
+.kether-plan-card.error {
+  border-color: #f0c0c0;
+}
+
+.kether-plan-card h2 {
+  margin: 0 0 8px;
+  font-size: clamp(28px, 4vw, 46px);
+}
+
+.kether-plan-card p {
+  margin: 0 0 18px;
+  color: #55616f;
+  line-height: 1.7;
+}
+
+.plan-table {
+  display: grid;
+  gap: 10px;
+}
+
+.plan-table div {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 12px;
+  border: 1px solid #e1e7ed;
+  border-radius: 12px;
+  padding: 12px 14px;
+  background: rgba(255,255,255,0.72);
+}
+
+.plan-table span {
+  color: #66717d;
+  font-weight: 900;
+}
+
+.plan-table b {
+  word-break: break-word;
+}
+
+@media (max-width: 720px) {
+  .kether-plan-card {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .plan-table div {
+    grid-template-columns: 1fr;
+  }
+}
+
+.owned-sync-banner {
+  position: relative;
+  z-index: 2;
+  background: rgba(255,255,255,0.92);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 12px 18px;
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  align-items: center;
+  box-shadow: 0 12px 28px rgba(20, 32, 45, 0.08);
+  font-weight: 900;
+}
+
+.owned-sync-banner span {
+  color: #425162;
+}
+
+.owned-sync-banner b {
+  color: #66717d;
+  font-size: 13px;
+}
+
+.owned-toggle {
+  border: 1px solid #d3dee8;
+  background: white;
+  color: #425162;
+  border-radius: 999px;
+  padding: 9px 14px;
+  font-weight: 900;
+  cursor: pointer;
+  min-width: 92px;
+}
+
+.owned-toggle:hover {
+  border-color: var(--accent);
+  transform: translateY(-1px);
+}
+
+.owned-toggle.owned-ok {
+  background: #111820;
+  border-color: #111820;
+  color: white;
+}
+
+.owned-toggle:disabled {
+  opacity: 0.62;
+  cursor: wait;
+}
+
+@media (max-width: 680px) {
+  .owned-sync-banner {
+    border-radius: 18px;
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+.clan-logo-real {
+  display: flex;
+  justify-content: center;
+  margin: 10px auto 18px;
+}
+
+.clan-logo-real img {
+  width: min(190px, 46vw);
+  height: auto;
+  border-radius: 28px;
+  box-shadow: 0 18px 42px rgba(20, 32, 45, 0.18);
+  display: block;
+}
+
+.watermark-logo {
+  position: absolute;
+  right: 28px;
+  bottom: 20px;
+  width: min(180px, 38vw);
+  height: auto;
+  opacity: 0.06;
+  pointer-events: none;
+  filter: grayscale(1);
+}
+
+@media (max-width: 680px) {
+  .clan-logo-real img {
+    width: min(150px, 50vw);
+    border-radius: 24px;
+  }
+
+  .watermark-logo {
+    width: 130px;
+    right: 16px;
+    bottom: 14px;
+  }
+}
+
+/* v2.2.3 強制替換首頁假 K Logo */
+.clan-logo-real {
+  display: flex;
+  justify-content: center;
+  margin: 10px auto 18px;
+}
+
+.clan-logo-real img,
+.clan-logo-img {
+  width: min(190px, 46vw);
+  height: auto;
+  border-radius: 28px;
+  box-shadow: 0 18px 42px rgba(20, 32, 45, 0.18);
+  display: block;
+}
+
+/* 若舊 logo-mark 還殘留，直接把 K 變成氏族 Logo */
+.logo-mark {
+  background-image: url("/kether-clan-logo.png") !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  color: transparent !important;
+  font-size: 0 !important;
+}
+
+/* 底部浮水印改用氏族 Logo */
+.watermark-logo {
+  position: absolute;
+  right: 28px;
+  bottom: 20px;
+  width: min(180px, 38vw);
+  height: auto;
+  opacity: 0.06;
+  pointer-events: none;
+  filter: grayscale(1);
+}
+
+@media (max-width: 680px) {
+  .clan-logo-real img,
+  .clan-logo-img {
+    width: min(150px, 50vw);
+    border-radius: 24px;
+  }
+
+  .watermark-logo {
+    width: 130px;
+    right: 16px;
+    bottom: 14px;
+  }
+}
+
+/* v2.2.4 clan logo final override */
+.clan-logo-real {
+  display: flex !important;
+  justify-content: center !important;
+  margin: 10px auto 18px !important;
+}
+
+.clan-logo-real img,
+.clan-logo-img {
+  width: min(190px, 46vw) !important;
+  height: auto !important;
+  border-radius: 28px !important;
+  box-shadow: 0 18px 42px rgba(20, 32, 45, 0.18) !important;
+  display: block !important;
+}
+
+/* 如果舊 K 還殘留，直接把 K 的外殼變成氏族 Logo */
+.logo-mark {
+  background: url("/kether-clan-logo.png") center / cover no-repeat !important;
+  color: transparent !important;
+  font-size: 0 !important;
+  text-indent: -9999px !important;
+  overflow: hidden !important;
+}
+
+.logo-mark::before,
+.logo-mark::after {
+  display: none !important;
+  content: none !important;
+}
+
+.watermark-logo {
+  position: absolute !important;
+  right: 28px !important;
+  bottom: 20px !important;
+  width: min(180px, 38vw) !important;
+  height: auto !important;
+  opacity: 0.06 !important;
+  pointer-events: none !important;
+  filter: grayscale(1) !important;
+}
+
+@media (max-width: 680px) {
+  .clan-logo-real img,
+  .clan-logo-img {
+    width: min(150px, 50vw) !important;
+    border-radius: 24px !important;
+  }
+
+  .watermark-logo {
+    width: 130px !important;
+    right: 16px !important;
+    bottom: 14px !important;
+  }
+}
+
+/* v2.2.5 首頁上方氏族版圖 Logo */
+.home-clan-logo {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  justify-content: center;
+  margin: 8px auto 18px;
+}
+
+.home-clan-logo img {
+  width: min(185px, 46vw);
+  height: auto;
+  border-radius: 28px;
+  box-shadow: 0 18px 42px rgba(20, 32, 45, 0.18);
+  display: block;
+}
+
+@media (max-width: 680px) {
+  .home-clan-logo img {
+    width: min(145px, 48vw);
+    border-radius: 24px;
+  }
+}
+
+/* v2.2.6 強制首頁 Logo 顯示 */
+.home-clan-logo-force {
+  position: relative !important;
+  z-index: 20 !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  margin: 8px auto 18px !important;
+  width: 100% !important;
+}
+
+.home-clan-logo-force img {
+  width: min(170px, 42vw) !important;
+  height: auto !important;
+  display: block !important;
+  border-radius: 28px !important;
+  box-shadow: 0 18px 42px rgba(20, 32, 45, 0.2) !important;
+}
+
+/* v2.2.7 首頁 Logo 最終版：只顯示一個 */
+.home-clan-logo-final {
+  position: relative !important;
+  z-index: 20 !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  margin: 18px auto 28px !important;
+  width: 100% !important;
+}
+
+.home-clan-logo-final img {
+  width: min(180px, 44vw) !important;
+  height: auto !important;
+  display: block !important;
+  border-radius: 28px !important;
+  box-shadow: 0 18px 42px rgba(20, 32, 45, 0.2) !important;
+}
+
+/* 把舊的重複 Logo 區塊藏起來 */
+.home-clan-logo-force,
+.home-clan-logo,
+.clan-logo-real {
+  display: none !important;
+}
+
+
+/* v2.2.8 logo duplicate fix: hide every old placeholder logo */
+.logo-mark,
+.clan-logo,
+.clan-logo-real,
+.clan-logo-img,
+.home-clan-logo,
+.home-clan-logo-force {
+  display: none !important;
+  visibility: hidden !important;
+  width: 0 !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  opacity: 0 !important;
+}
+
+/* keep only the final homepage clan logo */
+.home-clan-logo-final {
+  position: relative !important;
+  z-index: 20 !important;
+  display: flex !important;
+  visibility: visible !important;
+  justify-content: center !important;
+  align-items: center !important;
+  margin: 18px auto 28px !important;
+  width: 100% !important;
+  height: auto !important;
+  opacity: 1 !important;
+}
+
+.home-clan-logo-final img {
+  width: min(180px, 44vw) !important;
+  height: auto !important;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  border-radius: 28px !important;
+  box-shadow: 0 18px 42px rgba(20, 32, 45, 0.2) !important;
+}
+
+/* v2.3.1 首頁繪師橫版圖 */
+.home-hero-image-banner {
+  position: relative;
+  z-index: 4;
+  width: min(1120px, calc(100% - 32px));
+  margin: 22px auto 26px;
+  border-radius: 24px;
+  overflow: hidden;
+  border: 1px solid rgba(178, 144, 86, 0.28);
+  box-shadow: 0 20px 54px rgba(20, 32, 45, 0.16);
+  background: rgba(255, 255, 255, 0.86);
+}
+
+.home-hero-image-banner img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* 保險：舊首頁 Logo 全部藏起來，只留橫版圖 */
+.logo-mark,
+.clan-logo,
+.clan-logo-real,
+.clan-logo-img,
+.home-clan-logo,
+.home-clan-logo-force,
+.home-clan-logo-final {
+  display: none !important;
+}
+
+@media (max-width: 680px) {
+  .home-hero-image-banner {
+    width: calc(100% - 22px);
+    margin: 18px auto 22px;
+    border-radius: 18px;
+  }
+}
+
+/* v2.3.3 首頁未來科技背景 */
+.homepage-sci-fi {
+  position: relative;
+  min-height: 100vh;
+  background:
+    linear-gradient(
+      rgba(246, 249, 251, 0.78),
+      rgba(246, 249, 251, 0.92)
+    ),
+    url("/home-ui-bg.png?v=233") center top / cover fixed no-repeat;
+}
+
+/* 讓首頁內容浮在背景上 */
+.homepage-sci-fi > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* 首頁橫版圖外框 */
+.homepage-sci-fi .home-hero-image-banner {
+  border: 1px solid rgba(70, 82, 92, 0.42) !important;
+  border-radius: 22px !important;
+  background: rgba(255, 255, 255, 0.72) !important;
+  box-shadow:
+    0 18px 48px rgba(18, 28, 38, 0.14),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.72) !important;
+}
+
+/* 通用科技框框：套在首頁卡片 / 區塊 / 面板 */
+.homepage-sci-fi section:not(.home-hero-image-banner),
+.homepage-sci-fi article,
+.homepage-sci-fi [class*="card"],
+.homepage-sci-fi [class*="Card"],
+.homepage-sci-fi [class*="panel"],
+.homepage-sci-fi [class*="Panel"] {
+  border: 1px solid rgba(70, 82, 92, 0.32) !important;
+  border-radius: 18px !important;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.82),
+      rgba(245, 248, 250, 0.68)
+    ) !important;
+  box-shadow:
+    0 14px 32px rgba(18, 28, 38, 0.10),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.68) !important;
+  backdrop-filter: blur(3px);
+}
+
+/* 首頁分類按鍵框 */
+.homepage-sci-fi a[href^="/database"],
+.homepage-sci-fi a[href="/overview"],
+.homepage-sci-fi a[href="/"] {
+  border: 1px solid rgba(70, 82, 92, 0.34) !important;
+  border-radius: 16px !important;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.88),
+      rgba(239, 243, 246, 0.72)
+    ) !important;
+  box-shadow:
+    0 10px 22px rgba(18, 28, 38, 0.10),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.78) !important;
+}
+
+/* 科技角落感：區塊左上角裝飾 */
+.homepage-sci-fi section:not(.home-hero-image-banner)::before,
+.homepage-sci-fi article::before,
+.homepage-sci-fi [class*="card"]::before,
+.homepage-sci-fi [class*="Card"]::before,
+.homepage-sci-fi [class*="panel"]::before,
+.homepage-sci-fi [class*="Panel"]::before {
+  content: "";
+  position: absolute;
+  width: 34px;
+  height: 18px;
+  top: -1px;
+  left: -1px;
+  border-top: 3px solid rgba(35, 45, 55, 0.72);
+  border-left: 3px solid rgba(35, 45, 55, 0.72);
+  border-radius: 16px 0 0 0;
+  pointer-events: none;
+}
+
+/* 手機版 */
+@media (max-width: 680px) {
+  .homepage-sci-fi {
+    background:
+      linear-gradient(
+        rgba(246, 249, 251, 0.82),
+        rgba(246, 249, 251, 0.95)
+      ),
+      url("/home-ui-bg.png?v=233") center top / auto 100% fixed no-repeat;
+  }
+
+  .homepage-sci-fi section:not(.home-hero-image-banner),
+  .homepage-sci-fi article,
+  .homepage-sci-fi [class*="card"],
+  .homepage-sci-fi [class*="Card"],
+  .homepage-sci-fi [class*="panel"],
+  .homepage-sci-fi [class*="Panel"] {
+    border-radius: 16px !important;
+  }
+}
+
+/* v2.3.4 修正首頁背景跑圖：取消 cover fixed，避免手機版放大裁切 */
+.homepage-sci-fi {
+  background:
+    linear-gradient(
+      rgba(246, 249, 251, 0.72),
+      rgba(246, 249, 251, 0.90)
+    ),
+    url("/home-ui-bg.png?v=234") center top / 100% auto repeat-y !important;
+  background-attachment: scroll !important;
+}
+
+/* 手機版：背景維持完整寬度，不再放大裁切 */
+@media (max-width: 680px) {
+  .homepage-sci-fi {
+    background:
+      linear-gradient(
+        rgba(246, 249, 251, 0.80),
+        rgba(246, 249, 251, 0.96)
+      ),
+      url("/home-ui-bg.png?v=234") center top / 100% auto repeat-y !important;
+    background-attachment: scroll !important;
+  }
+
+  /* 手機版避免科技角飾太搶畫面 */
+  .homepage-sci-fi section:not(.home-hero-image-banner)::before,
+  .homepage-sci-fi article::before,
+  .homepage-sci-fi [class*="card"]::before,
+  .homepage-sci-fi [class*="Card"]::before,
+  .homepage-sci-fi [class*="panel"]::before,
+  .homepage-sci-fi [class*="Panel"]::before {
+    width: 22px !important;
+    height: 12px !important;
+    border-top-width: 2px !important;
+    border-left-width: 2px !important;
+    opacity: 0.55 !important;
+  }
+}
+
+/* v2.3.5 安全回復：關閉 v2.3.3 / v2.3.4 的首頁背景與自動科技框，避免版面錯亂 */
+.homepage-sci-fi {
+  background: #f6f8fa !important;
+  background-image: none !important;
+  background-attachment: scroll !important;
+}
+
+/* 取消自動套到所有 section / article / card / panel 的科技框 */
+.homepage-sci-fi section:not(.home-hero-image-banner),
+.homepage-sci-fi article,
+.homepage-sci-fi [class*="card"],
+.homepage-sci-fi [class*="Card"],
+.homepage-sci-fi [class*="panel"],
+.homepage-sci-fi [class*="Panel"] {
+  border: initial !important;
+  border-radius: initial !important;
+  background: initial !important;
+  box-shadow: initial !important;
+  backdrop-filter: initial !important;
+}
+
+/* 取消左上角科技角飾 */
+.homepage-sci-fi section:not(.home-hero-image-banner)::before,
+.homepage-sci-fi article::before,
+.homepage-sci-fi [class*="card"]::before,
+.homepage-sci-fi [class*="Card"]::before,
+.homepage-sci-fi [class*="panel"]::before,
+.homepage-sci-fi [class*="Panel"]::before {
+  content: none !important;
+  display: none !important;
+}
+
+/* 分類按鍵恢復原本樣式，不再硬套外框 */
+.homepage-sci-fi a[href^="/database"],
+.homepage-sci-fi a[href="/overview"],
+.homepage-sci-fi a[href="/"] {
+  border: initial !important;
+  border-radius: initial !important;
+  background: initial !important;
+  box-shadow: initial !important;
+}
+
+/* v2.3.6 清除首頁殘留裝飾層：上方線條、巨大背景樹形、角落裝飾 */
+.homepage-sci-fi::before,
+.homepage-sci-fi::after {
+  content: none !important;
+  display: none !important;
+  background: none !important;
+}
+
+/* 關閉首頁內用 absolute / pointer-events-none 做的背景裝飾，不影響正常按鈕 */
+.homepage-sci-fi [class*="pointer-events-none"][class*="absolute"],
+.homepage-sci-fi [class*="absolute"][class*="inset"],
+.homepage-sci-fi [class*="decor"],
+.homepage-sci-fi [class*="ornament"],
+.homepage-sci-fi [class*="watermark"],
+.homepage-sci-fi [class*="corner"] {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+/* 再保險：首頁背景恢復乾淨底色 */
+.homepage-sci-fi {
+  background: #f6f8fa !important;
+  background-image: none !important;
+}
+
+/* 保留首頁真正內容 */
+.homepage-sci-fi header,
+.homepage-sci-fi nav,
+.homepage-sci-fi main,
+.homepage-sci-fi section,
+.homepage-sci-fi article,
+.homepage-sci-fi a,
+.homepage-sci-fi img {
+  visibility: visible;
+}
+
+/* v2.3.7 安全科技框工具包：只有指定 class 才會生效 */
+
+/* 大型區塊外框 */
+.home-tech-panel {
+  position: relative;
+  border: 1px solid rgba(64, 76, 88, 0.28);
+  border-radius: 18px;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.86),
+      rgba(245, 248, 250, 0.72)
+    );
+  box-shadow:
+    0 14px 34px rgba(18, 28, 38, 0.10),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.70);
+  overflow: hidden;
+}
+
+/* 小型卡片外框 */
+.home-tech-card {
+  position: relative;
+  border: 1px solid rgba(64, 76, 88, 0.24);
+  border-radius: 16px;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.90),
+      rgba(242, 246, 249, 0.78)
+    );
+  box-shadow:
+    0 10px 24px rgba(18, 28, 38, 0.08),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.78);
+  overflow: hidden;
+}
+
+/* 分類按鍵外框 */
+.home-tech-button {
+  position: relative;
+  border: 1px solid rgba(64, 76, 88, 0.26);
+  border-radius: 16px;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.92),
+      rgba(241, 245, 248, 0.80)
+    );
+  box-shadow:
+    0 8px 18px rgba(18, 28, 38, 0.08),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.75);
+}
+
+/* 科技角飾，只給有 home-tech-corner 的元素 */
+.home-tech-corner::before {
+  content: "";
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: 34px;
+  height: 22px;
+  border-top: 3px solid rgba(35, 45, 55, 0.72);
+  border-left: 3px solid rgba(35, 45, 55, 0.72);
+  border-radius: 10px 0 0 0;
+  pointer-events: none;
+}
+
+.home-tech-corner::after {
+  content: "";
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  width: 34px;
+  height: 22px;
+  border-right: 3px solid rgba(35, 45, 55, 0.42);
+  border-bottom: 3px solid rgba(35, 45, 55, 0.42);
+  border-radius: 0 0 10px 0;
+  pointer-events: none;
+}
+
+/* 手機版角飾縮小 */
+@media (max-width: 680px) {
+  .home-tech-corner::before,
+  .home-tech-corner::after {
+    width: 22px;
+    height: 14px;
+    border-width: 2px;
+  }
+}
+
+
+
+
+
+
+
+
+/* v2.4.3 救回首頁統計卡片排版：關閉失控 stat-frame-image */
+.homepage-sci-fi .stat-frame-image {
+  min-height: unset !important;
+  padding: unset !important;
+  background: unset !important;
+  border: unset !important;
+  box-shadow: unset !important;
+  overflow: unset !important;
+}
+
+/* 如果 stat-frame-image 曾經掛到 grid 外層，強制恢復 grid */
+.homepage-sci-fi .grid.stat-frame-image {
+  display: grid !important;
+  flex-direction: unset !important;
+  justify-content: unset !important;
+}
+
+/* v2.4.4 首頁美工圖層修復：背景最低，內容中層，選單最高 */
+.homepage-sci-fi {
+  position: relative !important;
+  isolation: isolate !important;
+  overflow-x: hidden !important;
+  background:
+    linear-gradient(
+      rgba(246, 248, 250, 0.86),
+      rgba(246, 248, 250, 0.96)
+    ),
+    url("/home-ui-bg.png?v=244") center top / 100% auto repeat-y !important;
+  background-attachment: scroll !important;
+}
+
+/* 首頁所有主要內容在中層 */
+.homepage-sci-fi > * {
+  position: relative !important;
+  z-index: 10 !important;
+}
+
+/* 首頁版圖不可擋點擊 */
+.homepage-sci-fi img[src*="home-hero-banner"],
+.homepage-sci-fi .home-hero-image-banner {
+  position: relative !important;
+  z-index: 20 !important;
+  pointer-events: none !important;
+}
+
+/* 頂部選單、按鈕、導覽永遠在最上層，可點擊 */
+.homepage-sci-fi header,
+.homepage-sci-fi nav,
+.homepage-sci-fi button,
+.homepage-sci-fi a,
+.homepage-sci-fi [role="button"],
+.homepage-sci-fi [aria-label*="menu"],
+.homepage-sci-fi [aria-label*="search"],
+.homepage-sci-fi [aria-label*="Menu"],
+.homepage-sci-fi [aria-label*="Search"] {
+  position: relative !important;
+  z-index: 1000 !important;
+  pointer-events: auto !important;
+}
+
+/* v2.4.4 四大區塊外框 */
+.homepage-sci-fi .home-art-zone-frame {
+  position: relative !important;
+  z-index: 30 !important;
+  margin-top: 2.2rem !important;
+  padding: 2.8rem 1rem 1.15rem !important;
+  border: 1px solid rgba(54, 65, 76, 0.32) !important;
+  border-radius: 20px !important;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.78),
+      rgba(244, 247, 249, 0.68)
+    ) !important;
+  box-shadow:
+    0 14px 36px rgba(18, 28, 38, 0.10),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.70) !important;
+  overflow: visible !important;
+}
+
+/* 區塊標題牌：1 導覽區 / 2 數據區 / 3 資料區 / 4 備註區 */
+.homepage-sci-fi .home-art-zone-frame::before {
+  content: attr(data-zone-title);
+  position: absolute !important;
+  top: -1px !important;
+  left: -1px !important;
+  min-width: 132px !important;
+  height: 34px !important;
+  padding: 0 1rem !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: linear-gradient(135deg, #24313d, #4a5965) !important;
+  color: #ffffff !important;
+  font-weight: 900 !important;
+  font-size: 0.95rem !important;
+  letter-spacing: 0.08em !important;
+  border-radius: 18px 0 18px 0 !important;
+  box-shadow: 0 8px 18px rgba(18, 28, 38, 0.18) !important;
+  z-index: 40 !important;
+}
+
+/* 區塊右下角小裝飾，不擋點擊 */
+.homepage-sci-fi .home-art-zone-frame::after {
+  content: "";
+  position: absolute !important;
+  right: 14px !important;
+  bottom: 14px !important;
+  width: 42px !important;
+  height: 24px !important;
+  border-right: 2px solid rgba(54, 65, 76, 0.26) !important;
+  border-bottom: 2px solid rgba(54, 65, 76, 0.26) !important;
+  border-radius: 0 0 12px 0 !important;
+  pointer-events: none !important;
+}
+
+/* 手機版 */
+@media (max-width: 680px) {
+  .homepage-sci-fi {
+    background:
+      linear-gradient(
+        rgba(246, 248, 250, 0.90),
+        rgba(246, 248, 250, 0.98)
+      ),
+      url("/home-ui-bg.png?v=244") center top / 100% auto repeat-y !important;
+  }
+
+  .homepage-sci-fi .home-art-zone-frame {
+    margin-top: 1.8rem !important;
+    padding: 2.55rem 0.85rem 1rem !important;
+    border-radius: 18px !important;
+  }
+
+  .homepage-sci-fi .home-art-zone-frame::before {
+    min-width: 116px !important;
+    height: 30px !important;
+    font-size: 0.82rem !important;
+  }
+}
+
+/* v2.4.5 修正手機菜單圖層：菜單展開時改浮層，不再推動首頁版圖 */
+.homepage-sci-fi header {
+  z-index: 5000 !important;
+}
+
+/* 手機版：如果 header 內有展開的選單，就讓 header 浮在最上層 */
+@media (max-width: 820px) {
+  .homepage-sci-fi header:has([aria-expanded="true"]),
+  .homepage-sci-fi header:has([data-state="open"]) {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    z-index: 5000 !important;
+    max-height: 100vh !important;
+    overflow-y: auto !important;
+    background: rgba(246, 248, 250, 0.96) !important;
+    backdrop-filter: blur(8px) !important;
+    box-shadow: 0 12px 32px rgba(18, 28, 38, 0.14) !important;
+  }
+
+  /* 常見手機選單容器：浮在內容上，不佔版面 */
+  .homepage-sci-fi header [role="menu"],
+  .homepage-sci-fi header [data-state="open"],
+  .homepage-sci-fi header nav[data-state="open"] {
+    z-index: 5001 !important;
+    pointer-events: auto !important;
+  }
+}
+
+/* v2.4.5 四大區塊框框微調：避免標題消失 */
+.homepage-sci-fi .home-art-zone-frame {
+  position: relative !important;
+  z-index: 30 !important;
+  overflow: visible !important;
+}
+
+.homepage-sci-fi .home-art-zone-frame::before {
+  display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  z-index: 60 !important;
+}
+
+.homepage-sci-fi .home-art-zone-frame::after {
+  pointer-events: none !important;
+}
+
+/* v2.5.0 固定首頁美工骨架，不再靠腳本亂抓 */
+.homepage-sci-fi {
+  position: relative !important;
+  isolation: isolate !important;
+  overflow-x: hidden !important;
+  background:
+    linear-gradient(
+      rgba(246, 248, 250, 0.86),
+      rgba(246, 248, 250, 0.96)
+    ),
+    url("/home-ui-bg.png?v=250") center top / 100% auto repeat-y !important;
+}
+
+/* 四大首頁區塊 */
+.homepage-sci-fi .home-zone {
+  position: relative !important;
+  z-index: 20 !important;
+  margin-top: 2.2rem !important;
+  padding: 2.8rem 1rem 1.15rem !important;
+  border: 1px solid rgba(54, 65, 76, 0.34) !important;
+  border-radius: 20px !important;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.80),
+      rgba(244, 247, 249, 0.70)
+    ) !important;
+  box-shadow:
+    0 14px 34px rgba(18, 28, 38, 0.10),
+    inset 0 0 0 1px rgba(255,255,255,0.70) !important;
+  overflow: visible !important;
+}
+
+/* 區塊標題牌 */
+.homepage-sci-fi .home-zone > .panel-tag {
+  position: absolute !important;
+  top: -1px !important;
+  left: -1px !important;
+  min-width: 132px !important;
+  height: 34px !important;
+  padding: 0 1rem !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: linear-gradient(135deg, #24313d, #4a5965) !important;
+  color: #fff !important;
+  font-weight: 900 !important;
+  font-size: 0.95rem !important;
+  letter-spacing: 0.08em !important;
+  border-radius: 18px 0 18px 0 !important;
+  box-shadow: 0 8px 18px rgba(18, 28, 38, 0.18) !important;
+  z-index: 50 !important;
+}
+
+/* 右下角小科技角 */
+.homepage-sci-fi .home-zone::after {
+  content: "";
+  position: absolute !important;
+  right: 14px !important;
+  bottom: 14px !important;
+  width: 42px !important;
+  height: 24px !important;
+  border-right: 2px solid rgba(54, 65, 76, 0.26) !important;
+  border-bottom: 2px solid rgba(54, 65, 76, 0.26) !important;
+  border-radius: 0 0 12px 0 !important;
+  pointer-events: none !important;
+}
+
+/* 版圖不擋點擊 */
+.homepage-sci-fi img[src*="home-hero-banner"],
+.homepage-sci-fi .home-hero-image-banner {
+  pointer-events: none !important;
+  position: relative !important;
+  z-index: 10 !important;
+}
+
+/* 頂部按鍵永遠可點 */
+.homepage-sci-fi header,
+.homepage-sci-fi nav,
+.homepage-sci-fi button,
+.homepage-sci-fi a,
+.homepage-sci-fi [role="button"] {
+  position: relative !important;
+  z-index: 5000 !important;
+  pointer-events: auto !important;
+}
+
+/* 手機漢堡如果是 details，改成浮層，避免推版圖 */
+@media (max-width: 820px) {
+  .homepage-sci-fi details[open] {
+    position: fixed !important;
+    top: 10px !important;
+    left: 10px !important;
+    right: 10px !important;
+    z-index: 9000 !important;
+    max-height: 82vh !important;
+    overflow-y: auto !important;
+    background: rgba(255,255,255,0.96) !important;
+    border: 1px solid rgba(54,65,76,0.22) !important;
+    border-radius: 18px !important;
+    box-shadow: 0 18px 38px rgba(18,28,38,0.18) !important;
+    backdrop-filter: blur(8px) !important;
+  }
+
+  .homepage-sci-fi .home-zone {
+    margin-top: 1.8rem !important;
+    padding: 2.55rem 0.85rem 1rem !important;
+    border-radius: 18px !important;
+  }
+
+  .homepage-sci-fi .home-zone > .panel-tag {
+    min-width: 116px !important;
+    height: 30px !important;
+    font-size: 0.82rem !important;
+  }
+}
+
+/* 底部氏族浮水印 */
+.homepage-sci-fi .home-clan-watermark {
+  position: relative !important;
+  z-index: 15 !important;
+  width: 100% !important;
+  margin: 3rem auto 1.5rem !important;
+  text-align: center !important;
+  color: rgba(54, 65, 76, 0.72) !important;
+  font-weight: 900 !important;
+  font-size: 1.05rem !important;
+  letter-spacing: 0.55em !important;
+  pointer-events: none !important;
+}
+
+/* v2.5.1 修正：氏族浮水印強制回來 */
+.homepage-sci-fi::after {
+  content: "KETHER OF PARADISO" !important;
+  display: block !important;
+  position: relative !important;
+  z-index: 25 !important;
+  width: 100% !important;
+  margin: 3rem auto 1.6rem !important;
+  text-align: center !important;
+  color: rgba(54, 65, 76, 0.72) !important;
+  font-weight: 900 !important;
+  font-size: 1.05rem !important;
+  letter-spacing: 0.55em !important;
+  pointer-events: none !important;
+  background: none !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* v2.5.1 修正：手機漢堡菜單改成小型浮層，不吃整個畫面 */
+@media (max-width: 820px) {
+  .homepage-sci-fi details[open] {
+    position: fixed !important;
+    top: 12px !important;
+    left: 12px !important;
+    right: auto !important;
+    bottom: auto !important;
+    width: min(82vw, 320px) !important;
+    max-width: 320px !important;
+    max-height: 68vh !important;
+    overflow-y: auto !important;
+    z-index: 9000 !important;
+    padding: 0.75rem !important;
+    background: rgba(255, 255, 255, 0.96) !important;
+    border: 1px solid rgba(54, 65, 76, 0.24) !important;
+    border-radius: 18px !important;
+    box-shadow: 0 16px 34px rgba(18, 28, 38, 0.18) !important;
+    backdrop-filter: blur(8px) !important;
+  }
+
+  .homepage-sci-fi details[open] summary {
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 9001 !important;
+    cursor: pointer !important;
+  }
+
+  .homepage-sci-fi details[open] nav,
+  .homepage-sci-fi details[open] ul,
+  .homepage-sci-fi details[open] div {
+    max-width: 100% !important;
+  }
+
+  /* 避免菜單內項目撐爆畫面 */
+  .homepage-sci-fi details[open] a,
+  .homepage-sci-fi details[open] button {
+    max-width: 100% !important;
+    white-space: normal !important;
+  }
+}
+
+/* 桌面版不動 details，避免影響原本排版 */
+@media (min-width: 821px) {
+  .homepage-sci-fi details[open] {
+    position: relative !important;
+  }
+}
+
+/* v2.5.2 手機菜單半透明玻璃背景，不再整片吃掉版圖 */
+@media (max-width: 820px) {
+  .homepage-sci-fi details[open] {
+    background:
+      linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.68),
+        rgba(245, 248, 250, 0.52)
+      ) !important;
+    backdrop-filter: blur(18px) saturate(1.2) !important;
+    -webkit-backdrop-filter: blur(18px) saturate(1.2) !important;
+    border: 1px solid rgba(255, 255, 255, 0.46) !important;
+    box-shadow:
+      0 18px 42px rgba(18, 28, 38, 0.18),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.32) !important;
+  }
+
+  /* 菜單裡面的白色容器也一起變透明，避免內層又蓋成白板 */
+  .homepage-sci-fi details[open] nav,
+  .homepage-sci-fi details[open] ul,
+  .homepage-sci-fi details[open] div {
+    background: transparent !important;
+  }
+
+  /* 菜單項目保持清楚，但不要變成實心白 */
+  .homepage-sci-fi details[open] a,
+  .homepage-sci-fi details[open] button {
+    background: rgba(255, 255, 255, 0.16) !important;
+    border-radius: 14px !important;
+  }
+
+  .homepage-sci-fi details[open] a:hover,
+  .homepage-sci-fi details[open] button:hover {
+    background: rgba(255, 255, 255, 0.34) !important;
+  }
+
+  /* 菜單文字保持可讀 */
+  .homepage-sci-fi details[open] {
+    color: #111820 !important;
+  }
+}
+
+/* v2.5.3 菜單雙層背景微調
+   - 外層全透明
+   - 內層卡片更透明
+*/
+@media (max-width: 820px) {
+  /* 最下面那層：全透明，不要再有一整片白霧 */
+  .homepage-sci-fi details[open] {
+    background: transparent !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+
+  /* 上面那層：半透明玻璃卡，再淡一點 */
+  .homepage-sci-fi details[open] nav,
+  .homepage-sci-fi details[open] .mobile-menu,
+  .homepage-sci-fi details[open] .menu-panel,
+  .homepage-sci-fi details[open] ul {
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.42),
+      rgba(245, 248, 250, 0.28)
+    ) !important;
+    backdrop-filter: blur(16px) saturate(1.08) !important;
+    -webkit-backdrop-filter: blur(16px) saturate(1.08) !important;
+    border: 1px solid rgba(255, 255, 255, 0.30) !important;
+    box-shadow:
+      0 10px 28px rgba(0, 0, 0, 0.10),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.14) !important;
+  }
+
+  /* 菜單項目保留可讀性，但不要太白 */
+  .homepage-sci-fi details[open] a,
+  .homepage-sci-fi details[open] button {
+    background: rgba(255, 255, 255, 0.08) !important;
+  }
+
+  .homepage-sci-fi details[open] a:hover,
+  .homepage-sci-fi details[open] button:hover {
+    background: rgba(255, 255, 255, 0.16) !important;
+  }
+}
+
+/* v2.5.4 菜單透明度再調整
+   底層強制全透明，上層玻璃卡更淡
+*/
+@media (max-width: 820px) {
+  /* 最底層：details 本體與裝飾全部透明 */
+  .homepage-sci-fi details[open],
+  .homepage-sci-fi details[open]::before,
+  .homepage-sci-fi details[open]::after {
+    background: transparent !important;
+    background-color: transparent !important;
+    background-image: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    outline: none !important;
+  }
+
+  /* 外層包裝也透明，避免第二片白霧 */
+  .homepage-sci-fi details[open] > div,
+  .homepage-sci-fi details[open] > section,
+  .homepage-sci-fi details[open] > aside,
+  .homepage-sci-fi details[open] > menu {
+    background: transparent !important;
+    background-color: transparent !important;
+    background-image: none !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+
+  /* 上層真正菜單卡：更淡、更透 */
+  .homepage-sci-fi details[open] nav,
+  .homepage-sci-fi details[open] ul,
+  .homepage-sci-fi details[open] .mobile-menu,
+  .homepage-sci-fi details[open] .menu-panel {
+    background:
+      linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.24),
+        rgba(245, 248, 250, 0.12)
+      ) !important;
+    backdrop-filter: blur(12px) saturate(1.04) !important;
+    -webkit-backdrop-filter: blur(12px) saturate(1.04) !important;
+    border: 1px solid rgba(255, 255, 255, 0.18) !important;
+    box-shadow:
+      0 8px 22px rgba(0, 0, 0, 0.07),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.08) !important;
+  }
+
+  /* 菜單項目幾乎透明，只留一點點可讀底 */
+  .homepage-sci-fi details[open] a,
+  .homepage-sci-fi details[open] button {
+    background: rgba(255, 255, 255, 0.035) !important;
+    border-radius: 14px !important;
+  }
+
+  .homepage-sci-fi details[open] a:hover,
+  .homepage-sci-fi details[open] button:hover {
+    background: rgba(255, 255, 255, 0.10) !important;
+  }
+
+  /* 漢堡按鈕本身不要被淡到看不見 */
+  .homepage-sci-fi details[open] summary {
+    background: transparent !important;
+    color: #111820 !important;
+  }
+}
+
+/* v2.5.5 精準修正手機菜單透明度
+   真正底層：menu-drawer
+   真正上層：menu-popup
+*/
+@media (max-width: 820px) {
+  /* 最底層白底：完全透明、完全看不見 */
+  .homepage-sci-fi .menu-drawer,
+  .homepage-sci-fi .menu-drawer[open],
+  .homepage-sci-fi details.menu-drawer,
+  .homepage-sci-fi details.menu-drawer[open],
+  .homepage-sci-fi .menu-drawer::before,
+  .homepage-sci-fi .menu-drawer::after {
+    background: transparent !important;
+    background-color: transparent !important;
+    background-image: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    outline: none !important;
+  }
+
+  /* menu-drawer 只負責定位，不再變成白色大板 */
+  .homepage-sci-fi details.menu-drawer[open] {
+    position: fixed !important;
+    top: 12px !important;
+    left: 14px !important;
+    right: auto !important;
+    bottom: auto !important;
+    width: min(82vw, 360px) !important;
+    max-width: 360px !important;
+    max-height: 78vh !important;
+    overflow: visible !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    z-index: 9000 !important;
+  }
+
+  /* 漢堡按鈕本身透明 */
+  .homepage-sci-fi .menu-drawer summary {
+    background: transparent !important;
+    background-color: transparent !important;
+    box-shadow: none !important;
+    border: none !important;
+    outline: none !important;
+  }
+
+  /* 上層真正菜單卡：更淡、更透明 */
+  .homepage-sci-fi .menu-popup {
+    margin-top: 0.85rem !important;
+    width: min(78vw, 320px) !important;
+    max-width: 320px !important;
+    max-height: 68vh !important;
+    overflow-y: auto !important;
+
+    background:
+      linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.18),
+        rgba(245, 248, 250, 0.08)
+      ) !important;
+    background-color: rgba(255, 255, 255, 0.10) !important;
+    backdrop-filter: blur(10px) saturate(1.02) !important;
+    -webkit-backdrop-filter: blur(10px) saturate(1.02) !important;
+
+    border: 1px solid rgba(255, 255, 255, 0.14) !important;
+    border-radius: 18px !important;
+    box-shadow:
+      0 8px 22px rgba(0, 0, 0, 0.06),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.06) !important;
+  }
+
+  /* 內層不要再自己長白底 */
+  .homepage-sci-fi .menu-popup *,
+  .homepage-sci-fi .menu-popup div,
+  .homepage-sci-fi .menu-popup ul,
+  .homepage-sci-fi .menu-popup li {
+    background-color: transparent !important;
+    background-image: none !important;
+  }
+
+  /* 菜單文字保持可讀，不加大白底 */
+  .homepage-sci-fi .menu-popup a,
+  .homepage-sci-fi .menu-popup button {
+    background: rgba(255, 255, 255, 0.025) !important;
+    border-radius: 14px !important;
+    color: #111820 !important;
+  }
+
+  .homepage-sci-fi .menu-popup a:hover,
+  .homepage-sci-fi .menu-popup button:hover {
+    background: rgba(255, 255, 255, 0.10) !important;
+  }
+}
+
+/* v2.5.6 menu-popup 更淡版玻璃菜單 */
+@media (max-width: 820px) {
+  .homepage-sci-fi .menu-popup,
+  .homepage-sci-fi details.menu-drawer[open] .menu-popup {
+    background:
+      linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.08),
+        rgba(245, 248, 250, 0.025)
+      ) !important;
+    background-color: rgba(255, 255, 255, 0.035) !important;
+
+    backdrop-filter: blur(7px) saturate(1.01) !important;
+    -webkit-backdrop-filter: blur(7px) saturate(1.01) !important;
+
+    border: 1px solid rgba(255, 255, 255, 0.07) !important;
+    box-shadow:
+      0 6px 16px rgba(0, 0, 0, 0.035),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.025) !important;
+  }
+
+  .homepage-sci-fi .menu-popup *,
+  .homepage-sci-fi .menu-popup div,
+  .homepage-sci-fi .menu-popup ul,
+  .homepage-sci-fi .menu-popup li {
+    background: transparent !important;
+    background-color: transparent !important;
+    background-image: none !important;
+    box-shadow: none !important;
+  }
+
+  .homepage-sci-fi .menu-popup a,
+  .homepage-sci-fi .menu-popup button {
+    background: transparent !important;
+    color: #101820 !important;
+    text-shadow: 0 1px 3px rgba(255, 255, 255, 0.42) !important;
+  }
+
+  .homepage-sci-fi .menu-popup a:hover,
+  .homepage-sci-fi .menu-popup button:hover {
+    background: rgba(255, 255, 255, 0.06) !important;
+  }
+}
+
+/* v2.5.7 固定首頁背景，不跟卷軸跑 */
+.homepage-sci-fi {
+  position: relative !important;
+  isolation: isolate !important;
+  min-height: 100svh !important;
+  overflow-x: hidden !important;
+  background: transparent !important;
+}
+
+/* 固定背景層：永遠貼在視窗，不跟內容捲動 */
+.homepage-sci-fi::before {
+  content: "" !important;
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: -1 !important;
+  pointer-events: none !important;
+  background:
+    linear-gradient(
+      rgba(246, 248, 250, 0.82),
+      rgba(246, 248, 250, 0.94)
+    ),
+    url("/home-ui-bg.png?v=257") center center / cover no-repeat !important;
+  opacity: 1 !important;
+  transform: translateZ(0) !important;
+}
+
+/* 首頁內容更緊湊，讓文字更容易塞進畫面 */
+.homepage-sci-fi .home-hero-image-banner {
+  margin-top: 0.6rem !important;
+  margin-bottom: 0.8rem !important;
+}
+
+.homepage-sci-fi .home-hero-image-banner img {
+  width: 100% !important;
+  max-height: clamp(180px, 32vh, 360px) !important;
+  object-fit: cover !important;
+  object-position: center !important;
+}
+
+/* 四大區塊間距縮小 */
+.homepage-sci-fi .home-zone {
+  margin-top: 1.05rem !important;
+  padding-top: 2.35rem !important;
+  padding-bottom: 0.85rem !important;
+}
+
+/* 統計區壓縮 */
+.homepage-sci-fi .home-zone-stats {
+  margin-top: 0.95rem !important;
+}
+
+.homepage-sci-fi .home-kpi-grid {
+  gap: 0.75rem !important;
+}
+
+.homepage-sci-fi .home-kpi-grid article {
+  min-height: auto !important;
+  padding-top: 0.85rem !important;
+  padding-bottom: 0.85rem !important;
+}
+
+/* 導覽區壓縮 */
+.homepage-sci-fi .nav-grid {
+  gap: 0.75rem !important;
+}
+
+.homepage-sci-fi .nav-card {
+  min-height: auto !important;
+  padding-top: 0.85rem !important;
+  padding-bottom: 0.85rem !important;
+}
+
+/* 資料區與備註區更緊湊 */
+.homepage-sci-fi .summary-table,
+.homepage-sci-fi .notes-card {
+  margin-top: 0 !important;
+}
+
+.homepage-sci-fi .summary-row {
+  padding-top: 0.55rem !important;
+  padding-bottom: 0.55rem !important;
+}
+
+.homepage-sci-fi .notes-card p {
+  margin-top: 0.35rem !important;
+  margin-bottom: 0.35rem !important;
+}
+
+/* 手機版：再壓一點高度 */
+@media (max-width: 820px) {
+  .homepage-sci-fi::before {
+    background:
+      linear-gradient(
+        rgba(246, 248, 250, 0.84),
+        rgba(246, 248, 250, 0.96)
+      ),
+      url("/home-ui-bg.png?v=257") center center / cover no-repeat !important;
+  }
+
+  .homepage-sci-fi .home-hero-image-banner {
+    margin-top: 0.35rem !important;
+    margin-bottom: 0.55rem !important;
+  }
+
+  .homepage-sci-fi .home-hero-image-banner img {
+    max-height: clamp(150px, 26vh, 260px) !important;
+  }
+
+  .homepage-sci-fi .home-zone {
+    margin-top: 0.85rem !important;
+    padding-top: 2.15rem !important;
+    padding-left: 0.75rem !important;
+    padding-right: 0.75rem !important;
+    padding-bottom: 0.75rem !important;
+  }
+
+  .homepage-sci-fi .home-kpi-grid {
+    gap: 0.55rem !important;
+  }
+
+  .homepage-sci-fi .home-kpi-grid article {
+    padding: 0.7rem 0.8rem !important;
+  }
+
+  .homepage-sci-fi .nav-grid {
+    gap: 0.55rem !important;
+  }
+
+  .homepage-sci-fi .nav-card {
+    padding: 0.7rem 0.8rem !important;
+  }
+
+  .homepage-sci-fi .summary-row {
+    padding-top: 0.45rem !important;
+    padding-bottom: 0.45rem !important;
+  }
+}
+
+/* v2.5.8 救回固定背景
+   修正 v2.5.7 的 ::before z-index:-1 被手機瀏覽器藏起來問題
+*/
+.homepage-sci-fi {
+  position: relative !important;
+  isolation: isolate !important;
+  min-height: 100svh !important;
+  overflow-x: hidden !important;
+  background: #f6f8fa !important;
+}
+
+/* 背景固定在視窗底層，但不要用負 z-index */
+.homepage-sci-fi::before {
+  content: "" !important;
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 0 !important;
+  pointer-events: none !important;
+  display: block !important;
+  background:
+    linear-gradient(
+      rgba(246, 248, 250, 0.82),
+      rgba(246, 248, 250, 0.94)
+    ),
+    url("/home-ui-bg.png?v=258") center center / cover no-repeat !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: translateZ(0) !important;
+}
+
+/* 所有首頁內容壓在背景上面 */
+.homepage-sci-fi > * {
+  position: relative !important;
+  z-index: 2 !important;
+}
+
+/* 頂部操作列與菜單最高 */
+.homepage-sci-fi header,
+.homepage-sci-fi nav,
+.homepage-sci-fi button,
+.homepage-sci-fi a,
+.homepage-sci-fi details,
+.homepage-sci-fi summary,
+.homepage-sci-fi [role="button"] {
+  position: relative !important;
+  z-index: 5000 !important;
+}
+
+/* 菜單彈層仍保持最高 */
+.homepage-sci-fi .menu-drawer,
+.homepage-sci-fi .menu-popup {
+  z-index: 9000 !important;
+}
+
+/* 手機版背景一樣固定 */
+@media (max-width: 820px) {
+  .homepage-sci-fi::before {
+    background:
+      linear-gradient(
+        rgba(246, 248, 250, 0.82),
+        rgba(246, 248, 250, 0.94)
+      ),
+      url("/home-ui-bg.png?v=258") center center / cover no-repeat !important;
+  }
+}
+
+/* v2.5.9 固定背景實體層
+   不再使用 ::before，避免手機瀏覽器把背景藏掉
+*/
+.homepage-sci-fi {
+  position: relative !important;
+  isolation: isolate !important;
+  min-height: 100svh !important;
+  overflow-x: hidden !important;
+  background: transparent !important;
+}
+
+/* 關掉前面版本殘留的 ::before 背景，避免互相打架 */
+.homepage-sci-fi::before {
+  content: none !important;
+  display: none !important;
+  background: none !important;
+}
+
+/* 真正固定背景，不跟卷軸跑 */
+.homepage-sci-fi > .home-fixed-bg {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 0 !important;
+  pointer-events: none !important;
+  display: block !important;
+  width: 100vw !important;
+  height: 100svh !important;
+  background:
+    linear-gradient(
+      rgba(246, 248, 250, 0.78),
+      rgba(246, 248, 250, 0.92)
+    ),
+    url("/home-ui-bg.png?v=259") center center / cover no-repeat !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* 首頁其他內容全部放在背景上方 */
+.homepage-sci-fi > :not(.home-fixed-bg) {
+  position: relative !important;
+  z-index: 2 !important;
+}
+
+/* 菜單保持最高層 */
+.homepage-sci-fi .menu-drawer,
+.homepage-sci-fi .menu-popup,
+.homepage-sci-fi header,
+.homepage-sci-fi nav,
+.homepage-sci-fi button,
+.homepage-sci-fi a {
+  position: relative !important;
+  z-index: 5000 !important;
+}
+
+.homepage-sci-fi .menu-popup {
+  z-index: 9000 !important;
+}
+
+/* v2.5.10 強制固定背景實體層 */
+.homepage-sci-fi {
+  position: relative !important;
+  isolation: isolate !important;
+  min-height: 100svh !important;
+  overflow-x: hidden !important;
+  background: transparent !important;
+}
+
+.homepage-sci-fi::before {
+  content: none !important;
+  display: none !important;
+}
+
+.homepage-sci-fi > .home-fixed-bg {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 0 !important;
+  display: block !important;
+  pointer-events: none !important;
+  width: 100vw !important;
+  height: 100svh !important;
+  background:
+    linear-gradient(
+      rgba(246, 248, 250, 0.72),
+      rgba(246, 248, 250, 0.88)
+    ),
+    url("/home-ui-bg.png?v=2510") center center / cover no-repeat !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.homepage-sci-fi > :not(.home-fixed-bg) {
+  position: relative !important;
+  z-index: 2 !important;
+}
+
+/* v2.5.11 固定背景實體層最終補丁 */
+.homepage-sci-fi {
+  position: relative !important;
+  isolation: isolate !important;
+  min-height: 100svh !important;
+  overflow-x: hidden !important;
+  background: transparent !important;
+}
+
+.homepage-sci-fi::before {
+  content: none !important;
+  display: none !important;
+  background: none !important;
+}
+
+.homepage-sci-fi > .home-fixed-bg {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 0 !important;
+  display: block !important;
+  pointer-events: none !important;
+  width: 100vw !important;
+  height: 100svh !important;
+  background:
+    linear-gradient(
+      rgba(246, 248, 250, 0.72),
+      rgba(246, 248, 250, 0.88)
+    ),
+    url("/home-ui-bg.png?v=2511") center center / cover no-repeat !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.homepage-sci-fi > :not(.home-fixed-bg) {
+  position: relative !important;
+  z-index: 2 !important;
+}
+
+/* 菜單維持最高層 */
+.homepage-sci-fi .menu-drawer,
+.homepage-sci-fi .menu-popup {
+  z-index: 9000 !important;
+}
+
+/* v2.5.12 首頁美工根 class 與固定背景層保險 */
+.homepage-sci-fi {
+  position: relative !important;
+  isolation: isolate !important;
+  min-height: 100svh !important;
+  overflow-x: hidden !important;
+  background: transparent !important;
+}
+
+.homepage-sci-fi::before {
+  content: none !important;
+  display: none !important;
+}
+
+.homepage-sci-fi > .home-fixed-bg {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 0 !important;
+  display: block !important;
+  pointer-events: none !important;
+  width: 100vw !important;
+  height: 100svh !important;
+  background:
+    linear-gradient(
+      rgba(246, 248, 250, 0.72),
+      rgba(246, 248, 250, 0.88)
+    ),
+    url("/home-ui-bg.png?v=2512") center center / cover no-repeat !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.homepage-sci-fi > :not(.home-fixed-bg) {
+  position: relative !important;
+  z-index: 2 !important;
+}
+
+/* v2.5.13 背景完整貼合版
+   修正 v2.5.12 使用 cover 造成左右被裁切
+*/
+.homepage-sci-fi > .home-fixed-bg {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 0 !important;
+  display: block !important;
+  pointer-events: none !important;
+  width: 100vw !important;
+  height: 100svh !important;
+
+  background-color: #f6f8fa !important;
+  background-image:
+    linear-gradient(
+      rgba(246, 248, 250, 0.68),
+      rgba(246, 248, 250, 0.86)
+    ),
+    url("/home-ui-bg.png?v=2513") !important;
+
+  /* 重點：不用 cover，避免左右被吃掉 */
+  background-size: 100% 100% !important;
+  background-position: center center !important;
+  background-repeat: no-repeat !important;
+
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* 手機 / 平板也強制完整撐滿，不裁切 */
+@media (max-width: 820px) {
+  .homepage-sci-fi > .home-fixed-bg {
+    width: 100vw !important;
+    height: 100svh !important;
+    background-size: 100% 100% !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+  }
+}
+
+/* v2.5.14 固定背景去浮動框架版
+   home-ui-bg 只當底紋，螢幕邊框改用 CSS 畫，避免圖片內縮造成浮動感
+*/
+.homepage-sci-fi > .home-fixed-bg {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 0 !important;
+  display: block !important;
+  pointer-events: none !important;
+  width: 100vw !important;
+  height: 100svh !important;
+  overflow: hidden !important;
+
+  background:
+    linear-gradient(
+      rgba(246, 248, 250, 0.72),
+      rgba(246, 248, 250, 0.90)
+    ),
+    url("/home-ui-bg.png?v=2514") center center / 115% 115% no-repeat !important;
+
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* 關掉圖片帶來的浮動框感，改成真正貼邊的科技外框 */
+.homepage-sci-fi > .home-fixed-bg::before {
+  content: "" !important;
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 1 !important;
+  pointer-events: none !important;
+
+  border: 8px solid rgba(38, 50, 60, 0.72) !important;
+  box-shadow:
+    inset 0 0 0 2px rgba(255, 255, 255, 0.72),
+    inset 0 0 0 10px rgba(38, 50, 60, 0.06) !important;
+}
+
+/* 四角科技角，真正貼螢幕邊 */
+.homepage-sci-fi > .home-fixed-bg::after {
+  content: "" !important;
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 2 !important;
+  pointer-events: none !important;
+
+  background:
+    linear-gradient(#26323c, #26323c) left 18px top 18px / 110px 4px no-repeat,
+    linear-gradient(#26323c, #26323c) left 18px top 18px / 4px 110px no-repeat,
+
+    linear-gradient(#26323c, #26323c) right 18px top 18px / 110px 4px no-repeat,
+    linear-gradient(#26323c, #26323c) right 18px top 18px / 4px 110px no-repeat,
+
+    linear-gradient(#26323c, #26323c) left 18px bottom 18px / 110px 4px no-repeat,
+    linear-gradient(#26323c, #26323c) left 18px bottom 18px / 4px 110px no-repeat,
+
+    linear-gradient(#26323c, #26323c) right 18px bottom 18px / 110px 4px no-repeat,
+    linear-gradient(#26323c, #26323c) right 18px bottom 18px / 4px 110px no-repeat !important;
+}
+
+/* 手機版邊框稍微細一點 */
+@media (max-width: 820px) {
+  .homepage-sci-fi > .home-fixed-bg {
+    background:
+      linear-gradient(
+        rgba(246, 248, 250, 0.74),
+        rgba(246, 248, 250, 0.92)
+      ),
+      url("/home-ui-bg.png?v=2514") center center / 125% 125% no-repeat !important;
+  }
+
+  .homepage-sci-fi > .home-fixed-bg::before {
+    border-width: 5px !important;
+    box-shadow:
+      inset 0 0 0 1px rgba(255, 255, 255, 0.70),
+      inset 0 0 0 7px rgba(38, 50, 60, 0.05) !important;
+  }
+
+  .homepage-sci-fi > .home-fixed-bg::after {
+    background:
+      linear-gradient(#26323c, #26323c) left 12px top 12px / 78px 3px no-repeat,
+      linear-gradient(#26323c, #26323c) left 12px top 12px / 3px 78px no-repeat,
+
+      linear-gradient(#26323c, #26323c) right 12px top 12px / 78px 3px no-repeat,
+      linear-gradient(#26323c, #26323c) right 12px top 12px / 3px 78px no-repeat,
+
+      linear-gradient(#26323c, #26323c) left 12px bottom 12px / 78px 3px no-repeat,
+      linear-gradient(#26323c, #26323c) left 12px bottom 12px / 3px 78px no-repeat,
+
+      linear-gradient(#26323c, #26323c) right 12px bottom 12px / 78px 3px no-repeat,
+      linear-gradient(#26323c, #26323c) right 12px bottom 12px / 3px 78px no-repeat !important;
+  }
+}
+
+/* v2.5.15 恢復科技背景，關閉 v2.5.14 線條框架 */
+.homepage-sci-fi > .home-fixed-bg {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 0 !important;
+  display: block !important;
+  pointer-events: none !important;
+  width: 100vw !important;
+  height: 100svh !important;
+  overflow: hidden !important;
+
+  background-color: #f6f8fa !important;
+  background-image:
+    linear-gradient(
+      rgba(246, 248, 250, 0.38),
+      rgba(246, 248, 250, 0.62)
+    ),
+    url("/home-ui-bg.png?v=2515") !important;
+
+  background-size: 100% 100% !important;
+  background-position: center center !important;
+  background-repeat: no-repeat !important;
+
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* 關掉 v2.5.14 的線條框架 */
+.homepage-sci-fi > .home-fixed-bg::before,
+.homepage-sci-fi > .home-fixed-bg::after {
+  content: none !important;
+  display: none !important;
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* 手機 / 平板保持科技背景完整顯示 */
+@media (max-width: 820px) {
+  .homepage-sci-fi > .home-fixed-bg {
+    background-image:
+      linear-gradient(
+        rgba(246, 248, 250, 0.36),
+        rgba(246, 248, 250, 0.64)
+      ),
+      url("/home-ui-bg.png?v=2515") !important;
+
+    background-size: 100% 100% !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+  }
+}
+
+/* v2.5.17 修正固定背景高度
+   避免 100svh 在手機 / 分割畫面下讓背景太早結束
+*/
+.homepage-sci-fi > .home-fixed-bg {
+  position: fixed !important;
+  top: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  left: 0 !important;
+
+  width: 100vw !important;
+  height: 100dvh !important;
+  min-height: 100vh !important;
+
+  z-index: 0 !important;
+  display: block !important;
+  pointer-events: none !important;
+  overflow: hidden !important;
+
+  background-color: #f6f8fa !important;
+  background-image:
+    linear-gradient(
+      rgba(246, 248, 250, 0.36),
+      rgba(246, 248, 250, 0.62)
+    ),
+    url("/home-ui-bg.png?v=2517") !important;
+
+  background-size: 100% 100% !important;
+  background-position: center center !important;
+  background-repeat: no-repeat !important;
+
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* 手機 / 平板：同樣使用動態視窗高度，不用 svh */
+@media (max-width: 820px) {
+  .homepage-sci-fi > .home-fixed-bg {
+    height: 100dvh !important;
+    min-height: 100vh !important;
+    background-size: 100% 100% !important;
+  }
+}
+
+/* v2.5.18 提高固定科技背景濃度
+   修正 v2.5.17 背景太透明
+*/
+.homepage-sci-fi > .home-fixed-bg {
+  background-color: #f6f8fa !important;
+  background-image:
+    linear-gradient(
+      rgba(246, 248, 250, 0.16),
+      rgba(246, 248, 250, 0.34)
+    ),
+    url("/home-ui-bg.png?v=2518") !important;
+
+  background-size: 100% 100% !important;
+  background-position: center center !important;
+  background-repeat: no-repeat !important;
+
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* 手機 / 平板也提高背景濃度 */
+@media (max-width: 820px) {
+  .homepage-sci-fi > .home-fixed-bg {
+    background-image:
+      linear-gradient(
+        rgba(246, 248, 250, 0.14),
+        rgba(246, 248, 250, 0.32)
+      ),
+      url("/home-ui-bg.png?v=2518") !important;
+
+    background-size: 100% 100% !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+  }
+}
+
+/* v2.5.23 移除舊底部氏族浮水印 */
+.homepage-sci-fi::after {
+  content: none !important;
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+}
+
+.home-clan-watermark,
+.clan-signature,
+.bottom-clan-name,
+.home-bottom-brand,
+.footer-brand {
+  display: none !important;
+}
+
+/* v2.5.23 正式底部網址與 Website by 簽名 */
+.home-footer-signature {
+  width: 100%;
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 28px auto 22px;
+  padding: 14px 18px 28px;
+  position: relative;
+  z-index: 20;
+  text-align: center;
+  font-size: 14px;
+  line-height: 1.7;
+  color: rgba(58, 68, 82, 0.88);
+}
+
+.home-footer-link {
+  color: rgba(58, 68, 82, 0.92);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(90, 104, 124, 0.25);
+  padding-bottom: 2px;
+}
+
+.home-footer-designer {
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.home-footer-divider {
+  opacity: 0.45;
+}
+
+@media (max-width: 768px) {
+  .home-footer-signature {
+    flex-direction: column;
+    gap: 4px;
+    font-size: 12px;
+    padding-bottom: 24px;
+  }
+
+  .home-footer-divider {
+    display: none;
+  }
+}
+
+/* v2.5.24 底部署名靠近網址尾端 */
+.home-footer-signature {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: center !important;
+  align-items: baseline !important;
+  gap: 6px !important;
+  flex-wrap: nowrap !important;
+  width: fit-content !important;
+  max-width: calc(100% - 28px) !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  text-align: center !important;
+}
+
+.home-footer-link,
+.home-footer-designer,
+.home-footer-divider {
+  display: inline-flex !important;
+  align-items: baseline !important;
+  white-space: nowrap !important;
+}
+
+.home-footer-divider {
+  opacity: 0.35 !important;
+  margin: 0 2px !important;
+}
+
+/* 手機版：仍然貼近網址尾端，不再上下分開 */
+@media (max-width: 768px) {
+  .home-footer-signature {
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    gap: 4px !important;
+    font-size: 11px !important;
+    line-height: 1.5 !important;
+    max-width: calc(100% - 22px) !important;
+    overflow: hidden !important;
+  }
+
+  .home-footer-link {
+    max-width: 58vw !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+  }
+
+  .home-footer-divider {
+    display: inline-flex !important;
+  }
+
+  .home-footer-designer {
+    white-space: nowrap !important;
+    flex-shrink: 0 !important;
+  }
+}
+
+/* v2.5.25 底部署名改成第二行，靠近網址尾端 */
+.home-footer-signature {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: flex-end !important;
+  gap: 2px !important;
+  width: fit-content !important;
+  max-width: calc(100% - 28px) !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  text-align: right !important;
+}
+
+.home-footer-link {
+  display: block !important;
+  white-space: nowrap !important;
+  text-align: right !important;
+}
+
+.home-footer-designer {
+  display: block !important;
+  white-space: nowrap !important;
+  text-align: right !important;
+  font-size: 0.92em !important;
+  opacity: 0.88 !important;
+}
+
+.home-footer-divider {
+  display: none !important;
+}
+
+/* 手機版：兩行顯示，網址過長時省略，署名仍靠右 */
+@media (max-width: 768px) {
+  .home-footer-signature {
+    align-items: flex-end !important;
+    text-align: right !important;
+    max-width: calc(100% - 22px) !important;
+    font-size: 11px !important;
+    line-height: 1.45 !important;
+  }
+
+  .home-footer-link {
+    max-width: 82vw !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+  }
+
+  .home-footer-designer {
+    font-size: 0.95em !important;
+  }
+}
+
+/* v2.5.26 各首頁區塊銀白科技框架 */
+.homepage-sci-fi .home-zone {
+  position: relative !important;
+  z-index: 20 !important;
+  margin-top: 1.25rem !important;
+  padding: 2.65rem 1.1rem 1.15rem !important;
+  border: 1px solid rgba(92, 108, 124, 0.42) !important;
+  border-radius: 22px !important;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.64),
+      rgba(239, 244, 248, 0.42)
+    ) !important;
+  box-shadow:
+    0 12px 30px rgba(22, 32, 44, 0.08),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.72),
+    inset 0 0 26px rgba(255, 255, 255, 0.18) !important;
+  overflow: visible !important;
+}
+
+/* 區塊左上標籤 */
+.homepage-sci-fi .home-zone > .panel-tag {
+  position: absolute !important;
+  top: -1px !important;
+  left: -1px !important;
+  min-width: 134px !important;
+  height: 34px !important;
+  padding: 0 1rem !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-radius: 20px 0 18px 0 !important;
+  background:
+    linear-gradient(135deg, rgba(42, 54, 66, 0.92), rgba(86, 101, 116, 0.82)) !important;
+  color: rgba(255, 255, 255, 0.96) !important;
+  font-weight: 900 !important;
+  font-size: 0.92rem !important;
+  letter-spacing: 0.08em !important;
+  box-shadow:
+    0 8px 18px rgba(20, 30, 42, 0.16),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.24) !important;
+  z-index: 60 !important;
+}
+
+/* 區塊科技角線：四角貼合，不吃內容 */
+.homepage-sci-fi .home-zone::before {
+  content: "" !important;
+  position: absolute !important;
+  inset: 10px !important;
+  pointer-events: none !important;
+  z-index: 2 !important;
+  border-radius: 17px !important;
+  background:
+    linear-gradient(rgba(72, 86, 100, 0.62), rgba(72, 86, 100, 0.62)) left top / 54px 2px no-repeat,
+    linear-gradient(rgba(72, 86, 100, 0.62), rgba(72, 86, 100, 0.62)) left top / 2px 54px no-repeat,
+
+    linear-gradient(rgba(72, 86, 100, 0.62), rgba(72, 86, 100, 0.62)) right top / 54px 2px no-repeat,
+    linear-gradient(rgba(72, 86, 100, 0.62), rgba(72, 86, 100, 0.62)) right top / 2px 54px no-repeat,
+
+    linear-gradient(rgba(72, 86, 100, 0.46), rgba(72, 86, 100, 0.46)) left bottom / 48px 2px no-repeat,
+    linear-gradient(rgba(72, 86, 100, 0.46), rgba(72, 86, 100, 0.46)) left bottom / 2px 48px no-repeat,
+
+    linear-gradient(rgba(72, 86, 100, 0.46), rgba(72, 86, 100, 0.46)) right bottom / 48px 2px no-repeat,
+    linear-gradient(rgba(72, 86, 100, 0.46), rgba(72, 86, 100, 0.46)) right bottom / 2px 48px no-repeat !important;
+}
+
+/* 區塊內側淡銀線 */
+.homepage-sci-fi .home-zone::after {
+  content: "" !important;
+  position: absolute !important;
+  inset: 18px !important;
+  pointer-events: none !important;
+  z-index: 1 !important;
+  border-radius: 14px !important;
+  border: 1px solid rgba(255, 255, 255, 0.50) !important;
+  box-shadow: inset 0 0 0 1px rgba(90, 108, 126, 0.08) !important;
+}
+
+/* 讓區塊內容永遠在框線上方 */
+.homepage-sci-fi .home-zone > * {
+  position: relative !important;
+  z-index: 5 !important;
+}
+
+/* 導覽小卡片、統計卡片、資料卡、備註卡：銀白科技框 */
+.homepage-sci-fi .nav-card,
+.homepage-sci-fi .home-kpi-grid article,
+.homepage-sci-fi .info-card,
+.homepage-sci-fi .summary-table,
+.homepage-sci-fi .notes-card {
+  position: relative !important;
+  border: 1px solid rgba(92, 108, 124, 0.26) !important;
+  border-radius: 18px !important;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.68),
+      rgba(242, 246, 249, 0.45)
+    ) !important;
+  box-shadow:
+    0 8px 22px rgba(22, 32, 44, 0.07),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.66) !important;
+  overflow: hidden !important;
+}
+
+/* 小卡左上科技折角 */
+.homepage-sci-fi .nav-card::before,
+.homepage-sci-fi .home-kpi-grid article::before,
+.homepage-sci-fi .info-card::before,
+.homepage-sci-fi .summary-table::before,
+.homepage-sci-fi .notes-card::before {
+  content: "" !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 42px !important;
+  height: 42px !important;
+  pointer-events: none !important;
+  background:
+    linear-gradient(rgba(50, 64, 78, 0.46), rgba(50, 64, 78, 0.46)) left top / 32px 2px no-repeat,
+    linear-gradient(rgba(50, 64, 78, 0.46), rgba(50, 64, 78, 0.46)) left top / 2px 32px no-repeat !important;
+}
+
+/* 小卡右下淡角 */
+.homepage-sci-fi .nav-card::after,
+.homepage-sci-fi .home-kpi-grid article::after,
+.homepage-sci-fi .info-card::after,
+.homepage-sci-fi .summary-table::after,
+.homepage-sci-fi .notes-card::after {
+  content: "" !important;
+  position: absolute !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  width: 38px !important;
+  height: 38px !important;
+  pointer-events: none !important;
+  background:
+    linear-gradient(rgba(50, 64, 78, 0.24), rgba(50, 64, 78, 0.24)) right bottom / 28px 2px no-repeat,
+    linear-gradient(rgba(50, 64, 78, 0.24), rgba(50, 64, 78, 0.24)) right bottom / 2px 28px no-repeat !important;
+}
+
+/* 手機版框架縮小，避免壓迫 */
+@media (max-width: 820px) {
+  .homepage-sci-fi .home-zone {
+    margin-top: 1rem !important;
+    padding: 2.35rem 0.8rem 0.95rem !important;
+    border-radius: 18px !important;
+  }
+
+  .homepage-sci-fi .home-zone > .panel-tag {
+    min-width: 116px !important;
+    height: 30px !important;
+    font-size: 0.78rem !important;
+  }
+
+  .homepage-sci-fi .home-zone::before {
+    inset: 8px !important;
+    background:
+      linear-gradient(rgba(72, 86, 100, 0.56), rgba(72, 86, 100, 0.56)) left top / 42px 2px no-repeat,
+      linear-gradient(rgba(72, 86, 100, 0.56), rgba(72, 86, 100, 0.56)) left top / 2px 42px no-repeat,
+
+      linear-gradient(rgba(72, 86, 100, 0.56), rgba(72, 86, 100, 0.56)) right top / 42px 2px no-repeat,
+      linear-gradient(rgba(72, 86, 100, 0.56), rgba(72, 86, 100, 0.56)) right top / 2px 42px no-repeat,
+
+      linear-gradient(rgba(72, 86, 100, 0.38), rgba(72, 86, 100, 0.38)) left bottom / 36px 2px no-repeat,
+      linear-gradient(rgba(72, 86, 100, 0.38), rgba(72, 86, 100, 0.38)) left bottom / 2px 36px no-repeat,
+
+      linear-gradient(rgba(72, 86, 100, 0.38), rgba(72, 86, 100, 0.38)) right bottom / 36px 2px no-repeat,
+      linear-gradient(rgba(72, 86, 100, 0.38), rgba(72, 86, 100, 0.38)) right bottom / 2px 36px no-repeat !important;
+  }
+}
+
+/* v2.5.27 強制白銀科技外框
+   直接打真正首頁區塊 class，不再只靠 home-zone
+*/
+.homepage-sci-fi .nav-panel,
+.homepage-sci-fi .home-kpi-grid,
+.homepage-sci-fi .info-card,
+.homepage-sci-fi .notes-card,
+.homepage-sci-fi .summary-table {
+  position: relative !important;
+  border: 2px solid rgba(210, 220, 230, 0.95) !important;
+  outline: 1px solid rgba(80, 96, 112, 0.42) !important;
+  outline-offset: -7px !important;
+  border-radius: 22px !important;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.72),
+      rgba(236, 242, 247, 0.48)
+    ) !important;
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.95),
+    0 14px 34px rgba(16, 28, 42, 0.13),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.90),
+    inset 0 0 22px rgba(160, 176, 194, 0.22) !important;
+  overflow: visible !important;
+}
+
+/* 四角白銀科技角線 */
+.homepage-sci-fi .nav-panel::before,
+.homepage-sci-fi .home-kpi-grid::before,
+.homepage-sci-fi .info-card::before,
+.homepage-sci-fi .notes-card::before,
+.homepage-sci-fi .summary-table::before {
+  content: "" !important;
+  position: absolute !important;
+  inset: -2px !important;
+  z-index: 10 !important;
+  pointer-events: none !important;
+  border-radius: 22px !important;
+  background:
+    linear-gradient(#e9f0f6, #e9f0f6) left top / 78px 3px no-repeat,
+    linear-gradient(#e9f0f6, #e9f0f6) left top / 3px 78px no-repeat,
+
+    linear-gradient(#e9f0f6, #e9f0f6) right top / 78px 3px no-repeat,
+    linear-gradient(#e9f0f6, #e9f0f6) right top / 3px 78px no-repeat,
+
+    linear-gradient(rgba(96,112,128,0.66), rgba(96,112,128,0.66)) left bottom / 66px 3px no-repeat,
+    linear-gradient(rgba(96,112,128,0.66), rgba(96,112,128,0.66)) left bottom / 3px 66px no-repeat,
+
+    linear-gradient(rgba(96,112,128,0.66), rgba(96,112,128,0.66)) right bottom / 66px 3px no-repeat,
+    linear-gradient(rgba(96,112,128,0.66), rgba(96,112,128,0.66)) right bottom / 3px 66px no-repeat !important;
+}
+
+/* 小卡片白銀框：導覽卡、統計卡 */
+.homepage-sci-fi .nav-card,
+.homepage-sci-fi .home-kpi-grid article {
+  position: relative !important;
+  border: 2px solid rgba(218, 226, 234, 0.96) !important;
+  outline: 1px solid rgba(70, 86, 102, 0.36) !important;
+  outline-offset: -6px !important;
+  border-radius: 18px !important;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.78),
+      rgba(239, 245, 249, 0.54)
+    ) !important;
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.95),
+    0 10px 26px rgba(16, 28, 42, 0.11),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.90) !important;
+  overflow: hidden !important;
+}
+
+/* 小卡角線更明顯 */
+.homepage-sci-fi .nav-card::before,
+.homepage-sci-fi .home-kpi-grid article::before {
+  content: "" !important;
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 10 !important;
+  pointer-events: none !important;
+  border-radius: 16px !important;
+  background:
+    linear-gradient(#f5f8fb, #f5f8fb) left top / 44px 3px no-repeat,
+    linear-gradient(#f5f8fb, #f5f8fb) left top / 3px 44px no-repeat,
+    linear-gradient(rgba(70,86,102,0.48), rgba(70,86,102,0.48)) right bottom / 38px 3px no-repeat,
+    linear-gradient(rgba(70,86,102,0.48), rgba(70,86,102,0.48)) right bottom / 3px 38px no-repeat !important;
+}
+
+/* 區塊標題牌保留並加亮 */
+.homepage-sci-fi .panel-tag,
+.homepage-sci-fi .card-title {
+  position: relative !important;
+  z-index: 20 !important;
+  background:
+    linear-gradient(135deg, rgba(38, 50, 62, 0.94), rgba(92, 108, 124, 0.88)) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(230, 238, 246, 0.72) !important;
+  box-shadow:
+    0 8px 18px rgba(16, 28, 42, 0.18),
+    inset 0 0 0 1px rgba(255,255,255,0.24) !important;
+}
+
+/* 手機版：框線縮小但保持明顯 */
+@media (max-width: 820px) {
+  .homepage-sci-fi .nav-panel,
+  .homepage-sci-fi .home-kpi-grid,
+  .homepage-sci-fi .info-card,
+  .homepage-sci-fi .notes-card,
+  .homepage-sci-fi .summary-table {
+    border-width: 2px !important;
+    outline-offset: -5px !important;
+    border-radius: 18px !important;
+  }
+
+  .homepage-sci-fi .nav-panel::before,
+  .homepage-sci-fi .home-kpi-grid::before,
+  .homepage-sci-fi .info-card::before,
+  .homepage-sci-fi .notes-card::before,
+  .homepage-sci-fi .summary-table::before {
+    border-radius: 18px !important;
+    background:
+      linear-gradient(#e9f0f6, #e9f0f6) left top / 54px 3px no-repeat,
+      linear-gradient(#e9f0f6, #e9f0f6) left top / 3px 54px no-repeat,
+
+      linear-gradient(#e9f0f6, #e9f0f6) right top / 54px 3px no-repeat,
+      linear-gradient(#e9f0f6, #e9f0f6) right top / 3px 54px no-repeat,
+
+      linear-gradient(rgba(96,112,128,0.62), rgba(96,112,128,0.62)) left bottom / 46px 3px no-repeat,
+      linear-gradient(rgba(96,112,128,0.62), rgba(96,112,128,0.62)) left bottom / 3px 46px no-repeat,
+
+      linear-gradient(rgba(96,112,128,0.62), rgba(96,112,128,0.62)) right bottom / 46px 3px no-repeat,
+      linear-gradient(rgba(96,112,128,0.62), rgba(96,112,128,0.62)) right bottom / 3px 46px no-repeat !important;
+  }
+}
+
+/* v2.5.28 修正 v2.5.27：標題變形與右下角多餘線條 */
+
+/* 關掉造成多餘角線、右下線條、標題拉長的偽元素 */
+.homepage-sci-fi .home-zone::before,
+.homepage-sci-fi .home-zone::after,
+.homepage-sci-fi .nav-panel::before,
+.homepage-sci-fi .nav-panel::after,
+.homepage-sci-fi .home-kpi-grid::before,
+.homepage-sci-fi .home-kpi-grid::after,
+.homepage-sci-fi .info-card::before,
+.homepage-sci-fi .info-card::after,
+.homepage-sci-fi .summary-table::before,
+.homepage-sci-fi .summary-table::after,
+.homepage-sci-fi .notes-card::before,
+.homepage-sci-fi .notes-card::after,
+.homepage-sci-fi .nav-card::before,
+.homepage-sci-fi .nav-card::after,
+.homepage-sci-fi .home-kpi-grid article::before,
+.homepage-sci-fi .home-kpi-grid article::after,
+.homepage-sci-fi .panel-tag::before,
+.homepage-sci-fi .panel-tag::after,
+.homepage-sci-fi .card-title::before,
+.homepage-sci-fi .card-title::after {
+  content: none !important;
+  display: none !important;
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* 保留白銀外框，但是改成乾淨版 */
+.homepage-sci-fi .home-zone,
+.homepage-sci-fi .nav-panel,
+.homepage-sci-fi .home-kpi-grid,
+.homepage-sci-fi .info-card,
+.homepage-sci-fi .summary-table,
+.homepage-sci-fi .notes-card {
+  position: relative !important;
+  border: 2px solid rgba(220, 230, 240, 0.92) !important;
+  outline: 1px solid rgba(82, 96, 112, 0.25) !important;
+  outline-offset: -6px !important;
+  border-radius: 22px !important;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.58),
+      rgba(240, 246, 250, 0.36)
+    ) !important;
+  box-shadow:
+    0 12px 28px rgba(20, 30, 42, 0.08),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.70) !important;
+  overflow: visible !important;
+}
+
+/* 小卡片白銀框保留，不再額外畫角線 */
+.homepage-sci-fi .nav-card,
+.homepage-sci-fi .home-kpi-grid article {
+  border: 2px solid rgba(220, 230, 240, 0.90) !important;
+  outline: 1px solid rgba(82, 96, 112, 0.22) !important;
+  outline-offset: -5px !important;
+  border-radius: 18px !important;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.64),
+      rgba(240, 246, 250, 0.40)
+    ) !important;
+  box-shadow:
+    0 8px 20px rgba(20, 30, 42, 0.07),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.74) !important;
+}
+
+/* 標題牌恢復正常，不准再變箭頭 */
+.homepage-sci-fi .panel-tag,
+.homepage-sci-fi .card-title,
+.homepage-sci-fi .notes-card .card-title,
+.homepage-sci-fi .info-card.notes-card .card-title {
+  width: fit-content !important;
+  max-width: max-content !important;
+  min-width: 108px !important;
+  min-height: 32px !important;
+
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+
+  padding: 6px 16px !important;
+  margin: 0 0 14px 0 !important;
+
+  position: relative !important;
+  top: auto !important;
+  left: auto !important;
+  right: auto !important;
+  bottom: auto !important;
+
+  transform: none !important;
+  clip-path: none !important;
+
+  border-radius: 12px !important;
+  background:
+    linear-gradient(
+      135deg,
+      rgba(38, 50, 62, 0.96),
+      rgba(82, 98, 114, 0.92)
+    ) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(235, 242, 248, 0.82) !important;
+  box-shadow:
+    0 8px 18px rgba(16, 28, 42, 0.18),
+    inset 0 0 0 1px rgba(255,255,255,0.24) !important;
+
+  font-weight: 900 !important;
+  letter-spacing: 0.06em !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  z-index: 80 !important;
+}
+
+/* 標題內圖示文字保持白色 */
+.homepage-sci-fi .panel-tag *,
+.homepage-sci-fi .card-title *,
+.homepage-sci-fi .notes-card .card-title *,
+.homepage-sci-fi .info-card.notes-card .card-title * {
+  color: #ffffff !important;
+  stroke: #ffffff !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+@media (max-width: 820px) {
+  .homepage-sci-fi .panel-tag,
+  .homepage-sci-fi .card-title,
+  .homepage-sci-fi .notes-card .card-title,
+  .homepage-sci-fi .info-card.notes-card .card-title {
+    min-width: 92px !important;
+    min-height: 28px !important;
+    padding: 5px 12px !important;
+    font-size: 0.82rem !important;
+    border-radius: 10px !important;
+  }
+}
+
+/* v2.5.29 修復 v2.5.28 排版爆掉
+   目標：救回首頁正常流向，保留乾淨白銀框，不再使用亂飛角線
+*/
+
+/* 先全面關閉造成線條暴走的偽元素 */
+.homepage-sci-fi .home-zone::before,
+.homepage-sci-fi .home-zone::after,
+.homepage-sci-fi .nav-panel::before,
+.homepage-sci-fi .nav-panel::after,
+.homepage-sci-fi .home-kpi-grid::before,
+.homepage-sci-fi .home-kpi-grid::after,
+.homepage-sci-fi .info-card::before,
+.homepage-sci-fi .info-card::after,
+.homepage-sci-fi .summary-table::before,
+.homepage-sci-fi .summary-table::after,
+.homepage-sci-fi .notes-card::before,
+.homepage-sci-fi .notes-card::after,
+.homepage-sci-fi .nav-card::before,
+.homepage-sci-fi .nav-card::after,
+.homepage-sci-fi .home-kpi-grid article::before,
+.homepage-sci-fi .home-kpi-grid article::after,
+.homepage-sci-fi .panel-tag::before,
+.homepage-sci-fi .panel-tag::after,
+.homepage-sci-fi .card-title::before,
+.homepage-sci-fi .card-title::after {
+  content: none !important;
+  display: none !important;
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* 頂部列不要再被菜單白板撐開 */
+.homepage-sci-fi .topbar {
+  position: relative !important;
+  z-index: 7000 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 12px !important;
+  width: 100% !important;
+  margin: 0 auto 0.75rem !important;
+  padding: 0.65rem 0.85rem !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* 漢堡外層不要變成大白框 */
+.homepage-sci-fi .menu-drawer,
+.homepage-sci-fi details.menu-drawer {
+  background: transparent !important;
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  width: auto !important;
+  max-width: none !important;
+}
+
+/* 沒打開時，彈出菜單絕對不能占版面 */
+.homepage-sci-fi .menu-drawer:not([open]) .menu-popup {
+  display: none !important;
+}
+
+/* 打開時才固定小浮層 */
+@media (max-width: 820px) {
+  .homepage-sci-fi details.menu-drawer[open] {
+    position: fixed !important;
+    top: 12px !important;
+    left: 14px !important;
+    width: auto !important;
+    max-width: none !important;
+    max-height: none !important;
+    overflow: visible !important;
+    z-index: 9000 !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+
+  .homepage-sci-fi .menu-popup {
+    width: min(78vw, 320px) !important;
+    max-width: 320px !important;
+    max-height: 68vh !important;
+    overflow-y: auto !important;
+  }
+}
+
+/* 版圖回到正常區塊，不准壓住下面 */
+.homepage-sci-fi .home-hero-image-banner {
+  position: relative !important;
+  z-index: 3 !important;
+  display: block !important;
+  width: 100% !important;
+  margin: 0.75rem auto 1.25rem !important;
+  clear: both !important;
+  overflow: hidden !important;
+}
+
+.homepage-sci-fi .home-hero-image-banner img {
+  display: block !important;
+  width: 100% !important;
+  height: auto !important;
+  object-fit: cover !important;
+}
+
+/* 四大區塊全部回到正常文流 */
+.homepage-sci-fi .nav-panel,
+.homepage-sci-fi .home-zone,
+.homepage-sci-fi .home-zone-stats,
+.homepage-sci-fi .home-zone-info,
+.homepage-sci-fi .home-zone-notes {
+  position: relative !important;
+  z-index: 3 !important;
+  width: 100% !important;
+  margin: 1.25rem auto !important;
+  padding: 1.1rem !important;
+  clear: both !important;
+  box-sizing: border-box !important;
+
+  border: 2px solid rgba(220, 230, 240, 0.88) !important;
+  outline: 1px solid rgba(82, 96, 112, 0.22) !important;
+  outline-offset: -6px !important;
+  border-radius: 22px !important;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.54),
+      rgba(240, 246, 250, 0.32)
+    ) !important;
+
+  box-shadow:
+    0 10px 24px rgba(20, 30, 42, 0.07),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.72) !important;
+
+  overflow: visible !important;
+}
+
+/* 標題牌恢復正常尺寸，不再變箭頭 */
+.homepage-sci-fi .panel-tag,
+.homepage-sci-fi .card-title {
+  position: static !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+
+  width: fit-content !important;
+  max-width: max-content !important;
+  min-width: 92px !important;
+  min-height: 30px !important;
+
+  margin: 0 0 0.9rem 0 !important;
+  padding: 5px 14px !important;
+
+  transform: none !important;
+  clip-path: none !important;
+
+  border-radius: 10px !important;
+  background:
+    linear-gradient(
+      135deg,
+      rgba(38, 50, 62, 0.96),
+      rgba(82, 98, 114, 0.92)
+    ) !important;
+
+  color: #ffffff !important;
+  border: 1px solid rgba(235, 242, 248, 0.82) !important;
+  box-shadow:
+    0 7px 16px rgba(16, 28, 42, 0.16),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.22) !important;
+
+  font-weight: 900 !important;
+  letter-spacing: 0.05em !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  z-index: 20 !important;
+}
+
+/* 標題內文字與圖示 */
+.homepage-sci-fi .panel-tag *,
+.homepage-sci-fi .card-title * {
+  color: #ffffff !important;
+  stroke: #ffffff !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* 導覽區正常排版 */
+.homepage-sci-fi .nav-grid {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)) !important;
+  gap: 0.85rem !important;
+  width: 100% !important;
+}
+
+/* 數據區正常排版：標題佔整列，四卡正常排列 */
+.homepage-sci-fi .home-kpi-grid.home-zone,
+.homepage-sci-fi .home-zone-stats.home-kpi-grid {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)) !important;
+  gap: 0.85rem !important;
+  align-items: stretch !important;
+}
+
+.homepage-sci-fi .home-kpi-grid.home-zone > .panel-tag,
+.homepage-sci-fi .home-zone-stats.home-kpi-grid > .panel-tag {
+  grid-column: 1 / -1 !important;
+  justify-self: start !important;
+}
+
+/* 小卡保留白銀框，但不再加多餘角線 */
+.homepage-sci-fi .nav-card,
+.homepage-sci-fi .home-kpi-grid article,
+.homepage-sci-fi .info-card,
+.homepage-sci-fi .summary-table,
+.homepage-sci-fi .notes-card {
+  position: relative !important;
+  z-index: 4 !important;
+  border: 2px solid rgba(220, 230, 240, 0.82) !important;
+  outline: 1px solid rgba(82, 96, 112, 0.18) !important;
+  outline-offset: -5px !important;
+  border-radius: 18px !important;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.58),
+      rgba(240, 246, 250, 0.34)
+    ) !important;
+  box-shadow:
+    0 8px 18px rgba(20, 30, 42, 0.06),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.70) !important;
+  overflow: hidden !important;
+}
+
+/* 備註區內容留白正常 */
+.homepage-sci-fi .notes-card {
+  padding: 1.1rem !important;
+}
+
+/* 手機 / 平板微調 */
+@media (max-width: 820px) {
+  .homepage-sci-fi .topbar {
+    margin-bottom: 0.6rem !important;
+    padding: 0.5rem 0.65rem !important;
+  }
+
+  .homepage-sci-fi .home-hero-image-banner {
+    margin: 0.55rem auto 1rem !important;
+  }
+
+  .homepage-sci-fi .nav-panel,
+  .homepage-sci-fi .home-zone,
+  .homepage-sci-fi .home-zone-stats,
+  .homepage-sci-fi .home-zone-info,
+  .homepage-sci-fi .home-zone-notes {
+    margin: 1rem auto !important;
+    padding: 0.85rem !important;
+    border-radius: 18px !important;
+    outline-offset: -5px !important;
+  }
+
+  .homepage-sci-fi .home-kpi-grid.home-zone,
+  .homepage-sci-fi .home-zone-stats.home-kpi-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 0.65rem !important;
+  }
+
+  .homepage-sci-fi .nav-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 0.65rem !important;
+  }
+
+  .homepage-sci-fi .panel-tag,
+  .homepage-sci-fi .card-title {
+    min-width: 82px !important;
+    min-height: 28px !important;
+    padding: 5px 11px !important;
+    font-size: 0.8rem !important;
+  }
+}
+
+/* v2.5.30 分類資料狀態卡片網格
+   桌機 4x2，手機 2x4
+   保留白銀科技框與分類圖示
+*/
+
+/* 分類資料狀態主區塊 */
+.homepage-sci-fi .home-zone-stats {
+  display: grid !important;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  gap: 0.85rem !important;
+  align-items: stretch !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+/* 標題橫跨整排 */
+.homepage-sci-fi .home-zone-stats > .panel-tag,
+.homepage-sci-fi .home-zone-stats > .card-title {
+  grid-column: 1 / -1 !important;
+  justify-self: start !important;
+}
+
+/* 分類卡片本體 */
+.homepage-sci-fi .home-zone-stats > article,
+.homepage-sci-fi .home-zone-stats > a,
+.homepage-sci-fi .home-zone-stats > div:not(.panel-tag):not(.card-title):not(.home-fixed-bg) {
+  min-height: 138px !important;
+  padding: 0.9rem 0.65rem !important;
+
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.38rem !important;
+
+  text-align: center !important;
+
+  border: 2px solid rgba(220, 230, 240, 0.88) !important;
+  outline: 1px solid rgba(82, 96, 112, 0.22) !important;
+  outline-offset: -5px !important;
+  border-radius: 18px !important;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.62),
+      rgba(240, 246, 250, 0.36)
+    ) !important;
+
+  box-shadow:
+    0 8px 18px rgba(20, 30, 42, 0.06),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.72) !important;
+
+  overflow: hidden !important;
+}
+
+/* 圖示保留，大小統一 */
+.homepage-sci-fi .home-zone-stats svg {
+  width: 34px !important;
+  height: 34px !important;
+  margin-bottom: 0.28rem !important;
+  stroke-width: 1.8 !important;
+}
+
+/* 分類名稱 */
+.homepage-sci-fi .home-zone-stats h3,
+.homepage-sci-fi .home-zone-stats h4,
+.homepage-sci-fi .home-zone-stats strong {
+  font-size: 1.04rem !important;
+  line-height: 1.25 !important;
+  font-weight: 900 !important;
+  margin: 0 !important;
+  color: rgba(17, 24, 32, 0.96) !important;
+}
+
+/* 資料列：總筆數 / 區塊數 / 有價格 */
+.homepage-sci-fi .home-zone-stats p,
+.homepage-sci-fi .home-zone-stats small,
+.homepage-sci-fi .home-zone-stats span {
+  font-size: 0.78rem !important;
+  line-height: 1.35 !important;
+  color: rgba(68, 80, 96, 0.88) !important;
+}
+
+/* 完成度百分比 */
+.homepage-sci-fi .home-zone-stats .percent,
+.homepage-sci-fi .home-zone-stats .completion,
+.homepage-sci-fi .home-zone-stats b {
+  font-size: 1.25rem !important;
+  line-height: 1.2 !important;
+  font-weight: 900 !important;
+  color: rgba(12, 18, 26, 0.98) !important;
+}
+
+/* 手機 / 平板：2x4 */
+@media (max-width: 820px) {
+  .homepage-sci-fi .home-zone-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 0.65rem !important;
+  }
+
+  .homepage-sci-fi .home-zone-stats > article,
+  .homepage-sci-fi .home-zone-stats > a,
+  .homepage-sci-fi .home-zone-stats > div:not(.panel-tag):not(.card-title):not(.home-fixed-bg) {
+    min-height: 124px !important;
+    padding: 0.78rem 0.5rem !important;
+    border-radius: 16px !important;
+  }
+
+  .homepage-sci-fi .home-zone-stats svg {
+    width: 30px !important;
+    height: 30px !important;
+  }
+
+  .homepage-sci-fi .home-zone-stats h3,
+  .homepage-sci-fi .home-zone-stats h4,
+  .homepage-sci-fi .home-zone-stats strong {
+    font-size: 0.96rem !important;
+  }
+
+  .homepage-sci-fi .home-zone-stats p,
+  .homepage-sci-fi .home-zone-stats small,
+  .homepage-sci-fi .home-zone-stats span {
+    font-size: 0.72rem !important;
+  }
+
+  .homepage-sci-fi .home-zone-stats .percent,
+  .homepage-sci-fi .home-zone-stats .completion,
+  .homepage-sci-fi .home-zone-stats b {
+    font-size: 1.12rem !important;
+  }
+}
+
+/* v2.5.31 精準修正分類資料狀態卡片網格
+   實際 className：
+   - home-category-grid
+   - home-category-card
+*/
+
+/* 分類資料狀態：桌機 4x2 */
+.homepage-sci-fi .home-category-grid {
+  display: grid !important;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  gap: 0.85rem !important;
+  width: 100% !important;
+  align-items: stretch !important;
+  box-sizing: border-box !important;
+}
+
+/* 分類卡片：白銀科技小卡 */
+.homepage-sci-fi .home-category-card {
+  min-height: 138px !important;
+  padding: 0.9rem 0.65rem !important;
+
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.38rem !important;
+
+  text-align: center !important;
+  text-decoration: none !important;
+
+  border: 2px solid rgba(220, 230, 240, 0.88) !important;
+  outline: 1px solid rgba(82, 96, 112, 0.22) !important;
+  outline-offset: -5px !important;
+  border-radius: 18px !important;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.62),
+      rgba(240, 246, 250, 0.36)
+    ) !important;
+
+  box-shadow:
+    0 8px 18px rgba(20, 30, 42, 0.06),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.72) !important;
+
+  overflow: hidden !important;
+}
+
+/* 分類圖示保留 */
+.homepage-sci-fi .home-category-card svg {
+  width: 34px !important;
+  height: 34px !important;
+  margin-bottom: 0.25rem !important;
+  stroke-width: 1.8 !important;
+  color: rgba(14, 24, 34, 0.96) !important;
+  stroke: rgba(14, 24, 34, 0.96) !important;
+}
+
+/* 分類名稱 */
+.homepage-sci-fi .home-category-card h3 {
+  font-size: 1.04rem !important;
+  line-height: 1.25 !important;
+  font-weight: 900 !important;
+  margin: 0 !important;
+  color: rgba(17, 24, 32, 0.96) !important;
+}
+
+/* 總筆數 / 區塊數 / 有價格 */
+.homepage-sci-fi .home-category-card p {
+  font-size: 0.78rem !important;
+  line-height: 1.35 !important;
+  margin: 0 !important;
+  color: rgba(68, 80, 96, 0.88) !important;
+}
+
+/* 完成度 */
+.homepage-sci-fi .home-category-card strong {
+  display: block !important;
+  font-size: 1.25rem !important;
+  line-height: 1.2 !important;
+  font-weight: 900 !important;
+  margin-top: 0.15rem !important;
+  color: rgba(12, 18, 26, 0.98) !important;
+}
+
+/* 手機 / 分割畫面：2x4 */
+@media (max-width: 900px) {
+  .homepage-sci-fi .home-category-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 0.65rem !important;
+  }
+
+  .homepage-sci-fi .home-category-card {
+    min-height: 124px !important;
+    padding: 0.78rem 0.5rem !important;
+    border-radius: 16px !important;
+  }
+
+  .homepage-sci-fi .home-category-card svg {
+    width: 30px !important;
+    height: 30px !important;
+  }
+
+  .homepage-sci-fi .home-category-card h3 {
+    font-size: 0.96rem !important;
+  }
+
+  .homepage-sci-fi .home-category-card p {
+    font-size: 0.72rem !important;
+  }
+
+  .homepage-sci-fi .home-category-card strong {
+    font-size: 1.12rem !important;
+  }
+}
+
+/* v2.5.32 資訊區左右雙卡 */
+.homepage-sci-fi .home-info-split {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important;
+  gap: 1rem !important;
+  width: 100% !important;
+  align-items: stretch !important;
+  box-sizing: border-box !important;
+}
+
+.homepage-sci-fi .home-info-split .info-card {
+  min-height: 100% !important;
+  padding: 1.15rem !important;
+  border: 2px solid rgba(220, 230, 240, 0.86) !important;
+  outline: 1px solid rgba(82, 96, 112, 0.20) !important;
+  outline-offset: -5px !important;
+  border-radius: 20px !important;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.60),
+      rgba(240, 246, 250, 0.34)
+    ) !important;
+  box-shadow:
+    0 8px 18px rgba(20, 30, 42, 0.06),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.70) !important;
+}
+
+.homepage-sci-fi .home-info-date-row {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 1rem !important;
+  padding: 0.85rem 0 !important;
+  margin: 0.4rem 0 1rem !important;
+  border-bottom: 1px dashed rgba(90, 108, 126, 0.24) !important;
+}
+
+.homepage-sci-fi .home-info-date-row span,
+.homepage-sci-fi .home-info-subblock li,
+.homepage-sci-fi .home-official-links a {
+  color: rgba(42, 54, 68, 0.92) !important;
+}
+
+.homepage-sci-fi .home-info-date-row strong {
+  font-size: 1.18rem !important;
+  color: rgba(12, 18, 26, 0.98) !important;
+}
+
+.homepage-sci-fi .home-info-subblock h3 {
+  margin: 0 0 0.65rem !important;
+  font-size: 1rem !important;
+  font-weight: 900 !important;
+  color: rgba(18, 28, 40, 0.96) !important;
+}
+
+.homepage-sci-fi .home-info-subblock ul {
+  margin: 0 !important;
+  padding-left: 1.2rem !important;
+}
+
+.homepage-sci-fi .home-info-subblock li {
+  margin: 0.42rem 0 !important;
+  line-height: 1.65 !important;
+}
+
+.homepage-sci-fi .home-official-links {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 0.65rem !important;
+  margin: 0.55rem 0 1rem !important;
+}
+
+.homepage-sci-fi .home-official-links a {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-height: 42px !important;
+  padding: 0.55rem 0.7rem !important;
+  text-decoration: none !important;
+  text-align: center !important;
+  border-radius: 14px !important;
+  border: 1px solid rgba(210, 222, 234, 0.82) !important;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.66),
+      rgba(238, 244, 249, 0.42)
+    ) !important;
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.72),
+    0 5px 14px rgba(20, 30, 42, 0.05) !important;
+  font-weight: 800 !important;
+}
+
+.homepage-sci-fi .home-official-links a:hover {
+  transform: translateY(-1px) !important;
+  border-color: rgba(120, 142, 164, 0.44) !important;
+}
+
+/* 手機版：兩卡上下堆疊 */
+@media (max-width: 820px) {
+  .homepage-sci-fi .home-info-split {
+    grid-template-columns: 1fr !important;
+    gap: 0.85rem !important;
+  }
+
+  .homepage-sci-fi .home-info-split .info-card {
+    padding: 0.95rem !important;
+    border-radius: 18px !important;
+  }
+
+  .homepage-sci-fi .home-official-links {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 0.55rem !important;
+  }
+
+  .homepage-sci-fi .home-official-links a {
+    min-height: 38px !important;
+    font-size: 0.84rem !important;
+  }
+}
+
+/* v2.5.33 移除資訊區內框標題前方數字
+   外層「3 資料區」保留，內框只顯示文字標題
+*/
+.homepage-sci-fi .home-info-split .card-title span:first-child {
+  display: none !important;
+}
+
+/* 內框標題重新整理寬度，不留數字空位 */
+.homepage-sci-fi .home-info-split .card-title {
+  min-width: auto !important;
+  width: fit-content !important;
+  max-width: max-content !important;
+  padding-left: 16px !important;
+  padding-right: 16px !important;
+  gap: 0 !important;
+}
