@@ -18,7 +18,7 @@ import {
 } from "lucide-react";
 import { fetchSheetRows } from "../lib/sheets";
 import HomeSearchFloating from "../components/HomeSearchFloating";
-import HomeNotificationsFloating from "../components/HomeNotificationsFloating"; import HomeMenuFloating from "../components/HomeMenuFloating";
+import HomeNotificationsFloating from "../components/HomeNotificationsFloating"; import HomeMenuFloating from "../components/HomeMenuFloating"; import KetherClanWatermark from "../components/KetherClanWatermark";
 
 const navItems = [
   { label: "總覽", key: "overview", href: "/database/overview", icon: Gem },
@@ -68,7 +68,7 @@ export default async function HomePage() {
   const totalSections = results.reduce((sum, item) => sum + item.sectionCount, 0);
   const totalCompletion = totalRows > 0 ? Math.round((totalOwned / totalRows) * 100) : 0;
 
-  return (
+  return (<><KetherClanWatermark />
     <main className="page-shell homepage-sci-fi">
       <div className="home-fixed-bg" aria-hidden="true" />
 <div className="corner corner-lt" />
@@ -295,7 +295,7 @@ export default async function HomePage() {
 
           <div className="total-row">
             <span>網站版本</span>
-            <b>v2.5.62</b>
+            <b>v2.5.63</b>
           </div>
         </article>
 
@@ -305,7 +305,7 @@ export default async function HomePage() {
             <span>備註</span>
           </div>
 
-          <p>・v2.5.62 已加入首頁自動資料總控台。</p>
+          <p>・v2.5.63 已加入首頁自動資料總控台。</p>
           <p>・下一階段可做 Discord 登入前置與個人化資料庫設計。</p>
           <p>・完成度目前讀取表格欄位，未來會改為個人獨立紀錄。</p>
           <div className="note-lines" />
@@ -328,5 +328,5 @@ export default async function HomePage() {
       </footer>
 
     </main>
-  );
+  </>);
 }
