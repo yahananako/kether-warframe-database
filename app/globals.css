@@ -3138,3 +3138,40 @@ a.nav-card {
 .homepage-sci-fi .menu-popup {
   z-index: 9000 !important;
 }
+
+/* v2.5.10 強制固定背景實體層 */
+.homepage-sci-fi {
+  position: relative !important;
+  isolation: isolate !important;
+  min-height: 100svh !important;
+  overflow-x: hidden !important;
+  background: transparent !important;
+}
+
+.homepage-sci-fi::before {
+  content: none !important;
+  display: none !important;
+}
+
+.homepage-sci-fi > .home-fixed-bg {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 0 !important;
+  display: block !important;
+  pointer-events: none !important;
+  width: 100vw !important;
+  height: 100svh !important;
+  background:
+    linear-gradient(
+      rgba(246, 248, 250, 0.72),
+      rgba(246, 248, 250, 0.88)
+    ),
+    url("/home-ui-bg.png?v=2510") center center / cover no-repeat !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.homepage-sci-fi > :not(.home-fixed-bg) {
+  position: relative !important;
+  z-index: 2 !important;
+}
