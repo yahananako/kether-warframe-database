@@ -4809,3 +4809,20 @@ a.nav-card {
     font-size: 0.84rem !important;
   }
 }
+
+/* v2.5.33 移除資訊區內框標題前方數字
+   外層「3 資料區」保留，內框只顯示文字標題
+*/
+.homepage-sci-fi .home-info-split .card-title span:first-child {
+  display: none !important;
+}
+
+/* 內框標題重新整理寬度，不留數字空位 */
+.homepage-sci-fi .home-info-split .card-title {
+  min-width: auto !important;
+  width: fit-content !important;
+  max-width: max-content !important;
+  padding-left: 16px !important;
+  padding-right: 16px !important;
+  gap: 0 !important;
+}
