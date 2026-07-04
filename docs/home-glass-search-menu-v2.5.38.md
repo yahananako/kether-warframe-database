@@ -1,4 +1,4 @@
-# KETHER Warframe Database v2.5.38
+# KETHER Warframe Database v2.5.39
 
 ## 更新類型
 
