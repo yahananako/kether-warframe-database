@@ -91,7 +91,7 @@ export default async function DatabaseCategoryPage({
         <p>KETHER OF PARADISO</p>
         <h1>{config.title}</h1>
         <span>{config.subtitle}</span>
-        <b className="db-version-chip">網站版本 v2.5.3</b>
+        <b className="db-version-chip">網站版本 v2.5.4</b>
       </section>
 
       {error && (
