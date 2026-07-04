@@ -47,9 +47,17 @@ function SectionBadge({
 }) {
   return (
     <>
-      <Icon size={18} strokeWidth={2.35} />
+      <Icon
+        size={18}
+        strokeWidth={2.35}
+        style={{
+          color: "#ffffff",
+          flexShrink: 0
+        }}
+      />
       <span
         style={{
+          color: "#ffffff",
           fontSize: 14,
           fontWeight: 900,
           letterSpacing: "0.06em",
@@ -62,7 +70,6 @@ function SectionBadge({
     </>
   );
 }
-
 
 export default async function HomePage() {
   const dataCategories = navItems.filter((item) => item.key !== "overview");
@@ -291,7 +298,7 @@ export default async function HomePage() {
 
           <div className="total-row">
             <span>網站版本</span>
-            <b>v2.5.46</b>
+            <b>v2.5.47</b>
           </div>
         </article>
 
@@ -301,7 +308,7 @@ export default async function HomePage() {
             <span><SectionBadge icon={Pencil} label="備註" /></span>
           </div>
 
-          <p>・v2.5.46 修正首頁區塊標題徽章實際替換。</p>
+          <p>・v2.5.47 修正首頁區塊徽章重複圖示、位置與文字顏色。</p>
           <p>・下一階段可做 Discord 登入前置與個人化資料庫設計。</p>
           <p>・完成度目前讀取表格欄位，未來會改為個人獨立紀錄。</p>
           <div className="note-lines" />
