@@ -39,6 +39,8 @@ export default function HomeSearchFloating() {
     router.push(`/search?q=${encodeURIComponent(q)}`);
   }
 
+  const tags = ["Primed", "Yareli", "MOD", "近戰", "同伴"];
+
   return (
     <>
       <button
@@ -46,32 +48,125 @@ export default function HomeSearchFloating() {
         aria-label="開啟搜尋"
         title="搜尋資料庫"
         onClick={() => setOpen(true)}
-        className="kether-search-icon-button"
+        style={{
+          width: 34,
+          height: 34,
+          border: "0",
+          padding: "0",
+          margin: "0",
+          outline: "0",
+          background: "transparent",
+          boxShadow: "none",
+          color: "#111827",
+          display: "inline-flex",
+          alignItems: "center",
+          justifyContent: "center",
+          cursor: "pointer",
+          appearance: "none",
+          WebkitAppearance: "none",
+          WebkitTapHighlightColor: "transparent"
+        }}
       >
-        <Search className="kether-search-icon-svg" aria-hidden="true" />
+        <Search size={28} strokeWidth={2.25} />
       </button>
 
       {open && (
-        <div className="kether-search-backdrop">
+        <div
+          style={{
+            position: "fixed",
+            inset: 0,
+            zIndex: 9999,
+            background: "rgba(15, 23, 42, 0.18)",
+            backdropFilter: "blur(8px)",
+            WebkitBackdropFilter: "blur(8px)"
+          }}
+        >
           <button
             type="button"
             aria-label="關閉搜尋背景"
             onClick={() => setOpen(false)}
-            className="kether-search-backdrop-close"
+            style={{
+              position: "absolute",
+              inset: 0,
+              width: "100%",
+              height: "100%",
+              border: "0",
+              background: "transparent",
+              cursor: "default"
+            }}
           />
 
-          <section role="dialog" aria-label="資料庫快速搜尋" className="kether-search-panel">
-            <div className="kether-search-panel-inner">
-              <div className="kether-search-head">
+          <section
+            role="dialog"
+            aria-label="資料庫快速搜尋"
+            style={{
+              position: "absolute",
+              top: 92,
+              right: 18,
+              width: "min(92vw, 430px)",
+              borderRadius: 30,
+              border: "1px solid rgba(255, 255, 255, 0.78)",
+              background:
+                "linear-gradient(145deg, rgba(255, 255, 255, 0.78), rgba(238, 246, 250, 0.50))",
+              boxShadow:
+                "0 26px 80px rgba(15, 23, 42, 0.24), inset 0 1px 0 rgba(255, 255, 255, 0.86)",
+              backdropFilter: "blur(26px) saturate(155%)",
+              WebkitBackdropFilter: "blur(26px) saturate(155%)",
+              overflow: "hidden",
+              color: "#263445"
+            }}
+          >
+            <div
+              style={{
+                padding: "20px 20px 18px",
+                background:
+                  "radial-gradient(circle at top right, rgba(255,255,255,0.88), transparent 58%), radial-gradient(circle at bottom left, rgba(226,239,246,0.45), transparent 62%)"
+              }}
+            >
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "flex-start",
+                  justifyContent: "space-between",
+                  gap: 14
+                }}
+              >
                 <div>
-                  <div className="kether-search-label">
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: 7,
+                      fontSize: 12,
+                      fontWeight: 900,
+                      letterSpacing: "0.24em",
+                      color: "#64748b"
+                    }}
+                  >
                     <Sparkles size={15} />
                     KETHER SEARCH
                   </div>
 
-                  <h2 className="kether-search-title">資料庫快速搜尋</h2>
+                  <h2
+                    style={{
+                      margin: "9px 0 0",
+                      fontSize: 22,
+                      lineHeight: 1.25,
+                      fontWeight: 900,
+                      color: "#263445"
+                    }}
+                  >
+                    資料庫快速搜尋
+                  </h2>
 
-                  <p className="kether-search-text">
+                  <p
+                    style={{
+                      margin: "7px 0 0",
+                      fontSize: 14,
+                      lineHeight: 1.7,
+                      color: "#64748b"
+                    }}
+                  >
                     搜尋 MOD、戰甲、武器、同伴、來源或備註。
                   </p>
                 </div>
@@ -80,36 +175,109 @@ export default function HomeSearchFloating() {
                   type="button"
                   aria-label="關閉搜尋"
                   onClick={() => setOpen(false)}
-                  className="kether-search-close"
+                  style={{
+                    width: 40,
+                    height: 40,
+                    borderRadius: 999,
+                    border: "1px solid rgba(255, 255, 255, 0.85)",
+                    background: "rgba(255, 255, 255, 0.68)",
+                    color: "#334155",
+                    display: "inline-flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    boxShadow: "0 10px 24px rgba(15, 23, 42, 0.10)",
+                    cursor: "pointer"
+                  }}
                 >
-                  <X size={21} strokeWidth={2.6} />
+                  <X size={22} strokeWidth={2.6} />
                 </button>
               </div>
 
-              <form onSubmit={submitSearch} className="kether-search-form">
-                <label className="kether-search-input-wrap">
-                  <Search size={19} color="#64748b" />
+              <form
+                onSubmit={submitSearch}
+                style={{
+                  display: "flex",
+                  gap: 9,
+                  marginTop: 18
+                }}
+              >
+                <label
+                  style={{
+                    flex: 1,
+                    minWidth: 0,
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 9,
+                    borderRadius: 20,
+                    border: "1px solid rgba(255, 255, 255, 0.86)",
+                    background: "rgba(255, 255, 255, 0.72)",
+                    boxShadow:
+                      "inset 0 1px 8px rgba(15, 23, 42, 0.05), 0 10px 24px rgba(15, 23, 42, 0.06)",
+                    padding: "0 14px"
+                  }}
+                >
+                  <Search size={20} color="#64748b" />
                   <input
                     ref={inputRef}
                     value={keyword}
                     onChange={(event) => setKeyword(event.target.value)}
                     placeholder="輸入 MOD、戰甲、武器..."
-                    className="kether-search-input"
+                    style={{
+                      width: "100%",
+                      height: 50,
+                      border: "0",
+                      outline: "0",
+                      background: "transparent",
+                      color: "#1f2937",
+                      fontSize: 15,
+                      fontWeight: 800
+                    }}
                   />
                 </label>
 
-                <button type="submit" className="kether-search-submit">
+                <button
+                  type="submit"
+                  style={{
+                    height: 50,
+                    border: "0",
+                    borderRadius: 20,
+                    padding: "0 17px",
+                    background: "#263445",
+                    color: "white",
+                    fontSize: 14,
+                    fontWeight: 900,
+                    boxShadow: "0 12px 26px rgba(15, 23, 42, 0.24)",
+                    cursor: "pointer"
+                  }}
+                >
                   搜尋
                 </button>
               </form>
 
-              <div className="kether-search-tags">
-                {["Primed", "Yareli", "MOD", "近戰", "同伴"].map((tag) => (
+              <div
+                style={{
+                  display: "flex",
+                  flexWrap: "wrap",
+                  gap: 8,
+                  marginTop: 15
+                }}
+              >
+                {tags.map((tag) => (
                   <button
                     key={tag}
                     type="button"
                     onClick={() => setKeyword(tag)}
-                    className="kether-search-tag"
+                    style={{
+                      border: "1px solid rgba(255, 255, 255, 0.78)",
+                      borderRadius: 999,
+                      background: "rgba(255, 255, 255, 0.62)",
+                      color: "#475569",
+                      padding: "8px 13px",
+                      fontSize: 13,
+                      fontWeight: 900,
+                      boxShadow: "0 7px 16px rgba(15, 23, 42, 0.08)",
+                      cursor: "pointer"
+                    }}
                   >
                     {tag}
                   </button>
@@ -119,246 +287,6 @@ export default function HomeSearchFloating() {
           </section>
         </div>
       )}
-
-      <style jsx>{`
-        .kether-search-icon-button {
-          width: auto !important;
-          height: auto !important;
-          min-width: 0 !important;
-          min-height: 0 !important;
-          border: 0 !important;
-          outline: 0 !important;
-          padding: 0 !important;
-          margin: 0 !important;
-          background: transparent !important;
-          box-shadow: none !important;
-          color: #111827 !important;
-          display: inline-flex !important;
-          align-items: center !important;
-          justify-content: center !important;
-          cursor: pointer !important;
-          appearance: none !important;
-          -webkit-appearance: none !important;
-          -webkit-tap-highlight-color: transparent !important;
-        }
-
-        .kether-search-icon-button:hover,
-        .kether-search-icon-button:focus,
-        .kether-search-icon-button:active {
-          border: 0 !important;
-          outline: 0 !important;
-          background: transparent !important;
-          box-shadow: none !important;
-        }
-
-        .kether-search-icon-svg {
-          width: 28px !important;
-          height: 28px !important;
-          stroke-width: 2.25 !important;
-          display: block !important;
-        }
-
-        .kether-search-backdrop {
-          position: fixed;
-          inset: 0;
-          z-index: 9999;
-          background: rgba(15, 23, 42, 0.16);
-          backdrop-filter: blur(7px);
-          -webkit-backdrop-filter: blur(7px);
-        }
-
-        .kether-search-backdrop-close {
-          position: absolute;
-          inset: 0;
-          width: 100%;
-          height: 100%;
-          border: 0;
-          background: transparent;
-          cursor: default;
-        }
-
-        .kether-search-panel {
-          position: absolute;
-          top: 88px;
-          right: 18px;
-          width: min(92vw, 390px);
-          border-radius: 28px;
-          border: 1px solid rgba(255, 255, 255, 0.72);
-          background: linear-gradient(
-            145deg,
-            rgba(255, 255, 255, 0.72),
-            rgba(236, 244, 248, 0.46)
-          );
-          box-shadow:
-            0 24px 70px rgba(15, 23, 42, 0.2),
-            inset 0 1px 0 rgba(255, 255, 255, 0.75);
-          backdrop-filter: blur(24px) saturate(150%);
-          -webkit-backdrop-filter: blur(24px) saturate(150%);
-          overflow: hidden;
-          color: #1f2937;
-        }
-
-        .kether-search-panel-inner {
-          padding: 18px 18px 16px;
-          background: radial-gradient(
-            circle at top right,
-            rgba(255, 255, 255, 0.82),
-            transparent 55%
-          );
-        }
-
-        .kether-search-head {
-          display: flex;
-          align-items: flex-start;
-          justify-content: space-between;
-          gap: 12px;
-        }
-
-        .kether-search-label {
-          display: flex;
-          align-items: center;
-          gap: 6px;
-          font-size: 12px;
-          font-weight: 800;
-          letter-spacing: 0.22em;
-          color: #64748b;
-        }
-
-        .kether-search-title {
-          margin: 8px 0 0;
-          font-size: 22px;
-          line-height: 1.25;
-          font-weight: 900;
-          color: #263445;
-        }
-
-        .kether-search-text {
-          margin: 7px 0 0;
-          font-size: 14px;
-          line-height: 1.7;
-          color: #64748b;
-        }
-
-        .kether-search-close {
-          width: 38px;
-          height: 38px;
-          border-radius: 999px;
-          border: 1px solid rgba(255, 255, 255, 0.78);
-          background: rgba(255, 255, 255, 0.58);
-          color: #334155;
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          box-shadow: 0 8px 18px rgba(15, 23, 42, 0.08);
-          cursor: pointer;
-        }
-
-        .kether-search-form {
-          display: flex;
-          gap: 8px;
-          margin-top: 16px;
-        }
-
-        .kether-search-input-wrap {
-          flex: 1;
-          min-width: 0;
-          display: flex;
-          align-items: center;
-          gap: 8px;
-          border-radius: 18px;
-          border: 1px solid rgba(255, 255, 255, 0.82);
-          background: rgba(255, 255, 255, 0.66);
-          box-shadow: inset 0 1px 8px rgba(15, 23, 42, 0.05);
-          padding: 0 13px;
-        }
-
-        .kether-search-input {
-          width: 100%;
-          height: 48px;
-          border: 0;
-          outline: 0;
-          background: transparent;
-          color: #1f2937;
-          font-size: 15px;
-          font-weight: 700;
-        }
-
-        .kether-search-submit {
-          height: 48px;
-          border: 0;
-          border-radius: 18px;
-          padding: 0 16px;
-          background: #263445;
-          color: white;
-          font-size: 14px;
-          font-weight: 900;
-          box-shadow: 0 10px 22px rgba(15, 23, 42, 0.2);
-          cursor: pointer;
-        }
-
-        .kether-search-tags {
-          display: flex;
-          flex-wrap: wrap;
-          gap: 8px;
-          margin-top: 14px;
-        }
-
-        .kether-search-tag {
-          border: 1px solid rgba(255, 255, 255, 0.72);
-          border-radius: 999px;
-          background: rgba(255, 255, 255, 0.54);
-          color: #475569;
-          padding: 8px 12px;
-          font-size: 13px;
-          font-weight: 800;
-          box-shadow: 0 6px 14px rgba(15, 23, 42, 0.06);
-          cursor: pointer;
-        }
-
-        .kether-search-icon-button,
-        .nav-icon-button {
-          width: auto !important;
-          height: auto !important;
-          min-width: 0 !important;
-          min-height: 0 !important;
-          border: 0 !important;
-          outline: 0 !important;
-          padding: 0 !important;
-          margin: 0 !important;
-          background: transparent !important;
-          box-shadow: none !important;
-          color: #111827 !important;
-          display: inline-flex !important;
-          align-items: center !important;
-          justify-content: center !important;
-          cursor: pointer !important;
-          appearance: none !important;
-          -webkit-appearance: none !important;
-          -webkit-tap-highlight-color: transparent !important;
-        }
-
-        .kether-search-icon-button:hover,
-        .kether-search-icon-button:focus,
-        .kether-search-icon-button:active,
-        .nav-icon-button:hover,
-        .nav-icon-button:focus,
-        .nav-icon-button:active {
-          border: 0 !important;
-          outline: 0 !important;
-          background: transparent !important;
-          box-shadow: none !important;
-        }
-
-        .kether-search-icon-svg,
-        .kether-search-icon-button svg,
-        .nav-icon-button svg {
-          width: 28px !important;
-          height: 28px !important;
-          stroke-width: 2.25 !important;
-          display: block !important;
-        }
-
-      `}</style>
     </>
   );
 }
