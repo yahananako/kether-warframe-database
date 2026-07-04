@@ -2832,3 +2832,47 @@ a.nav-card {
     background: rgba(255, 255, 255, 0.10) !important;
   }
 }
+
+/* v2.5.6 menu-popup 更淡版玻璃菜單 */
+@media (max-width: 820px) {
+  .homepage-sci-fi .menu-popup,
+  .homepage-sci-fi details.menu-drawer[open] .menu-popup {
+    background:
+      linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.08),
+        rgba(245, 248, 250, 0.025)
+      ) !important;
+    background-color: rgba(255, 255, 255, 0.035) !important;
+
+    backdrop-filter: blur(7px) saturate(1.01) !important;
+    -webkit-backdrop-filter: blur(7px) saturate(1.01) !important;
+
+    border: 1px solid rgba(255, 255, 255, 0.07) !important;
+    box-shadow:
+      0 6px 16px rgba(0, 0, 0, 0.035),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.025) !important;
+  }
+
+  .homepage-sci-fi .menu-popup *,
+  .homepage-sci-fi .menu-popup div,
+  .homepage-sci-fi .menu-popup ul,
+  .homepage-sci-fi .menu-popup li {
+    background: transparent !important;
+    background-color: transparent !important;
+    background-image: none !important;
+    box-shadow: none !important;
+  }
+
+  .homepage-sci-fi .menu-popup a,
+  .homepage-sci-fi .menu-popup button {
+    background: transparent !important;
+    color: #101820 !important;
+    text-shadow: 0 1px 3px rgba(255, 255, 255, 0.42) !important;
+  }
+
+  .homepage-sci-fi .menu-popup a:hover,
+  .homepage-sci-fi .menu-popup button:hover {
+    background: rgba(255, 255, 255, 0.06) !important;
+  }
+}
