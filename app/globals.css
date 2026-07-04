@@ -3014,3 +3014,69 @@ a.nav-card {
     padding-bottom: 0.45rem !important;
   }
 }
+
+/* v2.5.8 救回固定背景
+   修正 v2.5.7 的 ::before z-index:-1 被手機瀏覽器藏起來問題
+*/
+.homepage-sci-fi {
+  position: relative !important;
+  isolation: isolate !important;
+  min-height: 100svh !important;
+  overflow-x: hidden !important;
+  background: #f6f8fa !important;
+}
+
+/* 背景固定在視窗底層，但不要用負 z-index */
+.homepage-sci-fi::before {
+  content: "" !important;
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 0 !important;
+  pointer-events: none !important;
+  display: block !important;
+  background:
+    linear-gradient(
+      rgba(246, 248, 250, 0.82),
+      rgba(246, 248, 250, 0.94)
+    ),
+    url("/home-ui-bg.png?v=258") center center / cover no-repeat !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: translateZ(0) !important;
+}
+
+/* 所有首頁內容壓在背景上面 */
+.homepage-sci-fi > * {
+  position: relative !important;
+  z-index: 2 !important;
+}
+
+/* 頂部操作列與菜單最高 */
+.homepage-sci-fi header,
+.homepage-sci-fi nav,
+.homepage-sci-fi button,
+.homepage-sci-fi a,
+.homepage-sci-fi details,
+.homepage-sci-fi summary,
+.homepage-sci-fi [role="button"] {
+  position: relative !important;
+  z-index: 5000 !important;
+}
+
+/* 菜單彈層仍保持最高 */
+.homepage-sci-fi .menu-drawer,
+.homepage-sci-fi .menu-popup {
+  z-index: 9000 !important;
+}
+
+/* 手機版背景一樣固定 */
+@media (max-width: 820px) {
+  .homepage-sci-fi::before {
+    background:
+      linear-gradient(
+        rgba(246, 248, 250, 0.82),
+        rgba(246, 248, 250, 0.94)
+      ),
+      url("/home-ui-bg.png?v=258") center center / cover no-repeat !important;
+  }
+}
