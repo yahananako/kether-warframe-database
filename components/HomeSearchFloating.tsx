@@ -314,6 +314,50 @@ export default function HomeSearchFloating() {
           box-shadow: 0 6px 14px rgba(15, 23, 42, 0.06);
           cursor: pointer;
         }
+
+        .kether-search-icon-button,
+        .nav-icon-button {
+          width: auto !important;
+          height: auto !important;
+          min-width: 0 !important;
+          min-height: 0 !important;
+          border: 0 !important;
+          outline: 0 !important;
+          padding: 0 !important;
+          margin: 0 !important;
+          background: transparent !important;
+          box-shadow: none !important;
+          color: #111827 !important;
+          display: inline-flex !important;
+          align-items: center !important;
+          justify-content: center !important;
+          cursor: pointer !important;
+          appearance: none !important;
+          -webkit-appearance: none !important;
+          -webkit-tap-highlight-color: transparent !important;
+        }
+
+        .kether-search-icon-button:hover,
+        .kether-search-icon-button:focus,
+        .kether-search-icon-button:active,
+        .nav-icon-button:hover,
+        .nav-icon-button:focus,
+        .nav-icon-button:active {
+          border: 0 !important;
+          outline: 0 !important;
+          background: transparent !important;
+          box-shadow: none !important;
+        }
+
+        .kether-search-icon-svg,
+        .kether-search-icon-button svg,
+        .nav-icon-button svg {
+          width: 28px !important;
+          height: 28px !important;
+          stroke-width: 2.25 !important;
+          display: block !important;
+        }
+
       `}</style>
     </>
   );
