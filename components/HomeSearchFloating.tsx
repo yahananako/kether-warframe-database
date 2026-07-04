@@ -48,22 +48,9 @@ export default function HomeSearchFloating() {
         aria-label="開啟搜尋"
         title="搜尋資料庫"
         onClick={() => setOpen(true)}
-        style={{
-          width: 44,
-          height: 44,
-          border: "none",
-          outline: "none",
-          background: "transparent",
-          color: "#1f2937",
-          display: "inline-flex",
-          alignItems: "center",
-          justifyContent: "center",
-          borderRadius: 999,
-          cursor: "pointer",
-          WebkitTapHighlightColor: "transparent"
-        }}
+        className="nav-icon-button"
       >
-        <Search size={27} strokeWidth={2.5} />
+        <Search size={25} strokeWidth={2.25} />
       </button>
 
       {open && (
@@ -282,6 +269,36 @@ export default function HomeSearchFloating() {
           </section>
         </div>
       )}
+
+      <style jsx>{`
+        .nav-icon-button {
+          width: 42px;
+          height: 42px;
+          border: 0;
+          padding: 0;
+          margin: 0;
+          outline: 0;
+          background: transparent;
+          color: #1f2937;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 999px;
+          cursor: pointer;
+          appearance: none;
+          -webkit-appearance: none;
+          -webkit-tap-highlight-color: transparent;
+        }
+
+        .nav-icon-button:hover {
+          background: rgba(255, 255, 255, 0.42);
+        }
+
+        .nav-icon-button:active {
+          transform: scale(0.96);
+        }
+      `}</style>
+
     </>
   );
 }
