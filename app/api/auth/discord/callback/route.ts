@@ -1,5 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
-import { DISCORD_SESSION_COOKIE_NAME, DISCORD_SESSION_MAX_AGE_SECONDS, buildDiscordSessionPayload, createDiscordSessionCookieValue } from "../../../../../lib/auth/discordSession";
+import {
+  DISCORD_SESSION_COOKIE_NAME,
+  DISCORD_SESSION_MAX_AGE_SECONDS,
+  buildDiscordSessionPayload,
+  createDiscordSessionCookieValue
+} from "../../../../../lib/auth/discordSession";
 
 export const runtime = "nodejs";
 
@@ -50,7 +55,6 @@ function clearOauthState(response: NextResponse) {
 
 export async function GET(request: NextRequest) {
   const url = new URL(request.url);
-
   const code = url.searchParams.get("code");
   const state = url.searchParams.get("state");
   const savedState = request.cookies.get("kether_discord_oauth_state")?.value;
@@ -76,12 +80,13 @@ export async function GET(request: NextRequest) {
     );
   }
 
-  if (!guildId || allowedRoleIds.length === 0 || !sessionSecret) {
+  if (!guildId || !sessionSecret) {
     return NextResponse.json(
       {
         ok: false,
         error: "Discord guild access or session environment variables are not configured.",
-        required: ["DISCORD_GUILD_ID", "DISCORD_ALLOWED_ROLE_IDS", "SESSION_SECRET"]
+        required: ["DISCORD_GUILD_ID", "SESSION_SECRET"],
+        optional: ["DISCORD_ALLOWED_ROLE_IDS"]
       },
       { status: 500 }
     );
@@ -89,20 +94,14 @@ export async function GET(request: NextRequest) {
 
   if (!code) {
     return NextResponse.json(
-      {
-        ok: false,
-        error: "Missing Discord authorization code."
-      },
+      { ok: false, error: "Missing Discord authorization code." },
       { status: 400 }
     );
   }
 
   if (!state || !savedState || state !== savedState) {
     return NextResponse.json(
-      {
-        ok: false,
-        error: "Invalid Discord OAuth state."
-      },
+      { ok: false, error: "Invalid Discord OAuth state." },
       { status: 400 }
     );
   }
@@ -117,9 +116,7 @@ export async function GET(request: NextRequest) {
 
   const tokenResponse = await fetch(DISCORD_TOKEN_URL, {
     method: "POST",
-    headers: {
-      "Content-Type": "application/x-www-form-urlencoded"
-    },
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
     body: tokenBody,
     cache: "no-store"
   });
@@ -142,9 +139,7 @@ export async function GET(request: NextRequest) {
 
   const userResponse = await fetch(DISCORD_USER_URL, {
     method: "GET",
-    headers: {
-      Authorization: `${tokenType} ${tokenData.access_token}`
-    },
+    headers: { Authorization: `${tokenType} ${tokenData.access_token}` },
     cache: "no-store"
   });
 
@@ -164,13 +159,12 @@ export async function GET(request: NextRequest) {
     );
   }
 
+  const roleCheckEnabled = allowedRoleIds.length > 0;
   const guildMemberUrl = `https://discord.com/api/v10/users/@me/guilds/${guildId}/member`;
 
   const memberResponse = await fetch(guildMemberUrl, {
     method: "GET",
-    headers: {
-      Authorization: `${tokenType} ${tokenData.access_token}`
-    },
+    headers: { Authorization: `${tokenType} ${tokenData.access_token}` },
     cache: "no-store"
   });
 
@@ -193,6 +187,7 @@ export async function GET(request: NextRequest) {
           guildAccess: {
             guildId,
             isMember: false,
+            roleCheckEnabled,
             hasAllowedRole: false,
             authorized: false
           }
@@ -202,8 +197,11 @@ export async function GET(request: NextRequest) {
     );
   }
 
-  const matchedRoleIds = memberData.roles.filter((roleId) => allowedRoleIds.includes(roleId));
-  const hasAllowedRole = matchedRoleIds.length > 0;
+  const matchedRoleIds = roleCheckEnabled
+    ? memberData.roles.filter((roleId) => allowedRoleIds.includes(roleId))
+    : [];
+
+  const hasAllowedRole = !roleCheckEnabled || matchedRoleIds.length > 0;
 
   if (!hasAllowedRole) {
     return clearOauthState(
@@ -220,6 +218,7 @@ export async function GET(request: NextRequest) {
           guildAccess: {
             guildId,
             isMember: true,
+            roleCheckEnabled,
             hasAllowedRole: false,
             authorized: false,
             matchedRoleIds: []
@@ -230,6 +229,8 @@ export async function GET(request: NextRequest) {
     );
   }
 
+  const sessionRoleIds = roleCheckEnabled ? matchedRoleIds : memberData.roles;
+
   const sessionPayload = buildDiscordSessionPayload({
     discordUser: {
       id: userData.id,
@@ -238,7 +239,7 @@ export async function GET(request: NextRequest) {
       avatar: userData.avatar ?? null
     },
     guildId,
-    roleIds: matchedRoleIds
+    roleIds: sessionRoleIds
   });
 
   const sessionCookieValue = createDiscordSessionCookieValue(sessionPayload, sessionSecret);
@@ -256,9 +257,11 @@ export async function GET(request: NextRequest) {
     guildAccess: {
       guildId,
       isMember: true,
+      roleCheckEnabled,
       hasAllowedRole: true,
       authorized: true,
-      matchedRoleIds
+      matchedRoleIds,
+      roleIds: sessionRoleIds
     },
     session: {
       created: true,
