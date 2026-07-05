@@ -31,9 +31,11 @@ export default function LoginPage() {
             <MessageCircle size={20} />
             加入 Discord 群組
           </a>
-          <button className="auth-disabled" disabled>
-            <a href="/api/auth/discord/login" style={{ color: "inherit", textDecoration: "none", fontWeight: 800 }}>使用 Discord 登入</a>
-          </button>
+
+          <a className="auth-primary" href="/api/auth/discord/login">
+            <ShieldCheck size={20} />
+            使用 Discord 登入
+          </a>
         </div>
       </section>
 
@@ -59,18 +61,22 @@ export default function LoginPage() {
 
       <section className="auth-flow">
         <h2>未來登入流程</h2>
+
         <div>
           <span>1</span>
           <p>使用者點 Discord 登入</p>
         </div>
+
         <div>
           <span>2</span>
           <p>網站取得 Discord 使用者 ID</p>
         </div>
+
         <div>
           <span>3</span>
           <p>檢查是否在授權群組與指定身分組</p>
         </div>
+
         <div>
           <span>4</span>
           <p>通過後啟用個人已購買與完成度資料</p>
