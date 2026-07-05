@@ -18,7 +18,7 @@ import {
 } from "lucide-react";
 import { fetchSheetRows } from "../lib/sheets";
 import HomeSearchFloating from "../components/HomeSearchFloating";
-import HomeNotificationsFloating from "../components/HomeNotificationsFloating"; import HomeMenuFloating from "../components/HomeMenuFloating"; import KetherClanWatermark from "../components/KetherClanWatermark";
+import HomeNotificationsFloating from "../components/HomeNotificationsFloating"; import HomeMenuFloating from "../components/HomeMenuFloating"; import HomeAuthMini from "../components/HomeAuthMini"; import KetherClanWatermark from "../components/KetherClanWatermark";
 
 const navItems = [
   { label: "總覽", key: "overview", href: "/database/overview", icon: Gem },
@@ -104,7 +104,7 @@ export default async function HomePage() {
         <div className="topbar-right">
           <HomeSearchFloating />
           <HomeNotificationsFloating />
-          <Link className="login-mini" href="/login">登入</Link>
+          <HomeAuthMini />
           <a className="discord-mini" href="https://discord.gg/MFhTb8XMZ" target="_blank" rel="noreferrer">
             <MessageCircle size={18} />
             Discord
