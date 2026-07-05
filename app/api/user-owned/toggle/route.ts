@@ -1,13 +1,11 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import {
   DISCORD_SESSION_COOKIE_NAME,
   verifyDiscordSessionCookieValue
 } from "../../../../lib/auth/discordSession";
 import { hasServiceRoleKey, upsertOwnedItemForUser } from "../../../../lib/supabaseServer";
 
-export const runtime = "nodejs";
-
-export async function POST(request: NextRequest) {
+export async function POST(request: Request) {
   if (!hasServiceRoleKey()) {
     return NextResponse.json(
       {
@@ -22,22 +20,24 @@ export async function POST(request: NextRequest) {
 
   if (!sessionSecret) {
     return NextResponse.json(
-      {
-        ok: false,
-        message: "缺少 SESSION_SECRET。"
-      },
+      { ok: false, message: "缺少 SESSION_SECRET。" },
       { status: 500 }
     );
   }
 
-  const sessionCookie = request.cookies.get(DISCORD_SESSION_COOKIE_NAME)?.value;
+  const cookieHeader = request.headers.get("cookie") || "";
+  const sessionCookie = cookieHeader
+    .split(";")
+    .map((item) => item.trim())
+    .find((item) => item.startsWith(`${DISCORD_SESSION_COOKIE_NAME}=`))
+    ?.slice(DISCORD_SESSION_COOKIE_NAME.length + 1);
 
   if (!sessionCookie) {
     return NextResponse.json(
       {
         ok: false,
         authenticated: false,
-        message: "請先使用 Discord 登入。"
+        message: "請先登入 Discord 才能保存個人進度。"
       },
       { status: 401 }
     );
@@ -66,10 +66,7 @@ export async function POST(request: NextRequest) {
 
     if (!itemKey) {
       return NextResponse.json(
-        {
-          ok: false,
-          message: "缺少 itemKey。"
-        },
+        { ok: false, message: "缺少 itemKey。" },
         { status: 400 }
       );
     }
