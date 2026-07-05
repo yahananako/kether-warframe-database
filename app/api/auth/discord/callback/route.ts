@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
 const DISCORD_TOKEN_URL = "https://discord.com/api/v10/oauth2/token";
+const DISCORD_USER_URL = "https://discord.com/api/v10/users/@me";
 
 type DiscordTokenResponse = {
   access_token?: string;
@@ -10,6 +11,19 @@ type DiscordTokenResponse = {
   scope?: string;
   error?: string;
   error_description?: string;
+};
+
+type DiscordUserResponse = {
+  id?: string;
+  username?: string;
+  discriminator?: string;
+  global_name?: string | null;
+  avatar?: string | null;
+  locale?: string;
+  verified?: boolean;
+  mfa_enabled?: boolean;
+  error?: string;
+  message?: string;
 };
 
 export async function GET(request: NextRequest) {
@@ -85,13 +99,46 @@ export async function GET(request: NextRequest) {
     );
   }
 
+  const tokenType = tokenData.token_type ?? "Bearer";
+
+  const userResponse = await fetch(DISCORD_USER_URL, {
+    method: "GET",
+    headers: {
+      Authorization: `${tokenType} ${tokenData.access_token}`
+    },
+    cache: "no-store"
+  });
+
+  const userData = (await userResponse.json()) as DiscordUserResponse;
+
+  if (!userResponse.ok || !userData.id) {
+    return NextResponse.json(
+      {
+        ok: false,
+        error: "Discord user profile fetch failed.",
+        discordError: userData.error ?? null,
+        discordMessage: userData.message ?? null
+      },
+      { status: userResponse.status || 500 }
+    );
+  }
+
   const response = NextResponse.json({
     ok: true,
-    message: "Discord access token exchange succeeded.",
-    tokenType: tokenData.token_type ?? "Bearer",
-    expiresIn: tokenData.expires_in ?? null,
-    scope: tokenData.scope ?? null,
-    nextStep: "Fetch Discord user profile with /users/@me."
+    message: "Discord user profile fetch succeeded.",
+    discordUser: {
+      id: userData.id,
+      username: userData.username ?? null,
+      globalName: userData.global_name ?? null,
+      discriminator: userData.discriminator ?? null,
+      avatar: userData.avatar ?? null
+    },
+    token: {
+      tokenType,
+      expiresIn: tokenData.expires_in ?? null,
+      scope: tokenData.scope ?? null
+    },
+    nextStep: "Check Discord guild membership and allowed roles."
   });
 
   response.cookies.delete("kether_discord_oauth_state");
