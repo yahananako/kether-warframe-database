@@ -96,13 +96,16 @@ export default function AuthSessionStatus() {
   return (
     <section className="auth-hero-card">
       <h2>Discord 登入狀態</h2>
+
       <p>
         已登入：<strong>{displayName}</strong>
       </p>
+
       <p>
         Guild：{session.guildAccess?.guildId || "未取得"}，
         權限：{session.guildAccess?.authorized ? "已授權" : "未授權"}
       </p>
+
       <p>
         Session 到期：{session.session?.expiresAt || "未知"}
       </p>
