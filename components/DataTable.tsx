@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import type { SheetRow } from "../lib/sheets";
+import type { SheetRow } from "../lib/sheets"; import { fetchUserOwnedItems, toggleUserOwnedItem } from "../lib/userOwnedClient";
 
 type FilterMode = "all" | "owned" | "missing" | "priced" | "unpriced";
 type SortMode = "none" | "priceHigh" | "priceLow" | "name";
@@ -68,7 +68,7 @@ export default function DataTable({
   const [ownedMap, setOwnedMap] = useState<Record<string, boolean>>({});
   const [loadingOwned, setLoadingOwned] = useState(true);
   const [savingKey, setSavingKey] = useState<string | null>(null);
-  const [ownedMessage, setOwnedMessage] = useState("測試使用者模式");
+  const [ownedMessage, setOwnedMessage] = useState("尚未登入 Discord 個人進度");
 
   useEffect(() => {
     let active = true;
@@ -83,7 +83,7 @@ export default function DataTable({
 
         if (!active) return;
 
-        if (!response.ok || !data.ok) {
+        if (!data.ok) {
           setOwnedMessage(data.message || "個人已購買資料讀取失敗");
           setLoadingOwned(false);
           return;
@@ -226,7 +226,7 @@ export default function DataTable({
 
       const data = await response.json();
 
-      if (!response.ok || !data.ok) {
+      if (!data.ok) {
         setOwnedMap((current) => {
           const clone = { ...current };
           if (previous === undefined) {
@@ -263,7 +263,7 @@ export default function DataTable({
     <>
       <section className="owned-sync-banner">
         <span>{loadingOwned ? "讀取個人進度中..." : ownedMessage}</span>
-        <b>測試使用者：kether-test-user</b>
+        <b>Discord 個人進度</b>
       </section>
 
       <section className="section-stats-panel">
@@ -339,7 +339,7 @@ export default function DataTable({
               區塊 {sections.length} 個，有價格 {pricedCount} 筆，個人已購買 {ownedCount} 筆。
             </p>
           </div>
-          <span>Supabase 個人進度測試模式</span>
+          <span>Discord 個人進度</span>
         </div>
 
         <div className="db-table desktop-table">
