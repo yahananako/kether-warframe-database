@@ -11,7 +11,8 @@ import {
 } from "lucide-react";
 
 import AuthSessionStatus from "../../components/AuthSessionStatus";
-import ProfileOwnedSummary from "../../components/ProfileOwnedSummary"; import PermissionVerificationStatus from "../../components/PermissionVerificationStatus";
+import ProfileOwnedSummary from "../../components/ProfileOwnedSummary";
+import PermissionVerificationStatus from "../../components/PermissionVerificationStatus";
 
 export default function ProfilePage() {
   return (
@@ -75,7 +76,7 @@ export default function ProfilePage() {
 
         <div>
           <span>2</span>
-          <p>網站檢查 Discord 伺服器成員，身分組檢查可選</p>
+          <p>網站檢查 Discord Guild ID，並可選擇檢查 Role ID</p>
         </div>
 
         <div>
@@ -96,8 +97,8 @@ export default function ProfilePage() {
           <p>總覽會依照使用者自己的資料計算戰甲、武器、同伴、MOD 等完成度。</p>
         </article>
 
+        <Users size={34} />
         <article>
-          <Users size={34} />
           <h3>多群組支援</h3>
           <p>未來每個 Discord 群組會有獨立設定、允許身分組與訂閱狀態。</p>
         </article>
