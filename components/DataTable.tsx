@@ -75,11 +75,7 @@ export default function DataTable({
 
     async function loadOwnedItems() {
       try {
-        const response = await fetch("/api/user-owned/list", {
-          cache: "no-store"
-        });
-
-        const data = await response.json();
+        const data = await fetchUserOwnedItems();
 
         if (!active) return;
 
@@ -211,20 +207,7 @@ export default function DataTable({
     }));
 
     try {
-      const response = await fetch("/api/user-owned/toggle", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          itemKey: row.itemKey,
-          category,
-          section: row.section || "未分類",
-          owned: nextOwned
-        })
-      });
-
-      const data = await response.json();
+      const data = await toggleUserOwnedItem({ itemKey: row.itemKey, category, section: row.section || "未分類", owned: nextOwned });
 
       if (!data.ok) {
         setOwnedMap((current) => {
