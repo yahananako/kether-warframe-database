@@ -5,14 +5,13 @@ import {
   ShieldCheck,
   Database,
   BarChart3,
-  LockKeyhole,
   Users,
   CreditCard,
   LogOut
 } from "lucide-react";
 
 import AuthSessionStatus from "../../components/AuthSessionStatus";
-import ProfileOwnedSummary from "../../components/ProfileOwnedSummary";
+import ProfileOwnedSummary from "../../components/ProfileOwnedSummary"; import PermissionVerificationStatus from "../../components/PermissionVerificationStatus";
 
 export default function ProfilePage() {
   return (
@@ -103,11 +102,7 @@ export default function ProfilePage() {
           <p>未來每個 Discord 群組會有獨立設定、允許身分組與訂閱狀態。</p>
         </article>
 
-        <article>
-          <LockKeyhole size={34} />
-          <h3>權限驗證</h3>
-          <p>網站會檢查 Discord Guild ID，並可選擇檢查 Role ID。</p>
-        </article>
+        <PermissionVerificationStatus />
 
         <article>
           <CreditCard size={34} />
