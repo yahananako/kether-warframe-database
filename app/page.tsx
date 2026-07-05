@@ -18,7 +18,7 @@ import {
 } from "lucide-react";
 import { fetchSheetRows } from "../lib/sheets";
 import HomeSearchFloating from "../components/HomeSearchFloating";
-import HomeNotificationsFloating from "../components/HomeNotificationsFloating"; import HomeMenuFloating from "../components/HomeMenuFloating"; import KetherClanWatermark from "../components/KetherClanWatermark";
+import HomeNotificationsFloating from "../components/HomeNotificationsFloating"; import HomeMenuFloating from "../components/HomeMenuFloating";
 
 const navItems = [
   { label: "總覽", key: "overview", href: "/database/overview", icon: Gem },
@@ -70,7 +70,7 @@ export default async function HomePage() {
 
   return (<>
     <main style={{ position: "relative", isolation: "isolate" }} className="page-shell homepage-sci-fi">
-      <KetherClanWatermark />
+      
       <div className="home-fixed-bg" aria-hidden="true" />
 <div className="corner corner-lt" />
       <div className="corner corner-rt" />
