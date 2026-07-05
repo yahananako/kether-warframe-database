@@ -6,13 +6,12 @@ import {
   Database,
   BarChart3,
   Users,
-  CreditCard,
   LogOut
 } from "lucide-react";
 
 import AuthSessionStatus from "../../components/AuthSessionStatus";
 import ProfileOwnedSummary from "../../components/ProfileOwnedSummary";
-import PermissionVerificationStatus from "../../components/PermissionVerificationStatus";
+import PermissionVerificationStatus from "../../components/PermissionVerificationStatus"; import BillingPlanStatus from "../../components/BillingPlanStatus";
 
 export default function ProfilePage() {
   return (
@@ -104,12 +103,7 @@ export default function ProfilePage() {
         </article>
 
         <PermissionVerificationStatus />
-
-        <article>
-          <CreditCard size={34} />
-          <h3>付費方案預留</h3>
-          <p>未來可做群組訂閱、試用狀態、到期日與功能限制。</p>
-        </article>
+        <BillingPlanStatus />
       </section>
     </main>
   );
