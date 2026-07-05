@@ -68,7 +68,9 @@ export default function DataTable({
   const [ownedMap, setOwnedMap] = useState<Record<string, boolean>>({});
   const [loadingOwned, setLoadingOwned] = useState(true);
   const [savingKey, setSavingKey] = useState<string | null>(null);
+
   const [ownedMessage, setOwnedMessage] = useState("尚未登入 Discord 個人進度");
+  const [ownedAuthenticated, setOwnedAuthenticated] = useState(false);
 
   useEffect(() => {
     let active = true;
@@ -80,7 +82,8 @@ export default function DataTable({
         if (!active) return;
 
         if (!data.ok) {
-          setOwnedMessage(data.message || "個人已購買資料讀取失敗");
+          setOwnedAuthenticated(false);
+  setOwnedMessage(data.message || "請先登入 Discord 才能保存個人進度。");
           setLoadingOwned(false);
           return;
         }
@@ -91,7 +94,8 @@ export default function DataTable({
         }
 
         setOwnedMap(nextMap);
-        setOwnedMessage(`已連接個人進度：${data.count ?? 0} 筆`);
+        setOwnedAuthenticated(true);
+  setOwnedMessage(`已連接個人進度：${data.count ?? 0} 筆`);
         setLoadingOwned(false);
       } catch {
         if (!active) return;
@@ -197,7 +201,12 @@ export default function DataTable({
   const ownedCount = rowsWithOwned.filter((row) => row.personalOwned).length;
 
   async function toggleOwned(row: (typeof rowsWithOwned)[number]) {
-    const nextOwned = !row.personalOwned;
+    if (!ownedAuthenticated) {
+  setOwnedMessage("請先登入 Discord 才能保存個人進度。");
+  return;
+  }
+
+  const nextOwned = !row.personalOwned;
     const previous = ownedMap[row.itemKey];
 
     setSavingKey(row.itemKey);
@@ -220,7 +229,10 @@ export default function DataTable({
           return clone;
         });
 
-        setOwnedMessage(data.message || "儲存失敗");
+        if (data.authenticated === false) {
+  setOwnedAuthenticated(false);
+  }
+  setOwnedMessage(data.message || "儲存失敗");
         return;
       }
 
@@ -247,6 +259,9 @@ export default function DataTable({
       <section className="owned-sync-banner">
         <span>{loadingOwned ? "讀取個人進度中..." : ownedMessage}</span>
         <b>Discord 個人進度</b>
+  {!loadingOwned && !ownedAuthenticated && (
+  <a className="link-button" href="/login">登入 Discord</a>
+  )}
       </section>
 
       <section className="section-stats-panel">
@@ -355,7 +370,7 @@ export default function DataTable({
                   <button
                     className={row.personalOwned ? "owned-toggle owned-ok" : "owned-toggle"}
                     onClick={() => toggleOwned(row)}
-                    disabled={Boolean(savingKey)}
+                    disabled={Boolean(savingKey) || !ownedAuthenticated}
                     title={row.itemKey}
                   >
                     {saving ? "儲存中..." : displayOwned(row.personalOwned)}
@@ -391,7 +406,7 @@ export default function DataTable({
                   <button
                     className={row.personalOwned ? "owned-toggle owned-ok" : "owned-toggle"}
                     onClick={() => toggleOwned(row)}
-                    disabled={Boolean(savingKey)}
+                    disabled={Boolean(savingKey) || !ownedAuthenticated}
                     title={row.itemKey}
                   >
                     {saving ? "儲存中..." : displayOwned(row.personalOwned)}
