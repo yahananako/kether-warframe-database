@@ -1,4 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
+import { DISCORD_SESSION_COOKIE_NAME, DISCORD_SESSION_MAX_AGE_SECONDS, buildDiscordSessionPayload, createDiscordSessionCookieValue } from "../../../../../lib/auth/discordSession";
+
+export const runtime = "nodejs";
 
 const DISCORD_TOKEN_URL = "https://discord.com/api/v10/oauth2/token";
 const DISCORD_USER_URL = "https://discord.com/api/v10/users/@me";
@@ -56,6 +59,7 @@ export async function GET(request: NextRequest) {
   const clientSecret = process.env.DISCORD_CLIENT_SECRET;
   const redirectUri = process.env.DISCORD_REDIRECT_URI;
   const guildId = process.env.DISCORD_GUILD_ID;
+  const sessionSecret = process.env.SESSION_SECRET;
   const allowedRoleIds = (process.env.DISCORD_ALLOWED_ROLE_IDS ?? "")
     .split(",")
     .map((roleId) => roleId.trim())
@@ -72,12 +76,12 @@ export async function GET(request: NextRequest) {
     );
   }
 
-  if (!guildId || allowedRoleIds.length === 0) {
+  if (!guildId || allowedRoleIds.length === 0 || !sessionSecret) {
     return NextResponse.json(
       {
         ok: false,
-        error: "Discord guild access environment variables are not configured.",
-        required: ["DISCORD_GUILD_ID", "DISCORD_ALLOWED_ROLE_IDS"]
+        error: "Discord guild access or session environment variables are not configured.",
+        required: ["DISCORD_GUILD_ID", "DISCORD_ALLOWED_ROLE_IDS", "SESSION_SECRET"]
       },
       { status: 500 }
     );
@@ -226,9 +230,22 @@ export async function GET(request: NextRequest) {
     );
   }
 
+  const sessionPayload = buildDiscordSessionPayload({
+    discordUser: {
+      id: userData.id,
+      username: userData.username ?? null,
+      globalName: userData.global_name ?? null,
+      avatar: userData.avatar ?? null
+    },
+    guildId,
+    roleIds: matchedRoleIds
+  });
+
+  const sessionCookieValue = createDiscordSessionCookieValue(sessionPayload, sessionSecret);
+
   const response = NextResponse.json({
     ok: true,
-    message: "Discord guild membership and role check succeeded.",
+    message: "Discord authorization succeeded and session cookie was created.",
     discordUser: {
       id: userData.id,
       username: userData.username ?? null,
@@ -243,15 +260,21 @@ export async function GET(request: NextRequest) {
       authorized: true,
       matchedRoleIds
     },
-    token: {
-      tokenType,
-      expiresIn: tokenData.expires_in ?? null,
-      scope: tokenData.scope ?? null
+    session: {
+      created: true,
+      expiresAt: new Date(sessionPayload.exp * 1000).toISOString()
     },
-    nextStep: "Create a server-side session for authorized Discord users."
+    nextStep: "Read the current login session with /api/auth/session."
   });
 
   response.cookies.delete("kether_discord_oauth_state");
+  response.cookies.set(DISCORD_SESSION_COOKIE_NAME, sessionCookieValue, {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "lax",
+    path: "/",
+    maxAge: DISCORD_SESSION_MAX_AGE_SECONDS
+  });
 
   return response;
 }
