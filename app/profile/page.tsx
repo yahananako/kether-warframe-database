@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from "next/link"; import AuthSessionStatus from "../../components/AuthSessionStatus";
 import {
   UserRound,
   ShieldCheck,
@@ -77,7 +77,7 @@ export default function ProfilePage() {
         </div>
       </section>
 
-      <section className="auth-grid">
+      <AuthSessionStatus /> <section className="auth-grid">
         {progressCards.map((card) => (
           <article key={card.title}>
             <CheckCircle2 size={34} />
