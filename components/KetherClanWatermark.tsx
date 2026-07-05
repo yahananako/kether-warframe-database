@@ -3,24 +3,23 @@ export default function KetherClanWatermark() {
     <div
       aria-hidden="true"
       style={{
-        position: "absolute",
-        right: "7%",
-        bottom: "9rem",
-        width: "min(20vw, 180px)",
-        opacity: 0.085,
+        marginTop: 26,
+        display: "flex",
+        justifyContent: "flex-end",
         pointerEvents: "none",
         userSelect: "none",
-        zIndex: 1
+        opacity: 0.16
       }}
     >
       <img
         src="/kether-clan-logo.png"
         alt=""
         style={{
-          width: "100%",
+          width: "min(34vw, 170px)",
+          maxWidth: "100%",
           height: "auto",
           display: "block",
-          filter: "grayscale(100%) contrast(1.12)"
+          filter: "grayscale(100%) contrast(1.08)"
         }}
       />
     </div>
