@@ -11,7 +11,8 @@ import {
 
 import AuthSessionStatus from "../../components/AuthSessionStatus";
 import ProfileOwnedSummary from "../../components/ProfileOwnedSummary";
-import PermissionVerificationStatus from "../../components/PermissionVerificationStatus"; import BillingPlanStatus from "../../components/BillingPlanStatus";
+import PermissionVerificationStatus from "../../components/PermissionVerificationStatus";
+import BillingPlanStatus from "../../components/BillingPlanStatus";
 
 export default function ProfilePage() {
   return (
@@ -85,7 +86,7 @@ export default function ProfilePage() {
 
         <div>
           <span>4</span>
-          <p>讀寫個人已購買與完成度資料</p>
+          <p>讀寫個人已購買、完成度與方案狀態資料</p>
         </div>
       </section>
 
@@ -96,13 +97,14 @@ export default function ProfilePage() {
           <p>總覽會依照使用者自己的資料計算戰甲、武器、同伴、MOD 等完成度。</p>
         </article>
 
-        <Users size={34} />
         <article>
+          <Users size={34} />
           <h3>多群組支援</h3>
           <p>未來每個 Discord 群組會有獨立設定、允許身分組與訂閱狀態。</p>
         </article>
 
         <PermissionVerificationStatus />
+
         <BillingPlanStatus />
       </section>
     </main>
