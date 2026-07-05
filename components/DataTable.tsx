@@ -236,7 +236,29 @@ export default function DataTable({
         return;
       }
 
-      setOwnedMessage(`${row.chineseName || row.englishName}：${displayOwned(nextOwned)}`);
+      const refreshed = await fetchUserOwnedItems();
+
+      if (refreshed.ok) {
+        const refreshedMap: Record<string, boolean> = {};
+
+        for (const item of (refreshed.items || []) as OwnedApiItem[]) {
+          refreshedMap[item.item_key] = Boolean(item.owned);
+        }
+
+        setOwnedMap(refreshedMap);
+        setOwnedAuthenticated(true);
+
+        const refreshedCount =
+          refreshed.count ?? Object.values(refreshedMap).filter(Boolean).length;
+
+        setOwnedMessage(
+          `${row.chineseName || row.englishName}：${displayOwned(nextOwned)}，個人進度 ${refreshedCount} 筆`
+        );
+      } else {
+        setOwnedMessage(
+          `${row.chineseName || row.englishName}：${displayOwned(nextOwned)}，個人進度同步中`
+        );
+      }
     } catch {
       setOwnedMap((current) => {
         const clone = { ...current };
