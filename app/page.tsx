@@ -68,8 +68,9 @@ export default async function HomePage() {
   const totalSections = results.reduce((sum, item) => sum + item.sectionCount, 0);
   const totalCompletion = totalRows > 0 ? Math.round((totalOwned / totalRows) * 100) : 0;
 
-  return (<><KetherClanWatermark />
-    <main className="page-shell homepage-sci-fi">
+  return (<>
+    <main style={{ position: "relative", isolation: "isolate" }} className="page-shell homepage-sci-fi">
+      <KetherClanWatermark />
       <div className="home-fixed-bg" aria-hidden="true" />
 <div className="corner corner-lt" />
       <div className="corner corner-rt" />
@@ -295,7 +296,7 @@ export default async function HomePage() {
 
           <div className="total-row">
             <span>網站版本</span>
-            <b>v2.5.66</b>
+            <b>v2.5.67</b>
           </div>
         </article>
 
@@ -305,7 +306,7 @@ export default async function HomePage() {
             <span>備註</span>
           </div>
 
-          <p>・v2.5.66 已加入首頁自動資料總控台。</p>
+          <p>・v2.5.67 已加入首頁自動資料總控台。</p>
           <p>・下一階段可做 Discord 登入前置與個人化資料庫設計。</p>
           <p>・完成度目前讀取表格欄位，未來會改為個人獨立紀錄。</p>
           <div className="note-lines" />
