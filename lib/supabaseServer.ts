@@ -27,37 +27,47 @@ export async function supabaseAdminFetch(path: string, init: RequestInit = {}) {
   });
 }
 
-export async function ensureTestUser() {
+export async function ensureDiscordUser(input: {
+  discordUserId: string;
+  discordUsername: string | null;
+  avatarUrl?: string | null;
+}) {
   const response = await supabaseAdminFetch("users?on_conflict=discord_user_id", {
     method: "POST",
     body: JSON.stringify({
-      discord_user_id: TEST_DISCORD_USER_ID,
-      discord_username: TEST_DISCORD_USERNAME,
-      avatar_url: null,
+      discord_user_id: input.discordUserId,
+      discord_username: input.discordUsername ?? input.discordUserId,
+      avatar_url: input.avatarUrl ?? null,
       updated_at: new Date().toISOString()
     })
   });
 
   if (!response.ok) {
     const text = await response.text();
-    throw new Error(`Upsert test user failed: HTTP ${response.status} ${text}`);
+    throw new Error(`Upsert Discord user failed: HTTP ${response.status} ${text}`);
   }
 
   const users = await response.json();
 
   if (!users?.[0]) {
-    throw new Error("Test user upsert returned no data");
+    throw new Error("Discord user upsert returned no data");
   }
 
   return users[0];
 }
 
-export async function getKetherGuild() {
+export async function ensureTestUser() {
+  return ensureDiscordUser({
+    discordUserId: TEST_DISCORD_USER_ID,
+    discordUsername: TEST_DISCORD_USERNAME,
+    avatarUrl: null
+  });
+}
+
+export async function getGuildByDiscordId(discordGuildId: string) {
   const response = await supabaseAdminFetch(
-    `guilds?select=id,discord_guild_id,guild_name,subscription_status&discord_guild_id=eq.${KETHER_GUILD_ID}&limit=1`,
-    {
-      method: "GET"
-    }
+    `guilds?select=id,discord_guild_id,guild_name,subscription_status&discord_guild_id=eq.${discordGuildId}&limit=1`,
+    { method: "GET" }
   );
 
   if (!response.ok) {
@@ -68,20 +78,33 @@ export async function getKetherGuild() {
   const guilds = await response.json();
 
   if (!guilds?.[0]) {
-    throw new Error("KETHER guild not found in Supabase");
+    throw new Error(`Discord guild ${discordGuildId} not found in Supabase`);
   }
 
   return guilds[0];
 }
 
-export async function upsertOwnedItem(input: {
+export async function getKetherGuild() {
+  return getGuildByDiscordId(process.env.DISCORD_GUILD_ID || KETHER_GUILD_ID);
+}
+
+export async function upsertOwnedItemForUser(input: {
+  discordUserId: string;
+  discordUsername: string | null;
+  avatarUrl?: string | null;
+  guildDiscordId: string;
   itemKey: string;
   category: string;
   section: string;
   owned: boolean;
 }) {
-  const user = await ensureTestUser();
-  const guild = await getKetherGuild();
+  const user = await ensureDiscordUser({
+    discordUserId: input.discordUserId,
+    discordUsername: input.discordUsername,
+    avatarUrl: input.avatarUrl ?? null
+  });
+
+  const guild = await getGuildByDiscordId(input.guildDiscordId);
 
   const response = await supabaseAdminFetch("user_owned_items?on_conflict=user_id,guild_id,item_key", {
     method: "POST",
@@ -107,22 +130,44 @@ export async function upsertOwnedItem(input: {
     throw new Error("Owned item upsert returned no data");
   }
 
-  return {
-    user,
-    guild,
-    item: rows[0]
-  };
+  return { user, guild, item: rows[0] };
 }
 
-export async function listOwnedItems() {
-  const user = await ensureTestUser();
-  const guild = await getKetherGuild();
+export async function upsertOwnedItem(input: {
+  itemKey: string;
+  category: string;
+  section: string;
+  owned: boolean;
+}) {
+  return upsertOwnedItemForUser({
+    discordUserId: TEST_DISCORD_USER_ID,
+    discordUsername: TEST_DISCORD_USERNAME,
+    avatarUrl: null,
+    guildDiscordId: process.env.DISCORD_GUILD_ID || KETHER_GUILD_ID,
+    itemKey: input.itemKey,
+    category: input.category,
+    section: input.section,
+    owned: input.owned
+  });
+}
+
+export async function listOwnedItemsForUser(input: {
+  discordUserId: string;
+  discordUsername: string | null;
+  avatarUrl?: string | null;
+  guildDiscordId: string;
+}) {
+  const user = await ensureDiscordUser({
+    discordUserId: input.discordUserId,
+    discordUsername: input.discordUsername,
+    avatarUrl: input.avatarUrl ?? null
+  });
+
+  const guild = await getGuildByDiscordId(input.guildDiscordId);
 
   const response = await supabaseAdminFetch(
     `user_owned_items?select=*&user_id=eq.${user.id}&guild_id=eq.${guild.id}&order=updated_at.desc`,
-    {
-      method: "GET"
-    }
+    { method: "GET" }
   );
 
   if (!response.ok) {
@@ -132,9 +177,14 @@ export async function listOwnedItems() {
 
   const items = await response.json();
 
-  return {
-    user,
-    guild,
-    items
-  };
+  return { user, guild, items };
+}
+
+export async function listOwnedItems() {
+  return listOwnedItemsForUser({
+    discordUserId: TEST_DISCORD_USER_ID,
+    discordUsername: TEST_DISCORD_USERNAME,
+    avatarUrl: null,
+    guildDiscordId: process.env.DISCORD_GUILD_ID || KETHER_GUILD_ID
+  });
 }
