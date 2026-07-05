@@ -7,7 +7,8 @@ import {
   BarChart3,
   LockKeyhole,
   Users,
-  CreditCard
+  CreditCard,
+  LogOut
 } from "lucide-react";
 
 const progressCards = [
@@ -28,91 +29,110 @@ const progressCards = [
   },
   {
     title: "Discord 權限",
-    value: "待接入",
-    note: "之後會檢查是否在授權群組與指定身分組。"
+    value: "Session 已建立",
+    note: "目前已具備 Discord session 讀取與登出 route。"
   }
 ];
 
 export default function ProfilePage() {
   return (
-    <main className="page-shell profile-page">
+    <main className="page-shell auth-page">
       <div className="corner corner-lt" />
       <div className="corner corner-rt" />
       <div className="corner corner-lb" />
       <div className="corner corner-rb" />
 
-      <header className="profile-header">
+      <header className="auth-header">
         <Link href="/" className="db-back">← 返回首頁</Link>
-
         <div>
           <p>KETHER OF PARADISO</p>
           <h1>個人進度中心</h1>
-          <span>v2.2.0 個人化資料庫前置架構，準備接入 Discord 與資料庫。</span>
+          <span>v2.2.0 Discord session 與個人化資料庫前置架構。</span>
         </div>
       </header>
 
-      <section className="profile-hero">
-        <UserRound size={70} strokeWidth={1.4} />
+      <section className="auth-hero-card">
+        <UserRound size={68} strokeWidth={1.4} />
         <h2>你的 Warframe 收藏進度將會在這裡展開</h2>
         <p>
-          目前網站仍是 Google Sheets 只讀資料模式。下一階段接上資料庫後，
-          每位 Discord 使用者都會擁有自己的已購買紀錄、完成度、缺少清單與收藏統計。
+          目前網站仍是 Google Sheets 只讀資料模式。Discord 登入後，
+          每位使用者都會擁有自己的已購買紀錄、完成度、缺少清單與收藏統計。
         </p>
 
         <div className="auth-actions">
           <Link className="auth-primary" href="/login">
-            <LockKeyhole size={20} />
-            前往登入前置頁
+            <ShieldCheck size={20} />
+            前往登入頁
           </Link>
-          <Link className="auth-secondary" href="/database/overview">
-            查看總覽
-          </Link>
+
+          <a className="auth-primary" href="/api/auth/session">
+            <Database size={20} />
+            查看登入狀態
+          </a>
+
+          <a className="auth-primary" href="/api/auth/logout">
+            <LogOut size={20} />
+            登出 Discord
+          </a>
         </div>
       </section>
 
-      <section className="profile-progress-grid">
+      <section className="auth-grid">
         {progressCards.map((card) => (
           <article key={card.title}>
-            <span>{card.title}</span>
+            <CheckCircle2 size={34} />
+            <h3>{card.title}</h3>
             <strong>{card.value}</strong>
             <p>{card.note}</p>
           </article>
         ))}
       </section>
 
-      <section className="profile-system-grid">
-        <article>
-          <Database size={38} />
-          <h3>個人資料表</h3>
-          <p>未來會建立 user_owned_items，記錄每個 Discord 使用者對每個物品的已購買狀態。</p>
-        </article>
+      <section className="auth-flow">
+        <h2>個人化資料庫流程</h2>
 
-        <article>
-          <CheckCircle2 size={38} />
-          <h3>已購買切換</h3>
-          <p>資料頁的已購買按鈕會從只讀顯示，升級成可儲存的個人狀態。</p>
-        </article>
+        <div>
+          <span>1</span>
+          <p>使用者透過 Discord 登入</p>
+        </div>
 
+        <div>
+          <span>2</span>
+          <p>網站檢查伺服器成員與指定身分組</p>
+        </div>
+
+        <div>
+          <span>3</span>
+          <p>通過後建立 Discord session cookie</p>
+        </div>
+
+        <div>
+          <span>4</span>
+          <p>未來讀寫個人已購買與完成度資料</p>
+        </div>
+      </section>
+
+      <section className="auth-grid">
         <article>
-          <BarChart3 size={38} />
+          <BarChart3 size={34} />
           <h3>完成度統計</h3>
           <p>總覽會依照使用者自己的資料計算戰甲、武器、同伴、MOD 等完成度。</p>
         </article>
 
         <article>
-          <Users size={38} />
+          <Users size={34} />
           <h3>多群組支援</h3>
           <p>未來每個 Discord 群組會有獨立設定、允許身分組與訂閱狀態。</p>
         </article>
 
         <article>
-          <ShieldCheck size={38} />
+          <LockKeyhole size={34} />
           <h3>權限驗證</h3>
           <p>網站會檢查 Discord Guild ID 與 Role ID，通過才開啟個人化功能。</p>
         </article>
 
         <article>
-          <CreditCard size={38} />
+          <CreditCard size={34} />
           <h3>付費方案預留</h3>
           <p>未來可做群組訂閱、試用狀態、到期日與功能限制。</p>
         </article>
