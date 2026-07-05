@@ -26,6 +26,25 @@ type DiscordUserResponse = {
   message?: string;
 };
 
+type DiscordGuildMemberResponse = {
+  nick?: string | null;
+  avatar?: string | null;
+  roles?: string[];
+  joined_at?: string;
+  premium_since?: string | null;
+  pending?: boolean;
+  permissions?: string;
+  mute?: boolean;
+  deaf?: boolean;
+  error?: string;
+  message?: string;
+};
+
+function clearOauthState(response: NextResponse) {
+  response.cookies.delete("kether_discord_oauth_state");
+  return response;
+}
+
 export async function GET(request: NextRequest) {
   const url = new URL(request.url);
 
@@ -36,6 +55,11 @@ export async function GET(request: NextRequest) {
   const clientId = process.env.DISCORD_CLIENT_ID;
   const clientSecret = process.env.DISCORD_CLIENT_SECRET;
   const redirectUri = process.env.DISCORD_REDIRECT_URI;
+  const guildId = process.env.DISCORD_GUILD_ID;
+  const allowedRoleIds = (process.env.DISCORD_ALLOWED_ROLE_IDS ?? "")
+    .split(",")
+    .map((roleId) => roleId.trim())
+    .filter(Boolean);
 
   if (!clientId || !clientSecret || !redirectUri) {
     return NextResponse.json(
@@ -43,6 +67,17 @@ export async function GET(request: NextRequest) {
         ok: false,
         error: "Discord OAuth environment variables are not configured.",
         required: ["DISCORD_CLIENT_ID", "DISCORD_CLIENT_SECRET", "DISCORD_REDIRECT_URI"]
+      },
+      { status: 500 }
+    );
+  }
+
+  if (!guildId || allowedRoleIds.length === 0) {
+    return NextResponse.json(
+      {
+        ok: false,
+        error: "Discord guild access environment variables are not configured.",
+        required: ["DISCORD_GUILD_ID", "DISCORD_ALLOWED_ROLE_IDS"]
       },
       { status: 500 }
     );
@@ -112,20 +147,88 @@ export async function GET(request: NextRequest) {
   const userData = (await userResponse.json()) as DiscordUserResponse;
 
   if (!userResponse.ok || !userData.id) {
-    return NextResponse.json(
-      {
-        ok: false,
-        error: "Discord user profile fetch failed.",
-        discordError: userData.error ?? null,
-        discordMessage: userData.message ?? null
-      },
-      { status: userResponse.status || 500 }
+    return clearOauthState(
+      NextResponse.json(
+        {
+          ok: false,
+          error: "Discord user profile fetch failed.",
+          discordError: userData.error ?? null,
+          discordMessage: userData.message ?? null
+        },
+        { status: userResponse.status || 500 }
+      )
+    );
+  }
+
+  const guildMemberUrl = `https://discord.com/api/v10/users/@me/guilds/${guildId}/member`;
+
+  const memberResponse = await fetch(guildMemberUrl, {
+    method: "GET",
+    headers: {
+      Authorization: `${tokenType} ${tokenData.access_token}`
+    },
+    cache: "no-store"
+  });
+
+  const memberData = (await memberResponse.json()) as DiscordGuildMemberResponse;
+
+  if (!memberResponse.ok || !Array.isArray(memberData.roles)) {
+    return clearOauthState(
+      NextResponse.json(
+        {
+          ok: false,
+          error: "Discord guild membership check failed.",
+          discordError: memberData.error ?? null,
+          discordMessage: memberData.message ?? null,
+          discordUser: {
+            id: userData.id,
+            username: userData.username ?? null,
+            globalName: userData.global_name ?? null,
+            avatar: userData.avatar ?? null
+          },
+          guildAccess: {
+            guildId,
+            isMember: false,
+            hasAllowedRole: false,
+            authorized: false
+          }
+        },
+        { status: memberResponse.status || 403 }
+      )
+    );
+  }
+
+  const matchedRoleIds = memberData.roles.filter((roleId) => allowedRoleIds.includes(roleId));
+  const hasAllowedRole = matchedRoleIds.length > 0;
+
+  if (!hasAllowedRole) {
+    return clearOauthState(
+      NextResponse.json(
+        {
+          ok: false,
+          error: "Discord guild role is not allowed.",
+          discordUser: {
+            id: userData.id,
+            username: userData.username ?? null,
+            globalName: userData.global_name ?? null,
+            avatar: userData.avatar ?? null
+          },
+          guildAccess: {
+            guildId,
+            isMember: true,
+            hasAllowedRole: false,
+            authorized: false,
+            matchedRoleIds: []
+          }
+        },
+        { status: 403 }
+      )
     );
   }
 
   const response = NextResponse.json({
     ok: true,
-    message: "Discord user profile fetch succeeded.",
+    message: "Discord guild membership and role check succeeded.",
     discordUser: {
       id: userData.id,
       username: userData.username ?? null,
@@ -133,12 +236,19 @@ export async function GET(request: NextRequest) {
       discriminator: userData.discriminator ?? null,
       avatar: userData.avatar ?? null
     },
+    guildAccess: {
+      guildId,
+      isMember: true,
+      hasAllowedRole: true,
+      authorized: true,
+      matchedRoleIds
+    },
     token: {
       tokenType,
       expiresIn: tokenData.expires_in ?? null,
       scope: tokenData.scope ?? null
     },
-    nextStep: "Check Discord guild membership and allowed roles."
+    nextStep: "Create a server-side session for authorized Discord users."
   });
 
   response.cookies.delete("kether_discord_oauth_state");
