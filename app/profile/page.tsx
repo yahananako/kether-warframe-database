@@ -10,30 +10,7 @@ import {
   CreditCard,
   LogOut
 } from "lucide-react";
-import AuthSessionStatus from "../../components/AuthSessionStatus";
-
-const progressCards = [
-  {
-    title: "個人已購買",
-    value: "尚未啟用",
-    note: "未來每位 Discord 使用者會有自己的已購買紀錄。"
-  },
-  {
-    title: "完成度",
-    value: "待登入",
-    note: "登入後依個人資料計算，不再共用 Google Sheets 欄位。"
-  },
-  {
-    title: "收藏總價",
-    value: "規劃中",
-    note: "可依已購買 / 未購買估算所需白金。"
-  },
-  {
-    title: "Discord 權限",
-    value: "Session 已建立",
-    note: "目前已具備 Discord session 讀取與登出 route。"
-  }
-];
+import AuthSessionStatus from "../../components/AuthSessionStatus"; import ProfileOwnedSummary from "../../components/ProfileOwnedSummary";
 
 export default function ProfilePage() {
   return (
@@ -81,14 +58,7 @@ export default function ProfilePage() {
       <AuthSessionStatus />
 
       <section className="auth-grid">
-        {progressCards.map((card) => (
-          <article key={card.title}>
-            <CheckCircle2 size={34} />
-            <h3>{card.title}</h3>
-            <strong>{card.value}</strong>
-            <p>{card.note}</p>
-          </article>
-        ))}
+        <ProfileOwnedSummary />
       </section>
 
       <section className="auth-flow">
