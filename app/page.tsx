@@ -296,7 +296,7 @@ export default async function HomePage() {
 
           <div className="total-row">
             <span>網站版本</span>
-            <b>v2.5.70</b>
+            <b>v2.2.0</b>
           </div>
         </article>
 
@@ -307,7 +307,7 @@ export default async function HomePage() {
             <span>備註</span>
           </div>
 
-          <p>・v2.5.70 已加入首頁自動資料總控台。</p>
+          <p>・v2.2.0 已加入首頁自動資料總控台。</p>
           <p>・下一階段可做 Discord 登入前置與個人化資料庫設計。</p>
           <p>・完成度目前讀取表格欄位，未來會改為個人獨立紀錄。</p>
       <KetherClanWatermark />

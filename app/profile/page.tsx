@@ -47,7 +47,7 @@ export default function ProfilePage() {
         <div>
           <p>KETHER OF PARADISO</p>
           <h1>個人進度中心</h1>
-          <span>v2.5.70 個人化資料庫前置架構，準備接入 Discord 與資料庫。</span>
+          <span>v2.2.0 個人化資料庫前置架構，準備接入 Discord 與資料庫。</span>
         </div>
       </header>
 
