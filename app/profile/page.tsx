@@ -1,16 +1,18 @@
 import Link from "next/link";
+
 import {
   UserRound,
   ShieldCheck,
   Database,
-  CheckCircle2,
   BarChart3,
   LockKeyhole,
   Users,
   CreditCard,
   LogOut
 } from "lucide-react";
-import AuthSessionStatus from "../../components/AuthSessionStatus"; import ProfileOwnedSummary from "../../components/ProfileOwnedSummary";
+
+import AuthSessionStatus from "../../components/AuthSessionStatus";
+import ProfileOwnedSummary from "../../components/ProfileOwnedSummary";
 
 export default function ProfilePage() {
   return (
@@ -22,6 +24,7 @@ export default function ProfilePage() {
 
       <header className="auth-header">
         <Link href="/" className="db-back">← 返回首頁</Link>
+
         <div>
           <p>KETHER OF PARADISO</p>
           <h1>個人進度中心</h1>
@@ -31,7 +34,9 @@ export default function ProfilePage() {
 
       <section className="auth-hero-card">
         <UserRound size={68} strokeWidth={1.4} />
+
         <h2>你的 Warframe 收藏進度將會在這裡展開</h2>
+
         <p>
           目前網站仍是 Google Sheets 只讀資料模式。Discord 登入後，
           每位使用者都會擁有自己的已購買紀錄、完成度、缺少清單與收藏統計。
@@ -71,7 +76,7 @@ export default function ProfilePage() {
 
         <div>
           <span>2</span>
-          <p>網站檢查伺服器成員與指定身分組</p>
+          <p>網站檢查 Discord 伺服器成員，身分組檢查可選</p>
         </div>
 
         <div>
@@ -81,7 +86,7 @@ export default function ProfilePage() {
 
         <div>
           <span>4</span>
-          <p>未來讀寫個人已購買與完成度資料</p>
+          <p>讀寫個人已購買與完成度資料</p>
         </div>
       </section>
 
@@ -101,7 +106,7 @@ export default function ProfilePage() {
         <article>
           <LockKeyhole size={34} />
           <h3>權限驗證</h3>
-          <p>網站會檢查 Discord Guild ID 與 Role ID，通過才開啟個人化功能。</p>
+          <p>網站會檢查 Discord Guild ID，並可選擇檢查 Role ID。</p>
         </article>
 
         <article>
