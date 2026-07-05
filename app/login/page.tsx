@@ -14,7 +14,7 @@ export default function LoginPage() {
         <div>
           <p>KETHER OF PARADISO</p>
           <h1>Discord 登入</h1>
-          <span>v2.2.0 權限系統前置頁，下一階段會接入 Discord OAuth。</span>
+          <span>v2.2.0 權限系統前置頁，已接入 Discord OAuth 登入路由。</span>
         </div>
       </header>
 
@@ -22,7 +22,7 @@ export default function LoginPage() {
         <ShieldCheck size={68} strokeWidth={1.4} />
         <h2>氏族資料庫權限入口</h2>
         <p>
-          目前網站仍是公開只讀資料模式。未來登入後，會依照 Discord 群組與身分組判斷可用權限，
+          目前網站仍是公開只讀資料模式。Discord 登入後，會依照 Discord 群組與身分組判斷可用權限，
           並啟用個人已購買、完成度、收藏進度等個人化資料。
         </p>
 
@@ -32,7 +32,7 @@ export default function LoginPage() {
             加入 Discord 群組
           </a>
           <button className="auth-disabled" disabled>
-            Discord OAuth 尚未啟用
+            <a href="/api/auth/discord/login" style={{ color: "inherit", textDecoration: "none", fontWeight: 800 }}>使用 Discord 登入</a>
           </button>
         </div>
       </section>
