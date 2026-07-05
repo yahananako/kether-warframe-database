@@ -1,4 +1,4 @@
-import Link from "next/link"; import AuthSessionStatus from "../../components/AuthSessionStatus";
+import Link from "next/link";
 import {
   UserRound,
   ShieldCheck,
@@ -10,6 +10,7 @@ import {
   CreditCard,
   LogOut
 } from "lucide-react";
+import AuthSessionStatus from "../../components/AuthSessionStatus";
 
 const progressCards = [
   {
@@ -77,7 +78,9 @@ export default function ProfilePage() {
         </div>
       </section>
 
-      <AuthSessionStatus /> <section className="auth-grid">
+      <AuthSessionStatus />
+
+      <section className="auth-grid">
         {progressCards.map((card) => (
           <article key={card.title}>
             <CheckCircle2 size={34} />

@@ -22,12 +22,12 @@ app/profile/page.tsx
 - 提供登入入口
 - 提供登出入口
 
-## 安全規則
+## 本次修正
 
+- 將 AuthSessionStatus 實際掛入 /profile
+- 保留個人頁原本入口
 - 不修改網站版本
 - 不修改首頁
-- 不接觸 Discord access token
-- 只讀取 /api/auth/session 回傳的整理後資料
 
 ## 下一步
 
