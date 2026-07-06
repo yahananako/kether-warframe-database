@@ -11,10 +11,7 @@ export async function GET(request: NextRequest) {
 
   if (!sessionSecret) {
     return NextResponse.json(
-      {
-        ok: false,
-        error: "SESSION_SECRET is not configured."
-      },
+      { ok: false, error: "SESSION_SECRET is not configured." },
       { status: 500 }
     );
   }
@@ -23,11 +20,7 @@ export async function GET(request: NextRequest) {
 
   if (!sessionCookie) {
     return NextResponse.json(
-      {
-        ok: false,
-        authenticated: false,
-        error: "Discord session cookie is missing."
-      },
+      { ok: false, authenticated: false, error: "Discord session cookie is missing." },
       { status: 401 }
     );
   }
@@ -36,11 +29,7 @@ export async function GET(request: NextRequest) {
 
   if (!session) {
     return NextResponse.json(
-      {
-        ok: false,
-        authenticated: false,
-        error: "Discord session is invalid or expired."
-      },
+      { ok: false, authenticated: false, error: "Discord session is invalid or expired." },
       { status: 401 }
     );
   }
@@ -52,7 +41,11 @@ export async function GET(request: NextRequest) {
       id: session.sub,
       username: session.username,
       globalName: session.globalName,
-      avatar: session.avatar
+      avatar: session.avatar,
+      banner: session.banner,
+      accentColor: session.accentColor,
+      avatarDecorationAsset: session.avatarDecorationAsset,
+      nameplatePalette: session.nameplatePalette
     },
     guildAccess: {
       guildId: session.guildId,

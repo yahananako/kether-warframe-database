@@ -8,6 +8,10 @@ export type DiscordSessionPayload = {
   username: string | null;
   globalName: string | null;
   avatar: string | null;
+  banner: string | null;
+  accentColor: number | null;
+  avatarDecorationAsset: string | null;
+  nameplatePalette: string | null;
   guildId: string;
   roleIds: string[];
   iat: number;
@@ -20,6 +24,10 @@ type BuildSessionPayloadArgs = {
     username: string | null;
     globalName: string | null;
     avatar: string | null;
+    banner?: string | null;
+    accentColor?: number | null;
+    avatarDecorationAsset?: string | null;
+    nameplatePalette?: string | null;
   };
   guildId: string;
   roleIds: string[];
@@ -41,6 +49,10 @@ export function buildDiscordSessionPayload(args: BuildSessionPayloadArgs): Disco
     username: args.discordUser.username,
     globalName: args.discordUser.globalName,
     avatar: args.discordUser.avatar,
+    banner: args.discordUser.banner ?? null,
+    accentColor: args.discordUser.accentColor ?? null,
+    avatarDecorationAsset: args.discordUser.avatarDecorationAsset ?? null,
+    nameplatePalette: args.discordUser.nameplatePalette ?? null,
     guildId: args.guildId,
     roleIds: args.roleIds,
     iat: now,
@@ -81,7 +93,13 @@ export function verifyDiscordSessionCookieValue(value: string, secret: string) {
       return null;
     }
 
-    return payload;
+    return {
+      ...payload,
+      banner: payload.banner ?? null,
+      accentColor: payload.accentColor ?? null,
+      avatarDecorationAsset: payload.avatarDecorationAsset ?? null,
+      nameplatePalette: payload.nameplatePalette ?? null
+    };
   } catch {
     return null;
   }
