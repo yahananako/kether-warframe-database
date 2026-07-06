@@ -1,6 +1,6 @@
 "use client";
 
-// compact official news board with auto refresh 20260706
+// compact official news board with auto refresh 20260706 deploy-sync-20260706223651
 
 import { Bell } from "lucide-react";
 import Link from "next/link";
