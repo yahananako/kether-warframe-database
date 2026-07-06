@@ -260,7 +260,6 @@ export default async function HomePage() {
             <p className="official-info-note">官方公告與鈴鐺狀態會隨 RSS / API 自動更新。</p>
 
             <OfficialNewsBoard />
-
 </div>
   </article>
 </div>
