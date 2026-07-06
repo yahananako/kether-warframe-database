@@ -689,6 +689,88 @@ function buildHelpMessage() {
   ].join("\n");
 }
 
+function cleanDiscordText(value: string) {
+  return value.replace(/\*\*/g, "").trim();
+}
+
+function readLineValue(lines: string[], prefix: string) {
+  const line = lines.find((item) => item.startsWith(prefix));
+
+  if (!line) {
+    return "無資料";
+  }
+
+  return line.replace(prefix, "").trim();
+}
+
+async function buildMarketPriceEmbedData(rawKeyword: string, forcedRank: number | null = null) {
+  const priceMessage = await buildMarketPriceMessage(rawKeyword, forcedRank);
+
+  if (!priceMessage) {
+    return null;
+  }
+
+  const lines = priceMessage.split("\n").map((line) => line.trim()).filter(Boolean);
+  const title = cleanDiscordText(lines[0] ?? "Warframe.Market 查價結果");
+  const platform = readLineValue(lines, "平台：");
+  const rank = readLineValue(lines, "等級：");
+  const lowestSell = readLineValue(lines, "最低賣單：");
+  const highestBuy = readLineValue(lines, "最高收購：");
+  const topSell = readLineValue(lines, "前 5 賣單：");
+  const topBuy = readLineValue(lines, "前 5 收購：");
+  const source = readLineValue(lines, "來源：");
+
+  const fields: Array<{ name: string; value: string; inline?: boolean }> = [
+    {
+      name: "平台",
+      value: platform,
+      inline: true,
+    },
+    {
+      name: "等級",
+      value: rank,
+      inline: true,
+    },
+    {
+      name: "最低賣單",
+      value: lowestSell,
+      inline: true,
+    },
+    {
+      name: "最高收購",
+      value: highestBuy,
+      inline: true,
+    },
+    {
+      name: "前 5 賣單",
+      value: topSell,
+      inline: false,
+    },
+    {
+      name: "前 5 收購",
+      value: topBuy,
+      inline: false,
+    },
+  ];
+
+  return {
+    embeds: [
+      {
+        title,
+        url: source.startsWith("http") ? source : undefined,
+        description: "Warframe.Market 即時白金查價",
+        color: 16754671,
+        fields,
+        footer: {
+          text: "KETHER Warframe Database｜資料來源：Warframe.Market",
+        },
+        timestamp: new Date().toISOString(),
+      },
+    ],
+  };
+}
+
+
 async function buildKetherMessage(keyword: string) {
   try {
     const priceMessage = await buildMarketPriceMessage(keyword);
@@ -929,14 +1011,12 @@ export async function POST(request: Request) {
 
     if (commandName === "price") {
       try {
-        const priceMessage = await buildMarketPriceMessage(item, selectedRank);
+        const priceData = await buildMarketPriceEmbedData(item, selectedRank);
 
         return jsonResponse({
           type: RESPONSE_TYPE.CHANNEL_MESSAGE_WITH_SOURCE,
-          data: priceMessage
-            ? {
-                content: priceMessage,
-              }
+          data: priceData
+            ? priceData
             : {
                 content:
                   `找不到「${item}」的 Warframe.Market 交易資料喵。\n` +
@@ -972,6 +1052,6 @@ export async function POST(request: Request) {
 export async function GET() {
   return jsonResponse({
     ok: true,
-    name: "KETHER Discord Bot Price Rank Link and Help Endpoint",
+    name: "KETHER Discord Bot Price Embed Rank Link and Help Endpoint",
   });
 }
