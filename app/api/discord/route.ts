@@ -6,6 +6,7 @@ export const dynamic = "force-dynamic";
 const SITE_URL = "https://kether-warframe-database.vercel.app";
 const MARKET_API = "https://api.warframe.market/v2";
 const MARKET_SITE = "https://warframe.market/items";
+const MARKET_ASSETS_URL = "https://warframe.market/static/assets/";
 
 const INTERACTION_TYPE = {
   PING: 1,
@@ -23,6 +24,7 @@ type MarketItem = {
   name: string;
   slug: string;
   language: string;
+  imageUrl?: string;
 };
 
 type MarketOrder = {
@@ -323,6 +325,74 @@ function collectRawItems(source: any): any[] {
   return [];
 }
 
+
+function buildMarketAssetUrl(value: string) {
+  if (!value || typeof value !== "string") {
+    return undefined;
+  }
+
+  if (value.startsWith("http://") || value.startsWith("https://")) {
+    return value;
+  }
+
+  const cleanPath = value.startsWith("/") ? value.slice(1) : value;
+
+  return `${MARKET_ASSETS_URL}${cleanPath}`;
+}
+
+function pickItemImageUrl(item: any, language: string) {
+  const languageKeys = [
+    language,
+    language.replace("-", "_"),
+    language === "zh-hant" ? "zh" : language,
+    "en",
+  ];
+
+  const possiblePaths: string[][] = [];
+
+  for (const key of languageKeys) {
+    possiblePaths.push([key, "thumb"]);
+    possiblePaths.push([key, "icon"]);
+    possiblePaths.push(["i18n", key, "thumb"]);
+    possiblePaths.push(["i18n", key, "icon"]);
+  }
+
+  possiblePaths.push(["thumb"]);
+  possiblePaths.push(["icon"]);
+  possiblePaths.push(["image"]);
+  possiblePaths.push(["imageUrl"]);
+
+  for (const path of possiblePaths) {
+    const value = getNestedValue(item, path);
+
+    if (typeof value === "string" && value.trim()) {
+      return buildMarketAssetUrl(value.trim());
+    }
+  }
+
+  return undefined;
+}
+
+async function findMarketItemImageUrl(slug: string) {
+  if (!slug) {
+    return undefined;
+  }
+
+  const items = await getMarketItems();
+  const matchedItem = items.find((item) => item.slug === slug && item.imageUrl);
+
+  return matchedItem?.imageUrl;
+}
+
+function getSlugFromMarketUrl(source: string) {
+  if (!source.startsWith("http")) {
+    return "";
+  }
+
+  return source.split("/").filter(Boolean).pop() ?? "";
+}
+
+
 async function fetchMarketItemsByLanguage(language: string): Promise<MarketItem[]> {
   const response = await fetch(`${MARKET_API}/items`, {
     headers: {
@@ -357,6 +427,7 @@ async function fetchMarketItemsByLanguage(language: string): Promise<MarketItem[
         name,
         slug,
         language,
+        imageUrl: pickItemImageUrl(item, language),
       };
     })
     .filter((item: MarketItem | null): item is MarketItem => Boolean(item));
@@ -753,6 +824,8 @@ async function buildMarketPriceEmbedData(rawKeyword: string, forcedRank: number 
     },
   ];
 
+  const imageUrl = await findMarketItemImageUrl(getSlugFromMarketUrl(source));
+
   return {
     embeds: [
       {
@@ -760,6 +833,7 @@ async function buildMarketPriceEmbedData(rawKeyword: string, forcedRank: number 
         url: source.startsWith("http") ? source : undefined,
         description: "Warframe.Market 即時白金查價",
         color: 16754671,
+        thumbnail: imageUrl ? { url: imageUrl } : undefined,
         fields,
         footer: {
           text: "KETHER Warframe Database｜資料來源：Warframe.Market",
@@ -1052,6 +1126,6 @@ export async function POST(request: Request) {
 export async function GET() {
   return jsonResponse({
     ok: true,
-    name: "KETHER Discord Bot Price Embed Rank Link and Help Endpoint",
+    name: "KETHER Discord Bot Price Image Embed Rank Link and Help Endpoint",
   });
 }
