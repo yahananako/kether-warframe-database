@@ -4903,3 +4903,55 @@ a.nav-card {
   }
 }
 /* homepage status notes split end */
+
+/* homepage status card top align start */
+.status-notes-row .summary-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start !important;
+  align-items: stretch;
+  padding-top: 28px !important;
+}
+
+.status-notes-row .summary-card .card-title {
+  margin-top: 0 !important;
+  margin-bottom: 22px;
+  align-self: flex-start;
+}
+
+.status-notes-row .summary-card .summary-table {
+  width: 100%;
+  margin-top: 0 !important;
+}
+
+.status-notes-row .summary-card .summary-row {
+  display: grid !important;
+  grid-template-columns: max-content minmax(0, 1fr);
+  gap: 16px;
+  align-items: start;
+}
+
+.status-notes-row .summary-card .summary-row span {
+  white-space: nowrap;
+}
+
+.status-notes-row .summary-card .summary-row b {
+  min-width: 0;
+  text-align: right;
+  overflow-wrap: break-word;
+}
+
+.status-notes-row .summary-card .total-row {
+  margin-top: 24px;
+}
+
+@media (max-width: 640px) {
+  .status-notes-row .summary-card {
+    padding-top: 24px !important;
+  }
+
+  .status-notes-row .summary-card .summary-row {
+    gap: 12px;
+  }
+}
+/* homepage status card top align end */
