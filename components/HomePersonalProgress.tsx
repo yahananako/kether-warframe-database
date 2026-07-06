@@ -82,13 +82,13 @@ export default function HomePersonalProgress({
   if (loading) {
     return (
       <>
-        <article>
+        <article className="home-kpi-card home-kpi-card-personal">
           <span>個人已購買</span>
           <strong>讀取中</strong>
           <p>正在讀取 Discord 個人進度。</p>
         </article>
 
-        <article>
+        <article className="home-kpi-card home-kpi-card-personal">
           <span>個人完成度</span>
           <strong>讀取中</strong>
           <p>同步個人收藏資料中。</p>
@@ -99,13 +99,13 @@ export default function HomePersonalProgress({
 
   return (
     <>
-      <article>
+      <article className="home-kpi-card home-kpi-card-personal">
         <span>{isPersonal ? "個人已購買" : "表格已購買"}</span>
         <strong>{ownedCount.toLocaleString("zh-TW")}</strong>
         <p>{isPersonal ? "Discord 個人進度" : "未登入，顯示表格統計"}</p>
       </article>
 
-      <article>
+      <article className="home-kpi-card home-kpi-card-personal">
         <span>{isPersonal ? "個人完成度" : "表格完成度"}</span>
         <strong>{completion}%</strong>
         <p>{isPersonal ? "依個人已購買計算" : "登入後改用個人資料"}</p>

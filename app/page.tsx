@@ -149,14 +149,16 @@ export default async function HomePage() {
       <section className="home-kpi-grid home-zone home-zone-stats">
         <div className="panel-tag">數據區</div>
 
-        <article>
+        <article className="home-kpi-card">
           <span>總資料數</span>
           <strong>{totalRows.toLocaleString("zh-TW")}</strong>
+          <p>Google Sheets 全分類資料量</p>
         </article>
 
-        <article>
+        <article className="home-kpi-card">
           <span>有價格資料</span>
           <strong>{totalPriced.toLocaleString("zh-TW")}</strong>
+          <p>目前可追價的資料列</p>
         </article>
 
         <HomePersonalProgress
