@@ -31,15 +31,43 @@ function stripCdata(value: string) {
     .trim();
 }
 
-function stripHtml(value: string) {
+function decodeHtmlEntities(value: string) {
   return value
-    .replace(/<[^>]*>/g, "")
+    .replace(/&nbsp;/g, " ")
     .replace(/&amp;/g, "&")
     .replace(/&lt;/g, "<")
     .replace(/&gt;/g, ">")
     .replace(/&quot;/g, '"')
     .replace(/&#39;/g, "'")
+    .replace(/&#x2F;/g, "/")
+    .replace(/&#x27;/g, "'")
+    .replace(/&#x22;/g, '"');
+}
+
+function stripHtml(value: string) {
+  const decoded = decodeHtmlEntities(value);
+
+  return decoded
+    .replace(/<script[\s\S]*?<\/script>/gi, " ")
+    .replace(/<style[\s\S]*?<\/style>/gi, " ")
+    .replace(/<iframe[\s\S]*?<\/iframe>/gi, " ")
+    .replace(/<img[^>]*>/gi, " ")
+    .replace(/<br\s*\/?\s*>/gi, " ")
+    .replace(/<\/p>/gi, " ")
+    .replace(/<[^>]*>/g, " ")
+    .replace(/https?:\/\/\S+/g, " ")
+    .replace(/\s+/g, " ")
     .trim();
+}
+
+function trimSummary(value: string, maxLength = 130) {
+  const cleaned = stripHtml(value);
+
+  if (cleaned.length <= maxLength) {
+    return cleaned;
+  }
+
+  return `${cleaned.slice(0, maxLength).trim()}…`;
 }
 
 function readTag(block: string, tagName: string) {
@@ -109,7 +137,7 @@ function toOfficialNewsItem(item: ParsedFeedItem, index: number): OfficialNewsIt
     id: `official-feed-${index + 1}`,
     category: "NEWS",
     title: item.title,
-    summary: item.summary || "官方新聞摘要待補。",
+    summary: trimSummary(item.summary || "官方新聞摘要待補。"),
     publishedAt: item.publishedAt,
     href: item.href,
     source: "rss-feed",
