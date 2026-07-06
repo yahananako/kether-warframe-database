@@ -7,6 +7,23 @@ type ParsedFeedItem = {
   publishedAt: string | null;
 };
 
+export type OfficialNewsFeedDebug = {
+  feedUrl: string | null;
+  feedEnabled: boolean;
+  status: "disabled" | "fetched" | "empty" | "error";
+  httpStatus: number | null;
+  parser: "rss" | "atom" | "none";
+  parsedCount: number;
+  fallbackReason: string | null;
+  errorMessage: string | null;
+  xmlPreview: string | null;
+};
+
+export type OfficialNewsFeedResult = {
+  items: OfficialNewsItem[];
+  debug: OfficialNewsFeedDebug;
+};
+
 function stripCdata(value: string) {
   return value
     .replace(/^<!\[CDATA\[/, "")
@@ -54,7 +71,7 @@ function parseRssItems(xml: string): ParsedFeedItem[] {
     .map((block) => {
       const title = readTag(block, "title");
       const summary = readTag(block, "description") || readTag(block, "summary");
-      const href = readTag(block, "link");
+      const href = readTag(block, "link") || readTag(block, "guid");
       const publishedAt = normalizeDate(readTag(block, "pubDate") || readTag(block, "published"));
 
       return {
@@ -99,36 +116,101 @@ function toOfficialNewsItem(item: ParsedFeedItem, index: number): OfficialNewsIt
   };
 }
 
-export async function getOfficialNewsItems(): Promise<OfficialNewsItem[]> {
+function fallbackResult(debug: OfficialNewsFeedDebug): OfficialNewsFeedResult {
+  return {
+    items: OFFICIAL_NEWS_ITEMS,
+    debug,
+  };
+}
+
+export async function getOfficialNewsItems(): Promise<OfficialNewsFeedResult> {
   const feedUrl = process.env.WARFRAME_OFFICIAL_NEWS_FEED_URL;
 
   if (!feedUrl) {
-    return OFFICIAL_NEWS_ITEMS;
+    return fallbackResult({
+      feedUrl: null,
+      feedEnabled: false,
+      status: "disabled",
+      httpStatus: null,
+      parser: "none",
+      parsedCount: 0,
+      fallbackReason: "WARFRAME_OFFICIAL_NEWS_FEED_URL is not set.",
+      errorMessage: null,
+      xmlPreview: null,
+    });
   }
 
   try {
     const response = await fetch(feedUrl, {
       headers: {
-        Accept: "application/rss+xml, application/atom+xml, application/xml, text/xml",
+        Accept: "application/rss+xml, application/atom+xml, application/xml, text/xml, */*",
+        "User-Agent": "KETHER-Warframe-Database/1.0",
       },
       next: {
         revalidate: 300,
       },
     });
 
+    const xml = await response.text();
+
     if (!response.ok) {
-      throw new Error(`Official news feed failed: ${response.status}`);
+      return fallbackResult({
+        feedUrl,
+        feedEnabled: true,
+        status: "error",
+        httpStatus: response.status,
+        parser: "none",
+        parsedCount: 0,
+        fallbackReason: `Feed returned HTTP ${response.status}.`,
+        errorMessage: null,
+        xmlPreview: xml.slice(0, 260),
+      });
     }
 
-    const xml = await response.text();
-    const parsedItems = parseRssItems(xml).length > 0 ? parseRssItems(xml) : parseAtomItems(xml);
+    const rssItems = parseRssItems(xml);
+    const atomItems = rssItems.length > 0 ? [] : parseAtomItems(xml);
+    const parsedItems = rssItems.length > 0 ? rssItems : atomItems;
+    const parser = rssItems.length > 0 ? "rss" : atomItems.length > 0 ? "atom" : "none";
 
     if (parsedItems.length === 0) {
-      return OFFICIAL_NEWS_ITEMS;
+      return fallbackResult({
+        feedUrl,
+        feedEnabled: true,
+        status: "empty",
+        httpStatus: response.status,
+        parser,
+        parsedCount: 0,
+        fallbackReason: "Feed fetched, but parser found 0 valid items.",
+        errorMessage: null,
+        xmlPreview: xml.slice(0, 260),
+      });
     }
 
-    return parsedItems.slice(0, 5).map(toOfficialNewsItem);
-  } catch {
-    return OFFICIAL_NEWS_ITEMS;
+    return {
+      items: parsedItems.slice(0, 5).map(toOfficialNewsItem),
+      debug: {
+        feedUrl,
+        feedEnabled: true,
+        status: "fetched",
+        httpStatus: response.status,
+        parser,
+        parsedCount: parsedItems.length,
+        fallbackReason: null,
+        errorMessage: null,
+        xmlPreview: xml.slice(0, 260),
+      },
+    };
+  } catch (error) {
+    return fallbackResult({
+      feedUrl,
+      feedEnabled: true,
+      status: "error",
+      httpStatus: null,
+      parser: "none",
+      parsedCount: 0,
+      fallbackReason: "Feed fetch failed.",
+      errorMessage: error instanceof Error ? error.message : String(error),
+      xmlPreview: null,
+    });
   }
 }

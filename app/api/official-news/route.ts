@@ -9,7 +9,8 @@ import { getOfficialNewsItems } from "../../../lib/officialNewsFeed";
 export const dynamic = "force-dynamic";
 
 export async function GET() {
-  const items = await getOfficialNewsItems();
+  const result = await getOfficialNewsItems();
+  const items = result.items;
   const isFallback = items.every((item) => item.source === "static-placeholder");
 
   return NextResponse.json(
@@ -24,12 +25,14 @@ export async function GET() {
       links: OFFICIAL_NEWS_LINKS,
       items,
       itemCount: items.length,
-      feedEnabled: Boolean(process.env.WARFRAME_OFFICIAL_NEWS_FEED_URL),
+      feedEnabled: result.debug.feedEnabled,
+      feedDebug: result.debug,
       nextSteps: [
-        "在 Vercel 設定 WARFRAME_OFFICIAL_NEWS_FEED_URL",
-        "確認 /api/official-news 可回傳 rss-news-items-source",
-        "依官方來源格式微調分類與摘要",
-        "首頁顯示最新官方新聞",
+        "查看 feedDebug.status",
+        "查看 feedDebug.httpStatus",
+        "查看 feedDebug.parser",
+        "查看 feedDebug.parsedCount",
+        "查看 feedDebug.fallbackReason",
       ],
     },
     {
