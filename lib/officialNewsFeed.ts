@@ -13,6 +13,8 @@ export type OfficialNewsFeedDebug = {
   status: "disabled" | "fetched" | "empty" | "error";
   httpStatus: number | null;
   parser: "rss" | "atom" | "none";
+  rawItemCount: number;
+  rawEntryCount: number;
   parsedCount: number;
   fallbackReason: string | null;
   errorMessage: string | null;
@@ -24,13 +26,6 @@ export type OfficialNewsFeedResult = {
   debug: OfficialNewsFeedDebug;
 };
 
-function stripCdata(value: string) {
-  return value
-    .replace(/^<!\[CDATA\[/, "")
-    .replace(/\]\]>$/, "")
-    .trim();
-}
-
 function decodeHtmlEntities(value: string) {
   return value
     .replace(/&nbsp;/g, " ")
@@ -41,11 +36,22 @@ function decodeHtmlEntities(value: string) {
     .replace(/&#39;/g, "'")
     .replace(/&#x2F;/g, "/")
     .replace(/&#x27;/g, "'")
-    .replace(/&#x22;/g, '"');
+    .replace(/&#x22;/g, '"')
+    .replace(/&#(\d+);/g, (_match, code: string) => String.fromCharCode(Number(code)))
+    .replace(/&#x([0-9a-f]+);/gi, (_match, code: string) => String.fromCharCode(parseInt(code, 16)));
+}
+
+function stripCdata(value: string) {
+  const trimmed = value.trim();
+
+  return trimmed
+    .replace(/^<!\[CDATA\[/i, "")
+    .replace(/\]\]>$/i, "")
+    .trim();
 }
 
 function stripHtml(value: string) {
-  const decoded = decodeHtmlEntities(value);
+  const decoded = decodeHtmlEntities(stripCdata(value));
 
   return decoded
     .replace(/<script[\s\S]*?<\/script>/gi, " ")
@@ -60,7 +66,7 @@ function stripHtml(value: string) {
     .trim();
 }
 
-function trimSummary(value: string, maxLength = 130) {
+function trimSummary(value: string, maxLength = 150) {
   const cleaned = stripHtml(value);
 
   if (cleaned.length <= maxLength) {
@@ -70,14 +76,63 @@ function trimSummary(value: string, maxLength = 130) {
   return `${cleaned.slice(0, maxLength).trim()}…`;
 }
 
+function escapeRegExp(value: string) {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+function tagPattern(tagName: string) {
+  if (tagName.includes(":")) {
+    return escapeRegExp(tagName);
+  }
+
+  return `(?:[\\w.-]+:)?${escapeRegExp(tagName)}`;
+}
+
 function readTag(block: string, tagName: string) {
-  const match = block.match(new RegExp(`<${tagName}[^>]*>([\\s\\S]*?)<\\/${tagName}>`, "i"));
-  return match ? stripHtml(stripCdata(match[1])) : "";
+  const pattern = tagPattern(tagName);
+  const match = block.match(new RegExp(`<${pattern}\\b[^>]*>([\\s\\S]*?)<\\/${pattern}>`, "i"));
+
+  return match ? stripHtml(match[1]) : "";
+}
+
+function readRawTag(block: string, tagName: string) {
+  const pattern = tagPattern(tagName);
+  const match = block.match(new RegExp(`<${pattern}\\b[^>]*>([\\s\\S]*?)<\\/${pattern}>`, "i"));
+
+  return match ? stripCdata(match[1]) : "";
+}
+
+function readFirstTag(block: string, tagNames: string[]) {
+  for (const tagName of tagNames) {
+    const value = readTag(block, tagName);
+
+    if (value) {
+      return value;
+    }
+  }
+
+  return "";
+}
+
+function readFirstRawTag(block: string, tagNames: string[]) {
+  for (const tagName of tagNames) {
+    const value = readRawTag(block, tagName);
+
+    if (value) {
+      return value;
+    }
+  }
+
+  return "";
 }
 
 function readAtomLink(block: string) {
   const hrefMatch = block.match(/<link[^>]+href=["']([^"']+)["'][^>]*>/i);
   return hrefMatch ? hrefMatch[1].trim() : "";
+}
+
+function readRssLink(block: string) {
+  return readFirstTag(block, ["link", "guid"]) || readAtomLink(block);
 }
 
 function normalizeDate(value: string) {
@@ -92,15 +147,22 @@ function normalizeDate(value: string) {
   return date.toISOString();
 }
 
+function extractBlocks(xml: string, tagName: string) {
+  const pattern = new RegExp(`<(?:[\\w.-]+:)?${tagName}\\b[\\s\\S]*?<\\/(?:[\\w.-]+:)?${tagName}>`, "gi");
+
+  return Array.from(xml.matchAll(pattern)).map((match) => match[0]);
+}
+
 function parseRssItems(xml: string): ParsedFeedItem[] {
-  const blocks = Array.from(xml.matchAll(/<item[\s\S]*?<\/item>/gi)).map((match) => match[0]);
+  const blocks = extractBlocks(xml, "item");
 
   return blocks
     .map((block) => {
-      const title = readTag(block, "title");
-      const summary = readTag(block, "description") || readTag(block, "summary");
-      const href = readTag(block, "link") || readTag(block, "guid");
-      const publishedAt = normalizeDate(readTag(block, "pubDate") || readTag(block, "published"));
+      const title = readFirstTag(block, ["title"]);
+      const rawSummary = readFirstRawTag(block, ["description", "content:encoded", "summary", "content"]);
+      const summary = trimSummary(rawSummary || "官方新聞摘要待補。");
+      const href = readRssLink(block);
+      const publishedAt = normalizeDate(readFirstTag(block, ["pubDate", "published", "updated", "dc:date"]));
 
       return {
         title,
@@ -113,14 +175,15 @@ function parseRssItems(xml: string): ParsedFeedItem[] {
 }
 
 function parseAtomItems(xml: string): ParsedFeedItem[] {
-  const blocks = Array.from(xml.matchAll(/<entry[\s\S]*?<\/entry>/gi)).map((match) => match[0]);
+  const blocks = extractBlocks(xml, "entry");
 
   return blocks
     .map((block) => {
-      const title = readTag(block, "title");
-      const summary = readTag(block, "summary") || readTag(block, "content");
-      const href = readAtomLink(block);
-      const publishedAt = normalizeDate(readTag(block, "published") || readTag(block, "updated"));
+      const title = readFirstTag(block, ["title"]);
+      const rawSummary = readFirstRawTag(block, ["summary", "content", "description"]);
+      const summary = trimSummary(rawSummary || "官方新聞摘要待補。");
+      const href = readAtomLink(block) || readFirstTag(block, ["link", "id"]);
+      const publishedAt = normalizeDate(readFirstTag(block, ["published", "updated"]));
 
       return {
         title,
@@ -137,7 +200,7 @@ function toOfficialNewsItem(item: ParsedFeedItem, index: number): OfficialNewsIt
     id: `official-feed-${index + 1}`,
     category: "NEWS",
     title: item.title,
-    summary: trimSummary(item.summary || "官方新聞摘要待補。"),
+    summary: item.summary || "官方新聞摘要待補。",
     publishedAt: item.publishedAt,
     href: item.href,
     source: "rss-feed",
@@ -161,6 +224,8 @@ export async function getOfficialNewsItems(): Promise<OfficialNewsFeedResult> {
       status: "disabled",
       httpStatus: null,
       parser: "none",
+      rawItemCount: 0,
+      rawEntryCount: 0,
       parsedCount: 0,
       fallbackReason: "WARFRAME_OFFICIAL_NEWS_FEED_URL is not set.",
       errorMessage: null,
@@ -180,6 +245,8 @@ export async function getOfficialNewsItems(): Promise<OfficialNewsFeedResult> {
     });
 
     const xml = await response.text();
+    const rawItemCount = extractBlocks(xml, "item").length;
+    const rawEntryCount = extractBlocks(xml, "entry").length;
 
     if (!response.ok) {
       return fallbackResult({
@@ -188,10 +255,12 @@ export async function getOfficialNewsItems(): Promise<OfficialNewsFeedResult> {
         status: "error",
         httpStatus: response.status,
         parser: "none",
+        rawItemCount,
+        rawEntryCount,
         parsedCount: 0,
         fallbackReason: `Feed returned HTTP ${response.status}.`,
         errorMessage: null,
-        xmlPreview: xml.slice(0, 260),
+        xmlPreview: xml.slice(0, 360),
       });
     }
 
@@ -207,10 +276,12 @@ export async function getOfficialNewsItems(): Promise<OfficialNewsFeedResult> {
         status: "empty",
         httpStatus: response.status,
         parser,
+        rawItemCount,
+        rawEntryCount,
         parsedCount: 0,
         fallbackReason: "Feed fetched, but parser found 0 valid items.",
         errorMessage: null,
-        xmlPreview: xml.slice(0, 260),
+        xmlPreview: xml.slice(0, 360),
       });
     }
 
@@ -222,10 +293,12 @@ export async function getOfficialNewsItems(): Promise<OfficialNewsFeedResult> {
         status: "fetched",
         httpStatus: response.status,
         parser,
+        rawItemCount,
+        rawEntryCount,
         parsedCount: parsedItems.length,
         fallbackReason: null,
         errorMessage: null,
-        xmlPreview: xml.slice(0, 260),
+        xmlPreview: xml.slice(0, 360),
       },
     };
   } catch (error) {
@@ -235,6 +308,8 @@ export async function getOfficialNewsItems(): Promise<OfficialNewsFeedResult> {
       status: "error",
       httpStatus: null,
       parser: "none",
+      rawItemCount: 0,
+      rawEntryCount: 0,
       parsedCount: 0,
       fallbackReason: "Feed fetch failed.",
       errorMessage: error instanceof Error ? error.message : String(error),
