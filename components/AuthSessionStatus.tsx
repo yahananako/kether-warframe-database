@@ -192,8 +192,7 @@ export default function AuthSessionStatus() {
           style={{
             position: "relative",
             padding: "0 26px 28px",
-            background:
-              "linear-gradient(180deg, rgba(255,255,255,0.70), rgba(255,255,255,0.92))"
+            background: `linear-gradient(180deg, ${accentHex}52 0%, ${accentHex}28 44%, rgba(255,255,255,0.94) 100%)`
           }}
         >
           <div
@@ -285,16 +284,7 @@ export default function AuthSessionStatus() {
             <span>
               權限狀態：<b>{isAuthorized ? "已授權" : "未授權"}</b>
             </span>
-
-            <span>
-              Guild：<b>已隱藏</b>
-            </span>
-
-            <span>
-              名片顏色：<b>{accentHex}</b>
-            </span>
-
-            <span>
+<span>
               Session 到期：<b>{session.session?.expiresAt || "未知"}</b>
             </span>
           </div>
