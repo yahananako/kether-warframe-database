@@ -1,6 +1,6 @@
 "use client";
 
-// compact official news board final sync 20260706
+// compact official news board with auto refresh 20260706
 
 import { Bell } from "lucide-react";
 import Link from "next/link";
@@ -12,6 +12,8 @@ import {
   type OfficialNewsBoardData,
   type OfficialNewsItem,
 } from "../data/officialNews";
+
+const OFFICIAL_NEWS_REFRESH_MS = 10 * 60 * 1000;
 
 type OfficialNewsApiResponse = {
   ok: boolean;
@@ -37,7 +39,8 @@ function formatOfficialNewsDate(value: string | null) {
 }
 
 function formatUpdatedAt(value: string) {
-  if (!value || value === "本地備援資料") return "本地備援資料";
+  if (!value || value === "準備同步") return "準備同步";
+  if (value === "本地備援資料") return "本地備援資料";
 
   const date = new Date(value);
 
@@ -52,17 +55,18 @@ function formatUpdatedAt(value: string) {
 }
 
 function getSourceLabel(mode: string) {
+  if (mode === "syncing") return "同步中";
   if (mode === "rss-news-items-source") return "RSS 已同步";
   if (mode === "static-news-items-source") return "本地備援";
   if (mode === "local-fallback") return "本地備援";
-  return "載入中";
+  return "同步中";
 }
 
 export default function OfficialNewsBoard() {
   const [board, setBoard] = useState<OfficialNewsBoardData>(OFFICIAL_NEWS_BOARD);
   const [items, setItems] = useState<OfficialNewsItem[]>(OFFICIAL_NEWS_ITEMS);
-  const [updatedAt, setUpdatedAt] = useState<string>("本地備援資料");
-  const [sourceMode, setSourceMode] = useState<string>("local-fallback");
+  const [updatedAt, setUpdatedAt] = useState<string>("準備同步");
+  const [sourceMode, setSourceMode] = useState<string>("syncing");
 
   useEffect(() => {
     let isMounted = true;
@@ -104,8 +108,11 @@ export default function OfficialNewsBoard() {
 
     loadOfficialNews();
 
+    const timer = window.setInterval(loadOfficialNews, OFFICIAL_NEWS_REFRESH_MS);
+
     return () => {
       isMounted = false;
+      window.clearInterval(timer);
     };
   }, []);
 
@@ -114,7 +121,7 @@ export default function OfficialNewsBoard() {
   const updatedLabel = formatUpdatedAt(updatedAt);
 
   return (
-    <div className="official-news-summary official-board official-board-compact">
+    <div className="official-news-summary official-board official-board-compact" aria-live="polite">
       <div className="official-compact-header">
         <div className="official-compact-title">
           <Bell size={16} />
@@ -150,7 +157,7 @@ export default function OfficialNewsBoard() {
       </div>
 
       <p className="official-news-api-status official-news-api-status-compact">
-        備註：公告與鈴鐺狀態會隨 RSS / API 更新｜{sourceLabel}｜更新：{updatedLabel}
+        備註：公告與鈴鐺狀態每 10 分鐘自動同步｜{sourceLabel}｜更新：{updatedLabel}
       </p>
     </div>
   );
