@@ -165,43 +165,37 @@ export default async function HomePage() {
 
       <section className="nav-panel home-zone home-zone-nav" id="navigation">
         <div className="panel-tag">導航區</div>
+
         <div className="nav-grid">
           {navItems.map((item) => {
             const Icon = item.icon;
+            const stats = results.find((result) => result.key === item.key);
+
             return (
-              <Link className="nav-card" key={item.label} href={item.href}>
-                <Icon size={52} strokeWidth={1.6} />
-                <strong>{item.label}</strong>
+              <Link key={item.key} href={item.href} className="nav-card">
+                <Icon size={28} />
+                <span>{item.label}</span>
+
+                {stats ? (
+                  <>
+                    <small>
+                      {stats.count.toLocaleString("zh-TW")} 筆｜區塊 {stats.sectionCount}｜有價格 {stats.priced}
+                    </small>
+                    <b>{stats.completion}%</b>
+                  </>
+                ) : (
+                  <>
+                    <small>查看全部分類與總覽資料</small>
+                    <b>總覽</b>
+                  </>
+                )}
               </Link>
             );
           })}
         </div>
       </section>
 
-      <section className="home-category-panel">
-        <div className="card-title">
-          <ClipboardList size={18} />
-          <span>分類資料狀態</span>
-        </div>
-
-        <div className="home-category-grid">
-          {results.map((item) => {
-            const Icon = item.icon;
-            return (
-              <Link className="home-category-card" key={item.key} href={item.href}>
-                <Icon size={32} strokeWidth={1.7} />
-                <div>
-                  <h3>{item.label}</h3>
-                  <p>
-                    {item.count.toLocaleString("zh-TW")} 筆｜區塊 {item.sectionCount}｜有價格 {item.priced}
-                  </p>
-                </div>
-                <strong>{item.completion}%</strong>
-              </Link>
-            );
-          })}
-        </div>
-      </section>
+      
 
       <section className="dashboard-grid home-zone home-zone-info home-zone-notes">
         <div className="panel-tag">資料區</div>
