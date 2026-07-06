@@ -663,6 +663,32 @@ function buildLinkMessage(keyword: string) {
   };
 }
 
+function buildHelpMessage() {
+  return [
+    "**KETHER Warframe Bot 使用說明**",
+    "",
+    "**查白金價格**",
+    "`/price item: 激昂射擊 rank: Rank 0`",
+    "查 Warframe.Market 未升級價格。",
+    "",
+    "`/price item: 激昂射擊 rank: Rank 10`",
+    "查常見滿等價格。",
+    "",
+    "**查資料庫連結**",
+    "`/kether keyword: MOD`",
+    "查 KETHER MOD 資料庫連結。",
+    "",
+    "`/kether keyword: 官方`",
+    "查官方公告。",
+    "",
+    "`/kether keyword: 個人進度`",
+    "查 Discord 登入後的個人進度頁。",
+    "",
+    "**小提示**",
+    "在 `/price item:` 輸入一個字，就會跳出物品選項喵。",
+  ].join("\n");
+}
+
 async function buildKetherMessage(keyword: string) {
   try {
     const priceMessage = await buildMarketPriceMessage(keyword);
@@ -883,6 +909,15 @@ export async function POST(request: Request) {
     const rankOption = getOptionValue(interaction, ["rank"]);
     const selectedRank = parseRankOption(rankOption);
 
+    if (commandName === "help") {
+      return jsonResponse({
+        type: RESPONSE_TYPE.CHANNEL_MESSAGE_WITH_SOURCE,
+        data: {
+          content: buildHelpMessage(),
+        },
+      });
+    }
+
     if (commandName === "kether") {
       const data = await buildKetherMessage(keyword);
 
@@ -937,6 +972,6 @@ export async function POST(request: Request) {
 export async function GET() {
   return jsonResponse({
     ok: true,
-    name: "KETHER Discord Bot Price Rank and Link Endpoint",
+    name: "KETHER Discord Bot Price Rank Link and Help Endpoint",
   });
 }
