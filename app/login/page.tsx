@@ -14,7 +14,7 @@ export default function LoginPage() {
         <div>
           <p>KETHER OF PARADISO</p>
           <h1>Discord 登入</h1>
-          <span>v2.2.0 權限系統前置頁，已接入 Discord OAuth 登入路由。</span>
+          <span>v2.2.0 權限系統已啟用，首頁公開，其他資料頁需 Discord 權限。</span>
         </div>
       </header>
 
@@ -79,7 +79,7 @@ export default function LoginPage() {
 
         <div>
           <span>4</span>
-          <p>通過後啟用個人已購買與完成度資料</p>
+          <p>通過後開放資料庫頁面與個人已購買／完成度資料</p>
         </div>
       </section>
     </main>
