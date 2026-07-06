@@ -42,9 +42,8 @@ function decodeHtmlEntities(value: string) {
 }
 
 function stripCdata(value: string) {
-  const trimmed = value.trim();
-
-  return trimmed
+  return value
+    .trim()
     .replace(/^<!\[CDATA\[/i, "")
     .replace(/\]\]>$/i, "")
     .trim();
@@ -59,21 +58,10 @@ function stripHtml(value: string) {
     .replace(/<iframe[\s\S]*?<\/iframe>/gi, " ")
     .replace(/<img[^>]*>/gi, " ")
     .replace(/<br\s*\/?\s*>/gi, " ")
-    .replace(/<\/p>/gi, " ")
     .replace(/<[^>]*>/g, " ")
     .replace(/https?:\/\/\S+/g, " ")
     .replace(/\s+/g, " ")
     .trim();
-}
-
-function trimSummary(value: string, maxLength = 150) {
-  const cleaned = stripHtml(value);
-
-  if (cleaned.length <= maxLength) {
-    return cleaned;
-  }
-
-  return `${cleaned.slice(0, maxLength).trim()}…`;
 }
 
 function escapeRegExp(value: string) {
@@ -88,13 +76,6 @@ function tagPattern(tagName: string) {
   return `(?:[\\w.-]+:)?${escapeRegExp(tagName)}`;
 }
 
-function readTag(block: string, tagName: string) {
-  const pattern = tagPattern(tagName);
-  const match = block.match(new RegExp(`<${pattern}\\b[^>]*>([\\s\\S]*?)<\\/${pattern}>`, "i"));
-
-  return match ? stripHtml(match[1]) : "";
-}
-
 function readRawTag(block: string, tagName: string) {
   const pattern = tagPattern(tagName);
   const match = block.match(new RegExp(`<${pattern}\\b[^>]*>([\\s\\S]*?)<\\/${pattern}>`, "i"));
@@ -102,28 +83,31 @@ function readRawTag(block: string, tagName: string) {
   return match ? stripCdata(match[1]) : "";
 }
 
+function readTag(block: string, tagName: string) {
+  return stripHtml(readRawTag(block, tagName));
+}
+
 function readFirstTag(block: string, tagNames: string[]) {
   for (const tagName of tagNames) {
     const value = readTag(block, tagName);
-
-    if (value) {
-      return value;
-    }
+    if (value) return value;
   }
 
   return "";
 }
 
-function readFirstRawTag(block: string, tagNames: string[]) {
-  for (const tagName of tagNames) {
-    const value = readRawTag(block, tagName);
+function extractBlocks(xml: string, tagName: string) {
+  const pattern = new RegExp(`<(?:[\\w.-]+:)?${tagName}\\b[\\s\\S]*?<\\/(?:[\\w.-]+:)?${tagName}>`, "gi");
+  return Array.from(xml.matchAll(pattern)).map((match) => match[0]);
+}
 
-    if (value) {
-      return value;
-    }
-  }
+function extractFirstUrl(value: string) {
+  const decoded = decodeHtmlEntities(stripCdata(value));
+  const match = decoded.match(/https?:\/\/[^\s"'<>\\]+/i);
 
-  return "";
+  if (!match) return "";
+
+  return match[0].replace(/[),.]+$/g, "");
 }
 
 function readAtomLink(block: string) {
@@ -131,26 +115,23 @@ function readAtomLink(block: string) {
   return hrefMatch ? hrefMatch[1].trim() : "";
 }
 
-function readRssLink(block: string) {
-  return readFirstTag(block, ["link", "guid"]) || readAtomLink(block);
+function readRssHref(block: string) {
+  const rawLink = readRawTag(block, "link") || readRawTag(block, "guid") || readRawTag(block, "id");
+  const cleanedLink = stripHtml(rawLink);
+
+  return (
+    cleanedLink ||
+    extractFirstUrl(rawLink) ||
+    extractFirstUrl(block) ||
+    "https://store.steampowered.com/news/app/230410"
+  );
 }
 
 function normalizeDate(value: string) {
   if (!value) return null;
 
   const date = new Date(value);
-
-  if (Number.isNaN(date.getTime())) {
-    return null;
-  }
-
-  return date.toISOString();
-}
-
-function extractBlocks(xml: string, tagName: string) {
-  const pattern = new RegExp(`<(?:[\\w.-]+:)?${tagName}\\b[\\s\\S]*?<\\/(?:[\\w.-]+:)?${tagName}>`, "gi");
-
-  return Array.from(xml.matchAll(pattern)).map((match) => match[0]);
+  return Number.isNaN(date.getTime()) ? null : date.toISOString();
 }
 
 function parseRssItems(xml: string): ParsedFeedItem[] {
@@ -158,15 +139,13 @@ function parseRssItems(xml: string): ParsedFeedItem[] {
 
   return blocks
     .map((block) => {
-      const title = readFirstTag(block, ["title"]);
-      const rawSummary = readFirstRawTag(block, ["description", "content:encoded", "summary", "content"]);
-      const summary = trimSummary(rawSummary || "官方新聞摘要待補。");
-      const href = readRssLink(block);
+      const title = readFirstTag(block, ["title"]) || "Warframe 官方新聞";
+      const href = readRssHref(block);
       const publishedAt = normalizeDate(readFirstTag(block, ["pubDate", "published", "updated", "dc:date"]));
 
       return {
         title,
-        summary,
+        summary: "點擊查看官方原文。",
         href,
         publishedAt,
       };
@@ -179,14 +158,13 @@ function parseAtomItems(xml: string): ParsedFeedItem[] {
 
   return blocks
     .map((block) => {
-      const title = readFirstTag(block, ["title"]);
-      const summary = "點擊查看官方原文。";
-      const href = readAtomLink(block) || readFirstTag(block, ["link", "id"]);
+      const title = readFirstTag(block, ["title"]) || "Warframe 官方新聞";
+      const href = readAtomLink(block) || readFirstTag(block, ["link", "id"]) || extractFirstUrl(block);
       const publishedAt = normalizeDate(readFirstTag(block, ["published", "updated"]));
 
       return {
         title,
-        summary,
+        summary: "點擊查看官方原文。",
         href,
         publishedAt,
       };
@@ -199,7 +177,7 @@ function toOfficialNewsItem(item: ParsedFeedItem, index: number): OfficialNewsIt
     id: `official-feed-${index + 1}`,
     category: "NEWS",
     title: item.title,
-    summary: item.summary || "點擊查看官方原文。",
+    summary: item.summary,
     publishedAt: item.publishedAt,
     href: item.href,
     source: "rss-feed",
