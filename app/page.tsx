@@ -20,7 +20,6 @@ import { fetchSheetRows } from "../lib/sheets";
 import HomeSearchFloating from "../components/HomeSearchFloating";
 import HomeNotificationsFloating from "../components/HomeNotificationsFloating"; import HomeMenuFloating from "../components/HomeMenuFloating"; import HomeAuthMini from "../components/HomeAuthMini"; import HomePersonalProgress from "../components/HomePersonalProgress"; import KetherClanWatermark from "../components/KetherClanWatermark";
 import OfficialNewsBoard from "../components/OfficialNewsBoard";
-
 const navItems = [
   { label: "總覽", key: "overview", href: "/database/overview", icon: Gem },
   { label: "戰甲", key: "warframes", href: "/database/warframes", icon: Shield },
@@ -261,8 +260,8 @@ export default async function HomePage() {
             <p className="official-info-note">官方公告與鈴鐺狀態會隨 RSS / API 自動更新。</p>
 
             <OfficialNewsBoard />
-            <OfficialNewsBoard />
-    </div>
+
+</div>
   </article>
 </div>
 
