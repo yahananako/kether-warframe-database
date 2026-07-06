@@ -3,9 +3,7 @@ import { DISCORD_SESSION_COOKIE_NAME } from "../../../../lib/auth/discordSession
 
 export const runtime = "nodejs";
 
-export async function GET(request: NextRequest) {
-  const response = NextResponse.redirect(new URL("/", request.url));
-
+function clearAuthCookies(response: NextResponse) {
   response.cookies.set(DISCORD_SESSION_COOKIE_NAME, "", {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
@@ -23,4 +21,16 @@ export async function GET(request: NextRequest) {
   });
 
   return response;
+}
+
+export async function GET(request: NextRequest) {
+  return clearAuthCookies(
+    NextResponse.redirect(new URL("/", request.url))
+  );
+}
+
+export async function POST(request: NextRequest) {
+  return clearAuthCookies(
+    NextResponse.redirect(new URL("/", request.url))
+  );
 }
