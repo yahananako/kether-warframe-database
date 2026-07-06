@@ -257,6 +257,10 @@ export default async function HomePage() {
         <li>追蹤版本更新與活動消息。</li>
         <li>官方新聞摘要區已建立；後續可接 RSS／API 自動更新。</li>
       </ul>
+
+            <p className="official-info-note">官方公告與鈴鐺狀態會隨 RSS / API 自動更新。</p>
+
+            <OfficialNewsBoard />
             <OfficialNewsBoard />
     </div>
   </article>
