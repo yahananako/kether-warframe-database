@@ -261,67 +261,65 @@ export default async function HomePage() {
 </div>
 
 
-        <article className="info-card summary-card" style={{ position: "relative", overflow: "hidden" }}>
-            <KetherClanWatermark />
-
-            <div className="card-title">
-              <ClipboardList size={18} />
-              <span>資料庫狀態與備註</span>
-            </div>
-
-            <div className="summary-table" style={{ position: "relative", zIndex: 1 }}>
-              <div className="summary-row">
-                <span>資料來源</span>
-                <b>Google Sheets＋Discord 個人進度</b>
+        <div className="status-notes-row">
+            <article className="info-card summary-card">
+              <div className="card-title">
+                <ClipboardList size={18} />
+                <span>資料庫狀態</span>
               </div>
 
-              <div className="summary-row">
-                <span>分頁數</span>
-                <b>{results.length}</b>
+              <div className="summary-table">
+                <div className="summary-row">
+                  <span>資料來源</span>
+                  <b>Google Sheets＋Discord 個人進度</b>
+                </div>
+
+                <div className="summary-row">
+                  <span>分頁數</span>
+                  <b>{results.length}</b>
+                </div>
+
+                <div className="summary-row">
+                  <span>區塊總數</span>
+                  <b>{totalSections}</b>
+                </div>
+
+                <div className="summary-row">
+                  <span>價格更新</span>
+                  <b>每日 4:00</b>
+                </div>
+
+                <div className="summary-row">
+                  <span>Discord 個人化</span>
+                  <b>登入／權限／個人進度已啟用</b>
+                </div>
               </div>
 
-              <div className="summary-row">
-                <span>區塊總數</span>
-                <b>{totalSections}</b>
+              <div className="total-row">
+                <span>網站版本</span>
+                <b>v2.2.0</b>
+              </div>
+            </article>
+
+            <article className="info-card notes-card">
+              <div className="card-title">
+                <Pencil size={18} />
+                <span>備註</span>
               </div>
 
-              <div className="summary-row">
-                <span>價格更新</span>
-                <b>每日 4:00</b>
+              <div className="home-status-notes">
+                <p>・v2.2.0 已加入首頁自動資料總控台。</p>
+                <p>・Discord 登入、個人進度與權限驗證已完成。</p>
+                <p>・首頁已支援個人已購買／個人完成度；未登入時顯示表格統計。</p>
+                <p>・導航區已整合分類筆數、區塊數、有價格數與完成度。</p>
               </div>
 
-              <div className="summary-row">
-                <span>Discord 個人化</span>
-                <b>登入／權限／個人進度已啟用</b>
-              </div>
-            </div>
+              <div className="note-lines" />
+              <div className="note-lines" />
 
-            <div className="total-row" style={{ position: "relative", zIndex: 1 }}>
-              <span>網站版本</span>
-              <b>v2.2.0</b>
-            </div>
-
-            <div
-              className="home-status-notes"
-              style={{
-                marginTop: 18,
-                padding: "18px 20px",
-                borderRadius: 24,
-                background: "rgba(255,255,255,0.66)",
-                border: "1px solid rgba(148, 163, 184, 0.24)",
-                color: "#334155",
-                lineHeight: 1.8,
-                position: "relative",
-                zIndex: 1
-              }}
-            >
-              <b style={{ display: "block", marginBottom: 8 }}>備註</b>
-              <p>・v2.2.0 已加入首頁自動資料總控台。</p>
-              <p>・Discord 登入、個人進度與權限驗證已完成。</p>
-              <p>・首頁已支援個人已購買／個人完成度；未登入時顯示表格統計。</p>
-              <p>・導航區已整合分類筆數、區塊數、有價格數與完成度。</p>
-            </div>
-          </article>
+              <KetherClanWatermark />
+            </article>
+          </div>
       
       
 </section>
