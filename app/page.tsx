@@ -18,7 +18,7 @@ import {
 } from "lucide-react";
 import { fetchSheetRows } from "../lib/sheets";
 import HomeSearchFloating from "../components/HomeSearchFloating";
-import HomeNotificationsFloating from "../components/HomeNotificationsFloating"; import HomeMenuFloating from "../components/HomeMenuFloating"; import HomeAuthMini from "../components/HomeAuthMini"; import KetherClanWatermark from "../components/KetherClanWatermark";
+import HomeNotificationsFloating from "../components/HomeNotificationsFloating"; import HomeMenuFloating from "../components/HomeMenuFloating"; import HomeAuthMini from "../components/HomeAuthMini"; import HomePersonalProgress from "../components/HomePersonalProgress"; import KetherClanWatermark from "../components/KetherClanWatermark";
 
 const navItems = [
   { label: "總覽", key: "overview", href: "/database/overview", icon: Gem },
@@ -156,14 +156,11 @@ export default async function HomePage() {
           <span>有價格資料</span>
           <strong>{totalPriced.toLocaleString("zh-TW")}</strong>
         </article>
-        <article>
-          <span>已購買</span>
-          <strong>{totalOwned.toLocaleString("zh-TW")}</strong>
-        </article>
-        <article>
-          <span>目前完成度</span>
-          <strong>{totalCompletion}%</strong>
-        </article>
+  <HomePersonalProgress
+    totalRows={totalRows}
+    fallbackOwned={totalOwned}
+    fallbackCompletion={totalCompletion}
+  />
       </section>
 
       <section className="nav-panel home-zone home-zone-nav" id="navigation">
