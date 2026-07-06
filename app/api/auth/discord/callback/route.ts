@@ -265,35 +265,7 @@ export async function GET(request: NextRequest) {
 
   const sessionCookieValue = createDiscordSessionCookieValue(sessionPayload, sessionSecret);
 
-  const response = NextResponse.json({
-    ok: true,
-    message: "Discord authorization succeeded and session cookie was created.",
-    discordUser: {
-      id: userData.id,
-      username: userData.username ?? null,
-      globalName: userData.global_name ?? null,
-      discriminator: userData.discriminator ?? null,
-      avatar: userData.avatar ?? null,
-      banner: userData.banner ?? null,
-      accentColor: userData.accent_color ?? null,
-      avatarDecorationAsset: userData.avatar_decoration_data?.asset ?? null,
-      nameplatePalette: userData.collectibles?.nameplate?.palette ?? null
-    },
-    guildAccess: {
-      guildId,
-      isMember: true,
-      roleCheckEnabled,
-      hasAllowedRole: true,
-      authorized: true,
-      matchedRoleIds,
-      roleIds: sessionRoleIds
-    },
-    session: {
-      created: true,
-      expiresAt: new Date(sessionPayload.exp * 1000).toISOString()
-    },
-    nextStep: "Read the current login session with /api/auth/session."
-  });
+  const response = NextResponse.redirect(new URL("/profile", request.url));
 
   response.cookies.delete("kether_discord_oauth_state");
   response.cookies.set(DISCORD_SESSION_COOKIE_NAME, sessionCookieValue, {
