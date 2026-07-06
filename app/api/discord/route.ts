@@ -4,7 +4,7 @@ export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 const SITE_URL = "https://kether-warframe-database.vercel.app";
-const MARKET_API = "https://api.warframe.market/v1";
+const MARKET_API = "https://api.warframe.market/v2";
 const MARKET_SITE = "https://warframe.market/items";
 
 const INTERACTION_TYPE = {
@@ -335,28 +335,58 @@ const directSlug = slugFromText(keyword);
   return null;
 }
 
-async function fetchOrders(slug: string): Promise<MarketOrder[]> {
-  const response = await fetch(`${MARKET_API}/items/${slug}/orders`, {
+async function fetchOrders(slug: string, rank: number | null = null): Promise<MarketOrder[]> {
+  const params = new URLSearchParams({
+    platform: "pc",
+  });
+
+  if (typeof rank === "number") {
+    params.set("rank", String(rank));
+  }
+
+  const response = await fetch(`${MARKET_API}/orders/item/${slug}/top?${params.toString()}`, {
     headers: {
       Accept: "application/json",
-      Language: "en",
-      Platform: "pc",
+      "User-Agent": "KETHER-Warframe-Database Discord price bot",
     },
     cache: "no-store",
   });
 
   if (!response.ok) {
-    throw new Error(`Warframe.Market orders error: ${response.status}`);
+    const message = await response.text().catch(() => "");
+    throw new Error(`Warframe.Market orders error: ${response.status} ${message.slice(0, 120)}`);
   }
 
   const data = await response.json();
-  const orders = data?.payload?.orders;
+  const sellOrders = Array.isArray(data?.data?.sell) ? data.data.sell : [];
+  const buyOrders = Array.isArray(data?.data?.buy) ? data.data.buy : [];
 
-  if (!Array.isArray(orders)) {
-    return [];
-  }
+  const normalizeOrder = (order: any, orderType: "sell" | "buy"): MarketOrder => {
+    const platinum = Number(order.platinum ?? order.price ?? 0);
+    const modRank =
+      typeof order.mod_rank === "number"
+        ? order.mod_rank
+        : typeof order.rank === "number"
+          ? order.rank
+          : undefined;
 
-  return orders as MarketOrder[];
+    return {
+      order_type: orderType,
+      platinum,
+      quantity: Number(order.quantity ?? 1),
+      visible: order.visible ?? true,
+      mod_rank: modRank,
+      user: {
+        status: order.user?.status,
+        ingame_name: order.user?.ingame_name ?? order.user?.ingameName,
+      },
+    };
+  };
+
+  return [
+    ...sellOrders.map((order: any) => normalizeOrder(order, "sell")),
+    ...buyOrders.map((order: any) => normalizeOrder(order, "buy")),
+  ].filter((order) => typeof order.platinum === "number" && order.platinum > 0);
 }
 
 function getDisplayName(slug: string, resolvedName: string) {
@@ -419,7 +449,7 @@ async function buildMarketPriceMessage(rawKeyword: string) {
     return null;
   }
 
-  const orders = await fetchOrders(item.slug);
+  const orders = await fetchOrders(item.slug, rankInfo.rank);
   const rankedOrders = filterOrdersByRank(orders, rankInfo.rank);
 
   const sellOrders = rankedOrders
