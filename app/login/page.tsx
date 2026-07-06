@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import Link from "next/link";
 import {
   ShieldCheck,
@@ -8,8 +10,9 @@ import {
 } from "lucide-react";
 
 export default function LoginPage() {
+  const accessPageVersion = "v2.2.1-discord-access-gate";
   return (
-    <main className="page-shell auth-page">
+    <main className="page-shell auth-page" data-access-page-version={accessPageVersion}>
       <div className="corner corner-lt" />
       <div className="corner corner-rt" />
       <div className="corner corner-lb" />
