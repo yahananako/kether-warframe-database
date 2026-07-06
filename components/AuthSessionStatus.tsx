@@ -156,9 +156,7 @@ export default function AuthSessionStatus() {
               display: "grid",
               gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
               gap: 22,
-              alignItems: "stretch",
-              transform: "translateY(-46px)",
-              marginBottom: -20
+              alignItems: "start"
             }}
           >
             <div
@@ -168,7 +166,9 @@ export default function AuthSessionStatus() {
                 alignContent: "start",
                 justifyItems: "center",
                 textAlign: "center",
-                padding: "0 10px"
+                padding: "0 10px",
+                transform: "translateY(-46px)",
+                marginBottom: -28
               }}
             >
               <div
@@ -241,12 +241,13 @@ export default function AuthSessionStatus() {
                 display: "grid",
                 gap: 12,
                 alignContent: "center",
+                marginTop: 28,
                 padding: 22,
                 borderRadius: 28,
-                background: "rgba(255,255,255,0.68)",
+                background: "rgba(255,255,255,0.72)",
                 color: "#475569",
                 textAlign: "left",
-                boxShadow: "inset 0 1px 0 rgba(255,255,255,0.75)"
+                boxShadow: "inset 0 1px 0 rgba(255,255,255,0.78)"
               }}
             >
               <span>
