@@ -649,6 +649,26 @@ async function buildKetherMessage(keyword: string) {
   return buildLinkMessage(keyword);
 }
 
+function getOptionValue(interaction: any, names: string[]) {
+  const options = interaction.data?.options;
+
+  if (!Array.isArray(options)) {
+    return "";
+  }
+
+  for (const name of names) {
+    const value = options.find((option: { name: string; value?: string }) => {
+      return option.name === name;
+    })?.value;
+
+    if (typeof value === "string") {
+      return value;
+    }
+  }
+
+  return "";
+}
+
 export async function POST(request: Request) {
   const signature = request.headers.get("x-signature-ed25519");
   const timestamp = request.headers.get("x-signature-timestamp");
@@ -670,10 +690,8 @@ export async function POST(request: Request) {
 
   if (interaction.type === INTERACTION_TYPE.APPLICATION_COMMAND) {
     const commandName = interaction.data?.name;
-    const keyword =
-      interaction.data?.options?.find((option: { name: string; value?: string }) => {
-        return option.name === "keyword";
-      })?.value ?? "";
+    const keyword = getOptionValue(interaction, ["keyword"]);
+    const item = getOptionValue(interaction, ["item", "keyword"]);
 
     if (commandName === "kether") {
       const data = await buildKetherMessage(keyword);
@@ -682,6 +700,38 @@ export async function POST(request: Request) {
         type: RESPONSE_TYPE.CHANNEL_MESSAGE_WITH_SOURCE,
         data,
       });
+    }
+
+    if (commandName === "price") {
+      try {
+        const priceMessage = await buildMarketPriceMessage(item);
+
+        return jsonResponse({
+          type: RESPONSE_TYPE.CHANNEL_MESSAGE_WITH_SOURCE,
+          data: priceMessage
+            ? {
+                content: priceMessage,
+              }
+            : {
+                content:
+                  `找不到「${item}」的 Warframe.Market 交易資料喵。\n` +
+                  "可以試試英文名稱，或確認這個物品是否可交易。",
+                flags: 64,
+              },
+        });
+      } catch (error) {
+        console.error(error);
+
+        return jsonResponse({
+          type: RESPONSE_TYPE.CHANNEL_MESSAGE_WITH_SOURCE,
+          data: {
+            content:
+              "Warframe.Market 暫時沒有回應喵。\n" +
+              "可以等一下再查，或改用 /kether keyword: 首頁。",
+            flags: 64,
+          },
+        });
+      }
     }
   }
 
@@ -697,6 +747,6 @@ export async function POST(request: Request) {
 export async function GET() {
   return jsonResponse({
     ok: true,
-    name: "KETHER Discord Bot Price Endpoint",
+    name: "KETHER Discord Bot Price and Link Endpoint",
   });
 }
