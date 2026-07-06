@@ -10,11 +10,13 @@ const MARKET_SITE = "https://warframe.market/items";
 const INTERACTION_TYPE = {
   PING: 1,
   APPLICATION_COMMAND: 2,
+  APPLICATION_COMMAND_AUTOCOMPLETE: 4,
 };
 
 const RESPONSE_TYPE = {
   PONG: 1,
   CHANNEL_MESSAGE_WITH_SOURCE: 4,
+  APPLICATION_COMMAND_AUTOCOMPLETE_RESULT: 8,
 };
 
 type MarketItem = {
@@ -649,6 +651,134 @@ async function buildKetherMessage(keyword: string) {
   return buildLinkMessage(keyword);
 }
 
+
+function truncateChoiceName(value: string) {
+  return value.length > 100 ? `${value.slice(0, 97)}...` : value;
+}
+
+function getFocusedOptionValue(interaction: any, names: string[]) {
+  const options = interaction.data?.options;
+
+  if (!Array.isArray(options)) {
+    return "";
+  }
+
+  for (const option of options) {
+    if (names.includes(option.name) && option.focused === true) {
+      return typeof option.value === "string" ? option.value : "";
+    }
+  }
+
+  return "";
+}
+
+function getItemDisplayName(slug: string, names: Set<string>) {
+  const manual = MANUAL_DISPLAY[slug];
+
+  if (manual) {
+    return `${manual.zh} / ${manual.en}`;
+  }
+
+  const nameList = [...names].filter(Boolean);
+  const zhName = nameList.find((name) => /[\u4e00-\u9fff]/.test(name));
+  const enName = nameList.find((name) => /^[a-z0-9][a-z0-9\s:'’()&.-]+$/i.test(name));
+
+  if (zhName && enName && normalizeText(zhName) !== normalizeText(enName)) {
+    return `${zhName} / ${enName}`;
+  }
+
+  return zhName ?? enName ?? slug.replace(/_/g, " ");
+}
+
+async function buildPriceAutocompleteChoices(rawKeyword: string) {
+  const keyword = normalizeText(rawKeyword);
+
+  if (!keyword) {
+    return Object.entries(MANUAL_DISPLAY).slice(0, 25).map(([slug, display]) => ({
+      name: truncateChoiceName(`${display.zh} / ${display.en}`),
+      value: slug,
+    }));
+  }
+
+  const items = await getMarketItems();
+  const grouped = new Map<string, { slug: string; names: Set<string> }>();
+
+  for (const item of items) {
+    const current = grouped.get(item.slug) ?? {
+      slug: item.slug,
+      names: new Set<string>(),
+    };
+
+    current.names.add(item.name);
+    grouped.set(item.slug, current);
+  }
+
+  for (const [alias, slug] of Object.entries(MANUAL_ALIASES)) {
+    const current = grouped.get(slug) ?? {
+      slug,
+      names: new Set<string>(),
+    };
+
+    current.names.add(alias);
+
+    const manual = MANUAL_DISPLAY[slug];
+
+    if (manual) {
+      current.names.add(manual.zh);
+      current.names.add(manual.en);
+    }
+
+    grouped.set(slug, current);
+  }
+
+  const scored = [...grouped.values()]
+    .map((item) => {
+      const displayName = getItemDisplayName(item.slug, item.names);
+      const haystack = normalizeText([
+        item.slug,
+        item.slug.replace(/_/g, " "),
+        displayName,
+        ...item.names,
+      ].join(" "));
+
+      if (!haystack.includes(keyword)) {
+        return null;
+      }
+
+      let score = 10;
+
+      if (haystack.startsWith(keyword)) {
+        score = 0;
+      } else if ([...item.names].some((name) => normalizeText(name).startsWith(keyword))) {
+        score = 1;
+      } else if (normalizeText(item.slug.replace(/_/g, " ")).startsWith(keyword)) {
+        score = 2;
+      }
+
+      return {
+        score,
+        name: truncateChoiceName(displayName),
+        value: item.slug,
+      };
+    })
+    .filter((item): item is { score: number; name: string; value: string } => Boolean(item))
+    .sort((a, b) => {
+      if (a.score !== b.score) {
+        return a.score - b.score;
+      }
+
+      return a.name.localeCompare(b.name);
+    })
+    .slice(0, 25)
+    .map(({ name, value }) => ({
+      name,
+      value,
+    }));
+
+  return scored;
+}
+
+
 function getOptionValue(interaction: any, names: string[]) {
   const options = interaction.data?.options;
 
@@ -685,6 +815,29 @@ export async function POST(request: Request) {
   if (interaction.type === INTERACTION_TYPE.PING) {
     return jsonResponse({
       type: RESPONSE_TYPE.PONG,
+    });
+  }
+
+  if (interaction.type === INTERACTION_TYPE.APPLICATION_COMMAND_AUTOCOMPLETE) {
+    const commandName = interaction.data?.name;
+
+    if (commandName === "price") {
+      const focusedValue = getFocusedOptionValue(interaction, ["item", "keyword"]);
+      const choices = await buildPriceAutocompleteChoices(focusedValue);
+
+      return jsonResponse({
+        type: RESPONSE_TYPE.APPLICATION_COMMAND_AUTOCOMPLETE_RESULT,
+        data: {
+          choices,
+        },
+      });
+    }
+
+    return jsonResponse({
+      type: RESPONSE_TYPE.APPLICATION_COMMAND_AUTOCOMPLETE_RESULT,
+      data: {
+        choices: [],
+      },
     });
   }
 
