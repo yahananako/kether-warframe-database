@@ -5033,3 +5033,105 @@ a.nav-card {
   }
 }
 /* official news summary end */
+
+/* official board upgrade start */
+.official-board {
+  position: relative;
+  overflow: hidden;
+}
+
+.official-board::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at top left, rgba(148, 163, 184, 0.22), transparent 34%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.72), rgba(226, 232, 240, 0.34));
+  pointer-events: none;
+}
+
+.official-board > * {
+  position: relative;
+  z-index: 1;
+}
+
+.official-board-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 18px;
+  align-items: center;
+  margin-bottom: 18px;
+  padding: 18px;
+  border-radius: 22px;
+  background: rgba(248, 250, 252, 0.78);
+  border: 1px solid rgba(148, 163, 184, 0.24);
+}
+
+.official-board-kicker {
+  display: inline-flex;
+  margin-bottom: 8px;
+  color: #64748b;
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.14em;
+}
+
+.official-board-hero h3 {
+  margin: 0 0 8px;
+  color: #0f172a;
+  font-size: 1.35rem;
+}
+
+.official-board-hero p {
+  margin: 0;
+  color: #475569;
+  line-height: 1.75;
+}
+
+.official-board-main-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 148px;
+  padding: 12px 16px;
+  border-radius: 999px;
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 900;
+  background: rgba(51, 65, 85, 0.94);
+  box-shadow: 0 16px 32px rgba(15, 23, 42, 0.16);
+}
+
+.official-board-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.official-board-card {
+  position: relative;
+}
+
+.official-board-label {
+  align-self: flex-start;
+  padding: 5px 9px;
+  border-radius: 999px;
+  color: #475569;
+  background: rgba(226, 232, 240, 0.82);
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+}
+
+@media (max-width: 900px) {
+  .official-board-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .official-board-main-link {
+    width: 100%;
+  }
+
+  .official-board-grid {
+    grid-template-columns: 1fr;
+  }
+}
+/* official board upgrade end */
