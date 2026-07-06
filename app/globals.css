@@ -5211,3 +5211,56 @@ a.nav-card {
   letter-spacing: 0.02em;
 }
 /* official news api status end */
+
+/* official news compact list start */
+.official-news-feed-preview {
+  margin-top: 16px;
+  padding: 16px;
+}
+
+.official-news-feed-title {
+  margin-bottom: 12px;
+}
+
+.official-news-feed-list {
+  gap: 8px;
+}
+
+.official-news-feed-item {
+  display: grid;
+  grid-template-columns: 148px minmax(0, 1fr);
+  align-items: center;
+  gap: 14px;
+  min-height: 0;
+  padding: 12px 14px;
+  border-radius: 16px;
+}
+
+.official-news-feed-item b {
+  overflow: hidden;
+  color: #0f172a;
+  font-size: 0.98rem;
+  line-height: 1.45;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.official-news-feed-meta {
+  color: #64748b;
+  font-size: 0.82rem;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+@media (max-width: 720px) {
+  .official-news-feed-item {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+
+  .official-news-feed-item b {
+    white-space: normal;
+  }
+}
+/* official news compact list end */
