@@ -19,6 +19,7 @@ import {
 import { fetchSheetRows } from "../lib/sheets";
 import HomeSearchFloating from "../components/HomeSearchFloating";
 import HomeNotificationsFloating from "../components/HomeNotificationsFloating"; import HomeMenuFloating from "../components/HomeMenuFloating"; import HomeAuthMini from "../components/HomeAuthMini"; import HomePersonalProgress from "../components/HomePersonalProgress"; import KetherClanWatermark from "../components/KetherClanWatermark";
+import { OFFICIAL_NEWS_BOARD, OFFICIAL_NEWS_LINKS } from "../data/officialNews";
 
 const navItems = [
   { label: "總覽", key: "overview", href: "/database/overview", icon: Gem },
@@ -264,62 +265,38 @@ export default async function HomePage() {
 
               <div className="official-board-hero">
                 <div>
-                  <span className="official-board-kicker">WARFRAME OFFICIAL</span>
-                  <h3>官方新聞摘要</h3>
-                  <p>
-                    集中放置官方新聞、更新紀錄與論壇入口。後續可接 RSS／API，
-                    自動整理最新公告與活動摘要。
-                  </p>
+                  <span className="official-board-kicker">{OFFICIAL_NEWS_BOARD.kicker}</span>
+                  <h3>{OFFICIAL_NEWS_BOARD.title}</h3>
+                  <p>{OFFICIAL_NEWS_BOARD.description}</p>
                 </div>
 
                 <Link
                   className="official-board-main-link"
-                  href="https://www.warframe.com/news"
+                  href={OFFICIAL_NEWS_BOARD.mainLinkHref}
                   target="_blank"
                   rel="noreferrer"
                 >
-                  前往官方新聞
+                  {OFFICIAL_NEWS_BOARD.mainLinkText}
                 </Link>
               </div>
 
               <div className="official-news-list official-board-grid">
-                <Link
-                  className="official-news-item official-board-card"
-                  href="https://www.warframe.com/news"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <span className="official-board-label">NEWS</span>
-                  <b>官方新聞</b>
-                  <span>查看最新活動、Prime Access、Devstream 與官方消息。</span>
-                </Link>
-
-                <Link
-                  className="official-news-item official-board-card"
-                  href="https://www.warframe.com/updates"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <span className="official-board-label">UPDATE</span>
-                  <b>更新紀錄</b>
-                  <span>追蹤版本更新、Hotfix、修正項目與平衡調整。</span>
-                </Link>
-
-                <Link
-                  className="official-news-item official-board-card"
-                  href="https://forums.warframe.com"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <span className="official-board-label">FORUM</span>
-                  <b>官方論壇</b>
-                  <span>查看公告、已知問題、活動討論與玩家回報。</span>
-                </Link>
+                {OFFICIAL_NEWS_LINKS.map((item) => (
+                  <Link
+                    key={item.id}
+                    className="official-news-item official-board-card"
+                    href={item.href}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <span className="official-board-label">{item.label}</span>
+                    <b>{item.title}</b>
+                    <span>{item.description}</span>
+                  </Link>
+                ))}
               </div>
 
-              <p className="official-news-note">
-                目前為官方公告看板版；後續可接 RSS／API，升級成自動新聞摘要。
-              </p>
+              <p className="official-news-note">{OFFICIAL_NEWS_BOARD.note}</p>
             </div>
     </div>
   </article>
