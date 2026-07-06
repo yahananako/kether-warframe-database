@@ -537,8 +537,43 @@ function formatPriceList(orders: MarketOrder[], mode: "sell" | "buy") {
   return prices;
 }
 
-async function buildMarketPriceMessage(rawKeyword: string) {
+function parseRankOption(value: string) {
+  const normalized = normalizeText(value);
+
+  if (!normalized) {
+    return null;
+  }
+
+  const match = normalized.match(/rank\s*(\d+)|r\s*(\d+)|(\d+)/i);
+  const rank = Number(match?.[1] ?? match?.[2] ?? match?.[3]);
+
+  if (Number.isInteger(rank) && rank >= 0 && rank <= 10) {
+    return rank;
+  }
+
+  return null;
+}
+
+function getRankLabel(rank: number) {
+  if (rank === 0) {
+    return "Rank 0 / 未升級";
+  }
+
+  if (rank === 10) {
+    return "Rank 10 / 常見滿等";
+  }
+
+  return `Rank ${rank}`;
+}
+
+async function buildMarketPriceMessage(rawKeyword: string, forcedRank: number | null = null) {
   const rankInfo = parseRank(rawKeyword);
+
+  if (typeof forcedRank === "number") {
+    rankInfo.rank = forcedRank;
+    rankInfo.rankLabel = getRankLabel(forcedRank);
+  }
+
   const keyword = rankInfo.cleanKeyword;
 
   if (!keyword) {
@@ -583,7 +618,7 @@ async function buildMarketPriceMessage(rawKeyword: string) {
     "",
     `來源：${marketUrl}`,
     "",
-    `想查滿等可以輸入：/kether keyword: ${keyword} 滿等`,
+    `想查指定等級可以用：/price item: ${keyword} rank: Rank 10`,
   ].join("\n");
 }
 
@@ -845,6 +880,8 @@ export async function POST(request: Request) {
     const commandName = interaction.data?.name;
     const keyword = getOptionValue(interaction, ["keyword"]);
     const item = getOptionValue(interaction, ["item", "keyword"]);
+    const rankOption = getOptionValue(interaction, ["rank"]);
+    const selectedRank = parseRankOption(rankOption);
 
     if (commandName === "kether") {
       const data = await buildKetherMessage(keyword);
@@ -857,7 +894,7 @@ export async function POST(request: Request) {
 
     if (commandName === "price") {
       try {
-        const priceMessage = await buildMarketPriceMessage(item);
+        const priceMessage = await buildMarketPriceMessage(item, selectedRank);
 
         return jsonResponse({
           type: RESPONSE_TYPE.CHANNEL_MESSAGE_WITH_SOURCE,
@@ -900,6 +937,6 @@ export async function POST(request: Request) {
 export async function GET() {
   return jsonResponse({
     ok: true,
-    name: "KETHER Discord Bot Price and Link Endpoint",
+    name: "KETHER Discord Bot Price Rank and Link Endpoint",
   });
 }
