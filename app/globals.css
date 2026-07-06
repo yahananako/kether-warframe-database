@@ -5135,3 +5135,13 @@ a.nav-card {
   }
 }
 /* official board upgrade end */
+
+/* official news api status start */
+.official-news-api-status {
+  margin: 12px 0 0;
+  color: #64748b;
+  font-size: 0.82rem;
+  line-height: 1.6;
+  letter-spacing: 0.02em;
+}
+/* official news api status end */
