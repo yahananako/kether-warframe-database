@@ -254,8 +254,50 @@ export default async function HomePage() {
       <ul>
         <li>查詢官方更新公告。</li>
         <li>追蹤版本更新與活動消息。</li>
-        <li>後續可擴充成官方新聞摘要區。</li>
+        <li>官方新聞摘要區已建立；後續可接 RSS／API 自動更新。</li>
       </ul>
+            <div className="official-news-summary">
+              <div className="official-news-summary-title">
+                <Bell size={16} />
+                <span>官方新聞摘要</span>
+              </div>
+
+              <div className="official-news-list">
+                <Link
+                  className="official-news-item"
+                  href="https://www.warframe.com/news"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <b>官方新聞</b>
+                  <span>查看 Warframe 最新活動、公告、Prime Access 與官方消息。</span>
+                </Link>
+
+                <Link
+                  className="official-news-item"
+                  href="https://www.warframe.com/updates"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <b>更新紀錄</b>
+                  <span>追蹤版本更新、Hotfix、修正項目與平衡調整。</span>
+                </Link>
+
+                <Link
+                  className="official-news-item"
+                  href="https://forums.warframe.com"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  <b>官方論壇</b>
+                  <span>查看官方公告、已知問題、活動討論與玩家回報。</span>
+                </Link>
+              </div>
+
+              <p className="official-news-note">
+                目前為官方連結摘要版；後續可接 RSS／API，升級成自動新聞摘要。
+              </p>
+            </div>
     </div>
   </article>
 </div>
