@@ -310,7 +310,7 @@ export default async function HomePage() {
               </div>
 
               <div className="home-status-notes">
-                <p>・v2.2.1 已加入首頁自動資料總控台。</p>
+                <p>・v2.2.1 已完成 Discord 權限鎖門：首頁公開，其他資料頁需登入驗證。</p>
                 <p>・Discord OAuth、氏族群組檢查與身分組權限驗證已啟用。</p>
                 <p>・未登入使用者會導向登入頁，通過權限後可瀏覽總覽與各分類頁。</p>
                 <p>・導航區已整合分類筆數、區塊數、有價格數與完成度。</p>
