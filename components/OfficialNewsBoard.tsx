@@ -1,5 +1,7 @@
 "use client";
 
+// compact official news board final sync 20260706
+
 import { Bell } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";

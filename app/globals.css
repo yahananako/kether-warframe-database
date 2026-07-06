@@ -5348,13 +5348,6 @@ a.nav-card {
 /* official news compact title list end */
 
 /* official info compact dashboard start */
-.official-info-note {
-  margin: 14px 0 0;
-  color: #64748b;
-  font-size: 0.9rem;
-  line-height: 1.65;
-}
-
 .official-board-compact {
   margin-top: 14px;
   padding: 14px;
@@ -5449,10 +5442,9 @@ a.nav-card {
 /* official info compact dashboard end */
 
 /* official news duplicate guard start */
-.home-warframe-info-card .official-news-summary.official-board + .official-news-summary.official-board,
-.home-warframe-info-card .official-news-summary.official-board ~ .official-news-summary.official-board,
-.official-board-compact + .official-board-compact,
-.official-news-summary.official-board + .official-news-summary.official-board {
+.official-news-summary.official-board + .official-news-summary.official-board,
+.official-news-summary.official-board ~ .official-news-summary.official-board,
+.official-board-compact + .official-board-compact {
   display: none !important;
 }
 /* official news duplicate guard end */
