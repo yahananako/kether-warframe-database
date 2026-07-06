@@ -160,101 +160,113 @@ export default function AuthSessionStatus() {
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "112px 1fr",
+              gridTemplateColumns: "minmax(220px, 0.92fr) minmax(260px, 1.08fr)",
               gap: 22,
-              alignItems: "end",
+              alignItems: "stretch",
               transform: "translateY(-46px)",
               marginBottom: -20
             }}
           >
             <div
               style={{
-                width: 112,
-                height: 112,
-                borderRadius: 999,
-                overflow: "hidden",
                 display: "grid",
-                placeItems: "center",
-                background: "rgba(255,255,255,0.8)",
-                border: "6px solid rgba(255,255,255,0.94)",
-                boxShadow: "0 18px 36px rgba(15, 23, 42, 0.18)"
+                gap: 14,
+                alignContent: "start",
+                justifyItems: "center",
+                textAlign: "center",
+                padding: "0 10px"
               }}
             >
-              {avatarUrl ? (
-                <img
-                  src={avatarUrl}
-                  alt={`${displayName} 的 Discord 頭像`}
+              <div
+                style={{
+                  width: 112,
+                  height: 112,
+                  borderRadius: 999,
+                  overflow: "hidden",
+                  display: "grid",
+                  placeItems: "center",
+                  background: "rgba(255,255,255,0.8)",
+                  border: "6px solid rgba(255,255,255,0.94)",
+                  boxShadow: "0 18px 36px rgba(15, 23, 42, 0.18)"
+                }}
+              >
+                {avatarUrl ? (
+                  <img
+                    src={avatarUrl}
+                    alt={`${displayName} 的 Discord 頭像`}
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                      display: "block"
+                    }}
+                  />
+                ) : (
+                  <span style={{ fontSize: 40, fontWeight: 900 }}>
+                    {displayName.slice(0, 1)}
+                  </span>
+                )}
+              </div>
+
+              <div>
+                <p
                   style={{
-                    width: "100%",
-                    height: "100%",
-                    objectFit: "cover",
-                    display: "block"
+                    margin: "0 0 8px",
+                    letterSpacing: "0.14em",
+                    color: "#64748b",
+                    fontSize: 12,
+                    fontWeight: 900
                   }}
-                />
-              ) : (
-                <span style={{ fontSize: 40, fontWeight: 900 }}>
-                  {displayName.slice(0, 1)}
-                </span>
-              )}
+                >
+                  DISCORD PROFILE CARD
+                </p>
+
+                <h2 style={{ margin: 0, fontSize: "clamp(30px, 5vw, 44px)" }}>
+                  Discord 名片
+                </h2>
+
+                <p
+                  style={{
+                    margin: "14px 0 0",
+                    fontSize: 24,
+                    fontWeight: 950,
+                    color: "#111827"
+                  }}
+                >
+                  {displayName}
+                </p>
+
+                <p style={{ margin: "4px 0 0", color: "#475569", fontWeight: 850 }}>
+                  @{username}
+                </p>
+              </div>
             </div>
 
-            <div style={{ paddingBottom: 8 }}>
-              <p
-                style={{
-                  margin: "0 0 8px",
-                  letterSpacing: "0.14em",
-                  color: "#64748b",
-                  fontSize: 12,
-                  fontWeight: 900
-                }}
-              >
-                DISCORD PROFILE CARD
-              </p>
+            <div
+              style={{
+                display: "grid",
+                gap: 12,
+                alignContent: "center",
+                padding: 22,
+                borderRadius: 28,
+                background: "rgba(255,255,255,0.68)",
+                color: "#475569",
+                textAlign: "left",
+                boxShadow: "inset 0 1px 0 rgba(255,255,255,0.75)"
+              }}
+            >
+              <span>
+                登入狀態：<b>已登入</b>
+              </span>
 
-              <h2 style={{ margin: 0, fontSize: "clamp(30px, 5vw, 46px)" }}>
-                Discord 名片
-              </h2>
+              <span>
+                權限狀態：<b>{isAuthorized ? "已授權" : "未授權"}</b>
+              </span>
 
-              <p
-                style={{
-                  margin: "14px 0 0",
-                  fontSize: 24,
-                  fontWeight: 950,
-                  color: "#111827"
-                }}
-              >
-                {displayName}
-              </p>
-
-              <p style={{ margin: "4px 0 0", color: "#475569", fontWeight: 850 }}>
-                @{username}
-              </p>
+              <span>
+                Session 到期：<b>{session.session?.expiresAt || "未知"}</b>
+              </span>
             </div>
-          </div>
-
-          <div
-            style={{
-              display: "grid",
-              gap: 12,
-              marginTop: 22,
-              padding: 20,
-              borderRadius: 24,
-              background: "rgba(255,255,255,0.64)",
-              color: "#475569",
-              textAlign: "left"
-            }}
-          >
-            <span>
-              登入狀態：<b>已登入</b>
-            </span>
-
-            <span>
-              權限狀態：<b>{isAuthorized ? "已授權" : "未授權"}</b>
-            </span>
-
-            <span>
-              Session 到期：<b>{session.session?.expiresAt || "未知"}</b>
-            </span>
           </div>
 
           <div className="auth-actions" style={{ marginTop: 22 }}>
