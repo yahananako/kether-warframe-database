@@ -5136,16 +5136,6 @@ a.nav-card {
 }
 /* official board upgrade end */
 
-/* official news api status start */
-.official-news-api-status {
-  margin: 12px 0 0;
-  color: #64748b;
-  font-size: 0.82rem;
-  line-height: 1.6;
-  letter-spacing: 0.02em;
-}
-/* official news api status end */
-
 /* official news feed preview start */
 .official-news-feed-preview {
   margin-top: 18px;
@@ -5211,3 +5201,13 @@ a.nav-card {
   letter-spacing: 0.04em;
 }
 /* official news feed preview end */
+
+/* official news api status start */
+.official-news-api-status {
+  margin: 12px 0 0;
+  color: #64748b;
+  font-size: 0.82rem;
+  line-height: 1.6;
+  letter-spacing: 0.02em;
+}
+/* official news api status end */
