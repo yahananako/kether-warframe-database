@@ -214,12 +214,7 @@ export default function AuthSessionStatus() {
                 >
                   DISCORD PROFILE CARD
                 </p>
-
-                <h2 style={{ margin: 0, fontSize: "clamp(30px, 5vw, 44px)" }}>
-                  Discord 名片
-                </h2>
-
-                <p
+<p
                   style={{
                     margin: "14px 0 0",
                     fontSize: 24,
@@ -241,7 +236,7 @@ export default function AuthSessionStatus() {
                 display: "grid",
                 gap: 12,
                 alignContent: "center",
-                marginTop: 28,
+                marginTop: 80,
                 padding: 22,
                 borderRadius: 28,
                 background: "rgba(255,255,255,0.72)",
