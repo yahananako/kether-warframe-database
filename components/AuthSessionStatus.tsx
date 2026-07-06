@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 
 type SessionResponse = {
   ok: boolean;
@@ -70,19 +70,6 @@ export default function AuthSessionStatus() {
     };
   }, []);
 
-  const displayName = useMemo(() => {
-    return (
-      session?.discordUser?.globalName ||
-      session?.discordUser?.username ||
-      session?.discordUser?.id ||
-      "Discord 使用者"
-    );
-  }, [session]);
-
-  const username = session?.discordUser?.username || "discord user";
-  const avatarUrl = getDiscordAvatarUrl(session?.discordUser);
-  const isAuthorized = Boolean(session?.guildAccess?.authorized);
-
   if (loading) {
     return (
       <section className="auth-hero-card">
@@ -107,6 +94,16 @@ export default function AuthSessionStatus() {
     );
   }
 
+  const displayName =
+    session.discordUser?.globalName ||
+    session.discordUser?.username ||
+    session.discordUser?.id ||
+    "Discord 使用者";
+
+  const username = session.discordUser?.username || "discord user";
+  const avatarUrl = getDiscordAvatarUrl(session.discordUser);
+  const isAuthorized = Boolean(session.guildAccess?.authorized);
+
   return (
     <section className="auth-hero-card">
       <div
@@ -124,7 +121,7 @@ export default function AuthSessionStatus() {
             borderRadius: 34,
             padding: 24,
             background:
-              "linear-gradient(135deg, rgba(255,255,255,0.86), rgba(255,255,255,0.48))",
+              "linear-gradient(135deg, rgba(255,255,255,0.9), rgba(255,255,255,0.55))",
             boxShadow: "0 22px 60px rgba(15, 23, 42, 0.10)"
           }}
         >
