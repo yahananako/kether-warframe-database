@@ -212,7 +212,7 @@ export default async function HomePage() {
 
     <div className="home-info-date-row">
       <span>更新日期</span>
-      <strong>2026/7/3</strong>
+      <strong>2026/7/6</strong>
     </div>
 
     <div className="home-info-subblock">
@@ -220,7 +220,7 @@ export default async function HomePage() {
       <ul>
         <li>首頁資料會自動讀取 Google Sheets。</li>
         <li>分類頁支援區塊、搜尋、價格與已購買篩選。</li>
-        <li>目前為只讀模式，個人化會在 Discord 登入後實裝。</li>
+        <li>Discord 登入、權限驗證與個人已購買進度已實裝。</li>
         <li>手機版與電腦版都會持續優化。</li>
       </ul>
     </div>
@@ -268,7 +268,7 @@ export default async function HomePage() {
           <div className="summary-table">
             <div className="summary-row">
               <span>資料來源</span>
-              <b>Google Sheets</b>
+              <b>Google Sheets＋Discord 個人進度</b>
             </div>
             <div className="summary-row">
               <span>分頁數</span>
@@ -283,8 +283,8 @@ export default async function HomePage() {
               <b>每日 4:00</b>
             </div>
             <div className="summary-row">
-              <span>Discord 入口</span>
-              <b>已啟用</b>
+              <span>Discord 個人化</span>
+              <b>登入／權限／個人進度已啟用</b>
             </div>
           </div>
 
@@ -302,8 +302,8 @@ export default async function HomePage() {
           </div>
 
           <p>・v2.2.0 已加入首頁自動資料總控台。</p>
-          <p>・下一階段可做 Discord 登入前置與個人化資料庫設計。</p>
-          <p>・完成度目前讀取表格欄位，未來會改為個人獨立紀錄。</p>
+          <p>・Discord 登入、個人進度與權限驗證已完成。</p>
+          <p>・首頁已支援個人已購買／個人完成度；未登入時顯示表格統計。</p>
       <KetherClanWatermark />
           <div className="note-lines" />
           <div className="note-lines" />
