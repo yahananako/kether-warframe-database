@@ -19,7 +19,7 @@ import {
 import { fetchSheetRows } from "../lib/sheets";
 import HomeSearchFloating from "../components/HomeSearchFloating";
 import HomeNotificationsFloating from "../components/HomeNotificationsFloating"; import HomeMenuFloating from "../components/HomeMenuFloating"; import HomeAuthMini from "../components/HomeAuthMini"; import HomePersonalProgress from "../components/HomePersonalProgress"; import KetherClanWatermark from "../components/KetherClanWatermark";
-import { OFFICIAL_NEWS_BOARD, OFFICIAL_NEWS_LINKS } from "../data/officialNews";
+import OfficialNewsBoard from "../components/OfficialNewsBoard";
 
 const navItems = [
   { label: "總覽", key: "overview", href: "/database/overview", icon: Gem },
@@ -257,47 +257,7 @@ export default async function HomePage() {
         <li>追蹤版本更新與活動消息。</li>
         <li>官方新聞摘要區已建立；後續可接 RSS／API 自動更新。</li>
       </ul>
-            <div className="official-news-summary official-board">
-              <div className="official-news-summary-title">
-                <Bell size={16} />
-                <span>官方公告看板</span>
-              </div>
-
-              <div className="official-board-hero">
-                <div>
-                  <span className="official-board-kicker">{OFFICIAL_NEWS_BOARD.kicker}</span>
-                  <h3>{OFFICIAL_NEWS_BOARD.title}</h3>
-                  <p>{OFFICIAL_NEWS_BOARD.description}</p>
-                </div>
-
-                <Link
-                  className="official-board-main-link"
-                  href={OFFICIAL_NEWS_BOARD.mainLinkHref}
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  {OFFICIAL_NEWS_BOARD.mainLinkText}
-                </Link>
-              </div>
-
-              <div className="official-news-list official-board-grid">
-                {OFFICIAL_NEWS_LINKS.map((item) => (
-                  <Link
-                    key={item.id}
-                    className="official-news-item official-board-card"
-                    href={item.href}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    <span className="official-board-label">{item.label}</span>
-                    <b>{item.title}</b>
-                    <span>{item.description}</span>
-                  </Link>
-                ))}
-              </div>
-
-              <p className="official-news-note">{OFFICIAL_NEWS_BOARD.note}</p>
-            </div>
+            <OfficialNewsBoard />
     </div>
   </article>
 </div>
