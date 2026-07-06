@@ -148,19 +148,22 @@ export default async function HomePage() {
 
       <section className="home-kpi-grid home-zone home-zone-stats">
         <div className="panel-tag">數據區</div>
+
         <article>
           <span>總資料數</span>
           <strong>{totalRows.toLocaleString("zh-TW")}</strong>
         </article>
+
         <article>
           <span>有價格資料</span>
           <strong>{totalPriced.toLocaleString("zh-TW")}</strong>
         </article>
-  <HomePersonalProgress
-    totalRows={totalRows}
-    fallbackOwned={totalOwned}
-    fallbackCompletion={totalCompletion}
-  />
+
+        <HomePersonalProgress
+          totalRows={totalRows}
+          fallbackOwned={totalOwned}
+          fallbackCompletion={totalCompletion}
+        />
       </section>
 
       <section className="nav-panel home-zone home-zone-nav" id="navigation">
