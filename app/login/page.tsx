@@ -1,5 +1,11 @@
 import Link from "next/link";
-import { ShieldCheck, MessageCircle, LockKeyhole, Users, CreditCard } from "lucide-react";
+import {
+  ShieldCheck,
+  MessageCircle,
+  LockKeyhole,
+  Users,
+  CreditCard,
+} from "lucide-react";
 
 export default function LoginPage() {
   return (
@@ -10,30 +16,42 @@ export default function LoginPage() {
       <div className="corner corner-rb" />
 
       <header className="auth-header">
-        <Link href="/" className="db-back">← 返回首頁</Link>
+        <Link href="/" className="db-back">
+          ← 返回首頁
+        </Link>
+
         <div>
           <p>KETHER OF PARADISO</p>
           <h1>Discord 登入</h1>
-          <span>v2.2.0 權限系統已啟用，首頁公開，其他資料頁需 Discord 權限。</span>
+          <span>
+            v2.2.0 權限系統已啟用，首頁公開，其他資料頁需 Discord 權限。
+          </span>
         </div>
       </header>
 
       <section className="auth-hero-card">
         <ShieldCheck size={68} strokeWidth={1.4} />
+
         <h2>氏族資料庫權限入口</h2>
+
         <p>
-          目前網站仍是公開只讀資料模式。Discord 登入後，會依照 Discord 群組與身分組判斷可用權限，
-          並啟用個人已購買、完成度、收藏進度等個人化資料。
+          首頁可公開瀏覽。其他資料頁、個人進度與資料庫狀態需要 Discord
+          登入，系統會依 Discord 群組與身分組判斷可用權限。
         </p>
 
         <div className="auth-actions">
-          <a className="auth-primary" href="https://discord.gg/MFhTb8XMZ" target="_blank" rel="noreferrer">
+          <a
+            className="auth-primary"
+            href="https://discord.gg/MFhTb8XMZ"
+            target="_blank"
+            rel="noreferrer"
+          >
             <MessageCircle size={20} />
             加入 Discord 群組
           </a>
 
           <a className="auth-primary" href="/api/auth/discord/login">
-            <ShieldCheck size={20} />
+            <LockKeyhole size={20} />
             使用 Discord 登入
           </a>
         </div>
@@ -43,24 +61,24 @@ export default function LoginPage() {
         <article>
           <LockKeyhole size={34} />
           <h3>本氏族權限</h3>
-          <p>先支援 KETHER OF PARADISO 成員登入後使用個人化進度。</p>
+          <p>KETHER OF PARADISO 成員登入後可使用資料庫內頁與個人化進度。</p>
         </article>
 
         <article>
           <Users size={34} />
           <h3>多 Discord 群組</h3>
-          <p>未來其他 Discord 群組可申請使用自己的資料庫權限。</p>
+          <p>之後可開放其他 Discord 群組申請自己的資料庫權限。</p>
         </article>
 
         <article>
           <CreditCard size={34} />
           <h3>付費開通預留</h3>
-          <p>未來可依群組、身分組、人數與功能方案做訂閱管理。</p>
+          <p>之後可依群組、身分組、人數與功能方案做訂閱管理。</p>
         </article>
       </section>
 
       <section className="auth-flow">
-        <h2>未來登入流程</h2>
+        <h2>目前登入流程</h2>
 
         <div>
           <span>1</span>
