@@ -1,6 +1,10 @@
 import { NextResponse } from "next/server";
 
-import { OFFICIAL_NEWS_BOARD, OFFICIAL_NEWS_LINKS } from "../../../data/officialNews";
+import {
+  OFFICIAL_NEWS_BOARD,
+  OFFICIAL_NEWS_ITEMS,
+  OFFICIAL_NEWS_LINKS,
+} from "../../../data/officialNews";
 
 export const dynamic = "force-dynamic";
 
@@ -9,15 +13,19 @@ export async function GET() {
     {
       ok: true,
       route: "/api/official-news",
-      mode: "static-board-source",
-      message: "官方新聞 API 前置路由已建立；目前回傳官方公告看板靜態資料，後續可接 RSS／API 自動更新。",
+      mode: "static-news-items-source",
+      message:
+        "官方新聞 API 前置路由已建立；目前回傳官方公告看板與新聞列表靜態資料，後續可接 RSS／API 自動更新。",
       generatedAt: new Date().toISOString(),
       board: OFFICIAL_NEWS_BOARD,
       links: OFFICIAL_NEWS_LINKS,
+      items: OFFICIAL_NEWS_ITEMS,
+      itemCount: OFFICIAL_NEWS_ITEMS.length,
       nextSteps: [
-        "接入 Warframe 官方新聞來源",
-        "整理最新公告標題、日期與摘要",
-        "首頁改讀 /api/official-news 顯示最新新聞",
+        "接入 Warframe 官方新聞 RSS／API",
+        "將 items 改成最新官方新聞資料",
+        "整理新聞標題、日期、分類、摘要與官方連結",
+        "首頁顯示最新公告預覽",
       ],
     },
     {

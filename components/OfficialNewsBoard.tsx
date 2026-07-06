@@ -4,24 +4,14 @@ import { Bell } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-import { OFFICIAL_NEWS_BOARD, OFFICIAL_NEWS_LINKS } from "../data/officialNews";
-
-type OfficialNewsLink = {
-  id: string;
-  label: string;
-  title: string;
-  description: string;
-  href: string;
-};
-
-type OfficialNewsBoardData = {
-  kicker: string;
-  title: string;
-  description: string;
-  mainLinkText: string;
-  mainLinkHref: string;
-  note: string;
-};
+import {
+  OFFICIAL_NEWS_BOARD,
+  OFFICIAL_NEWS_ITEMS,
+  OFFICIAL_NEWS_LINKS,
+  type OfficialNewsBoardData,
+  type OfficialNewsItem,
+  type OfficialNewsLink,
+} from "../data/officialNews";
 
 type OfficialNewsApiResponse = {
   ok: boolean;
@@ -29,11 +19,27 @@ type OfficialNewsApiResponse = {
   generatedAt: string;
   board: OfficialNewsBoardData;
   links: OfficialNewsLink[];
+  items?: OfficialNewsItem[];
 };
+
+function formatOfficialNewsDate(value: string | null) {
+  if (!value) return "待接入 RSS";
+
+  try {
+    return new Intl.DateTimeFormat("zh-TW", {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+    }).format(new Date(value));
+  } catch {
+    return value;
+  }
+}
 
 export default function OfficialNewsBoard() {
   const [board, setBoard] = useState<OfficialNewsBoardData>(OFFICIAL_NEWS_BOARD);
   const [links, setLinks] = useState<OfficialNewsLink[]>(OFFICIAL_NEWS_LINKS);
+  const [items, setItems] = useState<OfficialNewsItem[]>(OFFICIAL_NEWS_ITEMS);
   const [updatedAt, setUpdatedAt] = useState<string>("本地備援資料");
   const [sourceMode, setSourceMode] = useState<string>("local-fallback");
 
@@ -63,6 +69,7 @@ export default function OfficialNewsBoard() {
 
         setBoard(data.board);
         setLinks(data.links);
+        setItems(Array.isArray(data.items) ? data.items : OFFICIAL_NEWS_ITEMS);
         setUpdatedAt(data.generatedAt);
         setSourceMode(data.mode);
       } catch {
@@ -70,6 +77,7 @@ export default function OfficialNewsBoard() {
 
         setBoard(OFFICIAL_NEWS_BOARD);
         setLinks(OFFICIAL_NEWS_LINKS);
+        setItems(OFFICIAL_NEWS_ITEMS);
         setUpdatedAt("本地備援資料");
         setSourceMode("local-fallback");
       }
@@ -120,6 +128,31 @@ export default function OfficialNewsBoard() {
             <span>{item.description}</span>
           </Link>
         ))}
+      </div>
+
+      <div className="official-news-feed-preview">
+        <div className="official-news-feed-title">
+          <span>最新公告預覽</span>
+          <b>{items.length} 筆</b>
+        </div>
+
+        <div className="official-news-feed-list">
+          {items.map((item) => (
+            <Link
+              key={item.id}
+              className="official-news-feed-item"
+              href={item.href}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <span className="official-news-feed-meta">
+                {item.category}｜{formatOfficialNewsDate(item.publishedAt)}
+              </span>
+              <b>{item.title}</b>
+              <span>{item.summary}</span>
+            </Link>
+          ))}
+        </div>
       </div>
 
       <p className="official-news-note">{board.note}</p>
