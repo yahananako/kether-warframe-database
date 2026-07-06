@@ -5447,3 +5447,12 @@ a.nav-card {
   }
 }
 /* official info compact dashboard end */
+
+/* official news duplicate guard start */
+.home-warframe-info-card .official-news-summary.official-board + .official-news-summary.official-board,
+.home-warframe-info-card .official-news-summary.official-board ~ .official-news-summary.official-board,
+.official-board-compact + .official-board-compact,
+.official-news-summary.official-board + .official-news-summary.official-board {
+  display: none !important;
+}
+/* official news duplicate guard end */
