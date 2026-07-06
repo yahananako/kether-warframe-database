@@ -180,8 +180,7 @@ function parseAtomItems(xml: string): ParsedFeedItem[] {
   return blocks
     .map((block) => {
       const title = readFirstTag(block, ["title"]);
-      const rawSummary = readFirstRawTag(block, ["summary", "content", "description"]);
-      const summary = trimSummary(rawSummary || "官方新聞摘要待補。");
+      const summary = "點擊查看官方原文。";
       const href = readAtomLink(block) || readFirstTag(block, ["link", "id"]);
       const publishedAt = normalizeDate(readFirstTag(block, ["published", "updated"]));
 
@@ -200,7 +199,7 @@ function toOfficialNewsItem(item: ParsedFeedItem, index: number): OfficialNewsIt
     id: `official-feed-${index + 1}`,
     category: "NEWS",
     title: item.title,
-    summary: item.summary || "官方新聞摘要待補。",
+    summary: item.summary || "點擊查看官方原文。",
     publishedAt: item.publishedAt,
     href: item.href,
     source: "rss-feed",

@@ -149,7 +149,6 @@ export default function OfficialNewsBoard() {
                 {item.category}｜{formatOfficialNewsDate(item.publishedAt)}
               </span>
               <b>{item.title}</b>
-              <span>{item.summary}</span>
             </Link>
           ))}
         </div>
