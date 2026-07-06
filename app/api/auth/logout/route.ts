@@ -1,7 +1,11 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { DISCORD_SESSION_COOKIE_NAME } from "../../../../lib/auth/discordSession";
 
-function clearAuthCookies(response: NextResponse) {
+export const runtime = "nodejs";
+
+export async function GET(request: NextRequest) {
+  const response = NextResponse.redirect(new URL("/", request.url));
+
   response.cookies.set(DISCORD_SESSION_COOKIE_NAME, "", {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
@@ -19,24 +23,4 @@ function clearAuthCookies(response: NextResponse) {
   });
 
   return response;
-}
-
-export async function GET() {
-  return clearAuthCookies(
-    NextResponse.json({
-      ok: true,
-      loggedOut: true,
-      message: "Discord session cookie was cleared."
-    })
-  );
-}
-
-export async function POST() {
-  return clearAuthCookies(
-    NextResponse.json({
-      ok: true,
-      loggedOut: true,
-      message: "Discord session cookie was cleared."
-    })
-  );
 }
