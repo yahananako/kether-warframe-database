@@ -5356,12 +5356,12 @@ a.nav-card {
 }
 
 .official-board-compact {
-  margin-top: 16px;
-  padding: 16px;
-  border-radius: 22px;
+  margin-top: 14px;
+  padding: 14px;
+  border-radius: 20px;
   background: rgba(248, 250, 252, 0.74);
   border: 1px solid rgba(148, 163, 184, 0.24);
-  box-shadow: 0 14px 32px rgba(15, 23, 42, 0.08);
+  box-shadow: 0 12px 26px rgba(15, 23, 42, 0.07);
 }
 
 .official-board-compact::before {
@@ -5373,7 +5373,7 @@ a.nav-card {
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
 
 .official-compact-title {
@@ -5402,7 +5402,7 @@ a.nav-card {
 
 .official-news-feed-list-compact {
   display: grid;
-  gap: 8px;
+  gap: 7px;
 }
 
 .official-news-feed-item-compact {
@@ -5411,24 +5411,24 @@ a.nav-card {
   align-items: center;
   gap: 12px;
   min-height: 0;
-  padding: 10px 12px;
-  border-radius: 15px;
+  padding: 9px 12px;
+  border-radius: 14px;
 }
 
 .official-news-feed-item-compact b {
   overflow: hidden;
   color: #0f172a;
-  font-size: 0.96rem;
-  line-height: 1.4;
+  font-size: 0.95rem;
+  line-height: 1.35;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 
 .official-news-api-status-compact {
-  margin: 10px 0 0;
+  margin: 9px 0 0;
   color: #64748b;
-  font-size: 0.78rem;
-  line-height: 1.55;
+  font-size: 0.76rem;
+  line-height: 1.5;
 }
 
 @media (max-width: 720px) {
