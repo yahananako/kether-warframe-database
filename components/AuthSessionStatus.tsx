@@ -29,12 +29,14 @@ type SessionResponse = {
 
 function getDiscordAvatarUrl(user?: SessionResponse["discordUser"]) {
   if (!user?.id || !user.avatar) return null;
+
   const extension = user.avatar.startsWith("a_") ? "gif" : "png";
   return `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.${extension}?size=128`;
 }
 
 function getDiscordBannerUrl(user?: SessionResponse["discordUser"]) {
   if (!user?.id || !user.banner) return null;
+
   const extension = user.banner.startsWith("a_") ? "gif" : "png";
   return `https://cdn.discordapp.com/banners/${user.id}/${user.banner}.${extension}?size=512`;
 }
@@ -62,10 +64,12 @@ export default function AuthSessionStatus() {
         const data = (await response.json().catch(() => ({}))) as SessionResponse;
 
         if (!active) return;
+
         setSession(data);
         setLoading(false);
       } catch {
         if (!active) return;
+
         setSession({
           ok: false,
           authenticated: false,
@@ -122,7 +126,7 @@ export default function AuthSessionStatus() {
     <section className="auth-hero-card">
       <div
         style={{
-          width: "min(100%, 640px)",
+          width: "min(100%, 680px)",
           margin: "0 auto",
           borderRadius: 34,
           overflow: "hidden",
@@ -139,17 +143,7 @@ export default function AuthSessionStatus() {
               : `linear-gradient(135deg, ${accentHex}, #ffffff)`,
             position: "relative"
           }}
-        >
-          <div
-            aria-hidden="true"
-            style={{
-              position: "absolute",
-              inset: 0,
-              background:
-                "radial-gradient(circle at 20% 25%, rgba(255,255,255,0.72), transparent 12%), radial-gradient(circle at 80% 35%, rgba(255,255,255,0.48), transparent 15%)"
-            }}
-          />
-        </div>
+        />
 
         <div
           style={{
@@ -160,7 +154,7 @@ export default function AuthSessionStatus() {
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "minmax(220px, 0.92fr) minmax(260px, 1.08fr)",
+              gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
               gap: 22,
               alignItems: "stretch",
               transform: "translateY(-46px)",
