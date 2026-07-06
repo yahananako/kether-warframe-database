@@ -292,18 +292,16 @@ async function resolveMarketItem(keyword: string) {
   const normalizedKeyword = normalizeText(keyword);
   const aliasSlug = MANUAL_ALIASES[normalizedKeyword];
 
-  const items = await getMarketItems();
-
   if (aliasSlug) {
-    const matchedAliasItem = items.find((item) => item.slug === aliasSlug);
-
     return {
       slug: aliasSlug,
-      name: matchedAliasItem?.name ?? MANUAL_DISPLAY[aliasSlug]?.zh ?? keyword,
+      name: MANUAL_DISPLAY[aliasSlug]?.zh ?? keyword,
     };
   }
 
-  const directSlug = slugFromText(keyword);
+  const items = await getMarketItems();
+
+const directSlug = slugFromText(keyword);
 
   const exactMatch = items.find((item) => {
     return (
