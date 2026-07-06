@@ -223,11 +223,209 @@ function parseRank(rawKeyword: string): RankParseResult {
   };
 }
 
+function getNestedValue(source: any, path: string[]) {
+  let current = source;
+
+  for (const key of path) {
+    if (!current || typeof current !== "object") {
+      return undefined;
+    }
+
+    current = current[key];
+  }
+
+  return current;
+}
+
+function pickLocalizedName(item: any, language: string) {
+  const languageKeys = [
+    language,
+    language.replace("-", "_"),
+    language === "zh-hant" ? "zh" : language,
+    "en",
+  ];
+
+  const possiblePaths: string[][] = [];
+
+  for (const key of languageKeys) {
+    possiblePaths.push([key, "name"]);
+    possiblePaths.push([key, "item_name"]);
+    possiblePaths.push(["i18n", key, "name"]);
+    possiblePaths.push(["i18n", key, "item_name"]);
+  }
+
+  possiblePaths.push(["name"]);
+  possiblePaths.push(["item_name"]);
+  possiblePaths.push(["title"]);
+
+  for (const path of possiblePaths) {
+    const value = getNestedValue(item, path);
+
+    if (typeof value === "string" && value.trim()) {
+      return value.trim();
+    }
+  }
+
+  return "";
+}
+
+function pickSlug(item: any) {
+  const possibleValues = [
+    item?.slug,
+    item?.url_name,
+    item?.urlName,
+    item?.id,
+    item?.uniqueName,
+  ];
+
+  for (const value of possibleValues) {
+    if (typeof value === "string" && value.trim()) {
+      return value.trim();
+    }
+  }
+
+  return "";
+}
+
+function collectRawItems(source: any): any[] {
+  if (!source) {
+    return [];
+  }
+
+  if (Array.isArray(source)) {
+    return source;
+  }
+
+  const candidates = [
+    source?.data?.items,
+    source?.data,
+    source?.payload?.items,
+    source?.items,
+    source?.results,
+  ];
+
+  for (const candidate of candidates) {
+    if (Array.isArray(candidate)) {
+      return candidate;
+    }
+
+    if (candidate && typeof candidate === "object") {
+      const values = Object.values(candidate);
+
+      if (values.length > 0) {
+        return values;
+      }
+    }
+  }
+
+  return [];
+}
+
+function getNestedValue(source: any, path: string[]) {
+  let current = source;
+
+  for (const key of path) {
+    if (!current || typeof current !== "object") {
+      return undefined;
+    }
+
+    current = current[key];
+  }
+
+  return current;
+}
+
+function pickLocalizedName(item: any, language: string) {
+  const languageKeys = [
+    language,
+    language.replace("-", "_"),
+    language === "zh-hant" ? "zh" : language,
+    "en",
+  ];
+
+  const possiblePaths: string[][] = [];
+
+  for (const key of languageKeys) {
+    possiblePaths.push([key, "name"]);
+    possiblePaths.push([key, "item_name"]);
+    possiblePaths.push(["i18n", key, "name"]);
+    possiblePaths.push(["i18n", key, "item_name"]);
+  }
+
+  possiblePaths.push(["name"]);
+  possiblePaths.push(["item_name"]);
+  possiblePaths.push(["title"]);
+
+  for (const path of possiblePaths) {
+    const value = getNestedValue(item, path);
+
+    if (typeof value === "string" && value.trim()) {
+      return value.trim();
+    }
+  }
+
+  return "";
+}
+
+function pickSlug(item: any) {
+  const possibleValues = [
+    item?.slug,
+    item?.url_name,
+    item?.urlName,
+    item?.id,
+    item?.uniqueName,
+  ];
+
+  for (const value of possibleValues) {
+    if (typeof value === "string" && value.trim()) {
+      return value.trim();
+    }
+  }
+
+  return "";
+}
+
+function collectRawItems(source: any): any[] {
+  if (!source) {
+    return [];
+  }
+
+  if (Array.isArray(source)) {
+    return source;
+  }
+
+  const candidates = [
+    source?.data?.items,
+    source?.data,
+    source?.payload?.items,
+    source?.items,
+    source?.results,
+  ];
+
+  for (const candidate of candidates) {
+    if (Array.isArray(candidate)) {
+      return candidate;
+    }
+
+    if (candidate && typeof candidate === "object") {
+      const values = Object.values(candidate);
+
+      if (values.length > 0) {
+        return values;
+      }
+    }
+  }
+
+  return [];
+}
+
 async function fetchMarketItemsByLanguage(language: string): Promise<MarketItem[]> {
   const response = await fetch(`${MARKET_API}/items`, {
     headers: {
       Accept: "application/json",
       Language: language,
+      Platform: "pc",
+      "User-Agent": "KETHER-Warframe-Database Discord price bot",
     },
     next: {
       revalidate: 21600,
@@ -235,25 +433,25 @@ async function fetchMarketItemsByLanguage(language: string): Promise<MarketItem[
   });
 
   if (!response.ok) {
+    console.error(`Warframe.Market items error: ${response.status}`);
     return [];
   }
 
   const data = await response.json();
-  const rawItems = data?.payload?.items;
-
-  if (!Array.isArray(rawItems)) {
-    return [];
-  }
+  const rawItems = collectRawItems(data);
 
   return rawItems
-    .map((item: { item_name?: string; url_name?: string }) => {
-      if (!item.item_name || !item.url_name) {
+    .map((item: any) => {
+      const slug = pickSlug(item);
+      const name = pickLocalizedName(item, language);
+
+      if (!slug || !name) {
         return null;
       }
 
       return {
-        name: item.item_name,
-        slug: item.url_name,
+        name,
+        slug,
         language,
       };
     })
