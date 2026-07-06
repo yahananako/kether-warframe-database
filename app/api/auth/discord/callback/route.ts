@@ -27,6 +27,19 @@ type DiscordUserResponse = {
   discriminator?: string;
   global_name?: string | null;
   avatar?: string | null;
+  banner?: string | null;
+  accent_color?: number | null;
+  avatar_decoration_data?: {
+    asset?: string;
+    sku_id?: string;
+  } | null;
+  collectibles?: {
+    nameplate?: {
+      palette?: string;
+      asset?: string;
+      sku_id?: string;
+    } | null;
+  } | null;
   locale?: string;
   verified?: boolean;
   mfa_enabled?: boolean;
@@ -182,7 +195,9 @@ export async function GET(request: NextRequest) {
             id: userData.id,
             username: userData.username ?? null,
             globalName: userData.global_name ?? null,
-            avatar: userData.avatar ?? null
+            avatar: userData.avatar ?? null,
+            banner: userData.banner ?? null,
+            accentColor: userData.accent_color ?? null
           },
           guildAccess: {
             guildId,
@@ -213,7 +228,9 @@ export async function GET(request: NextRequest) {
             id: userData.id,
             username: userData.username ?? null,
             globalName: userData.global_name ?? null,
-            avatar: userData.avatar ?? null
+            avatar: userData.avatar ?? null,
+            banner: userData.banner ?? null,
+            accentColor: userData.accent_color ?? null
           },
           guildAccess: {
             guildId,
@@ -236,7 +253,11 @@ export async function GET(request: NextRequest) {
       id: userData.id,
       username: userData.username ?? null,
       globalName: userData.global_name ?? null,
-      avatar: userData.avatar ?? null
+      avatar: userData.avatar ?? null,
+      banner: userData.banner ?? null,
+      accentColor: userData.accent_color ?? null,
+      avatarDecorationAsset: userData.avatar_decoration_data?.asset ?? null,
+      nameplatePalette: userData.collectibles?.nameplate?.palette ?? null
     },
     guildId,
     roleIds: sessionRoleIds
@@ -252,7 +273,11 @@ export async function GET(request: NextRequest) {
       username: userData.username ?? null,
       globalName: userData.global_name ?? null,
       discriminator: userData.discriminator ?? null,
-      avatar: userData.avatar ?? null
+      avatar: userData.avatar ?? null,
+      banner: userData.banner ?? null,
+      accentColor: userData.accent_color ?? null,
+      avatarDecorationAsset: userData.avatar_decoration_data?.asset ?? null,
+      nameplatePalette: userData.collectibles?.nameplate?.palette ?? null
     },
     guildAccess: {
       guildId,
