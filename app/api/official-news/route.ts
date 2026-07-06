@@ -2,30 +2,34 @@ import { NextResponse } from "next/server";
 
 import {
   OFFICIAL_NEWS_BOARD,
-  OFFICIAL_NEWS_ITEMS,
   OFFICIAL_NEWS_LINKS,
 } from "../../../data/officialNews";
+import { getOfficialNewsItems } from "../../../lib/officialNewsFeed";
 
 export const dynamic = "force-dynamic";
 
 export async function GET() {
+  const items = await getOfficialNewsItems();
+  const isFallback = items.every((item) => item.source === "static-placeholder");
+
   return NextResponse.json(
     {
       ok: true,
       route: "/api/official-news",
-      mode: "static-news-items-source",
+      mode: isFallback ? "static-news-items-source" : "rss-news-items-source",
       message:
-        "官方新聞 API 前置路由已建立；目前回傳官方公告看板與新聞列表靜態資料，後續可接 RSS／API 自動更新。",
+        "官方新聞 API 已接上 RSS／Atom 抓取工具函式；未設定來源或抓取失敗時會回傳靜態備援資料。",
       generatedAt: new Date().toISOString(),
       board: OFFICIAL_NEWS_BOARD,
       links: OFFICIAL_NEWS_LINKS,
-      items: OFFICIAL_NEWS_ITEMS,
-      itemCount: OFFICIAL_NEWS_ITEMS.length,
+      items,
+      itemCount: items.length,
+      feedEnabled: Boolean(process.env.WARFRAME_OFFICIAL_NEWS_FEED_URL),
       nextSteps: [
-        "接入 Warframe 官方新聞 RSS／API",
-        "將 items 改成最新官方新聞資料",
-        "整理新聞標題、日期、分類、摘要與官方連結",
-        "首頁顯示最新公告預覽",
+        "在 Vercel 設定 WARFRAME_OFFICIAL_NEWS_FEED_URL",
+        "確認 /api/official-news 可回傳 rss-news-items-source",
+        "依官方來源格式微調分類與摘要",
+        "首頁顯示最新官方新聞",
       ],
     },
     {
