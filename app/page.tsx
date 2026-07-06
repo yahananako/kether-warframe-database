@@ -299,7 +299,7 @@ export default async function HomePage() {
 
               <div className="total-row">
                 <span>網站版本</span>
-                <b>v2.2.0</b>
+                <b>v2.2.1</b>
               </div>
             </article>
 
@@ -310,9 +310,9 @@ export default async function HomePage() {
               </div>
 
               <div className="home-status-notes">
-                <p>・v2.2.0 已加入首頁自動資料總控台。</p>
-                <p>・Discord 登入、個人進度與權限驗證已完成。</p>
-                <p>・首頁已支援個人已購買／個人完成度；未登入時顯示表格統計。</p>
+                <p>・v2.2.1 已加入首頁自動資料總控台。</p>
+                <p>・Discord OAuth、氏族群組檢查與身分組權限驗證已啟用。</p>
+                <p>・未登入使用者會導向登入頁，通過權限後可瀏覽總覽與各分類頁。</p>
                 <p>・導航區已整合分類筆數、區塊數、有價格數與完成度。</p>
               </div>
 

@@ -24,7 +24,7 @@ export default function LoginPage() {
           <p>KETHER OF PARADISO</p>
           <h1>Discord 登入</h1>
           <span>
-            v2.2.0 權限系統已啟用，首頁公開，其他資料頁需 Discord 權限。
+            v2.2.1 權限系統已啟用，首頁公開，其他資料頁需 Discord 權限。
           </span>
         </div>
       </header>

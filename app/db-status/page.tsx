@@ -224,7 +224,7 @@ export default async function DbStatusPage() {
         <div>
           <p>KETHER OF PARADISO</p>
           <h1>資料庫連線狀態</h1>
-          <span>v2.2.0 Supabase 與 KETHER 免費方案測試頁。</span>
+          <span>v2.2.1 Supabase、KETHER 免費方案與 Discord 權限狀態檢查頁。</span>
         </div>
       </header>
 
