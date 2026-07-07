@@ -1460,13 +1460,16 @@ export async function POST(request: Request) {
       } catch (error) {
         console.error(error);
 
+        const message = error instanceof Error ? error.message : String(error);
+
         return jsonResponse({
           type: RESPONSE_TYPE.CHANNEL_MESSAGE_WITH_SOURCE,
           data: {
             flags: 64,
             content:
               "Warframe 官方 Profile 讀取失敗喵。\n" +
-              "請確認 player_id 是否正確、platform 是否選對，或稍後再試。",
+              "錯誤訊息：`" + message.slice(0, 500).replace(/`/g, "\\`") + "`\n" +
+              "請確認 player_id 是否為 warframe.com/api/user-data 裡的 user_id，platform 是否選對。",
           },
         });
       }
