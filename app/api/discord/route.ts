@@ -1016,6 +1016,155 @@ function getOptionValue(interaction: any, names: string[]) {
   return "";
 }
 
+
+/* KETHER_WARFRAME_PROFILE_CARD_HELPERS_START */
+type KetherWarframeProfile = {
+  discordId: string;
+  displayName: string;
+  warframeId: string;
+  platform: string;
+  masteryRank: string;
+  playtimeHours?: number;
+  platinum?: number;
+  platinumPrivacy: "private" | "public";
+  mainFrame?: string;
+  clanRole?: string;
+  note?: string;
+  updatedAt: string;
+};
+
+const KETHER_WARFRAME_PROFILES: Record<string, KetherWarframeProfile> = {
+  "你的Discord使用者ID": {
+    discordId: "你的Discord使用者ID",
+    displayName: "小希",
+    warframeId: "Yahananako",
+    platform: "PC",
+    masteryRank: "MR18",
+    playtimeHours: 1280,
+    platinum: 300,
+    platinumPrivacy: "private",
+    mainFrame: "Yareli / 雅蕾莉",
+    clanRole: "座天使",
+    note: "撒滿櫻花的花海",
+    updatedAt: "2026/07/07",
+  },
+};
+
+function getKetherDiscordAvatarUrl(user: any) {
+  if (!user?.id || !user?.avatar) return undefined;
+
+  return `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png?size=256`;
+}
+
+function buildKetherWarframeProfileEmbed(interaction: any) {
+  const targetId = interaction.data?.target_id;
+  const targetUser = targetId
+    ? interaction.data?.resolved?.users?.[targetId]
+    : null;
+
+  const viewerId =
+    interaction.member?.user?.id ||
+    interaction.user?.id ||
+    "";
+
+  const profile = targetId
+    ? KETHER_WARFRAME_PROFILES[targetId] ?? null
+    : null;
+
+  const displayName =
+    profile?.displayName ||
+    targetUser?.global_name ||
+    targetUser?.username ||
+    "未知 Tenno";
+
+  const avatarUrl = getKetherDiscordAvatarUrl(targetUser);
+
+  if (!profile) {
+    return {
+      title: "🌸 KETHER Tenno 名片",
+      description:
+        `**${displayName}** 尚未建立 Warframe 名片。\n\n之後可以加入 /bind-warframe，讓成員自己綁定資料。`,
+      color: 0xf6a6c8,
+      thumbnail: avatarUrl ? { url: avatarUrl } : undefined,
+      fields: [
+        {
+          name: "狀態",
+          value: "未綁定",
+          inline: true,
+        },
+      ],
+      footer: {
+        text: "KETHER Warframe Database",
+      },
+    };
+  }
+
+  const canSeePrivate = viewerId === targetId;
+
+  const platinumText =
+    profile.platinumPrivacy === "public" || canSeePrivate
+      ? typeof profile.platinum === "number"
+        ? `${profile.platinum} 白金`
+        : "未填寫"
+      : "本人可見";
+
+  return {
+    title: "🌸 KETHER Tenno 名片",
+    description: `**${displayName}**\n${profile.note ?? "星圖漂流中"}`,
+    color: 0xf6a6c8,
+    thumbnail: avatarUrl ? { url: avatarUrl } : undefined,
+    fields: [
+      {
+        name: "Warframe ID",
+        value: profile.warframeId,
+        inline: true,
+      },
+      {
+        name: "平台",
+        value: profile.platform,
+        inline: true,
+      },
+      {
+        name: "階位",
+        value: profile.masteryRank,
+        inline: true,
+      },
+      {
+        name: "遊玩時長",
+        value:
+          typeof profile.playtimeHours === "number"
+            ? `${profile.playtimeHours} 小時`
+            : "未填寫",
+        inline: true,
+      },
+      {
+        name: "白金",
+        value: platinumText,
+        inline: true,
+      },
+      {
+        name: "主戰甲",
+        value: profile.mainFrame ?? "未填寫",
+        inline: true,
+      },
+      {
+        name: "氏族階級",
+        value: profile.clanRole ?? "未填寫",
+        inline: true,
+      },
+      {
+        name: "最後更新",
+        value: profile.updatedAt,
+        inline: true,
+      },
+    ],
+    footer: {
+      text: "KETHER Warframe Database",
+    },
+  };
+}
+/* KETHER_WARFRAME_PROFILE_CARD_HELPERS_END */
+
 export async function POST(request: Request) {
   const signature = request.headers.get("x-signature-ed25519");
   const timestamp = request.headers.get("x-signature-timestamp");
@@ -1059,6 +1208,26 @@ export async function POST(request: Request) {
   }
 
   if (interaction.type === INTERACTION_TYPE.APPLICATION_COMMAND) {
+    // KETHER_WARFRAME_PROFILE_CARD_HANDLER_START
+    if (
+      interaction.data?.type === 2 &&
+      interaction.data?.name === "查看 Warframe 名片"
+    ) {
+      const embed = buildKetherWarframeProfileEmbed(interaction);
+
+      return jsonResponse({
+        type: RESPONSE_TYPE.CHANNEL_MESSAGE_WITH_SOURCE,
+        data: {
+          flags: 64,
+          embeds: [embed],
+          allowed_mentions: {
+            parse: [],
+          },
+        },
+      });
+    }
+    // KETHER_WARFRAME_PROFILE_CARD_HANDLER_END
+
     const commandName = interaction.data?.name;
     const keyword = getOptionValue(interaction, ["keyword"]);
     const item = getOptionValue(interaction, ["item", "keyword"]);
