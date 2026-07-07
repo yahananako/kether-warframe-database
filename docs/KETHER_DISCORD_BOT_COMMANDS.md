@@ -70,24 +70,3 @@ Discord BOT v3 已通過實測。
 2. 若測試正常，將 BOT v3 名片功能列為通過。
 3. 後續再評估是否新增 `/bind-warframe`。
 4. 名片資料未來可改接 Supabase，避免硬寫在程式裡。
-
-## C-3 Warframe Market 查價指令
-
-### /market-price
-
-格式：
-
-/market-price item:<英文物品名稱> platform:<平台>
-
-用途：
-- 查詢 Warframe Market 公開價格。
-- 顯示最低線上賣價。
-- 顯示最高線上買價。
-- 顯示前三筆線上賣單與買單。
-- 顯示 Warframe Market 交易頁面。
-
-初版限制：
-- 先支援英文物品名稱。
-- 中文名稱轉換留到下一階段。
-- 不讀取官方玩家 Profile。
-- 不保存交易明細。
