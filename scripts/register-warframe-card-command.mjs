@@ -40,6 +40,35 @@ if (!botToken) throw new Error("缺少 DISCORD_BOT_TOKEN");
 
 const commands = [
   {
+    name: "warframe-obtain",
+    name_localizations: {
+      "zh-TW": "戰甲取得",
+      "zh-CN": "战甲取得",
+    },
+    description: "查詢 Warframe 戰甲取得方式",
+    description_localizations: {
+      "zh-TW": "查詢 Warframe 戰甲取得方式",
+      "zh-CN": "查询 Warframe 战甲取得方式",
+    },
+    type: 1,
+    options: [
+      {
+        name: "name",
+        name_localizations: {
+          "zh-TW": "名稱",
+          "zh-CN": "名称",
+        },
+        description: "要查詢的戰甲名稱，例如 Yareli 或 雅蕾莉",
+        description_localizations: {
+          "zh-TW": "要查詢的戰甲名稱，例如 Yareli 或 雅蕾莉",
+          "zh-CN": "要查询的战甲名称，例如 Yareli 或 雅蕾莉",
+        },
+        type: 3,
+        required: true,
+      },
+    ],
+  },
+  {
     name: "查看 Warframe 名片",
     type: 2,
   },

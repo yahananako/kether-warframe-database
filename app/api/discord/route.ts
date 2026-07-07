@@ -1,4 +1,5 @@
 import crypto from "node:crypto";
+import { buildWarframeAcquisitionResponse } from "./warframeAcquisition";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -1396,6 +1397,23 @@ export async function POST(request: Request) {
 
   if (interaction.type === INTERACTION_TYPE.APPLICATION_COMMAND_AUTOCOMPLETE) {
     const commandName = interaction.data?.name;
+
+    if (commandName === "warframe-obtain") {
+
+      const name = getOptionValue(interaction, ["name", "keyword", "item"]);
+
+      const responseData = buildWarframeAcquisitionResponse(name);
+
+      return Response.json({
+
+        type: 4,
+
+        data: responseData,
+
+      });
+
+    }
+
 
     if (commandName === "price") {
       const focusedValue = getFocusedOptionValue(interaction, ["item", "keyword"]);
