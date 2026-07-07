@@ -83,6 +83,31 @@ const commands = [
       },
     ],
   },
+  {
+    name: "market-price",
+    description: "查詢 Warframe Market 物品價格",
+    type: 1,
+    options: [
+      {
+        name: "item",
+        description: "英文物品名稱，例如 Primed Continuity",
+        type: 3,
+        required: true,
+      },
+      {
+        name: "platform",
+        description: "交易平台",
+        type: 3,
+        required: true,
+        choices: [
+          { name: "PC", value: "pc" },
+          { name: "PlayStation", value: "ps4" },
+          { name: "Xbox", value: "xbox" },
+          { name: "Switch", value: "switch" },
+        ],
+      },
+    ],
+  },
 ];
 
 const baseUrl = `https://discord.com/api/v10/applications/${appId}/guilds/${guildId}/commands`;

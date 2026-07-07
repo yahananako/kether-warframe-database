@@ -1375,6 +1375,175 @@ async function buildOfficialWarframeProfileEmbed(interaction: any) {
 }
 /* KETHER_OFFICIAL_WARFRAME_PROFILE_HELPERS_END */
 
+
+/* KETHER_WARFRAME_MARKET_PRICE_HELPERS_START */
+const WARFRAME_MARKET_PLATFORM_LABELS: Record<string, string> = {
+  pc: "PC",
+  ps4: "PlayStation",
+  xbox: "Xbox",
+  switch: "Switch",
+};
+
+function normalizeWarframeMarketItemName(input: string) {
+  return input
+    .trim()
+    .toLowerCase()
+    .replace(/['’]/g, "")
+    .replace(/[^a-z0-9]+/g, "_")
+    .replace(/^_+|_+$/g, "");
+}
+
+function formatPlatinum(value: number | null) {
+  if (value === null || value === undefined || !Number.isFinite(value)) {
+    return "目前沒有資料";
+  }
+
+  return `${value} 白金`;
+}
+
+function isMarketUserOnline(order: any) {
+  const status = String(order?.user?.status ?? "").toLowerCase();
+  return status === "ingame" || status === "online";
+}
+
+async function fetchWarframeMarketJson(path: string, platform: string) {
+  const response = await fetch(`https://api.warframe.market/v1${path}`, {
+    headers: {
+      Accept: "application/json",
+      Platform: platform,
+      Language: "en",
+      "User-Agent": "KETHER-Warframe-Database Discord market price command",
+    },
+    cache: "no-store",
+  });
+
+  const text = await response.text();
+
+  if (!response.ok) {
+    throw new Error(`Warframe Market HTTP ${response.status}: ${text.slice(0, 180)}`);
+  }
+
+  try {
+    return JSON.parse(text);
+  } catch {
+    throw new Error(`Warframe Market 回傳不是 JSON：${text.slice(0, 180)}`);
+  }
+}
+
+function summarizeMarketOrders(orders: any[]) {
+  const usableOrders = orders.filter((order) => {
+    return order?.visible !== false && isMarketUserOnline(order);
+  });
+
+  const sellOrders = usableOrders
+    .filter((order) => order?.order_type === "sell" && Number.isFinite(Number(order?.platinum)))
+    .sort((a, b) => Number(a.platinum) - Number(b.platinum));
+
+  const buyOrders = usableOrders
+    .filter((order) => order?.order_type === "buy" && Number.isFinite(Number(order?.platinum)))
+    .sort((a, b) => Number(b.platinum) - Number(a.platinum));
+
+  const lowestSell = sellOrders.length > 0 ? Number(sellOrders[0].platinum) : null;
+  const highestBuy = buyOrders.length > 0 ? Number(buyOrders[0].platinum) : null;
+
+  const topSellers = sellOrders.slice(0, 3).map((order) => {
+    const name = order?.user?.ingame_name ?? "Unknown";
+    const quantity = Number(order?.quantity ?? 1);
+    return `${order.platinum}p ×${quantity}｜${name}`;
+  });
+
+  const topBuyers = buyOrders.slice(0, 3).map((order) => {
+    const name = order?.user?.ingame_name ?? "Unknown";
+    const quantity = Number(order?.quantity ?? 1);
+    return `${order.platinum}p ×${quantity}｜${name}`;
+  });
+
+  return {
+    lowestSell,
+    highestBuy,
+    onlineSellCount: sellOrders.length,
+    onlineBuyCount: buyOrders.length,
+    topSellers,
+    topBuyers,
+  };
+}
+
+async function buildWarframeMarketPriceEmbed(interaction: any) {
+  const itemInput = String(getOptionValue(interaction, ["item"]) || "").trim();
+  const platformInput = String(getOptionValue(interaction, ["platform"]) || "pc").toLowerCase();
+  const platform = WARFRAME_MARKET_PLATFORM_LABELS[platformInput] ? platformInput : "pc";
+
+  if (!itemInput) {
+    return {
+      title: "Warframe Market 查價",
+      description: "缺少物品名稱。請使用 `/market-price item:Primed Continuity platform:PC`。",
+      color: 0xf6a6c8,
+    };
+  }
+
+  const urlName = normalizeWarframeMarketItemName(itemInput);
+
+  if (!urlName) {
+    return {
+      title: "Warframe Market 查價",
+      description: "物品名稱無法轉換成 Warframe Market url_name，請先使用英文名稱。",
+      color: 0xf6a6c8,
+    };
+  }
+
+  const data = await fetchWarframeMarketJson(`/items/${encodeURIComponent(urlName)}/orders`, platform);
+  const orders = Array.isArray(data?.payload?.orders) ? data.payload.orders : [];
+  const summary = summarizeMarketOrders(orders);
+
+  const marketUrl = `https://warframe.market/items/${urlName}`;
+
+  return {
+    title: "Warframe Market 查價",
+    description:
+      `物品：**${itemInput}**\n` +
+      `Market url_name：\`${urlName}\`\n` +
+      `平台：**${WARFRAME_MARKET_PLATFORM_LABELS[platform]}**`,
+    color: 0xf6a6c8,
+    fields: [
+      {
+        name: "最低線上賣價",
+        value: formatPlatinum(summary.lowestSell),
+        inline: true,
+      },
+      {
+        name: "最高線上買價",
+        value: formatPlatinum(summary.highestBuy),
+        inline: true,
+      },
+      {
+        name: "線上賣家 / 買家",
+        value: `${summary.onlineSellCount} / ${summary.onlineBuyCount}`,
+        inline: true,
+      },
+      {
+        name: "前三筆線上賣單",
+        value: summary.topSellers.length > 0 ? summary.topSellers.join("\n").slice(0, 1000) : "目前沒有線上賣單",
+        inline: false,
+      },
+      {
+        name: "前三筆線上買單",
+        value: summary.topBuyers.length > 0 ? summary.topBuyers.join("\n").slice(0, 1000) : "目前沒有線上買單",
+        inline: false,
+      },
+      {
+        name: "交易頁面",
+        value: marketUrl,
+        inline: false,
+      },
+    ],
+    footer: {
+      text: "KETHER BOT v3｜Warframe Market 公開資料查價",
+    },
+    timestamp: new Date().toISOString(),
+  };
+}
+/* KETHER_WARFRAME_MARKET_PRICE_HELPERS_END */
+
 export async function POST(request: Request) {
   const signature = request.headers.get("x-signature-ed25519");
   const timestamp = request.headers.get("x-signature-timestamp");
@@ -1470,6 +1639,35 @@ export async function POST(request: Request) {
               "Warframe 官方 Profile 讀取失敗喵。\n" +
               "錯誤訊息：`" + message.slice(0, 500).replace(/`/g, "\\`") + "`\n" +
               "請確認 player_id 是否為 warframe.com/api/user-data 裡的 user_id，platform 是否選對。",
+          },
+        });
+      }
+    }
+
+
+    if (commandName === "market-price") {
+      try {
+        const embed = await buildWarframeMarketPriceEmbed(interaction);
+
+        return jsonResponse({
+          type: RESPONSE_TYPE.CHANNEL_MESSAGE_WITH_SOURCE,
+          data: {
+            embeds: [embed],
+            allowed_mentions: { parse: [] },
+          },
+        });
+      } catch (error) {
+        console.error(error);
+        const message = error instanceof Error ? error.message : String(error);
+
+        return jsonResponse({
+          type: RESPONSE_TYPE.CHANNEL_MESSAGE_WITH_SOURCE,
+          data: {
+            flags: 64,
+            content:
+              "Warframe Market 查價失敗喵。\n" +
+              "錯誤訊息：`" + message.slice(0, 500).replace(/`/g, "\\`") + "`\n" +
+              "請先使用英文物品名稱，例如 Primed Continuity。",
           },
         });
       }
