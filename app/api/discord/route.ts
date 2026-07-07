@@ -1165,6 +1165,216 @@ function buildKetherWarframeProfileEmbed(interaction: any) {
 }
 /* KETHER_WARFRAME_PROFILE_CARD_HELPERS_END */
 
+
+/* KETHER_OFFICIAL_WARFRAME_PROFILE_HELPERS_START */
+const WARFRAME_PROFILE_ENDPOINTS: Record<string, string> = {
+  pc: "https://api.warframe.com/cdn/getProfileViewingData.php",
+  ps: "https://api-ps4.warframe.com/cdn/getProfileViewingData.php",
+  xbox: "https://api-xb1.warframe.com/cdn/getProfileViewingData.php",
+  switch: "https://api-swi.warframe.com/cdn/getProfileViewingData.php",
+  ios: "https://api-mob.warframe.com/cdn/getProfileViewingData.php",
+  android: "https://api-and.warframe.com/cdn/getProfileViewingData.php",
+};
+
+function getProfileNestedValue(source: any, paths: string[][]) {
+  for (const path of paths) {
+    let current = source;
+
+    for (const key of path) {
+      if (!current || typeof current !== "object") {
+        current = undefined;
+        break;
+      }
+
+      current = current[key];
+    }
+
+    if (current !== undefined && current !== null && String(current).trim() !== "") {
+      return current;
+    }
+  }
+
+  return null;
+}
+
+function formatProfileValue(value: any) {
+  if (value === null || value === undefined || String(value).trim() === "") {
+    return "未在回傳中辨識";
+  }
+
+  return String(value).slice(0, 120);
+}
+
+function formatProfilePlaytime(value: any) {
+  const numeric = Number(value);
+
+  if (!Number.isFinite(numeric) || numeric <= 0) {
+    return "未在回傳中辨識";
+  }
+
+  if (numeric > 100000) {
+    return `${Math.round(numeric / 3600)} 小時`;
+  }
+
+  return `${Math.round(numeric)} 小時`;
+}
+
+function getWarframeProfileEndpoint(platform: string, playerId: string) {
+  const normalizedPlatform = platform.toLowerCase().trim();
+  const baseUrl = WARFRAME_PROFILE_ENDPOINTS[normalizedPlatform];
+
+  if (!baseUrl) {
+    throw new Error(`不支援的平台：${platform}`);
+  }
+
+  const url = new URL(baseUrl);
+  url.searchParams.set("playerId", playerId.trim());
+  return url.toString();
+}
+
+async function fetchOfficialWarframeProfile(playerId: string, platform: string) {
+  const url = getWarframeProfileEndpoint(platform, playerId);
+
+  const response = await fetch(url, {
+    headers: {
+      Accept: "application/json",
+      "User-Agent": "KETHER-Warframe-Database Discord official profile test",
+    },
+    cache: "no-store",
+  });
+
+  const text = await response.text();
+
+  if (!response.ok) {
+    throw new Error(`Warframe official profile HTTP ${response.status}: ${text.slice(0, 160)}`);
+  }
+
+  try {
+    return JSON.parse(text);
+  } catch {
+    throw new Error(`Warframe official profile 回傳不是 JSON：${text.slice(0, 160)}`);
+  }
+}
+
+async function buildOfficialWarframeProfileEmbed(interaction: any) {
+  const playerId = getOptionValue(interaction, ["player_id", "playerid"]);
+  const platform = (getOptionValue(interaction, ["platform"]) || "pc").toLowerCase();
+
+  if (!playerId) {
+    return {
+      title: "Warframe 官方 Profile 測試",
+      description: "缺少 player_id。請使用 `/warframe-profile player_id:<AccountID> platform:pc`。",
+      color: 0xf6a6c8,
+    };
+  }
+
+  const data = await fetchOfficialWarframeProfile(playerId, platform);
+  const topKeys = Object.keys(data ?? {}).slice(0, 16);
+
+  const displayName = getProfileNestedValue(data, [
+    ["DisplayName"],
+    ["displayName"],
+    ["playerName"],
+    ["username"],
+    ["account", "displayName"],
+    ["profile", "displayName"],
+  ]);
+
+  const masteryRank = getProfileNestedValue(data, [
+    ["PlayerLevel"],
+    ["playerLevel"],
+    ["MasteryRank"],
+    ["masteryRank"],
+    ["profile", "playerLevel"],
+    ["profile", "masteryRank"],
+    ["AccountInfo", "PlayerLevel"],
+  ]);
+
+  const clanName = getProfileNestedValue(data, [
+    ["GuildName"],
+    ["guildName"],
+    ["ClanName"],
+    ["clanName"],
+    ["guild", "name"],
+    ["clan", "name"],
+    ["profile", "guildName"],
+  ]);
+
+  const playtime = getProfileNestedValue(data, [
+    ["TimePlayedSec"],
+    ["timePlayedSec"],
+    ["timePlayedSeconds"],
+    ["PlaytimeSeconds"],
+    ["playtimeSeconds"],
+    ["Stats", "TimePlayedSec"],
+    ["stats", "timePlayedSec"],
+    ["profile", "timePlayedSec"],
+  ]);
+
+  const equipmentCount = Array.isArray(data?.Equipment)
+    ? data.Equipment.length
+    : Array.isArray(data?.equipment)
+      ? data.equipment.length
+      : Array.isArray(data?.LoadOutPresets)
+        ? data.LoadOutPresets.length
+        : null;
+
+  return {
+    title: "Warframe 官方 Profile 測試",
+    description:
+      "A-1 測試：已成功讀取官方 Profile JSON。\n" +
+      "欄位名稱可能因平台或版本不同，這次先回報可辨識資料與 JSON 結構。",
+    color: 0xf6a6c8,
+    fields: [
+      {
+        name: "平台",
+        value: platform,
+        inline: true,
+      },
+      {
+        name: "playerId",
+        value: playerId,
+        inline: true,
+      },
+      {
+        name: "玩家名稱",
+        value: formatProfileValue(displayName),
+        inline: true,
+      },
+      {
+        name: "階位 / Mastery",
+        value: formatProfileValue(masteryRank),
+        inline: true,
+      },
+      {
+        name: "氏族 / Clan",
+        value: formatProfileValue(clanName),
+        inline: true,
+      },
+      {
+        name: "遊玩時間",
+        value: formatProfilePlaytime(playtime),
+        inline: true,
+      },
+      {
+        name: "裝備資料數",
+        value: equipmentCount === null ? "未在回傳中辨識" : String(equipmentCount),
+        inline: true,
+      },
+      {
+        name: "JSON top-level keys",
+        value: topKeys.length > 0 ? topKeys.join(", ").slice(0, 1000) : "無",
+        inline: false,
+      },
+    ],
+    footer: {
+      text: "KETHER BOT v3 A-1 官方資料讀取測試",
+    },
+    timestamp: new Date().toISOString(),
+  };
+}
+/* KETHER_OFFICIAL_WARFRAME_PROFILE_HELPERS_END */
+
 export async function POST(request: Request) {
   const signature = request.headers.get("x-signature-ed25519");
   const timestamp = request.headers.get("x-signature-timestamp");
@@ -1233,6 +1443,34 @@ export async function POST(request: Request) {
     const item = getOptionValue(interaction, ["item", "keyword"]);
     const rankOption = getOptionValue(interaction, ["rank"]);
     const selectedRank = parseRankOption(rankOption);
+
+
+    if (commandName === "warframe-profile") {
+      try {
+        const embed = await buildOfficialWarframeProfileEmbed(interaction);
+
+        return jsonResponse({
+          type: RESPONSE_TYPE.CHANNEL_MESSAGE_WITH_SOURCE,
+          data: {
+            flags: 64,
+            embeds: [embed],
+            allowed_mentions: { parse: [] },
+          },
+        });
+      } catch (error) {
+        console.error(error);
+
+        return jsonResponse({
+          type: RESPONSE_TYPE.CHANNEL_MESSAGE_WITH_SOURCE,
+          data: {
+            flags: 64,
+            content:
+              "Warframe 官方 Profile 讀取失敗喵。\n" +
+              "請確認 player_id 是否正確、platform 是否選對，或稍後再試。",
+          },
+        });
+      }
+    }
 
     if (commandName === "help") {
       return jsonResponse({

@@ -21,7 +21,9 @@ Discord BOT v3 已通過實測。
 | `/kether keyword: 首頁` | Slash Command | 回覆 KETHER 網站首頁 / 連結 | 已測正常 |
 | `/kether keyword: <物品名稱>` | Slash Command | 查詢 Warframe Market 交易價格 | 已測正常 |
 | `/kether keyword: <英文名稱> 滿等` | Slash Command | 查詢滿等 MOD / 物品價格 | 已測正常 |
-| `查看 Warframe 名片` | User Command | 查看指定成員的 Warframe 名片 | 已加入程式，需註冊後測試 |
+| `查看 Warframe 名片` | User Command | 查看指定成員的 Warframe 名片 | 已建立，手機版可能不好叫出 |
+| `/warframe-card user:@成員` | Slash Command | 手機可用的 Warframe 名片查詢 | 新增測試中 |
+| `/warframe-profile player_id:<AccountID> platform:<平台>` | Slash Command | A-1 測試：讀取 Warframe 官方 Profile JSON | 新增測試中 |
 
 ## Warframe 名片功能
 

@@ -7,7 +7,6 @@ function loadEnvFile(path) {
 
   for (const line of text.split("\n")) {
     const trimmed = line.trim();
-
     if (!trimmed || trimmed.startsWith("#")) continue;
 
     const index = trimmed.indexOf("=");
@@ -39,10 +38,52 @@ if (!appId) throw new Error("缺少 DISCORD_APP_ID / DISCORD_APPLICATION_ID / DI
 if (!guildId) throw new Error("缺少 DISCORD_GUILD_ID");
 if (!botToken) throw new Error("缺少 DISCORD_BOT_TOKEN");
 
-const command = {
-  name: "查看 Warframe 名片",
-  type: 2
-};
+const commands = [
+  {
+    name: "查看 Warframe 名片",
+    type: 2,
+  },
+  {
+    name: "warframe-card",
+    description: "查看指定成員的 Warframe 名片",
+    type: 1,
+    options: [
+      {
+        name: "user",
+        description: "要查看名片的成員",
+        type: 6,
+        required: true,
+      },
+    ],
+  },
+  {
+    name: "warframe-profile",
+    description: "A-1 測試：用 playerId 讀取 Warframe 官方 Profile",
+    type: 1,
+    options: [
+      {
+        name: "player_id",
+        description: "Warframe Account ID / playerId",
+        type: 3,
+        required: true,
+      },
+      {
+        name: "platform",
+        description: "玩家平台",
+        type: 3,
+        required: true,
+        choices: [
+          { name: "PC", value: "pc" },
+          { name: "PlayStation", value: "ps" },
+          { name: "Xbox", value: "xbox" },
+          { name: "Switch", value: "switch" },
+          { name: "iOS", value: "ios" },
+          { name: "Android", value: "android" },
+        ],
+      },
+    ],
+  },
+];
 
 const baseUrl = `https://discord.com/api/v10/applications/${appId}/guilds/${guildId}/commands`;
 
@@ -51,14 +92,14 @@ async function discordFetch(method, url, body) {
     method,
     headers: {
       Authorization: `Bot ${botToken}`,
-      "Content-Type": "application/json"
+      "Content-Type": "application/json",
     },
-    body: body ? JSON.stringify(body) : undefined
+    body: body ? JSON.stringify(body) : undefined,
   });
 
   const text = await response.text();
-
   let data = null;
+
   if (text) {
     try {
       data = JSON.parse(text);
@@ -75,16 +116,18 @@ async function discordFetch(method, url, body) {
   return data;
 }
 
-const commands = await discordFetch("GET", baseUrl);
+const existingCommands = await discordFetch("GET", baseUrl);
 
-const existed = commands.find(
-  (item) => item.name === command.name && item.type === command.type
-);
+for (const command of commands) {
+  const existed = existingCommands.find(
+    (item) => item.name === command.name && item.type === command.type
+  );
 
-if (existed) {
-  const updated = await discordFetch("PATCH", `${baseUrl}/${existed.id}`, command);
-  console.log("已更新 User Command：", updated.name);
-} else {
-  const created = await discordFetch("POST", baseUrl, command);
-  console.log("已建立 User Command：", created.name);
+  if (existed) {
+    const updated = await discordFetch("PATCH", `${baseUrl}/${existed.id}`, command);
+    console.log(`已更新 ${command.type === 1 ? "Slash Command" : "User Command"}：`, updated.name);
+  } else {
+    const created = await discordFetch("POST", baseUrl, command);
+    console.log(`已建立 ${command.type === 1 ? "Slash Command" : "User Command"}：`, created.name);
+  }
 }
