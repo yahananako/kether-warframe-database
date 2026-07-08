@@ -17,17 +17,17 @@ const MATERIAL_ACQUISITION_DATA: MaterialAcquisitionRecord[] = [
     category: "稀有材料",
     source: "主要來自天王星水下／曲翼相關任務、九重天任務，以及部分 Archwing 相關內容。",
     recommended: "天王星 Ophelia 生存、九重天任務。",
-    tips: "刷資源時可搭配 Nekros / 摸屍甲、資源加成與隊伍刷怪效率。",
+    tips: "刷資源時可搭配 Nekros / 摸屍甲、資源加成與高刷怪任務。",
     notes: "掉落感偏低，建議順手刷，不要單場賭命喵。",
   },
   {
     key: "orokin-cell",
     name: "Orokin Cell / Orokin 電池",
-    aliases: ["orokin cell", "orokincell", "orokin電池", "電池", "奥羅金電池"],
+    aliases: ["orokin cell", "orokincell", "orokin電池", "電池", "奧羅金電池", "奥羅金電池"],
     category: "稀有材料",
     source: "土星、穀神星，以及部分 Boss 掉落。",
     recommended: "土星 Helene、防禦或生存類任務。",
-    tips: "新手做 Prime、武器、戰甲時很常缺。",
+    tips: "Prime、武器、戰甲製作很常用，新手容易缺。",
     notes: "可以長期順刷，不建議用白金買。",
   },
   {
@@ -130,37 +130,274 @@ const MATERIAL_ACQUISITION_DATA: MaterialAcquisitionRecord[] = [
     tips: "要在 Oxium Osprey 自爆前擊殺才穩。",
     notes: "需求量大時會很有感，像被 Corpus 開了材料稅。",
   },
+  {
+    key: "kuva",
+    name: "Kuva / 赤毒",
+    aliases: ["kuva", "赤毒"],
+    category: "特殊資源",
+    source: "赤毒虹吸器、赤毒洪潮、鋼韌之道、仲裁與部分商店兌換。",
+    recommended: "赤毒洪潮、鋼韌之道商店、仲裁商店。",
+    tips: "主要用於洗 Riven / 裂罅 Mod 數值。",
+    notes: "別一次洗到上頭，赤毒會像水一樣蒸發喵。",
+  },
+  {
+    key: "endo",
+    name: "Endo / 內融核心",
+    aliases: ["endo", "內融核心", "内融核心", "內融", "内融"],
+    category: "Mod 強化資源",
+    source: "任務獎勵、仲裁、分解 Mod、雕像與部分活動。",
+    recommended: "仲裁、Maroo 雕像任務、分解多餘 Mod。",
+    tips: "主要用於升級 Mod。",
+    notes: "新手期很缺，優先升常用核心 Mod。",
+  },
+  {
+    key: "aya",
+    name: "Aya / 阿耶",
+    aliases: ["aya", "阿耶"],
+    category: "Prime 復興資源",
+    source: "賞金、虛空任務與 Prime Resurgence 相關來源。",
+    recommended: "賞金任務或虛空任務順刷。",
+    tips: "可用於兌換 Prime 復興遺物。",
+    notes: "想補舊 Prime 時很有用。",
+  },
+  {
+    key: "void-traces",
+    name: "Void Traces / 虛空光體",
+    aliases: ["void traces", "voidtraces", "虛空光體", "虚空光体", "光體", "光体"],
+    category: "遺物資源",
+    source: "開啟 Void Relic / 核桃裂縫任務時取得。",
+    recommended: "跑裂縫任務順便累積。",
+    tips: "用來精煉遺物，提高稀有獎勵機率。",
+    notes: "刷 Prime 部件前先存一點會舒服很多。",
+  },
+  {
+    key: "orokin-ducats",
+    name: "Orokin Ducats / 杜卡德金幣",
+    aliases: ["orokin ducats", "ducats", "杜卡德", "杜卡德金幣", "ducat"],
+    category: "商人兌換資源",
+    source: "出售 Prime 部件給中繼站的 Ducat kiosk 取得。",
+    recommended: "把多餘 Prime 部件換成 Ducats，等待 Baro Ki'Teer。",
+    tips: "Baro 商人會用 Ducats 加 Credit 賣特殊物品。",
+    notes: "稀有 Prime 部件先查價，別把高價貨隨手丟掉喵。",
+  },
+  {
+    key: "entrati-lanthorn",
+    name: "Entrati Lanthorn / 殷世幽光",
+    aliases: ["entrati lanthorn", "lanthorn", "殷世幽光", "幽光"],
+    category: "稀有材料",
+    source: "Zariman、相關高等區域與特定容器／敵人掉落。",
+    recommended: "Zariman 任務順刷，搭配資源加成與破箱。",
+    tips: "製作 Zariman、Incarnon 相關內容時常會用到。",
+    notes: "掉落體感偏飄，適合順刷累積。",
+  },
+  {
+    key: "pathos-clamp",
+    name: "Pathos Clamp / 悲愴鉗爪",
+    aliases: ["pathos clamp", "pathos clamps", "悲愴鉗爪", "悲怆钳爪", "鉗爪", "钳爪"],
+    category: "渡域資源",
+    source: "Duviri / 渡域擊敗 Orowyrm 後取得。",
+    recommended: "渡域一般／鋼韌模式循環刷。",
+    tips: "用於 Incarnon Genesis 與部分渡域相關兌換。",
+    notes: "要刷時注意本週輪替，不要把肝丟進虛空裂縫喵。",
+  },
+  {
+    key: "steel-essence",
+    name: "Steel Essence / 鋼鐵精華",
+    aliases: ["steel essence", "steelessence", "鋼鐵精華", "钢铁精华", "鋼精", "钢精"],
+    category: "鋼韌之道資源",
+    source: "鋼韌之道任務、Acolyte 相關掉落與每日獎勵。",
+    recommended: "鋼韌之道生存、殲滅、每日警報。",
+    tips: "可在 Teshin 商店兌換資源、Umbra Forma 等物品。",
+    notes: "剛進鋼韌時先穩定生存，不要硬貪效率。",
+  },
+  {
+    key: "vitus-essence",
+    name: "Vitus Essence / 仲裁精華",
+    aliases: ["vitus essence", "vitus", "仲裁精華", "仲裁精华"],
+    category: "仲裁資源",
+    source: "仲裁任務取得。",
+    recommended: "仲裁生存、防禦等長時間任務。",
+    tips: "可兌換 Galvanized Mod、裝飾與其他仲裁商店物品。",
+    notes: "仲裁沒有普通復活節奏，注意保命。",
+  },
+  {
+    key: "riven-sliver",
+    name: "Riven Sliver / 裂罅碎銀",
+    aliases: ["riven sliver", "rivensliver", "裂罅碎銀", "裂罅碎银", "碎銀", "碎银"],
+    category: "Riven 資源",
+    source: "鋼韌之道、特殊敵人與部分高等內容掉落。",
+    recommended: "鋼韌之道順刷累積。",
+    tips: "可用於換取 Riven 相關物品。",
+    notes: "不用急著刷爆，長期自然會累積。",
+  },
+  {
+    key: "hexenon",
+    name: "Hexenon / 六角晶",
+    aliases: ["hexenon", "六角晶"],
+    category: "星球材料",
+    source: "木星 Gas City 相關任務掉落。",
+    recommended: "木星高刷怪任務順刷。",
+    tips: "製作部分武器與戰甲時會用到。",
+    notes: "木星重製區域順路刷即可。",
+  },
+  {
+    key: "mutagen-sample",
+    name: "Mutagen Sample / 突變原樣本",
+    aliases: ["mutagen sample", "mutagensample", "突變原樣本", "突变原样本", "突變原"],
+    category: "氏族研究材料",
+    source: "Deimos、鬩神星等感染者相關區域。",
+    recommended: "Deimos 或感染者高刷怪任務。",
+    tips: "常用於氏族生物實驗室研究。",
+    notes: "氏族研究吃很兇，看到就撿。",
+  },
+  {
+    key: "fieldron-sample",
+    name: "Fieldron Sample / 電磁力場裝置樣本",
+    aliases: ["fieldron sample", "fieldronsample", "電磁力場裝置樣本", "电磁力场装置样本", "fieldron"],
+    category: "氏族研究材料",
+    source: "Corpus 相關星球與入侵獎勵。",
+    recommended: "Corpus 任務順刷或入侵獎勵。",
+    tips: "常用於氏族能源實驗室研究。",
+    notes: "可透過入侵慢慢補。",
+  },
+  {
+    key: "detonite-ampule",
+    name: "Detonite Ampule / 爆燃安瓿",
+    aliases: ["detonite ampule", "detoniteampule", "爆燃安瓿", "detonite"],
+    category: "氏族研究材料",
+    source: "Grineer 相關星球與入侵獎勵。",
+    recommended: "Grineer 任務順刷或入侵獎勵。",
+    tips: "常用於氏族化學實驗室研究。",
+    notes: "做氏族武器時常會需要。",
+  },
+  {
+    key: "nano-spores",
+    name: "Nano Spores / 奈米孢子",
+    aliases: ["nano spores", "nanospores", "奈米孢子", "纳米孢子", "孢子"],
+    category: "常用材料",
+    source: "土星、Deimos、鬩神星、海王星等地掉落。",
+    recommended: "感染者或高刷怪任務順刷。",
+    tips: "中後期通常很多，但前期仍可能短缺。",
+    notes: "製作消耗量大，但不建議花白金買。",
+  },
+  {
+    key: "ferrite",
+    name: "Ferrite / 鐵氧體",
+    aliases: ["ferrite", "鐵氧體", "铁氧体"],
+    category: "常用材料",
+    source: "地球、水星、海王星、虛空等地掉落。",
+    recommended: "推星圖時自然累積。",
+    tips: "大量製作時會消耗很快。",
+    notes: "新手期撿好撿滿。",
+  },
+  {
+    key: "rubedo",
+    name: "Rubedo / 紅化結晶",
+    aliases: ["rubedo", "紅化結晶", "红化结晶"],
+    category: "常用材料",
+    source: "地球、冥王星、歐羅巴、虛空等地掉落。",
+    recommended: "地球或虛空順刷。",
+    tips: "早期武器與戰甲製作會用到。",
+    notes: "推圖途中看到容器可以順手拆。",
+  },
+  {
+    key: "alloy-plate",
+    name: "Alloy Plate / 合金板",
+    aliases: ["alloy plate", "alloyplate", "合金板"],
+    category: "常用材料",
+    source: "金星、木星、穀神星、冥王星等地掉落。",
+    recommended: "金星與木星任務順刷。",
+    tips: "製作需求量大，建議自然囤。",
+    notes: "常常不是不掉，是你做太多東西了喵。",
+  },
+  {
+    key: "salvage",
+    name: "Salvage / 回收金屬",
+    aliases: ["salvage", "回收金屬", "回收金属"],
+    category: "常用材料",
+    source: "火星、木星、Sedna 等地掉落。",
+    recommended: "火星、木星刷怪任務。",
+    tips: "很多基礎裝備會消耗。",
+    notes: "前期缺很正常，後期會慢慢爆倉。",
+  },
+  {
+    key: "circuits",
+    name: "Circuits / 電路",
+    aliases: ["circuits", "電路", "电路"],
+    category: "常用材料",
+    source: "金星、穀神星、赤毒要塞等地掉落。",
+    recommended: "金星或穀神星任務。",
+    tips: "新手做裝備時很容易卡。",
+    notes: "只開到土星前，金星和穀神星是好朋友。",
+  },
 ];
 
 function normalize(value: string) {
   return value
     .toLowerCase()
+    .normalize("NFKC")
     .replaceAll(" ", "")
     .replaceAll("-", "")
     .replaceAll("_", "")
     .replaceAll("/", "")
+    .replaceAll("／", "")
     .trim();
+}
+
+function getEnglishName(record: MaterialAcquisitionRecord) {
+  return record.name.split(" / ")[0] ?? record.name;
+}
+
+function getSearchableValues(record: MaterialAcquisitionRecord) {
+  return [record.key, record.name, getEnglishName(record), record.category, record.source, record.recommended, ...record.aliases];
 }
 
 function findMaterial(query: string) {
   const normalized = normalize(query);
 
+  if (!normalized) return null;
+
+  const exactMatch = MATERIAL_ACQUISITION_DATA.find((record) => {
+    const searchable = getSearchableValues(record).map(normalize);
+
+    return searchable.some((value) => value === normalized);
+  });
+
+  if (exactMatch) return exactMatch;
+
   return MATERIAL_ACQUISITION_DATA.find((record) => {
-    if (normalize(record.name).includes(normalized)) return true;
-    return record.aliases.some((alias) => normalize(alias) === normalized);
+    const searchable = getSearchableValues(record).map(normalize);
+
+    return searchable.some((value) => value.includes(normalized));
   });
 }
 
+function buildMaterialListPreview() {
+  const grouped = MATERIAL_ACQUISITION_DATA.reduce<Record<string, string[]>>((acc, record) => {
+    acc[record.category] ??= [];
+    acc[record.category].push(record.name);
+
+    return acc;
+  }, {});
+
+  return Object.entries(grouped)
+    .map(([category, names]) => {
+      return `【${category}】\n${names.slice(0, 8).map((name) => `・${name}`).join("\n")}`;
+    })
+    .join("\n\n");
+}
 
 export function searchMaterialAcquisitionChoices(rawQuery: string | null | undefined) {
   const query = normalize(String(rawQuery ?? ""));
+
   const scored = MATERIAL_ACQUISITION_DATA.map((record) => {
-    const searchable = [record.name, record.key, ...record.aliases].map(normalize);
+    const searchable = getSearchableValues(record).map(normalize);
     const exact = searchable.some((value) => value === query);
     const startsWith = searchable.some((value) => query && value.startsWith(query));
     const includes = searchable.some((value) => query && value.includes(query));
 
     let score = 0;
+
     if (!query) score = 1;
     else if (exact) score = 100;
     else if (startsWith) score = 80;
@@ -174,7 +411,7 @@ export function searchMaterialAcquisitionChoices(rawQuery: string | null | undef
 
   return scored.map(({ record }) => ({
     name: record.name.slice(0, 100),
-    value: (record.aliases[0] ?? record.key).slice(0, 100),
+    value: getEnglishName(record).slice(0, 100),
   }));
 }
 
@@ -182,33 +419,42 @@ export function buildMaterialAcquisitionResponse(rawName: string | null | undefi
   const name = String(rawName ?? "").trim();
 
   if (!name) {
-    const list = MATERIAL_ACQUISITION_DATA.map((record) => `・${record.name}`).join("\n");
-
     return {
-      content:
-        "請輸入要查詢的材料名稱喵。\n\n" +
-        "目前測試資料：\n" +
-        list +
-        "\n\n範例：`/材料取得 名稱:碲`",
+      embeds: [
+        {
+          title: "🌿 材料取得查詢",
+          description:
+            "請輸入要查詢的材料名稱喵。\n\n" +
+            buildMaterialListPreview() +
+            "\n\n範例：`/材料取得 名稱:碲`、`/材料取得 名稱:赤毒`、`/材料取得 名稱:電路`",
+          color: 0x9bd67b,
+          footer: {
+            text: "E-9｜材料資料擴充＋中文搜尋＋中文自動補全",
+          },
+        },
+      ],
     };
   }
 
   const record = findMaterial(name);
 
   if (!record) {
-    const list = MATERIAL_ACQUISITION_DATA.map((item) => item.name).join("、");
+    const examples = MATERIAL_ACQUISITION_DATA.slice(0, 16)
+      .map((item) => item.name)
+      .join("、");
 
     return {
       content:
         `找不到「${name}」的材料取得資料喵。\n\n` +
-        `目前可查：${list}`,
+        `可以試試中文或英文關鍵字，例如：${examples}\n\n` +
+        "也可以輸入前兩個字使用自動補全。",
     };
   }
 
   return {
     embeds: [
       {
-        title: `🧪 ${record.name}`,
+        title: `🌿 ${record.name}`,
         description: "KETHER Warframe Database｜材料取得方式",
         color: 0x9bd67b,
         fields: [
@@ -234,7 +480,7 @@ export function buildMaterialAcquisitionResponse(rawName: string | null | undefi
           },
         ],
         footer: {
-          text: "E-2 測試版｜後續可擴充全材料資料",
+          text: "E-9｜材料資料擴充＋中文搜尋＋中文自動補全",
         },
       },
     ],
