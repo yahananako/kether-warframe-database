@@ -151,6 +151,33 @@ function findMaterial(query: string) {
   });
 }
 
+
+export function searchMaterialAcquisitionChoices(rawQuery: string | null | undefined) {
+  const query = normalize(String(rawQuery ?? ""));
+  const scored = MATERIAL_ACQUISITION_DATA.map((record) => {
+    const searchable = [record.name, record.key, ...record.aliases].map(normalize);
+    const exact = searchable.some((value) => value === query);
+    const startsWith = searchable.some((value) => query && value.startsWith(query));
+    const includes = searchable.some((value) => query && value.includes(query));
+
+    let score = 0;
+    if (!query) score = 1;
+    else if (exact) score = 100;
+    else if (startsWith) score = 80;
+    else if (includes) score = 50;
+
+    return { record, score };
+  })
+    .filter((item) => item.score > 0)
+    .sort((a, b) => b.score - a.score || a.record.name.localeCompare(b.record.name))
+    .slice(0, 25);
+
+  return scored.map(({ record }) => ({
+    name: record.name.slice(0, 100),
+    value: (record.aliases[0] ?? record.key).slice(0, 100),
+  }));
+}
+
 export function buildMaterialAcquisitionResponse(rawName: string | null | undefined) {
   const name = String(rawName ?? "").trim();
 

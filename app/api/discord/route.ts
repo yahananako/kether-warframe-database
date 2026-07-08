@@ -1,6 +1,6 @@
 import crypto from "node:crypto";
-import { buildWarframeAcquisitionResponse } from "./warframeAcquisition";
-import { buildMaterialAcquisitionResponse } from "./materialAcquisition";
+import { buildWarframeAcquisitionResponse, searchWarframeAcquisitionChoices } from "./warframeAcquisition";
+import { buildMaterialAcquisitionResponse, searchMaterialAcquisitionChoices } from "./materialAcquisition";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -1398,6 +1398,18 @@ export async function POST(request: Request) {
 
   if (interaction.type === INTERACTION_TYPE.APPLICATION_COMMAND_AUTOCOMPLETE) {
     const commandName = interaction.data?.name;
+
+    if (commandName === "warframe-obtain" || commandName === "material-obtain") {
+      const focusedValue = getFocusedOptionValue(interaction, ["name", "名稱", "keyword", "關鍵字", "item", "物品"]);
+      const choices = commandName === "warframe-obtain"
+        ? searchWarframeAcquisitionChoices(focusedValue)
+        : searchMaterialAcquisitionChoices(focusedValue);
+    
+      return Response.json({
+        type: RESPONSE_TYPE.APPLICATION_COMMAND_AUTOCOMPLETE_RESULT,
+        data: { choices },
+      });
+    }
 
     if (commandName === "price") {
       const focusedValue = getFocusedOptionValue(interaction, ["item", "keyword"]);
