@@ -1564,12 +1564,13 @@ export async function POST(request: Request) {
       }
     }
 
-    if (commandName === "help") {
+    if (commandName === "help" || commandName === "說明") {
+      const keyword = getOptionValue(interaction, ["keyword", "關鍵字"]);
+      const data = await buildKetherMessage(keyword);
+
       return jsonResponse({
         type: RESPONSE_TYPE.CHANNEL_MESSAGE_WITH_SOURCE,
-        data: {
-          content: buildHelpMessage(),
-        },
+        data,
       });
     }
 
