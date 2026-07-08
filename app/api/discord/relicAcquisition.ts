@@ -394,10 +394,15 @@ function searchGeneratedRelicChoices(rawQuery: string | null | undefined) {
   if (!query || query.length < 2) return [];
 
   const relicChoices = GENERATED_RELIC_DATA
-    .filter((record) => normalize(record.relic).includes(query))
+    .filter((record) => {
+      const relicName = normalize(record.relic);
+      const bilingualRelicName = normalize(formatGeneratedRelicName(record));
+
+      return relicName.includes(query) || bilingualRelicName.includes(query);
+    })
     .slice(0, 15)
     .map((record) => ({
-      name: record.relic.slice(0, 100),
+      name: formatGeneratedRelicName(record).slice(0, 100),
       value: record.relic.slice(0, 100),
     }));
 
