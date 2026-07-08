@@ -1398,15 +1398,6 @@ export async function POST(request: Request) {
   if (interaction.type === INTERACTION_TYPE.APPLICATION_COMMAND_AUTOCOMPLETE) {
     const commandName = interaction.data?.name;
 
-    if (commandName === "warframe-obtain" || commandName === "戰甲取得") {
-      const name = getOptionValue(interaction, ["name", "名稱", "keyword", "關鍵字", "item", "物品"]);
-      const responseData = buildWarframeAcquisitionResponse(name);
-      return Response.json({
-        type: 4,
-        data: responseData,
-      });
-    }
-
     if (commandName === "price") {
       const focusedValue = getFocusedOptionValue(interaction, ["item", "keyword"]);
       const choices = await buildPriceAutocompleteChoices(focusedValue);
@@ -1449,6 +1440,16 @@ export async function POST(request: Request) {
     // KETHER_WARFRAME_PROFILE_CARD_HANDLER_END
 
     const commandName = interaction.data?.name;
+
+    if (commandName === "warframe-obtain" || commandName === "戰甲取得") {
+      const name = getOptionValue(interaction, ["name", "名稱", "keyword", "關鍵字", "item", "物品"]);
+      const responseData = buildWarframeAcquisitionResponse(name);
+      return Response.json({
+        type: RESPONSE_TYPE.CHANNEL_MESSAGE_WITH_SOURCE,
+        data: responseData,
+      });
+    }
+
     const keyword = getOptionValue(interaction, ["keyword"]);
     const item = getOptionValue(interaction, ["item", "keyword"]);
     const rankOption = getOptionValue(interaction, ["rank"]);
