@@ -82,6 +82,92 @@ const RELIC_ACQUISITION_DATA: RelicAcquisitionRecord[] = [
   },
 ];
 
+
+type PreciseRelicReward = {
+  item: string;
+  rarity: "Common" | "Uncommon" | "Rare";
+};
+
+type PreciseRelicRecord = {
+  relic: string;
+  aliases: string[];
+  era: string;
+  status: string;
+  rewards: PreciseRelicReward[];
+  obtain: string;
+  notes: string;
+};
+
+const PRECISE_RELIC_DATA: PreciseRelicRecord[] = [
+  {
+    relic: "Lith W3",
+    aliases: ["lith w3", "lithw3", "古紀 w3", "古紀w3"],
+    era: "Lith / 古紀",
+    status: "測試資料",
+    rewards: [
+      { item: "Wisp Prime Blueprint", rarity: "Rare" },
+      { item: "Prime Part Sample A", rarity: "Uncommon" },
+      { item: "Prime Part Sample B", rarity: "Uncommon" },
+      { item: "Prime Part Sample C", rarity: "Common" },
+      { item: "Prime Part Sample D", rarity: "Common" },
+      { item: "Forma Blueprint", rarity: "Common" },
+    ],
+    obtain: "目前先套用 Lith 類推薦取得方式：Void Hepit 捕獲、低階挖掘或防禦任務。",
+    notes: "E-6 測試資料，後續會替換成完整核桃掉落資料。",
+  },
+  {
+    relic: "Axi W3",
+    aliases: ["axi w3", "axiw3", "後紀 w3", "後紀w3", "后纪 w3", "后纪w3"],
+    era: "Axi / 後紀",
+    status: "測試資料",
+    rewards: [
+      { item: "Wisp Prime Systems Blueprint", rarity: "Rare" },
+      { item: "Prime Part Sample E", rarity: "Uncommon" },
+      { item: "Prime Part Sample F", rarity: "Uncommon" },
+      { item: "Prime Part Sample G", rarity: "Common" },
+      { item: "Prime Part Sample H", rarity: "Common" },
+      { item: "Forma Blueprint", rarity: "Common" },
+    ],
+    obtain: "目前先套用 Axi 類推薦取得方式：Lua Apollo 中斷、Eris Xini 攔截。",
+    notes: "E-6 測試資料，後續會替換成完整核桃掉落資料。",
+  },
+];
+
+function findPreciseRelic(query: string) {
+  const normalized = normalize(query);
+
+  return PRECISE_RELIC_DATA.find((record) => {
+    if (normalize(record.relic) === normalized) return true;
+    return record.aliases.some((alias) => normalize(alias) === normalized);
+  });
+}
+
+function searchRelicsByPrimeItem(query: string) {
+  const normalized = normalize(query);
+
+  if (!normalized) return [];
+
+  return PRECISE_RELIC_DATA.filter((record) => {
+    return record.rewards.some((reward) => normalize(reward.item).includes(normalized));
+  });
+}
+
+function formatRewards(rewards: PreciseRelicReward[]) {
+  return rewards
+    .map((reward) => {
+      const rarityLabel =
+        reward.rarity === "Rare"
+          ? "稀有"
+          : reward.rarity === "Uncommon"
+            ? "罕見"
+            : "常見";
+
+      return `・${reward.item}｜${rarityLabel}`;
+    })
+    .join("\n");
+}
+
+
 function normalize(value: string) {
   return value
     .toLowerCase()
@@ -160,6 +246,72 @@ export function buildRelicAcquisitionResponse(rawName: string | null | undefined
     };
   }
 
+  const preciseRelic = findPreciseRelic(name);
+
+  if (preciseRelic) {
+    return {
+      embeds: [
+        {
+          title: `🥜 ${preciseRelic.relic}`,
+          description: "KETHER Warframe Database｜精準核桃內容查詢",
+          color: 0xd6b36a,
+          fields: [
+            {
+              name: "世代",
+              value: preciseRelic.era,
+            },
+            {
+              name: "狀態",
+              value: preciseRelic.status,
+            },
+            {
+              name: "可能開出",
+              value: formatRewards(preciseRelic.rewards),
+            },
+            {
+              name: "推薦取得",
+              value: preciseRelic.obtain,
+            },
+            {
+              name: "備註",
+              value: preciseRelic.notes,
+            },
+          ],
+          footer: {
+            text: "E-6 測試版｜精準核桃資料待擴充",
+          },
+        },
+      ],
+    };
+  }
+
+  const matchedRelics = searchRelicsByPrimeItem(name);
+
+  if (matchedRelics.length > 0) {
+    return {
+      embeds: [
+        {
+          title: `🔎 ${name}`,
+          description: "KETHER Warframe Database｜Prime 物品核桃反查",
+          color: 0xd6b36a,
+          fields: matchedRelics.slice(0, 10).map((record) => ({
+            name: record.relic,
+            value:
+              `世代：${record.era}\n` +
+              `狀態：${record.status}\n` +
+              `命中項目：${record.rewards
+                .filter((reward) => normalize(reward.item).includes(normalize(name)))
+                .map((reward) => reward.item)
+                .join("、")}`,
+          })),
+          footer: {
+            text: "E-6 測試版｜後續會擴充完整 Prime 部件反查",
+          },
+        },
+      ],
+    };
+  }
+
   const record = findRelic(name);
 
   if (!record) {
@@ -168,7 +320,8 @@ export function buildRelicAcquisitionResponse(rawName: string | null | undefined
     return {
       content:
         `找不到「${name}」的核桃取得資料喵。\n\n` +
-        `目前可查：${list}`,
+        `目前可查：${list}\n\n` +
+        "也可以試：`Lith W3`、`Axi W3`、`Wisp Prime`",
     };
   }
 
