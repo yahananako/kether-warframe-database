@@ -2,6 +2,7 @@ import crypto from "node:crypto";
 import { buildWarframeAcquisitionResponse, searchWarframeAcquisitionChoices } from "./warframeAcquisition";
 import { buildMaterialAcquisitionResponse, searchMaterialAcquisitionChoices } from "./materialAcquisition";
 import { buildRelicAcquisitionResponse, searchRelicAcquisitionChoices } from "./relicAcquisition";
+import { buildCompanionAcquisitionResponse, searchCompanionAcquisitionChoices } from "./companionAcquisition";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -752,7 +753,8 @@ function buildHelpMessage() {
     "`/材料取得 名稱:赤毒`",
     "查材料來源、推薦刷法、中文／英文／綽號搜尋。",
     "",
-    "`/戰甲取得 名稱:摸屍`",
+    "`/夥伴取得 名稱:庫娃`\n" +
+              "`/戰甲取得 名稱:摸屍`",
     "查戰甲取得方式、部件來源、中文／英文／綽號搜尋。",
     "",
     "**氏族功能**",
@@ -761,7 +763,7 @@ function buildHelpMessage() {
     "",
     "**小提示**",
     "取得類指令輸入中文或英文關鍵字會跳出中英雙語選項喵。",
-    "範例：`Wisp`、`藍圖`、`赤毒`、`電路`、`摸屍`、`蝶甲`。",
+    "範例：`Wisp`、`藍圖`、`赤毒`、`電路`、`摸屍`、`蝶甲`、`庫娃`、`笑貓`。",
   ].join("\n");
 }
 
@@ -862,7 +864,8 @@ async function buildKetherMessage(keyword: string | null | undefined) {
     "資料查詢",
     "・/核桃取得：查核桃內容、Prime 部件反查、中文關鍵字、稀有度排序。",
     "・/材料取得：查材料來源、推薦刷法，支援中文／英文／綽號搜尋。",
-    "・/戰甲取得：查戰甲取得方式與部件來源，支援中文／英文／綽號搜尋。",
+    "・/夥伴取得：查同伴、守護、庫娃、庫狛、MOA、獵犬取得方式，可自動補全。\n" +
+      "・/戰甲取得：查戰甲取得方式與部件來源，支援中文／英文／綽號搜尋。",
     "",
     "氏族功能",
     "・/戰甲名片：查看成員 Warframe 名片。",
@@ -1463,6 +1466,16 @@ export async function POST(request: Request) {
   if (interaction.type === INTERACTION_TYPE.APPLICATION_COMMAND_AUTOCOMPLETE) {
     const commandName = interaction.data?.name;
 
+    if (commandName === "companion-obtain" || commandName === "同伴取得" || commandName === "夥伴取得") {
+      const focusedValue = getFocusedOptionValue(interaction, ["name", "名稱"]);
+      const choices = searchCompanionAcquisitionChoices(focusedValue);
+
+      return Response.json({
+        type: RESPONSE_TYPE.APPLICATION_COMMAND_AUTOCOMPLETE_RESULT,
+        data: { choices },
+      });
+    }
+
     if (commandName === "warframe-obtain" || commandName === "material-obtain" || commandName === "relic-obtain") {
       const focusedValue = getFocusedOptionValue(interaction, ["name", "名稱", "keyword", "關鍵字", "item", "物品"]);
       const choices = commandName === "warframe-obtain"
@@ -1519,6 +1532,17 @@ export async function POST(request: Request) {
     // KETHER_WARFRAME_PROFILE_CARD_HANDLER_END
 
     const commandName = interaction.data?.name;
+
+    if (commandName === "companion-obtain" || commandName === "同伴取得" || commandName === "夥伴取得") {
+      const options = Array.isArray(interaction.data?.options) ? interaction.data.options : [];
+      const nameOption = options.find((option: any) => option.name === "name" || option.name === "名稱");
+      const name = typeof nameOption?.value === "string" ? nameOption.value : "";
+
+      return Response.json({
+        type: RESPONSE_TYPE.CHANNEL_MESSAGE_WITH_SOURCE,
+        data: buildCompanionAcquisitionResponse(name),
+      });
+    }
 
     if (commandName === "warframe-obtain" || commandName === "戰甲取得") {
       const name = getOptionValue(interaction, ["name", "名稱", "keyword", "關鍵字", "item", "物品"]);

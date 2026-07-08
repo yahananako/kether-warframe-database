@@ -70,6 +70,46 @@ const commands = [
     ],
   },
   {
+  name: "companion-obtain",
+
+  name_localizations: {
+    "zh-TW": "同伴取得",
+    "zh-CN": "同伴取得",
+  },
+
+  description: "查詢 Warframe 同伴與寵物取得方式",
+
+  description_localizations: {
+    "zh-TW": "查詢 Warframe 同伴與寵物取得方式",
+    "zh-CN": "查询 Warframe 同伴与宠物取得方式",
+  },
+
+  type: 1,
+
+  options: [
+    {
+      name: "name",
+
+      name_localizations: {
+        "zh-TW": "名稱",
+        "zh-CN": "名称",
+      },
+
+      description: "要查詢的同伴名稱，例如 庫娃、笑貓、Helios",
+
+      description_localizations: {
+        "zh-TW": "要查詢的同伴名稱，例如 庫娃、笑貓、Helios",
+        "zh-CN": "要查询的同伴名称，例如 库娃、笑猫、Helios",
+      },
+
+      type: 3,
+      required: true,
+      autocomplete: true,
+    },
+  ],
+},
+
+{
     name: "material-obtain",
     name_localizations: {
       "zh-TW": "材料取得",
