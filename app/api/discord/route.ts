@@ -1,6 +1,7 @@
 import crypto from "node:crypto";
 import { buildWarframeAcquisitionResponse, searchWarframeAcquisitionChoices } from "./warframeAcquisition";
 import { buildMaterialAcquisitionResponse, searchMaterialAcquisitionChoices } from "./materialAcquisition";
+import { buildRelicAcquisitionResponse, searchRelicAcquisitionChoices } from "./relicAcquisition";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -1399,11 +1400,13 @@ export async function POST(request: Request) {
   if (interaction.type === INTERACTION_TYPE.APPLICATION_COMMAND_AUTOCOMPLETE) {
     const commandName = interaction.data?.name;
 
-    if (commandName === "warframe-obtain" || commandName === "material-obtain") {
+    if (commandName === "warframe-obtain" || commandName === "material-obtain" || commandName === "relic-obtain") {
       const focusedValue = getFocusedOptionValue(interaction, ["name", "名稱", "keyword", "關鍵字", "item", "物品"]);
       const choices = commandName === "warframe-obtain"
         ? searchWarframeAcquisitionChoices(focusedValue)
-        : searchMaterialAcquisitionChoices(focusedValue);
+        : commandName === "material-obtain"
+          ? searchMaterialAcquisitionChoices(focusedValue)
+          : searchRelicAcquisitionChoices(focusedValue);
     
       return Response.json({
         type: RESPONSE_TYPE.APPLICATION_COMMAND_AUTOCOMPLETE_RESULT,
@@ -1466,6 +1469,15 @@ export async function POST(request: Request) {
     if (commandName === "material-obtain" || commandName === "材料取得") {
       const name = getOptionValue(interaction, ["name", "名稱", "keyword", "關鍵字", "item", "物品"]);
       const responseData = buildMaterialAcquisitionResponse(name);
+      return Response.json({
+        type: RESPONSE_TYPE.CHANNEL_MESSAGE_WITH_SOURCE,
+        data: responseData,
+      });
+    }
+
+    if (commandName === "relic-obtain" || commandName === "核桃取得" || commandName === "遺物取得") {
+      const name = getOptionValue(interaction, ["name", "名稱", "keyword", "關鍵字", "item", "物品"]);
+      const responseData = buildRelicAcquisitionResponse(name);
       return Response.json({
         type: RESPONSE_TYPE.CHANNEL_MESSAGE_WITH_SOURCE,
         data: responseData,
