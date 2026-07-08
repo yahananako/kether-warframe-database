@@ -848,27 +848,71 @@ async function buildMarketPriceEmbedData(rawKeyword: string, forcedRank: number 
 }
 
 
-async function buildKetherMessage(keyword: string) {
-  try {
-    const priceMessage = await buildMarketPriceMessage(keyword);
+async function buildKetherMessage(keyword: string | null | undefined) {
+  const normalizedKeyword = String(keyword ?? "").trim();
 
-    if (priceMessage) {
-      return {
-        content: priceMessage,
-      };
-    }
-  } catch (error) {
-    console.error(error);
+  const helpText =
+    "KETHER 小希 Bot 指令說明\n\n" +
+    "交易功能\n" +
+    "・/查價：查 Warframe Market 物品價格，可輸入物品名稱與 MOD 等級。\n\n" +
+    "資料查詢\n" +
+    "・/戰甲取得：查戰甲取得方式，名稱欄位支援自動補全。\n" +
+    "・/材料取得：查材料取得方式，名稱欄位支援自動補全。\n" +
+    "・/核桃取得：查核桃／遺物取得方式，名稱欄位支援自動補全。\n\n" +
+    "氏族功能\n" +
+    "・/戰甲名片：查看成員 Warframe 名片。\n" +
+    "・/官方資料：查官方玩家資料測試。\n\n" +
+    "使用提示\n" +
+    "・輸入名稱第一個字，會跳出選項喵。\n" +
+    "・如果中文找不到，可以試英文名稱，例如 Yareli、Tellurium、Lith。\n" +
+    "・目前取得類資料是測試版，後續會繼續擴充。";
 
+  if (normalizedKeyword) {
     return {
       content:
-        "Warframe.Market 暫時沒有回應喵。\n" +
-        "可以等一下再查，或先試：/kether keyword: 首頁",
-      flags: 64,
+        "小希目前先提供完整指令說明喵。\n" +
+        "你輸入的關鍵字：" + normalizedKeyword + "\n\n" +
+        helpText,
     };
   }
 
-  return buildLinkMessage(keyword);
+  return {
+    embeds: [
+      {
+        title: "🧭 KETHER 小希 Bot 指令說明",
+        description: "Warframe 資料庫與 Discord 氏族工具總覽",
+        color: 0xf6a6d8,
+        fields: [
+          {
+            name: "交易功能",
+            value: "・/查價：查 Warframe Market 物品價格，可輸入物品名稱與 MOD 等級。",
+          },
+          {
+            name: "資料查詢",
+            value:
+              "・/戰甲取得：查戰甲取得方式，可自動補全。\n" +
+              "・/材料取得：查材料取得方式，可自動補全。\n" +
+              "・/核桃取得：查核桃／遺物取得方式，可自動補全。",
+          },
+          {
+            name: "氏族功能",
+            value:
+              "・/戰甲名片：查看成員 Warframe 名片。\n" +
+              "・/官方資料：查官方玩家資料測試。",
+          },
+          {
+            name: "提示",
+            value:
+              "輸入名稱第一個字，會跳出選項喵。\n" +
+              "例如：/戰甲取得 名稱:水、/材料取得 名稱:電、/核桃取得 名稱:A",
+          },
+        ],
+        footer: {
+          text: "KETHER Warframe Database｜小希 Bot",
+        },
+      },
+    ],
+  };
 }
 
 
