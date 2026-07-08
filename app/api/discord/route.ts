@@ -739,27 +739,29 @@ function buildLinkMessage(keyword: string) {
 
 function buildHelpMessage() {
   return [
-    "**KETHER Warframe Bot 使用說明**",
+    "**KETHER 小希 Bot 使用說明**",
     "",
-    "**查白金價格**",
-    "`/price item: 激昂射擊 rank: Rank 0`",
-    "查 Warframe.Market 未升級價格。",
+    "**交易功能**",
+    "`/查價 物品:激昂射擊 MOD等級:Rank 0`",
+    "查 Warframe Market 物品白金價格，支援中文物品名稱與自動補全。",
     "",
-    "`/price item: 激昂射擊 rank: Rank 10`",
-    "查常見滿等價格。",
+    "**資料查詢**",
+    "`/核桃取得 名稱:Wisp Prime`",
+    "查核桃內容、Prime 部件反查、中文關鍵字、稀有度排序。",
     "",
-    "**查資料庫連結**",
-    "`/kether keyword: MOD`",
-    "查 KETHER MOD 資料庫連結。",
+    "`/材料取得 名稱:赤毒`",
+    "查材料來源、推薦刷法、中文／英文／綽號搜尋。",
     "",
-    "`/kether keyword: 官方`",
-    "查官方公告。",
+    "`/戰甲取得 名稱:摸屍`",
+    "查戰甲取得方式、部件來源、中文／英文／綽號搜尋。",
     "",
-    "`/kether keyword: 個人進度`",
-    "查 Discord 登入後的個人進度頁。",
+    "**氏族功能**",
+    "`/戰甲名片` 查看成員 Warframe 名片。",
+    "`/官方資料` 官方玩家資料測試。",
     "",
     "**小提示**",
-    "在 `/price item:` 輸入一個字，就會跳出物品選項喵。",
+    "取得類指令輸入中文或英文關鍵字會跳出中英雙語選項喵。",
+    "範例：`Wisp`、`藍圖`、`赤毒`、`電路`、`摸屍`、`蝶甲`。",
   ].join("\n");
 }
 
@@ -851,21 +853,26 @@ async function buildMarketPriceEmbedData(rawKeyword: string, forcedRank: number 
 async function buildKetherMessage(keyword: string | null | undefined) {
   const normalizedKeyword = String(keyword ?? "").trim();
 
-  const helpText =
-    "KETHER 小希 Bot 指令說明\n\n" +
-    "交易功能\n" +
-    "・/查價：查 Warframe Market 物品價格，可輸入物品名稱與 MOD 等級。\n\n" +
-    "資料查詢\n" +
-    "・/戰甲取得：查戰甲取得方式，名稱欄位支援自動補全。\n" +
-    "・/材料取得：查材料取得方式，名稱欄位支援自動補全。\n" +
-    "・/核桃取得：查核桃／遺物取得方式，名稱欄位支援自動補全。\n\n" +
-    "氏族功能\n" +
-    "・/戰甲名片：查看成員 Warframe 名片。\n" +
-    "・/官方資料：查官方玩家資料測試。\n\n" +
-    "使用提示\n" +
-    "・輸入名稱第一個字，會跳出選項喵。\n" +
-    "・如果中文找不到，可以試英文名稱，例如 Yareli、Tellurium、Lith。\n" +
-    "・目前取得類資料是測試版，後續會繼續擴充。";
+  const helpText = [
+    "KETHER 小希 Bot 指令說明",
+    "",
+    "交易功能",
+    "・/查價：查 Warframe Market 物品白金價格，可輸入物品名稱與 MOD 等級。",
+    "",
+    "資料查詢",
+    "・/核桃取得：查核桃內容、Prime 部件反查、中文關鍵字、稀有度排序。",
+    "・/材料取得：查材料來源、推薦刷法，支援中文／英文／綽號搜尋。",
+    "・/戰甲取得：查戰甲取得方式與部件來源，支援中文／英文／綽號搜尋。",
+    "",
+    "氏族功能",
+    "・/戰甲名片：查看成員 Warframe 名片。",
+    "・/官方資料：查官方玩家資料測試。",
+    "",
+    "使用提示",
+    "・取得類指令的名稱欄位支援中英雙語自動補全。",
+    "・查詢顯示中英雙語，內部 value 保留英文名稱，穩定不容易壞。",
+    "・範例：Wisp Prime、藍圖、赤毒、電路、摸屍、蝶甲、跑男、書甲。",
+  ].join("\n");
 
   if (normalizedKeyword) {
     return {
@@ -885,14 +892,26 @@ async function buildKetherMessage(keyword: string | null | undefined) {
         fields: [
           {
             name: "交易功能",
-            value: "・/查價：查 Warframe Market 物品價格，可輸入物品名稱與 MOD 等級。",
+            value:
+              "・/查價：查 Warframe Market 物品白金價格。\n" +
+              "　範例：`/查價 物品:激昂射擊 MOD等級:Rank 0`",
           },
           {
             name: "資料查詢",
             value:
-              "・/戰甲取得：查戰甲取得方式，可自動補全。\n" +
-              "・/材料取得：查材料取得方式，可自動補全。\n" +
-              "・/核桃取得：查核桃／遺物取得方式，可自動補全。",
+              "・/核桃取得：核桃內容、Prime 部件反查、中文搜尋、稀有度排序。\n" +
+              "・/材料取得：材料來源、推薦刷法、中文／英文／綽號搜尋。\n" +
+              "・/戰甲取得：戰甲取得方式、部件來源、中文／英文／綽號搜尋。",
+          },
+          {
+            name: "查詢範例",
+            value:
+              "`/核桃取得 名稱:Wisp Prime`\n" +
+              "`/核桃取得 名稱:藍圖`\n" +
+              "`/材料取得 名稱:赤毒`\n" +
+              "`/材料取得 名稱:電路`\n" +
+              "`/戰甲取得 名稱:摸屍`\n" +
+              "`/戰甲取得 名稱:蝶甲`",
           },
           {
             name: "氏族功能",
@@ -901,14 +920,14 @@ async function buildKetherMessage(keyword: string | null | undefined) {
               "・/官方資料：查官方玩家資料測試。",
           },
           {
-            name: "提示",
+            name: "小希提示",
             value:
-              "輸入名稱第一個字，會跳出選項喵。\n" +
-              "例如：/戰甲取得 名稱:水、/材料取得 名稱:電、/核桃取得 名稱:A",
+              "取得類指令輸入中文或英文關鍵字會跳出中英雙語選項喵。\n" +
+              "查詢顯示雙語，但內部 value 保留英文名稱，穩定不容易壞。",
           },
         ],
         footer: {
-          text: "KETHER Warframe Database｜小希 Bot",
+          text: "E-11｜KETHER Warframe Database｜小希 Bot 指令導航",
         },
       },
     ],
