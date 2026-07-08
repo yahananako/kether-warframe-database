@@ -220,9 +220,11 @@ function searchGeneratedRelicsByPrimeItem(query: string) {
 
   if (!normalized) return [];
 
-  return GENERATED_RELIC_DATA.filter((record) => {
-    return record.rewards.some((reward) => normalize(reward.item).includes(normalized));
+  const matches = GENERATED_RELIC_DATA.filter((record) => {
+    return record.rewards.some((reward) => relicRewardMatchesQuery(reward, normalized));
   });
+
+  return sortGeneratedRelicMatches(query, matches);
 }
 
 
@@ -313,6 +315,63 @@ function formatGeneratedRelicName(record: GeneratedRelicRecord) {
   return `${record.relic} / ${zhTier} ${record.name}`;
 }
 
+const RELIC_RARITY_ORDER: Record<string, number> = {
+  Rare: 0,
+  Uncommon: 1,
+  Common: 2,
+};
+
+function relicRewardMatchesQuery(reward: GeneratedRelicReward, normalizedQuery: string) {
+  const englishName = normalize(reward.item);
+  const bilingualName = normalize(formatBilingualItem(reward.item));
+
+  return englishName.includes(normalizedQuery) || bilingualName.includes(normalizedQuery);
+}
+
+function getGeneratedHitRewards(record: GeneratedRelicRecord, normalizedQuery: string) {
+  return record.rewards
+    .filter((reward) => relicRewardMatchesQuery(reward, normalizedQuery))
+    .sort((a, b) => {
+      const rarityScore =
+        (RELIC_RARITY_ORDER[a.rarity] ?? 99) - (RELIC_RARITY_ORDER[b.rarity] ?? 99);
+
+      if (rarityScore !== 0) return rarityScore;
+
+      return b.chance - a.chance;
+    });
+}
+
+function getGeneratedRelicBestScore(record: GeneratedRelicRecord, normalizedQuery: string) {
+  const hit = getGeneratedHitRewards(record, normalizedQuery)[0];
+
+  if (!hit) return 999;
+
+  return RELIC_RARITY_ORDER[hit.rarity] ?? 99;
+}
+
+function sortGeneratedRelicMatches(query: string, matches: GeneratedRelicRecord[]) {
+  const normalized = normalize(query);
+
+  return [...matches].sort((a, b) => {
+    const rarityScore =
+      getGeneratedRelicBestScore(a, normalized) - getGeneratedRelicBestScore(b, normalized);
+
+    if (rarityScore !== 0) return rarityScore;
+
+    const tierScore = a.tier.localeCompare(b.tier);
+
+    if (tierScore !== 0) return tierScore;
+
+    return a.name.localeCompare(b.name);
+  });
+}
+
+function trimDiscordValue(value: string) {
+  if (value.length <= 1000) return value;
+
+  return `${value.slice(0, 990)}…`;
+}
+
 
 function formatGeneratedRewards(rewards: GeneratedRelicReward[]) {
   return rewards
@@ -362,6 +421,29 @@ function buildGeneratedRelicResponse(record: GeneratedRelicRecord) {
 
 function buildGeneratedPrimeReverseResponse(query: string, matches: GeneratedRelicRecord[]) {
   const normalized = normalize(query);
+  const sortedMatches = sortGeneratedRelicMatches(query, matches);
+  const displayMatches = sortedMatches.slice(0, 20);
+  const hiddenCount = Math.max(0, sortedMatches.length - displayMatches.length);
+
+  const fields = [
+    {
+      name: "結果整理",
+      value:
+        hiddenCount > 0
+          ? `共命中 ${sortedMatches.length} 顆核桃，優先顯示稀有／罕見命中。還有 ${hiddenCount} 筆未顯示，可輸入更完整的 Prime 名稱縮小範圍。`
+          : `共命中 ${sortedMatches.length} 顆核桃，已依稀有度排序。`,
+    },
+    ...displayMatches.map((record) => {
+      const hitRewards = getGeneratedHitRewards(record, normalized)
+        .map((reward) => `${formatBilingualItem(reward.item)}｜${toZhRarity(reward.rarity)}｜${reward.chance}%`)
+        .join("\n");
+
+      return {
+        name: formatGeneratedRelicName(record).slice(0, 256),
+        value: trimDiscordValue(hitRewards || "找到相關核桃，但沒有命中項目文字。"),
+      };
+    }),
+  ];
 
   return {
     embeds: [
@@ -369,19 +451,9 @@ function buildGeneratedPrimeReverseResponse(query: string, matches: GeneratedRel
         title: `🔎 ${query}`,
         description: "KETHER Warframe Database｜Prime 物品核桃反查",
         color: 0xd6b36a,
-        fields: matches.slice(0, 20).map((record) => {
-          const hitRewards = record.rewards
-            .filter((reward) => normalize(reward.item).includes(normalized))
-            .map((reward) => `${formatBilingualItem(reward.item)}｜${toZhRarity(reward.rarity)}｜${reward.chance}%`)
-            .join("\n");
-
-          return {
-            name: formatGeneratedRelicName(record).slice(0, 256),
-            value: hitRewards || "找到相關核桃，但沒有命中項目文字。",
-          };
-        }),
+        fields,
         footer: {
-          text: `E-7B｜共命中 ${matches.length} 顆核桃，最多顯示 20 筆`,
+          text: `E-8｜中文搜尋＋稀有度排序｜最多顯示 20 顆核桃`,
         },
       },
     ],
@@ -410,7 +482,7 @@ function searchGeneratedRelicChoices(rawQuery: string | null | undefined) {
 
   for (const record of GENERATED_RELIC_DATA) {
     for (const reward of record.rewards) {
-      if (normalize(reward.item).includes(query)) {
+      if (relicRewardMatchesQuery(reward, query)) {
         itemNames.add(reward.item);
       }
     }
