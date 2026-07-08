@@ -1,3 +1,5 @@
+import { GENERATED_RELIC_DATA, type GeneratedRelicRecord, type GeneratedRelicReward } from "./relicData.generated";
+
 type RelicAcquisitionRecord = {
   key: string;
   name: string;
@@ -168,6 +170,176 @@ function formatRewards(rewards: PreciseRelicReward[]) {
 }
 
 
+
+function parseGeneratedRelicQuery(query: string) {
+  const normalized = normalize(query);
+
+  const tierMap = [
+    { tier: "Lith", prefixes: ["lith", "古紀", "古纪"] },
+    { tier: "Meso", prefixes: ["meso", "前紀", "前纪"] },
+    { tier: "Neo", prefixes: ["neo", "中紀", "中纪"] },
+    { tier: "Axi", prefixes: ["axi", "後紀", "后纪"] },
+    { tier: "Requiem", prefixes: ["requiem", "安魂"] },
+  ];
+
+  for (const entry of tierMap) {
+    for (const prefix of entry.prefixes) {
+      const normalizedPrefix = normalize(prefix);
+
+      if (normalized.startsWith(normalizedPrefix)) {
+        const relicName = normalized.slice(normalizedPrefix.length).toUpperCase();
+
+        if (relicName) {
+          return {
+            tier: entry.tier,
+            name: relicName,
+          };
+        }
+      }
+    }
+  }
+
+  return null;
+}
+
+function findGeneratedRelic(query: string) {
+  const parsed = parseGeneratedRelicQuery(query);
+  const normalized = normalize(query);
+
+  if (parsed) {
+    return GENERATED_RELIC_DATA.find((record) => {
+      return record.tier === parsed.tier && normalize(record.name) === normalize(parsed.name);
+    });
+  }
+
+  return GENERATED_RELIC_DATA.find((record) => normalize(record.relic) === normalized);
+}
+
+function searchGeneratedRelicsByPrimeItem(query: string) {
+  const normalized = normalize(query);
+
+  if (!normalized) return [];
+
+  return GENERATED_RELIC_DATA.filter((record) => {
+    return record.rewards.some((reward) => normalize(reward.item).includes(normalized));
+  });
+}
+
+function formatGeneratedRewards(rewards: GeneratedRelicReward[]) {
+  return rewards
+    .map((reward) => {
+      const rarityLabel =
+        reward.rarity === "Rare"
+          ? "稀有"
+          : reward.rarity === "Uncommon"
+            ? "罕見"
+            : "常見";
+
+      return `・${reward.item}｜${rarityLabel}｜${reward.chance}%`;
+    })
+    .join("\n");
+}
+
+function buildGeneratedRelicResponse(record: GeneratedRelicRecord) {
+  return {
+    embeds: [
+      {
+        title: `🥜 ${record.relic}`,
+        description: "KETHER Warframe Database｜完整核桃內容查詢",
+        color: 0xd6b36a,
+        fields: [
+          {
+            name: "世代",
+            value: record.tier,
+          },
+          {
+            name: "可能開出",
+            value: formatGeneratedRewards(record.rewards),
+          },
+          {
+            name: "小希建議",
+            value:
+              record.tier === "Lith"
+                ? "Lith 類可先試 Void Hepit 捕獲。"
+                : record.tier === "Meso"
+                  ? "Meso 類可試 Void Ukko、Helene、Io 等路線。"
+                  : record.tier === "Neo"
+                    ? "Neo 類可試 Void Ukko、Xini 或中斷任務。"
+                    : record.tier === "Axi"
+                      ? "Axi 類可試 Lua Apollo 中斷或 Eris Xini 攔截。"
+                      : "特殊核桃請依當前任務來源確認。",
+          },
+        ],
+        footer: {
+          text: "E-7｜資料由 WFCD / Warframe Drop Data 生成",
+        },
+      },
+    ],
+  };
+}
+
+function buildGeneratedPrimeReverseResponse(query: string, matches: GeneratedRelicRecord[]) {
+  const normalized = normalize(query);
+
+  return {
+    embeds: [
+      {
+        title: `🔎 ${query}`,
+        description: "KETHER Warframe Database｜Prime 物品核桃反查",
+        color: 0xd6b36a,
+        fields: matches.slice(0, 20).map((record) => {
+          const hitRewards = record.rewards
+            .filter((reward) => normalize(reward.item).includes(normalized))
+            .map((reward) => `${reward.item}｜${reward.rarity}｜${reward.chance}%`)
+            .join("\n");
+
+          return {
+            name: record.relic,
+            value: hitRewards || "找到相關核桃，但沒有命中項目文字。",
+          };
+        }),
+        footer: {
+          text: `E-7｜共命中 ${matches.length} 顆核桃，最多顯示 20 筆`,
+        },
+      },
+    ],
+  };
+}
+
+function searchGeneratedRelicChoices(rawQuery: string | null | undefined) {
+  const query = normalize(String(rawQuery ?? ""));
+
+  if (!query || query.length < 2) return [];
+
+  const relicChoices = GENERATED_RELIC_DATA
+    .filter((record) => normalize(record.relic).includes(query))
+    .slice(0, 15)
+    .map((record) => ({
+      name: record.relic.slice(0, 100),
+      value: record.relic.slice(0, 100),
+    }));
+
+  const itemNames = new Set<string>();
+
+  for (const record of GENERATED_RELIC_DATA) {
+    for (const reward of record.rewards) {
+      if (normalize(reward.item).includes(query)) {
+        itemNames.add(reward.item);
+      }
+    }
+
+    if (itemNames.size >= 15) break;
+  }
+
+  const itemChoices = [...itemNames].slice(0, 15).map((item) => ({
+    name: item.slice(0, 100),
+    value: item.slice(0, 100),
+  }));
+
+  return [...relicChoices, ...itemChoices].slice(0, 25);
+}
+
+
 function normalize(value: string) {
   return value
     .toLowerCase()
@@ -225,10 +397,23 @@ export function searchRelicAcquisitionChoices(rawQuery: string | null | undefine
     .sort((a, b) => b.score - a.score || a.record.name.localeCompare(b.record.name))
     .slice(0, 25);
 
-  return scored.map(({ record }) => ({
+  const baseChoices = scored.map(({ record }) => ({
     name: record.name.slice(0, 100),
     value: (record.aliases[0] ?? record.key).slice(0, 100),
   }));
+
+  const generatedChoices = searchGeneratedRelicChoices(rawQuery);
+  const seen = new Set<string>();
+
+  return [...baseChoices, ...generatedChoices]
+    .filter((choice) => {
+      const key = normalize(choice.value);
+
+      if (seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    })
+    .slice(0, 25);
 }
 
 export function buildRelicAcquisitionResponse(rawName: string | null | undefined) {
@@ -244,6 +429,18 @@ export function buildRelicAcquisitionResponse(rawName: string | null | undefined
         list +
         "\n\n範例：`/核桃取得 名稱:Axi`、`/核桃取得 名稱:Lith S18`",
     };
+  }
+
+  const generatedRelic = findGeneratedRelic(name);
+
+  if (generatedRelic) {
+    return buildGeneratedRelicResponse(generatedRelic);
+  }
+
+  const generatedMatches = searchGeneratedRelicsByPrimeItem(name);
+
+  if (generatedMatches.length > 0) {
+    return buildGeneratedPrimeReverseResponse(name, generatedMatches);
   }
 
   const preciseRelic = findPreciseRelic(name);
