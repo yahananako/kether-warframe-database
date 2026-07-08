@@ -1398,22 +1398,14 @@ export async function POST(request: Request) {
   if (interaction.type === INTERACTION_TYPE.APPLICATION_COMMAND_AUTOCOMPLETE) {
     const commandName = interaction.data?.name;
 
-    if (commandName === "warframe-obtain") {
-
-      const name = getOptionValue(interaction, ["name", "keyword", "item"]);
-
+    if (commandName === "warframe-obtain" || commandName === "戰甲取得") {
+      const name = getOptionValue(interaction, ["name", "名稱", "keyword", "關鍵字", "item", "物品"]);
       const responseData = buildWarframeAcquisitionResponse(name);
-
       return Response.json({
-
         type: 4,
-
         data: responseData,
-
       });
-
     }
-
 
     if (commandName === "price") {
       const focusedValue = getFocusedOptionValue(interaction, ["item", "keyword"]);
