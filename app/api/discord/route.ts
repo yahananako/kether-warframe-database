@@ -1,5 +1,6 @@
 import crypto from "node:crypto";
 import { buildWarframeAcquisitionResponse } from "./warframeAcquisition";
+import { buildMaterialAcquisitionResponse } from "./materialAcquisition";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -1444,6 +1445,15 @@ export async function POST(request: Request) {
     if (commandName === "warframe-obtain" || commandName === "戰甲取得") {
       const name = getOptionValue(interaction, ["name", "名稱", "keyword", "關鍵字", "item", "物品"]);
       const responseData = buildWarframeAcquisitionResponse(name);
+      return Response.json({
+        type: RESPONSE_TYPE.CHANNEL_MESSAGE_WITH_SOURCE,
+        data: responseData,
+      });
+    }
+
+    if (commandName === "material-obtain" || commandName === "材料取得") {
+      const name = getOptionValue(interaction, ["name", "名稱", "keyword", "關鍵字", "item", "物品"]);
+      const responseData = buildMaterialAcquisitionResponse(name);
       return Response.json({
         type: RESPONSE_TYPE.CHANNEL_MESSAGE_WITH_SOURCE,
         data: responseData,

@@ -40,6 +40,35 @@ if (!botToken) throw new Error("缺少 DISCORD_BOT_TOKEN");
 
 const commands = [
   {
+    name: "material-obtain",
+    name_localizations: {
+      "zh-TW": "材料取得",
+      "zh-CN": "材料取得",
+    },
+    description: "查詢 Warframe 材料取得方式",
+    description_localizations: {
+      "zh-TW": "查詢 Warframe 材料取得方式",
+      "zh-CN": "查询 Warframe 材料取得方式",
+    },
+    type: 1,
+    options: [
+      {
+        name: "name",
+        name_localizations: {
+          "zh-TW": "名稱",
+          "zh-CN": "名称",
+        },
+        description: "要查詢的材料名稱，例如 碲 或 Orokin 電池",
+        description_localizations: {
+          "zh-TW": "要查詢的材料名稱，例如 碲 或 Orokin 電池",
+          "zh-CN": "要查询的材料名称，例如 碲 或 Orokin 电池",
+        },
+        type: 3,
+        required: true,
+      },
+    ],
+  },
+  {
     name: "warframe-obtain",
     name_localizations: {
       "zh-TW": "戰甲取得",
