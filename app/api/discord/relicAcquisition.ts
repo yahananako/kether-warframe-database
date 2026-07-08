@@ -225,17 +225,99 @@ function searchGeneratedRelicsByPrimeItem(query: string) {
   });
 }
 
+
+const RELIC_TIER_ZH: Record<string, string> = {
+  Lith: "古紀",
+  Meso: "前紀",
+  Neo: "中紀",
+  Axi: "後紀",
+  Requiem: "安魂",
+};
+
+const RELIC_RARITY_ZH: Record<string, string> = {
+  Common: "常見",
+  Uncommon: "罕見",
+  Rare: "稀有",
+};
+
+const PRIME_PART_ZH: Record<string, string> = {
+  "Blueprint": "藍圖",
+  "Neuroptics Blueprint": "神經光元藍圖",
+  "Chassis Blueprint": "機體藍圖",
+  "Systems Blueprint": "系統藍圖",
+  "Blade": "刀刃",
+  "Handle": "握柄",
+  "Receiver": "機匣",
+  "Barrel": "槍管",
+  "Stock": "槍托",
+  "String": "弓弦",
+  "Grip": "握柄",
+  "Link": "連接器",
+  "Pouch": "包袋",
+  "Stars": "星鏢",
+  "Disc": "圓盤",
+  "Hilt": "劍柄",
+  "Head": "頭部",
+  "Upper Limb": "上弓臂",
+  "Lower Limb": "下弓臂",
+  "Wings": "機翼",
+  "Harness": "外甲",
+  "Carapace": "甲殼",
+  "Cerebrum": "大腦",
+  "Systems": "系統",
+  "Set": "套組",
+};
+
+const EXACT_ITEM_ZH: Record<string, string> = {
+  "Forma Blueprint": "Forma 藍圖",
+};
+
+function toZhRarity(rarity: string) {
+  return RELIC_RARITY_ZH[rarity] ?? rarity;
+}
+
+function toZhRelicTier(tier: string) {
+  return RELIC_TIER_ZH[tier] ?? tier;
+}
+
+function toZhItemName(item: string) {
+  const exact = EXACT_ITEM_ZH[item];
+
+  if (exact) return exact;
+
+  const suffixes = Object.keys(PRIME_PART_ZH).sort((a, b) => b.length - a.length);
+
+  for (const suffix of suffixes) {
+    if (item.endsWith(` ${suffix}`)) {
+      const baseName = item.slice(0, -suffix.length).trim();
+      return `${baseName} ${PRIME_PART_ZH[suffix]}`;
+    }
+  }
+
+  return null;
+}
+
+function formatBilingualItem(item: string) {
+  const zh = toZhItemName(item);
+
+  if (!zh || zh === item) return item;
+
+  return `${item} / ${zh}`;
+}
+
+function formatGeneratedRelicName(record: GeneratedRelicRecord) {
+  const zhTier = toZhRelicTier(record.tier);
+
+  if (!zhTier || zhTier === record.tier) return record.relic;
+
+  return `${record.relic} / ${zhTier} ${record.name}`;
+}
+
+
 function formatGeneratedRewards(rewards: GeneratedRelicReward[]) {
   return rewards
     .map((reward) => {
-      const rarityLabel =
-        reward.rarity === "Rare"
-          ? "稀有"
-          : reward.rarity === "Uncommon"
-            ? "罕見"
-            : "常見";
-
-      return `・${reward.item}｜${rarityLabel}｜${reward.chance}%`;
+      return `・${formatBilingualItem(reward.item)}｜${toZhRarity(reward.rarity)}｜${reward.chance}%`;
     })
     .join("\n");
 }
@@ -244,13 +326,13 @@ function buildGeneratedRelicResponse(record: GeneratedRelicRecord) {
   return {
     embeds: [
       {
-        title: `🥜 ${record.relic}`,
+        title: `🥜 ${formatGeneratedRelicName(record)}`,
         description: "KETHER Warframe Database｜完整核桃內容查詢",
         color: 0xd6b36a,
         fields: [
           {
             name: "世代",
-            value: record.tier,
+            value: `${record.tier} / ${toZhRelicTier(record.tier)}`,
           },
           {
             name: "可能開出",
@@ -260,18 +342,18 @@ function buildGeneratedRelicResponse(record: GeneratedRelicRecord) {
             name: "小希建議",
             value:
               record.tier === "Lith"
-                ? "Lith 類可先試 Void Hepit 捕獲。"
+                ? "Lith / 古紀 類可先試 Void Hepit 捕獲。"
                 : record.tier === "Meso"
-                  ? "Meso 類可試 Void Ukko、Helene、Io 等路線。"
+                  ? "Meso / 前紀 類可試 Void Ukko、Helene、Io 等路線。"
                   : record.tier === "Neo"
-                    ? "Neo 類可試 Void Ukko、Xini 或中斷任務。"
+                    ? "Neo / 中紀 類可試 Void Ukko、Xini 或中斷任務。"
                     : record.tier === "Axi"
-                      ? "Axi 類可試 Lua Apollo 中斷或 Eris Xini 攔截。"
+                      ? "Axi / 後紀 類可試 Lua Apollo 中斷或 Eris Xini 攔截。"
                       : "特殊核桃請依當前任務來源確認。",
           },
         ],
         footer: {
-          text: "E-7｜資料由 WFCD / Warframe Drop Data 生成",
+          text: "E-7B｜資料由 WFCD / Warframe Drop Data 生成，中文為 KETHER 顯示層",
         },
       },
     ],
@@ -290,16 +372,16 @@ function buildGeneratedPrimeReverseResponse(query: string, matches: GeneratedRel
         fields: matches.slice(0, 20).map((record) => {
           const hitRewards = record.rewards
             .filter((reward) => normalize(reward.item).includes(normalized))
-            .map((reward) => `${reward.item}｜${reward.rarity}｜${reward.chance}%`)
+            .map((reward) => `${formatBilingualItem(reward.item)}｜${toZhRarity(reward.rarity)}｜${reward.chance}%`)
             .join("\n");
 
           return {
-            name: record.relic,
+            name: formatGeneratedRelicName(record).slice(0, 256),
             value: hitRewards || "找到相關核桃，但沒有命中項目文字。",
           };
         }),
         footer: {
-          text: `E-7｜共命中 ${matches.length} 顆核桃，最多顯示 20 筆`,
+          text: `E-7B｜共命中 ${matches.length} 顆核桃，最多顯示 20 筆`,
         },
       },
     ],
@@ -332,7 +414,7 @@ function searchGeneratedRelicChoices(rawQuery: string | null | undefined) {
   }
 
   const itemChoices = [...itemNames].slice(0, 15).map((item) => ({
-    name: item.slice(0, 100),
+    name: formatBilingualItem(item).slice(0, 100),
     value: item.slice(0, 100),
   }));
 
