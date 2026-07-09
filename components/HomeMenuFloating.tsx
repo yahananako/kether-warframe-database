@@ -70,7 +70,7 @@ export default function HomeMenuFloating() {
           border-radius: 999px;
           border: 1px solid rgba(255,255,255,.72);
           background: rgba(255,255,255,.58);
-          color: #263445;
+          color: #1f2937;
           font-size: 22px;
           line-height: 1;
           box-shadow: 0 12px 28px rgba(15,23,42,.14);
@@ -85,9 +85,9 @@ export default function HomeMenuFloating() {
           background:
             radial-gradient(circle at 16% 10%, rgba(255, 183, 213, .42), transparent 34%),
             radial-gradient(circle at 88% 18%, rgba(170, 210, 255, .34), transparent 30%),
-            rgba(15, 23, 42, .18);
-          backdrop-filter: blur(22px) saturate(180%);
-          -webkit-backdrop-filter: blur(22px) saturate(180%);
+            rgba(15, 23, 42, .34);
+          backdrop-filter: blur(28px) saturate(170%);
+          -webkit-backdrop-filter: blur(28px) saturate(170%);
         }
 
         .k-menu-panel {
@@ -154,10 +154,10 @@ export default function HomeMenuFloating() {
           padding: 13px 14px;
           border-radius: 18px;
           border: 1px solid rgba(255,255,255,.72);
-          background: rgba(255,255,255,.48);
+          background: rgba(255,255,255,.82);
           backdrop-filter: blur(18px) saturate(170%);
           -webkit-backdrop-filter: blur(18px) saturate(170%);
-          color: #263445;
+          color: #1f2937;
           text-decoration: none;
           box-shadow: 0 10px 22px rgba(15,23,42,.07);
         }
