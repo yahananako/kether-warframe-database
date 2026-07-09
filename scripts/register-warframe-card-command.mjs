@@ -88,25 +88,6 @@ const commands = [
 
   options: [
     {
-      name: "name",
-
-      name_localizations: {
-        "zh-TW": "名稱",
-        "zh-CN": "名称",
-      },
-
-      description: "要查詢的武器名稱，例如 托里德、兇惡終結者、Glaive Prime",
-
-      description_localizations: {
-        "zh-TW": "要查詢的武器名稱，例如 托里德、兇惡終結者、Glaive Prime",
-        "zh-CN": "要查询的武器名称，例如 托里德、凶恶终结者、Glaive Prime",
-      },
-
-      type: 3,
-      required: true,
-      autocomplete: true,
-    },
-    {
       name: "weapon_type",
 
       name_localizations: {
@@ -114,15 +95,15 @@ const commands = [
         "zh-CN": "类型",
       },
 
-      description: "武器類型",
+      description: "先選武器類型",
 
       description_localizations: {
-        "zh-TW": "武器類型",
-        "zh-CN": "武器类型",
+        "zh-TW": "先選武器類型",
+        "zh-CN": "先选武器类型",
       },
 
       type: 3,
-      required: false,
+      required: true,
       choices: [
         { name: "全部", value: "all" },
         { name: "主要武器", value: "primary" },
@@ -140,15 +121,15 @@ const commands = [
         "zh-CN": "系列",
       },
 
-      description: "武器系列或來源分類",
+      description: "再選武器系列或來源分類",
 
       description_localizations: {
-        "zh-TW": "武器系列或來源分類",
-        "zh-CN": "武器系列或来源分类",
+        "zh-TW": "再選武器系列或來源分類",
+        "zh-CN": "再选武器系列或来源分类",
       },
 
       type: 3,
-      required: false,
+      required: true,
       choices: [
         { name: "全部", value: "all" },
         { name: "P版 / Prime", value: "prime" },
@@ -161,6 +142,25 @@ const commands = [
         { name: "活動 / 特殊", value: "event" },
         { name: "任務 / 掉落", value: "drop" },
       ],
+    },
+    {
+      name: "name",
+
+      name_localizations: {
+        "zh-TW": "名稱",
+        "zh-CN": "名称",
+      },
+
+      description: "最後輸入武器名稱，例如 托里德、兇惡終結者、Glaive Prime",
+
+      description_localizations: {
+        "zh-TW": "最後輸入武器名稱，例如 托里德、兇惡終結者、Glaive Prime",
+        "zh-CN": "最后输入武器名称，例如 托里德、凶恶终结者、Glaive Prime",
+      },
+
+      type: 3,
+      required: true,
+      autocomplete: true,
     },
   ],
 },
