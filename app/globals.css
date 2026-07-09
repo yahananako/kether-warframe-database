@@ -5448,3 +5448,93 @@ a.nav-card {
   display: none !important;
 }
 /* official news duplicate guard end */
+
+/* KETHER homepage priority actions */
+.homepage-sci-fi .home-priority-actions {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  margin: 14px 0 22px;
+}
+
+.homepage-sci-fi .home-priority-main,
+.homepage-sci-fi .home-priority-card,
+.homepage-sci-fi .home-priority-discord {
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.homepage-sci-fi .home-priority-main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 62px;
+  padding: 14px 18px;
+  border-radius: 22px;
+  border: 1px solid rgba(255, 255, 255, .78);
+  background: linear-gradient(135deg, rgba(112, 91, 255, .92), rgba(77, 131, 255, .86));
+  box-shadow: 0 16px 34px rgba(71, 85, 255, .22);
+}
+
+.homepage-sci-fi .home-priority-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.homepage-sci-fi .home-priority-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 72px;
+  padding: 14px 16px;
+  border-radius: 22px;
+  border: 1.5px solid rgba(255, 255, 255, .86);
+  background: linear-gradient(145deg, rgba(255, 255, 255, .74), rgba(246, 250, 255, .50));
+  box-shadow:
+    0 14px 30px rgba(15, 23, 42, .11),
+    inset 0 1px 0 rgba(255, 255, 255, .88);
+  backdrop-filter: blur(20px) saturate(170%);
+  -webkit-backdrop-filter: blur(20px) saturate(170%);
+}
+
+.homepage-sci-fi .home-priority-discord {
+  display: block;
+  margin-top: 10px;
+  padding: 14px 18px;
+  border-radius: 22px;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, .78);
+  background: linear-gradient(135deg, rgba(255, 126, 185, .95), rgba(148, 163, 255, .88));
+  box-shadow: 0 16px 34px rgba(217, 70, 143, .24);
+}
+
+.homepage-sci-fi .home-priority-main span,
+.homepage-sci-fi .home-priority-card span,
+.homepage-sci-fi .home-priority-discord {
+  font-size: 15px;
+  line-height: 1.25;
+  font-weight: 950;
+  color: #172033;
+}
+
+.homepage-sci-fi .home-priority-main span,
+.homepage-sci-fi .home-priority-main small,
+.homepage-sci-fi .home-priority-discord {
+  color: white;
+}
+
+.homepage-sci-fi .home-priority-main small,
+.homepage-sci-fi .home-priority-card small {
+  display: block;
+  margin-top: 5px;
+  font-size: 12px;
+  line-height: 1.35;
+  font-weight: 700;
+  color: #475569;
+}
+
+.homepage-sci-fi .home-priority-main small {
+  color: rgba(255, 255, 255, .9);
+}

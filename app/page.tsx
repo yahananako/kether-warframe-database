@@ -126,9 +126,36 @@ export default async function HomePage() {
 </div>
       </section>
 
+        <section className="hero" aria-label="首頁重要功能">
+          <div className="home-priority-actions">
+            <a className="home-priority-main" href="/login">
+              <span>登入 Discord</span>
+              <small>開啟個人資料與進度同步</small>
+            </a>
 
-      <section className="hero">
-</section>
+            <div className="home-priority-grid">
+              <a className="home-priority-card" href="/profile">
+                <span>個人進度</span>
+                <small>查看收藏、完成度與已購買資料</small>
+              </a>
+
+              <a className="home-priority-card" href="/bot">
+                <span>小希 Bot 指令</span>
+                <small>Discord Bot 功能總覽</small>
+              </a>
+
+              <a className="home-priority-card" href="/db-status">
+                <span>資料庫狀態</span>
+                <small>查看資料來源與同步狀態</small>
+              </a>
+            </div>
+
+            <a className="home-priority-discord" href="https://discord.gg/27wjWWy7tm" target="_blank" rel="noreferrer">
+              Discord 入口
+            </a>
+          </div>
+        </section>
+
 
       <section className="home-kpi-grid home-zone home-zone-stats">
         <div className="panel-tag">數據區</div>
