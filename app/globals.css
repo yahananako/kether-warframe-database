@@ -5448,3 +5448,34 @@ a.nav-card {
   display: none !important;
 }
 /* official news duplicate guard end */
+
+/* KETHER topbar existing buttons polish */
+.homepage-sci-fi .login-mini,
+.homepage-sci-fi .discord-mini {
+  min-height: 38px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.76);
+  background: linear-gradient(145deg, rgba(255,255,255,.72), rgba(255,255,255,.36));
+  box-shadow:
+    0 12px 28px rgba(15, 23, 42, .12),
+    inset 0 1px 0 rgba(255,255,255,.86);
+  backdrop-filter: blur(14px) saturate(160%);
+  -webkit-backdrop-filter: blur(14px) saturate(160%);
+}
+
+.homepage-sci-fi .login-mini {
+  min-width: 54px;
+  justify-content: center;
+  color: #172033;
+  font-weight: 950;
+}
+
+.homepage-sci-fi .discord-mini {
+  padding: 8px 15px;
+  color: #172033;
+  font-weight: 900;
+}
+
+.homepage-sci-fi .discord-mini svg {
+  color: #172033;
+}
