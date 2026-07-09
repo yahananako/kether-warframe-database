@@ -196,6 +196,48 @@ export default function HomeMenuFloating() {
           background: linear-gradient(135deg, rgba(255,126,185,.95), rgba(148,163,255,.88));
           box-shadow: 0 16px 34px rgba(217,70,143,.25);
         }
+
+        /* KETHER 強制厚白選單卡 */
+        .k-menu-panel {
+          background: linear-gradient(145deg, rgba(255,255,255,.94), rgba(238,247,255,.88)) !important;
+        }
+
+        .k-menu-list {
+          gap: 12px !important;
+          margin-top: 12px !important;
+        }
+
+        .k-menu-list a {
+          display: block !important;
+          width: 100% !important;
+          min-height: 82px !important;
+          padding: 18px 20px !important;
+          border-radius: 26px !important;
+          border: 2px solid rgba(255,255,255,.96) !important;
+          background: linear-gradient(145deg, rgba(255,255,255,.96), rgba(246,250,255,.90)) !important;
+          color: #172033 !important;
+          box-shadow:
+            0 18px 38px rgba(15,23,42,.16),
+            inset 0 1px 0 rgba(255,255,255,1) !important;
+          backdrop-filter: blur(24px) saturate(180%) !important;
+          -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
+        }
+
+        .k-menu-list b {
+          font-size: 20px !important;
+          line-height: 1.25 !important;
+          font-weight: 950 !important;
+          color: #172033 !important;
+        }
+
+        .k-menu-list small {
+          margin-top: 9px !important;
+          font-size: 14px !important;
+          line-height: 1.45 !important;
+          font-weight: 700 !important;
+          color: #475569 !important;
+        }
+
       `}</style>
     </>
   );
