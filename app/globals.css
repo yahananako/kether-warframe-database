@@ -6020,3 +6020,184 @@ a.nav-card {
     font-size: 14px !important;
   }
 }
+
+/* KETHER live worldstate page */
+.live-page-shell {
+  width: min(1120px, calc(100% - 24px));
+  margin: 0 auto;
+  padding: 28px 0 56px;
+  color: #172033;
+}
+
+.live-hero,
+.live-card,
+.live-section,
+.live-error {
+  border: 1px solid rgba(160, 180, 200, 0.38);
+  background: rgba(255, 255, 255, 0.76);
+  box-shadow: 0 18px 40px rgba(24, 38, 56, 0.08);
+  backdrop-filter: blur(12px);
+}
+
+.live-hero {
+  margin-bottom: 14px;
+  padding: 22px;
+  border-radius: 24px;
+}
+
+.live-eyebrow {
+  margin: 0 0 6px;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.16em;
+  color: #8a5dd8;
+}
+
+.live-hero h1 {
+  margin: 0;
+  font-size: clamp(28px, 7vw, 54px);
+  line-height: 1;
+}
+
+.live-hero p {
+  max-width: 720px;
+  margin: 12px 0 0;
+  color: #526070;
+  line-height: 1.8;
+}
+
+.live-back-link {
+  display: inline-flex;
+  margin-top: 14px;
+  color: #7d4fd1;
+  font-weight: 900;
+  text-decoration: none;
+}
+
+.live-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.live-grid-primary {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.live-card {
+  min-height: 108px;
+  padding: 14px;
+  border-radius: 18px;
+}
+
+.live-card-kicker {
+  margin: 0 0 8px;
+  font-size: 11px;
+  font-weight: 900;
+  color: #8a5dd8;
+}
+
+.live-card h2 {
+  margin: 0;
+  font-size: 18px;
+  line-height: 1.25;
+}
+
+.live-card-sub {
+  margin: 8px 0 0;
+  font-size: 12px;
+  color: #5f6b78;
+  line-height: 1.5;
+}
+
+.live-section {
+  margin-top: 14px;
+  padding: 14px;
+  border-radius: 20px;
+}
+
+.live-section-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.live-section-title h2 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.live-section-title span {
+  padding: 4px 9px;
+  border-radius: 999px;
+  background: rgba(138, 93, 216, 0.12);
+  color: #7d4fd1;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.live-list {
+  display: grid;
+  gap: 8px;
+}
+
+.live-row {
+  display: grid;
+  gap: 3px;
+  padding: 10px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(160, 180, 200, 0.25);
+}
+
+.live-row b {
+  font-size: 14px;
+}
+
+.live-row span,
+.live-empty,
+.live-source {
+  font-size: 12px;
+  color: #5f6b78;
+  line-height: 1.5;
+}
+
+.live-error {
+  padding: 18px;
+  border-radius: 18px;
+  color: #a03248;
+  font-weight: 900;
+}
+
+.live-source {
+  margin: 18px 4px 0;
+  text-align: center;
+}
+
+@media (min-width: 760px) {
+  .live-page-shell {
+    padding-top: 42px;
+  }
+
+  .live-grid,
+  .live-grid-primary {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  .live-card {
+    min-height: 126px;
+    padding: 18px;
+  }
+
+  .live-card h2 {
+    font-size: 22px;
+  }
+
+  .live-section {
+    padding: 18px;
+  }
+}
