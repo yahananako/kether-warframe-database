@@ -339,6 +339,15 @@ export default async function HomePage() {
         <span className="home-footer-designer">Website by ヤハ奈々子・羊咩・凱洛</span>
       </footer>
 
+    
+      <Link
+        href="/bot"
+        className="fixed bottom-6 right-5 z-50 inline-flex items-center gap-2 rounded-full border border-pink-200/70 bg-white/90 px-5 py-3 text-sm font-black text-[#2a1630] shadow-2xl shadow-pink-300/30 backdrop-blur transition hover:-translate-y-0.5 hover:bg-pink-50"
+      >
+        <span className="text-lg">🤖</span>
+        小希Bot
+      </Link>
+
     </main>
   </>);
 }
