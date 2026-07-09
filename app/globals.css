@@ -5683,3 +5683,340 @@ a.nav-card {
     margin-bottom: 6px;
   }
 }
+
+/* Artist navigation image buttons */
+.artist-nav-card {
+  position: relative;
+  display: block;
+  min-height: 142px;
+  padding: 0;
+  overflow: hidden;
+  text-decoration: none;
+  border: 1px solid rgba(150, 165, 180, 0.45);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.28);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.65), 0 10px 22px rgba(20, 32, 45, 0.08);
+}
+
+.artist-nav-art {
+  position: absolute;
+  z-index: 1;
+  inset: 10px 12px 38px;
+  display: block;
+  pointer-events: none;
+}
+
+.artist-nav-state {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  object-position: center;
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 0.18s ease, transform 0.18s ease;
+}
+
+.artist-nav-state-on {
+  opacity: 0;
+}
+
+.artist-nav-card:hover .artist-nav-state-off,
+.artist-nav-card:focus-visible .artist-nav-state-off,
+.artist-nav-card:active .artist-nav-state-off {
+  opacity: 0;
+}
+
+.artist-nav-card:hover .artist-nav-state-on,
+.artist-nav-card:focus-visible .artist-nav-state-on,
+.artist-nav-card:active .artist-nav-state-on {
+  opacity: 1;
+  transform: scale(1.03);
+}
+
+.artist-nav-meta {
+  position: absolute;
+  z-index: 2;
+  left: 8px;
+  right: 8px;
+  bottom: 8px;
+  display: grid;
+  gap: 2px;
+  padding: 5px 6px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.72);
+  color: #111820;
+  text-align: center;
+  line-height: 1.15;
+  backdrop-filter: blur(6px);
+}
+
+.artist-nav-meta small {
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.artist-nav-meta b {
+  font-size: 14px;
+  font-weight: 900;
+}
+
+@media (max-width: 680px) {
+  .artist-nav-card {
+    min-height: 126px;
+  }
+
+  .artist-nav-art {
+    inset: 8px 10px 36px;
+  }
+
+  .artist-nav-meta small {
+    font-size: 9px;
+  }
+
+  .artist-nav-meta b {
+    font-size: 13px;
+  }
+}
+
+/* KETHER artist navigation containment fix */
+.nav-grid {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 10px !important;
+}
+
+.kether-artist-card {
+  position: relative !important;
+  display: block !important;
+  height: 138px !important;
+  min-height: 138px !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  border-radius: 14px !important;
+  text-decoration: none !important;
+  background: rgba(255, 255, 255, 0.22) !important;
+}
+
+.kether-artist-art {
+  position: absolute !important;
+  z-index: 1 !important;
+  left: 8px !important;
+  right: 8px !important;
+  top: 8px !important;
+  bottom: 42px !important;
+  display: block !important;
+  overflow: hidden !important;
+  pointer-events: none !important;
+}
+
+.kether-artist-img {
+  position: absolute !important;
+  inset: 0 !important;
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 100% !important;
+  max-height: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  object-fit: contain !important;
+  object-position: center !important;
+}
+
+.kether-artist-on {
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+.kether-artist-card:hover .kether-artist-off,
+.kether-artist-card:focus-visible .kether-artist-off,
+.kether-artist-card:active .kether-artist-off {
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+.kether-artist-card:hover .kether-artist-on,
+.kether-artist-card:focus-visible .kether-artist-on,
+.kether-artist-card:active .kether-artist-on {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.kether-artist-info {
+  position: absolute !important;
+  z-index: 2 !important;
+  left: 7px !important;
+  right: 7px !important;
+  bottom: 7px !important;
+  display: grid !important;
+  gap: 2px !important;
+  padding: 5px 6px !important;
+  border-radius: 10px !important;
+  text-align: center !important;
+  line-height: 1.15 !important;
+  color: #111820 !important;
+  background: rgba(255, 255, 255, 0.74) !important;
+  backdrop-filter: blur(6px) !important;
+}
+
+.kether-artist-info small {
+  font-size: 9px !important;
+  font-weight: 700 !important;
+}
+
+.kether-artist-info b {
+  font-size: 13px !important;
+  font-weight: 900 !important;
+}
+
+@media (min-width: 760px) {
+  .nav-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    gap: 14px !important;
+  }
+
+  .kether-artist-card {
+    height: 150px !important;
+    min-height: 150px !important;
+  }
+
+  .kether-artist-art {
+    bottom: 44px !important;
+  }
+
+  .kether-artist-info small {
+    font-size: 10px !important;
+  }
+
+  .kether-artist-info b {
+    font-size: 14px !important;
+  }
+}
+
+/* KETHER navigation art buttons v3 */
+.nav-grid {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 10px !important;
+  align-items: stretch !important;
+}
+
+.k-nav3-card {
+  position: relative !important;
+  display: block !important;
+  width: 100% !important;
+  height: 132px !important;
+  min-height: 132px !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  border-radius: 14px !important;
+  text-decoration: none !important;
+  background: rgba(255, 255, 255, 0.24) !important;
+  border: 1px solid rgba(120, 140, 160, 0.32) !important;
+}
+
+.k-nav3-stage {
+  position: absolute !important;
+  z-index: 1 !important;
+  inset: 8px 8px 38px 8px !important;
+  display: block !important;
+  overflow: hidden !important;
+  pointer-events: none !important;
+}
+
+.k-nav3-img {
+  position: absolute !important;
+  inset: 0 !important;
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 100% !important;
+  max-height: 100% !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+  object-fit: contain !important;
+  object-position: center center !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+}
+
+.k-nav3-off {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.k-nav3-on {
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+.k-nav3-card:hover .k-nav3-off,
+.k-nav3-card:focus-visible .k-nav3-off,
+.k-nav3-card:active .k-nav3-off {
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+.k-nav3-card:hover .k-nav3-on,
+.k-nav3-card:focus-visible .k-nav3-on,
+.k-nav3-card:active .k-nav3-on {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.k-nav3-info {
+  position: absolute !important;
+  z-index: 2 !important;
+  left: 7px !important;
+  right: 7px !important;
+  bottom: 7px !important;
+  display: grid !important;
+  gap: 2px !important;
+  padding: 5px 6px !important;
+  border-radius: 10px !important;
+  text-align: center !important;
+  line-height: 1.15 !important;
+  color: #111820 !important;
+  background: rgba(255, 255, 255, 0.76) !important;
+  backdrop-filter: blur(6px) !important;
+}
+
+.k-nav3-info small {
+  font-size: 9px !important;
+  font-weight: 700 !important;
+}
+
+.k-nav3-info b {
+  font-size: 13px !important;
+  font-weight: 900 !important;
+}
+
+@media (min-width: 760px) {
+  .nav-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    gap: 14px !important;
+  }
+
+  .k-nav3-card {
+    height: 148px !important;
+    min-height: 148px !important;
+  }
+
+  .k-nav3-stage {
+    inset: 10px 10px 42px 10px !important;
+  }
+
+  .k-nav3-info small {
+    font-size: 10px !important;
+  }
+
+  .k-nav3-info b {
+    font-size: 14px !important;
+  }
+}

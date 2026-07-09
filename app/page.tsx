@@ -195,38 +195,39 @@ export default async function HomePage() {
               <Link
                 key={item.key}
                 href={item.href}
-                className="group relative block overflow-hidden rounded-[18px] border border-slate-200/45 bg-white/10 p-0 shadow-sm transition duration-200 active:scale-[0.98]"
+                className="nav-card k-nav3-card"
                 aria-label={item.label}
               >
-                <img
-                  src={item.image}
-                  alt={item.label}
-                  className="block h-auto w-full select-none transition-opacity duration-200 group-hover:opacity-0 group-active:opacity-0"
-                  draggable={false}
-                />
+                <span className="k-nav3-stage" aria-hidden="true">
+                  <img
+                    src={item.image}
+                    alt=""
+                    className="k-nav3-img k-nav3-off"
+                    draggable={false}
+                  />
+                  <img
+                    src={item.activeImage}
+                    alt=""
+                    className="k-nav3-img k-nav3-on"
+                    draggable={false}
+                  />
+                </span>
 
-                <img
-                  src={item.activeImage}
-                  alt=""
-                  className="pointer-events-none absolute inset-0 h-full w-full select-none object-contain opacity-0 transition-opacity duration-200 group-hover:opacity-100 group-active:opacity-100"
-                  draggable={false}
-                />
-
-                <div className="pointer-events-none absolute inset-x-2 bottom-2 rounded-xl bg-white/60 px-2 py-1 text-center text-[10px] font-semibold leading-snug text-slate-900 backdrop-blur-md sm:text-xs">
+                <span className="k-nav3-info">
                   {stats ? (
                     <>
-                      <div>
+                      <small>
                         {stats.count.toLocaleString("zh-TW")} 筆｜區塊 {stats.sectionCount}｜有價格 {stats.priced}
-                      </div>
-                      <div className="text-sm font-black sm:text-base">{stats.completion}%</div>
+                      </small>
+                      <b>{stats.completion}%</b>
                     </>
                   ) : (
                     <>
-                      <div>查看全部分類與總覽資料</div>
-                      <div className="text-sm font-black sm:text-base">總覽</div>
+                      <small>查看全部分類與總覽資料</small>
+                      <b>總覽</b>
                     </>
                   )}
-                </div>
+                </span>
               </Link>
             );
           })}
