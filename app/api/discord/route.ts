@@ -2,6 +2,7 @@ import crypto from "node:crypto";
 import { buildWarframeAcquisitionResponse, searchWarframeAcquisitionChoices } from "./warframeAcquisition";
 import { buildMaterialAcquisitionResponse, searchMaterialAcquisitionChoices } from "./materialAcquisition";
 import { buildRelicAcquisitionResponse, searchRelicAcquisitionChoices } from "./relicAcquisition";
+import { buildWeaponAcquisitionResponse, searchWeaponAcquisitionChoices } from "./weaponAcquisition";
 import { buildCompanionAcquisitionResponse, searchCompanionAcquisitionChoices } from "./companionAcquisition";
 
 export const runtime = "nodejs";
@@ -864,7 +865,8 @@ async function buildKetherMessage(keyword: string | null | undefined) {
     "資料查詢",
     "・/核桃取得：查核桃內容、Prime 部件反查、中文關鍵字、稀有度排序。",
     "・/材料取得：查材料來源、推薦刷法，支援中文／英文／綽號搜尋。",
-    "・/夥伴取得：查同伴、守護、庫娃、庫狛、MOA、獵犬取得方式，可自動補全。\n" +
+    "・/武器取得：查主要、次要、近戰、曲翼、亡靈骸甲武器取得方式，可依類型與系列篩選。\n" +
+      "・/夥伴取得：查同伴、守護、庫娃、庫狛、MOA、獵犬取得方式，可自動補全。\n" +
       "・/戰甲取得：查戰甲取得方式與部件來源，支援中文／英文／綽號搜尋。",
     "",
     "氏族功能",
@@ -1466,6 +1468,24 @@ export async function POST(request: Request) {
   if (interaction.type === INTERACTION_TYPE.APPLICATION_COMMAND_AUTOCOMPLETE) {
     const commandName = interaction.data?.name;
 
+    if (commandName === "weapon-obtain" || commandName === "武器取得") {
+      const options = Array.isArray(interaction.data?.options) ? interaction.data.options : [];
+      const focusedValue = getFocusedOptionValue(interaction, ["name", "名稱"]);
+      const weaponTypeOption = options.find((option: any) => option.name === "weapon_type" || option.name === "類型");
+      const seriesOption = options.find((option: any) => option.name === "series" || option.name === "系列");
+
+      const choices = searchWeaponAcquisitionChoices(
+        focusedValue,
+        typeof weaponTypeOption?.value === "string" ? weaponTypeOption.value : null,
+        typeof seriesOption?.value === "string" ? seriesOption.value : null,
+      );
+
+      return Response.json({
+        type: RESPONSE_TYPE.APPLICATION_COMMAND_AUTOCOMPLETE_RESULT,
+        data: { choices },
+      });
+    }
+
     if (commandName === "companion-obtain" || commandName === "同伴取得" || commandName === "夥伴取得") {
       const focusedValue = getFocusedOptionValue(interaction, ["name", "名稱"]);
       const choices = searchCompanionAcquisitionChoices(focusedValue);
@@ -1532,6 +1552,23 @@ export async function POST(request: Request) {
     // KETHER_WARFRAME_PROFILE_CARD_HANDLER_END
 
     const commandName = interaction.data?.name;
+
+    if (commandName === "weapon-obtain" || commandName === "武器取得") {
+      const options = Array.isArray(interaction.data?.options) ? interaction.data.options : [];
+      const nameOption = options.find((option: any) => option.name === "name" || option.name === "名稱");
+      const weaponTypeOption = options.find((option: any) => option.name === "weapon_type" || option.name === "類型");
+      const seriesOption = options.find((option: any) => option.name === "series" || option.name === "系列");
+      const name = typeof nameOption?.value === "string" ? nameOption.value : "";
+
+      return Response.json({
+        type: RESPONSE_TYPE.CHANNEL_MESSAGE_WITH_SOURCE,
+        data: buildWeaponAcquisitionResponse(
+          name,
+          typeof weaponTypeOption?.value === "string" ? weaponTypeOption.value : null,
+          typeof seriesOption?.value === "string" ? seriesOption.value : null,
+        ),
+      });
+    }
 
     if (commandName === "companion-obtain" || commandName === "同伴取得" || commandName === "夥伴取得") {
       const options = Array.isArray(interaction.data?.options) ? interaction.data.options : [];

@@ -70,6 +70,102 @@ const commands = [
     ],
   },
   {
+  name: "weapon-obtain",
+
+  name_localizations: {
+    "zh-TW": "武器取得",
+    "zh-CN": "武器取得",
+  },
+
+  description: "查詢 Warframe 武器取得方式",
+
+  description_localizations: {
+    "zh-TW": "查詢 Warframe 武器取得方式",
+    "zh-CN": "查询 Warframe 武器取得方式",
+  },
+
+  type: 1,
+
+  options: [
+    {
+      name: "name",
+
+      name_localizations: {
+        "zh-TW": "名稱",
+        "zh-CN": "名称",
+      },
+
+      description: "要查詢的武器名稱，例如 托里德、兇惡終結者、Glaive Prime",
+
+      description_localizations: {
+        "zh-TW": "要查詢的武器名稱，例如 托里德、兇惡終結者、Glaive Prime",
+        "zh-CN": "要查询的武器名称，例如 托里德、凶恶终结者、Glaive Prime",
+      },
+
+      type: 3,
+      required: true,
+      autocomplete: true,
+    },
+    {
+      name: "weapon_type",
+
+      name_localizations: {
+        "zh-TW": "類型",
+        "zh-CN": "类型",
+      },
+
+      description: "武器類型",
+
+      description_localizations: {
+        "zh-TW": "武器類型",
+        "zh-CN": "武器类型",
+      },
+
+      type: 3,
+      required: false,
+      choices: [
+        { name: "全部", value: "all" },
+        { name: "主要武器", value: "primary" },
+        { name: "次要武器", value: "secondary" },
+        { name: "近戰武器", value: "melee" },
+        { name: "曲翼武器", value: "archwing" },
+        { name: "亡靈骸甲武器", value: "necramech" },
+      ],
+    },
+    {
+      name: "series",
+
+      name_localizations: {
+        "zh-TW": "系列",
+        "zh-CN": "系列",
+      },
+
+      description: "武器系列或來源分類",
+
+      description_localizations: {
+        "zh-TW": "武器系列或來源分類",
+        "zh-CN": "武器系列或来源分类",
+      },
+
+      type: 3,
+      required: false,
+      choices: [
+        { name: "全部", value: "all" },
+        { name: "P版 / Prime", value: "prime" },
+        { name: "商店", value: "market" },
+        { name: "氏族", value: "clan" },
+        { name: "集團", value: "syndicate" },
+        { name: "赤毒", value: "kuva" },
+        { name: "信條", value: "tenet" },
+        { name: "化身", value: "incarnon" },
+        { name: "活動 / 特殊", value: "event" },
+        { name: "任務 / 掉落", value: "drop" },
+      ],
+    },
+  ],
+},
+
+{
   name: "companion-obtain",
 
   name_localizations: {
