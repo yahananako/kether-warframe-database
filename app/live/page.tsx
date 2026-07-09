@@ -62,6 +62,55 @@ type WorldState = {
 
 export const revalidate = 60;
 
+const factionMap: Record<string, string> = {
+  Grineer: "Grineer / 克隆尼",
+  Corpus: "Corpus / 科普斯",
+  Infested: "Infested / 感染者",
+  Corrupted: "Corrupted / 墮落者",
+  Orokin: "Orokin / Orokin",
+  Sentient: "Sentient / Sentient",
+  Narmer: "Narmer / 納爾梅",
+  Tenno: "Tenno / 天諾",
+};
+
+const missionMap: Record<string, string> = {
+  Capture: "捕獲",
+  Exterminate: "殲滅",
+  Survival: "生存",
+  Defense: "防禦",
+  "Mobile Defense": "移動防禦",
+  Spy: "間諜",
+  Rescue: "救援",
+  Sabotage: "破壞",
+  Excavation: "挖掘",
+  Interception: "攔截",
+  Disruption: "中斷",
+  Defection: "叛逃",
+  Hijack: "劫持",
+  "Assassination": "刺殺",
+  "Crossfire Exterminate": "交戰殲滅",
+  "Void Flood": "虛空洪流",
+  "Void Cascade": "虛空級聯",
+  "Void Armageddon": "虛空決戰",
+  "Alchemy": "鍊金術",
+  "Mirror Defense": "鏡像防禦",
+};
+
+const cycleMap: Record<string, string> = {
+  day: "白晝",
+  night: "夜晚",
+  warm: "溫暖",
+  cold: "寒冷",
+  fass: "Fass",
+  vome: "Vome",
+  calm: "平靜",
+  anger: "憤怒",
+  envy: "嫉妒",
+  sorrow: "悲傷",
+  joy: "喜悅",
+  fear: "恐懼",
+};
+
 async function getWorldState(): Promise<WorldState | null> {
   try {
     const res = await fetch("https://api.warframestat.us/pc", {
@@ -81,9 +130,24 @@ function label(value: unknown, fallback = "資料同步中") {
   return fallback;
 }
 
+function zhFaction(value?: string) {
+  if (!value) return "派系同步中";
+  return factionMap[value] ?? value;
+}
+
+function zhMission(value?: string) {
+  if (!value) return "任務同步中";
+  return missionMap[value] ?? value;
+}
+
+function zhCycle(value?: string) {
+  if (!value) return "循環中";
+  return cycleMap[value] ?? value;
+}
+
 function cycleText(cycle?: Cycle) {
   if (!cycle) return "資料同步中";
-  const state = cycle.state || cycle.active || "循環中";
+  const state = zhCycle(cycle.state || cycle.active);
   const time = cycle.timeLeft || cycle.shortString || "";
   return time ? `${state}｜${time}` : state;
 }
@@ -123,7 +187,7 @@ export default async function LivePage() {
         <p className="live-eyebrow">KETHER NEKO SIGNAL</p>
         <h1>小希星圖電波局</h1>
         <p>
-          小希正在監聽 Warframe 星系脈動：平原循環、虛空裂縫喵眼雷達、入侵戰線警報戰線、突擊任務與 Baro 虛空商人雷達 的虛空商船。
+          小希正在監聽 Warframe 星系脈動：平原循環、虛空裂縫、入侵戰線、突擊任務與 Baro Ki'Teer 的虛空商船。
           資料每 60 秒更新一次，星圖雷達持續閃爍中喵。
         </p>
         <a className="live-back-link" href="/">
@@ -158,15 +222,15 @@ export default async function LivePage() {
           <section className="live-section">
             <div className="live-section-title">
               <h2>虛空裂縫喵眼雷達</h2>
-              <span>{activeFissures.length} 筆</span>
+              <span>{activeFissures.length} 筆訊號</span>
             </div>
 
             <div className="live-list">
               {activeFissures.length ? (
                 activeFissures.map((item) => (
                   <article className="live-row" key={item.id ?? `${item.node}-${item.eta}`}>
-                    <b>{label(item.tier)}｜{label(item.missionType)}</b>
-                    <span>{label(item.node)}｜{label(item.enemy)}｜{label(item.eta)}</span>
+                    <b>{label(item.tier)}｜{zhMission(item.missionType)}</b>
+                    <span>{label(item.node)}｜{zhFaction(item.enemy)}｜剩餘 {label(item.eta)}</span>
                   </article>
                 ))
               ) : (
@@ -178,7 +242,7 @@ export default async function LivePage() {
           <section className="live-section">
             <div className="live-section-title">
               <h2>入侵戰線警報</h2>
-              <span>{activeInvasions.length} 筆</span>
+              <span>{activeInvasions.length} 筆戰報</span>
             </div>
 
             <div className="live-list">
@@ -187,13 +251,13 @@ export default async function LivePage() {
                   <article className="live-row" key={item.id ?? item.node}>
                     <b>{label(item.node)}</b>
                     <span>
-                      {label(item.attackingFaction)} vs {label(item.defendingFaction)}
-                      ｜進度 {Math.round(item.completion ?? 0)}%
+                      {zhFaction(item.attackingFaction)} vs {zhFaction(item.defendingFaction)}
+                      ｜戰線進度 {Math.round(item.completion ?? 0)}%
                     </span>
                   </article>
                 ))
               ) : (
-                <p className="live-empty">目前沒有可顯示的入侵戰線警報資料。</p>
+                <p className="live-empty">目前戰線安靜，沒有可顯示的入侵情報。</p>
               )}
             </div>
           </section>
@@ -202,7 +266,7 @@ export default async function LivePage() {
             <InfoCard
               title="突擊任務占卜盤"
               value={label(data.sorties?.[0]?.boss, "資料同步中")}
-              sub={`${label(data.sorties?.[0]?.faction, "派系同步中")}｜${label(
+              sub={`${zhFaction(data.sorties?.[0]?.faction)}｜${label(
                 data.sorties?.[0]?.eta,
                 "時間同步中"
               )}`}
@@ -210,7 +274,7 @@ export default async function LivePage() {
             <InfoCard
               title="執政官獵殺封印書"
               value={label(data.archonHunt?.boss, "資料同步中")}
-              sub={`${label(data.archonHunt?.faction, "派系同步中")}｜${label(
+              sub={`${zhFaction(data.archonHunt?.faction)}｜${label(
                 data.archonHunt?.eta,
                 "時間同步中"
               )}`}
@@ -232,7 +296,7 @@ export default async function LivePage() {
               {latestNews.length ? (
                 latestNews.map((item) => (
                   <article className="live-row" key={item.id ?? item.message}>
-                    <b>{label(item.message, "Tenno 通訊光簡")}</b>
+                    <b>{label(item.message, "官方新聞")}</b>
                     <span>{label(item.eta, "時間同步中")}</span>
                   </article>
                 ))
