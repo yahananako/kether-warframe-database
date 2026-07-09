@@ -1,34 +1,66 @@
 import Link from "next/link";
-import {
-  Search,
-  Bell,
-  Menu,
-  CalendarDays,
-  Info,
-  ClipboardList,
-  Pencil,
-  MessageCircle,
-  Shield,
-  Crosshair,
-  Swords,
-  Dog,
-  Feather,
-  Layers,
-  Gem
-} from "lucide-react";
+import { Search, Bell, Menu, CalendarDays, Info, ClipboardList, Pencil, MessageCircle } from "lucide-react";
 import { fetchSheetRows } from "../lib/sheets";
 import HomeSearchFloating from "../components/HomeSearchFloating";
 import HomeNotificationsFloating from "../components/HomeNotificationsFloating"; import HomeMenuFloating from "../components/HomeMenuFloating"; import HomeAuthMini from "../components/HomeAuthMini"; import HomePersonalProgress from "../components/HomePersonalProgress"; import KetherClanWatermark from "../components/KetherClanWatermark";
 import OfficialNewsBoard from "../components/OfficialNewsBoard";
 const navItems = [
-  { label: "總覽", key: "overview", href: "/database/overview", icon: Gem },
-  { label: "戰甲", key: "warframes", href: "/database/warframes", icon: Shield },
-  { label: "主要武器", key: "primary", href: "/database/primary", icon: Crosshair },
-  { label: "次要武器", key: "secondary", href: "/database/secondary", icon: Crosshair },
-  { label: "近戰武器", key: "melee", href: "/database/melee", icon: Swords },
-  { label: "同伴", key: "companions", href: "/database/companions", icon: Dog },
-  { label: "曲翼", key: "archwing", href: "/database/archwing", icon: Feather },
-  { label: "MOD資料庫", key: "mods", href: "/database/mods", icon: Layers }
+  {
+    label: "總覽",
+    key: "overview",
+    href: "/database/overview",
+    image: "/icon-overview.png",
+    activeImage: "/icon-overview-2.png",
+  },
+  {
+    label: "戰甲",
+    key: "warframes",
+    href: "/database/warframes",
+    image: "/icon-warframe.png",
+    activeImage: "/icon-warframe-2.png",
+  },
+  {
+    label: "主要武器",
+    key: "primary",
+    href: "/database/primary",
+    image: "/icon-primary.png",
+    activeImage: "/icon-primary-2.png",
+  },
+  {
+    label: "次要武器",
+    key: "secondary",
+    href: "/database/secondary",
+    image: "/icon-secondary.png",
+    activeImage: "/icon-secondary-2.png",
+  },
+  {
+    label: "近戰武器",
+    key: "melee",
+    href: "/database/melee",
+    image: "/icon-melee.png",
+    activeImage: "/icon-melee-2.png",
+  },
+  {
+    label: "同伴",
+    key: "companions",
+    href: "/database/companions",
+    image: "/icon-companion.png",
+    activeImage: "/icon-companion-2.png",
+  },
+  {
+    label: "曲翼",
+    key: "archwing",
+    href: "/database/archwing",
+    image: "/icon-archwing.png",
+    activeImage: "/icon-archwing-2.png",
+  },
+  {
+    label: "MOD資料庫",
+    key: "mods",
+    href: "/database/mods",
+    image: "/icon-mod.png",
+    activeImage: "/icon-mod-2.png",
+  },
 ];
 
 function isOwned(value: string): boolean {
@@ -157,27 +189,44 @@ export default async function HomePage() {
 
         <div className="nav-grid">
           {navItems.map((item) => {
-            const Icon = item.icon;
             const stats = results.find((result) => result.key === item.key);
 
             return (
-              <Link key={item.key} href={item.href} className="nav-card">
-                <Icon size={28} />
-                <span>{item.label}</span>
+              <Link
+                key={item.key}
+                href={item.href}
+                className="group relative block overflow-hidden rounded-[18px] border border-slate-200/45 bg-white/10 p-0 shadow-sm transition duration-200 active:scale-[0.98]"
+                aria-label={item.label}
+              >
+                <img
+                  src={item.image}
+                  alt={item.label}
+                  className="block h-auto w-full select-none transition-opacity duration-200 group-hover:opacity-0 group-active:opacity-0"
+                  draggable={false}
+                />
 
-                {stats ? (
-                  <>
-                    <small>
-                      {stats.count.toLocaleString("zh-TW")} 筆｜區塊 {stats.sectionCount}｜有價格 {stats.priced}
-                    </small>
-                    <b>{stats.completion}%</b>
-                  </>
-                ) : (
-                  <>
-                    <small>查看全部分類與總覽資料</small>
-                    <b>總覽</b>
-                  </>
-                )}
+                <img
+                  src={item.activeImage}
+                  alt=""
+                  className="pointer-events-none absolute inset-0 h-full w-full select-none object-contain opacity-0 transition-opacity duration-200 group-hover:opacity-100 group-active:opacity-100"
+                  draggable={false}
+                />
+
+                <div className="pointer-events-none absolute inset-x-2 bottom-2 rounded-xl bg-white/60 px-2 py-1 text-center text-[10px] font-semibold leading-snug text-slate-900 backdrop-blur-md sm:text-xs">
+                  {stats ? (
+                    <>
+                      <div>
+                        {stats.count.toLocaleString("zh-TW")} 筆｜區塊 {stats.sectionCount}｜有價格 {stats.priced}
+                      </div>
+                      <div className="text-sm font-black sm:text-base">{stats.completion}%</div>
+                    </>
+                  ) : (
+                    <>
+                      <div>查看全部分類與總覽資料</div>
+                      <div className="text-sm font-black sm:text-base">總覽</div>
+                    </>
+                  )}
+                </div>
               </Link>
             );
           })}
