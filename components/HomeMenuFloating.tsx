@@ -1,34 +1,20 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import {
-  Menu,
-  X,
-  Home,
-  Shield,
-  Crosshair,
-  Swords,
-  Dog,
-  Feather,
-  Layers,
-  Gem,
-  User,
-  Database,
-  MessageCircle
-} from "lucide-react";
 
-const menuItems = [
-  { label: "首頁", href: "/", icon: Home }, { label: "小希Bot 指令", href: "/bot", icon: MessageCircle },
-  { label: "總覽", href: "/database/overview", icon: Gem },
-  { label: "戰甲", href: "/database/warframes", icon: Shield },
-  { label: "主要武器", href: "/database/primary", icon: Crosshair },
-  { label: "次要武器", href: "/database/secondary", icon: Crosshair },
-  { label: "近戰武器", href: "/database/melee", icon: Swords },
-  { label: "同伴", href: "/database/companions", icon: Dog },
-  { label: "曲翼", href: "/database/archwing", icon: Feather },
-  { label: "MOD資料庫", href: "/database/mods", icon: Layers },
-  { label: "個人進度", href: "/profile", icon: User },
-  { label: "資料庫狀態", href: "/db-status", icon: Database }
+const links = [
+  ["首頁", "/", "回到 KETHER 首頁"],
+  ["小希 Bot 指令", "/bot", "Discord Bot 功能總覽"],
+  ["總覽", "/database/overview", "資料庫統計與完成度"],
+  ["戰甲", "/database/warframes", "Warframe 戰甲資料"],
+  ["主要武器", "/database/primary", "主要武器清單"],
+  ["次要武器", "/database/secondary", "次要武器清單"],
+  ["近戰武器", "/database/melee", "近戰武器清單"],
+  ["同伴", "/database/companions", "同伴與寵物資料"],
+  ["曲翼", "/database/archwing", "曲翼與相關裝備"],
+  ["MOD 資料庫", "/database/mods", "MOD 系列與追價資料"],
+  ["個人進度", "/profile", "登入與收藏進度"],
+  ["資料庫狀態", "/db-status", "資料來源與同步狀態"],
 ];
 
 export default function HomeMenuFloating() {
@@ -36,242 +22,167 @@ export default function HomeMenuFloating() {
 
   useEffect(() => {
     if (!open) return;
-
-    const oldOverflow = document.body.style.overflow;
-
-    const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setOpen(false);
-    };
-
+    const old = document.body.style.overflow;
     document.body.style.overflow = "hidden";
-    window.addEventListener("keydown", onKeyDown);
-
     return () => {
-      document.body.style.overflow = oldOverflow;
-      window.removeEventListener("keydown", onKeyDown);
+      document.body.style.overflow = old;
     };
   }, [open]);
 
-  function goTo(href: string) {
-    setOpen(false);
-    window.location.assign(href);
-  }
-
-  function openDiscord() {
-    window.open("https://discord.gg", "_blank", "noopener,noreferrer");
-  }
-
   return (
     <>
-      <button
-        type="button"
-        aria-label="開啟選單"
-        title="開啟選單"
-        onClick={() => setOpen(true)}
-        style={{
-          width: 34,
-          height: 34,
-          border: "0",
-          padding: "0",
-          margin: "0",
-          outline: "0",
-          background: "transparent",
-          boxShadow: "none",
-          color: "#1f2937",
-          display: "inline-flex",
-          alignItems: "center",
-          justifyContent: "center",
-          cursor: "pointer",
-          appearance: "none",
-          WebkitAppearance: "none",
-          WebkitTapHighlightColor: "transparent"
-        }}
-      >
-        <Menu size={28} strokeWidth={2.25} />
+      <button className="k-menu-btn" onClick={() => setOpen(true)} aria-label="開啟網站導覽">
+        ☰
       </button>
 
       {open && (
-        <div
-          role="presentation"
-          onClick={() => setOpen(false)}
-          style={{
-            position: "fixed",
-            inset: 0,
-            zIndex: 9999,
-            background: "rgba(15, 23, 42, 0.18)",
-            backdropFilter: "blur(8px)",
-            WebkitBackdropFilter: "blur(8px)"
-          }}
-        >
-          <aside
-            role="dialog"
-            aria-label="網站導覽選單"
-            onClick={(event) => event.stopPropagation()}
-            style={{
-              position: "fixed",
-              top: 88,
-              left: 18,
-              zIndex: 10000,
-              width: "min(92vw, 430px)",
-              maxHeight: "calc(100vh - 120px)",
-              overflowY: "auto",
-              borderRadius: 30,
-              border: "1px solid rgba(255, 255, 255, 0.78)",
-              background:
-                "linear-gradient(145deg, rgba(255,255,255,0.84), rgba(238,246,250,0.58))",
-              boxShadow:
-                "0 26px 80px rgba(15,23,42,0.24), inset 0 1px 0 rgba(255,255,255,0.86)",
-              backdropFilter: "blur(26px) saturate(155%)",
-              WebkitBackdropFilter: "blur(26px) saturate(155%)",
-              color: "#263445",
-              pointerEvents: "auto"
-            }}
-          >
-            <div
-              style={{
-                padding: "20px 20px 18px",
-                background:
-                  "radial-gradient(circle at top right, rgba(255,255,255,0.88), transparent 58%), radial-gradient(circle at bottom left, rgba(226,239,246,0.45), transparent 62%)"
-              }}
-            >
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "flex-start",
-                  justifyContent: "space-between",
-                  gap: 14
-                }}
-              >
-                <div>
-                  <div
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      gap: 7,
-                      fontSize: 12,
-                      fontWeight: 900,
-                      letterSpacing: "0.24em",
-                      color: "#64748b"
-                    }}
-                  >
-                    <Menu size={15} />
-                    KETHER MENU
-                  </div>
-
-                  <h2
-                    style={{
-                      margin: "9px 0 0",
-                      fontSize: 22,
-                      lineHeight: 1.25,
-                      fontWeight: 900,
-                      color: "#263445"
-                    }}
-                  >
-                    網站導覽
-                  </h2>
-
-                  <p
-                    style={{
-                      margin: "7px 0 0",
-                      fontSize: 14,
-                      lineHeight: 1.7,
-                      color: "#64748b"
-                    }}
-                  >
-                    前往資料庫分類、個人進度與系統狀態。
-                  </p>
-                </div>
-
-                <button
-                  type="button"
-                  aria-label="關閉選單"
-                  onClick={() => setOpen(false)}
-                  style={{
-                    width: 40,
-                    height: 40,
-                    borderRadius: 999,
-                    border: "1px solid rgba(255,255,255,0.85)",
-                    background: "rgba(255,255,255,0.68)",
-                    color: "#334155",
-                    display: "inline-flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    boxShadow: "0 10px 24px rgba(15,23,42,0.10)",
-                    cursor: "pointer"
-                  }}
-                >
-                  <X size={22} strokeWidth={2.6} />
-                </button>
+        <div className="k-menu-bg" onClick={() => setOpen(false)}>
+          <div className="k-menu-panel" onClick={(e) => e.stopPropagation()}>
+            <div className="k-menu-head">
+              <div>
+                <p>KETHER MENU</p>
+                <h2>網站導覽</h2>
+                <span>前往資料庫分類、個人進度與系統狀態。</span>
               </div>
-
-              <div
-                style={{
-                  display: "grid",
-                  gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
-                  gap: 10,
-                  marginTop: 18
-                }}
-              >
-                {menuItems.map((item) => {
-                  const Icon = item.icon;
-
-                  return (
-                    <button
-                      key={item.href}
-                      type="button"
-                      onClick={() => goTo(item.href)}
-                      style={{
-                        minHeight: 58,
-                        borderRadius: 20,
-                        border: "1px solid rgba(255,255,255,0.78)",
-                        background: "rgba(255,255,255,0.62)",
-                        color: "#263445",
-                        display: "flex",
-                        alignItems: "center",
-                        gap: 10,
-                        padding: "12px 14px",
-                        fontSize: 14,
-                        fontWeight: 900,
-                        boxShadow: "0 8px 20px rgba(15,23,42,0.07)",
-                        cursor: "pointer",
-                        textAlign: "left"
-                      }}
-                    >
-                      <Icon size={20} strokeWidth={2.3} />
-                      {item.label}
-                    </button>
-                  );
-                })}
-              </div>
-
-              <button
-                type="button"
-                onClick={openDiscord}
-                style={{
-                  width: "100%",
-                  marginTop: 14,
-                  height: 48,
-                  border: "0",
-                  borderRadius: 20,
-                  background: "#263445",
-                  color: "white",
-                  fontSize: 14,
-                  fontWeight: 900,
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  gap: 8,
-                  boxShadow: "0 12px 26px rgba(15,23,42,0.24)",
-                  cursor: "pointer"
-                }}
-              >
-                <MessageCircle size={18} />
-                Discord 入口
-              </button>
+              <button onClick={() => setOpen(false)} aria-label="關閉網站導覽">×</button>
             </div>
-          </aside>
+
+            <nav className="k-menu-list">
+              {links.map(([name, href, note]) => (
+                <a key={href} href={href} onClick={() => setOpen(false)}>
+                  <b>{name}</b>
+                  <small>{note}</small>
+                </a>
+              ))}
+            </nav>
+
+            <a className="k-discord" href="https://discord.gg" target="_blank" rel="noreferrer">
+              Discord 入口
+            </a>
+          </div>
         </div>
       )}
+
+      <style jsx>{`
+        .k-menu-btn {
+          width: 38px;
+          height: 38px;
+          border-radius: 999px;
+          border: 1px solid rgba(255,255,255,.72);
+          background: rgba(255,255,255,.58);
+          color: #263445;
+          font-size: 22px;
+          line-height: 1;
+          box-shadow: 0 12px 28px rgba(15,23,42,.14);
+          backdrop-filter: blur(14px) saturate(150%);
+          -webkit-backdrop-filter: blur(14px) saturate(150%);
+        }
+
+        .k-menu-bg {
+          position: fixed;
+          inset: 0;
+          z-index: 9999;
+          background: rgba(15,23,42,.28);
+          backdrop-filter: blur(10px);
+          -webkit-backdrop-filter: blur(10px);
+        }
+
+        .k-menu-panel {
+          position: fixed;
+          top: 72px;
+          left: 12px;
+          width: min(92vw, 430px);
+          max-height: calc(100vh - 92px);
+          overflow-y: auto;
+          padding: 16px;
+          border-radius: 26px;
+          border: 1px solid rgba(255,255,255,.78);
+          background: linear-gradient(145deg, rgba(255,255,255,.92), rgba(238,247,255,.70));
+          box-shadow: 0 30px 88px rgba(15,23,42,.30);
+          backdrop-filter: blur(30px) saturate(165%);
+          -webkit-backdrop-filter: blur(30px) saturate(165%);
+        }
+
+        .k-menu-head {
+          display: flex;
+          justify-content: space-between;
+          gap: 12px;
+          margin-bottom: 14px;
+        }
+
+        .k-menu-head p {
+          margin: 0 0 6px;
+          font-size: 11px;
+          font-weight: 900;
+          letter-spacing: .18em;
+          color: #d9468f;
+        }
+
+        .k-menu-head h2 {
+          margin: 0;
+          font-size: 22px;
+          color: #1f2937;
+        }
+
+        .k-menu-head span {
+          display: block;
+          margin-top: 6px;
+          font-size: 13px;
+          color: #667085;
+        }
+
+        .k-menu-head button {
+          width: 38px;
+          height: 38px;
+          border-radius: 999px;
+          border: 1px solid rgba(255,255,255,.86);
+          background: rgba(255,255,255,.7);
+          font-size: 24px;
+          color: #334155;
+        }
+
+        .k-menu-list {
+          display: grid;
+          gap: 10px;
+        }
+
+        .k-menu-list a {
+          display: block;
+          padding: 13px 14px;
+          border-radius: 18px;
+          border: 1px solid rgba(255,255,255,.72);
+          background: rgba(255,255,255,.62);
+          color: #263445;
+          text-decoration: none;
+          box-shadow: 0 10px 22px rgba(15,23,42,.07);
+        }
+
+        .k-menu-list b {
+          display: block;
+          font-size: 14px;
+          font-weight: 950;
+        }
+
+        .k-menu-list small {
+          display: block;
+          margin-top: 4px;
+          font-size: 12px;
+          color: #667085;
+        }
+
+        .k-discord {
+          display: block;
+          margin-top: 14px;
+          padding: 16px;
+          border-radius: 20px;
+          text-align: center;
+          color: white;
+          text-decoration: none;
+          font-weight: 950;
+          background: linear-gradient(135deg, rgba(255,126,185,.95), rgba(148,163,255,.88));
+          box-shadow: 0 16px 34px rgba(217,70,143,.25);
+        }
+      `}</style>
     </>
   );
 }
