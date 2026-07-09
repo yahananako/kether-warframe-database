@@ -5518,3 +5518,168 @@ a.nav-card {
   color: white !important;
   stroke-width: 2.35 !important;
 }
+
+
+/* KETHER mobile topbar Discord fit */
+@media (max-width: 720px) {
+  .homepage-sci-fi .topbar-right {
+    gap: 8px;
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  .homepage-sci-fi .discord-mini {
+    max-width: 116px !important;
+    min-height: 40px !important;
+    padding: 0 12px !important;
+    gap: 6px !important;
+    font-size: 14px !important;
+    overflow: hidden !important;
+    white-space: nowrap !important;
+  }
+
+  .homepage-sci-fi .discord-mini svg {
+    flex: 0 0 auto;
+  }
+}
+
+
+/* KETHER mobile Discord icon-only fix */
+@media (max-width: 720px) {
+  .homepage-sci-fi .discord-mini {
+    width: 46px !important;
+    min-width: 46px !important;
+    max-width: 46px !important;
+    height: 46px !important;
+    min-height: 46px !important;
+    padding: 0 !important;
+    justify-content: center !important;
+    gap: 0 !important;
+    overflow: hidden !important;
+    font-size: 0 !important;
+    border-radius: 999px !important;
+  }
+
+  .homepage-sci-fi .discord-mini svg {
+    width: 22px !important;
+    height: 22px !important;
+    margin: 0 !important;
+    flex: 0 0 auto !important;
+  }
+}
+
+/* KETHER navigation category artwork */
+.homepage-sci-fi .nav-grid a {
+  position: relative;
+  overflow: hidden;
+  min-height: 138px;
+  padding-top: 14px;
+}
+
+.homepage-sci-fi .nav-grid a > svg {
+  display: none;
+}
+
+.homepage-sci-fi .nav-grid a::before {
+  content: "";
+  display: block;
+  width: clamp(72px, 16vw, 108px);
+  height: clamp(72px, 16vw, 108px);
+  margin: 0 auto 8px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  filter: drop-shadow(0 10px 18px rgba(15, 23, 42, .18));
+  opacity: .94;
+}
+
+.homepage-sci-fi .nav-grid a:hover::before,
+.homepage-sci-fi .nav-grid a:focus-visible::before {
+  opacity: 1;
+  transform: translateY(-1px);
+}
+
+.homepage-sci-fi .nav-grid a[href*="overview"]::before {
+  background-image: url("/icon-overview.png");
+}
+
+.homepage-sci-fi .nav-grid a[href*="overview"]:hover::before,
+.homepage-sci-fi .nav-grid a[href*="overview"]:focus-visible::before {
+  background-image: url("/icon-overview-2.png");
+}
+
+.homepage-sci-fi .nav-grid a[href*="warframe"]::before {
+  background-image: url("/icon-warframe.png");
+}
+
+.homepage-sci-fi .nav-grid a[href*="warframe"]:hover::before,
+.homepage-sci-fi .nav-grid a[href*="warframe"]:focus-visible::before {
+  background-image: url("/icon-warframe-2.png");
+}
+
+.homepage-sci-fi .nav-grid a[href*="primary"]::before {
+  background-image: url("/icon-primary.png");
+}
+
+.homepage-sci-fi .nav-grid a[href*="primary"]:hover::before,
+.homepage-sci-fi .nav-grid a[href*="primary"]:focus-visible::before {
+  background-image: url("/icon-primary-2.png");
+}
+
+.homepage-sci-fi .nav-grid a[href*="secondary"]::before {
+  background-image: url("/icon-secondary.png");
+}
+
+.homepage-sci-fi .nav-grid a[href*="secondary"]:hover::before,
+.homepage-sci-fi .nav-grid a[href*="secondary"]:focus-visible::before {
+  background-image: url("/icon-secondary2.png");
+}
+
+.homepage-sci-fi .nav-grid a[href*="melee"]::before {
+  background-image: url("/icon-melee.png");
+}
+
+.homepage-sci-fi .nav-grid a[href*="melee"]:hover::before,
+.homepage-sci-fi .nav-grid a[href*="melee"]:focus-visible::before {
+  background-image: url("/icon-melee-2.png");
+}
+
+.homepage-sci-fi .nav-grid a[href*="companion"]::before {
+  background-image: url("/icon-companion.png");
+}
+
+.homepage-sci-fi .nav-grid a[href*="companion"]:hover::before,
+.homepage-sci-fi .nav-grid a[href*="companion"]:focus-visible::before {
+  background-image: url("/icon-companion-2.png");
+}
+
+.homepage-sci-fi .nav-grid a[href*="archwing"]::before {
+  background-image: url("/icon-archwing.png");
+}
+
+.homepage-sci-fi .nav-grid a[href*="archwing"]:hover::before,
+.homepage-sci-fi .nav-grid a[href*="archwing"]:focus-visible::before {
+  background-image: url("/icon-archwing-2.png");
+}
+
+.homepage-sci-fi .nav-grid a[href*="mod"]::before {
+  background-image: url("/icon-mod.png");
+}
+
+.homepage-sci-fi .nav-grid a[href*="mod"]:hover::before,
+.homepage-sci-fi .nav-grid a[href*="mod"]:focus-visible::before {
+  background-image: url("/icon-mod-2.png");
+}
+
+@media (max-width: 720px) {
+  .homepage-sci-fi .nav-grid a {
+    min-height: 124px;
+    padding-top: 12px;
+  }
+
+  .homepage-sci-fi .nav-grid a::before {
+    width: 72px;
+    height: 72px;
+    margin-bottom: 6px;
+  }
+}
