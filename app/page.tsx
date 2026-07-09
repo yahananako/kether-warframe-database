@@ -18,7 +18,7 @@ import {
 } from "lucide-react";
 import { fetchSheetRows } from "../lib/sheets";
 import HomeSearchFloating from "../components/HomeSearchFloating";
-import HomeNotificationsFloating from "../components/HomeNotificationsFloating"; import HomeMenuFloating from "../components/HomeMenuFloating"; import HomeAuthMini from "../components/HomeAuthMini"; import HomePersonalProgress from "../components/HomePersonalProgress"; import KetherClanWatermark from "../components/KetherClanWatermark";
+import HomeNotificationsFloating from "../components/HomeNotificationsFloating"; import HomeAuthMini from "../components/HomeAuthMini"; import HomePersonalProgress from "../components/HomePersonalProgress"; import KetherClanWatermark from "../components/KetherClanWatermark";
 import OfficialNewsBoard from "../components/OfficialNewsBoard";
 const navItems = [
   { label: "總覽", key: "overview", href: "/database/overview", icon: Gem },
