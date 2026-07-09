@@ -20,7 +20,7 @@ import { fetchSheetRows } from "../lib/sheets";
 import HomeSearchFloating from "../components/HomeSearchFloating";
 import HomeNotificationsFloating from "../components/HomeNotificationsFloating"; import HomeMenuFloating from "../components/HomeMenuFloating"; import HomeAuthMini from "../components/HomeAuthMini"; import HomePersonalProgress from "../components/HomePersonalProgress"; import KetherClanWatermark from "../components/KetherClanWatermark";
 import OfficialNewsBoard from "../components/OfficialNewsBoard";
-const navItems = [
+const navItems = [ { label: "小希Bot", key: "bot", href: "/bot", icon: MessageCircle },
   { label: "總覽", key: "overview", href: "/database/overview", icon: Gem },
   { label: "戰甲", key: "warframes", href: "/database/warframes", icon: Shield },
   { label: "主要武器", key: "primary", href: "/database/primary", icon: Crosshair },
@@ -41,7 +41,7 @@ function hasPrice(value: string): boolean {
 }
 
 export default async function HomePage() {
-  const dataCategories = navItems.filter((item) => item.key !== "overview");
+  const dataCategories = navItems.filter((item) => item.key !== "overview" && item.key !== "bot");
 
   const results = await Promise.all(
     dataCategories.map(async (item) => {
