@@ -81,26 +81,8 @@ export default async function HomePage() {
 
       <header className="topbar">
         <div className="topbar-left">
-          <details className="menu-drawer">
-            <summary aria-label="開啟選單">
-              
-            </summary>
-            <nav className="menu-popup">
-
-              <Link href="/login">Discord 登入</Link>
-              <Link href="/profile">個人進度</Link>
-              <Link href="/db-status">資料庫狀態</Link>
-              {navItems.map((item) => (
-                <Link key={item.label} href={item.href}>
-                  {item.label}
-                </Link>
-              ))}
-              <a href="https://discord.gg/MFhTb8XMZ" target="_blank" rel="noreferrer">
-                Discord 群組
-              </a>
-            </nav>
-          </details>
-          <span>KETHER</span>
+  <HomeMenuFloating />
+<span>KETHER</span>
         </div>
 
         <div className="topbar-right">

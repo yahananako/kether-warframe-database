@@ -73,12 +73,13 @@ export default function HomeNotificationsFloating() {
           style={{
             position: "fixed",
             inset: 0,
-            zIndex: 80,
+            zIndex: 9999,
             display: "grid",
             placeItems: "start center",
             padding: "86px 18px 18px",
             background: "rgba(15, 23, 42, 0.18)",
-            backdropFilter: "blur(10px)"
+            backdropFilter: "blur(10px)",
+  WebkitBackdropFilter: "blur(10px)"
           }}
         >
           <button
