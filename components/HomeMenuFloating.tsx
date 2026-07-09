@@ -151,28 +151,37 @@ export default function HomeMenuFloating() {
 
         .k-menu-list a {
           display: block;
-          padding: 13px 14px;
-          border-radius: 18px;
-          border: 1px solid rgba(255,255,255,.72);
-          background: rgba(255,255,255,.82);
-          backdrop-filter: blur(18px) saturate(170%);
-          -webkit-backdrop-filter: blur(18px) saturate(170%);
+          min-height: 74px;
+          padding: 17px 18px;
+          border-radius: 24px;
+          border: 1.5px solid rgba(255,255,255,.92);
+          background:
+            linear-gradient(145deg, rgba(255,255,255,.92), rgba(244,249,255,.78));
           color: #1f2937;
           text-decoration: none;
-          box-shadow: 0 10px 22px rgba(15,23,42,.07);
+          box-shadow:
+            0 16px 34px rgba(15,23,42,.12),
+            inset 0 1px 0 rgba(255,255,255,.96);
+          backdrop-filter: blur(22px) saturate(175%);
+          -webkit-backdrop-filter: blur(22px) saturate(175%);
         }
 
         .k-menu-list b {
           display: block;
-          font-size: 14px;
+          font-size: 18px;
+          line-height: 1.25;
           font-weight: 950;
+          color: #1e293b;
+          letter-spacing: .02em;
         }
 
         .k-menu-list small {
           display: block;
-          margin-top: 4px;
-          font-size: 12px;
-          color: #667085;
+          margin-top: 8px;
+          font-size: 13px;
+          line-height: 1.45;
+          font-weight: 650;
+          color: #64748b;
         }
 
         .k-discord {
