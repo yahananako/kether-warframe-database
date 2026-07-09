@@ -85,6 +85,13 @@ export default async function HomePage() {
             </summary>
             <nav className="menu-popup">
               <Link href="/">首頁</Link>
+          <Link
+            href="/bot"
+            className="top-bot-link inline-flex items-center gap-2 rounded-full border border-pink-200/70 bg-white/90 px-4 py-2 text-sm font-black text-[#2a1630] shadow-lg shadow-pink-300/20 transition hover:bg-pink-50"
+          >
+            <span>🤖</span>
+            小希Bot 指令
+          </Link>
               <Link href="/login">Discord 登入</Link>
               <Link href="/profile">個人進度</Link>
               <Link href="/db-status">資料庫狀態</Link>
