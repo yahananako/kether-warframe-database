@@ -84,6 +84,14 @@ export default async function HomePage() {
               <HomeMenuFloating />
             </summary>
             <nav className="menu-popup">
+
+                  <Link
+                    href="/bot"
+                    className="mobile-menu-bot-link flex items-center gap-3 rounded-3xl bg-white/85 px-5 py-4 text-sm font-black text-slate-800 shadow-sm transition hover:bg-pink-50"
+                  >
+                    <span>🤖</span>
+                    小希Bot
+                  </Link>
               <Link href="/">首頁</Link>
           <Link
             href="/bot"
@@ -352,6 +360,15 @@ export default async function HomePage() {
         className="fixed bottom-6 right-5 z-50 inline-flex items-center gap-2 rounded-full border border-pink-200/70 bg-white/90 px-5 py-3 text-sm font-black text-[#2a1630] shadow-2xl shadow-pink-300/30 backdrop-blur transition hover:-translate-y-0.5 hover:bg-pink-50"
       >
         <span className="text-lg">🤖</span>
+        小希Bot
+      </Link>
+
+    
+      <Link
+        href="/bot"
+        className="mobile-floating-bot-link fixed bottom-5 left-5 z-[9999] inline-flex items-center gap-2 rounded-full border border-pink-200/80 bg-white px-5 py-3 text-sm font-black text-[#2a1630] shadow-2xl shadow-pink-300/40 transition hover:bg-pink-50"
+      >
+        <span>🤖</span>
         小希Bot
       </Link>
 
