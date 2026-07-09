@@ -373,25 +373,6 @@ export default async function HomePage() {
         <span className="home-footer-designer">Website by ヤハ奈々子・羊咩・凱洛</span>
       </footer>
 
-    
-
-    
-
-    
-        <section className="home-live-portal" aria-labelledby="home-live-title">
-          <div className="home-live-portal-copy">
-            <p className="home-live-portal-kicker">KETHER NEKO SIGNAL</p>
-            <h2 id="home-live-title">小希星圖電波局</h2>
-            <p>
-              即時監聽 Warframe 星系脈動：平原循環、虛空裂縫、入侵戰線、突擊任務與 Baro 虛空商船。
-            </p>
-          </div>
-
-          <a className="home-live-portal-link" href="/live">
-            開啟即時戰況
-          </a>
-        </section>
-
 </main>
   </>);
 }
