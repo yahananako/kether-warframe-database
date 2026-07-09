@@ -18,7 +18,7 @@ import {
 } from "lucide-react";
 
 const menuItems = [
-  { label: "首頁", href: "/", icon: Home },
+  { label: "首頁", href: "/", icon: Home }, { label: "小希Bot 指令", href: "/bot", icon: MessageCircle },
   { label: "總覽", href: "/database/overview", icon: Gem },
   { label: "戰甲", href: "/database/warframes", icon: Shield },
   { label: "主要武器", href: "/database/primary", icon: Crosshair },

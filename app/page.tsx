@@ -20,7 +20,7 @@ import { fetchSheetRows } from "../lib/sheets";
 import HomeSearchFloating from "../components/HomeSearchFloating";
 import HomeNotificationsFloating from "../components/HomeNotificationsFloating"; import HomeMenuFloating from "../components/HomeMenuFloating"; import HomeAuthMini from "../components/HomeAuthMini"; import HomePersonalProgress from "../components/HomePersonalProgress"; import KetherClanWatermark from "../components/KetherClanWatermark";
 import OfficialNewsBoard from "../components/OfficialNewsBoard";
-const navItems = [ { label: "小希Bot", key: "bot", href: "/bot", icon: MessageCircle },
+const navItems = [
   { label: "總覽", key: "overview", href: "/database/overview", icon: Gem },
   { label: "戰甲", key: "warframes", href: "/database/warframes", icon: Shield },
   { label: "主要武器", key: "primary", href: "/database/primary", icon: Crosshair },
@@ -81,25 +81,10 @@ export default async function HomePage() {
         <div className="topbar-left">
           <details className="menu-drawer">
             <summary aria-label="開啟選單">
-              <HomeMenuFloating />
+              
             </summary>
             <nav className="menu-popup">
 
-                  <Link
-                    href="/bot"
-                    className="mobile-menu-bot-link flex items-center gap-3 rounded-3xl bg-white/85 px-5 py-4 text-sm font-black text-slate-800 shadow-sm transition hover:bg-pink-50"
-                  >
-                    <span>🤖</span>
-                    小希Bot
-                  </Link>
-              <Link href="/">首頁</Link>
-          <Link
-            href="/bot"
-            className="top-bot-link inline-flex items-center gap-2 rounded-full border border-pink-200/70 bg-white/90 px-4 py-2 text-sm font-black text-[#2a1630] shadow-lg shadow-pink-300/20 transition hover:bg-pink-50"
-          >
-            <span>🤖</span>
-            小希Bot 指令
-          </Link>
               <Link href="/login">Discord 登入</Link>
               <Link href="/profile">個人進度</Link>
               <Link href="/db-status">資料庫狀態</Link>
@@ -355,22 +340,8 @@ export default async function HomePage() {
       </footer>
 
     
-      <Link
-        href="/bot"
-        className="fixed bottom-6 right-5 z-50 inline-flex items-center gap-2 rounded-full border border-pink-200/70 bg-white/90 px-5 py-3 text-sm font-black text-[#2a1630] shadow-2xl shadow-pink-300/30 backdrop-blur transition hover:-translate-y-0.5 hover:bg-pink-50"
-      >
-        <span className="text-lg">🤖</span>
-        小希Bot
-      </Link>
 
     
-      <Link
-        href="/bot"
-        className="mobile-floating-bot-link fixed bottom-5 left-5 z-[9999] inline-flex items-center gap-2 rounded-full border border-pink-200/80 bg-white px-5 py-3 text-sm font-black text-[#2a1630] shadow-2xl shadow-pink-300/40 transition hover:bg-pink-50"
-      >
-        <span>🤖</span>
-        小希Bot
-      </Link>
 
     </main>
   </>);
