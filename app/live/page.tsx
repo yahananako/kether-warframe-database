@@ -181,6 +181,29 @@ export default async function LivePage() {
 
   const latestNews = data?.news?.slice(0, 5) ?? [];
 
+  const signalCards = [
+    {
+      label: "裂縫訊號",
+      value: `${activeFissures.length} 筆`,
+      hint: "虛空裂縫監聽中",
+    },
+    {
+      label: "入侵戰報",
+      value: `${activeInvasions.length} 筆`,
+      hint: "戰線變動偵測中",
+    },
+    {
+      label: "警報電波",
+      value: `${data?.alerts?.length ?? 0} 筆`,
+      hint: "特殊警報與活動",
+    },
+    {
+      label: "Baro 狀態",
+      value: data?.voidTrader?.active ? "已抵達" : "未抵達",
+      hint: label(data?.voidTrader?.location, "虛空商船追蹤中"),
+    },
+  ];
+
   return (
     <main className="live-page-shell">
       <section className="live-hero">
@@ -201,6 +224,16 @@ export default async function LivePage() {
         </section>
       ) : (
         <>
+          <section className="live-signal-strip" aria-label="小希星圖雷達摘要">
+            {signalCards.map((card) => (
+              <article className="live-signal-chip" key={card.label}>
+                <span>{card.label}</span>
+                <b>{card.value}</b>
+                <small>{card.hint}</small>
+              </article>
+            ))}
+          </section>
+
           <section className="live-grid live-grid-primary">
             <InfoCard title="希圖斯晝夜儀" value={cycleText(data.cetusCycle)} />
             <InfoCard title="奧布寒熱雷達" value={cycleText(data.vallisCycle)} />
