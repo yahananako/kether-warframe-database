@@ -197,9 +197,15 @@ export default function HomeMenuFloating() {
           box-shadow: 0 16px 34px rgba(217,70,143,.25);
         }
 
-        /* KETHER 強制厚白選單卡 */
+
+        /* KETHER 柔霧玻璃選單卡 */
         .k-menu-panel {
-          background: linear-gradient(145deg, rgba(255,255,255,.94), rgba(238,247,255,.88)) !important;
+          background: linear-gradient(145deg, rgba(255,255,255,.42), rgba(238,247,255,.24)) !important;
+          box-shadow:
+            0 30px 88px rgba(15,23,42,.22),
+            inset 0 1px 0 rgba(255,255,255,.72) !important;
+          backdrop-filter: blur(30px) saturate(170%) !important;
+          -webkit-backdrop-filter: blur(30px) saturate(170%) !important;
         }
 
         .k-menu-list {
@@ -213,14 +219,14 @@ export default function HomeMenuFloating() {
           min-height: 82px !important;
           padding: 18px 20px !important;
           border-radius: 26px !important;
-          border: 2px solid rgba(255,255,255,.96) !important;
-          background: linear-gradient(145deg, rgba(255,255,255,.96), rgba(246,250,255,.90)) !important;
+          border: 1.5px solid rgba(255,255,255,.88) !important;
+          background: linear-gradient(145deg, rgba(255,255,255,.78), rgba(246,250,255,.54)) !important;
           color: #172033 !important;
           box-shadow:
-            0 18px 38px rgba(15,23,42,.16),
-            inset 0 1px 0 rgba(255,255,255,1) !important;
-          backdrop-filter: blur(24px) saturate(180%) !important;
-          -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
+            0 18px 38px rgba(15,23,42,.13),
+            inset 0 1px 0 rgba(255,255,255,.92) !important;
+          backdrop-filter: blur(22px) saturate(175%) !important;
+          -webkit-backdrop-filter: blur(22px) saturate(175%) !important;
         }
 
         .k-menu-list b {
