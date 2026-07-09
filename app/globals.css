@@ -5479,3 +5479,42 @@ a.nav-card {
 .homepage-sci-fi .discord-mini svg {
   color: #172033;
 }
+
+/* KETHER topbar existing buttons visible polish */
+.homepage-sci-fi .login-mini {
+  min-width: 58px !important;
+  min-height: 42px !important;
+  padding: 0 16px !important;
+  border-radius: 999px !important;
+  border: 1.5px solid rgba(255,255,255,.92) !important;
+  background:
+    radial-gradient(circle at 30% 20%, rgba(255,255,255,.98), rgba(255,255,255,.68) 52%, rgba(238,247,255,.48)) !important;
+  color: #172033 !important;
+  font-weight: 950 !important;
+  box-shadow:
+    0 16px 34px rgba(15,23,42,.18),
+    inset 0 1px 0 rgba(255,255,255,1) !important;
+  backdrop-filter: blur(18px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(18px) saturate(180%) !important;
+}
+
+.homepage-sci-fi .discord-mini {
+  min-height: 42px !important;
+  padding: 0 18px !important;
+  border-radius: 999px !important;
+  border: 1.5px solid rgba(255,255,255,.88) !important;
+  background:
+    linear-gradient(135deg, rgba(255,126,185,.88), rgba(148,163,255,.82)) !important;
+  color: white !important;
+  font-weight: 950 !important;
+  box-shadow:
+    0 16px 34px rgba(217,70,143,.26),
+    inset 0 1px 0 rgba(255,255,255,.72) !important;
+  backdrop-filter: blur(18px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(18px) saturate(180%) !important;
+}
+
+.homepage-sci-fi .discord-mini svg {
+  color: white !important;
+  stroke-width: 2.35 !important;
+}
