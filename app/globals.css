@@ -6905,3 +6905,23 @@ a.nav-card {
   }
 }
 /* KETHER nav icon anti crop fix end */
+
+/* KETHER mod nav icon size tune start */
+.k-nav3-img[src*="icon-mod"] {
+  width: 112% !important;
+  height: 112% !important;
+  max-width: none !important;
+  max-height: none !important;
+  inset: -6% !important;
+  object-fit: contain !important;
+  object-position: center !important;
+}
+
+@media (max-width: 640px) {
+  .k-nav3-img[src*="icon-mod"] {
+    width: 108% !important;
+    height: 108% !important;
+    inset: -4% !important;
+  }
+}
+/* KETHER mod nav icon size tune end */
