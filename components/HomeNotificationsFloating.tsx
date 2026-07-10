@@ -90,6 +90,12 @@ export default function HomeNotificationsFloating() {
               inset: 0,
               width: "100%",
               height: "100%",
+            maxHeight: "calc(100dvh - 96px)",
+            overflowY: "auto",
+            overflowX: "hidden",
+            WebkitOverflowScrolling: "touch",
+            overscrollBehavior: "contain",
+            touchAction: "pan-y",
               border: "0",
               background: "transparent",
               cursor: "default"
@@ -148,7 +154,20 @@ export default function HomeNotificationsFloating() {
               </button>
             </div>
 
-            <div style={{ display: "grid", gap: 10, marginTop: 16 }}>
+            <div
+              style={{
+                display: "grid",
+                gap: 10,
+                marginTop: 16,
+                maxHeight: "min(54dvh, 440px)",
+                overflowY: "auto",
+                overflowX: "hidden",
+                WebkitOverflowScrolling: "touch",
+                overscrollBehavior: "contain",
+                touchAction: "pan-y",
+                paddingRight: 4,
+              }}
+            >
               {notices.map((notice) => (
                 <article
                   key={`${notice.version}-${notice.title}`}
