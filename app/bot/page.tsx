@@ -9,7 +9,6 @@ import {
   Radio,
   Search,
   ShieldCheck,
-  Sparkles,
   Swords,
 } from "lucide-react";
 
@@ -126,10 +125,11 @@ export default function BotPage() {
           </div>
         </div>
 
-        <div className="kether-bot-sigil" aria-hidden="true">
-          <Sparkles size={38} />
-          <span>KETHER</span>
-          <b>BOT ONLINE</b>
+        <div className="kether-bot-hero-banner">
+          <img
+            src="/home-hero-banner.png"
+            alt="KETHER OF PARADISO Warframe 資料庫首頁版圖"
+          />
         </div>
       </section>
 
@@ -325,6 +325,27 @@ export default function BotPage() {
           opacity: 0.82;
         }
 
+        .kether-bot-hero-banner {
+          width: 100%;
+          min-height: 240px;
+          border-radius: 28px;
+          overflow: hidden;
+          background: rgba(255, 255, 255, 0.62);
+          border: 1px solid rgba(255, 255, 255, 0.72);
+          box-shadow:
+            0 24px 50px rgba(15, 23, 42, 0.12),
+            inset 0 1px 0 rgba(255, 255, 255, 0.72);
+        }
+
+        .kether-bot-hero-banner img {
+          width: 100%;
+          height: 100%;
+          min-height: 240px;
+          display: block;
+          object-fit: cover;
+          object-position: center;
+        }
+
         .kether-bot-focus-grid {
           display: grid;
           grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -465,7 +486,8 @@ export default function BotPage() {
             grid-template-columns: 1fr;
           }
 
-          .kether-bot-sigil {
+          .kether-bot-hero-banner,
+          .kether-bot-hero-banner img {
             min-height: 170px;
           }
 
