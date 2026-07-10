@@ -2,6 +2,57 @@ import Link from "next/link";
 import { Bell, Menu, MessageCircle, Search, UserRound } from "lucide-react";
 import KetherDynamicInfo from "../../components/KetherDynamicInfo";
 
+const navItems = [
+  {
+    label: "總覽",
+    href: "/database/overview",
+    image: "/icon-overview.png",
+    activeImage: "/icon-overview-2.png",
+  },
+  {
+    label: "戰甲",
+    href: "/database/warframes",
+    image: "/icon-warframe.png",
+    activeImage: "/icon-warframe-2.png",
+  },
+  {
+    label: "主要武器",
+    href: "/database/primary",
+    image: "/icon-primary.png",
+    activeImage: "/icon-primary-2.png",
+  },
+  {
+    label: "次要武器",
+    href: "/database/secondary",
+    image: "/icon-secondary.png",
+    activeImage: "/icon-secondary-2.png",
+  },
+  {
+    label: "近戰武器",
+    href: "/database/melee",
+    image: "/icon-melee.png",
+    activeImage: "/icon-melee-2.png",
+  },
+  {
+    label: "同伴",
+    href: "/database/companions",
+    image: "/icon-companion.png",
+    activeImage: "/icon-companion-2.png",
+  },
+  {
+    label: "曲翼",
+    href: "/database/archwing",
+    image: "/icon-archwing.png",
+    activeImage: "/icon-archwing-2.png",
+  },
+  {
+    label: "MOD資料庫",
+    href: "/database/mods",
+    image: "/icon-mod.png",
+    activeImage: "/icon-mod-2.png",
+  },
+];
+
 export default function HomeNewPage() {
   return (
     <main className="home-new-page">
@@ -52,6 +103,26 @@ export default function HomeNewPage() {
 
           <div className="home-new-dynamic-inside">
             <KetherDynamicInfo />
+          </div>
+        </section>
+
+        <section className="home-new-nav-card">
+          <div className="home-new-nav-heading">
+            <p>KETHER DATABASE NAVIGATION</p>
+            <h2>資料庫導覽</h2>
+          </div>
+
+          <div className="home-new-nav-grid">
+            {navItems.map((item) => (
+              <Link key={item.href} href={item.href} className="home-new-nav-item">
+                <span className="home-new-nav-icon">
+                  <img className="home-new-nav-icon-normal" src={item.image} alt={item.label} />
+                  <img className="home-new-nav-icon-active" src={item.activeImage} alt="" aria-hidden="true" />
+                </span>
+
+                <span className="home-new-nav-label">{item.label}</span>
+              </Link>
+            ))}
           </div>
         </section>
       </div>
