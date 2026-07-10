@@ -11,8 +11,7 @@ import {
   ShieldCheck,
   Swords,
 } from "lucide-react";
-import BotWeaponSearchPanel from "../../components/BotWeaponSearchPanel";
-import BotWarframeSearchPanel from "../../components/BotWarframeSearchPanel";
+import BotKetherSearchPanel from "../../components/BotKetherSearchPanel";
 
 const botCommands = [
   {
@@ -152,8 +151,7 @@ export default function BotPage() {
         })}
       </section>
 
-      <BotWeaponSearchPanel />
-      <BotWarframeSearchPanel />
+      <BotKetherSearchPanel />
 
       <section className="kether-bot-panel">
         <div className="kether-bot-section-title">
