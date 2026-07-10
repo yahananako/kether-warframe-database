@@ -1,8 +1,12 @@
+import Link from "next/link";
+import { MessageCircle } from "lucide-react";
 import { fetchSheetRows } from "../../../lib/sheets";
 import DatabaseOverviewPage, {
   type OverviewCategoryStat,
 } from "../../../components/DatabaseOverviewPage";
 import HomeMenuFloating from "../../../components/HomeMenuFloating";
+import HomeNotificationsFloating from "../../../components/HomeNotificationsFloating";
+import HomeSearchFloating from "../../../components/HomeSearchFloating";
 
 const categoryTargets = [
   { key: "warframes", label: "戰甲" },
@@ -49,6 +53,21 @@ export default async function OverviewPage() {
   return (
     <main className="min-h-screen bg-[#f6f3ff] text-slate-950">
       <HomeMenuFloating />
+
+      <div className="kether-overview-top-actions" aria-label="總覽快捷功能">
+        <HomeSearchFloating />
+        <HomeNotificationsFloating />
+        <Link
+          href="https://discord.gg"
+          target="_blank"
+          rel="noreferrer"
+          className="kether-overview-discord-action"
+          aria-label="Discord 入口"
+        >
+          <MessageCircle size={18} />
+          <span>Discord</span>
+        </Link>
+      </div>
 
       <div className="mx-auto flex w-full max-w-7xl flex-col gap-6 px-4 py-6 sm:px-6 lg:px-8">
         <DatabaseOverviewPage
