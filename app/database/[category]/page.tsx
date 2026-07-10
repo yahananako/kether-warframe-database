@@ -16,6 +16,9 @@ import {
 } from "lucide-react";
 import { fetchSheetRows, SHEET_GIDS } from "../../../lib/sheets";
 import DataTable from "../../../components/DataTable";
+import HomeNotificationsFloating from "../../../components/HomeNotificationsFloating";
+import HomeSearchFloating from "../../../components/HomeSearchFloating";
+import HomeMenuFloating from "../../../components/HomeMenuFloating";
 
 const navItems = [
   { label: "總覽", key: "overview", href: "/database/overview", icon: Gem },
@@ -43,6 +46,24 @@ export default async function DatabaseCategoryPage({
 
   return (
     <main className="min-h-screen bg-[#f6f3ff] text-slate-950">
+      <HomeMenuFloating />
+
+      <div className="kether-database-top-actions" aria-label="資料庫快捷功能">
+        <HomeSearchFloating />
+        <HomeNotificationsFloating />
+        <Link
+          href="https://discord.gg"
+          target="_blank"
+          rel="noreferrer"
+          className="kether-database-discord-action"
+          aria-label="Discord 入口"
+        >
+          <MessageCircle size={18} />
+          <span>Discord</span>
+        </Link>
+      </div>
+
+
       <div className="mx-auto flex w-full max-w-7xl flex-col gap-6 px-4 py-6 sm:px-6 lg:px-8">
         <header className="rounded-[34px] border border-white/70 bg-white/80 p-4 shadow-2xl shadow-violet-200/30 backdrop-blur sm:p-5">
           <div className="flex flex-wrap items-center justify-between gap-3">
