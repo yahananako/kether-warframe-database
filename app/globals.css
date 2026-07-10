@@ -8853,4 +8853,65 @@ a.nav-card {
   position: relative;
   z-index: 1;
 }
+/* KETHER home-new glass transparency tuning start */
+.home-new-hero-card,
+.home-new-nav-card {
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.18), rgba(226, 232, 240, 0.08)),
+    radial-gradient(circle at 10% 0%, rgba(255, 255, 255, 0.28), transparent 34%),
+    radial-gradient(circle at 90% 0%, rgba(186, 203, 255, 0.16), transparent 38%),
+    rgba(255, 255, 255, 0.08) !important;
+  border-color: rgba(255, 255, 255, 0.72) !important;
+  box-shadow:
+    0 0 0 1px rgba(226, 232, 240, 0.42),
+    0 0 30px rgba(255, 255, 255, 0.38),
+    0 24px 58px rgba(15, 23, 42, 0.10),
+    inset 0 1px 0 rgba(255, 255, 255, 0.72),
+    inset 0 -1px 0 rgba(148, 163, 184, 0.12) !important;
+  backdrop-filter: blur(26px) saturate(1.45) !important;
+  -webkit-backdrop-filter: blur(26px) saturate(1.45) !important;
+}
+
+.home-new-banner,
+.home-new-nav-item,
+.home-new-hero-actions,
+.home-new-round-action {
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.24), rgba(241, 245, 249, 0.10)),
+    rgba(255, 255, 255, 0.08) !important;
+  border-color: rgba(255, 255, 255, 0.58) !important;
+  box-shadow:
+    0 0 0 1px rgba(226, 232, 240, 0.28),
+    0 14px 30px rgba(15, 23, 42, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.66) !important;
+  backdrop-filter: blur(18px) saturate(1.35) !important;
+  -webkit-backdrop-filter: blur(18px) saturate(1.35) !important;
+}
+
+/* KETHER 動態資訊元件如果自己有白底，也在 home-new 裡玻璃化 */
+.home-new-dynamic-inside > *,
+.home-new-dynamic-inside section,
+.home-new-dynamic-inside div {
+  border-color: rgba(255, 255, 255, 0.52) !important;
+}
+
+.home-new-dynamic-inside > * {
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.22), rgba(241, 245, 249, 0.08)),
+    rgba(255, 255, 255, 0.06) !important;
+  backdrop-filter: blur(18px) saturate(1.35) !important;
+  -webkit-backdrop-filter: blur(18px) saturate(1.35) !important;
+}
+
+.home-new-nav-item:hover {
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.34), rgba(239, 246, 255, 0.14)),
+    rgba(255, 255, 255, 0.12) !important;
+  box-shadow:
+    0 0 0 1px rgba(241, 245, 249, 0.72),
+    0 0 24px rgba(255, 255, 255, 0.62),
+    0 22px 42px rgba(124, 58, 237, 0.10),
+    inset 0 1px 0 rgba(255, 255, 255, 0.82) !important;
+}
+/* KETHER home-new glass transparency tuning end */
 /* KETHER home-new rebuild end */
