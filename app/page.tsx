@@ -247,7 +247,7 @@ export default async function HomePage() {
   <article className="info-card home-site-info-card">
     <div className="card-title">
       <span>3</span>
-      <span>KETHER 小希資料航標</span>
+      <span>小希的網站更新資訊</span>
     </div>
 
     <div className="home-info-date-row">
@@ -256,12 +256,12 @@ export default async function HomePage() {
     </div>
 
     <div className="home-info-subblock">
-      <h3>小希使用指南</h3>
+      <h3>網站更新摘要</h3>
       <ul>
-        <li>首頁資料會自動讀取 Google Sheets，作為 KETHER 資料核心。</li>
-        <li>分類頁支援區塊、搜尋、價格、已購買篩選與個人進度追蹤。</li>
-        <li>Discord 登入、氏族權限驗證與個人已購買進度已實裝。</li>
-        <li>手機版與電腦版會持續修繕，等待繪師美工圖正式入場。</li>
+        <li>目前版本為 V2.5.1 + BOT V3.1-E17，網站與 Discord Bot 狀態集中顯示。</li>
+        <li>資料庫狀態整合 Google Sheets、分類分頁、區塊總數、交易價格與 Discord 個人進度。</li>
+        <li>Discord 登入、氏族權限驗證、個人進度與 Bot 指令中樞持續運作中。</li>
+        <li>目前修繕重點：首頁、BOT、總覽與各資料頁上方區塊統一成小希風格。</li>
       </ul>
     </div>
   </article>
@@ -339,7 +339,7 @@ export default async function HomePage() {
           <article className="info-card summary-card">
             <div className="card-title">
               <ClipboardList size={18} />
-              <span>備註</span>
+              <span>更新備忘錄</span>
             </div>
 
             <ul className="home-remarks-list">
