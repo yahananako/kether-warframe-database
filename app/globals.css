@@ -8076,3 +8076,38 @@ a.nav-card {
   }
 }
 /* KETHER overview page reset end */
+
+/* KETHER bot hero vertical fix start */
+.kether-bot-hero-shell {
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  align-items: stretch !important;
+}
+
+.kether-bot-kicker,
+.kether-bot-hero-banner,
+.kether-bot-hero-copy {
+  width: 100% !important;
+  max-width: none !important;
+  grid-column: 1 / -1 !important;
+}
+
+.kether-bot-kicker {
+  order: 1;
+}
+
+.kether-bot-hero-banner {
+  order: 2;
+}
+
+.kether-bot-hero-copy {
+  order: 3;
+}
+
+.kether-bot-hero-banner img {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center;
+}
+/* KETHER bot hero vertical fix end */
