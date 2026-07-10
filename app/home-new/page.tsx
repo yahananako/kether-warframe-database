@@ -1,18 +1,22 @@
 import Link from "next/link";
-import { MessageCircle, UserRound } from "lucide-react";
+import { Bell, MessageCircle, Search, UserRound } from "lucide-react";
 import HomeMenuFloating from "../../components/HomeMenuFloating";
-import HomeSearchFloating from "../../components/HomeSearchFloating";
-import HomeNotificationsFloating from "../../components/HomeNotificationsFloating";
 import KetherDynamicInfo from "../../components/KetherDynamicInfo";
 
 export default function HomeNewPage() {
   return (
     <main className="home-new-page">
       <HomeMenuFloating />
-      <HomeSearchFloating />
-      <HomeNotificationsFloating />
 
       <div className="home-new-extra-actions" aria-label="首頁快捷入口">
+        <button className="home-new-icon-action" type="button" aria-label="搜尋">
+          <Search size={22} />
+        </button>
+
+        <button className="home-new-icon-action" type="button" aria-label="通知">
+          <Bell size={22} />
+        </button>
+
         <Link href="/profile" className="home-new-round-action" aria-label="個人頁面">
           <UserRound size={18} />
           <span>個人</span>
