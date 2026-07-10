@@ -132,30 +132,42 @@ export default async function DatabaseCategoryPage({
           </a>
         </nav>
 
-        <section className="rounded-[34px] border border-white/70 bg-white/80 p-5 shadow-2xl shadow-violet-200/30 backdrop-blur sm:p-8">
-          <Link
-            href="/"
-            className="mb-5 inline-flex items-center gap-2 rounded-full bg-slate-950 px-4 py-2 text-sm font-black text-white"
-          >
-            <ArrowLeft size={16} />
-            返回首頁
-          </Link>
+        <section className="kether-database-hero-shell">
+          <p className="kether-database-kicker">{config.title}</p>
 
-          <p className="text-xs font-black tracking-[0.28em] text-violet-600">
-            KETHER OF PARADISO
-          </p>
+          <div className="kether-database-hero-banner">
+            <img
+              src="/home-hero-banner.png"
+              alt={`${config.title} KETHER OF PARADISO Warframe 資料庫版圖`}
+            />
+          </div>
 
-          <h1 className="mt-3 text-4xl font-black tracking-tight text-slate-950 sm:text-6xl">
-            {config.title}
-          </h1>
+          <div className="kether-database-hero-copy">
+            <h1>{config.title}</h1>
+            <p>{config.subtitle}</p>
 
-          <p className="mt-3 max-w-2xl text-base font-bold leading-8 text-slate-600">
-            {config.subtitle}
-          </p>
+            <div className="kether-database-hero-actions">
+              <Link href="/">
+                <ArrowLeft size={16} />
+                返回首頁
+              </Link>
 
-          <span className="mt-4 inline-flex rounded-full bg-violet-100 px-4 py-2 text-sm font-black text-violet-700">
-            網站版本 v2.5.33
-          </span>
+              <Link href="/database/overview">
+                <Gem size={16} />
+                總覽
+              </Link>
+
+              <Link href="/bot">
+                <MessageCircle size={16} />
+                小希 Bot
+              </Link>
+
+              <Link href="/live">
+                <Bell size={16} />
+                星圖電波局
+              </Link>
+            </div>
+          </div>
         </section>
 
         {error ? (
