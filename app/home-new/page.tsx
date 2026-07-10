@@ -119,15 +119,6 @@ export default function HomeNewPage() {
             <h2>資料庫導覽</h2>
           </div>
 
-          <div className="home-new-database-line" aria-label="資料庫狀態">
-            {databaseStats.map((item) => (
-              <div key={item.label} className="home-new-database-chip">
-                <span>{item.label}</span>
-                <strong>{item.value}</strong>
-              </div>
-            ))}
-          </div>
-
           <div className="home-new-nav-grid">
             {navItems.map((item) => (
               <Link key={item.href} href={item.href} className="home-new-nav-item">
@@ -138,6 +129,15 @@ export default function HomeNewPage() {
 
                 <span className="home-new-nav-label">{item.label}</span>
               </Link>
+            ))}
+          </div>
+
+          <div className="home-new-database-line" aria-label="資料庫狀態">
+            {databaseStats.map((item) => (
+              <div key={item.label} className="home-new-database-chip">
+                <span>{item.label}</span>
+                <strong>{item.value}</strong>
+              </div>
             ))}
           </div>
         </section>

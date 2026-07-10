@@ -8969,7 +8969,7 @@ a.nav-card {
 /* KETHER home-new navigation glass buttons end */
 /* KETHER home-new compact database line start */
 .home-new-database-line {
-  margin: 0 0 16px;
+  margin: 16px 0 0;
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 10px;
@@ -9013,7 +9013,7 @@ a.nav-card {
 
 @media (max-width: 760px) {
   .home-new-database-line {
-    margin-bottom: 10px;
+    margin: 10px 0 0;
     grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 6px;
   }
