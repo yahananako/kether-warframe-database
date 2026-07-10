@@ -32,12 +32,8 @@ export default function HomeNewPage() {
 
       <div className="home-new-shell">
         <section className="home-new-hero-card">
-          <div className="home-new-hero-copy">
-            <p>KETHER OF PARADISO</p>
-            <h1>KETHER Warframe 資料庫</h1>
-            <span>
-              新版首頁測試區。這裡先確認最上方快捷功能、首頁版圖與 KETHER 動態資訊穩定後，再逐步加入其他區塊。
-            </span>
+          <div className="home-new-topline">
+            <span>KETHER</span>
           </div>
 
           <div className="home-new-banner">
