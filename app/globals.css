@@ -6660,3 +6660,87 @@ a.nav-card {
     -webkit-backdrop-filter: blur(14px) saturate(135%) !important;
   }
 }
+
+/* KETHER notification bell scroll fix */
+.kether-notification-panel,
+.kether-notifications-panel,
+.kether-bell-panel,
+.kether-bell-popover,
+.notification-panel,
+.notifications-panel,
+.notification-popover,
+.notifications-popover,
+.bell-panel,
+.bell-popover,
+[data-notification-panel],
+[data-bell-panel] {
+  max-height: min(72vh, 520px) !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  overscroll-behavior: contain !important;
+  -webkit-overflow-scrolling: touch !important;
+  touch-action: pan-y !important;
+}
+
+.kether-notification-panel *,
+.kether-notifications-panel *,
+.kether-bell-panel *,
+.kether-bell-popover *,
+.notification-panel *,
+.notifications-panel *,
+.notification-popover *,
+.notifications-popover *,
+.bell-panel *,
+.bell-popover *,
+[data-notification-panel] *,
+[data-bell-panel] * {
+  overscroll-behavior: contain;
+}
+
+.kether-notification-panel::-webkit-scrollbar,
+.kether-notifications-panel::-webkit-scrollbar,
+.kether-bell-panel::-webkit-scrollbar,
+.kether-bell-popover::-webkit-scrollbar,
+.notification-panel::-webkit-scrollbar,
+.notifications-panel::-webkit-scrollbar,
+.notification-popover::-webkit-scrollbar,
+.notifications-popover::-webkit-scrollbar,
+.bell-panel::-webkit-scrollbar,
+.bell-popover::-webkit-scrollbar,
+[data-notification-panel]::-webkit-scrollbar,
+[data-bell-panel]::-webkit-scrollbar {
+  width: 6px;
+}
+
+.kether-notification-panel::-webkit-scrollbar-thumb,
+.kether-notifications-panel::-webkit-scrollbar-thumb,
+.kether-bell-panel::-webkit-scrollbar-thumb,
+.kether-bell-popover::-webkit-scrollbar-thumb,
+.notification-panel::-webkit-scrollbar-thumb,
+.notifications-panel::-webkit-scrollbar-thumb,
+.notification-popover::-webkit-scrollbar-thumb,
+.notifications-popover::-webkit-scrollbar-thumb,
+.bell-panel::-webkit-scrollbar-thumb,
+.bell-popover::-webkit-scrollbar-thumb,
+[data-notification-panel]::-webkit-scrollbar-thumb,
+[data-bell-panel]::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: rgba(138, 93, 216, 0.34);
+}
+
+@media (max-width: 640px) {
+  .kether-notification-panel,
+  .kether-notifications-panel,
+  .kether-bell-panel,
+  .kether-bell-popover,
+  .notification-panel,
+  .notifications-panel,
+  .notification-popover,
+  .notifications-popover,
+  .bell-panel,
+  .bell-popover,
+  [data-notification-panel],
+  [data-bell-panel] {
+    max-height: 64vh !important;
+  }
+}
