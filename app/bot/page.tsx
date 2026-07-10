@@ -1,6 +1,5 @@
 import Link from "next/link";
 import {
-import BotWeaponSearchPanel from "../../components/BotWeaponSearchPanel";
   Bot,
   CircleHelp,
   Database,
