@@ -124,7 +124,7 @@ const cycleMap: Record<string, string> = {
 
 async function getWorldState(): Promise<WorldState | null> {
   const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), 8000);
+  const timeout = setTimeout(() => controller.abort(), 15000);
 
   try {
     const res = await fetch("https://api.warframestat.us/pc", {
@@ -334,7 +334,7 @@ export default async function LivePage() {
 
       {!data ? (
         <section className="live-error">
-          星圖電波暫時失聯，請稍後再讓小希重新捕捉訊號喵。
+          星圖電波暫時失聯，外部資料源可能回應過慢，請稍後再讓小希重新捕捉訊號喵。
         </section>
       ) : (
         <>
