@@ -5,6 +5,7 @@ import HomeSearchFloating from "../components/HomeSearchFloating";
 import HomeNotificationsFloating from "../components/HomeNotificationsFloating"; import HomeMenuFloating from "../components/HomeMenuFloating"; import HomeAuthMini from "../components/HomeAuthMini"; import HomePersonalProgress from "../components/HomePersonalProgress"; import KetherClanWatermark from "../components/KetherClanWatermark";
 import OfficialNewsBoard from "../components/OfficialNewsBoard";
 import MiniMusicPlayer from "../components/MiniMusicPlayer";
+import KetherDynamicInfo from "../components/KetherDynamicInfo";
 const navItems = [
   {
     label: "總覽",
@@ -158,6 +159,8 @@ export default async function HomePage() {
   />
 </div>
       </section>
+
+      <KetherDynamicInfo />
 
 
       <section className="hero">

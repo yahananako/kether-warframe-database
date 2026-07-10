@@ -7426,3 +7426,66 @@ a.nav-card {
   }
 }
 /* KETHER mini player default collapsed left end */
+
+/* KETHER dynamic info banner */
+.kether-dynamic-info {
+  margin: clamp(14px, 3vw, 22px) auto 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.88), rgba(239, 246, 255, 0.76)),
+    radial-gradient(circle at 8% 50%, rgba(236, 72, 153, 0.16), transparent 34%),
+    radial-gradient(circle at 90% 10%, rgba(124, 58, 237, 0.16), transparent 30%);
+  box-shadow:
+    0 16px 34px rgba(15, 23, 42, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(16px) saturate(1.25);
+  -webkit-backdrop-filter: blur(16px) saturate(1.25);
+}
+
+.kether-dynamic-info-badge {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 10px;
+  border-radius: 999px;
+  color: #ffffff;
+  background: linear-gradient(135deg, #7c3aed, #ec4899);
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  box-shadow: 0 10px 22px rgba(124, 58, 237, 0.22);
+}
+
+.kether-dynamic-info p {
+  margin: 0;
+  color: #334155;
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 1.65;
+}
+
+@media (max-width: 640px) {
+  .kether-dynamic-info {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 9px;
+    padding: 11px;
+    border-radius: 20px;
+  }
+
+  .kether-dynamic-info-badge {
+    font-size: 11px;
+    padding: 7px 9px;
+  }
+
+  .kether-dynamic-info p {
+    font-size: 13px;
+    line-height: 1.6;
+  }
+}
