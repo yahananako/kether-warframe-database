@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { ChevronLeft, ChevronRight, Music2, Pause, Play, Radio, X } from "lucide-react";
 
 const playlistId = "PL0DMEhl0daHfpBbeTikS2MDA8darW0iyZ";
@@ -78,6 +79,7 @@ function loadYouTubeApi() {
 
 export default function MiniMusicPlayer() {
   const playerRef = useRef<YouTubePlayer | null>(null);
+  const [mounted, setMounted] = useState(false);
   const [ready, setReady] = useState(false);
   const [playing, setPlaying] = useState(false);
   const [collapsed, setCollapsed] = useState(false);
@@ -92,6 +94,12 @@ export default function MiniMusicPlayer() {
   }
 
   useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (!mounted) return;
+
     let cancelled = false;
 
     loadYouTubeApi().then(() => {
@@ -153,7 +161,7 @@ export default function MiniMusicPlayer() {
       playerRef.current?.destroy();
       playerRef.current = null;
     };
-  }, []);
+  }, [mounted]);
 
   function togglePlay() {
     if (!ready || !playerRef.current) return;
@@ -187,7 +195,9 @@ export default function MiniMusicPlayer() {
     setTimeout(syncTitle, 650);
   }
 
-  return (
+  if (!mounted) return null;
+
+  return createPortal(
     <aside className={`kether-mini-player ${collapsed ? "is-collapsed" : ""}`}>
       <div id="kether-mini-youtube-player" className="kether-mini-player-core" />
 
@@ -198,14 +208,14 @@ export default function MiniMusicPlayer() {
           onClick={() => setCollapsed(false)}
           aria-label="展開小希迷你播放器"
         >
-          <Radio size={22} />
+          <Radio size={18} />
         </button>
       ) : (
         <>
           <div className="kether-mini-head">
             <div className="kether-mini-brand">
-              <Music2 size={16} />
-              <span>KETHER NEKO RADIO</span>
+              <Music2 size={14} />
+              <span>KETHER RADIO</span>
             </div>
 
             <button
@@ -214,7 +224,7 @@ export default function MiniMusicPlayer() {
               onClick={() => setCollapsed(true)}
               aria-label="收合小希迷你播放器"
             >
-              <X size={16} />
+              <X size={14} />
             </button>
           </div>
 
@@ -224,7 +234,7 @@ export default function MiniMusicPlayer() {
 
           <div className="kether-mini-controls">
             <button type="button" onClick={previousTrack} aria-label="上一首">
-              <ChevronLeft size={22} />
+              <ChevronLeft size={19} />
             </button>
 
             <button
@@ -234,19 +244,20 @@ export default function MiniMusicPlayer() {
               disabled={!ready}
               aria-label={playing ? "暫停" : "播放"}
             >
-              {playing ? <Pause size={22} /> : <Play size={22} />}
+              {playing ? <Pause size={19} /> : <Play size={19} />}
             </button>
 
             <button type="button" onClick={nextTrack} aria-label="下一首">
-              <ChevronRight size={22} />
+              <ChevronRight size={19} />
             </button>
           </div>
 
           <p className="kether-mini-note">
-            {ready ? "點播放喚醒小希播放清單喵" : "小希正在連接 YouTube 星軌..."}
+            {ready ? "點播放喚醒小希清單喵" : "連接 YouTube 星軌中..."}
           </p>
         </>
       )}
-    </aside>
+    </aside>,
+    document.body
   );
 }

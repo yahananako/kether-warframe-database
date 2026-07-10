@@ -7273,3 +7273,109 @@ a.nav-card {
     grid-template-columns: 1fr 54px 1fr;
   }
 }
+
+/* KETHER compact fixed mini player start */
+.kether-mini-player {
+  position: fixed !important;
+  right: max(12px, env(safe-area-inset-right)) !important;
+  bottom: max(12px, env(safe-area-inset-bottom)) !important;
+  left: auto !important;
+  top: auto !important;
+  z-index: 2147483000 !important;
+  width: min(270px, calc(100vw - 24px)) !important;
+  padding: 10px !important;
+  border-radius: 20px !important;
+  transform: none !important;
+  contain: layout style;
+}
+
+.kether-mini-head {
+  margin-bottom: 7px !important;
+}
+
+.kether-mini-brand {
+  gap: 6px !important;
+  font-size: 9px !important;
+  letter-spacing: 0.12em !important;
+}
+
+.kether-mini-close {
+  width: 24px !important;
+  height: 24px !important;
+}
+
+.kether-mini-title {
+  min-height: 36px !important;
+  padding: 8px 10px !important;
+  border-radius: 14px !important;
+  font-size: 12px !important;
+}
+
+.kether-mini-controls {
+  grid-template-columns: 1fr 46px 1fr !important;
+  gap: 7px !important;
+  margin-top: 8px !important;
+}
+
+.kether-mini-controls button {
+  height: 34px !important;
+  border-radius: 12px !important;
+}
+
+.kether-mini-controls .kether-mini-play {
+  height: 42px !important;
+  border-radius: 15px !important;
+}
+
+.kether-mini-note {
+  margin-top: 7px !important;
+  font-size: 10px !important;
+}
+
+.kether-mini-bubble {
+  width: 48px !important;
+  height: 48px !important;
+  border-radius: 18px !important;
+}
+
+.kether-mini-player.is-collapsed {
+  width: auto !important;
+  padding: 0 !important;
+}
+
+@media (max-width: 640px) {
+  .kether-mini-player {
+    right: max(10px, env(safe-area-inset-right)) !important;
+    bottom: max(10px, env(safe-area-inset-bottom)) !important;
+    left: auto !important;
+    width: min(248px, calc(100vw - 20px)) !important;
+    padding: 9px !important;
+    border-radius: 18px !important;
+  }
+
+  .kether-mini-player.is-collapsed {
+    right: max(10px, env(safe-area-inset-right)) !important;
+    bottom: max(10px, env(safe-area-inset-bottom)) !important;
+    left: auto !important;
+    width: auto !important;
+    padding: 0 !important;
+  }
+
+  .kether-mini-title {
+    min-height: 34px !important;
+    font-size: 11px !important;
+  }
+
+  .kether-mini-controls {
+    grid-template-columns: 1fr 42px 1fr !important;
+  }
+
+  .kether-mini-controls button {
+    height: 32px !important;
+  }
+
+  .kether-mini-controls .kether-mini-play {
+    height: 40px !important;
+  }
+}
+/* KETHER compact fixed mini player end */
