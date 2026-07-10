@@ -6,6 +6,7 @@ import { ChevronLeft, ChevronRight, Music2, Pause, Play, Radio, X } from "lucide
 
 const playlistId = "PL0DMEhl0daHfpBbeTikS2MDA8darW0iyZ";
 const playlistTitle = "小希 YouTube 播放清單";
+const playerRootId = "kether-mini-youtube-player-global";
 
 type YouTubePlayer = {
   playVideo: () => void;
@@ -21,6 +22,7 @@ type YouTubePlayer = {
     title?: string;
     video_id?: string;
   };
+  getPlayerState?: () => number;
   destroy: () => void;
 };
 
@@ -47,6 +49,7 @@ declare global {
       };
     };
     onYouTubeIframeAPIReady?: () => void;
+    __ketherMiniMusicPlayer?: YouTubePlayer | null;
   }
 }
 
@@ -77,6 +80,27 @@ function loadYouTubeApi() {
   });
 }
 
+function ensurePlayerRoot() {
+  let root = document.getElementById(playerRootId);
+
+  if (!root) {
+    root = document.createElement("div");
+    root.id = playerRootId;
+    root.className = "kether-mini-player-core";
+    root.style.position = "fixed";
+    root.style.width = "1px";
+    root.style.height = "1px";
+    root.style.opacity = "0";
+    root.style.pointerEvents = "none";
+    root.style.overflow = "hidden";
+    root.style.left = "-9999px";
+    root.style.bottom = "0";
+    document.body.appendChild(root);
+  }
+
+  return root;
+}
+
 export default function MiniMusicPlayer() {
   const playerRef = useRef<YouTubePlayer | null>(null);
   const [mounted, setMounted] = useState(false);
@@ -94,6 +118,18 @@ export default function MiniMusicPlayer() {
     }
   }
 
+  function syncPlayingState() {
+    const state = playerRef.current?.getPlayerState?.();
+
+    if (state === window.YT?.PlayerState?.PLAYING) {
+      setPlaying(true);
+    }
+
+    if (state === window.YT?.PlayerState?.PAUSED || state === window.YT?.PlayerState?.CUED) {
+      setPlaying(false);
+    }
+  }
+
   useEffect(() => {
     setMounted(true);
   }, []);
@@ -104,9 +140,21 @@ export default function MiniMusicPlayer() {
     let cancelled = false;
 
     loadYouTubeApi().then(() => {
-      if (cancelled || playerRef.current || !window.YT?.Player) return;
+      if (cancelled) return;
 
-      playerRef.current = new window.YT.Player("kether-mini-youtube-player", {
+      if (window.__ketherMiniMusicPlayer) {
+        playerRef.current = window.__ketherMiniMusicPlayer;
+        setReady(true);
+        syncTitle();
+        syncPlayingState();
+        return;
+      }
+
+      if (!window.YT?.Player) return;
+
+      ensurePlayerRoot();
+
+      const player = new window.YT.Player(playerRootId, {
         width: 1,
         height: 1,
         playerVars: {
@@ -123,12 +171,14 @@ export default function MiniMusicPlayer() {
           onReady: () => {
             if (cancelled) return;
 
-            playerRef.current?.cuePlaylist({
+            player.cuePlaylist({
               listType: "playlist",
               list: playlistId,
               index: 0,
             });
 
+            window.__ketherMiniMusicPlayer = player;
+            playerRef.current = player;
             setReady(true);
             setTimeout(syncTitle, 400);
           },
@@ -144,23 +194,25 @@ export default function MiniMusicPlayer() {
             }
 
             if (event.data === window.YT?.PlayerState?.CUED) {
+              setPlaying(false);
               setTimeout(syncTitle, 350);
             }
 
             if (event.data === window.YT?.PlayerState?.ENDED) {
-              playerRef.current?.nextVideo();
-              playerRef.current?.playVideo();
+              player.nextVideo();
+              player.playVideo();
               setTimeout(syncTitle, 650);
             }
           },
         },
       });
+
+      window.__ketherMiniMusicPlayer = player;
+      playerRef.current = player;
     });
 
     return () => {
       cancelled = true;
-      playerRef.current?.destroy();
-      playerRef.current = null;
     };
   }, [mounted, activated]);
 
@@ -200,8 +252,6 @@ export default function MiniMusicPlayer() {
 
   return createPortal(
     <aside className={`kether-mini-player ${collapsed ? "is-collapsed" : ""}`}>
-      <div id="kether-mini-youtube-player" className="kether-mini-player-core" />
-
       {collapsed ? (
         <button
           type="button"
