@@ -8967,4 +8967,76 @@ a.nav-card {
   text-shadow: 0 1px 0 rgba(255, 255, 255, 0.62);
 }
 /* KETHER home-new navigation glass buttons end */
+/* KETHER home-new compact database line start */
+.home-new-database-line {
+  margin: 0 0 16px;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.home-new-database-chip {
+  min-height: 54px;
+  padding: 10px 12px;
+  border-radius: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.46);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.18), rgba(241, 245, 249, 0.055)),
+    rgba(255, 255, 255, 0.045);
+  box-shadow:
+    0 0 0 1px rgba(226, 232, 240, 0.18),
+    0 10px 22px rgba(15, 23, 42, 0.055),
+    inset 0 1px 0 rgba(255, 255, 255, 0.48);
+  backdrop-filter: blur(18px) saturate(1.36);
+  -webkit-backdrop-filter: blur(18px) saturate(1.36);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.home-new-database-chip span {
+  color: rgba(71, 85, 105, 0.82);
+  font-size: 12px;
+  font-weight: 900;
+  white-space: nowrap;
+}
+
+.home-new-database-chip strong {
+  color: #172033;
+  font-size: 14px;
+  font-weight: 950;
+  text-align: right;
+  white-space: nowrap;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.58);
+}
+
+@media (max-width: 760px) {
+  .home-new-database-line {
+    margin-bottom: 10px;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 6px;
+  }
+
+  .home-new-database-chip {
+    min-height: 48px;
+    padding: 7px 5px;
+    border-radius: 14px;
+    flex-direction: column;
+    justify-content: center;
+    gap: 3px;
+  }
+
+  .home-new-database-chip span {
+    font-size: 9px;
+    line-height: 1;
+  }
+
+  .home-new-database-chip strong {
+    font-size: 10px;
+    line-height: 1.1;
+    text-align: center;
+  }
+}
+/* KETHER home-new compact database line end */
 /* KETHER home-new rebuild end */

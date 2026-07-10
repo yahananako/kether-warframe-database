@@ -2,6 +2,13 @@ import Link from "next/link";
 import { Bell, Menu, MessageCircle, Search, UserRound } from "lucide-react";
 import KetherDynamicInfo from "../../components/KetherDynamicInfo";
 
+const databaseStats = [
+  { label: "資料來源", value: "Google Sheets" },
+  { label: "資料分頁", value: "7" },
+  { label: "資料區塊", value: "41" },
+  { label: "同步節奏", value: "每日 04:00" },
+];
+
 const navItems = [
   {
     label: "總覽",
@@ -110,6 +117,15 @@ export default function HomeNewPage() {
           <div className="home-new-nav-heading">
             <p>KETHER DATABASE NAVIGATION</p>
             <h2>資料庫導覽</h2>
+          </div>
+
+          <div className="home-new-database-line" aria-label="資料庫狀態">
+            {databaseStats.map((item) => (
+              <div key={item.label} className="home-new-database-chip">
+                <span>{item.label}</span>
+                <strong>{item.value}</strong>
+              </div>
+            ))}
           </div>
 
           <div className="home-new-nav-grid">
