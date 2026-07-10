@@ -3,26 +3,23 @@
 import { useEffect, useRef, useState } from "react";
 import { ChevronLeft, ChevronRight, Music2, Pause, Play, Radio, X } from "lucide-react";
 
-type Track = {
-  title: string;
-  videoId: string;
-};
-
-const tracks: Track[] = [
-  {
-    title: "世界の終わり",
-    videoId: "687OTbYopmg",
-  },
-  {
-    title: "KETHER Playlist 02",
-    videoId: "FlDq6K7kyf4",
-  },
-];
+const playlistId = "PL0DMEhl0daHfpBbeTikS2MDA8darW0iyZ";
+const playlistTitle = "小希 YouTube 播放清單";
 
 type YouTubePlayer = {
   playVideo: () => void;
   pauseVideo: () => void;
-  loadVideoById: (videoId: string) => void;
+  nextVideo: () => void;
+  previousVideo: () => void;
+  cuePlaylist: (options: {
+    listType: "playlist";
+    list: string;
+    index?: number;
+  }) => void;
+  getVideoData: () => {
+    title?: string;
+    video_id?: string;
+  };
   destroy: () => void;
 };
 
@@ -32,7 +29,6 @@ declare global {
       Player: new (
         elementId: string,
         options: {
-          videoId: string;
           width?: number | string;
           height?: number | string;
           playerVars?: Record<string, string | number>;
@@ -46,6 +42,7 @@ declare global {
         ENDED: number;
         PLAYING: number;
         PAUSED: number;
+        CUED: number;
       };
     };
     onYouTubeIframeAPIReady?: () => void;
@@ -82,11 +79,17 @@ function loadYouTubeApi() {
 export default function MiniMusicPlayer() {
   const playerRef = useRef<YouTubePlayer | null>(null);
   const [ready, setReady] = useState(false);
-  const [trackIndex, setTrackIndex] = useState(0);
   const [playing, setPlaying] = useState(false);
   const [collapsed, setCollapsed] = useState(false);
+  const [currentTitle, setCurrentTitle] = useState(playlistTitle);
 
-  const currentTrack = tracks[trackIndex];
+  function syncTitle() {
+    const title = playerRef.current?.getVideoData?.().title;
+
+    if (title?.trim()) {
+      setCurrentTitle(title);
+    }
+  }
 
   useEffect(() => {
     let cancelled = false;
@@ -95,7 +98,6 @@ export default function MiniMusicPlayer() {
       if (cancelled || playerRef.current || !window.YT?.Player) return;
 
       playerRef.current = new window.YT.Player("kether-mini-youtube-player", {
-        videoId: tracks[0].videoId,
         width: 1,
         height: 1,
         playerVars: {
@@ -104,28 +106,42 @@ export default function MiniMusicPlayer() {
           playsinline: 1,
           rel: 0,
           modestbranding: 1,
+          listType: "playlist",
+          list: playlistId,
           origin: window.location.origin,
         },
         events: {
           onReady: () => {
-            if (!cancelled) setReady(true);
+            if (cancelled) return;
+
+            playerRef.current?.cuePlaylist({
+              listType: "playlist",
+              list: playlistId,
+              index: 0,
+            });
+
+            setReady(true);
+            setTimeout(syncTitle, 400);
           },
           onStateChange: (event) => {
-            if (event.data === window.YT?.PlayerState?.ENDED) {
-              setTrackIndex((old) => {
-                const next = (old + 1) % tracks.length;
-                playerRef.current?.loadVideoById(tracks[next].videoId);
-                playerRef.current?.playVideo();
-                return next;
-              });
-            }
-
             if (event.data === window.YT?.PlayerState?.PLAYING) {
               setPlaying(true);
+              setTimeout(syncTitle, 350);
             }
 
             if (event.data === window.YT?.PlayerState?.PAUSED) {
               setPlaying(false);
+              setTimeout(syncTitle, 350);
+            }
+
+            if (event.data === window.YT?.PlayerState?.CUED) {
+              setTimeout(syncTitle, 350);
+            }
+
+            if (event.data === window.YT?.PlayerState?.ENDED) {
+              playerRef.current?.nextVideo();
+              playerRef.current?.playVideo();
+              setTimeout(syncTitle, 650);
             }
           },
         },
@@ -139,17 +155,6 @@ export default function MiniMusicPlayer() {
     };
   }, []);
 
-  function playTrack(index: number, shouldPlay = true) {
-    const next = (index + tracks.length) % tracks.length;
-    setTrackIndex(next);
-    playerRef.current?.loadVideoById(tracks[next].videoId);
-
-    if (shouldPlay) {
-      playerRef.current?.playVideo();
-      setPlaying(true);
-    }
-  }
-
   function togglePlay() {
     if (!ready || !playerRef.current) return;
 
@@ -161,6 +166,25 @@ export default function MiniMusicPlayer() {
 
     playerRef.current.playVideo();
     setPlaying(true);
+    setTimeout(syncTitle, 500);
+  }
+
+  function nextTrack() {
+    if (!ready || !playerRef.current) return;
+
+    playerRef.current.nextVideo();
+    playerRef.current.playVideo();
+    setPlaying(true);
+    setTimeout(syncTitle, 650);
+  }
+
+  function previousTrack() {
+    if (!ready || !playerRef.current) return;
+
+    playerRef.current.previousVideo();
+    playerRef.current.playVideo();
+    setPlaying(true);
+    setTimeout(syncTitle, 650);
   }
 
   return (
@@ -195,11 +219,11 @@ export default function MiniMusicPlayer() {
           </div>
 
           <div className="kether-mini-title">
-            <span>{currentTrack.title}</span>
+            <span>{currentTitle}</span>
           </div>
 
           <div className="kether-mini-controls">
-            <button type="button" onClick={() => playTrack(trackIndex - 1, true)} aria-label="上一首">
+            <button type="button" onClick={previousTrack} aria-label="上一首">
               <ChevronLeft size={22} />
             </button>
 
@@ -213,13 +237,13 @@ export default function MiniMusicPlayer() {
               {playing ? <Pause size={22} /> : <Play size={22} />}
             </button>
 
-            <button type="button" onClick={() => playTrack(trackIndex + 1, true)} aria-label="下一首">
+            <button type="button" onClick={nextTrack} aria-label="下一首">
               <ChevronRight size={22} />
             </button>
           </div>
 
           <p className="kether-mini-note">
-            {ready ? "點播放喚醒小希電波喵" : "小希正在連接 YouTube 星軌..."}
+            {ready ? "點播放喚醒小希播放清單喵" : "小希正在連接 YouTube 星軌..."}
           </p>
         </>
       )}
