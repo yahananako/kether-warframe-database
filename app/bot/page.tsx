@@ -86,6 +86,13 @@ export default function BotPage() {
   return (
     <main className="kether-bot-page">
       <section className="kether-bot-hero">
+        <div className="kether-bot-hero-banner">
+          <img
+            src="/home-hero-banner.png"
+            alt="KETHER OF PARADISO Warframe 資料庫首頁版圖"
+          />
+        </div>
+
         <div className="kether-bot-hero-copy">
           <p className="kether-bot-kicker">
             <Bot size={16} />
@@ -124,13 +131,6 @@ export default function BotPage() {
               加入 Discord
             </a>
           </div>
-        </div>
-
-        <div className="kether-bot-hero-banner">
-          <img
-            src="/home-hero-banner.png"
-            alt="KETHER OF PARADISO Warframe 資料庫首頁版圖"
-          />
         </div>
       </section>
 
