@@ -8426,16 +8426,21 @@ a.nav-card {
   margin-top: 0;
   padding: 22px;
   border-radius: 34px;
-  border: 1px solid rgba(255, 255, 255, 0.74);
+  border: 1px solid rgba(255, 255, 255, 0.88);
   background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.76), rgba(239, 246, 255, 0.5)),
-    radial-gradient(circle at 10% 10%, rgba(236, 72, 153, 0.08), transparent 34%),
-    radial-gradient(circle at 90% 0%, rgba(124, 58, 237, 0.1), transparent 34%);
+    linear-gradient(135deg, rgba(255, 255, 255, 0.42), rgba(231, 238, 255, 0.22)),
+    radial-gradient(circle at 10% 0%, rgba(255, 255, 255, 0.62), transparent 32%),
+    radial-gradient(circle at 88% 6%, rgba(192, 216, 255, 0.28), transparent 36%),
+    rgba(255, 255, 255, 0.18);
   box-shadow:
+    0 0 0 1px rgba(226, 232, 240, 0.78),
+    0 0 28px rgba(226, 232, 240, 0.72),
     0 24px 58px rgba(15, 23, 42, 0.12),
-    inset 0 1px 0 rgba(255, 255, 255, 0.86);
-  backdrop-filter: blur(18px) saturate(1.22);
-  -webkit-backdrop-filter: blur(18px) saturate(1.22);
+    inset 0 1px 0 rgba(255, 255, 255, 0.96),
+    inset 0 -1px 0 rgba(148, 163, 184, 0.18);
+  backdrop-filter: blur(22px) saturate(1.35);
+  -webkit-backdrop-filter: blur(22px) saturate(1.35);
+  overflow: hidden;
 }
 
 .home-new-topbar {
@@ -8640,18 +8645,24 @@ a.nav-card {
   }
 }
 .home-new-nav-card {
+  position: relative;
   padding: 22px;
   border-radius: 34px;
-  border: 1px solid rgba(255, 255, 255, 0.74);
+  border: 1px solid rgba(255, 255, 255, 0.88);
   background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.78), rgba(246, 240, 255, 0.58)),
-    radial-gradient(circle at 12% 10%, rgba(236, 72, 153, 0.08), transparent 34%),
-    radial-gradient(circle at 92% 0%, rgba(124, 58, 237, 0.1), transparent 34%);
+    linear-gradient(135deg, rgba(255, 255, 255, 0.38), rgba(231, 238, 255, 0.2)),
+    radial-gradient(circle at 12% 4%, rgba(255, 255, 255, 0.58), transparent 32%),
+    radial-gradient(circle at 92% 0%, rgba(205, 218, 255, 0.28), transparent 36%),
+    rgba(255, 255, 255, 0.16);
   box-shadow:
+    0 0 0 1px rgba(226, 232, 240, 0.78),
+    0 0 28px rgba(226, 232, 240, 0.68),
     0 24px 58px rgba(15, 23, 42, 0.1),
-    inset 0 1px 0 rgba(255, 255, 255, 0.86);
-  backdrop-filter: blur(18px) saturate(1.22);
-  -webkit-backdrop-filter: blur(18px) saturate(1.22);
+    inset 0 1px 0 rgba(255, 255, 255, 0.96),
+    inset 0 -1px 0 rgba(148, 163, 184, 0.18);
+  backdrop-filter: blur(22px) saturate(1.35);
+  -webkit-backdrop-filter: blur(22px) saturate(1.35);
+  overflow: hidden;
 }
 
 .home-new-nav-heading {
@@ -8688,11 +8699,15 @@ a.nav-card {
   text-decoration: none;
   color: #263445;
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(248, 244, 255, 0.78));
-  border: 1px solid rgba(255, 255, 255, 0.82);
+    linear-gradient(135deg, rgba(255, 255, 255, 0.48), rgba(241, 245, 255, 0.22)),
+    rgba(255, 255, 255, 0.22);
+  border: 1px solid rgba(255, 255, 255, 0.72);
   box-shadow:
-    0 16px 30px rgba(15, 23, 42, 0.09),
-    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    0 0 0 1px rgba(226, 232, 240, 0.42),
+    0 16px 30px rgba(15, 23, 42, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(16px) saturate(1.22);
+  -webkit-backdrop-filter: blur(16px) saturate(1.22);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -8702,16 +8717,21 @@ a.nav-card {
   transition:
     transform 160ms ease,
     box-shadow 160ms ease,
-    background 160ms ease;
+    background 160ms ease,
+    border-color 160ms ease;
 }
 
 .home-new-nav-item:hover {
   transform: translateY(-3px);
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(245, 232, 255, 0.86));
+    linear-gradient(135deg, rgba(255, 255, 255, 0.68), rgba(239, 246, 255, 0.34)),
+    rgba(255, 255, 255, 0.28);
+  border-color: rgba(255, 255, 255, 0.94);
   box-shadow:
-    0 22px 42px rgba(124, 58, 237, 0.14),
-    inset 0 1px 0 rgba(255, 255, 255, 0.92);
+    0 0 0 1px rgba(241, 245, 249, 0.9),
+    0 0 24px rgba(226, 232, 240, 0.82),
+    0 22px 42px rgba(124, 58, 237, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.94);
 }
 
 .home-new-nav-icon {
@@ -8793,5 +8813,44 @@ a.nav-card {
     font-size: 10px;
     line-height: 1.15;
   }
+}
+.home-new-hero-card::before,
+.home-new-nav-card::before {
+  content: "";
+  position: absolute;
+  inset: 10px;
+  border-radius: 26px;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(255,255,255,0.95), transparent 18%) top left / 120px 1px no-repeat,
+    linear-gradient(180deg, rgba(255,255,255,0.95), transparent 18%) top left / 1px 120px no-repeat,
+    linear-gradient(270deg, rgba(255,255,255,0.78), transparent 18%) top right / 120px 1px no-repeat,
+    linear-gradient(180deg, rgba(255,255,255,0.78), transparent 18%) top right / 1px 120px no-repeat,
+    linear-gradient(90deg, rgba(203,213,225,0.72), transparent 18%) bottom left / 120px 1px no-repeat,
+    linear-gradient(0deg, rgba(203,213,225,0.72), transparent 18%) bottom left / 1px 120px no-repeat,
+    linear-gradient(270deg, rgba(203,213,225,0.72), transparent 18%) bottom right / 120px 1px no-repeat,
+    linear-gradient(0deg, rgba(203,213,225,0.72), transparent 18%) bottom right / 1px 120px no-repeat;
+  opacity: 0.9;
+}
+
+.home-new-hero-card::after,
+.home-new-nav-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background:
+    linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.34) 38%, transparent 58%);
+  opacity: 0.42;
+}
+
+.home-new-topbar,
+.home-new-banner,
+.home-new-dynamic-inside,
+.home-new-nav-heading,
+.home-new-nav-grid {
+  position: relative;
+  z-index: 1;
 }
 /* KETHER home-new rebuild end */
