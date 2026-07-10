@@ -8,6 +8,7 @@ import { ChevronLeft, ChevronRight, Music2, Pause, Play, Radio, X } from "lucide
 const playlistId = "PL0DMEhl0daHfpBbeTikS2MDA8darW0iyZ";
 const playlistTitle = "小希 YouTube 播放清單";
 const playerRootId = "kether-mini-youtube-player-global";
+const wantsPlayingStorageKey = "kether-mini-wants-playing";
 
 type YouTubePlayer = {
   playVideo: () => void;
@@ -51,6 +52,7 @@ declare global {
     };
     onYouTubeIframeAPIReady?: () => void;
     __ketherMiniMusicPlayer?: YouTubePlayer | null;
+    __ketherMiniWantsPlaying?: boolean;
   }
 }
 
@@ -106,12 +108,26 @@ export default function MiniMusicPlayer() {
   const pathname = usePathname();
   const playerRef = useRef<YouTubePlayer | null>(null);
   const wantsPlayingRef = useRef(false);
+  const resumeAfterReadyRef = useRef(false);
+
   const [mounted, setMounted] = useState(false);
   const [ready, setReady] = useState(false);
   const [playing, setPlaying] = useState(false);
   const [collapsed, setCollapsed] = useState(true);
   const [currentTitle, setCurrentTitle] = useState(playlistTitle);
   const [activated, setActivated] = useState(false);
+  const [resumeNeeded, setResumeNeeded] = useState(false);
+
+  function rememberWantsPlaying(value: boolean) {
+    wantsPlayingRef.current = value;
+    window.__ketherMiniWantsPlaying = value;
+
+    try {
+      window.localStorage.setItem(wantsPlayingStorageKey, value ? "1" : "0");
+    } catch {
+      // localStorage may be unavailable in some private browser modes.
+    }
+  }
 
   function syncTitle() {
     const title = playerRef.current?.getVideoData?.().title;
@@ -121,32 +137,53 @@ export default function MiniMusicPlayer() {
     }
   }
 
-  function syncPlayingState() {
-    const state = playerRef.current?.getPlayerState?.();
-
-    if (state === window.YT?.PlayerState?.PLAYING) {
-      setPlaying(true);
-    }
-
-    if (state === window.YT?.PlayerState?.PAUSED || state === window.YT?.PlayerState?.CUED) {
-      setPlaying(false);
-    }
+  function isPlayerActuallyPlaying() {
+    return playerRef.current?.getPlayerState?.() === window.YT?.PlayerState?.PLAYING;
   }
 
-  function resumeIfUserWanted() {
-    if (!ready || !activated || !wantsPlayingRef.current || !playerRef.current) return;
-
+  function checkIfResumePromptIsNeeded() {
     window.setTimeout(() => {
       if (!wantsPlayingRef.current || !playerRef.current) return;
 
-      playerRef.current.playVideo();
-      setPlaying(true);
-      syncTitle();
-    }, 650);
+      if (!isPlayerActuallyPlaying()) {
+        setPlaying(false);
+        setResumeNeeded(true);
+      }
+    }, 900);
+  }
+
+  function resumePlayback() {
+    setActivated(true);
+    setCollapsed(false);
+    rememberWantsPlaying(true);
+    setResumeNeeded(false);
+
+    if (!ready || !playerRef.current) {
+      resumeAfterReadyRef.current = true;
+      return;
+    }
+
+    playerRef.current.playVideo();
+    setPlaying(true);
+    setTimeout(syncTitle, 500);
+    checkIfResumePromptIsNeeded();
   }
 
   useEffect(() => {
     setMounted(true);
+
+    try {
+      const storedWantsPlaying = window.localStorage.getItem(wantsPlayingStorageKey) === "1";
+
+      if (storedWantsPlaying) {
+        wantsPlayingRef.current = true;
+        window.__ketherMiniWantsPlaying = true;
+        setActivated(true);
+        setResumeNeeded(true);
+      }
+    } catch {
+      // localStorage may be unavailable in some private browser modes.
+    }
   }, []);
 
   useEffect(() => {
@@ -161,7 +198,12 @@ export default function MiniMusicPlayer() {
         playerRef.current = window.__ketherMiniMusicPlayer;
         setReady(true);
         syncTitle();
-        syncPlayingState();
+
+        if (resumeAfterReadyRef.current) {
+          resumeAfterReadyRef.current = false;
+          resumePlayback();
+        }
+
         return;
       }
 
@@ -196,15 +238,26 @@ export default function MiniMusicPlayer() {
             playerRef.current = player;
             setReady(true);
             setTimeout(syncTitle, 400);
+
+            if (resumeAfterReadyRef.current) {
+              resumeAfterReadyRef.current = false;
+              window.setTimeout(resumePlayback, 150);
+            }
           },
           onStateChange: (event) => {
             if (event.data === window.YT?.PlayerState?.PLAYING) {
               setPlaying(true);
+              setResumeNeeded(false);
               setTimeout(syncTitle, 350);
             }
 
             if (event.data === window.YT?.PlayerState?.PAUSED) {
               setPlaying(false);
+
+              if (wantsPlayingRef.current) {
+                setResumeNeeded(true);
+              }
+
               setTimeout(syncTitle, 350);
             }
 
@@ -214,9 +267,9 @@ export default function MiniMusicPlayer() {
             }
 
             if (event.data === window.YT?.PlayerState?.ENDED) {
+              rememberWantsPlaying(true);
               player.nextVideo();
               player.playVideo();
-              wantsPlayingRef.current = true;
               setTimeout(syncTitle, 650);
             }
           },
@@ -233,43 +286,52 @@ export default function MiniMusicPlayer() {
   }, [mounted, activated]);
 
   useEffect(() => {
-    resumeIfUserWanted();
-  }, [pathname]);
+    if (!activated || !wantsPlayingRef.current || !ready) return;
+
+    checkIfResumePromptIsNeeded();
+  }, [pathname, activated, ready]);
 
   function togglePlay() {
     if (!ready || !playerRef.current) return;
 
     if (playing) {
-      wantsPlayingRef.current = false;
+      rememberWantsPlaying(false);
+      setResumeNeeded(false);
       playerRef.current.pauseVideo();
       setPlaying(false);
       return;
     }
 
-    wantsPlayingRef.current = true;
+    rememberWantsPlaying(true);
+    setResumeNeeded(false);
     playerRef.current.playVideo();
     setPlaying(true);
     setTimeout(syncTitle, 500);
+    checkIfResumePromptIsNeeded();
   }
 
   function nextTrack() {
     if (!ready || !playerRef.current) return;
 
-    wantsPlayingRef.current = true;
+    rememberWantsPlaying(true);
+    setResumeNeeded(false);
     playerRef.current.nextVideo();
     playerRef.current.playVideo();
     setPlaying(true);
     setTimeout(syncTitle, 650);
+    checkIfResumePromptIsNeeded();
   }
 
   function previousTrack() {
     if (!ready || !playerRef.current) return;
 
-    wantsPlayingRef.current = true;
+    rememberWantsPlaying(true);
+    setResumeNeeded(false);
     playerRef.current.previousVideo();
     playerRef.current.playVideo();
     setPlaying(true);
     setTimeout(syncTitle, 650);
+    checkIfResumePromptIsNeeded();
   }
 
   if (!mounted) return null;
@@ -277,17 +339,30 @@ export default function MiniMusicPlayer() {
   return createPortal(
     <aside className={`kether-mini-player ${collapsed ? "is-collapsed" : ""}`}>
       {collapsed ? (
-        <button
-          type="button"
-          className="kether-mini-bubble"
-          onClick={() => {
-            setActivated(true);
-            setCollapsed(false);
-          }}
-          aria-label="展開小希迷你播放器"
-        >
-          <Radio size={18} />
-        </button>
+        <div className="kether-mini-collapsed-row">
+          {resumeNeeded ? (
+            <button
+              type="button"
+              className="kether-mini-resume-toast"
+              onClick={resumePlayback}
+              aria-label="一鍵續播小希電台"
+            >
+              音樂暫停了｜一鍵續播
+            </button>
+          ) : null}
+
+          <button
+            type="button"
+            className="kether-mini-bubble"
+            onClick={() => {
+              setActivated(true);
+              setCollapsed(false);
+            }}
+            aria-label="展開小希迷你播放器"
+          >
+            <Radio size={18} />
+          </button>
+        </div>
       ) : (
         <>
           <div className="kether-mini-head">
@@ -329,6 +404,16 @@ export default function MiniMusicPlayer() {
               <ChevronRight size={19} />
             </button>
           </div>
+
+          {resumeNeeded ? (
+            <button
+              type="button"
+              className="kether-mini-resume-prompt"
+              onClick={resumePlayback}
+            >
+              音樂被瀏覽器暫停了，點這裡續播
+            </button>
+          ) : null}
 
           <p className="kether-mini-note">
             {ready ? "點播放喚醒小希清單喵" : "連接 YouTube 星軌中..."}

@@ -7552,3 +7552,56 @@ a.nav-card {
   }
 }
 /* KETHER dynamic info carousel end */
+
+/* KETHER mini player resume prompt start */
+.kether-mini-collapsed-row {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.kether-mini-resume-toast,
+.kether-mini-resume-prompt {
+  border: 0;
+  cursor: pointer;
+  font-weight: 900;
+  color: #ffffff;
+  background: linear-gradient(135deg, #7c3aed, #ec4899);
+  box-shadow:
+    0 14px 28px rgba(124, 58, 237, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.28);
+}
+
+.kether-mini-resume-toast {
+  height: 40px;
+  padding: 0 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.kether-mini-resume-prompt {
+  width: 100%;
+  margin-top: 8px;
+  padding: 8px 10px;
+  border-radius: 14px;
+  font-size: 11px;
+  line-height: 1.35;
+}
+
+@media (max-width: 640px) {
+  .kether-mini-collapsed-row {
+    gap: 7px;
+  }
+
+  .kether-mini-resume-toast {
+    height: 36px;
+    padding: 0 10px;
+    font-size: 11px;
+  }
+
+  .kether-mini-resume-prompt {
+    font-size: 10px;
+  }
+}
+/* KETHER mini player resume prompt end */
