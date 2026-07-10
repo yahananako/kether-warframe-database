@@ -226,7 +226,11 @@ export default async function HomePage() {
         </section>
 
         <HomeAuthMini />
-        <HomePersonalProgress />
+        <HomePersonalProgress
+          totalRows={totalRows}
+          fallbackOwned={totalOwned}
+          fallbackCompletion={totalCompletion}
+        />
         <OfficialNewsBoard />
 
         <footer className="rounded-[28px] border border-white/70 bg-white/70 p-5 text-center text-sm font-black text-slate-500 shadow-xl shadow-violet-200/20 backdrop-blur">
