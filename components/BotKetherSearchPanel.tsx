@@ -1,9 +1,9 @@
 "use client";
 
 import { FormEvent, useState } from "react";
-import { Loader2, Search, ShieldCheck, Sparkles, Swords } from "lucide-react";
+import { Loader2, PawPrint, Search, ShieldCheck, Sparkles, Swords } from "lucide-react";
 
-type SearchMode = "weapon" | "warframe";
+type SearchMode = "weapon" | "warframe" | "companion";
 
 type SearchResult = {
   name: string;
@@ -54,6 +54,16 @@ const modeConfig: Record<
     quickSearches: ["Rhino", "摸屍", "蝶甲", "Yareli", "Nekros"],
     apiPath: "/api/bot-search/warframe",
     emptyText: "找不到戰甲取得資料喵，試試英文名、中文名或別名。",
+  },
+  companion: {
+    label: "同伴取得",
+    title: "網站版同伴取得查詢",
+    badge: "同伴",
+    icon: PawPrint,
+    placeholder: "輸入同伴名稱，例如：庫娃、笑貓、Helios、Carrier",
+    quickSearches: ["庫娃", "笑貓", "Helios", "Carrier", "庫狛"],
+    apiPath: "/api/bot-search/companion",
+    emptyText: "找不到同伴取得資料喵，試試中文名、英文名或分類關鍵字。",
   },
 };
 
