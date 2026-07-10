@@ -3,7 +3,7 @@
 import { FormEvent, useState } from "react";
 import { Leaf, Loader2, PawPrint, Search, ShieldCheck, Sparkles, Swords } from "lucide-react";
 
-type SearchMode = "weapon" | "warframe" | "companion" | "material";
+type SearchMode = "weapon" | "warframe" | "companion" | "material" | "relic";
 
 type SearchResult = {
   name: string;
@@ -74,6 +74,16 @@ const modeConfig: Record<
     quickSearches: ["碲", "赤毒", "電路", "神經感測器", "奧席金屬"],
     apiPath: "/api/bot-search/material",
     emptyText: "找不到材料取得資料喵，試試中文名、英文名或材料關鍵字。",
+  },
+  relic: {
+    label: "遺物取得",
+    title: "網站版遺物取得查詢",
+    badge: "遺物",
+    icon: Sparkles,
+    placeholder: "輸入遺物或 Prime 物品，例如：Lith、Axi、Requiem、Glaive Prime",
+    quickSearches: ["Lith", "Meso", "Neo", "Axi", "Requiem"],
+    apiPath: "/api/bot-search/relic",
+    emptyText: "找不到遺物取得資料喵，試試核桃世代、精準核桃或 Prime 物品名稱。",
   },
 };
 
