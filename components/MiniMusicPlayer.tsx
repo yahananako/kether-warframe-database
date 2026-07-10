@@ -163,14 +163,6 @@ export default function MiniMusicPlayer() {
     setPlaying(true);
   }
 
-  function nextTrack() {
-    playTrack(trackIndex + 1, true);
-  }
-
-  function previousTrack() {
-    playTrack(trackIndex - 1, true);
-  }
-
   return (
     <aside className={`kether-mini-player ${collapsed ? "is-collapsed" : ""}`}>
       <div id="kether-mini-youtube-player" className="kether-mini-player-core" />
@@ -182,7 +174,7 @@ export default function MiniMusicPlayer() {
           onClick={() => setCollapsed(false)}
           aria-label="展開小希迷你播放器"
         >
-          <Radio size={20} />
+          <Radio size={22} />
         </button>
       ) : (
         <>
@@ -207,8 +199,8 @@ export default function MiniMusicPlayer() {
           </div>
 
           <div className="kether-mini-controls">
-            <button type="button" onClick={previousTrack} aria-label="上一首">
-              <ChevronLeft size={20} />
+            <button type="button" onClick={() => playTrack(trackIndex - 1, true)} aria-label="上一首">
+              <ChevronLeft size={22} />
             </button>
 
             <button
@@ -221,13 +213,13 @@ export default function MiniMusicPlayer() {
               {playing ? <Pause size={22} /> : <Play size={22} />}
             </button>
 
-            <button type="button" onClick={nextTrack} aria-label="下一首">
-              <ChevronRight size={20} />
+            <button type="button" onClick={() => playTrack(trackIndex + 1, true)} aria-label="下一首">
+              <ChevronRight size={22} />
             </button>
           </div>
 
           <p className="kether-mini-note">
-            {ready ? "星聲待命中，點播放喚醒電波喵" : "小希正在連接 YouTube 星軌..."}
+            {ready ? "點播放喚醒小希電波喵" : "小希正在連接 YouTube 星軌..."}
           </p>
         </>
       )}
