@@ -247,7 +247,7 @@ export default async function HomePage() {
   <article className="info-card home-site-info-card">
     <div className="card-title">
       <span>3</span>
-      <span>小希的網站更新資訊</span>
+      <span>KETHER 星圖航標資訊</span>
     </div>
 
     <div className="home-info-date-row">
@@ -258,10 +258,10 @@ export default async function HomePage() {
     <div className="home-info-subblock">
       <h3>網站更新摘要</h3>
       <ul>
-        <li>目前版本為 V2.5.1 + BOT V3.1-E17，網站與 Discord Bot 狀態集中顯示。</li>
-        <li>資料庫狀態整合 Google Sheets、分類分頁、區塊總數、交易價格與 Discord 個人進度。</li>
-        <li>Discord 登入、氏族權限驗證、個人進度與 Bot 指令中樞持續運作中。</li>
-        <li>目前修繕重點：首頁、BOT、總覽與各資料頁上方區塊統一成小希風格。</li>
+        <li>目前版本為 V2.5.1 + BOT V3.5-E17，網站、資料庫與 Discord Bot 狀態集中顯示。</li>
+        <li>資料庫狀態：Google Sheets、分類分頁、區塊總數、交易價格與 Discord 個人進度已合併在此區塊。</li>
+        <li>Discord 登入、氏族權限驗證、個人進度與 BOT V3.5-E17 指令中樞持續運作中。</li>
+        <li>星圖備用區：首頁、BOT、總覽與各資料頁上方區塊統一成小希風格。</li>
       </ul>
     </div>
   </article>
@@ -339,7 +339,7 @@ export default async function HomePage() {
           <article className="info-card summary-card">
             <div className="card-title">
               <ClipboardList size={18} />
-              <span>更新備忘錄</span>
+              <span>星圖備用區</span>
             </div>
 
             <ul className="home-remarks-list">
