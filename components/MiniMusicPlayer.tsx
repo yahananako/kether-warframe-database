@@ -162,7 +162,7 @@ export default function MiniMusicPlayer() {
       playerRef.current?.destroy();
       playerRef.current = null;
     };
-  }, [mounted]);
+  }, [mounted, activated]);
 
   function togglePlay() {
     if (!ready || !playerRef.current) return;
