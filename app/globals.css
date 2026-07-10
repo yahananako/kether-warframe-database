@@ -8984,11 +8984,11 @@ a.nav-card {
     linear-gradient(135deg, rgba(255, 255, 255, 0.18), rgba(241, 245, 249, 0.055)),
     rgba(255, 255, 255, 0.045);
   box-shadow:
-    0 0 0 1px rgba(226, 232, 240, 0.18),
-    0 10px 22px rgba(15, 23, 42, 0.055),
-    inset 0 1px 0 rgba(255, 255, 255, 0.48);
-  backdrop-filter: blur(18px) saturate(1.36);
-  -webkit-backdrop-filter: blur(18px) saturate(1.36);
+    0 0 0 1px rgba(226, 232, 240, 0.2),
+    0 12px 26px rgba(15, 23, 42, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.52);
+  backdrop-filter: blur(20px) saturate(1.42);
+  -webkit-backdrop-filter: blur(20px) saturate(1.42);
   display: flex;
   align-items: center;
   justify-content: space-between;
