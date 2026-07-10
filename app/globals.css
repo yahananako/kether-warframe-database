@@ -7744,38 +7744,126 @@ a.nav-card {
 }
 
 /* KETHER overview page reset start */
-.kether-overview-page-clean {
+.kether-overview-v2 {
   display: grid;
   gap: 18px;
 }
 
-.kether-overview-clean-metrics {
+.kether-overview-hero-shell {
+  padding: 22px;
+  border-radius: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(239, 246, 255, 0.76)),
+    radial-gradient(circle at 8% 10%, rgba(236, 72, 153, 0.13), transparent 32%),
+    radial-gradient(circle at 92% 0%, rgba(124, 58, 237, 0.16), transparent 32%);
+  box-shadow:
+    0 22px 48px rgba(15, 23, 42, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(18px) saturate(1.25);
+  -webkit-backdrop-filter: blur(18px) saturate(1.25);
+}
+
+.kether-overview-kicker {
+  margin: 0 0 12px;
+  color: #7c3aed;
+  font-size: 12px;
+  font-weight: 950;
+  letter-spacing: 0.18em;
+}
+
+.kether-overview-hero-banner {
+  width: 100%;
+  min-height: 240px;
+  border-radius: 28px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.62);
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  box-shadow:
+    0 24px 50px rgba(15, 23, 42, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.72);
+}
+
+.kether-overview-hero-banner img {
+  width: 100%;
+  height: 100%;
+  min-height: 240px;
+  display: block;
+  object-fit: cover;
+  object-position: center;
+}
+
+.kether-overview-hero-copy {
+  margin-top: 18px;
+}
+
+.kether-overview-hero-copy h1 {
+  margin: 0;
+  color: #172033;
+  font-size: clamp(28px, 4vw, 42px);
+  letter-spacing: -0.04em;
+}
+
+.kether-overview-hero-copy p {
+  margin: 12px 0 0;
+  max-width: 860px;
+  color: #475569;
+  font-size: 15px;
+  line-height: 1.85;
+  font-weight: 800;
+}
+
+.kether-overview-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.kether-overview-hero-actions a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0 16px;
+  border-radius: 999px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 900;
+  color: #334155;
+  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.72);
+}
+
+.kether-overview-metric-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 14px;
 }
 
-.kether-overview-clean-metrics article,
-.kether-overview-clean-panel {
+.kether-overview-metric-grid article,
+.kether-overview-chart-card,
+.kether-overview-error {
   border: 1px solid rgba(148, 163, 184, 0.22);
   background: rgba(255, 255, 255, 0.82);
   box-shadow: 0 14px 34px rgba(15, 23, 42, 0.08);
   backdrop-filter: blur(14px);
 }
 
-.kether-overview-clean-metrics article {
+.kether-overview-metric-grid article {
   padding: 18px;
   border-radius: 22px;
 }
 
-.kether-overview-clean-metrics span {
+.kether-overview-metric-grid span {
   display: block;
   color: #64748b;
   font-size: 13px;
   font-weight: 900;
 }
 
-.kether-overview-clean-metrics strong {
+.kether-overview-metric-grid strong {
   display: block;
   margin-top: 8px;
   color: #0f172a;
@@ -7784,7 +7872,7 @@ a.nav-card {
   font-weight: 950;
 }
 
-.kether-overview-clean-metrics small {
+.kether-overview-metric-grid small {
   display: block;
   margin-top: 7px;
   color: #64748b;
@@ -7793,12 +7881,22 @@ a.nav-card {
   font-weight: 800;
 }
 
-.kether-overview-clean-panel {
+.kether-overview-chart-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 16px;
+}
+
+.kether-overview-chart-card {
   padding: 20px;
   border-radius: 26px;
 }
 
-.kether-overview-clean-head {
+.kether-overview-wide-card {
+  grid-column: 1 / -1;
+}
+
+.kether-overview-chart-head {
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
@@ -7808,7 +7906,7 @@ a.nav-card {
   border-bottom: 1px solid rgba(148, 163, 184, 0.18);
 }
 
-.kether-overview-clean-head p {
+.kether-overview-chart-head p {
   margin: 0 0 6px;
   color: #7c3aed;
   font-size: 11px;
@@ -7816,14 +7914,14 @@ a.nav-card {
   letter-spacing: 0.18em;
 }
 
-.kether-overview-clean-head h2 {
+.kether-overview-chart-head h2 {
   margin: 0;
   color: #0f172a;
   font-size: clamp(22px, 3vw, 30px);
   font-weight: 950;
 }
 
-.kether-overview-clean-head > span {
+.kether-overview-chart-head > span {
   flex: 0 0 auto;
   padding: 8px 12px;
   border-radius: 999px;
@@ -7833,64 +7931,148 @@ a.nav-card {
   font-weight: 950;
 }
 
-.kether-overview-clean-sections {
+.kether-overview-bar-list,
+.kether-overview-progress-list,
+.kether-overview-value-chart {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 12px;
 }
 
-.kether-overview-clean-sections div {
-  padding: 14px;
+.kether-overview-bar-item,
+.kether-overview-progress-item,
+.kether-overview-value-item {
+  padding: 12px 14px;
   border-radius: 18px;
   border: 1px solid rgba(148, 163, 184, 0.18);
   background: rgba(248, 250, 252, 0.76);
 }
 
-.kether-overview-clean-sections b {
-  display: block;
+.kether-overview-bar-top,
+.kether-overview-progress-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.kether-overview-bar-top b,
+.kether-overview-progress-top b,
+.kether-overview-value-meta b {
   color: #0f172a;
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 950;
 }
 
-.kether-overview-clean-sections span {
-  display: block;
-  margin-top: 6px;
+.kether-overview-bar-top span,
+.kether-overview-progress-top span,
+.kether-overview-value-item span {
   color: #7c3aed;
   font-size: 13px;
   font-weight: 950;
 }
 
-.kether-overview-clean-sections small {
+.kether-overview-bar-track,
+.kether-overview-progress-track,
+.kether-overview-value-bar {
+  overflow: hidden;
+  height: 12px;
+  border-radius: 999px;
+  background: rgba(226, 232, 240, 0.9);
+}
+
+.kether-overview-bar-track i,
+.kether-overview-progress-track i,
+.kether-overview-value-bar i {
   display: block;
-  margin-top: 4px;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #7c3aed, #ec4899);
+}
+
+.kether-overview-bar-item small,
+.kether-overview-progress-item small,
+.kether-overview-value-meta small {
+  display: block;
+  margin-top: 8px;
   color: #64748b;
   font-size: 12px;
   line-height: 1.5;
   font-weight: 800;
 }
 
-@media (max-width: 1000px) {
-  .kether-overview-clean-metrics,
-  .kether-overview-clean-sections {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
+.kether-overview-value-item {
+  display: grid;
+  grid-template-columns: minmax(0, 220px) minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 14px;
 }
 
-@media (max-width: 620px) {
-  .kether-overview-clean-metrics,
-  .kether-overview-clean-sections {
+.kether-overview-value-meta small {
+  margin-top: 4px;
+}
+
+.kether-overview-empty {
+  margin: 0;
+  color: #64748b;
+  font-size: 14px;
+  font-weight: 900;
+}
+
+.kether-overview-error {
+  padding: 18px;
+  border-radius: 22px;
+  border-color: rgba(248, 113, 113, 0.28);
+  background: rgba(254, 242, 242, 0.88);
+  color: #991b1b;
+}
+
+.kether-overview-error h2 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 950;
+}
+
+.kether-overview-error p {
+  margin: 10px 0 0;
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 1.7;
+}
+
+@media (max-width: 1100px) {
+  .kether-overview-metric-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .kether-overview-chart-grid {
     grid-template-columns: 1fr;
   }
 
-  .kether-overview-clean-panel {
+  .kether-overview-value-item {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .kether-overview-hero-shell,
+  .kether-overview-chart-card {
     padding: 16px;
-    border-radius: 22px;
+    border-radius: 24px;
   }
 
-  .kether-overview-clean-head {
-    align-items: flex-start;
+  .kether-overview-hero-banner,
+  .kether-overview-hero-banner img {
+    min-height: 170px;
+  }
+
+  .kether-overview-metric-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .kether-overview-chart-head {
     flex-direction: column;
+    align-items: flex-start;
   }
 }
 /* KETHER overview page reset end */

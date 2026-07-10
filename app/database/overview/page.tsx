@@ -1,6 +1,5 @@
 import Link from "next/link";
 import {
-  ArrowLeft,
   Crosshair,
   Dog,
   Feather,
@@ -51,36 +50,12 @@ export default async function OverviewPage() {
           })}
         </nav>
 
-        <section className="rounded-[34px] border border-white/70 bg-white/80 p-5 shadow-2xl shadow-violet-200/30 backdrop-blur sm:p-8">
-          <Link
-            href="/"
-            className="mb-5 inline-flex items-center gap-2 rounded-full bg-slate-950 px-4 py-2 text-sm font-black text-white"
-          >
-            <ArrowLeft size={16} />
-            返回首頁
-          </Link>
-
-          <p className="text-xs font-black tracking-[0.28em] text-violet-600">
-            KETHER OF PARADISO
-          </p>
-
-          <h1 className="mt-3 text-4xl font-black tracking-tight text-slate-950 sm:text-6xl">
-            {config.title}
-          </h1>
-
-          <p className="mt-3 max-w-2xl text-base font-bold leading-8 text-slate-600">
-            {config.subtitle}
-          </p>
-        </section>
-
-        {error ? (
-          <section className="rounded-[28px] border border-red-200 bg-red-50 p-6 text-red-700">
-            <h2 className="text-xl font-black">讀取資料時發生問題</h2>
-            <p className="mt-2 font-bold">{error}</p>
-          </section>
-        ) : (
-          <DatabaseOverviewPage rows={rows} />
-        )}
+        <DatabaseOverviewPage
+          rows={rows}
+          title={config.title}
+          subtitle={config.subtitle}
+          error={error}
+        />
       </div>
     </main>
   );
