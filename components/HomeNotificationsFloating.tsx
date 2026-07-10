@@ -6,24 +6,29 @@ import { Bell, X, Sparkles, ExternalLink } from "lucide-react";
 
 const notices = [
   {
-    version: "v2.2.0",
-    title: "Discord 個人進度啟用",
-    content: "首頁已接上 Discord 個人已購買與個人完成度，未登入時會退回表格統計。"
+    version: "修繕",
+    title: "鈴鐺公告面板調整中",
+    content: "小希正在修復首頁鈴鐺公告列表捲動問題，讓手機版也能順順查看完整更新內容。"
   },
   {
-    version: "v2.2.0",
-    title: "導航區整合分類狀態",
-    content: "分類筆數、區塊數、有價格數與完成度已整合進首頁導航卡片。"
+    version: "LIVE",
+    title: "小希星圖電波局已入場",
+    content: "/live 已建立 Warframe 即時世界狀態頁，支援裂縫、入侵、突擊、執政官獵殺、警報與 Baro 資訊。"
   },
   {
-    version: "v2.2.0",
-    title: "資料庫狀態與備註合併",
-    content: "首頁資料庫狀態與備註已合併，顯示 Google Sheets＋Discord 個人進度。"
+    version: "視覺",
+    title: "銀白科技框與磨砂玻璃完成",
+    content: "電波局已套用銀白科技框與霧面玻璃質感，後續會等待繪師美工圖進場再做整體視覺換裝。"
   },
   {
-    version: "v2.2.0",
-    title: "Discord 登入流程完成",
-    content: "Discord 登入、權限驗證、登出回首頁與個人名片顯示已完成。"
+    version: "守門",
+    title: "登入守門結界整理完成",
+    content: "Next.js 守門檔已由 middleware 遷移為 proxy，首頁維持公開，資料頁與個人頁仍依登入權限控管。"
+  },
+  {
+    version: "資料",
+    title: "KETHER 資料庫持續同步",
+    content: "首頁會讀取 Google Sheets、Discord 個人進度與 Warframe 即時世界狀態，資料會依後續修繕逐步穩定。"
   }
 ];
 

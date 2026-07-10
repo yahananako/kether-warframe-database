@@ -243,7 +243,7 @@ export default async function HomePage() {
   <article className="info-card home-site-info-card">
     <div className="card-title">
       <span>3</span>
-      <span>網站資訊區</span>
+      <span>KETHER 小希資料航標</span>
     </div>
 
     <div className="home-info-date-row">
@@ -252,12 +252,12 @@ export default async function HomePage() {
     </div>
 
     <div className="home-info-subblock">
-      <h3>使用說明</h3>
+      <h3>小希使用指南</h3>
       <ul>
-        <li>首頁資料會自動讀取 Google Sheets。</li>
-        <li>分類頁支援區塊、搜尋、價格與已購買篩選。</li>
-        <li>Discord 登入、權限驗證與個人已購買進度已實裝。</li>
-        <li>手機版與電腦版都會持續優化。</li>
+        <li>首頁資料會自動讀取 Google Sheets，作為 KETHER 資料核心。</li>
+        <li>分類頁支援區塊、搜尋、價格、已購買篩選與個人進度追蹤。</li>
+        <li>Discord 登入、氏族權限驗證與個人已購買進度已實裝。</li>
+        <li>手機版與電腦版會持續修繕，等待繪師美工圖正式入場。</li>
       </ul>
     </div>
   </article>
@@ -265,7 +265,7 @@ export default async function HomePage() {
   <article className="info-card home-warframe-info-card">
     <div className="card-title">
       <span>3</span>
-      <span>Warframe 官方資訊區</span>
+      <span>小希星圖網址情報局</span>
     </div>
 
     <div className="home-official-links">
@@ -284,11 +284,11 @@ export default async function HomePage() {
     </div>
 
     <div className="home-info-subblock">
-      <h3>官方資訊用途</h3>
+      <h3>網址與情報用途</h3>
       <ul>
-        <li>查詢官方更新公告。</li>
-        <li>追蹤版本更新與活動消息。</li>
-        <li>官方新聞摘要區已建立；後續可接 RSS／API 自動更新。</li>
+        <li>查詢 Warframe 官方公告、版本更新與活動情報。</li>
+        <li>快速前往官方網站、新聞、更新紀錄與論壇。</li>
+        <li>小希星圖電波局已建立，後續可串接更多即時情報來源。</li>
       </ul>
 
             <OfficialNewsBoard />
@@ -340,14 +340,14 @@ export default async function HomePage() {
             <article className="info-card notes-card">
               <div className="card-title">
                 <Pencil size={18} />
-                <span>備註</span>
+                <span>備註\n\n・KETHER 目前進入修繕模式：先修既有問題，不新增大型功能、不更新版本號。\n\n・/live 小希星圖電波局已建立，支援 Warframe 即時世界狀態與逾時失聯提示。\n\n・鈴鐺公告面板正在修復手機捲動問題，公告內容會同步顯示最新修繕進度。\n\n・Discord 登入守門結界已整理為 proxy，首頁公開，資料頁與個人頁維持權限驗證。\n\n・繪師美工圖等待入場中，後續會再替首頁與電波局做正式視覺換裝。</span>
               </div>
 
               <div className="home-status-notes">
-                <p>・v2.2.1 已完成 Discord 權限鎖門：首頁公開，其他資料頁需登入驗證。</p>
-                <p>・Discord OAuth、氏族群組檢查與身分組權限驗證已啟用。</p>
-                <p>・未登入使用者會導向登入頁，通過權限後可瀏覽總覽與各分類頁。</p>
-                <p>・導航區已整合分類筆數、區塊數、有價格數與完成度。</p>
+                <p></p>
+                <p></p>
+                <p></p>
+                <p></p>
               </div>
 
               <div className="note-lines" />
