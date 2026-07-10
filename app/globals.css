@@ -6301,3 +6301,149 @@ a.nav-card {
 .live-refresh-link:active {
   transform: translateY(1px);
 }
+
+/* KETHER live colored status tags */
+.live-card,
+.live-signal-chip {
+  position: relative;
+  overflow: hidden;
+  --live-accent: #8a5dd8;
+  --live-accent-soft: rgba(138, 93, 216, 0.15);
+}
+
+.live-card::before,
+.live-signal-chip::after {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 4px;
+  background: var(--live-accent);
+  opacity: 0.82;
+}
+
+.live-status-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 2;
+  padding: 3px 8px;
+  border: 1px solid color-mix(in srgb, var(--live-accent) 42%, transparent);
+  border-radius: 999px;
+  background: var(--live-accent-soft);
+  color: var(--live-accent);
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  line-height: 1.2;
+}
+
+.live-signal-chip::before {
+  content: "SIGNAL";
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 2;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: var(--live-accent-soft);
+  color: var(--live-accent);
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  line-height: 1.2;
+}
+
+.live-signal-void::before {
+  content: "VOID";
+}
+
+.live-signal-war::before {
+  content: "FRONT";
+}
+
+.live-signal-alert::before {
+  content: "ALERT";
+}
+
+.live-signal-baro::before,
+.live-signal-baro-active::before {
+  content: "BARO";
+}
+
+.live-card-day,
+.live-signal-day {
+  --live-accent: #d48a28;
+  --live-accent-soft: rgba(212, 138, 40, 0.16);
+}
+
+.live-card-cold,
+.live-signal-cold {
+  --live-accent: #2f8fd8;
+  --live-accent-soft: rgba(47, 143, 216, 0.15);
+}
+
+.live-card-void,
+.live-signal-void {
+  --live-accent: #8a5dd8;
+  --live-accent-soft: rgba(138, 93, 216, 0.16);
+}
+
+.live-card-dream,
+.live-signal-dream {
+  --live-accent: #d85da8;
+  --live-accent-soft: rgba(216, 93, 168, 0.15);
+}
+
+.live-card-baro,
+.live-signal-baro {
+  --live-accent: #b98a2d;
+  --live-accent-soft: rgba(185, 138, 45, 0.17);
+}
+
+.live-card-baro-active,
+.live-signal-baro-active {
+  --live-accent: #1f9d72;
+  --live-accent-soft: rgba(31, 157, 114, 0.16);
+}
+
+.live-card-danger,
+.live-signal-war {
+  --live-accent: #d84f5f;
+  --live-accent-soft: rgba(216, 79, 95, 0.15);
+}
+
+.live-card-archon {
+  --live-accent: #6f5bd8;
+  --live-accent-soft: rgba(111, 91, 216, 0.16);
+}
+
+.live-card-alert,
+.live-signal-alert {
+  --live-accent: #e46fa9;
+  --live-accent-soft: rgba(228, 111, 169, 0.16);
+}
+
+.live-card .live-card-kicker,
+.live-signal-chip span {
+  color: var(--live-accent);
+}
+
+.live-card h2,
+.live-signal-chip b {
+  padding-right: 48px;
+}
+
+@media (max-width: 520px) {
+  .live-status-badge,
+  .live-signal-chip::before {
+    top: 8px;
+    right: 8px;
+    padding: 2px 7px;
+    font-size: 9px;
+  }
+
+  .live-card h2,
+  .live-signal-chip b {
+    padding-right: 42px;
+  }
+}

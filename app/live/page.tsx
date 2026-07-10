@@ -123,9 +123,13 @@ const cycleMap: Record<string, string> = {
 };
 
 async function getWorldState(): Promise<WorldState | null> {
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 8000);
+
   try {
     const res = await fetch("https://api.warframestat.us/pc", {
       cache: "no-store",
+      signal: controller.signal,
       headers: {
         accept: "application/json",
       },
@@ -135,6 +139,8 @@ async function getWorldState(): Promise<WorldState | null> {
     return res.json();
   } catch {
     return null;
+  } finally {
+    clearTimeout(timeout);
   }
 }
 
