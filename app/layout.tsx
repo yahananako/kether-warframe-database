@@ -1,4 +1,5 @@
 import "./globals.css";
+import MiniMusicPlayer from "../components/MiniMusicPlayer";
 
 export const metadata = {
   title: "KETHER OF PARADISO Warframe Database",
@@ -8,7 +9,8 @@ export const metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="zh-Hant">
-      <body>{children}</body>
+      <body>{children}        <MiniMusicPlayer />
+</body>
     </html>
   );
 }
