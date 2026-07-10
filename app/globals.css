@@ -8914,4 +8914,57 @@ a.nav-card {
     inset 0 1px 0 rgba(255, 255, 255, 0.82) !important;
 }
 /* KETHER home-new glass transparency tuning end */
+/* KETHER home-new navigation glass buttons start */
+.home-new-nav-card {
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.16), rgba(226, 232, 240, 0.06)),
+    radial-gradient(circle at 12% 0%, rgba(255, 255, 255, 0.24), transparent 34%),
+    radial-gradient(circle at 92% 0%, rgba(186, 203, 255, 0.14), transparent 38%),
+    rgba(255, 255, 255, 0.055) !important;
+  border-color: rgba(255, 255, 255, 0.62) !important;
+  backdrop-filter: blur(28px) saturate(1.48) !important;
+  -webkit-backdrop-filter: blur(28px) saturate(1.48) !important;
+}
+
+.home-new-nav-item {
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.18), rgba(241, 245, 249, 0.055)),
+    rgba(255, 255, 255, 0.045) !important;
+  border: 1px solid rgba(255, 255, 255, 0.46) !important;
+  box-shadow:
+    0 0 0 1px rgba(226, 232, 240, 0.2),
+    0 12px 26px rgba(15, 23, 42, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.52),
+    inset 0 -1px 0 rgba(148, 163, 184, 0.08) !important;
+  backdrop-filter: blur(20px) saturate(1.42) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(1.42) !important;
+}
+
+.home-new-nav-item:hover {
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.30), rgba(239, 246, 255, 0.10)),
+    rgba(255, 255, 255, 0.075) !important;
+  border-color: rgba(255, 255, 255, 0.72) !important;
+  box-shadow:
+    0 0 0 1px rgba(241, 245, 249, 0.58),
+    0 0 22px rgba(255, 255, 255, 0.54),
+    0 18px 36px rgba(124, 58, 237, 0.10),
+    inset 0 1px 0 rgba(255, 255, 255, 0.72),
+    inset 0 -1px 0 rgba(148, 163, 184, 0.1) !important;
+}
+
+.home-new-nav-icon {
+  border-radius: 18px;
+  background:
+    radial-gradient(circle at 30% 18%, rgba(255, 255, 255, 0.34), transparent 46%),
+    rgba(255, 255, 255, 0.055);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.34),
+    0 8px 18px rgba(15, 23, 42, 0.055);
+}
+
+.home-new-nav-label {
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.62);
+}
+/* KETHER home-new navigation glass buttons end */
 /* KETHER home-new rebuild end */
