@@ -11,6 +11,7 @@ import {
   ShieldCheck,
   Swords,
 } from "lucide-react";
+import BotWeaponSearchPanel from "../../components/BotWeaponSearchPanel";
 
 const botCommands = [
   {
