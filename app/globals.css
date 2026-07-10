@@ -8402,3 +8402,166 @@ a.nav-card {
   }
 }
 /* KETHER database hero block end */
+
+/* KETHER home-new rebuild start */
+.home-new-page {
+  min-height: 100vh;
+  color: #0f172a;
+  background:
+    radial-gradient(circle at 12% 8%, rgba(236, 72, 153, 0.13), transparent 30%),
+    radial-gradient(circle at 88% 0%, rgba(124, 58, 237, 0.14), transparent 32%),
+    linear-gradient(180deg, #f8f4ff 0%, #eef6ff 100%);
+}
+
+.home-new-shell {
+  width: min(1180px, calc(100% - 28px));
+  margin: 0 auto;
+  padding: 96px 0 48px;
+  display: grid;
+  gap: 22px;
+}
+
+.home-new-extra-actions {
+  position: fixed;
+  top: 18px;
+  right: 18px;
+  z-index: 82;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.74);
+  background: rgba(255, 255, 255, 0.74);
+  box-shadow:
+    0 18px 38px rgba(15, 23, 42, 0.14),
+    inset 0 1px 0 rgba(255, 255, 255, 0.86);
+  backdrop-filter: blur(18px) saturate(1.2);
+  -webkit-backdrop-filter: blur(18px) saturate(1.2);
+}
+
+.home-new-round-action,
+.home-new-discord-action {
+  min-height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 0 13px;
+  border-radius: 999px;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 950;
+  white-space: nowrap;
+}
+
+.home-new-round-action {
+  color: #334155;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  box-shadow: 0 10px 20px rgba(15, 23, 42, 0.08);
+}
+
+.home-new-discord-action {
+  color: #ffffff;
+  background: linear-gradient(135deg, #5865f2, #7c3aed);
+  box-shadow: 0 10px 22px rgba(88, 101, 242, 0.28);
+}
+
+.home-new-hero-card {
+  padding: 22px;
+  border-radius: 34px;
+  border: 1px solid rgba(255, 255, 255, 0.74);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.92), rgba(239, 246, 255, 0.78)),
+    radial-gradient(circle at 10% 10%, rgba(236, 72, 153, 0.12), transparent 34%),
+    radial-gradient(circle at 90% 0%, rgba(124, 58, 237, 0.15), transparent 34%);
+  box-shadow:
+    0 24px 58px rgba(15, 23, 42, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.86);
+  backdrop-filter: blur(18px) saturate(1.22);
+  -webkit-backdrop-filter: blur(18px) saturate(1.22);
+}
+
+.home-new-hero-copy {
+  margin-bottom: 18px;
+}
+
+.home-new-hero-copy p {
+  margin: 0;
+  color: #7c3aed;
+  font-size: 12px;
+  font-weight: 950;
+  letter-spacing: 0.24em;
+}
+
+.home-new-hero-copy h1 {
+  margin: 8px 0 0;
+  color: #172033;
+  font-size: clamp(30px, 5vw, 56px);
+  line-height: 1.05;
+  font-weight: 950;
+  letter-spacing: -0.05em;
+}
+
+.home-new-hero-copy span {
+  display: block;
+  max-width: 820px;
+  margin-top: 12px;
+  color: #475569;
+  font-size: 15px;
+  line-height: 1.8;
+  font-weight: 800;
+}
+
+.home-new-banner {
+  overflow: hidden;
+  border-radius: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.74);
+  background: rgba(255, 255, 255, 0.68);
+  box-shadow:
+    0 22px 46px rgba(15, 23, 42, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.84);
+}
+
+.home-new-banner img {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+@media (max-width: 640px) {
+  .home-new-shell {
+    width: min(100% - 20px, 1180px);
+    padding-top: 92px;
+  }
+
+  .home-new-extra-actions {
+    top: 14px;
+    right: 12px;
+    gap: 7px;
+    padding: 7px;
+  }
+
+  .home-new-round-action,
+  .home-new-discord-action {
+    width: 36px;
+    min-height: 36px;
+    padding: 0;
+  }
+
+  .home-new-round-action span,
+  .home-new-discord-action span {
+    display: none;
+  }
+
+  .home-new-hero-card {
+    padding: 14px;
+    border-radius: 26px;
+  }
+
+  .home-new-banner {
+    border-radius: 22px;
+  }
+}
+/* KETHER home-new rebuild end */
