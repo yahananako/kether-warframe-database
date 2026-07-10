@@ -1,9 +1,9 @@
 "use client";
 
 import { FormEvent, useState } from "react";
-import { Loader2, PawPrint, Search, ShieldCheck, Sparkles, Swords } from "lucide-react";
+import { Leaf, Loader2, PawPrint, Search, ShieldCheck, Sparkles, Swords } from "lucide-react";
 
-type SearchMode = "weapon" | "warframe" | "companion";
+type SearchMode = "weapon" | "warframe" | "companion" | "material";
 
 type SearchResult = {
   name: string;
@@ -64,6 +64,16 @@ const modeConfig: Record<
     quickSearches: ["庫娃", "笑貓", "Helios", "Carrier", "庫狛"],
     apiPath: "/api/bot-search/companion",
     emptyText: "找不到同伴取得資料喵，試試中文名、英文名或分類關鍵字。",
+  },
+  material: {
+    label: "材料取得",
+    title: "網站版材料取得查詢",
+    badge: "材料",
+    icon: Leaf,
+    placeholder: "輸入材料名稱，例如：碲、赤毒、電路、神經感測器",
+    quickSearches: ["碲", "赤毒", "電路", "神經感測器", "奧席金屬"],
+    apiPath: "/api/bot-search/material",
+    emptyText: "找不到材料取得資料喵，試試中文名、英文名或材料關鍵字。",
   },
 };
 
