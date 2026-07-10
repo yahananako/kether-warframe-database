@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
+import { usePathname } from "next/navigation";
 import { ChevronLeft, ChevronRight, Music2, Pause, Play, Radio, X } from "lucide-react";
 
 const playlistId = "PL0DMEhl0daHfpBbeTikS2MDA8darW0iyZ";
@@ -102,7 +103,9 @@ function ensurePlayerRoot() {
 }
 
 export default function MiniMusicPlayer() {
+  const pathname = usePathname();
   const playerRef = useRef<YouTubePlayer | null>(null);
+  const wantsPlayingRef = useRef(false);
   const [mounted, setMounted] = useState(false);
   const [ready, setReady] = useState(false);
   const [playing, setPlaying] = useState(false);
@@ -128,6 +131,18 @@ export default function MiniMusicPlayer() {
     if (state === window.YT?.PlayerState?.PAUSED || state === window.YT?.PlayerState?.CUED) {
       setPlaying(false);
     }
+  }
+
+  function resumeIfUserWanted() {
+    if (!ready || !activated || !wantsPlayingRef.current || !playerRef.current) return;
+
+    window.setTimeout(() => {
+      if (!wantsPlayingRef.current || !playerRef.current) return;
+
+      playerRef.current.playVideo();
+      setPlaying(true);
+      syncTitle();
+    }, 650);
   }
 
   useEffect(() => {
@@ -201,6 +216,7 @@ export default function MiniMusicPlayer() {
             if (event.data === window.YT?.PlayerState?.ENDED) {
               player.nextVideo();
               player.playVideo();
+              wantsPlayingRef.current = true;
               setTimeout(syncTitle, 650);
             }
           },
@@ -216,15 +232,21 @@ export default function MiniMusicPlayer() {
     };
   }, [mounted, activated]);
 
+  useEffect(() => {
+    resumeIfUserWanted();
+  }, [pathname]);
+
   function togglePlay() {
     if (!ready || !playerRef.current) return;
 
     if (playing) {
+      wantsPlayingRef.current = false;
       playerRef.current.pauseVideo();
       setPlaying(false);
       return;
     }
 
+    wantsPlayingRef.current = true;
     playerRef.current.playVideo();
     setPlaying(true);
     setTimeout(syncTitle, 500);
@@ -233,6 +255,7 @@ export default function MiniMusicPlayer() {
   function nextTrack() {
     if (!ready || !playerRef.current) return;
 
+    wantsPlayingRef.current = true;
     playerRef.current.nextVideo();
     playerRef.current.playVideo();
     setPlaying(true);
@@ -242,6 +265,7 @@ export default function MiniMusicPlayer() {
   function previousTrack() {
     if (!ready || !playerRef.current) return;
 
+    wantsPlayingRef.current = true;
     playerRef.current.previousVideo();
     playerRef.current.playVideo();
     setPlaying(true);
