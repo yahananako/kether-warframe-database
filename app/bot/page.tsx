@@ -1,5 +1,6 @@
 import Link from "next/link";
 import {
+import BotWeaponSearchPanel from "../../components/BotWeaponSearchPanel";
   Bot,
   CircleHelp,
   Database,
@@ -149,6 +150,8 @@ export default function BotPage() {
           );
         })}
       </section>
+
+      <BotWeaponSearchPanel />
 
       <section className="kether-bot-panel">
         <div className="kether-bot-section-title">
