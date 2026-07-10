@@ -259,7 +259,7 @@ function InfoCard({
   tone?: string;
 }) {
   return (
-    <section className={`live-card live-card-${tone}`}>
+    <section className={`live-card live-tech-frame live-card-${tone}`}>
       <span className="live-status-badge">{statusLabel(tone)}</span>
       <p className="live-card-kicker">{title}</p>
       <h2>{value}</h2>
@@ -309,7 +309,7 @@ export default async function LivePage() {
 
   return (
     <main className="live-page-shell">
-      <section className="live-hero">
+      <section className="live-hero live-tech-frame">
         <p className="live-eyebrow">KETHER NEKO SIGNAL</p>
         <h1>小希星圖電波局</h1>
         <p>
@@ -333,14 +333,14 @@ export default async function LivePage() {
       </section>
 
       {!data ? (
-        <section className="live-error">
+        <section className="live-error live-tech-frame">
           星圖電波暫時失聯，外部資料源可能回應過慢，請稍後再讓小希重新捕捉訊號喵。
         </section>
       ) : (
         <>
           <section className="live-signal-strip" aria-label="小希星圖雷達摘要">
             {signalCards.map((card) => (
-              <article className={`live-signal-chip live-signal-${card.tone}`} key={card.label}>
+              <article className={`live-signal-chip live-tech-frame live-signal-${card.tone}`} key={card.label}>
                 <span>{card.label}</span>
                 <b>{card.value}</b>
                 <small>{card.hint}</small>
@@ -365,7 +365,7 @@ export default async function LivePage() {
             />
           </section>
 
-          <section className="live-section">
+          <section className="live-section live-tech-frame">
             <div className="live-section-title">
               <h2>虛空裂縫喵眼雷達</h2>
               <span>{activeFissures.length} 筆訊號</span>
@@ -374,7 +374,7 @@ export default async function LivePage() {
             <div className="live-list">
               {activeFissures.length ? (
                 activeFissures.map((item) => (
-                  <article className="live-row" key={item.id ?? `${item.node}-${item.expiry ?? item.eta}`}>
+                  <article className="live-row live-tech-frame" key={item.id ?? `${item.node}-${item.expiry ?? item.eta}`}>
                     <b>
                       {label(item.tier)}｜{zhMission(item.missionType)}
                     </b>
@@ -389,7 +389,7 @@ export default async function LivePage() {
             </div>
           </section>
 
-          <section className="live-section">
+          <section className="live-section live-tech-frame">
             <div className="live-section-title">
               <h2>入侵戰線警報</h2>
               <span>{activeInvasions.length} 筆戰報</span>
@@ -398,7 +398,7 @@ export default async function LivePage() {
             <div className="live-list">
               {activeInvasions.length ? (
                 activeInvasions.map((item) => (
-                  <article className="live-row" key={item.id ?? item.node}>
+                  <article className="live-row live-tech-frame" key={item.id ?? item.node}>
                     <b>{label(item.node)}</b>
                     <span>
                       {zhFaction(item.attackingFaction)} vs {zhFaction(item.defendingFaction)}
@@ -433,7 +433,7 @@ export default async function LivePage() {
             />
           </section>
 
-          <section className="live-section">
+          <section className="live-section live-tech-frame">
             <div className="live-section-title">
               <h2>Tenno 通訊光簡</h2>
               <span>{latestNews.length} 則</span>
@@ -442,7 +442,7 @@ export default async function LivePage() {
             <div className="live-list">
               {latestNews.length ? (
                 latestNews.map((item) => (
-                  <article className="live-row" key={item.id ?? item.message}>
+                  <article className="live-row live-tech-frame" key={item.id ?? item.message}>
                     <b>{label(item.message, "官方新聞")}</b>
                     <span>{etaText(item, "官方通訊")}</span>
                   </article>

@@ -6488,3 +6488,81 @@ a.nav-card {
     transform: translateY(-4px) scale(1.08);
   }
 }
+
+/* KETHER live silver-white tech frames */
+.live-tech-frame {
+  position: relative;
+  isolation: isolate;
+  border: 1px solid rgba(212, 222, 234, 0.92) !important;
+  background:
+    linear-gradient(rgba(198, 210, 224, 0.86), rgba(198, 210, 224, 0.86)) left 12px top 12px / 34px 1px no-repeat,
+    linear-gradient(rgba(198, 210, 224, 0.86), rgba(198, 210, 224, 0.86)) left 12px top 12px / 1px 28px no-repeat,
+    linear-gradient(rgba(198, 210, 224, 0.86), rgba(198, 210, 224, 0.86)) right 12px top 12px / 34px 1px no-repeat,
+    linear-gradient(rgba(198, 210, 224, 0.86), rgba(198, 210, 224, 0.86)) right 12px top 12px / 1px 28px no-repeat,
+    linear-gradient(rgba(198, 210, 224, 0.62), rgba(198, 210, 224, 0.62)) left 12px bottom 12px / 28px 1px no-repeat,
+    linear-gradient(rgba(198, 210, 224, 0.62), rgba(198, 210, 224, 0.62)) left 12px bottom 12px / 1px 22px no-repeat,
+    linear-gradient(rgba(198, 210, 224, 0.62), rgba(198, 210, 224, 0.62)) right 12px bottom 12px / 28px 1px no-repeat,
+    linear-gradient(rgba(198, 210, 224, 0.62), rgba(198, 210, 224, 0.62)) right 12px bottom 12px / 1px 22px no-repeat,
+    radial-gradient(circle at top left, rgba(255, 255, 255, 0.88), transparent 34%),
+    radial-gradient(circle at bottom right, rgba(198, 214, 232, 0.28), transparent 42%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(246, 249, 252, 0.84)) !important;
+  box-shadow:
+    0 16px 34px rgba(50, 64, 84, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.98),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.52),
+    inset 0 -18px 32px rgba(214, 225, 238, 0.18) !important;
+  overflow: hidden;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.live-hero.live-tech-frame {
+  border-radius: 26px;
+}
+
+.live-section.live-tech-frame {
+  border-radius: 22px;
+}
+
+.live-card.live-tech-frame,
+.live-signal-chip.live-tech-frame {
+  border-radius: 18px;
+}
+
+.live-row.live-tech-frame {
+  border-radius: 14px;
+}
+
+.live-tech-frame:hover {
+  border-color: rgba(226, 234, 244, 0.98) !important;
+  box-shadow:
+    0 18px 38px rgba(124, 112, 214, 0.13),
+    inset 0 1px 0 rgba(255, 255, 255, 1),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.66),
+    inset 0 -18px 32px rgba(214, 225, 238, 0.24) !important;
+}
+
+.live-tech-frame .live-card-kicker,
+.live-tech-frame .live-section-title h2,
+.live-tech-frame .live-row b {
+  color: #172033;
+}
+
+.live-tech-frame .live-card-sub,
+.live-tech-frame .live-row span,
+.live-tech-frame .live-empty {
+  color: #5f6b78;
+}
+
+@media (max-width: 520px) {
+  .live-tech-frame {
+    background:
+      linear-gradient(rgba(198, 210, 224, 0.72), rgba(198, 210, 224, 0.72)) left 9px top 9px / 24px 1px no-repeat,
+      linear-gradient(rgba(198, 210, 224, 0.72), rgba(198, 210, 224, 0.72)) left 9px top 9px / 1px 20px no-repeat,
+      linear-gradient(rgba(198, 210, 224, 0.72), rgba(198, 210, 224, 0.72)) right 9px top 9px / 24px 1px no-repeat,
+      linear-gradient(rgba(198, 210, 224, 0.72), rgba(198, 210, 224, 0.72)) right 9px top 9px / 1px 20px no-repeat,
+      radial-gradient(circle at top left, rgba(255, 255, 255, 0.88), transparent 34%),
+      radial-gradient(circle at bottom right, rgba(198, 214, 232, 0.22), transparent 42%),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(246, 249, 252, 0.86)) !important;
+  }
+}

@@ -1,7 +1,7 @@
 export default function LiveLoading() {
   return (
     <main className="live-page-shell">
-      <section className="live-hero live-loading-hero">
+      <section className="live-hero live-tech-frame live-loading-hero">
         <p className="live-eyebrow">KETHER NEKO SIGNAL</p>
         <h1>小希正在捕捉星圖訊號</h1>
         <p>
