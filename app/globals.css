@@ -8513,11 +8513,11 @@ a.nav-card {
 
 .home-new-round-action,
 .home-new-discord-action {
-  min-height: 42px;
+  min-height: 44px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 7px;
+  gap: 8px;
   padding: 0 18px;
   border-radius: 999px;
   text-decoration: none;
@@ -8527,21 +8527,25 @@ a.nav-card {
 }
 
 .home-new-round-action {
+  min-width: 92px;
   color: #263445;
-  background: rgba(255, 255, 255, 0.88);
-  border: 1px solid rgba(255, 255, 255, 0.88);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(246, 240, 255, 0.9));
+  border: 1px solid rgba(255, 255, 255, 0.9);
   box-shadow:
-    0 12px 24px rgba(15, 23, 42, 0.1),
-    inset 0 1px 0 rgba(255, 255, 255, 0.92);
+    0 14px 26px rgba(15, 23, 42, 0.11),
+    inset 0 1px 0 rgba(255, 255, 255, 0.96);
 }
 
 .home-new-discord-action {
+  min-width: 144px;
   color: #ffffff;
-  background: linear-gradient(135deg, #f5a7d7 0%, #d884e8 48%, #9ca7ff 100%);
+  background:
+    linear-gradient(135deg, rgba(246, 174, 218, 0.95) 0%, rgba(214, 137, 232, 0.92) 48%, rgba(158, 168, 255, 0.94) 100%);
   border: 1px solid rgba(255, 255, 255, 0.72);
   box-shadow:
-    0 12px 24px rgba(217, 70, 239, 0.18),
-    inset 0 1px 0 rgba(255, 255, 255, 0.44);
+    0 14px 28px rgba(217, 70, 239, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
 }
 
 .home-new-banner {
@@ -8597,17 +8601,33 @@ a.nav-card {
     padding: 6px;
   }
 
-  .home-new-icon-action,
-  .home-new-round-action,
-  .home-new-discord-action {
+  .home-new-icon-action {
     width: 34px;
     min-height: 34px;
     padding: 0;
   }
 
-  .home-new-round-action span,
-  .home-new-discord-action span {
+  .home-new-round-action {
+    width: 38px;
+    min-width: 38px;
+    min-height: 34px;
+    padding: 0;
+  }
+
+  .home-new-round-action span {
     display: none;
+  }
+
+  .home-new-discord-action {
+    width: auto;
+    min-width: 118px;
+    min-height: 36px;
+    padding: 0 12px;
+    font-size: 13px;
+  }
+
+  .home-new-discord-action span {
+    display: inline;
   }
 
   .home-new-banner {
