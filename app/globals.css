@@ -6744,3 +6744,38 @@ a.nav-card {
     max-height: 64vh !important;
   }
 }
+
+/* KETHER homepage remarks list */
+.home-remarks-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 10px;
+  color: #334155;
+  font-size: 14px;
+  line-height: 1.75;
+  font-weight: 700;
+}
+
+.home-remarks-list li {
+  position: relative;
+  padding-left: 18px;
+}
+
+.home-remarks-list li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #7c3aed;
+  font-weight: 900;
+}
+
+@media (max-width: 640px) {
+  .home-remarks-list {
+    font-size: 13px;
+    line-height: 1.65;
+    gap: 8px;
+  }
+}

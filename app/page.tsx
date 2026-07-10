@@ -298,75 +298,56 @@ export default async function HomePage() {
 
 
         <div className="status-notes-row">
-            <article className="info-card summary-card">
-              <div className="card-title">
-                <ClipboardList size={18} />
-                <span>資料庫狀態</span>
+          <article className="info-card summary-card">
+            <div className="card-title">
+              <ClipboardList size={18} />
+              <span>資料庫狀態</span>
+            </div>
+
+            <div className="summary-table">
+              <div className="summary-row">
+                <span>資料來源</span>
+                <b>Google Sheets + Discord 個人進度</b>
               </div>
 
-              <div className="summary-table">
-                <div className="summary-row">
-                  <span>資料來源</span>
-                  <b>Google Sheets＋Discord 個人進度</b>
-                </div>
-
-                <div className="summary-row">
-                  <span>分頁數</span>
-                  <b>{results.length}</b>
-                </div>
-
-                <div className="summary-row">
-                  <span>區塊總數</span>
-                  <b>{totalSections}</b>
-                </div>
-
-                <div className="summary-row">
-                  <span>價格更新</span>
-                  <b>每日 4:00</b>
-                </div>
-
-                <div className="summary-row">
-                  <span>Discord 個人化</span>
-                  <b>登入／權限／個人進度已啟用</b>
-                </div>
+              <div className="summary-row">
+                <span>分頁數</span>
+                <b>{results.length}</b>
               </div>
 
-              <div className="total-row">
-                <span>網站版本</span>
-                <b>v2.2.1</b>
-              </div>
-            </article>
-
-            <article className="info-card notes-card">
-              <div className="card-title">
-                <Pencil size={18} />
-                <span>備註 ・KETHER 目前進入修繕模式：先修既有問題，不新增大型功能、不更新版本號。
-
-・/live 小希星圖電波局已建立，支援 Warframe 即時世界狀態與逾時失聯提示。
-
-・鈴鐺公告面板正在修復手機捲動問題，公告內容會同步顯示最新修繕進度。
-
-・Discord 登入守門結界已整理為 proxy，首頁公開，資料頁與個人頁維持權限驗證。
-
-・繪師美工圖等待入場中，後續會再替首頁與電波局做正式視覺換裝。</span>
+              <div className="summary-row">
+                <span>區塊總數</span>
+                <b>{totalSections}</b>
               </div>
 
-              <div className="home-status-notes">
-                <p></p>
-                <p></p>
-                <p></p>
-                <p></p>
+              <div className="summary-row">
+                <span>價格更新</span>
+                <b>每日 4:00</b>
               </div>
 
-              <div className="note-lines" />
-              <div className="note-lines" />
+              <div className="summary-row">
+                <span>Discord 個人化</span>
+                <b>登入／權限／個人進度已啟用</b>
+              </div>
+            </div>
+          </article>
 
-              <KetherClanWatermark />
-            </article>
-          </div>
-      
-      
-</section>
+          <article className="info-card summary-card">
+            <div className="card-title">
+              <ClipboardList size={18} />
+              <span>備註</span>
+            </div>
+
+            <ul className="home-remarks-list">
+              <li>KETHER 目前進入修繕模式：先修既有問題，不新增大型功能、不更新版本號。</li>
+              <li>/live 小希星圖電波局已建立，支援 Warframe 即時世界狀態與逾時失聯提示。</li>
+              <li>鈴鐺公告面板正在修復手機捲動問題，公告內容會同步顯示最新修繕進度。</li>
+              <li>Discord 登入守門結界已整理為 proxy，首頁公開，資料頁與個人頁維持權限驗證。</li>
+              <li>繪師美工圖等待入場中，後續會再替首頁與電波局做正式視覺換裝。</li>
+            </ul>
+          </article>
+        </div>
+      </section>
 
       <footer className="home-footer-signature">
         <a
