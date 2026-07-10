@@ -5,7 +5,6 @@ import HomeSearchFloating from "../components/HomeSearchFloating";
 import HomeNotificationsFloating from "../components/HomeNotificationsFloating"; import HomeMenuFloating from "../components/HomeMenuFloating"; import HomeAuthMini from "../components/HomeAuthMini"; import HomePersonalProgress from "../components/HomePersonalProgress"; import KetherClanWatermark from "../components/KetherClanWatermark";
 import OfficialNewsBoard from "../components/OfficialNewsBoard";
 import KetherDynamicInfo from "../components/KetherDynamicInfo";
-import { homepageRemarks } from "../data/siteUpdates";
 const navItems = [
   {
     label: "總覽",
