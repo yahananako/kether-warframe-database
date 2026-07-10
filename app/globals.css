@@ -6836,3 +6836,72 @@ a.nav-card {
   }
 }
 /* KETHER nav icon hover and size fix end */
+
+/* KETHER nav icon anti crop fix start */
+.k-nav3-card {
+  overflow: visible !important;
+  min-height: clamp(220px, 28vw, 280px);
+  display: grid;
+  align-content: start;
+  gap: 12px;
+  padding-top: clamp(18px, 3vw, 28px);
+}
+
+.k-nav3-stage {
+  width: clamp(70px, 10vw, 96px) !important;
+  height: clamp(70px, 10vw, 96px) !important;
+  min-width: clamp(70px, 10vw, 96px);
+  min-height: clamp(70px, 10vw, 96px);
+  margin: 0 auto 8px;
+  display: grid;
+  place-items: center;
+  position: relative;
+  overflow: visible !important;
+  z-index: 2;
+}
+
+.k-nav3-img {
+  position: absolute;
+  inset: 0;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain !important;
+  object-position: center;
+  display: block;
+}
+
+.k-nav3-info {
+  position: relative;
+  z-index: 3;
+  margin-top: 4px;
+}
+
+.k-nav3-img[src*="icon-mod"] {
+  width: 86% !important;
+  height: 86% !important;
+  inset: 7%;
+}
+
+@media (max-width: 640px) {
+  .k-nav3-card {
+    min-height: 210px;
+    gap: 10px;
+    padding-top: 18px;
+  }
+
+  .k-nav3-stage {
+    width: 76px !important;
+    height: 76px !important;
+    min-width: 76px;
+    min-height: 76px;
+  }
+
+  .k-nav3-img[src*="icon-mod"] {
+    width: 84% !important;
+    height: 84% !important;
+    inset: 8%;
+  }
+}
+/* KETHER nav icon anti crop fix end */
