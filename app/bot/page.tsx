@@ -6,12 +6,16 @@ import {
   ExternalLink,
   Gamepad2,
   KeyRound,
+  MessageCircle,
   Radio,
   Search,
   ShieldCheck,
   Swords,
 } from "lucide-react";
 import BotKetherSearchPanel from "../../components/BotKetherSearchPanel";
+import HomeNotificationsFloating from "../../components/HomeNotificationsFloating";
+import HomeSearchFloating from "../../components/HomeSearchFloating";
+import HomeMenuFloating from "../../components/HomeMenuFloating";
 
 const botCommands = [
   {
@@ -85,6 +89,24 @@ const focusCards = [
 export default function BotPage() {
   return (
     <main className="kether-bot-page">
+      <HomeMenuFloating />
+
+      <div className="kether-bot-top-actions" aria-label="BOT 快捷功能">
+        <HomeSearchFloating />
+        <HomeNotificationsFloating />
+        <Link
+          href="https://discord.gg"
+          target="_blank"
+          rel="noreferrer"
+          className="kether-bot-discord-action"
+          aria-label="Discord 入口"
+        >
+          <MessageCircle size={18} />
+          <span>Discord</span>
+        </Link>
+      </div>
+
+
       <section className="kether-bot-hero">
           <p className="kether-bot-kicker">
             <Bot size={16} />
