@@ -7379,3 +7379,50 @@ a.nav-card {
   }
 }
 /* KETHER compact fixed mini player end */
+
+/* KETHER mini player default collapsed left start */
+.kether-mini-player {
+  left: max(12px, env(safe-area-inset-left)) !important;
+  right: auto !important;
+  bottom: max(12px, env(safe-area-inset-bottom)) !important;
+  top: auto !important;
+}
+
+.kether-mini-player.is-collapsed {
+  left: max(12px, env(safe-area-inset-left)) !important;
+  right: auto !important;
+  bottom: max(12px, env(safe-area-inset-bottom)) !important;
+  top: auto !important;
+  width: auto !important;
+  padding: 0 !important;
+}
+
+.kether-mini-bubble {
+  width: 46px !important;
+  height: 46px !important;
+  border-radius: 17px !important;
+}
+
+@media (max-width: 640px) {
+  .kether-mini-player {
+    left: max(10px, env(safe-area-inset-left)) !important;
+    right: auto !important;
+    bottom: max(10px, env(safe-area-inset-bottom)) !important;
+    width: min(248px, calc(100vw - 20px)) !important;
+  }
+
+  .kether-mini-player.is-collapsed {
+    left: max(10px, env(safe-area-inset-left)) !important;
+    right: auto !important;
+    bottom: max(10px, env(safe-area-inset-bottom)) !important;
+    width: auto !important;
+    padding: 0 !important;
+  }
+
+  .kether-mini-bubble {
+    width: 44px !important;
+    height: 44px !important;
+    border-radius: 16px !important;
+  }
+}
+/* KETHER mini player default collapsed left end */

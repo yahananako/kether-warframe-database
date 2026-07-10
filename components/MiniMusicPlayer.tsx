@@ -82,8 +82,9 @@ export default function MiniMusicPlayer() {
   const [mounted, setMounted] = useState(false);
   const [ready, setReady] = useState(false);
   const [playing, setPlaying] = useState(false);
-  const [collapsed, setCollapsed] = useState(false);
+  const [collapsed, setCollapsed] = useState(true);
   const [currentTitle, setCurrentTitle] = useState(playlistTitle);
+  const [activated, setActivated] = useState(false);
 
   function syncTitle() {
     const title = playerRef.current?.getVideoData?.().title;
@@ -98,7 +99,7 @@ export default function MiniMusicPlayer() {
   }, []);
 
   useEffect(() => {
-    if (!mounted) return;
+    if (!mounted || !activated) return;
 
     let cancelled = false;
 
@@ -205,7 +206,10 @@ export default function MiniMusicPlayer() {
         <button
           type="button"
           className="kether-mini-bubble"
-          onClick={() => setCollapsed(false)}
+          onClick={() => {
+            setActivated(true);
+            setCollapsed(false);
+          }}
           aria-label="展開小希迷你播放器"
         >
           <Radio size={18} />
