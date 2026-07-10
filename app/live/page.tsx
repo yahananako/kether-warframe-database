@@ -152,6 +152,24 @@ function cycleText(cycle?: Cycle) {
   return time ? `${state}｜${time}` : state;
 }
 
+function formatWorldTime(value?: string) {
+  if (!value) return "等待訊號";
+
+  try {
+    return new Intl.DateTimeFormat("zh-TW", {
+      timeZone: "Asia/Taipei",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+      hour12: false,
+    }).format(new Date(value));
+  } catch {
+    return "時間同步中";
+  }
+}
+
 function InfoCard({
   title,
   value,
@@ -213,9 +231,19 @@ export default async function LivePage() {
           小希正在監聽 Warframe 星系脈動：平原循環、虛空裂縫、入侵戰線、突擊任務與 Baro Ki'Teer 的虛空商船。
           資料每 60 秒更新一次，星圖雷達持續閃爍中喵。
         </p>
-        <a className="live-back-link" href="/">
-          ← 回到 KETHER 主殿
-        </a>
+        <div className="live-sync-badge">
+          最後同步：{formatWorldTime(data?.timestamp)}｜刷新節奏：60 秒
+        </div>
+
+        <div className="live-hero-actions">
+          <a className="live-back-link" href="/">
+            ← 回到 KETHER 主殿
+          </a>
+
+          <a className="live-refresh-link" href="/live">
+            重新捕捉訊號
+          </a>
+        </div>
       </section>
 
       {!data ? (

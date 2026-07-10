@@ -6259,3 +6259,45 @@ a.nav-card {
     font-size: 26px;
   }
 }
+
+/* KETHER live sync actions */
+.live-sync-badge {
+  display: inline-flex;
+  width: fit-content;
+  max-width: 100%;
+  margin-top: 14px;
+  padding: 7px 10px;
+  border: 1px solid rgba(138, 93, 216, 0.22);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.72);
+  color: #5f4c88;
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1.35;
+  backdrop-filter: blur(8px);
+}
+
+.live-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.live-refresh-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 38px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  color: #ffffff;
+  font-weight: 900;
+  text-decoration: none;
+  background: linear-gradient(135deg, #8a5dd8, #f09ad7);
+  box-shadow: 0 10px 22px rgba(138, 93, 216, 0.2);
+}
+
+.live-refresh-link:active {
+  transform: translateY(1px);
+}
