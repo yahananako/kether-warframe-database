@@ -6,52 +6,62 @@ type Cycle = {
   expiry?: string;
 };
 
+type TimeLike = {
+  eta?: string;
+  expiry?: string;
+  activation?: string;
+  date?: string;
+  startString?: string;
+  endString?: string;
+  timeLeft?: string;
+  shortString?: string;
+};
+
+type Fissure = TimeLike & {
+  id?: string;
+  node?: string;
+  missionType?: string;
+  enemy?: string;
+  tier?: string;
+  tierNum?: number;
+  expired?: boolean;
+};
+
+type Invasion = {
+  id?: string;
+  node?: string;
+  desc?: string;
+  attackingFaction?: string;
+  defendingFaction?: string;
+  completion?: number;
+  completed?: boolean;
+};
+
+type Sortie = TimeLike & {
+  id?: string;
+  boss?: string;
+  faction?: string;
+};
+
+type NewsItem = TimeLike & {
+  id?: string;
+  message?: string;
+  link?: string;
+};
+
 type WorldState = {
   timestamp?: string;
-  news?: Array<{
-    id?: string;
-    message?: string;
-    link?: string;
-    date?: string;
-    eta?: string;
-  }>;
+  news?: NewsItem[];
   alerts?: Array<unknown>;
-  fissures?: Array<{
-    id?: string;
-    node?: string;
-    missionType?: string;
-    enemy?: string;
-    tier?: string;
-    tierNum?: number;
-    eta?: string;
-    expired?: boolean;
-  }>;
-  invasions?: Array<{
-    id?: string;
-    node?: string;
-    desc?: string;
-    attackingFaction?: string;
-    defendingFaction?: string;
-    completion?: number;
-    completed?: boolean;
-  }>;
-  sorties?: Array<{
-    id?: string;
-    boss?: string;
-    faction?: string;
-    eta?: string;
-  }>;
-  archonHunt?: {
-    boss?: string;
-    faction?: string;
-    eta?: string;
-  };
-  voidTrader?: {
+  fissures?: Fissure[];
+  invasions?: Invasion[];
+  sortie?: Sortie;
+  sorties?: Sortie[];
+  archonHunt?: Sortie;
+  voidTrader?: TimeLike & {
     character?: string;
     location?: string;
     active?: boolean;
-    startString?: string;
-    endString?: string;
   };
   cetusCycle?: Cycle;
   vallisCycle?: Cycle;
@@ -60,7 +70,8 @@ type WorldState = {
   duviriCycle?: Cycle;
 };
 
-export const revalidate = 60;
+export const dynamic = "force-dynamic";
+export const fetchCache = "force-no-store";
 
 const factionMap: Record<string, string> = {
   Grineer: "Grineer / 克隆尼",
@@ -87,12 +98,12 @@ const missionMap: Record<string, string> = {
   Disruption: "中斷",
   Defection: "叛逃",
   Hijack: "劫持",
-  "Assassination": "刺殺",
+  Assassination: "刺殺",
   "Crossfire Exterminate": "交戰殲滅",
   "Void Flood": "虛空洪流",
   "Void Cascade": "虛空級聯",
   "Void Armageddon": "虛空決戰",
-  "Alchemy": "鍊金術",
+  Alchemy: "鍊金術",
   "Mirror Defense": "鏡像防禦",
 };
 
@@ -114,7 +125,10 @@ const cycleMap: Record<string, string> = {
 async function getWorldState(): Promise<WorldState | null> {
   try {
     const res = await fetch("https://api.warframestat.us/pc", {
-      next: { revalidate: 60 },
+      cache: "no-store",
+      headers: {
+        accept: "application/json",
+      },
     });
 
     if (!res.ok) return null;
@@ -145,11 +159,68 @@ function zhCycle(value?: string) {
   return cycleMap[value] ?? value;
 }
 
+function formatTimeLeft(value?: string) {
+  if (!value) return "";
+
+  const end = new Date(value).getTime();
+  if (Number.isNaN(end)) return "";
+
+  const diff = end - Date.now();
+  if (diff <= 0) return "已結束";
+
+  const totalMinutes = Math.ceil(diff / 60000);
+  const days = Math.floor(totalMinutes / 1440);
+  const hours = Math.floor((totalMinutes % 1440) / 60);
+  const minutes = totalMinutes % 60;
+
+  if (days > 0) return `${days}天 ${hours}小時`;
+  if (hours > 0) return `${hours}小時 ${minutes}分`;
+  return `${minutes}分`;
+}
+
+function etaText(item?: TimeLike | null, fallback = "時間同步中") {
+  if (!item) return fallback;
+
+  const direct =
+    item.eta ||
+    item.timeLeft ||
+    item.shortString ||
+    item.endString ||
+    item.startString;
+
+  if (direct && direct.trim()) return direct;
+
+  const fromExpiry = formatTimeLeft(item.expiry);
+  if (fromExpiry) return fromExpiry;
+
+  const fromDate = formatWorldTime(item.date);
+  if (fromDate !== "等待訊號" && fromDate !== "時間同步中") return fromDate;
+
+  return fallback;
+}
+
 function cycleText(cycle?: Cycle) {
   if (!cycle) return "資料同步中";
   const state = zhCycle(cycle.state || cycle.active);
-  const time = cycle.timeLeft || cycle.shortString || "";
+  const time = cycle.timeLeft || cycle.shortString || formatTimeLeft(cycle.expiry);
   return time ? `${state}｜${time}` : state;
+}
+
+function statusLabel(tone?: string) {
+  const labels: Record<string, string> = {
+    day: "晝夜",
+    cold: "寒熱",
+    void: "虛空",
+    dream: "情緒",
+    baro: "商船",
+    "baro-active": "抵達",
+    danger: "突擊",
+    archon: "封印",
+    alert: "警報",
+    default: "訊號",
+  };
+
+  return labels[tone ?? "default"] ?? "訊號";
 }
 
 function formatWorldTime(value?: string) {
@@ -174,13 +245,16 @@ function InfoCard({
   title,
   value,
   sub,
+  tone = "default",
 }: {
   title: string;
   value: string;
   sub?: string;
+  tone?: string;
 }) {
   return (
-    <section className="live-card">
+    <section className={`live-card live-card-${tone}`}>
+      <span className="live-status-badge">{statusLabel(tone)}</span>
       <p className="live-card-kicker">{title}</p>
       <h2>{value}</h2>
       {sub ? <p className="live-card-sub">{sub}</p> : null}
@@ -198,27 +272,32 @@ export default async function LivePage() {
     data?.invasions?.filter((item) => !item.completed).slice(0, 6) ?? [];
 
   const latestNews = data?.news?.slice(0, 5) ?? [];
+  const sortie = data?.sortie ?? data?.sorties?.[0];
 
   const signalCards = [
     {
       label: "裂縫訊號",
       value: `${activeFissures.length} 筆`,
       hint: "虛空裂縫監聽中",
+      tone: "void",
     },
     {
       label: "入侵戰報",
       value: `${activeInvasions.length} 筆`,
       hint: "戰線變動偵測中",
+      tone: "war",
     },
     {
       label: "警報電波",
       value: `${data?.alerts?.length ?? 0} 筆`,
       hint: "特殊警報與活動",
+      tone: "alert",
     },
     {
       label: "Baro 狀態",
       value: data?.voidTrader?.active ? "已抵達" : "未抵達",
       hint: label(data?.voidTrader?.location, "虛空商船追蹤中"),
+      tone: data?.voidTrader?.active ? "baro-active" : "baro",
     },
   ];
 
@@ -229,10 +308,11 @@ export default async function LivePage() {
         <h1>小希星圖電波局</h1>
         <p>
           小希正在監聽 Warframe 星系脈動：平原循環、虛空裂縫、入侵戰線、突擊任務與 Baro Ki'Teer 的虛空商船。
-          資料每 60 秒更新一次，星圖雷達持續閃爍中喵。
+          資料每次進入頁面時重新捕捉，星圖雷達持續閃爍中喵。
         </p>
+
         <div className="live-sync-badge">
-          最後同步：{formatWorldTime(data?.timestamp)}｜刷新節奏：60 秒
+          最後同步：{formatWorldTime(data?.timestamp)}｜刷新節奏：重新進入頁面時更新
         </div>
 
         <div className="live-hero-actions">
@@ -254,7 +334,7 @@ export default async function LivePage() {
         <>
           <section className="live-signal-strip" aria-label="小希星圖雷達摘要">
             {signalCards.map((card) => (
-              <article className="live-signal-chip" key={card.label}>
+              <article className={`live-signal-chip live-signal-${card.tone}`} key={card.label}>
                 <span>{card.label}</span>
                 <b>{card.value}</b>
                 <small>{card.hint}</small>
@@ -263,19 +343,18 @@ export default async function LivePage() {
           </section>
 
           <section className="live-grid live-grid-primary">
-            <InfoCard title="希圖斯晝夜儀" value={cycleText(data.cetusCycle)} />
-            <InfoCard title="奧布寒熱雷達" value={cycleText(data.vallisCycle)} />
-            <InfoCard title="魔胎輪迴觀測" value={cycleText(data.cambionCycle)} />
-            <InfoCard title="Zariman 虛空回聲" value={cycleText(data.zarimanCycle)} />
-            <InfoCard title="Duviri 情緒天氣" value={cycleText(data.duviriCycle)} />
+            <InfoCard title="希圖斯晝夜儀" value={cycleText(data.cetusCycle)} tone="day" />
+            <InfoCard title="奧布寒熱雷達" value={cycleText(data.vallisCycle)} tone="cold" />
+            <InfoCard title="魔胎輪迴觀測" value={cycleText(data.cambionCycle)} tone="void" />
+            <InfoCard title="Zariman 虛空回聲" value={cycleText(data.zarimanCycle)} tone="void" />
+            <InfoCard title="Duviri 情緒天氣" value={cycleText(data.duviriCycle)} tone="dream" />
             <InfoCard
               title="Baro 虛空商人雷達"
               value={data.voidTrader?.active ? "已抵達" : "尚未抵達"}
-              sub={`${label(data.voidTrader?.location, "位置未公布")}｜${label(
-                data.voidTrader?.active
-                  ? data.voidTrader?.endString
-                  : data.voidTrader?.startString,
-                "時間同步中"
+              tone={data.voidTrader?.active ? "baro-active" : "baro"}
+              sub={`${label(data.voidTrader?.location, "位置未公布")}｜${etaText(
+                data.voidTrader,
+                "商船時間追蹤中"
               )}`}
             />
           </section>
@@ -289,9 +368,13 @@ export default async function LivePage() {
             <div className="live-list">
               {activeFissures.length ? (
                 activeFissures.map((item) => (
-                  <article className="live-row" key={item.id ?? `${item.node}-${item.eta}`}>
-                    <b>{label(item.tier)}｜{zhMission(item.missionType)}</b>
-                    <span>{label(item.node)}｜{zhFaction(item.enemy)}｜剩餘 {label(item.eta)}</span>
+                  <article className="live-row" key={item.id ?? `${item.node}-${item.expiry ?? item.eta}`}>
+                    <b>
+                      {label(item.tier)}｜{zhMission(item.missionType)}
+                    </b>
+                    <span>
+                      {label(item.node)}｜{zhFaction(item.enemy)}｜剩餘 {etaText(item)}
+                    </span>
                   </article>
                 ))
               ) : (
@@ -326,23 +409,20 @@ export default async function LivePage() {
           <section className="live-grid">
             <InfoCard
               title="突擊任務占卜盤"
-              value={label(data.sorties?.[0]?.boss, "資料同步中")}
-              sub={`${zhFaction(data.sorties?.[0]?.faction)}｜${label(
-                data.sorties?.[0]?.eta,
-                "時間同步中"
-              )}`}
+              value={label(sortie?.boss, "資料同步中")}
+              tone="danger"
+              sub={`${zhFaction(sortie?.faction)}｜${etaText(sortie)}`}
             />
             <InfoCard
               title="執政官獵殺封印書"
               value={label(data.archonHunt?.boss, "資料同步中")}
-              sub={`${zhFaction(data.archonHunt?.faction)}｜${label(
-                data.archonHunt?.eta,
-                "時間同步中"
-              )}`}
+              tone="archon"
+              sub={`${zhFaction(data.archonHunt?.faction)}｜${etaText(data.archonHunt)}`}
             />
             <InfoCard
               title="警報電波"
               value={`${data.alerts?.length ?? 0} 筆`}
+              tone="alert"
               sub="特殊警報與限時活動訊號"
             />
           </section>
@@ -358,7 +438,7 @@ export default async function LivePage() {
                 latestNews.map((item) => (
                   <article className="live-row" key={item.id ?? item.message}>
                     <b>{label(item.message, "官方新聞")}</b>
-                    <span>{label(item.eta, "時間同步中")}</span>
+                    <span>{etaText(item, "官方通訊")}</span>
                   </article>
                 ))
               ) : (
