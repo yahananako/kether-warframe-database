@@ -49,9 +49,11 @@ export default function HomeNewPage() {
               alt="KETHER OF PARADISO Warframe Database 首頁版圖"
             />
           </div>
-        </section>
 
-        <KetherDynamicInfo />
+          <div className="home-new-dynamic-inside">
+            <KetherDynamicInfo />
+          </div>
+        </section>
       </div>
     </main>
   );
