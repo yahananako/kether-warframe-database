@@ -7427,10 +7427,11 @@ a.nav-card {
 }
 /* KETHER mini player default collapsed left end */
 
-/* KETHER dynamic info banner */
+/* KETHER dynamic info carousel start */
 .kether-dynamic-info {
   margin: clamp(14px, 3vw, 22px) auto 0;
-  display: flex;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
   align-items: center;
   gap: 12px;
   padding: 12px 14px;
@@ -7445,6 +7446,7 @@ a.nav-card {
     inset 0 1px 0 rgba(255, 255, 255, 0.82);
   backdrop-filter: blur(16px) saturate(1.25);
   -webkit-backdrop-filter: blur(16px) saturate(1.25);
+  overflow: hidden;
 }
 
 .kether-dynamic-info-badge {
@@ -7460,32 +7462,93 @@ a.nav-card {
   font-weight: 900;
   letter-spacing: 0.08em;
   box-shadow: 0 10px 22px rgba(124, 58, 237, 0.22);
+  white-space: nowrap;
 }
 
-.kether-dynamic-info p {
+.kether-dynamic-info-window {
+  min-width: 0;
+  overflow: hidden;
+}
+
+.kether-dynamic-info-message {
   margin: 0;
   color: #334155;
   font-size: 14px;
-  font-weight: 800;
+  font-weight: 850;
   line-height: 1.65;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  animation: ketherDynamicInfoIn 0.38s ease both;
+}
+
+.kether-dynamic-info-dots {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.kether-dynamic-info-dots button {
+  width: 7px;
+  height: 7px;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(100, 116, 139, 0.32);
+  cursor: pointer;
+  transition:
+    width 0.2s ease,
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.kether-dynamic-info-dots button.is-active {
+  width: 18px;
+  background: linear-gradient(135deg, #7c3aed, #ec4899);
+  transform: translateY(-1px);
+}
+
+@keyframes ketherDynamicInfoIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+    filter: blur(4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
 }
 
 @media (max-width: 640px) {
   .kether-dynamic-info {
-    align-items: flex-start;
-    flex-direction: column;
+    grid-template-columns: 1fr auto;
     gap: 9px;
     padding: 11px;
     border-radius: 20px;
   }
 
   .kether-dynamic-info-badge {
+    grid-column: 1 / 2;
     font-size: 11px;
     padding: 7px 9px;
   }
 
-  .kether-dynamic-info p {
+  .kether-dynamic-info-window {
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
+
+  .kether-dynamic-info-message {
     font-size: 13px;
     line-height: 1.6;
   }
+
+  .kether-dynamic-info-dots {
+    grid-column: 2 / 3;
+    grid-row: 1;
+  }
 }
+/* KETHER dynamic info carousel end */
