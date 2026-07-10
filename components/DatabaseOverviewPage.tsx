@@ -1,6 +1,16 @@
 import Link from "next/link";
-import { ArrowLeft, Bell, Bot, Radio, Search } from "lucide-react";
+import { ArrowLeft, Bell, Bot, Radio } from "lucide-react";
 import type { SheetRow } from "../lib/sheets";
+
+export type OverviewCategoryStat = {
+  key: string;
+  label: string;
+  total: number;
+  priced: number;
+  owned: number;
+  value: number;
+  error?: string | null;
+};
 
 function priceNumber(value: string): number {
   const number = Number(String(value || "").replace(/[^\d.]/g, ""));
@@ -25,69 +35,25 @@ export default function DatabaseOverviewPage({
   title,
   subtitle,
   error,
+  categoryStats = [],
 }: {
   rows: SheetRow[];
   title: string;
   subtitle: string;
   error?: string | null;
+  categoryStats?: OverviewCategoryStat[];
 }) {
   const total = rows.length;
   const pricedRows = rows.filter((row) => priceNumber(row.price) > 0);
   const ownedRows = rows.filter((row) => isOwned(row.owned));
   const totalValue = pricedRows.reduce((sum, row) => sum + priceNumber(row.price), 0);
-  const averageValue = pricedRows.length ? Math.round(totalValue / pricedRows.length) : 0;
 
-  const sectionStats = Array.from(
-    rows.reduce((map, row) => {
-      const key = row.section || "未分類";
-      const current = map.get(key) ?? {
-        section: key,
-        total: 0,
-        priced: 0,
-        owned: 0,
-        value: 0,
-      };
-
-      current.total += 1;
-      if (priceNumber(row.price) > 0) current.priced += 1;
-      if (isOwned(row.owned)) current.owned += 1;
-      current.value += priceNumber(row.price);
-
-      map.set(key, current);
-      return map;
-    }, new Map<string, { section: string; total: number; priced: number; owned: number; value: number }>())
-  )
-    .map(([, value]) => value)
-    .sort((a, b) => b.total - a.total);
-
-  const topSections = sectionStats.slice(0, 8);
-  const maxSectionCount = topSections[0]?.total ?? 1;
-
-  const topValueRows = [...pricedRows]
-    .sort((a, b) => priceNumber(b.price) - priceNumber(a.price))
-    .slice(0, 8);
-
-  const maxValue = topValueRows.length
-    ? Math.max(...topValueRows.map((row) => priceNumber(row.price)))
-    : 1;
-
-  const completionCharts = [
-    {
-      label: "價格覆蓋率",
-      value: percent(pricedRows.length, total),
-      note: `${formatNumber(pricedRows.length)} / ${formatNumber(total)}`,
-    },
-    {
-      label: "已購買率",
-      value: percent(ownedRows.length, total),
-      note: `${formatNumber(ownedRows.length)} / ${formatNumber(total)}`,
-    },
-    {
-      label: "已估值比例",
-      value: percent(pricedRows.length, total),
-      note: totalValue ? `${formatNumber(totalValue)} 白金` : "待更新",
-    },
-  ];
+  const categoryTotal = categoryStats.reduce((sum, item) => sum + item.total, 0);
+  const categoryPriced = categoryStats.reduce((sum, item) => sum + item.priced, 0);
+  const categoryOwned = categoryStats.reduce((sum, item) => sum + item.owned, 0);
+  const categoryValue = categoryStats.reduce((sum, item) => sum + item.value, 0);
+  const maxCategoryTotal = Math.max(...categoryStats.map((item) => item.total), 1);
+  const maxCategoryValue = Math.max(...categoryStats.map((item) => item.value), 1);
 
   return (
     <section className="kether-overview-v2">
@@ -106,7 +72,7 @@ export default function DatabaseOverviewPage({
           <p>
             {subtitle}
             <br />
-            小希把總覽頁整理成圖表式控制台，讓資料進度、區塊分布與價格觀測更直覺。
+            小希把總覽頁整理成全資料庫圖表控制台，讓各分類資料量、價格完成度與收藏進度更好看懂。
           </p>
 
           <div className="kether-overview-hero-actions">
@@ -142,27 +108,27 @@ export default function DatabaseOverviewPage({
         <>
           <section className="kether-overview-metric-grid">
             <article>
-              <span>資料總數</span>
+              <span>總覽資料</span>
               <strong>{formatNumber(total)}</strong>
-              <small>總覽目前收錄資料</small>
+              <small>總覽分頁目前資料筆數</small>
             </article>
 
             <article>
-              <span>區塊數量</span>
-              <strong>{formatNumber(sectionStats.length)}</strong>
-              <small>依表格區塊分類</small>
+              <span>全分類資料</span>
+              <strong>{formatNumber(categoryTotal)}</strong>
+              <small>戰甲、武器、同伴、曲翼、MOD 合計</small>
             </article>
 
             <article>
-              <span>總估值</span>
-              <strong>{totalValue ? `${formatNumber(totalValue)} 白金` : "待更新"}</strong>
-              <small>平均 {averageValue ? `${formatNumber(averageValue)} 白金` : "待更新"}</small>
+              <span>全分類估值</span>
+              <strong>{categoryValue ? `${formatNumber(categoryValue)} 白金` : "待更新"}</strong>
+              <small>{formatNumber(categoryPriced)} 筆已有價格</small>
             </article>
 
             <article>
-              <span>已購買進度</span>
-              <strong>{percent(ownedRows.length, total)}%</strong>
-              <small>{formatNumber(ownedRows.length)} 筆已標記購買</small>
+              <span>全分類已購買</span>
+              <strong>{percent(categoryOwned, categoryTotal)}%</strong>
+              <small>{formatNumber(categoryOwned)} / {formatNumber(categoryTotal)} 筆</small>
             </article>
           </section>
 
@@ -171,20 +137,20 @@ export default function DatabaseOverviewPage({
               <div className="kether-overview-chart-head">
                 <div>
                   <p>KETHER CHART</p>
-                  <h2>區塊分布圖表</h2>
+                  <h2>各頁資料量統計</h2>
                 </div>
-                <span>SECTION</span>
+                <span>COUNT</span>
               </div>
 
               <div className="kether-overview-bar-list">
-                {topSections.map((section) => {
-                  const width = Math.max(12, Math.round((section.total / maxSectionCount) * 100));
+                {categoryStats.map((item) => {
+                  const width = Math.max(10, Math.round((item.total / maxCategoryTotal) * 100));
 
                   return (
-                    <div key={section.section} className="kether-overview-bar-item">
+                    <div key={item.key} className="kether-overview-bar-item">
                       <div className="kether-overview-bar-top">
-                        <b>{section.section}</b>
-                        <span>{section.total} 筆</span>
+                        <b>{item.label}</b>
+                        <span>{formatNumber(item.total)} 筆</span>
                       </div>
 
                       <div className="kether-overview-bar-track">
@@ -192,7 +158,8 @@ export default function DatabaseOverviewPage({
                       </div>
 
                       <small>
-                        價格 {section.priced}｜已購買 {section.owned}
+                        價格 {formatNumber(item.priced)}｜已購買 {formatNumber(item.owned)}
+                        {item.error ? "｜讀取異常" : ""}
                       </small>
                     </div>
                   );
@@ -204,26 +171,31 @@ export default function DatabaseOverviewPage({
               <div className="kether-overview-chart-head">
                 <div>
                   <p>KETHER CHART</p>
-                  <h2>完成度圖表</h2>
+                  <h2>完成度統計</h2>
                 </div>
                 <span>PROGRESS</span>
               </div>
 
               <div className="kether-overview-progress-list">
-                {completionCharts.map((item) => (
-                  <div key={item.label} className="kether-overview-progress-item">
-                    <div className="kether-overview-progress-top">
-                      <b>{item.label}</b>
-                      <span>{item.value}%</span>
-                    </div>
+                {categoryStats.map((item) => {
+                  const pricedRate = percent(item.priced, item.total);
+                  const ownedRate = percent(item.owned, item.total);
 
-                    <div className="kether-overview-progress-track">
-                      <i style={{ width: `${item.value}%` }} />
-                    </div>
+                  return (
+                    <div key={item.key} className="kether-overview-progress-item">
+                      <div className="kether-overview-progress-top">
+                        <b>{item.label}</b>
+                        <span>價格 {pricedRate}%</span>
+                      </div>
 
-                    <small>{item.note}</small>
-                  </div>
-                ))}
+                      <div className="kether-overview-progress-track">
+                        <i style={{ width: `${pricedRate}%` }} />
+                      </div>
+
+                      <small>已購買 {ownedRate}%</small>
+                    </div>
+                  );
+                })}
               </div>
             </article>
           </section>
@@ -232,42 +204,54 @@ export default function DatabaseOverviewPage({
             <div className="kether-overview-chart-head">
               <div>
                 <p>KETHER CHART</p>
-                <h2>高價資料圖表</h2>
+                <h2>各頁估值統計</h2>
               </div>
-              <span>PRICE</span>
+              <span>PLATINUM</span>
             </div>
 
-            {topValueRows.length > 0 ? (
-              <div className="kether-overview-value-chart">
-                {topValueRows.map((row) => {
-                  const price = priceNumber(row.price);
-                  const width = Math.max(12, Math.round((price / maxValue) * 100));
-                  const name = row.englishName || row.chineseName || "未命名資料";
-                  const sub = row.chineseName || row.section || "未分類";
+            <div className="kether-overview-value-chart">
+              {categoryStats.map((item) => {
+                const width = item.value > 0
+                  ? Math.max(10, Math.round((item.value / maxCategoryValue) * 100))
+                  : 0;
 
-                  return (
-                    <div
-                      key={`${row.section}-${row.englishName}-${row.chineseName}`}
-                      className="kether-overview-value-item"
-                    >
-                      <div className="kether-overview-value-meta">
-                        <b>{name}</b>
-                        <small>{sub}</small>
-                      </div>
-
-                      <div className="kether-overview-value-bar">
-                        <i style={{ width: `${width}%` }} />
-                      </div>
-
-                      <span>{formatNumber(price)} 白金</span>
+                return (
+                  <div key={item.key} className="kether-overview-value-item">
+                    <div className="kether-overview-value-meta">
+                      <b>{item.label}</b>
+                      <small>{formatNumber(item.total)} 筆資料</small>
                     </div>
-                  );
-                })}
-              </div>
-            ) : (
-              <p className="kether-overview-empty">目前還沒有足夠的價格資料可以製作圖表喵。</p>
-            )}
+
+                    <div className="kether-overview-value-bar">
+                      <i style={{ width: `${width}%` }} />
+                    </div>
+
+                    <span>{item.value ? `${formatNumber(item.value)} 白金` : "待更新"}</span>
+                  </div>
+                );
+              })}
+            </div>
           </article>
+
+          <section className="kether-overview-mini-summary">
+            <article>
+              <span>總覽價格完成</span>
+              <b>{percent(pricedRows.length, total)}%</b>
+              <small>{formatNumber(pricedRows.length)} / {formatNumber(total)}</small>
+            </article>
+
+            <article>
+              <span>總覽已購買</span>
+              <b>{percent(ownedRows.length, total)}%</b>
+              <small>{formatNumber(ownedRows.length)} / {formatNumber(total)}</small>
+            </article>
+
+            <article>
+              <span>總覽估值</span>
+              <b>{totalValue ? `${formatNumber(totalValue)} 白金` : "待更新"}</b>
+              <small>只計算總覽分頁</small>
+            </article>
+          </section>
         </>
       )}
     </section>
