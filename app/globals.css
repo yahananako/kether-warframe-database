@@ -8416,25 +8416,77 @@ a.nav-card {
 .home-new-shell {
   width: min(1180px, calc(100% - 28px));
   margin: 0 auto;
-  padding: 92px 0 48px;
+  padding: 18px 0 48px;
   display: grid;
   gap: 18px;
 }
 
-.home-new-extra-actions {
-  position: fixed;
-  top: 18px;
-  right: 18px;
-  z-index: 82;
+.home-new-hero-card {
+  position: relative;
+  margin-top: 0;
+  padding: 22px;
+  border-radius: 34px;
+  border: 1px solid rgba(255, 255, 255, 0.74);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.76), rgba(239, 246, 255, 0.5)),
+    radial-gradient(circle at 10% 10%, rgba(236, 72, 153, 0.08), transparent 34%),
+    radial-gradient(circle at 90% 0%, rgba(124, 58, 237, 0.1), transparent 34%);
+  box-shadow:
+    0 24px 58px rgba(15, 23, 42, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.86);
+  backdrop-filter: blur(18px) saturate(1.22);
+  -webkit-backdrop-filter: blur(18px) saturate(1.22);
+}
+
+.home-new-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 52px;
+  margin-bottom: 14px;
+}
+
+.home-new-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 18px;
+  min-width: 0;
+}
+
+.home-new-menu-button {
+  width: 56px;
+  height: 56px;
+  border: 0;
+  border-radius: 999px;
+  color: #263445;
+  background: rgba(255, 255, 255, 0.82);
+  box-shadow:
+    0 14px 28px rgba(15, 23, 42, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.92);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.home-new-brand span {
+  color: rgba(51, 65, 85, 0.42);
+  font-size: clamp(18px, 3vw, 28px);
+  font-weight: 950;
+  letter-spacing: 0.28em;
+}
+
+.home-new-hero-actions {
   display: inline-flex;
   align-items: center;
   gap: 12px;
   padding: 8px 10px;
   border-radius: 999px;
   border: 1px solid rgba(255, 255, 255, 0.74);
-  background: rgba(255, 255, 255, 0.68);
+  background: rgba(255, 255, 255, 0.58);
   box-shadow:
-    0 18px 38px rgba(15, 23, 42, 0.12),
+    0 16px 34px rgba(15, 23, 42, 0.1),
     inset 0 1px 0 rgba(255, 255, 255, 0.88);
   backdrop-filter: blur(18px) saturate(1.2);
   -webkit-backdrop-filter: blur(18px) saturate(1.2);
@@ -8492,37 +8544,6 @@ a.nav-card {
     inset 0 1px 0 rgba(255, 255, 255, 0.44);
 }
 
-.home-new-hero-card {
-  position: relative;
-  padding: 22px;
-  border-radius: 34px;
-  border: 1px solid rgba(255, 255, 255, 0.74);
-  background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.76), rgba(239, 246, 255, 0.5)),
-    radial-gradient(circle at 10% 10%, rgba(236, 72, 153, 0.08), transparent 34%),
-    radial-gradient(circle at 90% 0%, rgba(124, 58, 237, 0.1), transparent 34%);
-  box-shadow:
-    0 24px 58px rgba(15, 23, 42, 0.12),
-    inset 0 1px 0 rgba(255, 255, 255, 0.86);
-  backdrop-filter: blur(18px) saturate(1.22);
-  -webkit-backdrop-filter: blur(18px) saturate(1.22);
-}
-
-.home-new-topline {
-  display: flex;
-  align-items: center;
-  min-height: 44px;
-  margin-bottom: 14px;
-  padding-left: 70px;
-}
-
-.home-new-topline span {
-  color: rgba(51, 65, 85, 0.42);
-  font-size: clamp(18px, 3vw, 28px);
-  font-weight: 950;
-  letter-spacing: 0.28em;
-}
-
 .home-new-banner {
   overflow: hidden;
   border-radius: 30px;
@@ -8539,47 +8560,54 @@ a.nav-card {
   object-fit: cover;
 }
 
-@media (max-width: 640px) {
+@media (max-width: 760px) {
   .home-new-shell {
     width: min(100% - 20px, 1180px);
-    padding-top: 86px;
+    padding-top: 10px;
     gap: 16px;
   }
 
-  .home-new-extra-actions {
-    top: 14px;
-    right: 12px;
-    gap: 7px;
-    padding: 7px;
+  .home-new-hero-card {
+    padding: 12px;
+    border-radius: 26px;
+  }
+
+  .home-new-topbar {
+    gap: 8px;
+    min-height: 44px;
+    margin-bottom: 12px;
+  }
+
+  .home-new-brand {
+    gap: 8px;
+  }
+
+  .home-new-menu-button {
+    width: 42px;
+    height: 42px;
+  }
+
+  .home-new-brand span {
+    font-size: 16px;
+    letter-spacing: 0.2em;
+  }
+
+  .home-new-hero-actions {
+    gap: 5px;
+    padding: 6px;
   }
 
   .home-new-icon-action,
   .home-new-round-action,
   .home-new-discord-action {
-    width: 36px;
-    min-height: 36px;
+    width: 34px;
+    min-height: 34px;
     padding: 0;
   }
 
   .home-new-round-action span,
   .home-new-discord-action span {
     display: none;
-  }
-
-  .home-new-hero-card {
-    padding: 14px;
-    border-radius: 26px;
-  }
-
-  .home-new-topline {
-    min-height: 38px;
-    margin-bottom: 12px;
-    padding-left: 58px;
-  }
-
-  .home-new-topline span {
-    font-size: 18px;
-    letter-spacing: 0.24em;
   }
 
   .home-new-banner {
