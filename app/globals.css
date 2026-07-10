@@ -6566,3 +6566,97 @@ a.nav-card {
       linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(246, 249, 252, 0.86)) !important;
   }
 }
+
+/* KETHER live frosted glass override */
+.live-page-shell {
+  color: #172033;
+}
+
+.live-tech-frame,
+.live-hero,
+.live-card,
+.live-section,
+.live-row,
+.live-signal-chip,
+.live-error {
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.58), rgba(235, 241, 248, 0.34)),
+    radial-gradient(circle at top left, rgba(255, 255, 255, 0.52), transparent 36%),
+    radial-gradient(circle at bottom right, rgba(154, 178, 210, 0.18), transparent 46%) !important;
+  border-color: rgba(224, 232, 242, 0.72) !important;
+  box-shadow:
+    0 18px 42px rgba(42, 58, 78, 0.10),
+    inset 0 1px 0 rgba(255, 255, 255, 0.82),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.32) !important;
+  backdrop-filter: blur(18px) saturate(145%) !important;
+  -webkit-backdrop-filter: blur(18px) saturate(145%) !important;
+}
+
+.live-hero.live-tech-frame,
+.live-section.live-tech-frame {
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.64), rgba(240, 245, 252, 0.38)),
+    radial-gradient(circle at top right, rgba(240, 154, 215, 0.13), transparent 42%),
+    radial-gradient(circle at bottom left, rgba(138, 93, 216, 0.10), transparent 44%) !important;
+}
+
+.live-card.live-tech-frame,
+.live-signal-chip.live-tech-frame {
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.52), rgba(237, 243, 250, 0.30)),
+    radial-gradient(circle at top left, rgba(255, 255, 255, 0.45), transparent 38%),
+    radial-gradient(circle at bottom right, rgba(138, 93, 216, 0.10), transparent 48%) !important;
+}
+
+.live-row.live-tech-frame {
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.44), rgba(241, 246, 252, 0.26)) !important;
+}
+
+.live-tech-frame::before {
+  opacity: 0.72;
+}
+
+.live-tech-frame::after {
+  border-color: rgba(235, 241, 248, 0.38);
+}
+
+.live-card h2,
+.live-signal-chip b,
+.live-hero h1,
+.live-section-title h2,
+.live-row b {
+  color: rgba(23, 32, 51, 0.96) !important;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.42);
+}
+
+.live-card-sub,
+.live-row span,
+.live-empty,
+.live-source,
+.live-hero p {
+  color: rgba(67, 80, 96, 0.88) !important;
+}
+
+.live-sync-badge {
+  background: rgba(255, 255, 255, 0.42) !important;
+  border-color: rgba(224, 232, 242, 0.68) !important;
+  backdrop-filter: blur(14px) saturate(140%) !important;
+  -webkit-backdrop-filter: blur(14px) saturate(140%) !important;
+}
+
+@media (max-width: 520px) {
+  .live-tech-frame,
+  .live-hero,
+  .live-card,
+  .live-section,
+  .live-row,
+  .live-signal-chip,
+  .live-error {
+    background:
+      linear-gradient(135deg, rgba(255, 255, 255, 0.62), rgba(238, 244, 250, 0.40)),
+      radial-gradient(circle at top left, rgba(255, 255, 255, 0.48), transparent 38%) !important;
+    backdrop-filter: blur(14px) saturate(135%) !important;
+    -webkit-backdrop-filter: blur(14px) saturate(135%) !important;
+  }
+}
