@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import { fetchSheetRows, SHEET_GIDS } from "../../../lib/sheets";
 import DataTable from "../../../components/DataTable";
+import DatabaseOverviewDashboard from "../../../components/DatabaseOverviewDashboard";
 
 const navItems = [
   { label: "總覽", key: "overview", href: "/database/overview", icon: Gem },
@@ -101,7 +102,8 @@ export default async function DatabaseCategoryPage({
         </section>
       )}
 
-      {!error && <DataTable rows={rows} category={category} />}
+      {!error && {category === "overview" && <DatabaseOverviewDashboard rows={rows} />}
+        <DataTable rows={rows} category={category} />}
     </main>
   );
 }
