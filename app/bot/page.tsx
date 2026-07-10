@@ -86,6 +86,10 @@ export default function BotPage() {
   return (
     <main className="kether-bot-page">
       <section className="kether-bot-hero">
+          <p className="kether-bot-kicker">
+            <Bot size={16} />
+            KETHER DISCORD BOT
+          </p>
         <div className="kether-bot-hero-banner">
           <img
             src="/home-hero-banner.png"
@@ -94,10 +98,6 @@ export default function BotPage() {
         </div>
 
         <div className="kether-bot-hero-copy">
-          <p className="kether-bot-kicker">
-            <Bot size={16} />
-            KETHER DISCORD BOT
-          </p>
 
           <h1>小希 Bot 指令中樞</h1>
 
