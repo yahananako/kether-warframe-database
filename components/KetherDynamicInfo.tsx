@@ -17,7 +17,7 @@ export default function KetherDynamicInfo() {
   useEffect(() => {
     const timer = window.setInterval(() => {
       setActiveIndex((current) => (current + 1) % dynamicMessages.length);
-    }, 3000);
+    }, 5000);
 
     return () => window.clearInterval(timer);
   }, []);
