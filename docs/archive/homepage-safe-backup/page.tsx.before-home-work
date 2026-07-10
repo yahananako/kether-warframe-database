@@ -256,7 +256,7 @@ export default async function HomePage() {
     </div>
 
     <div className="home-info-subblock">
-      <h3>星圖航標摘要</h3>
+      <h3>網站更新摘要</h3>
       <ul>
         <li>目前版本為 V2.5.1 + BOT V3.5-E17，網站、資料庫與 Discord Bot 狀態集中顯示。</li>
         <li>資料庫狀態：Google Sheets、分類分頁、區塊總數、交易價格與 Discord 個人進度已合併在此區塊。</li>
