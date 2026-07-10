@@ -1,231 +1,506 @@
 import Link from "next/link";
 import {
   Bot,
-  ChevronLeft,
-  CircleDollarSign,
+  CircleHelp,
   Database,
-  Dog,
-  Gem,
-  MessageCircle,
-  Shield,
+  ExternalLink,
+  Gamepad2,
+  KeyRound,
+  Radio,
+  Search,
+  ShieldCheck,
   Sparkles,
   Swords,
 } from "lucide-react";
 
-const commandGroups = [
+const botCommands = [
   {
-    title: "交易功能",
-    icon: CircleDollarSign,
-    color: "from-amber-300/30 to-yellow-500/10",
-    commands: [
-      {
-        name: "/查價",
-        usage: "/查價 物品:激昂射擊 MOD等級:Rank 0",
-        description: "查 Warframe Market 物品白金價格，支援中文物品名稱與自動補全。",
-      },
-    ],
+    name: "/說明",
+    alias: "/help",
+    status: "指令導航",
+    description: "查看小希 BOT 目前支援的指令與使用方向。",
   },
   {
-    title: "資料查詢",
-    icon: Database,
-    color: "from-pink-300/30 to-fuchsia-500/10",
-    commands: [
-      {
-        name: "/核桃取得",
-        usage: "/核桃取得 名稱:Wisp Prime",
-        description: "查核桃內容、Prime 部件反查、中文關鍵字與稀有度排序。",
-      },
-      {
-        name: "/材料取得",
-        usage: "/材料取得 名稱:赤毒",
-        description: "查材料來源、推薦刷法，支援中文、英文與綽號搜尋。",
-      },
-      {
-        name: "/戰甲取得",
-        usage: "/戰甲取得 名稱:摸屍",
-        description: "查戰甲取得方式、部件來源，支援中文、英文與綽號搜尋。",
-      },
-      {
-        name: "/夥伴取得",
-        usage: "/夥伴取得 名稱:庫娃",
-        description: "查守護、庫娃、庫狛、MOA、獵犬與火衛二寵物取得方式。",
-      },
-      {
-        name: "/武器取得",
-        usage: "/武器取得 類型:全部 系列:全部 名稱:托里德",
-        description: "查主要、次要、近戰、曲翼、亡靈骸甲武器取得方式，可依類型與系列篩選。",
-      },
-    ],
+    name: "/kether",
+    alias: "KETHER 入口",
+    status: "網站導覽",
+    description: "快速取得 KETHER Warframe 資料庫與網站相關入口。",
   },
   {
-    title: "氏族功能",
-    icon: Shield,
-    color: "from-sky-300/30 to-cyan-500/10",
-    commands: [
-      {
-        name: "/戰甲名片",
-        usage: "/戰甲名片",
-        description: "查看成員 Warframe 名片與氏族資料。",
-      },
-      {
-        name: "/官方資料",
-        usage: "/官方資料",
-        description: "官方玩家資料測試功能，目前以可取得資料為準。",
-      },
-      {
-        name: "/說明",
-        usage: "/說明",
-        description: "打開小希 Bot 的完整指令導航。",
-      },
-    ],
+    name: "/武器取得",
+    alias: "Weapon Acquisition",
+    status: "查詢功能",
+    description: "依類型、系列與名稱查詢 Warframe 武器取得方式。",
+  },
+  {
+    name: "/戰甲取得",
+    alias: "Warframe Acquisition",
+    status: "查詢功能",
+    description: "查詢戰甲與 Prime / 一般版本的取得方向。",
+  },
+  {
+    name: "/同伴取得",
+    alias: "Companion Acquisition",
+    status: "查詢功能",
+    description: "整理同伴、寵物與相關取得資訊。",
+  },
+  {
+    name: "/材料取得",
+    alias: "Material Acquisition",
+    status: "查詢功能",
+    description: "查詢常用材料來源與取得提示。",
+  },
+  {
+    name: "/遺物取得",
+    alias: "Relic Acquisition",
+    status: "查詢功能",
+    description: "查詢遺物與相關獎勵資料。",
+  },
+  {
+    name: "/warframe-profile",
+    alias: "戰甲資料",
+    status: "資料查詢",
+    description: "查看指定戰甲的資料摘要與定位。",
   },
 ];
 
-const weaponSteps = [
+const focusCards = [
   {
-    title: "1. 先選類型",
-    text: "主要武器、次要武器、近戰武器、曲翼武器、亡靈骸甲武器，或選全部。",
+    icon: Search,
+    title: "Discord 內快速查詢",
+    text: "不用離開聊天頻道，就能查 Warframe 取得方式、資料與指令說明。",
   },
   {
-    title: "2. 再選系列",
-    text: "P版 / Prime、商店、氏族、集團、赤毒、信條、靈化、活動 / 特殊、任務 / 掉落。",
+    icon: Database,
+    title: "網站資料庫分工",
+    text: "網站負責完整表格、個人進度與分類資料；BOT 負責 Discord 內快速回覆。",
   },
   {
-    title: "3. 最後輸入名稱",
-    text: "名稱欄位支援中英雙語自動補全，例如托里德、兇惡、Glaive Prime。",
+    icon: ShieldCheck,
+    title: "登入與權限分離",
+    text: "Discord 登入、氏族權限與 BOT 指令各自分工，避免功能混在一起。",
   },
 ];
 
 export default function BotPage() {
   return (
-    <main className="min-h-screen bg-[#080812] text-white">
-      <section className="mx-auto flex w-full max-w-6xl flex-col gap-8 px-5 py-8 md:px-8">
-        <div className="flex flex-wrap items-center justify-between gap-3">
-          <Link
-            href="/"
-            className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-sm text-white/80 transition hover:border-pink-300/60 hover:text-white"
-          >
-            <ChevronLeft className="h-4 w-4" />
-            回首頁
-          </Link>
+    <main className="kether-bot-page">
+      <section className="kether-bot-hero">
+        <div className="kether-bot-hero-copy">
+          <p className="kether-bot-kicker">
+            <Bot size={16} />
+            KETHER DISCORD BOT
+          </p>
 
-          <div className="inline-flex items-center gap-2 rounded-full border border-pink-300/30 bg-pink-400/10 px-4 py-2 text-sm text-pink-100">
-            <Sparkles className="h-4 w-4" />
-            KETHER Discord Bot
+          <h1>小希 Bot 指令中樞</h1>
+
+          <p>
+            小希 BOT 是 KETHER Warframe 資料庫的 Discord 查詢助手，負責把常用資料、
+            取得方式與網站入口整理成聊天頻道內可以快速呼叫的指令。
+          </p>
+
+          <div className="kether-bot-actions">
+            <Link href="/" className="kether-bot-primary">
+              返回首頁
+            </Link>
+
+            <Link href="/live" className="kether-bot-secondary">
+              <Radio size={16} />
+              小希星圖電波局
+            </Link>
+
+            <a href="/api/auth/discord/login" className="kether-bot-secondary">
+              <KeyRound size={16} />
+              Discord 登入
+            </a>
+
+            <a
+              href="https://discord.gg/MFhTb8XMZ"
+              target="_blank"
+              rel="noreferrer"
+              className="kether-bot-secondary"
+            >
+              <ExternalLink size={16} />
+              加入 Discord
+            </a>
           </div>
         </div>
 
-        <header className="overflow-hidden rounded-[2rem] border border-white/10 bg-gradient-to-br from-pink-500/20 via-purple-500/10 to-cyan-500/10 p-6 shadow-2xl shadow-pink-950/20 md:p-10">
-          <div className="grid gap-6 md:grid-cols-[1.2fr_0.8fr] md:items-center">
-            <div className="space-y-5">
-              <div className="inline-flex items-center gap-3 rounded-full border border-white/15 bg-black/20 px-4 py-2 text-sm text-white/80">
-                <Bot className="h-4 w-4 text-pink-200" />
-                小希 Bot 指令中心
+        <div className="kether-bot-sigil" aria-hidden="true">
+          <Sparkles size={38} />
+          <span>KETHER</span>
+          <b>BOT ONLINE</b>
+        </div>
+      </section>
+
+      <section className="kether-bot-focus-grid" aria-label="小希 BOT 主要用途">
+        {focusCards.map((card) => {
+          const Icon = card.icon;
+
+          return (
+            <article key={card.title} className="kether-bot-focus-card">
+              <div className="kether-bot-focus-icon">
+                <Icon size={20} />
               </div>
 
-              <div className="space-y-3">
-                <h1 className="text-3xl font-black tracking-tight md:text-5xl">
-                  把 Warframe 資料庫搬進 Discord 喵
-                </h1>
-                <p className="max-w-2xl text-base leading-8 text-white/75 md:text-lg">
-                  小希 Bot 可以查核桃、材料、戰甲、夥伴、武器與市場價格。
-                  網站負責總覽與資料整理，Discord 負責快速查詢，兩邊一起開工像雙持資料刃。
-                </p>
-              </div>
+              <h2>{card.title}</h2>
+              <p>{card.text}</p>
+            </article>
+          );
+        })}
+      </section>
 
-              <div className="flex flex-wrap gap-3">
-                <Link
-                  href="/database/overview"
-                  className="rounded-full bg-white px-5 py-3 text-sm font-bold text-[#111122] transition hover:bg-pink-100"
-                >
-                  查看資料庫總覽
-                </Link>
-                <a
-                  href="https://discord.gg"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-5 py-3 text-sm font-bold text-white transition hover:border-pink-300/60"
-                >
-                  <MessageCircle className="h-4 w-4" />
-                  前往 Discord
-                </a>
-              </div>
-            </div>
-
-            <div className="rounded-[1.5rem] border border-white/10 bg-black/25 p-5">
-              <div className="mb-4 flex items-center gap-3">
-                <div className="grid h-12 w-12 place-items-center rounded-2xl bg-pink-400/20">
-                  <Bot className="h-6 w-6 text-pink-100" />
-                </div>
-                <div>
-                  <p className="text-sm text-white/50">目前功能</p>
-                  <p className="font-bold">資料查詢核心已上線</p>
-                </div>
-              </div>
-
-              <div className="grid gap-3 text-sm text-white/75">
-                <div className="rounded-2xl bg-white/5 p-3">✅ 中文化指令</div>
-                <div className="rounded-2xl bg-white/5 p-3">✅ 中英雙語自動補全</div>
-                <div className="rounded-2xl bg-white/5 p-3">✅ 武器類型與系列篩選</div>
-                <div className="rounded-2xl bg-white/5 p-3">✅ 台灣用語：靈化</div>
-              </div>
-            </div>
+      <section className="kether-bot-panel">
+        <div className="kether-bot-section-title">
+          <Swords size={19} />
+          <div>
+            <h2>Discord 指令清單</h2>
+            <p>實際可用指令以 Discord 伺服器內顯示為準。</p>
           </div>
-        </header>
+        </div>
 
-        <section className="grid gap-4 md:grid-cols-3">
-          {weaponSteps.map((step) => (
-            <article key={step.title} className="rounded-3xl border border-white/10 bg-white/[0.04] p-5">
-              <h2 className="mb-2 font-bold text-pink-100">{step.title}</h2>
-              <p className="text-sm leading-7 text-white/65">{step.text}</p>
+        <div className="kether-bot-command-grid">
+          {botCommands.map((command) => (
+            <article key={command.name} className="kether-bot-command-card">
+              <div className="kether-bot-command-top">
+                <strong>{command.name}</strong>
+                <span>{command.status}</span>
+              </div>
+
+              <p className="kether-bot-alias">{command.alias}</p>
+              <p>{command.description}</p>
             </article>
           ))}
-        </section>
-
-        <section className="grid gap-5">
-          {commandGroups.map((group) => {
-            const Icon = group.icon;
-
-            return (
-              <article
-                key={group.title}
-                className={`rounded-[2rem] border border-white/10 bg-gradient-to-br ${group.color} p-5 md:p-6`}
-              >
-                <div className="mb-5 flex items-center gap-3">
-                  <div className="grid h-11 w-11 place-items-center rounded-2xl bg-white/10">
-                    <Icon className="h-5 w-5 text-pink-100" />
-                  </div>
-                  <h2 className="text-xl font-black">{group.title}</h2>
-                </div>
-
-                <div className="grid gap-3 md:grid-cols-2">
-                  {group.commands.map((command) => (
-                    <div key={command.name} className="rounded-2xl border border-white/10 bg-black/20 p-4">
-                      <div className="mb-2 flex flex-wrap items-center gap-2">
-                        <span className="rounded-full bg-pink-400/20 px-3 py-1 text-sm font-bold text-pink-100">
-                          {command.name}
-                        </span>
-                      </div>
-                      <code className="block rounded-xl bg-black/35 px-3 py-2 text-xs text-cyan-100">
-                        {command.usage}
-                      </code>
-                      <p className="mt-3 text-sm leading-7 text-white/65">{command.description}</p>
-                    </div>
-                  ))}
-                </div>
-              </article>
-            );
-          })}
-        </section>
-
-        <footer className="rounded-3xl border border-white/10 bg-white/[0.04] p-5 text-sm leading-7 text-white/60">
-          <div className="mb-2 flex items-center gap-2 font-bold text-white">
-            <Swords className="h-4 w-4 text-pink-100" />
-            小希提示
-          </div>
-          Discord 指令顯示中文，但內部 value 保留英文名稱，這樣比較穩，不容易因為翻譯改字就壞掉喵。
-        </footer>
+        </div>
       </section>
+
+      <section className="kether-bot-panel kether-bot-note-panel">
+        <div className="kether-bot-section-title">
+          <CircleHelp size={19} />
+          <div>
+            <h2>使用提醒</h2>
+            <p>BOT 與網站功能分工如下。</p>
+          </div>
+        </div>
+
+        <div className="kether-bot-note-list">
+          <p>
+            <b>Discord BOT：</b>
+            適合在群組內快速查詢資料、取得方式與指令說明。
+          </p>
+
+          <p>
+            <b>KETHER 網站：</b>
+            適合查看完整分類、價格欄位、已購買狀態與個人進度。
+          </p>
+
+          <p>
+            <b>Discord 登入：</b>
+            用於網站權限與個人化進度，和 BOT 指令本體分開管理。
+          </p>
+        </div>
+      </section>
+
+      <style>{`
+        .kether-bot-page {
+          width: min(1120px, calc(100% - 28px));
+          margin: 0 auto;
+          padding: clamp(28px, 5vw, 56px) 0 clamp(72px, 8vw, 110px);
+          color: #172033;
+        }
+
+        .kether-bot-hero,
+        .kether-bot-panel,
+        .kether-bot-focus-card {
+          border: 1px solid rgba(255, 255, 255, 0.72);
+          background:
+            linear-gradient(135deg, rgba(255, 255, 255, 0.88), rgba(239, 246, 255, 0.74)),
+            radial-gradient(circle at 12% 12%, rgba(236, 72, 153, 0.14), transparent 34%),
+            radial-gradient(circle at 90% 0%, rgba(124, 58, 237, 0.16), transparent 32%);
+          box-shadow:
+            0 22px 48px rgba(15, 23, 42, 0.12),
+            inset 0 1px 0 rgba(255, 255, 255, 0.82);
+          backdrop-filter: blur(18px) saturate(1.25);
+          -webkit-backdrop-filter: blur(18px) saturate(1.25);
+        }
+
+        .kether-bot-hero {
+          display: grid;
+          grid-template-columns: minmax(0, 1fr) 260px;
+          gap: clamp(18px, 4vw, 34px);
+          align-items: center;
+          padding: clamp(22px, 5vw, 42px);
+          border-radius: 32px;
+          overflow: hidden;
+        }
+
+        .kether-bot-kicker {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          margin: 0 0 12px;
+          padding: 8px 12px;
+          border-radius: 999px;
+          color: #ffffff;
+          background: linear-gradient(135deg, #7c3aed, #ec4899);
+          font-size: 12px;
+          font-weight: 900;
+          letter-spacing: 0.14em;
+        }
+
+        .kether-bot-hero h1 {
+          margin: 0;
+          font-size: clamp(34px, 6vw, 62px);
+          line-height: 1.04;
+          letter-spacing: -0.05em;
+        }
+
+        .kether-bot-hero-copy > p:not(.kether-bot-kicker) {
+          max-width: 760px;
+          margin: 16px 0 0;
+          color: #475569;
+          font-size: clamp(15px, 2vw, 18px);
+          font-weight: 750;
+          line-height: 1.8;
+        }
+
+        .kether-bot-actions {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 10px;
+          margin-top: 24px;
+        }
+
+        .kether-bot-primary,
+        .kether-bot-secondary {
+          min-height: 44px;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          gap: 8px;
+          padding: 0 15px;
+          border-radius: 16px;
+          text-decoration: none;
+          font-size: 14px;
+          font-weight: 900;
+        }
+
+        .kether-bot-primary {
+          color: #ffffff;
+          background: linear-gradient(135deg, #7c3aed, #ec4899);
+          box-shadow: 0 14px 28px rgba(124, 58, 237, 0.22);
+        }
+
+        .kether-bot-secondary {
+          color: #334155;
+          background: rgba(255, 255, 255, 0.72);
+          box-shadow: inset 0 0 0 1px rgba(148, 163, 184, 0.22);
+        }
+
+        .kether-bot-sigil {
+          min-height: 240px;
+          border-radius: 28px;
+          display: grid;
+          place-items: center;
+          text-align: center;
+          color: #ffffff;
+          background:
+            radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.28), transparent 32%),
+            linear-gradient(145deg, #312e81, #7c3aed 48%, #ec4899);
+          box-shadow:
+            0 24px 50px rgba(124, 58, 237, 0.24),
+            inset 0 1px 0 rgba(255, 255, 255, 0.34);
+        }
+
+        .kether-bot-sigil span {
+          margin-top: 10px;
+          font-size: 26px;
+          font-weight: 950;
+          letter-spacing: 0.2em;
+        }
+
+        .kether-bot-sigil b {
+          font-size: 12px;
+          letter-spacing: 0.2em;
+          opacity: 0.82;
+        }
+
+        .kether-bot-focus-grid {
+          display: grid;
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+          gap: 14px;
+          margin-top: 16px;
+        }
+
+        .kether-bot-focus-card {
+          padding: 18px;
+          border-radius: 24px;
+        }
+
+        .kether-bot-focus-icon {
+          width: 42px;
+          height: 42px;
+          border-radius: 16px;
+          display: grid;
+          place-items: center;
+          color: #ffffff;
+          background: linear-gradient(135deg, #7c3aed, #ec4899);
+          box-shadow: 0 12px 24px rgba(124, 58, 237, 0.2);
+        }
+
+        .kether-bot-focus-card h2 {
+          margin: 14px 0 7px;
+          font-size: 17px;
+        }
+
+        .kether-bot-focus-card p,
+        .kether-bot-command-card p,
+        .kether-bot-note-list p {
+          margin: 0;
+          color: #475569;
+          font-size: 14px;
+          font-weight: 750;
+          line-height: 1.7;
+        }
+
+        .kether-bot-panel {
+          margin-top: 16px;
+          padding: clamp(18px, 4vw, 28px);
+          border-radius: 30px;
+        }
+
+        .kether-bot-section-title {
+          display: flex;
+          align-items: flex-start;
+          gap: 12px;
+          margin-bottom: 16px;
+        }
+
+        .kether-bot-section-title > svg {
+          flex: 0 0 auto;
+          margin-top: 4px;
+          color: #7c3aed;
+        }
+
+        .kether-bot-section-title h2 {
+          margin: 0;
+          font-size: clamp(22px, 3vw, 30px);
+          letter-spacing: -0.03em;
+        }
+
+        .kether-bot-section-title p {
+          margin: 5px 0 0;
+          color: #64748b;
+          font-size: 14px;
+          font-weight: 800;
+        }
+
+        .kether-bot-command-grid {
+          display: grid;
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 12px;
+        }
+
+        .kether-bot-command-card {
+          padding: 15px;
+          border-radius: 22px;
+          background: rgba(255, 255, 255, 0.72);
+          border: 1px solid rgba(148, 163, 184, 0.16);
+          box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7);
+        }
+
+        .kether-bot-command-top {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 10px;
+          margin-bottom: 8px;
+        }
+
+        .kether-bot-command-top strong {
+          font-size: 16px;
+          letter-spacing: -0.02em;
+        }
+
+        .kether-bot-command-top span {
+          flex: 0 0 auto;
+          padding: 5px 8px;
+          border-radius: 999px;
+          color: #6d28d9;
+          background: rgba(124, 58, 237, 0.1);
+          font-size: 11px;
+          font-weight: 900;
+        }
+
+        .kether-bot-alias {
+          margin-bottom: 7px !important;
+          color: #7c3aed !important;
+          font-size: 12px !important;
+          font-weight: 900 !important;
+          letter-spacing: 0.06em;
+        }
+
+        .kether-bot-note-panel {
+          margin-bottom: 22px;
+        }
+
+        .kether-bot-note-list {
+          display: grid;
+          gap: 10px;
+        }
+
+        .kether-bot-note-list p {
+          padding: 13px 14px;
+          border-radius: 18px;
+          background: rgba(255, 255, 255, 0.7);
+          border: 1px solid rgba(148, 163, 184, 0.14);
+        }
+
+        .kether-bot-note-list b {
+          color: #172033;
+        }
+
+        @media (max-width: 860px) {
+          .kether-bot-hero {
+            grid-template-columns: 1fr;
+          }
+
+          .kether-bot-sigil {
+            min-height: 170px;
+          }
+
+          .kether-bot-focus-grid,
+          .kether-bot-command-grid {
+            grid-template-columns: 1fr;
+          }
+        }
+
+        @media (max-width: 560px) {
+          .kether-bot-page {
+            width: min(100% - 20px, 1120px);
+            padding-top: 22px;
+          }
+
+          .kether-bot-hero {
+            padding: 18px;
+            border-radius: 24px;
+          }
+
+          .kether-bot-actions {
+            display: grid;
+            grid-template-columns: 1fr;
+          }
+
+          .kether-bot-primary,
+          .kether-bot-secondary {
+            width: 100%;
+          }
+
+          .kether-bot-panel {
+            border-radius: 24px;
+          }
+        }
+      `}</style>
     </main>
   );
 }
