@@ -1,0 +1,8404 @@
+:root {
+  --ink: #111820;
+  --muted: #66717d;
+  --line: #cfd7df;
+  --line-dark: #2d3945;
+  --panel: rgba(255, 255, 255, 0.82);
+  --panel-strong: rgba(255, 255, 255, 0.95);
+  --accent: #00a8d8;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(circle at 20% 25%, rgba(0, 168, 216, 0.08), transparent 22%),
+    radial-gradient(circle at 80% 25%, rgba(0, 168, 216, 0.08), transparent 22%),
+    linear-gradient(135deg, #eef2f6 0%, #ffffff 48%, #e9eef3 100%);
+  color: var(--ink);
+  font-family: Arial, "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+}
+
+.page-shell {
+  position: relative;
+  width: min(100vw, 1920px);
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 34px 64px 26px;
+  overflow: hidden;
+  border: 8px solid rgba(32, 45, 58, 0.92);
+  background:
+    linear-gradient(90deg, rgba(32,45,58,0.08) 1px, transparent 1px),
+    linear-gradient(rgba(32,45,58,0.06) 1px, transparent 1px);
+  background-size: 44px 44px;
+}
+
+.page-shell::before,
+.page-shell::after {
+  content: "";
+  position: absolute;
+  top: 145px;
+  width: 260px;
+  height: 390px;
+  opacity: 0.08;
+  background: var(--ink);
+  clip-path: polygon(50% 0, 78% 30%, 66% 32%, 92% 76%, 56% 58%, 50% 100%, 44% 58%, 8% 76%, 34% 32%, 22% 30%);
+}
+
+.page-shell::before {
+  left: 60px;
+}
+
+.page-shell::after {
+  right: 60px;
+}
+
+.topbar {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #2a3642;
+}
+
+.topbar-left,
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.topbar-left span {
+  letter-spacing: 0.28em;
+  font-weight: 700;
+  color: #aab3bd;
+}
+
+.discord-mini {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--ink);
+  text-decoration: none;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 8px 14px;
+  background: rgba(255,255,255,0.66);
+}
+
+.hero {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  padding-top: 18px;
+}
+
+.clan-logo {
+  width: 146px;
+  height: 146px;
+  margin: 0 auto 16px;
+  border-radius: 28px;
+  background: linear-gradient(135deg, #05080c, #222832);
+  box-shadow: 0 16px 36px rgba(17, 24, 32, 0.25);
+  display: grid;
+  place-items: center;
+}
+
+.logo-mark {
+  width: 94px;
+  height: 94px;
+  border: 4px solid white;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: white;
+  font-size: 50px;
+  font-weight: 900;
+}
+
+.hero h2 {
+  margin: 0;
+  font-size: clamp(24px, 3vw, 42px);
+  letter-spacing: 0.05em;
+}
+
+.hero h1 {
+  margin: 22px 0 12px;
+  font-size: clamp(44px, 6vw, 78px);
+  letter-spacing: 0.04em;
+}
+
+.divider {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+}
+
+.divider span {
+  width: min(28vw, 380px);
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--line-dark), transparent);
+}
+
+.nav-panel,
+.info-card {
+  position: relative;
+  z-index: 2;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  box-shadow:
+    inset 0 0 0 1px rgba(255,255,255,0.8),
+    0 18px 42px rgba(20, 32, 45, 0.1);
+  backdrop-filter: blur(6px);
+}
+
+.nav-panel {
+  margin-top: 28px;
+  padding: 30px 24px 22px;
+  border-radius: 12px;
+}
+
+.panel-tag,
+.card-title {
+  position: absolute;
+  left: -1px;
+  top: -1px;
+  background: linear-gradient(90deg, #263240, #55616f);
+  color: white;
+  padding: 10px 26px;
+  font-weight: 800;
+  clip-path: polygon(0 0, 86% 0, 100% 50%, 86% 100%, 0 100%);
+}
+
+.nav-grid {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 14px;
+}
+
+.nav-card {
+  min-height: 142px;
+  border: 1px solid #bfc9d3;
+  border-radius: 10px;
+  background: linear-gradient(180deg, #ffffff, #edf2f6);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  cursor: pointer;
+  color: var(--ink);
+  box-shadow: inset 0 0 0 1px white, 0 10px 20px rgba(20, 32, 45, 0.09);
+}
+
+.nav-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.nav-card strong {
+  font-size: 22px;
+}
+
+.dashboard-grid {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1.05fr 1fr 1.15fr;
+  gap: 28px;
+  margin-top: 30px;
+}
+
+.info-card {
+  min-height: 300px;
+  border-radius: 14px;
+  padding: 76px 34px 28px;
+}
+
+.card-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.info-row {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 18px;
+  font-size: 20px;
+}
+
+.line {
+  height: 1px;
+  margin: 26px 0;
+  background: repeating-linear-gradient(90deg, var(--line), var(--line) 6px, transparent 6px, transparent 12px);
+}
+
+.guide {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 20px;
+}
+
+.guide h3 {
+  margin: 0 0 10px;
+}
+
+.guide p {
+  margin: 8px 0;
+  color: #313b46;
+}
+
+.summary-table {
+  border: 1px solid #dde3e8;
+}
+
+.summary-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  padding: 10px 18px;
+  border-bottom: 1px solid #dde3e8;
+}
+
+.summary-row:last-child {
+  border-bottom: 0;
+}
+
+.total-row {
+  margin-top: 14px;
+  border-radius: 8px;
+  background: linear-gradient(180deg, #edf2f6, #dde5ec);
+  padding: 16px 20px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 24px;
+}
+
+.notes-card {
+  position: relative;
+}
+
+.note-lines {
+  height: 34px;
+  border-bottom: 1px dashed #c9d1d9;
+}
+
+.watermark {
+  position: absolute;
+  right: 44px;
+  bottom: 28px;
+  font-size: 120px;
+  font-weight: 900;
+  color: rgba(17, 24, 32, 0.06);
+}
+
+footer {
+  position: relative;
+  z-index: 2;
+  margin-top: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+  letter-spacing: 0.5em;
+  color: #53606d;
+}
+
+footer span {
+  width: 260px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #6f7d8a, transparent);
+}
+
+.corner {
+  position: absolute;
+  width: 72px;
+  height: 72px;
+  border-color: #d7eef7;
+  opacity: 0.9;
+}
+
+.corner-lt {
+  left: 18px;
+  top: 18px;
+  border-left: 3px solid;
+  border-top: 3px solid;
+}
+
+.corner-rt {
+  right: 18px;
+  top: 18px;
+  border-right: 3px solid;
+  border-top: 3px solid;
+}
+
+.corner-lb {
+  left: 18px;
+  bottom: 18px;
+  border-left: 3px solid;
+  border-bottom: 3px solid;
+}
+
+.corner-rb {
+  right: 18px;
+  bottom: 18px;
+  border-right: 3px solid;
+  border-bottom: 3px solid;
+}
+
+@media (max-width: 1100px) {
+  .page-shell {
+    padding: 24px 20px;
+  }
+
+  .nav-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 680px) {
+  .page-shell {
+    border-width: 4px;
+  }
+
+  .topbar {
+    gap: 12px;
+  }
+
+  .topbar-left span {
+    display: none;
+  }
+
+  .hero h1 {
+    font-size: 36px;
+  }
+
+  .nav-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .nav-card {
+    min-height: 118px;
+  }
+
+  .nav-card strong {
+    font-size: 18px;
+  }
+
+  footer span {
+    display: none;
+  }
+}
+
+a.nav-card {
+  text-decoration: none;
+}
+
+.wf-svg {
+  width: 54px;
+  height: 54px;
+  color: #111820;
+  filter: drop-shadow(0 4px 5px rgba(20, 32, 45, 0.12));
+}
+
+.nav-card:hover .wf-svg {
+  color: #007fa8;
+}
+
+.menu-drawer {
+  position: relative;
+}
+
+.menu-drawer summary {
+  list-style: none;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+}
+
+.menu-drawer summary::-webkit-details-marker {
+  display: none;
+}
+
+.menu-popup {
+  position: absolute;
+  top: 36px;
+  left: 0;
+  z-index: 20;
+  width: 240px;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 18px 42px rgba(20, 32, 45, 0.18);
+  backdrop-filter: blur(10px);
+  display: grid;
+  gap: 6px;
+}
+
+.menu-popup a {
+  color: var(--ink);
+  text-decoration: none;
+  padding: 10px 12px;
+  border-radius: 10px;
+  font-weight: 700;
+}
+
+.menu-popup a:hover {
+  background: #eef5f8;
+  color: #007fa8;
+}
+
+.category-page {
+  display: grid;
+  align-content: start;
+  gap: 28px;
+}
+
+.category-header {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  gap: 20px;
+  padding-top: 30px;
+}
+
+.category-header p {
+  margin: 0;
+  letter-spacing: 0.35em;
+  color: #7d8994;
+  font-weight: 800;
+}
+
+.category-header h1 {
+  margin: 0;
+  font-size: clamp(44px, 7vw, 86px);
+}
+
+.category-header span {
+  color: #55616f;
+  font-size: 18px;
+}
+
+.back-link {
+  width: fit-content;
+  color: var(--ink);
+  text-decoration: none;
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,0.86);
+  padding: 10px 16px;
+  border-radius: 999px;
+  font-weight: 800;
+}
+
+.category-tools {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 18px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+}
+
+.category-tools input {
+  flex: 1;
+  min-width: 220px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 12px 18px;
+  font-size: 16px;
+}
+
+.category-tools button {
+  border: 1px solid var(--line);
+  background: white;
+  border-radius: 999px;
+  padding: 12px 18px;
+  font-weight: 800;
+}
+
+.category-table {
+  position: relative;
+  z-index: 2;
+  background: var(--panel-strong);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.table-head {
+  display: grid;
+  grid-template-columns: 1.2fr 1.2fr 0.8fr 0.8fr 1fr;
+  gap: 1px;
+  background: #d8e1e9;
+  font-weight: 900;
+}
+
+.table-head span {
+  background: #f6f9fb;
+  padding: 14px;
+}
+
+.empty-state {
+  min-height: 280px;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  color: #53606d;
+}
+
+@media (max-width: 680px) {
+  .table-head {
+    display: none;
+  }
+
+  .category-tools {
+    display: grid;
+  }
+}
+
+.category-page-v04 {
+  display: grid;
+  align-content: start;
+  gap: 24px;
+}
+
+.db-page-header {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 24px;
+  align-items: center;
+  padding-top: 24px;
+}
+
+.db-back,
+.db-version-chip {
+  text-decoration: none;
+  color: var(--ink);
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,0.88);
+  border-radius: 999px;
+  padding: 10px 16px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.db-title-block {
+  text-align: center;
+}
+
+.db-title-block p {
+  margin: 0;
+  color: #7d8994;
+  letter-spacing: 0.35em;
+  font-weight: 900;
+}
+
+.db-title-block h1 {
+  margin: 10px 0;
+  font-size: clamp(48px, 6vw, 86px);
+}
+
+.db-title-block span {
+  color: #55616f;
+  font-size: 18px;
+}
+
+.db-kpi-grid {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+
+.db-kpi-grid article {
+  background: rgba(255,255,255,0.88);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 18px;
+  box-shadow: 0 12px 30px rgba(20, 32, 45, 0.08);
+}
+
+.db-kpi-grid span {
+  display: block;
+  color: #66717d;
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+
+.db-kpi-grid strong {
+  font-size: 20px;
+}
+
+.db-tool-panel {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 16px;
+}
+
+.db-tool-panel input {
+  flex: 1;
+  min-width: 260px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 13px 18px;
+  font-size: 16px;
+}
+
+.db-tool-panel button,
+.link-button {
+  border: 1px solid var(--line);
+  background: white;
+  color: var(--ink);
+  border-radius: 999px;
+  padding: 12px 18px;
+  font-weight: 900;
+}
+
+.db-table-card {
+  position: relative;
+  z-index: 2;
+  background: rgba(255,255,255,0.92);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 18px 42px rgba(20, 32, 45, 0.1);
+}
+
+.db-table-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 18px;
+  padding: 22px 24px;
+  border-bottom: 1px solid var(--line);
+}
+
+.db-table-title h2 {
+  margin: 0 0 4px;
+}
+
+.db-table-title p {
+  margin: 0;
+  color: #66717d;
+}
+
+.db-table-title span {
+  background: #eef5f8;
+  border: 1px solid #cddae3;
+  border-radius: 999px;
+  padding: 8px 12px;
+  font-weight: 900;
+  white-space: nowrap;
+}
+
+.db-table {
+  display: grid;
+}
+
+.db-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 2fr 0.8fr 0.8fr 0.9fr;
+  border-bottom: 1px solid #e1e7ed;
+}
+
+.db-row span {
+  padding: 14px;
+  border-right: 1px solid #e1e7ed;
+}
+
+.db-row span:last-child {
+  border-right: 0;
+}
+
+.db-head {
+  background: #eef3f7;
+  font-weight: 900;
+}
+
+.owned-pill {
+  display: inline-block;
+  background: #f1f4f7;
+  border: 1px solid #d6dee6;
+  border-radius: 999px;
+  padding: 6px 10px;
+  color: #66717d;
+}
+
+.mobile-cards {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .db-page-header {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .db-back,
+  .db-version-chip {
+    justify-self: center;
+  }
+
+  .db-kpi-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .desktop-table {
+    display: none;
+  }
+
+  .mobile-cards {
+    display: grid;
+    gap: 14px;
+    padding: 16px;
+  }
+
+  .mobile-data-card {
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: 16px;
+    background: white;
+  }
+
+  .mobile-data-card h3 {
+    margin: 0 0 4px;
+  }
+
+  .mobile-data-card p {
+    margin: 0 0 8px;
+    color: #66717d;
+  }
+
+  .mobile-data-card small {
+    display: block;
+    margin-bottom: 12px;
+  }
+
+  .mobile-data-card div {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+  }
+}
+
+@media (max-width: 560px) {
+  .db-kpi-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .db-tool-panel {
+    display: grid;
+  }
+
+  .db-tool-panel input {
+    min-width: 0;
+  }
+}
+
+.db-warning {
+  position: relative;
+  z-index: 2;
+  background: #fff7e6;
+  border: 1px solid #f1cc77;
+  border-radius: 16px;
+  padding: 16px 18px;
+  color: #6d4b00;
+}
+
+.db-warning p {
+  margin: 6px 0 0;
+}
+
+.link-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+.link-button:disabled {
+  opacity: 0.5;
+}
+
+.mobile-market-link {
+  margin-top: 12px;
+  display: inline-flex;
+  color: var(--ink);
+  text-decoration: none;
+  font-weight: 900;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 10px 14px;
+}
+
+.enhanced-tools button.is-active {
+  background: #111820;
+  color: white;
+  border-color: #111820;
+  box-shadow: 0 8px 18px rgba(17, 24, 32, 0.18);
+}
+
+.price-pill {
+  display: inline-block;
+  background: #eef8fb;
+  border: 1px solid #c7e2ed;
+  border-radius: 999px;
+  padding: 6px 10px;
+  color: #007fa8;
+  font-weight: 900;
+}
+
+.price-empty {
+  background: #f4f6f8;
+  border-color: #d6dee6;
+  color: #7d8994;
+}
+
+.owned-ok {
+  background: #edf8ef;
+  border-color: #bcdcc4;
+  color: #247a38;
+}
+
+.owned-ok-text {
+  color: #247a38;
+}
+
+.mobile-hint {
+  margin-top: 10px;
+  display: block;
+  color: #7d8994;
+  font-style: normal;
+  font-weight: 800;
+}
+
+
+.section-select {
+  border: 1px solid var(--line);
+  background: white;
+  color: var(--ink);
+  border-radius: 999px;
+  padding: 12px 18px;
+  font-weight: 900;
+  min-width: 160px;
+}
+
+.section-pill {
+  display: inline-block;
+  background: #f2f6fa;
+  border: 1px solid #d3dee8;
+  border-radius: 999px;
+  padding: 6px 10px;
+  color: #425162;
+  font-weight: 900;
+}
+
+.db-row {
+  grid-template-columns: 0.9fr 1fr 1fr 2fr 0.8fr 0.8fr 0.9fr;
+}
+
+
+.home-kpi-grid {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  margin-top: 24px;
+}
+
+.home-kpi-grid article {
+  background: rgba(255,255,255,0.9);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 18px;
+  box-shadow: 0 12px 30px rgba(20, 32, 45, 0.08);
+}
+
+.home-kpi-grid span {
+  display: block;
+  color: #66717d;
+  font-weight: 900;
+  margin-bottom: 8px;
+}
+
+.home-kpi-grid strong {
+  font-size: 28px;
+}
+
+.home-category-panel {
+  position: relative;
+  z-index: 2;
+  margin-top: 30px;
+  padding: 76px 28px 28px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  box-shadow: 0 18px 42px rgba(20, 32, 45, 0.1);
+}
+
+.home-category-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+.home-category-card {
+  color: var(--ink);
+  text-decoration: none;
+  background: rgba(255,255,255,0.92);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 16px;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 14px;
+}
+
+.home-category-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.home-category-card h3 {
+  margin: 0 0 4px;
+}
+
+.home-category-card p {
+  margin: 0;
+  color: #66717d;
+  font-size: 14px;
+}
+
+.home-category-card strong {
+  font-size: 22px;
+}
+
+@media (max-width: 1000px) {
+  .home-kpi-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .home-category-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .home-kpi-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .home-category-card {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+}
+
+.login-mini {
+  display: inline-flex;
+  align-items: center;
+  color: var(--ink);
+  text-decoration: none;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 8px 14px;
+  background: rgba(255,255,255,0.66);
+  font-weight: 900;
+}
+
+.auth-page {
+  display: grid;
+  align-content: start;
+  gap: 28px;
+}
+
+.auth-header {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 24px;
+  align-items: center;
+  padding-top: 32px;
+}
+
+.auth-header p {
+  margin: 0;
+  letter-spacing: 0.35em;
+  color: #7d8994;
+  font-weight: 900;
+}
+
+.auth-header h1 {
+  margin: 8px 0;
+  font-size: clamp(44px, 7vw, 88px);
+}
+
+.auth-header span {
+  color: #55616f;
+  font-size: 18px;
+}
+
+.auth-hero-card {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  background: rgba(255,255,255,0.92);
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  padding: 42px 28px;
+  box-shadow: 0 18px 42px rgba(20, 32, 45, 0.12);
+}
+
+.auth-hero-card h2,
+.auth-hero-card h1 {
+  margin: 16px 0 10px;
+  font-size: clamp(30px, 5vw, 54px);
+}
+
+.auth-hero-card p {
+  max-width: 860px;
+  margin: 0 auto;
+  color: #55616f;
+  line-height: 1.8;
+}
+
+.auth-actions {
+  margin-top: 28px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.auth-primary,
+.auth-secondary,
+.auth-disabled {
+  min-height: 46px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  text-decoration: none;
+  border-radius: 999px;
+  padding: 12px 20px;
+  font-weight: 900;
+  border: 1px solid var(--line);
+}
+
+.auth-primary {
+  background: #111820;
+  color: white;
+  border-color: #111820;
+}
+
+.auth-secondary {
+  background: white;
+  color: var(--ink);
+}
+
+.auth-disabled {
+  background: #eef3f7;
+  color: #7d8994;
+  cursor: not-allowed;
+}
+
+.auth-grid {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.auth-grid article,
+.auth-flow {
+  background: rgba(255,255,255,0.9);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 24px;
+  box-shadow: 0 14px 34px rgba(20, 32, 45, 0.08);
+}
+
+.auth-grid h3 {
+  margin: 14px 0 8px;
+}
+
+.auth-grid p {
+  margin: 0;
+  color: #66717d;
+  line-height: 1.7;
+}
+
+.auth-flow {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  gap: 14px;
+}
+
+.auth-flow h2 {
+  margin: 0 0 6px;
+}
+
+.auth-flow div {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 14px;
+  align-items: center;
+  border: 1px solid #e1e7ed;
+  border-radius: 14px;
+  background: white;
+  padding: 14px;
+}
+
+.auth-flow span {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: #111820;
+  color: white;
+  font-weight: 900;
+}
+
+.auth-flow p {
+  margin: 0;
+  font-weight: 800;
+}
+
+.unauthorized-card {
+  margin-top: 90px;
+}
+
+@media (max-width: 820px) {
+  .auth-header {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .auth-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.profile-page {
+  display: grid;
+  align-content: start;
+  gap: 28px;
+}
+
+.profile-header {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 24px;
+  align-items: center;
+  padding-top: 32px;
+}
+
+.profile-header p {
+  margin: 0;
+  letter-spacing: 0.35em;
+  color: #7d8994;
+  font-weight: 900;
+}
+
+.profile-header h1 {
+  margin: 8px 0;
+  font-size: clamp(44px, 7vw, 88px);
+}
+
+.profile-header span {
+  color: #55616f;
+  font-size: 18px;
+}
+
+.profile-hero {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  background: rgba(255,255,255,0.92);
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  padding: 42px 28px;
+  box-shadow: 0 18px 42px rgba(20, 32, 45, 0.12);
+}
+
+.profile-hero h2 {
+  margin: 16px 0 10px;
+  font-size: clamp(30px, 5vw, 54px);
+}
+
+.profile-hero p {
+  max-width: 900px;
+  margin: 0 auto;
+  color: #55616f;
+  line-height: 1.8;
+}
+
+.profile-progress-grid {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+
+.profile-progress-grid article {
+  background: rgba(255,255,255,0.9);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 18px;
+  box-shadow: 0 12px 30px rgba(20, 32, 45, 0.08);
+}
+
+.profile-progress-grid span {
+  display: block;
+  color: #66717d;
+  font-weight: 900;
+  margin-bottom: 8px;
+}
+
+.profile-progress-grid strong {
+  display: block;
+  font-size: 22px;
+  margin-bottom: 8px;
+}
+
+.profile-progress-grid p {
+  margin: 0;
+  color: #66717d;
+  line-height: 1.6;
+}
+
+.profile-system-grid {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.profile-system-grid article {
+  background: rgba(255,255,255,0.9);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 24px;
+  box-shadow: 0 14px 34px rgba(20, 32, 45, 0.08);
+}
+
+.profile-system-grid h3 {
+  margin: 14px 0 8px;
+}
+
+.profile-system-grid p {
+  margin: 0;
+  color: #66717d;
+  line-height: 1.7;
+}
+
+@media (max-width: 1000px) {
+  .profile-progress-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .profile-system-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 680px) {
+  .profile-header {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .profile-progress-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.db-status-page {
+  display: grid;
+  align-content: start;
+  gap: 28px;
+}
+
+.db-status-hero {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  background: rgba(255,255,255,0.92);
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  padding: 42px 28px;
+  box-shadow: 0 18px 42px rgba(20, 32, 45, 0.12);
+}
+
+.db-status-hero.ok {
+  border-color: #bde4c4;
+}
+
+.db-status-hero.error {
+  border-color: #f0c0c0;
+}
+
+.db-status-hero h2 {
+  margin: 16px 0 10px;
+  font-size: clamp(30px, 5vw, 54px);
+}
+
+.db-status-hero p {
+  max-width: 860px;
+  margin: 0 auto;
+  color: #55616f;
+  line-height: 1.8;
+}
+
+.db-status-grid {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.status-card {
+  background: rgba(255,255,255,0.9);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 22px;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 16px;
+  align-items: start;
+  box-shadow: 0 14px 34px rgba(20, 32, 45, 0.08);
+}
+
+.status-card.ok {
+  border-color: #bde4c4;
+}
+
+.status-card.error {
+  border-color: #f0c0c0;
+}
+
+.status-card h3 {
+  margin: 0 0 8px;
+}
+
+.status-card p {
+  margin: 0;
+  color: #66717d;
+  line-height: 1.6;
+  word-break: break-word;
+}
+
+.db-status-next {
+  position: relative;
+  z-index: 2;
+  background: rgba(255,255,255,0.9);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 24px;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 18px;
+  align-items: center;
+  box-shadow: 0 14px 34px rgba(20, 32, 45, 0.08);
+}
+
+.db-status-next h2 {
+  margin: 0 0 8px;
+}
+
+.db-status-next p {
+  margin: 0;
+  color: #66717d;
+  line-height: 1.7;
+}
+
+@media (max-width: 900px) {
+  .db-status-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .db-status-next {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+}
+
+.kether-plan-card {
+  position: relative;
+  z-index: 2;
+  background: rgba(255,255,255,0.92);
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  padding: 28px;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 22px;
+  box-shadow: 0 18px 42px rgba(20, 32, 45, 0.12);
+}
+
+.kether-plan-card.ok {
+  border-color: #bde4c4;
+}
+
+.kether-plan-card.error {
+  border-color: #f0c0c0;
+}
+
+.kether-plan-card h2 {
+  margin: 0 0 8px;
+  font-size: clamp(28px, 4vw, 46px);
+}
+
+.kether-plan-card p {
+  margin: 0 0 18px;
+  color: #55616f;
+  line-height: 1.7;
+}
+
+.plan-table {
+  display: grid;
+  gap: 10px;
+}
+
+.plan-table div {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 12px;
+  border: 1px solid #e1e7ed;
+  border-radius: 12px;
+  padding: 12px 14px;
+  background: rgba(255,255,255,0.72);
+}
+
+.plan-table span {
+  color: #66717d;
+  font-weight: 900;
+}
+
+.plan-table b {
+  word-break: break-word;
+}
+
+@media (max-width: 720px) {
+  .kether-plan-card {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .plan-table div {
+    grid-template-columns: 1fr;
+  }
+}
+
+.owned-sync-banner {
+  position: relative;
+  z-index: 2;
+  background: rgba(255,255,255,0.92);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 12px 18px;
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  align-items: center;
+  box-shadow: 0 12px 28px rgba(20, 32, 45, 0.08);
+  font-weight: 900;
+}
+
+.owned-sync-banner span {
+  color: #425162;
+}
+
+.owned-sync-banner b {
+  color: #66717d;
+  font-size: 13px;
+}
+
+.owned-toggle {
+  border: 1px solid #d3dee8;
+  background: white;
+  color: #425162;
+  border-radius: 999px;
+  padding: 9px 14px;
+  font-weight: 900;
+  cursor: pointer;
+  min-width: 92px;
+}
+
+.owned-toggle:hover {
+  border-color: var(--accent);
+  transform: translateY(-1px);
+}
+
+.owned-toggle.owned-ok {
+  background: #111820;
+  border-color: #111820;
+  color: white;
+}
+
+.owned-toggle:disabled {
+  opacity: 0.62;
+  cursor: wait;
+}
+
+@media (max-width: 680px) {
+  .owned-sync-banner {
+    border-radius: 18px;
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+.clan-logo-real {
+  display: flex;
+  justify-content: center;
+  margin: 10px auto 18px;
+}
+
+.clan-logo-real img {
+  width: min(190px, 46vw);
+  height: auto;
+  border-radius: 28px;
+  box-shadow: 0 18px 42px rgba(20, 32, 45, 0.18);
+  display: block;
+}
+
+.watermark-logo {
+  position: absolute;
+  right: 28px;
+  bottom: 20px;
+  width: min(180px, 38vw);
+  height: auto;
+  opacity: 0.06;
+  pointer-events: none;
+  filter: grayscale(1);
+}
+
+@media (max-width: 680px) {
+  .clan-logo-real img {
+    width: min(150px, 50vw);
+    border-radius: 24px;
+  }
+
+  .watermark-logo {
+    width: 130px;
+    right: 16px;
+    bottom: 14px;
+  }
+}
+
+/* v2.2.3 強制替換首頁假 K Logo */
+.clan-logo-real {
+  display: flex;
+  justify-content: center;
+  margin: 10px auto 18px;
+}
+
+.clan-logo-real img,
+.clan-logo-img {
+  width: min(190px, 46vw);
+  height: auto;
+  border-radius: 28px;
+  box-shadow: 0 18px 42px rgba(20, 32, 45, 0.18);
+  display: block;
+}
+
+/* 若舊 logo-mark 還殘留，直接把 K 變成氏族 Logo */
+.logo-mark {
+  background-image: url("/kether-clan-logo.png") !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  color: transparent !important;
+  font-size: 0 !important;
+}
+
+/* 底部浮水印改用氏族 Logo */
+.watermark-logo {
+  position: absolute;
+  right: 28px;
+  bottom: 20px;
+  width: min(180px, 38vw);
+  height: auto;
+  opacity: 0.06;
+  pointer-events: none;
+  filter: grayscale(1);
+}
+
+@media (max-width: 680px) {
+  .clan-logo-real img,
+  .clan-logo-img {
+    width: min(150px, 50vw);
+    border-radius: 24px;
+  }
+
+  .watermark-logo {
+    width: 130px;
+    right: 16px;
+    bottom: 14px;
+  }
+}
+
+/* v2.2.4 clan logo final override */
+.clan-logo-real {
+  display: flex !important;
+  justify-content: center !important;
+  margin: 10px auto 18px !important;
+}
+
+.clan-logo-real img,
+.clan-logo-img {
+  width: min(190px, 46vw) !important;
+  height: auto !important;
+  border-radius: 28px !important;
+  box-shadow: 0 18px 42px rgba(20, 32, 45, 0.18) !important;
+  display: block !important;
+}
+
+/* 如果舊 K 還殘留，直接把 K 的外殼變成氏族 Logo */
+.logo-mark {
+  background: url("/kether-clan-logo.png") center / cover no-repeat !important;
+  color: transparent !important;
+  font-size: 0 !important;
+  text-indent: -9999px !important;
+  overflow: hidden !important;
+}
+
+.logo-mark::before,
+.logo-mark::after {
+  display: none !important;
+  content: none !important;
+}
+
+.watermark-logo {
+  position: absolute !important;
+  right: 28px !important;
+  bottom: 20px !important;
+  width: min(180px, 38vw) !important;
+  height: auto !important;
+  opacity: 0.06 !important;
+  pointer-events: none !important;
+  filter: grayscale(1) !important;
+}
+
+@media (max-width: 680px) {
+  .clan-logo-real img,
+  .clan-logo-img {
+    width: min(150px, 50vw) !important;
+    border-radius: 24px !important;
+  }
+
+  .watermark-logo {
+    width: 130px !important;
+    right: 16px !important;
+    bottom: 14px !important;
+  }
+}
+
+/* v2.2.5 首頁上方氏族版圖 Logo */
+.home-clan-logo {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  justify-content: center;
+  margin: 8px auto 18px;
+}
+
+.home-clan-logo img {
+  width: min(185px, 46vw);
+  height: auto;
+  border-radius: 28px;
+  box-shadow: 0 18px 42px rgba(20, 32, 45, 0.18);
+  display: block;
+}
+
+@media (max-width: 680px) {
+  .home-clan-logo img {
+    width: min(145px, 48vw);
+    border-radius: 24px;
+  }
+}
+
+/* v2.2.6 強制首頁 Logo 顯示 */
+.home-clan-logo-force {
+  position: relative !important;
+  z-index: 20 !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  margin: 8px auto 18px !important;
+  width: 100% !important;
+}
+
+.home-clan-logo-force img {
+  width: min(170px, 42vw) !important;
+  height: auto !important;
+  display: block !important;
+  border-radius: 28px !important;
+  box-shadow: 0 18px 42px rgba(20, 32, 45, 0.2) !important;
+}
+
+/* v2.2.7 首頁 Logo 最終版：只顯示一個 */
+.home-clan-logo-final {
+  position: relative !important;
+  z-index: 20 !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  margin: 18px auto 28px !important;
+  width: 100% !important;
+}
+
+.home-clan-logo-final img {
+  width: min(180px, 44vw) !important;
+  height: auto !important;
+  display: block !important;
+  border-radius: 28px !important;
+  box-shadow: 0 18px 42px rgba(20, 32, 45, 0.2) !important;
+}
+
+/* 把舊的重複 Logo 區塊藏起來 */
+.home-clan-logo-force,
+.home-clan-logo,
+.clan-logo-real {
+  display: none !important;
+}
+
+
+/* v2.2.8 logo duplicate fix: hide every old placeholder logo */
+.logo-mark,
+.clan-logo,
+.clan-logo-real,
+.clan-logo-img,
+.home-clan-logo,
+.home-clan-logo-force {
+  display: none !important;
+  visibility: hidden !important;
+  width: 0 !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  opacity: 0 !important;
+}
+
+/* keep only the final homepage clan logo */
+.home-clan-logo-final {
+  position: relative !important;
+  z-index: 20 !important;
+  display: flex !important;
+  visibility: visible !important;
+  justify-content: center !important;
+  align-items: center !important;
+  margin: 18px auto 28px !important;
+  width: 100% !important;
+  height: auto !important;
+  opacity: 1 !important;
+}
+
+.home-clan-logo-final img {
+  width: min(180px, 44vw) !important;
+  height: auto !important;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  border-radius: 28px !important;
+  box-shadow: 0 18px 42px rgba(20, 32, 45, 0.2) !important;
+}
+
+/* v2.3.1 首頁繪師橫版圖 */
+.home-hero-image-banner {
+  position: relative;
+  z-index: 4;
+  width: min(1120px, calc(100% - 32px));
+  margin: 22px auto 26px;
+  border-radius: 24px;
+  overflow: hidden;
+  border: 1px solid rgba(178, 144, 86, 0.28);
+  box-shadow: 0 20px 54px rgba(20, 32, 45, 0.16);
+  background: rgba(255, 255, 255, 0.86);
+}
+
+.home-hero-image-banner img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* 保險：舊首頁 Logo 全部藏起來，只留橫版圖 */
+.logo-mark,
+.clan-logo,
+.clan-logo-real,
+.clan-logo-img,
+.home-clan-logo,
+.home-clan-logo-force,
+.home-clan-logo-final {
+  display: none !important;
+}
+
+@media (max-width: 680px) {
+  .home-hero-image-banner {
+    width: calc(100% - 22px);
+    margin: 18px auto 22px;
+    border-radius: 18px;
+  }
+}
+
+/* v2.3.3 首頁未來科技背景 */
+.homepage-sci-fi {
+  position: relative;
+  min-height: 100vh;
+  background:
+    linear-gradient(
+      rgba(246, 249, 251, 0.78),
+      rgba(246, 249, 251, 0.92)
+    ),
+    url("/home-ui-bg.png?v=233") center top / cover fixed no-repeat;
+}
+
+/* 讓首頁內容浮在背景上 */
+.homepage-sci-fi > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* 首頁橫版圖外框 */
+.homepage-sci-fi .home-hero-image-banner {
+  border: 1px solid rgba(70, 82, 92, 0.42) !important;
+  border-radius: 22px !important;
+  background: rgba(255, 255, 255, 0.72) !important;
+  box-shadow:
+    0 18px 48px rgba(18, 28, 38, 0.14),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.72) !important;
+}
+
+/* 通用科技框框：套在首頁卡片 / 區塊 / 面板 */
+.homepage-sci-fi section:not(.home-hero-image-banner),
+.homepage-sci-fi article,
+.homepage-sci-fi [class*="card"],
+.homepage-sci-fi [class*="Card"],
+.homepage-sci-fi [class*="panel"],
+.homepage-sci-fi [class*="Panel"] {
+  border: 1px solid rgba(70, 82, 92, 0.32) !important;
+  border-radius: 18px !important;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.82),
+      rgba(245, 248, 250, 0.68)
+    ) !important;
+  box-shadow:
+    0 14px 32px rgba(18, 28, 38, 0.10),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.68) !important;
+  backdrop-filter: blur(3px);
+}
+
+/* 首頁分類按鍵框 */
+.homepage-sci-fi a[href^="/database"],
+.homepage-sci-fi a[href="/overview"],
+.homepage-sci-fi a[href="/"] {
+  border: 1px solid rgba(70, 82, 92, 0.34) !important;
+  border-radius: 16px !important;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.88),
+      rgba(239, 243, 246, 0.72)
+    ) !important;
+  box-shadow:
+    0 10px 22px rgba(18, 28, 38, 0.10),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.78) !important;
+}
+
+/* 科技角落感：區塊左上角裝飾 */
+.homepage-sci-fi section:not(.home-hero-image-banner)::before,
+.homepage-sci-fi article::before,
+.homepage-sci-fi [class*="card"]::before,
+.homepage-sci-fi [class*="Card"]::before,
+.homepage-sci-fi [class*="panel"]::before,
+.homepage-sci-fi [class*="Panel"]::before {
+  content: "";
+  position: absolute;
+  width: 34px;
+  height: 18px;
+  top: -1px;
+  left: -1px;
+  border-top: 3px solid rgba(35, 45, 55, 0.72);
+  border-left: 3px solid rgba(35, 45, 55, 0.72);
+  border-radius: 16px 0 0 0;
+  pointer-events: none;
+}
+
+/* 手機版 */
+@media (max-width: 680px) {
+  .homepage-sci-fi {
+    background:
+      linear-gradient(
+        rgba(246, 249, 251, 0.82),
+        rgba(246, 249, 251, 0.95)
+      ),
+      url("/home-ui-bg.png?v=233") center top / auto 100% fixed no-repeat;
+  }
+
+  .homepage-sci-fi section:not(.home-hero-image-banner),
+  .homepage-sci-fi article,
+  .homepage-sci-fi [class*="card"],
+  .homepage-sci-fi [class*="Card"],
+  .homepage-sci-fi [class*="panel"],
+  .homepage-sci-fi [class*="Panel"] {
+    border-radius: 16px !important;
+  }
+}
+
+/* v2.3.4 修正首頁背景跑圖：取消 cover fixed，避免手機版放大裁切 */
+.homepage-sci-fi {
+  background:
+    linear-gradient(
+      rgba(246, 249, 251, 0.72),
+      rgba(246, 249, 251, 0.90)
+    ),
+    url("/home-ui-bg.png?v=234") center top / 100% auto repeat-y !important;
+  background-attachment: scroll !important;
+}
+
+/* 手機版：背景維持完整寬度，不再放大裁切 */
+@media (max-width: 680px) {
+  .homepage-sci-fi {
+    background:
+      linear-gradient(
+        rgba(246, 249, 251, 0.80),
+        rgba(246, 249, 251, 0.96)
+      ),
+      url("/home-ui-bg.png?v=234") center top / 100% auto repeat-y !important;
+    background-attachment: scroll !important;
+  }
+
+  /* 手機版避免科技角飾太搶畫面 */
+  .homepage-sci-fi section:not(.home-hero-image-banner)::before,
+  .homepage-sci-fi article::before,
+  .homepage-sci-fi [class*="card"]::before,
+  .homepage-sci-fi [class*="Card"]::before,
+  .homepage-sci-fi [class*="panel"]::before,
+  .homepage-sci-fi [class*="Panel"]::before {
+    width: 22px !important;
+    height: 12px !important;
+    border-top-width: 2px !important;
+    border-left-width: 2px !important;
+    opacity: 0.55 !important;
+  }
+}
+
+/* v2.3.5 安全回復：關閉 v2.3.3 / v2.3.4 的首頁背景與自動科技框，避免版面錯亂 */
+.homepage-sci-fi {
+  background: #f6f8fa !important;
+  background-image: none !important;
+  background-attachment: scroll !important;
+}
+
+/* 取消自動套到所有 section / article / card / panel 的科技框 */
+.homepage-sci-fi section:not(.home-hero-image-banner),
+.homepage-sci-fi article,
+.homepage-sci-fi [class*="card"],
+.homepage-sci-fi [class*="Card"],
+.homepage-sci-fi [class*="panel"],
+.homepage-sci-fi [class*="Panel"] {
+  border: initial !important;
+  border-radius: initial !important;
+  background: initial !important;
+  box-shadow: initial !important;
+  backdrop-filter: initial !important;
+}
+
+/* 取消左上角科技角飾 */
+.homepage-sci-fi section:not(.home-hero-image-banner)::before,
+.homepage-sci-fi article::before,
+.homepage-sci-fi [class*="card"]::before,
+.homepage-sci-fi [class*="Card"]::before,
+.homepage-sci-fi [class*="panel"]::before,
+.homepage-sci-fi [class*="Panel"]::before {
+  content: none !important;
+  display: none !important;
+}
+
+/* 分類按鍵恢復原本樣式，不再硬套外框 */
+.homepage-sci-fi a[href^="/database"],
+.homepage-sci-fi a[href="/overview"],
+.homepage-sci-fi a[href="/"] {
+  border: initial !important;
+  border-radius: initial !important;
+  background: initial !important;
+  box-shadow: initial !important;
+}
+
+/* v2.3.6 清除首頁殘留裝飾層：上方線條、巨大背景樹形、角落裝飾 */
+.homepage-sci-fi::before,
+.homepage-sci-fi::after {
+  content: none !important;
+  display: none !important;
+  background: none !important;
+}
+
+/* 關閉首頁內用 absolute / pointer-events-none 做的背景裝飾，不影響正常按鈕 */
+.homepage-sci-fi [class*="pointer-events-none"][class*="absolute"],
+.homepage-sci-fi [class*="absolute"][class*="inset"],
+.homepage-sci-fi [class*="decor"],
+.homepage-sci-fi [class*="ornament"],
+.homepage-sci-fi [class*="watermark"],
+.homepage-sci-fi [class*="corner"] {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+/* 再保險：首頁背景恢復乾淨底色 */
+.homepage-sci-fi {
+  background: #f6f8fa !important;
+  background-image: none !important;
+}
+
+/* 保留首頁真正內容 */
+.homepage-sci-fi header,
+.homepage-sci-fi nav,
+.homepage-sci-fi main,
+.homepage-sci-fi section,
+.homepage-sci-fi article,
+.homepage-sci-fi a,
+.homepage-sci-fi img {
+  visibility: visible;
+}
+
+/* v2.3.7 安全科技框工具包：只有指定 class 才會生效 */
+
+/* 大型區塊外框 */
+.home-tech-panel {
+  position: relative;
+  border: 1px solid rgba(64, 76, 88, 0.28);
+  border-radius: 18px;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.86),
+      rgba(245, 248, 250, 0.72)
+    );
+  box-shadow:
+    0 14px 34px rgba(18, 28, 38, 0.10),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.70);
+  overflow: hidden;
+}
+
+/* 小型卡片外框 */
+.home-tech-card {
+  position: relative;
+  border: 1px solid rgba(64, 76, 88, 0.24);
+  border-radius: 16px;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.90),
+      rgba(242, 246, 249, 0.78)
+    );
+  box-shadow:
+    0 10px 24px rgba(18, 28, 38, 0.08),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.78);
+  overflow: hidden;
+}
+
+/* 分類按鍵外框 */
+.home-tech-button {
+  position: relative;
+  border: 1px solid rgba(64, 76, 88, 0.26);
+  border-radius: 16px;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.92),
+      rgba(241, 245, 248, 0.80)
+    );
+  box-shadow:
+    0 8px 18px rgba(18, 28, 38, 0.08),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.75);
+}
+
+/* 科技角飾，只給有 home-tech-corner 的元素 */
+.home-tech-corner::before {
+  content: "";
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: 34px;
+  height: 22px;
+  border-top: 3px solid rgba(35, 45, 55, 0.72);
+  border-left: 3px solid rgba(35, 45, 55, 0.72);
+  border-radius: 10px 0 0 0;
+  pointer-events: none;
+}
+
+.home-tech-corner::after {
+  content: "";
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  width: 34px;
+  height: 22px;
+  border-right: 3px solid rgba(35, 45, 55, 0.42);
+  border-bottom: 3px solid rgba(35, 45, 55, 0.42);
+  border-radius: 0 0 10px 0;
+  pointer-events: none;
+}
+
+/* 手機版角飾縮小 */
+@media (max-width: 680px) {
+  .home-tech-corner::before,
+  .home-tech-corner::after {
+    width: 22px;
+    height: 14px;
+    border-width: 2px;
+  }
+}
+
+
+
+
+
+
+
+
+/* v2.4.3 救回首頁統計卡片排版：關閉失控 stat-frame-image */
+.homepage-sci-fi .stat-frame-image {
+  min-height: unset !important;
+  padding: unset !important;
+  background: unset !important;
+  border: unset !important;
+  box-shadow: unset !important;
+  overflow: unset !important;
+}
+
+/* 如果 stat-frame-image 曾經掛到 grid 外層，強制恢復 grid */
+.homepage-sci-fi .grid.stat-frame-image {
+  display: grid !important;
+  flex-direction: unset !important;
+  justify-content: unset !important;
+}
+
+/* v2.4.4 首頁美工圖層修復：背景最低，內容中層，選單最高 */
+.homepage-sci-fi {
+  position: relative !important;
+  isolation: isolate !important;
+  overflow-x: hidden !important;
+  background:
+    linear-gradient(
+      rgba(246, 248, 250, 0.86),
+      rgba(246, 248, 250, 0.96)
+    ),
+    url("/home-ui-bg.png?v=244") center top / 100% auto repeat-y !important;
+  background-attachment: scroll !important;
+}
+
+/* 首頁所有主要內容在中層 */
+.homepage-sci-fi > * {
+  position: relative !important;
+  z-index: 10 !important;
+}
+
+/* 首頁版圖不可擋點擊 */
+.homepage-sci-fi img[src*="home-hero-banner"],
+.homepage-sci-fi .home-hero-image-banner {
+  position: relative !important;
+  z-index: 20 !important;
+  pointer-events: none !important;
+}
+
+/* 頂部選單、按鈕、導覽永遠在最上層，可點擊 */
+.homepage-sci-fi header,
+.homepage-sci-fi nav,
+.homepage-sci-fi button,
+.homepage-sci-fi a,
+.homepage-sci-fi [role="button"],
+.homepage-sci-fi [aria-label*="menu"],
+.homepage-sci-fi [aria-label*="search"],
+.homepage-sci-fi [aria-label*="Menu"],
+.homepage-sci-fi [aria-label*="Search"] {
+  position: relative !important;
+  z-index: 1000 !important;
+  pointer-events: auto !important;
+}
+
+/* v2.4.4 四大區塊外框 */
+.homepage-sci-fi .home-art-zone-frame {
+  position: relative !important;
+  z-index: 30 !important;
+  margin-top: 2.2rem !important;
+  padding: 2.8rem 1rem 1.15rem !important;
+  border: 1px solid rgba(54, 65, 76, 0.32) !important;
+  border-radius: 20px !important;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.78),
+      rgba(244, 247, 249, 0.68)
+    ) !important;
+  box-shadow:
+    0 14px 36px rgba(18, 28, 38, 0.10),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.70) !important;
+  overflow: visible !important;
+}
+
+/* 區塊標題牌：1 導覽區 / 2 數據區 / 3 資料區 / 4 備註區 */
+.homepage-sci-fi .home-art-zone-frame::before {
+  content: attr(data-zone-title);
+  position: absolute !important;
+  top: -1px !important;
+  left: -1px !important;
+  min-width: 132px !important;
+  height: 34px !important;
+  padding: 0 1rem !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: linear-gradient(135deg, #24313d, #4a5965) !important;
+  color: #ffffff !important;
+  font-weight: 900 !important;
+  font-size: 0.95rem !important;
+  letter-spacing: 0.08em !important;
+  border-radius: 18px 0 18px 0 !important;
+  box-shadow: 0 8px 18px rgba(18, 28, 38, 0.18) !important;
+  z-index: 40 !important;
+}
+
+/* 區塊右下角小裝飾，不擋點擊 */
+.homepage-sci-fi .home-art-zone-frame::after {
+  content: "";
+  position: absolute !important;
+  right: 14px !important;
+  bottom: 14px !important;
+  width: 42px !important;
+  height: 24px !important;
+  border-right: 2px solid rgba(54, 65, 76, 0.26) !important;
+  border-bottom: 2px solid rgba(54, 65, 76, 0.26) !important;
+  border-radius: 0 0 12px 0 !important;
+  pointer-events: none !important;
+}
+
+/* 手機版 */
+@media (max-width: 680px) {
+  .homepage-sci-fi {
+    background:
+      linear-gradient(
+        rgba(246, 248, 250, 0.90),
+        rgba(246, 248, 250, 0.98)
+      ),
+      url("/home-ui-bg.png?v=244") center top / 100% auto repeat-y !important;
+  }
+
+  .homepage-sci-fi .home-art-zone-frame {
+    margin-top: 1.8rem !important;
+    padding: 2.55rem 0.85rem 1rem !important;
+    border-radius: 18px !important;
+  }
+
+  .homepage-sci-fi .home-art-zone-frame::before {
+    min-width: 116px !important;
+    height: 30px !important;
+    font-size: 0.82rem !important;
+  }
+}
+
+/* v2.4.5 修正手機菜單圖層：菜單展開時改浮層，不再推動首頁版圖 */
+.homepage-sci-fi header {
+  z-index: 5000 !important;
+}
+
+/* 手機版：如果 header 內有展開的選單，就讓 header 浮在最上層 */
+@media (max-width: 820px) {
+  .homepage-sci-fi header:has([aria-expanded="true"]),
+  .homepage-sci-fi header:has([data-state="open"]) {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    z-index: 5000 !important;
+    max-height: 100vh !important;
+    overflow-y: auto !important;
+    background: rgba(246, 248, 250, 0.96) !important;
+    backdrop-filter: blur(8px) !important;
+    box-shadow: 0 12px 32px rgba(18, 28, 38, 0.14) !important;
+  }
+
+  /* 常見手機選單容器：浮在內容上，不佔版面 */
+  .homepage-sci-fi header [role="menu"],
+  .homepage-sci-fi header [data-state="open"],
+  .homepage-sci-fi header nav[data-state="open"] {
+    z-index: 5001 !important;
+    pointer-events: auto !important;
+  }
+}
+
+/* v2.4.5 四大區塊框框微調：避免標題消失 */
+.homepage-sci-fi .home-art-zone-frame {
+  position: relative !important;
+  z-index: 30 !important;
+  overflow: visible !important;
+}
+
+.homepage-sci-fi .home-art-zone-frame::before {
+  display: flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  z-index: 60 !important;
+}
+
+.homepage-sci-fi .home-art-zone-frame::after {
+  pointer-events: none !important;
+}
+
+/* v2.5.0 固定首頁美工骨架，不再靠腳本亂抓 */
+.homepage-sci-fi {
+  position: relative !important;
+  isolation: isolate !important;
+  overflow-x: hidden !important;
+  background:
+    linear-gradient(
+      rgba(246, 248, 250, 0.86),
+      rgba(246, 248, 250, 0.96)
+    ),
+    url("/home-ui-bg.png?v=250") center top / 100% auto repeat-y !important;
+}
+
+/* 四大首頁區塊 */
+.homepage-sci-fi .home-zone {
+  position: relative !important;
+  z-index: 20 !important;
+  margin-top: 2.2rem !important;
+  padding: 2.8rem 1rem 1.15rem !important;
+  border: 1px solid rgba(54, 65, 76, 0.34) !important;
+  border-radius: 20px !important;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.80),
+      rgba(244, 247, 249, 0.70)
+    ) !important;
+  box-shadow:
+    0 14px 34px rgba(18, 28, 38, 0.10),
+    inset 0 0 0 1px rgba(255,255,255,0.70) !important;
+  overflow: visible !important;
+}
+
+/* 區塊標題牌 */
+.homepage-sci-fi .home-zone > .panel-tag {
+  position: absolute !important;
+  top: -1px !important;
+  left: -1px !important;
+  min-width: 132px !important;
+  height: 34px !important;
+  padding: 0 1rem !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: linear-gradient(135deg, #24313d, #4a5965) !important;
+  color: #fff !important;
+  font-weight: 900 !important;
+  font-size: 0.95rem !important;
+  letter-spacing: 0.08em !important;
+  border-radius: 18px 0 18px 0 !important;
+  box-shadow: 0 8px 18px rgba(18, 28, 38, 0.18) !important;
+  z-index: 50 !important;
+}
+
+/* 右下角小科技角 */
+.homepage-sci-fi .home-zone::after {
+  content: "";
+  position: absolute !important;
+  right: 14px !important;
+  bottom: 14px !important;
+  width: 42px !important;
+  height: 24px !important;
+  border-right: 2px solid rgba(54, 65, 76, 0.26) !important;
+  border-bottom: 2px solid rgba(54, 65, 76, 0.26) !important;
+  border-radius: 0 0 12px 0 !important;
+  pointer-events: none !important;
+}
+
+/* 版圖不擋點擊 */
+.homepage-sci-fi img[src*="home-hero-banner"],
+.homepage-sci-fi .home-hero-image-banner {
+  pointer-events: none !important;
+  position: relative !important;
+  z-index: 10 !important;
+}
+
+/* 頂部按鍵永遠可點 */
+.homepage-sci-fi header,
+.homepage-sci-fi nav,
+.homepage-sci-fi button,
+.homepage-sci-fi a,
+.homepage-sci-fi [role="button"] {
+  position: relative !important;
+  z-index: 5000 !important;
+  pointer-events: auto !important;
+}
+
+/* 手機漢堡如果是 details，改成浮層，避免推版圖 */
+@media (max-width: 820px) {
+  .homepage-sci-fi details[open] {
+    position: fixed !important;
+    top: 10px !important;
+    left: 10px !important;
+    right: 10px !important;
+    z-index: 9000 !important;
+    max-height: 82vh !important;
+    overflow-y: auto !important;
+    background: rgba(255,255,255,0.96) !important;
+    border: 1px solid rgba(54,65,76,0.22) !important;
+    border-radius: 18px !important;
+    box-shadow: 0 18px 38px rgba(18,28,38,0.18) !important;
+    backdrop-filter: blur(8px) !important;
+  }
+
+  .homepage-sci-fi .home-zone {
+    margin-top: 1.8rem !important;
+    padding: 2.55rem 0.85rem 1rem !important;
+    border-radius: 18px !important;
+  }
+
+  .homepage-sci-fi .home-zone > .panel-tag {
+    min-width: 116px !important;
+    height: 30px !important;
+    font-size: 0.82rem !important;
+  }
+}
+
+/* 底部氏族浮水印 */
+.homepage-sci-fi .home-clan-watermark {
+  position: relative !important;
+  z-index: 15 !important;
+  width: 100% !important;
+  margin: 3rem auto 1.5rem !important;
+  text-align: center !important;
+  color: rgba(54, 65, 76, 0.72) !important;
+  font-weight: 900 !important;
+  font-size: 1.05rem !important;
+  letter-spacing: 0.55em !important;
+  pointer-events: none !important;
+}
+
+/* v2.5.1 修正：氏族浮水印強制回來 */
+.homepage-sci-fi::after {
+  content: "KETHER OF PARADISO" !important;
+  display: block !important;
+  position: relative !important;
+  z-index: 25 !important;
+  width: 100% !important;
+  margin: 3rem auto 1.6rem !important;
+  text-align: center !important;
+  color: rgba(54, 65, 76, 0.72) !important;
+  font-weight: 900 !important;
+  font-size: 1.05rem !important;
+  letter-spacing: 0.55em !important;
+  pointer-events: none !important;
+  background: none !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* v2.5.1 修正：手機漢堡菜單改成小型浮層，不吃整個畫面 */
+@media (max-width: 820px) {
+  .homepage-sci-fi details[open] {
+    position: fixed !important;
+    top: 12px !important;
+    left: 12px !important;
+    right: auto !important;
+    bottom: auto !important;
+    width: min(82vw, 320px) !important;
+    max-width: 320px !important;
+    max-height: 68vh !important;
+    overflow-y: auto !important;
+    z-index: 9000 !important;
+    padding: 0.75rem !important;
+    background: rgba(255, 255, 255, 0.96) !important;
+    border: 1px solid rgba(54, 65, 76, 0.24) !important;
+    border-radius: 18px !important;
+    box-shadow: 0 16px 34px rgba(18, 28, 38, 0.18) !important;
+    backdrop-filter: blur(8px) !important;
+  }
+
+  .homepage-sci-fi details[open] summary {
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 9001 !important;
+    cursor: pointer !important;
+  }
+
+  .homepage-sci-fi details[open] nav,
+  .homepage-sci-fi details[open] ul,
+  .homepage-sci-fi details[open] div {
+    max-width: 100% !important;
+  }
+
+  /* 避免菜單內項目撐爆畫面 */
+  .homepage-sci-fi details[open] a,
+  .homepage-sci-fi details[open] button {
+    max-width: 100% !important;
+    white-space: normal !important;
+  }
+}
+
+/* 桌面版不動 details，避免影響原本排版 */
+@media (min-width: 821px) {
+  .homepage-sci-fi details[open] {
+    position: relative !important;
+  }
+}
+
+/* v2.5.2 手機菜單半透明玻璃背景，不再整片吃掉版圖 */
+@media (max-width: 820px) {
+  .homepage-sci-fi details[open] {
+    background:
+      linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.68),
+        rgba(245, 248, 250, 0.52)
+      ) !important;
+    backdrop-filter: blur(18px) saturate(1.2) !important;
+    -webkit-backdrop-filter: blur(18px) saturate(1.2) !important;
+    border: 1px solid rgba(255, 255, 255, 0.46) !important;
+    box-shadow:
+      0 18px 42px rgba(18, 28, 38, 0.18),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.32) !important;
+  }
+
+  /* 菜單裡面的白色容器也一起變透明，避免內層又蓋成白板 */
+  .homepage-sci-fi details[open] nav,
+  .homepage-sci-fi details[open] ul,
+  .homepage-sci-fi details[open] div {
+    background: transparent !important;
+  }
+
+  /* 菜單項目保持清楚，但不要變成實心白 */
+  .homepage-sci-fi details[open] a,
+  .homepage-sci-fi details[open] button {
+    background: rgba(255, 255, 255, 0.16) !important;
+    border-radius: 14px !important;
+  }
+
+  .homepage-sci-fi details[open] a:hover,
+  .homepage-sci-fi details[open] button:hover {
+    background: rgba(255, 255, 255, 0.34) !important;
+  }
+
+  /* 菜單文字保持可讀 */
+  .homepage-sci-fi details[open] {
+    color: #111820 !important;
+  }
+}
+
+/* v2.5.3 菜單雙層背景微調
+   - 外層全透明
+   - 內層卡片更透明
+*/
+@media (max-width: 820px) {
+  /* 最下面那層：全透明，不要再有一整片白霧 */
+  .homepage-sci-fi details[open] {
+    background: transparent !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+
+  /* 上面那層：半透明玻璃卡，再淡一點 */
+  .homepage-sci-fi details[open] nav,
+  .homepage-sci-fi details[open] .mobile-menu,
+  .homepage-sci-fi details[open] .menu-panel,
+  .homepage-sci-fi details[open] ul {
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.42),
+      rgba(245, 248, 250, 0.28)
+    ) !important;
+    backdrop-filter: blur(16px) saturate(1.08) !important;
+    -webkit-backdrop-filter: blur(16px) saturate(1.08) !important;
+    border: 1px solid rgba(255, 255, 255, 0.30) !important;
+    box-shadow:
+      0 10px 28px rgba(0, 0, 0, 0.10),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.14) !important;
+  }
+
+  /* 菜單項目保留可讀性，但不要太白 */
+  .homepage-sci-fi details[open] a,
+  .homepage-sci-fi details[open] button {
+    background: rgba(255, 255, 255, 0.08) !important;
+  }
+
+  .homepage-sci-fi details[open] a:hover,
+  .homepage-sci-fi details[open] button:hover {
+    background: rgba(255, 255, 255, 0.16) !important;
+  }
+}
+
+/* v2.5.4 菜單透明度再調整
+   底層強制全透明，上層玻璃卡更淡
+*/
+@media (max-width: 820px) {
+  /* 最底層：details 本體與裝飾全部透明 */
+  .homepage-sci-fi details[open],
+  .homepage-sci-fi details[open]::before,
+  .homepage-sci-fi details[open]::after {
+    background: transparent !important;
+    background-color: transparent !important;
+    background-image: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    outline: none !important;
+  }
+
+  /* 外層包裝也透明，避免第二片白霧 */
+  .homepage-sci-fi details[open] > div,
+  .homepage-sci-fi details[open] > section,
+  .homepage-sci-fi details[open] > aside,
+  .homepage-sci-fi details[open] > menu {
+    background: transparent !important;
+    background-color: transparent !important;
+    background-image: none !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+
+  /* 上層真正菜單卡：更淡、更透 */
+  .homepage-sci-fi details[open] nav,
+  .homepage-sci-fi details[open] ul,
+  .homepage-sci-fi details[open] .mobile-menu,
+  .homepage-sci-fi details[open] .menu-panel {
+    background:
+      linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.24),
+        rgba(245, 248, 250, 0.12)
+      ) !important;
+    backdrop-filter: blur(12px) saturate(1.04) !important;
+    -webkit-backdrop-filter: blur(12px) saturate(1.04) !important;
+    border: 1px solid rgba(255, 255, 255, 0.18) !important;
+    box-shadow:
+      0 8px 22px rgba(0, 0, 0, 0.07),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.08) !important;
+  }
+
+  /* 菜單項目幾乎透明，只留一點點可讀底 */
+  .homepage-sci-fi details[open] a,
+  .homepage-sci-fi details[open] button {
+    background: rgba(255, 255, 255, 0.035) !important;
+    border-radius: 14px !important;
+  }
+
+  .homepage-sci-fi details[open] a:hover,
+  .homepage-sci-fi details[open] button:hover {
+    background: rgba(255, 255, 255, 0.10) !important;
+  }
+
+  /* 漢堡按鈕本身不要被淡到看不見 */
+  .homepage-sci-fi details[open] summary {
+    background: transparent !important;
+    color: #111820 !important;
+  }
+}
+
+/* v2.5.5 精準修正手機菜單透明度
+   真正底層：menu-drawer
+   真正上層：menu-popup
+*/
+@media (max-width: 820px) {
+  /* 最底層白底：完全透明、完全看不見 */
+  .homepage-sci-fi .menu-drawer,
+  .homepage-sci-fi .menu-drawer[open],
+  .homepage-sci-fi details.menu-drawer,
+  .homepage-sci-fi details.menu-drawer[open],
+  .homepage-sci-fi .menu-drawer::before,
+  .homepage-sci-fi .menu-drawer::after {
+    background: transparent !important;
+    background-color: transparent !important;
+    background-image: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    outline: none !important;
+  }
+
+  /* menu-drawer 只負責定位，不再變成白色大板 */
+  .homepage-sci-fi details.menu-drawer[open] {
+    position: fixed !important;
+    top: 12px !important;
+    left: 14px !important;
+    right: auto !important;
+    bottom: auto !important;
+    width: min(82vw, 360px) !important;
+    max-width: 360px !important;
+    max-height: 78vh !important;
+    overflow: visible !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    z-index: 9000 !important;
+  }
+
+  /* 漢堡按鈕本身透明 */
+  .homepage-sci-fi .menu-drawer summary {
+    background: transparent !important;
+    background-color: transparent !important;
+    box-shadow: none !important;
+    border: none !important;
+    outline: none !important;
+  }
+
+  /* 上層真正菜單卡：更淡、更透明 */
+  .homepage-sci-fi .menu-popup {
+    margin-top: 0.85rem !important;
+    width: min(78vw, 320px) !important;
+    max-width: 320px !important;
+    max-height: 68vh !important;
+    overflow-y: auto !important;
+
+    background:
+      linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.18),
+        rgba(245, 248, 250, 0.08)
+      ) !important;
+    background-color: rgba(255, 255, 255, 0.10) !important;
+    backdrop-filter: blur(10px) saturate(1.02) !important;
+    -webkit-backdrop-filter: blur(10px) saturate(1.02) !important;
+
+    border: 1px solid rgba(255, 255, 255, 0.14) !important;
+    border-radius: 18px !important;
+    box-shadow:
+      0 8px 22px rgba(0, 0, 0, 0.06),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.06) !important;
+  }
+
+  /* 內層不要再自己長白底 */
+  .homepage-sci-fi .menu-popup *,
+  .homepage-sci-fi .menu-popup div,
+  .homepage-sci-fi .menu-popup ul,
+  .homepage-sci-fi .menu-popup li {
+    background-color: transparent !important;
+    background-image: none !important;
+  }
+
+  /* 菜單文字保持可讀，不加大白底 */
+  .homepage-sci-fi .menu-popup a,
+  .homepage-sci-fi .menu-popup button {
+    background: rgba(255, 255, 255, 0.025) !important;
+    border-radius: 14px !important;
+    color: #111820 !important;
+  }
+
+  .homepage-sci-fi .menu-popup a:hover,
+  .homepage-sci-fi .menu-popup button:hover {
+    background: rgba(255, 255, 255, 0.10) !important;
+  }
+}
+
+/* v2.5.6 menu-popup 更淡版玻璃菜單 */
+@media (max-width: 820px) {
+  .homepage-sci-fi .menu-popup,
+  .homepage-sci-fi details.menu-drawer[open] .menu-popup {
+    background:
+      linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.08),
+        rgba(245, 248, 250, 0.025)
+      ) !important;
+    background-color: rgba(255, 255, 255, 0.035) !important;
+
+    backdrop-filter: blur(7px) saturate(1.01) !important;
+    -webkit-backdrop-filter: blur(7px) saturate(1.01) !important;
+
+    border: 1px solid rgba(255, 255, 255, 0.07) !important;
+    box-shadow:
+      0 6px 16px rgba(0, 0, 0, 0.035),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.025) !important;
+  }
+
+  .homepage-sci-fi .menu-popup *,
+  .homepage-sci-fi .menu-popup div,
+  .homepage-sci-fi .menu-popup ul,
+  .homepage-sci-fi .menu-popup li {
+    background: transparent !important;
+    background-color: transparent !important;
+    background-image: none !important;
+    box-shadow: none !important;
+  }
+
+  .homepage-sci-fi .menu-popup a,
+  .homepage-sci-fi .menu-popup button {
+    background: transparent !important;
+    color: #101820 !important;
+    text-shadow: 0 1px 3px rgba(255, 255, 255, 0.42) !important;
+  }
+
+  .homepage-sci-fi .menu-popup a:hover,
+  .homepage-sci-fi .menu-popup button:hover {
+    background: rgba(255, 255, 255, 0.06) !important;
+  }
+}
+
+/* v2.5.7 固定首頁背景，不跟卷軸跑 */
+.homepage-sci-fi {
+  position: relative !important;
+  isolation: isolate !important;
+  min-height: 100svh !important;
+  overflow-x: hidden !important;
+  background: transparent !important;
+}
+
+/* 固定背景層：永遠貼在視窗，不跟內容捲動 */
+.homepage-sci-fi::before {
+  content: "" !important;
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: -1 !important;
+  pointer-events: none !important;
+  background:
+    linear-gradient(
+      rgba(246, 248, 250, 0.82),
+      rgba(246, 248, 250, 0.94)
+    ),
+    url("/home-ui-bg.png?v=257") center center / cover no-repeat !important;
+  opacity: 1 !important;
+  transform: translateZ(0) !important;
+}
+
+/* 首頁內容更緊湊，讓文字更容易塞進畫面 */
+.homepage-sci-fi .home-hero-image-banner {
+  margin-top: 0.6rem !important;
+  margin-bottom: 0.8rem !important;
+}
+
+.homepage-sci-fi .home-hero-image-banner img {
+  width: 100% !important;
+  max-height: clamp(180px, 32vh, 360px) !important;
+  object-fit: cover !important;
+  object-position: center !important;
+}
+
+/* 四大區塊間距縮小 */
+.homepage-sci-fi .home-zone {
+  margin-top: 1.05rem !important;
+  padding-top: 2.35rem !important;
+  padding-bottom: 0.85rem !important;
+}
+
+/* 統計區壓縮 */
+.homepage-sci-fi .home-zone-stats {
+  margin-top: 0.95rem !important;
+}
+
+.homepage-sci-fi .home-kpi-grid {
+  gap: 0.75rem !important;
+}
+
+.homepage-sci-fi .home-kpi-grid article {
+  min-height: auto !important;
+  padding-top: 0.85rem !important;
+  padding-bottom: 0.85rem !important;
+}
+
+/* 導覽區壓縮 */
+.homepage-sci-fi .nav-grid {
+  gap: 0.75rem !important;
+}
+
+.homepage-sci-fi .nav-card {
+  min-height: auto !important;
+  padding-top: 0.85rem !important;
+  padding-bottom: 0.85rem !important;
+}
+
+/* 資料區與備註區更緊湊 */
+.homepage-sci-fi .summary-table,
+.homepage-sci-fi .notes-card {
+  margin-top: 0 !important;
+}
+
+.homepage-sci-fi .summary-row {
+  padding-top: 0.55rem !important;
+  padding-bottom: 0.55rem !important;
+}
+
+.homepage-sci-fi .notes-card p {
+  margin-top: 0.35rem !important;
+  margin-bottom: 0.35rem !important;
+}
+
+/* 手機版：再壓一點高度 */
+@media (max-width: 820px) {
+  .homepage-sci-fi::before {
+    background:
+      linear-gradient(
+        rgba(246, 248, 250, 0.84),
+        rgba(246, 248, 250, 0.96)
+      ),
+      url("/home-ui-bg.png?v=257") center center / cover no-repeat !important;
+  }
+
+  .homepage-sci-fi .home-hero-image-banner {
+    margin-top: 0.35rem !important;
+    margin-bottom: 0.55rem !important;
+  }
+
+  .homepage-sci-fi .home-hero-image-banner img {
+    max-height: clamp(150px, 26vh, 260px) !important;
+  }
+
+  .homepage-sci-fi .home-zone {
+    margin-top: 0.85rem !important;
+    padding-top: 2.15rem !important;
+    padding-left: 0.75rem !important;
+    padding-right: 0.75rem !important;
+    padding-bottom: 0.75rem !important;
+  }
+
+  .homepage-sci-fi .home-kpi-grid {
+    gap: 0.55rem !important;
+  }
+
+  .homepage-sci-fi .home-kpi-grid article {
+    padding: 0.7rem 0.8rem !important;
+  }
+
+  .homepage-sci-fi .nav-grid {
+    gap: 0.55rem !important;
+  }
+
+  .homepage-sci-fi .nav-card {
+    padding: 0.7rem 0.8rem !important;
+  }
+
+  .homepage-sci-fi .summary-row {
+    padding-top: 0.45rem !important;
+    padding-bottom: 0.45rem !important;
+  }
+}
+
+/* v2.5.8 救回固定背景
+   修正 v2.5.7 的 ::before z-index:-1 被手機瀏覽器藏起來問題
+*/
+.homepage-sci-fi {
+  position: relative !important;
+  isolation: isolate !important;
+  min-height: 100svh !important;
+  overflow-x: hidden !important;
+  background: #f6f8fa !important;
+}
+
+/* 背景固定在視窗底層，但不要用負 z-index */
+.homepage-sci-fi::before {
+  content: "" !important;
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 0 !important;
+  pointer-events: none !important;
+  display: block !important;
+  background:
+    linear-gradient(
+      rgba(246, 248, 250, 0.82),
+      rgba(246, 248, 250, 0.94)
+    ),
+    url("/home-ui-bg.png?v=258") center center / cover no-repeat !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: translateZ(0) !important;
+}
+
+/* 所有首頁內容壓在背景上面 */
+.homepage-sci-fi > * {
+  position: relative !important;
+  z-index: 2 !important;
+}
+
+/* 頂部操作列與菜單最高 */
+.homepage-sci-fi header,
+.homepage-sci-fi nav,
+.homepage-sci-fi button,
+.homepage-sci-fi a,
+.homepage-sci-fi details,
+.homepage-sci-fi summary,
+.homepage-sci-fi [role="button"] {
+  position: relative !important;
+  z-index: 5000 !important;
+}
+
+/* 菜單彈層仍保持最高 */
+.homepage-sci-fi .menu-drawer,
+.homepage-sci-fi .menu-popup {
+  z-index: 9000 !important;
+}
+
+/* 手機版背景一樣固定 */
+@media (max-width: 820px) {
+  .homepage-sci-fi::before {
+    background:
+      linear-gradient(
+        rgba(246, 248, 250, 0.82),
+        rgba(246, 248, 250, 0.94)
+      ),
+      url("/home-ui-bg.png?v=258") center center / cover no-repeat !important;
+  }
+}
+
+/* v2.5.9 固定背景實體層
+   不再使用 ::before，避免手機瀏覽器把背景藏掉
+*/
+.homepage-sci-fi {
+  position: relative !important;
+  isolation: isolate !important;
+  min-height: 100svh !important;
+  overflow-x: hidden !important;
+  background: transparent !important;
+}
+
+/* 關掉前面版本殘留的 ::before 背景，避免互相打架 */
+.homepage-sci-fi::before {
+  content: none !important;
+  display: none !important;
+  background: none !important;
+}
+
+/* 真正固定背景，不跟卷軸跑 */
+.homepage-sci-fi > .home-fixed-bg {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 0 !important;
+  pointer-events: none !important;
+  display: block !important;
+  width: 100vw !important;
+  height: 100svh !important;
+  background:
+    linear-gradient(
+      rgba(246, 248, 250, 0.78),
+      rgba(246, 248, 250, 0.92)
+    ),
+    url("/home-ui-bg.png?v=259") center center / cover no-repeat !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* 首頁其他內容全部放在背景上方 */
+.homepage-sci-fi > :not(.home-fixed-bg) {
+  position: relative !important;
+  z-index: 2 !important;
+}
+
+/* 菜單保持最高層 */
+.homepage-sci-fi .menu-drawer,
+.homepage-sci-fi .menu-popup,
+.homepage-sci-fi header,
+.homepage-sci-fi nav,
+.homepage-sci-fi button,
+.homepage-sci-fi a {
+  position: relative !important;
+  z-index: 5000 !important;
+}
+
+.homepage-sci-fi .menu-popup {
+  z-index: 9000 !important;
+}
+
+/* v2.5.10 強制固定背景實體層 */
+.homepage-sci-fi {
+  position: relative !important;
+  isolation: isolate !important;
+  min-height: 100svh !important;
+  overflow-x: hidden !important;
+  background: transparent !important;
+}
+
+.homepage-sci-fi::before {
+  content: none !important;
+  display: none !important;
+}
+
+.homepage-sci-fi > .home-fixed-bg {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 0 !important;
+  display: block !important;
+  pointer-events: none !important;
+  width: 100vw !important;
+  height: 100svh !important;
+  background:
+    linear-gradient(
+      rgba(246, 248, 250, 0.72),
+      rgba(246, 248, 250, 0.88)
+    ),
+    url("/home-ui-bg.png?v=2510") center center / cover no-repeat !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.homepage-sci-fi > :not(.home-fixed-bg) {
+  position: relative !important;
+  z-index: 2 !important;
+}
+
+/* v2.5.11 固定背景實體層最終補丁 */
+.homepage-sci-fi {
+  position: relative !important;
+  isolation: isolate !important;
+  min-height: 100svh !important;
+  overflow-x: hidden !important;
+  background: transparent !important;
+}
+
+.homepage-sci-fi::before {
+  content: none !important;
+  display: none !important;
+  background: none !important;
+}
+
+.homepage-sci-fi > .home-fixed-bg {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 0 !important;
+  display: block !important;
+  pointer-events: none !important;
+  width: 100vw !important;
+  height: 100svh !important;
+  background:
+    linear-gradient(
+      rgba(246, 248, 250, 0.72),
+      rgba(246, 248, 250, 0.88)
+    ),
+    url("/home-ui-bg.png?v=2511") center center / cover no-repeat !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.homepage-sci-fi > :not(.home-fixed-bg) {
+  position: relative !important;
+  z-index: 2 !important;
+}
+
+/* 菜單維持最高層 */
+.homepage-sci-fi .menu-drawer,
+.homepage-sci-fi .menu-popup {
+  z-index: 9000 !important;
+}
+
+/* v2.5.12 首頁美工根 class 與固定背景層保險 */
+.homepage-sci-fi {
+  position: relative !important;
+  isolation: isolate !important;
+  min-height: 100svh !important;
+  overflow-x: hidden !important;
+  background: transparent !important;
+}
+
+.homepage-sci-fi::before {
+  content: none !important;
+  display: none !important;
+}
+
+.homepage-sci-fi > .home-fixed-bg {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 0 !important;
+  display: block !important;
+  pointer-events: none !important;
+  width: 100vw !important;
+  height: 100svh !important;
+  background:
+    linear-gradient(
+      rgba(246, 248, 250, 0.72),
+      rgba(246, 248, 250, 0.88)
+    ),
+    url("/home-ui-bg.png?v=2512") center center / cover no-repeat !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.homepage-sci-fi > :not(.home-fixed-bg) {
+  position: relative !important;
+  z-index: 2 !important;
+}
+
+/* v2.5.13 背景完整貼合版
+   修正 v2.5.12 使用 cover 造成左右被裁切
+*/
+.homepage-sci-fi > .home-fixed-bg {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 0 !important;
+  display: block !important;
+  pointer-events: none !important;
+  width: 100vw !important;
+  height: 100svh !important;
+
+  background-color: #f6f8fa !important;
+  background-image:
+    linear-gradient(
+      rgba(246, 248, 250, 0.68),
+      rgba(246, 248, 250, 0.86)
+    ),
+    url("/home-ui-bg.png?v=2513") !important;
+
+  /* 重點：不用 cover，避免左右被吃掉 */
+  background-size: 100% 100% !important;
+  background-position: center center !important;
+  background-repeat: no-repeat !important;
+
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* 手機 / 平板也強制完整撐滿，不裁切 */
+@media (max-width: 820px) {
+  .homepage-sci-fi > .home-fixed-bg {
+    width: 100vw !important;
+    height: 100svh !important;
+    background-size: 100% 100% !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+  }
+}
+
+/* v2.5.14 固定背景去浮動框架版
+   home-ui-bg 只當底紋，螢幕邊框改用 CSS 畫，避免圖片內縮造成浮動感
+*/
+.homepage-sci-fi > .home-fixed-bg {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 0 !important;
+  display: block !important;
+  pointer-events: none !important;
+  width: 100vw !important;
+  height: 100svh !important;
+  overflow: hidden !important;
+
+  background:
+    linear-gradient(
+      rgba(246, 248, 250, 0.72),
+      rgba(246, 248, 250, 0.90)
+    ),
+    url("/home-ui-bg.png?v=2514") center center / 115% 115% no-repeat !important;
+
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* 關掉圖片帶來的浮動框感，改成真正貼邊的科技外框 */
+.homepage-sci-fi > .home-fixed-bg::before {
+  content: "" !important;
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 1 !important;
+  pointer-events: none !important;
+
+  border: 8px solid rgba(38, 50, 60, 0.72) !important;
+  box-shadow:
+    inset 0 0 0 2px rgba(255, 255, 255, 0.72),
+    inset 0 0 0 10px rgba(38, 50, 60, 0.06) !important;
+}
+
+/* 四角科技角，真正貼螢幕邊 */
+.homepage-sci-fi > .home-fixed-bg::after {
+  content: "" !important;
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 2 !important;
+  pointer-events: none !important;
+
+  background:
+    linear-gradient(#26323c, #26323c) left 18px top 18px / 110px 4px no-repeat,
+    linear-gradient(#26323c, #26323c) left 18px top 18px / 4px 110px no-repeat,
+
+    linear-gradient(#26323c, #26323c) right 18px top 18px / 110px 4px no-repeat,
+    linear-gradient(#26323c, #26323c) right 18px top 18px / 4px 110px no-repeat,
+
+    linear-gradient(#26323c, #26323c) left 18px bottom 18px / 110px 4px no-repeat,
+    linear-gradient(#26323c, #26323c) left 18px bottom 18px / 4px 110px no-repeat,
+
+    linear-gradient(#26323c, #26323c) right 18px bottom 18px / 110px 4px no-repeat,
+    linear-gradient(#26323c, #26323c) right 18px bottom 18px / 4px 110px no-repeat !important;
+}
+
+/* 手機版邊框稍微細一點 */
+@media (max-width: 820px) {
+  .homepage-sci-fi > .home-fixed-bg {
+    background:
+      linear-gradient(
+        rgba(246, 248, 250, 0.74),
+        rgba(246, 248, 250, 0.92)
+      ),
+      url("/home-ui-bg.png?v=2514") center center / 125% 125% no-repeat !important;
+  }
+
+  .homepage-sci-fi > .home-fixed-bg::before {
+    border-width: 5px !important;
+    box-shadow:
+      inset 0 0 0 1px rgba(255, 255, 255, 0.70),
+      inset 0 0 0 7px rgba(38, 50, 60, 0.05) !important;
+  }
+
+  .homepage-sci-fi > .home-fixed-bg::after {
+    background:
+      linear-gradient(#26323c, #26323c) left 12px top 12px / 78px 3px no-repeat,
+      linear-gradient(#26323c, #26323c) left 12px top 12px / 3px 78px no-repeat,
+
+      linear-gradient(#26323c, #26323c) right 12px top 12px / 78px 3px no-repeat,
+      linear-gradient(#26323c, #26323c) right 12px top 12px / 3px 78px no-repeat,
+
+      linear-gradient(#26323c, #26323c) left 12px bottom 12px / 78px 3px no-repeat,
+      linear-gradient(#26323c, #26323c) left 12px bottom 12px / 3px 78px no-repeat,
+
+      linear-gradient(#26323c, #26323c) right 12px bottom 12px / 78px 3px no-repeat,
+      linear-gradient(#26323c, #26323c) right 12px bottom 12px / 3px 78px no-repeat !important;
+  }
+}
+
+/* v2.5.15 恢復科技背景，關閉 v2.5.14 線條框架 */
+.homepage-sci-fi > .home-fixed-bg {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 0 !important;
+  display: block !important;
+  pointer-events: none !important;
+  width: 100vw !important;
+  height: 100svh !important;
+  overflow: hidden !important;
+
+  background-color: #f6f8fa !important;
+  background-image:
+    linear-gradient(
+      rgba(246, 248, 250, 0.38),
+      rgba(246, 248, 250, 0.62)
+    ),
+    url("/home-ui-bg.png?v=2515") !important;
+
+  background-size: 100% 100% !important;
+  background-position: center center !important;
+  background-repeat: no-repeat !important;
+
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* 關掉 v2.5.14 的線條框架 */
+.homepage-sci-fi > .home-fixed-bg::before,
+.homepage-sci-fi > .home-fixed-bg::after {
+  content: none !important;
+  display: none !important;
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* 手機 / 平板保持科技背景完整顯示 */
+@media (max-width: 820px) {
+  .homepage-sci-fi > .home-fixed-bg {
+    background-image:
+      linear-gradient(
+        rgba(246, 248, 250, 0.36),
+        rgba(246, 248, 250, 0.64)
+      ),
+      url("/home-ui-bg.png?v=2515") !important;
+
+    background-size: 100% 100% !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+  }
+}
+
+/* v2.5.17 修正固定背景高度
+   避免 100svh 在手機 / 分割畫面下讓背景太早結束
+*/
+.homepage-sci-fi > .home-fixed-bg {
+  position: fixed !important;
+  top: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  left: 0 !important;
+
+  width: 100vw !important;
+  height: 100dvh !important;
+  min-height: 100vh !important;
+
+  z-index: 0 !important;
+  display: block !important;
+  pointer-events: none !important;
+  overflow: hidden !important;
+
+  background-color: #f6f8fa !important;
+  background-image:
+    linear-gradient(
+      rgba(246, 248, 250, 0.36),
+      rgba(246, 248, 250, 0.62)
+    ),
+    url("/home-ui-bg.png?v=2517") !important;
+
+  background-size: 100% 100% !important;
+  background-position: center center !important;
+  background-repeat: no-repeat !important;
+
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* 手機 / 平板：同樣使用動態視窗高度，不用 svh */
+@media (max-width: 820px) {
+  .homepage-sci-fi > .home-fixed-bg {
+    height: 100dvh !important;
+    min-height: 100vh !important;
+    background-size: 100% 100% !important;
+  }
+}
+
+/* v2.5.18 提高固定科技背景濃度
+   修正 v2.5.17 背景太透明
+*/
+.homepage-sci-fi > .home-fixed-bg {
+  background-color: #f6f8fa !important;
+  background-image:
+    linear-gradient(
+      rgba(246, 248, 250, 0.16),
+      rgba(246, 248, 250, 0.34)
+    ),
+    url("/home-ui-bg.png?v=2518") !important;
+
+  background-size: 100% 100% !important;
+  background-position: center center !important;
+  background-repeat: no-repeat !important;
+
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* 手機 / 平板也提高背景濃度 */
+@media (max-width: 820px) {
+  .homepage-sci-fi > .home-fixed-bg {
+    background-image:
+      linear-gradient(
+        rgba(246, 248, 250, 0.14),
+        rgba(246, 248, 250, 0.32)
+      ),
+      url("/home-ui-bg.png?v=2518") !important;
+
+    background-size: 100% 100% !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+  }
+}
+
+/* v2.5.23 移除舊底部氏族浮水印 */
+.homepage-sci-fi::after {
+  content: none !important;
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+}
+
+.home-clan-watermark,
+.clan-signature,
+.bottom-clan-name,
+.home-bottom-brand,
+.footer-brand {
+  display: none !important;
+}
+
+/* v2.5.23 正式底部網址與 Website by 簽名 */
+.home-footer-signature {
+  width: 100%;
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: 28px auto 22px;
+  padding: 14px 18px 28px;
+  position: relative;
+  z-index: 20;
+  text-align: center;
+  font-size: 14px;
+  line-height: 1.7;
+  color: rgba(58, 68, 82, 0.88);
+}
+
+.home-footer-link {
+  color: rgba(58, 68, 82, 0.92);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(90, 104, 124, 0.25);
+  padding-bottom: 2px;
+}
+
+.home-footer-designer {
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.home-footer-divider {
+  opacity: 0.45;
+}
+
+@media (max-width: 768px) {
+  .home-footer-signature {
+    flex-direction: column;
+    gap: 4px;
+    font-size: 12px;
+    padding-bottom: 24px;
+  }
+
+  .home-footer-divider {
+    display: none;
+  }
+}
+
+/* v2.5.24 底部署名靠近網址尾端 */
+.home-footer-signature {
+  display: flex !important;
+  flex-direction: row !important;
+  justify-content: center !important;
+  align-items: baseline !important;
+  gap: 6px !important;
+  flex-wrap: nowrap !important;
+  width: fit-content !important;
+  max-width: calc(100% - 28px) !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  text-align: center !important;
+}
+
+.home-footer-link,
+.home-footer-designer,
+.home-footer-divider {
+  display: inline-flex !important;
+  align-items: baseline !important;
+  white-space: nowrap !important;
+}
+
+.home-footer-divider {
+  opacity: 0.35 !important;
+  margin: 0 2px !important;
+}
+
+/* 手機版：仍然貼近網址尾端，不再上下分開 */
+@media (max-width: 768px) {
+  .home-footer-signature {
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    gap: 4px !important;
+    font-size: 11px !important;
+    line-height: 1.5 !important;
+    max-width: calc(100% - 22px) !important;
+    overflow: hidden !important;
+  }
+
+  .home-footer-link {
+    max-width: 58vw !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+  }
+
+  .home-footer-divider {
+    display: inline-flex !important;
+  }
+
+  .home-footer-designer {
+    white-space: nowrap !important;
+    flex-shrink: 0 !important;
+  }
+}
+
+/* v2.5.25 底部署名改成第二行，靠近網址尾端 */
+.home-footer-signature {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: flex-end !important;
+  gap: 2px !important;
+  width: fit-content !important;
+  max-width: calc(100% - 28px) !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  text-align: right !important;
+}
+
+.home-footer-link {
+  display: block !important;
+  white-space: nowrap !important;
+  text-align: right !important;
+}
+
+.home-footer-designer {
+  display: block !important;
+  white-space: nowrap !important;
+  text-align: right !important;
+  font-size: 0.92em !important;
+  opacity: 0.88 !important;
+}
+
+.home-footer-divider {
+  display: none !important;
+}
+
+/* 手機版：兩行顯示，網址過長時省略，署名仍靠右 */
+@media (max-width: 768px) {
+  .home-footer-signature {
+    align-items: flex-end !important;
+    text-align: right !important;
+    max-width: calc(100% - 22px) !important;
+    font-size: 11px !important;
+    line-height: 1.45 !important;
+  }
+
+  .home-footer-link {
+    max-width: 82vw !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+  }
+
+  .home-footer-designer {
+    font-size: 0.95em !important;
+  }
+}
+
+/* v2.5.26 各首頁區塊銀白科技框架 */
+.homepage-sci-fi .home-zone {
+  position: relative !important;
+  z-index: 20 !important;
+  margin-top: 1.25rem !important;
+  padding: 2.65rem 1.1rem 1.15rem !important;
+  border: 1px solid rgba(92, 108, 124, 0.42) !important;
+  border-radius: 22px !important;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.64),
+      rgba(239, 244, 248, 0.42)
+    ) !important;
+  box-shadow:
+    0 12px 30px rgba(22, 32, 44, 0.08),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.72),
+    inset 0 0 26px rgba(255, 255, 255, 0.18) !important;
+  overflow: visible !important;
+}
+
+/* 區塊左上標籤 */
+.homepage-sci-fi .home-zone > .panel-tag {
+  position: absolute !important;
+  top: -1px !important;
+  left: -1px !important;
+  min-width: 134px !important;
+  height: 34px !important;
+  padding: 0 1rem !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-radius: 20px 0 18px 0 !important;
+  background:
+    linear-gradient(135deg, rgba(42, 54, 66, 0.92), rgba(86, 101, 116, 0.82)) !important;
+  color: rgba(255, 255, 255, 0.96) !important;
+  font-weight: 900 !important;
+  font-size: 0.92rem !important;
+  letter-spacing: 0.08em !important;
+  box-shadow:
+    0 8px 18px rgba(20, 30, 42, 0.16),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.24) !important;
+  z-index: 60 !important;
+}
+
+/* 區塊科技角線：四角貼合，不吃內容 */
+.homepage-sci-fi .home-zone::before {
+  content: "" !important;
+  position: absolute !important;
+  inset: 10px !important;
+  pointer-events: none !important;
+  z-index: 2 !important;
+  border-radius: 17px !important;
+  background:
+    linear-gradient(rgba(72, 86, 100, 0.62), rgba(72, 86, 100, 0.62)) left top / 54px 2px no-repeat,
+    linear-gradient(rgba(72, 86, 100, 0.62), rgba(72, 86, 100, 0.62)) left top / 2px 54px no-repeat,
+
+    linear-gradient(rgba(72, 86, 100, 0.62), rgba(72, 86, 100, 0.62)) right top / 54px 2px no-repeat,
+    linear-gradient(rgba(72, 86, 100, 0.62), rgba(72, 86, 100, 0.62)) right top / 2px 54px no-repeat,
+
+    linear-gradient(rgba(72, 86, 100, 0.46), rgba(72, 86, 100, 0.46)) left bottom / 48px 2px no-repeat,
+    linear-gradient(rgba(72, 86, 100, 0.46), rgba(72, 86, 100, 0.46)) left bottom / 2px 48px no-repeat,
+
+    linear-gradient(rgba(72, 86, 100, 0.46), rgba(72, 86, 100, 0.46)) right bottom / 48px 2px no-repeat,
+    linear-gradient(rgba(72, 86, 100, 0.46), rgba(72, 86, 100, 0.46)) right bottom / 2px 48px no-repeat !important;
+}
+
+/* 區塊內側淡銀線 */
+.homepage-sci-fi .home-zone::after {
+  content: "" !important;
+  position: absolute !important;
+  inset: 18px !important;
+  pointer-events: none !important;
+  z-index: 1 !important;
+  border-radius: 14px !important;
+  border: 1px solid rgba(255, 255, 255, 0.50) !important;
+  box-shadow: inset 0 0 0 1px rgba(90, 108, 126, 0.08) !important;
+}
+
+/* 讓區塊內容永遠在框線上方 */
+.homepage-sci-fi .home-zone > * {
+  position: relative !important;
+  z-index: 5 !important;
+}
+
+/* 導覽小卡片、統計卡片、資料卡、備註卡：銀白科技框 */
+.homepage-sci-fi .nav-card,
+.homepage-sci-fi .home-kpi-grid article,
+.homepage-sci-fi .info-card,
+.homepage-sci-fi .summary-table,
+.homepage-sci-fi .notes-card {
+  position: relative !important;
+  border: 1px solid rgba(92, 108, 124, 0.26) !important;
+  border-radius: 18px !important;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.68),
+      rgba(242, 246, 249, 0.45)
+    ) !important;
+  box-shadow:
+    0 8px 22px rgba(22, 32, 44, 0.07),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.66) !important;
+  overflow: hidden !important;
+}
+
+/* 小卡左上科技折角 */
+.homepage-sci-fi .nav-card::before,
+.homepage-sci-fi .home-kpi-grid article::before,
+.homepage-sci-fi .info-card::before,
+.homepage-sci-fi .summary-table::before,
+.homepage-sci-fi .notes-card::before {
+  content: "" !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 42px !important;
+  height: 42px !important;
+  pointer-events: none !important;
+  background:
+    linear-gradient(rgba(50, 64, 78, 0.46), rgba(50, 64, 78, 0.46)) left top / 32px 2px no-repeat,
+    linear-gradient(rgba(50, 64, 78, 0.46), rgba(50, 64, 78, 0.46)) left top / 2px 32px no-repeat !important;
+}
+
+/* 小卡右下淡角 */
+.homepage-sci-fi .nav-card::after,
+.homepage-sci-fi .home-kpi-grid article::after,
+.homepage-sci-fi .info-card::after,
+.homepage-sci-fi .summary-table::after,
+.homepage-sci-fi .notes-card::after {
+  content: "" !important;
+  position: absolute !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  width: 38px !important;
+  height: 38px !important;
+  pointer-events: none !important;
+  background:
+    linear-gradient(rgba(50, 64, 78, 0.24), rgba(50, 64, 78, 0.24)) right bottom / 28px 2px no-repeat,
+    linear-gradient(rgba(50, 64, 78, 0.24), rgba(50, 64, 78, 0.24)) right bottom / 2px 28px no-repeat !important;
+}
+
+/* 手機版框架縮小，避免壓迫 */
+@media (max-width: 820px) {
+  .homepage-sci-fi .home-zone {
+    margin-top: 1rem !important;
+    padding: 2.35rem 0.8rem 0.95rem !important;
+    border-radius: 18px !important;
+  }
+
+  .homepage-sci-fi .home-zone > .panel-tag {
+    min-width: 116px !important;
+    height: 30px !important;
+    font-size: 0.78rem !important;
+  }
+
+  .homepage-sci-fi .home-zone::before {
+    inset: 8px !important;
+    background:
+      linear-gradient(rgba(72, 86, 100, 0.56), rgba(72, 86, 100, 0.56)) left top / 42px 2px no-repeat,
+      linear-gradient(rgba(72, 86, 100, 0.56), rgba(72, 86, 100, 0.56)) left top / 2px 42px no-repeat,
+
+      linear-gradient(rgba(72, 86, 100, 0.56), rgba(72, 86, 100, 0.56)) right top / 42px 2px no-repeat,
+      linear-gradient(rgba(72, 86, 100, 0.56), rgba(72, 86, 100, 0.56)) right top / 2px 42px no-repeat,
+
+      linear-gradient(rgba(72, 86, 100, 0.38), rgba(72, 86, 100, 0.38)) left bottom / 36px 2px no-repeat,
+      linear-gradient(rgba(72, 86, 100, 0.38), rgba(72, 86, 100, 0.38)) left bottom / 2px 36px no-repeat,
+
+      linear-gradient(rgba(72, 86, 100, 0.38), rgba(72, 86, 100, 0.38)) right bottom / 36px 2px no-repeat,
+      linear-gradient(rgba(72, 86, 100, 0.38), rgba(72, 86, 100, 0.38)) right bottom / 2px 36px no-repeat !important;
+  }
+}
+
+/* v2.5.27 強制白銀科技外框
+   直接打真正首頁區塊 class，不再只靠 home-zone
+*/
+.homepage-sci-fi .nav-panel,
+.homepage-sci-fi .home-kpi-grid,
+.homepage-sci-fi .info-card,
+.homepage-sci-fi .notes-card,
+.homepage-sci-fi .summary-table {
+  position: relative !important;
+  border: 2px solid rgba(210, 220, 230, 0.95) !important;
+  outline: 1px solid rgba(80, 96, 112, 0.42) !important;
+  outline-offset: -7px !important;
+  border-radius: 22px !important;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.72),
+      rgba(236, 242, 247, 0.48)
+    ) !important;
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.95),
+    0 14px 34px rgba(16, 28, 42, 0.13),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.90),
+    inset 0 0 22px rgba(160, 176, 194, 0.22) !important;
+  overflow: visible !important;
+}
+
+/* 四角白銀科技角線 */
+.homepage-sci-fi .nav-panel::before,
+.homepage-sci-fi .home-kpi-grid::before,
+.homepage-sci-fi .info-card::before,
+.homepage-sci-fi .notes-card::before,
+.homepage-sci-fi .summary-table::before {
+  content: "" !important;
+  position: absolute !important;
+  inset: -2px !important;
+  z-index: 10 !important;
+  pointer-events: none !important;
+  border-radius: 22px !important;
+  background:
+    linear-gradient(#e9f0f6, #e9f0f6) left top / 78px 3px no-repeat,
+    linear-gradient(#e9f0f6, #e9f0f6) left top / 3px 78px no-repeat,
+
+    linear-gradient(#e9f0f6, #e9f0f6) right top / 78px 3px no-repeat,
+    linear-gradient(#e9f0f6, #e9f0f6) right top / 3px 78px no-repeat,
+
+    linear-gradient(rgba(96,112,128,0.66), rgba(96,112,128,0.66)) left bottom / 66px 3px no-repeat,
+    linear-gradient(rgba(96,112,128,0.66), rgba(96,112,128,0.66)) left bottom / 3px 66px no-repeat,
+
+    linear-gradient(rgba(96,112,128,0.66), rgba(96,112,128,0.66)) right bottom / 66px 3px no-repeat,
+    linear-gradient(rgba(96,112,128,0.66), rgba(96,112,128,0.66)) right bottom / 3px 66px no-repeat !important;
+}
+
+/* 小卡片白銀框：導覽卡、統計卡 */
+.homepage-sci-fi .nav-card,
+.homepage-sci-fi .home-kpi-grid article {
+  position: relative !important;
+  border: 2px solid rgba(218, 226, 234, 0.96) !important;
+  outline: 1px solid rgba(70, 86, 102, 0.36) !important;
+  outline-offset: -6px !important;
+  border-radius: 18px !important;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.78),
+      rgba(239, 245, 249, 0.54)
+    ) !important;
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.95),
+    0 10px 26px rgba(16, 28, 42, 0.11),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.90) !important;
+  overflow: hidden !important;
+}
+
+/* 小卡角線更明顯 */
+.homepage-sci-fi .nav-card::before,
+.homepage-sci-fi .home-kpi-grid article::before {
+  content: "" !important;
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 10 !important;
+  pointer-events: none !important;
+  border-radius: 16px !important;
+  background:
+    linear-gradient(#f5f8fb, #f5f8fb) left top / 44px 3px no-repeat,
+    linear-gradient(#f5f8fb, #f5f8fb) left top / 3px 44px no-repeat,
+    linear-gradient(rgba(70,86,102,0.48), rgba(70,86,102,0.48)) right bottom / 38px 3px no-repeat,
+    linear-gradient(rgba(70,86,102,0.48), rgba(70,86,102,0.48)) right bottom / 3px 38px no-repeat !important;
+}
+
+/* 區塊標題牌保留並加亮 */
+.homepage-sci-fi .panel-tag,
+.homepage-sci-fi .card-title {
+  position: relative !important;
+  z-index: 20 !important;
+  background:
+    linear-gradient(135deg, rgba(38, 50, 62, 0.94), rgba(92, 108, 124, 0.88)) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(230, 238, 246, 0.72) !important;
+  box-shadow:
+    0 8px 18px rgba(16, 28, 42, 0.18),
+    inset 0 0 0 1px rgba(255,255,255,0.24) !important;
+}
+
+/* 手機版：框線縮小但保持明顯 */
+@media (max-width: 820px) {
+  .homepage-sci-fi .nav-panel,
+  .homepage-sci-fi .home-kpi-grid,
+  .homepage-sci-fi .info-card,
+  .homepage-sci-fi .notes-card,
+  .homepage-sci-fi .summary-table {
+    border-width: 2px !important;
+    outline-offset: -5px !important;
+    border-radius: 18px !important;
+  }
+
+  .homepage-sci-fi .nav-panel::before,
+  .homepage-sci-fi .home-kpi-grid::before,
+  .homepage-sci-fi .info-card::before,
+  .homepage-sci-fi .notes-card::before,
+  .homepage-sci-fi .summary-table::before {
+    border-radius: 18px !important;
+    background:
+      linear-gradient(#e9f0f6, #e9f0f6) left top / 54px 3px no-repeat,
+      linear-gradient(#e9f0f6, #e9f0f6) left top / 3px 54px no-repeat,
+
+      linear-gradient(#e9f0f6, #e9f0f6) right top / 54px 3px no-repeat,
+      linear-gradient(#e9f0f6, #e9f0f6) right top / 3px 54px no-repeat,
+
+      linear-gradient(rgba(96,112,128,0.62), rgba(96,112,128,0.62)) left bottom / 46px 3px no-repeat,
+      linear-gradient(rgba(96,112,128,0.62), rgba(96,112,128,0.62)) left bottom / 3px 46px no-repeat,
+
+      linear-gradient(rgba(96,112,128,0.62), rgba(96,112,128,0.62)) right bottom / 46px 3px no-repeat,
+      linear-gradient(rgba(96,112,128,0.62), rgba(96,112,128,0.62)) right bottom / 3px 46px no-repeat !important;
+  }
+}
+
+/* v2.5.28 修正 v2.5.27：標題變形與右下角多餘線條 */
+
+/* 關掉造成多餘角線、右下線條、標題拉長的偽元素 */
+.homepage-sci-fi .home-zone::before,
+.homepage-sci-fi .home-zone::after,
+.homepage-sci-fi .nav-panel::before,
+.homepage-sci-fi .nav-panel::after,
+.homepage-sci-fi .home-kpi-grid::before,
+.homepage-sci-fi .home-kpi-grid::after,
+.homepage-sci-fi .info-card::before,
+.homepage-sci-fi .info-card::after,
+.homepage-sci-fi .summary-table::before,
+.homepage-sci-fi .summary-table::after,
+.homepage-sci-fi .notes-card::before,
+.homepage-sci-fi .notes-card::after,
+.homepage-sci-fi .nav-card::before,
+.homepage-sci-fi .nav-card::after,
+.homepage-sci-fi .home-kpi-grid article::before,
+.homepage-sci-fi .home-kpi-grid article::after,
+.homepage-sci-fi .panel-tag::before,
+.homepage-sci-fi .panel-tag::after,
+.homepage-sci-fi .card-title::before,
+.homepage-sci-fi .card-title::after {
+  content: none !important;
+  display: none !important;
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* 保留白銀外框，但是改成乾淨版 */
+.homepage-sci-fi .home-zone,
+.homepage-sci-fi .nav-panel,
+.homepage-sci-fi .home-kpi-grid,
+.homepage-sci-fi .info-card,
+.homepage-sci-fi .summary-table,
+.homepage-sci-fi .notes-card {
+  position: relative !important;
+  border: 2px solid rgba(220, 230, 240, 0.92) !important;
+  outline: 1px solid rgba(82, 96, 112, 0.25) !important;
+  outline-offset: -6px !important;
+  border-radius: 22px !important;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.58),
+      rgba(240, 246, 250, 0.36)
+    ) !important;
+  box-shadow:
+    0 12px 28px rgba(20, 30, 42, 0.08),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.70) !important;
+  overflow: visible !important;
+}
+
+/* 小卡片白銀框保留，不再額外畫角線 */
+.homepage-sci-fi .nav-card,
+.homepage-sci-fi .home-kpi-grid article {
+  border: 2px solid rgba(220, 230, 240, 0.90) !important;
+  outline: 1px solid rgba(82, 96, 112, 0.22) !important;
+  outline-offset: -5px !important;
+  border-radius: 18px !important;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.64),
+      rgba(240, 246, 250, 0.40)
+    ) !important;
+  box-shadow:
+    0 8px 20px rgba(20, 30, 42, 0.07),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.74) !important;
+}
+
+/* 標題牌恢復正常，不准再變箭頭 */
+.homepage-sci-fi .panel-tag,
+.homepage-sci-fi .card-title,
+.homepage-sci-fi .notes-card .card-title,
+.homepage-sci-fi .info-card.notes-card .card-title {
+  width: fit-content !important;
+  max-width: max-content !important;
+  min-width: 108px !important;
+  min-height: 32px !important;
+
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+
+  padding: 6px 16px !important;
+  margin: 0 0 14px 0 !important;
+
+  position: relative !important;
+  top: auto !important;
+  left: auto !important;
+  right: auto !important;
+  bottom: auto !important;
+
+  transform: none !important;
+  clip-path: none !important;
+
+  border-radius: 12px !important;
+  background:
+    linear-gradient(
+      135deg,
+      rgba(38, 50, 62, 0.96),
+      rgba(82, 98, 114, 0.92)
+    ) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(235, 242, 248, 0.82) !important;
+  box-shadow:
+    0 8px 18px rgba(16, 28, 42, 0.18),
+    inset 0 0 0 1px rgba(255,255,255,0.24) !important;
+
+  font-weight: 900 !important;
+  letter-spacing: 0.06em !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  z-index: 80 !important;
+}
+
+/* 標題內圖示文字保持白色 */
+.homepage-sci-fi .panel-tag *,
+.homepage-sci-fi .card-title *,
+.homepage-sci-fi .notes-card .card-title *,
+.homepage-sci-fi .info-card.notes-card .card-title * {
+  color: #ffffff !important;
+  stroke: #ffffff !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+@media (max-width: 820px) {
+  .homepage-sci-fi .panel-tag,
+  .homepage-sci-fi .card-title,
+  .homepage-sci-fi .notes-card .card-title,
+  .homepage-sci-fi .info-card.notes-card .card-title {
+    min-width: 92px !important;
+    min-height: 28px !important;
+    padding: 5px 12px !important;
+    font-size: 0.82rem !important;
+    border-radius: 10px !important;
+  }
+}
+
+/* v2.5.29 修復 v2.5.28 排版爆掉
+   目標：救回首頁正常流向，保留乾淨白銀框，不再使用亂飛角線
+*/
+
+/* 先全面關閉造成線條暴走的偽元素 */
+.homepage-sci-fi .home-zone::before,
+.homepage-sci-fi .home-zone::after,
+.homepage-sci-fi .nav-panel::before,
+.homepage-sci-fi .nav-panel::after,
+.homepage-sci-fi .home-kpi-grid::before,
+.homepage-sci-fi .home-kpi-grid::after,
+.homepage-sci-fi .info-card::before,
+.homepage-sci-fi .info-card::after,
+.homepage-sci-fi .summary-table::before,
+.homepage-sci-fi .summary-table::after,
+.homepage-sci-fi .notes-card::before,
+.homepage-sci-fi .notes-card::after,
+.homepage-sci-fi .nav-card::before,
+.homepage-sci-fi .nav-card::after,
+.homepage-sci-fi .home-kpi-grid article::before,
+.homepage-sci-fi .home-kpi-grid article::after,
+.homepage-sci-fi .panel-tag::before,
+.homepage-sci-fi .panel-tag::after,
+.homepage-sci-fi .card-title::before,
+.homepage-sci-fi .card-title::after {
+  content: none !important;
+  display: none !important;
+  background: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* 頂部列不要再被菜單白板撐開 */
+.homepage-sci-fi .topbar {
+  position: relative !important;
+  z-index: 7000 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 12px !important;
+  width: 100% !important;
+  margin: 0 auto 0.75rem !important;
+  padding: 0.65rem 0.85rem !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* 漢堡外層不要變成大白框 */
+.homepage-sci-fi .menu-drawer,
+.homepage-sci-fi details.menu-drawer {
+  background: transparent !important;
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  width: auto !important;
+  max-width: none !important;
+}
+
+/* 沒打開時，彈出菜單絕對不能占版面 */
+.homepage-sci-fi .menu-drawer:not([open]) .menu-popup {
+  display: none !important;
+}
+
+/* 打開時才固定小浮層 */
+@media (max-width: 820px) {
+  .homepage-sci-fi details.menu-drawer[open] {
+    position: fixed !important;
+    top: 12px !important;
+    left: 14px !important;
+    width: auto !important;
+    max-width: none !important;
+    max-height: none !important;
+    overflow: visible !important;
+    z-index: 9000 !important;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+
+  .homepage-sci-fi .menu-popup {
+    width: min(78vw, 320px) !important;
+    max-width: 320px !important;
+    max-height: 68vh !important;
+    overflow-y: auto !important;
+  }
+}
+
+/* 版圖回到正常區塊，不准壓住下面 */
+.homepage-sci-fi .home-hero-image-banner {
+  position: relative !important;
+  z-index: 3 !important;
+  display: block !important;
+  width: 100% !important;
+  margin: 0.75rem auto 1.25rem !important;
+  clear: both !important;
+  overflow: hidden !important;
+}
+
+.homepage-sci-fi .home-hero-image-banner img {
+  display: block !important;
+  width: 100% !important;
+  height: auto !important;
+  object-fit: cover !important;
+}
+
+/* 四大區塊全部回到正常文流 */
+.homepage-sci-fi .nav-panel,
+.homepage-sci-fi .home-zone,
+.homepage-sci-fi .home-zone-stats,
+.homepage-sci-fi .home-zone-info,
+.homepage-sci-fi .home-zone-notes {
+  position: relative !important;
+  z-index: 3 !important;
+  width: 100% !important;
+  margin: 1.25rem auto !important;
+  padding: 1.1rem !important;
+  clear: both !important;
+  box-sizing: border-box !important;
+
+  border: 2px solid rgba(220, 230, 240, 0.88) !important;
+  outline: 1px solid rgba(82, 96, 112, 0.22) !important;
+  outline-offset: -6px !important;
+  border-radius: 22px !important;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.54),
+      rgba(240, 246, 250, 0.32)
+    ) !important;
+
+  box-shadow:
+    0 10px 24px rgba(20, 30, 42, 0.07),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.72) !important;
+
+  overflow: visible !important;
+}
+
+/* 標題牌恢復正常尺寸，不再變箭頭 */
+.homepage-sci-fi .panel-tag,
+.homepage-sci-fi .card-title {
+  position: static !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+
+  width: fit-content !important;
+  max-width: max-content !important;
+  min-width: 92px !important;
+  min-height: 30px !important;
+
+  margin: 0 0 0.9rem 0 !important;
+  padding: 5px 14px !important;
+
+  transform: none !important;
+  clip-path: none !important;
+
+  border-radius: 10px !important;
+  background:
+    linear-gradient(
+      135deg,
+      rgba(38, 50, 62, 0.96),
+      rgba(82, 98, 114, 0.92)
+    ) !important;
+
+  color: #ffffff !important;
+  border: 1px solid rgba(235, 242, 248, 0.82) !important;
+  box-shadow:
+    0 7px 16px rgba(16, 28, 42, 0.16),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.22) !important;
+
+  font-weight: 900 !important;
+  letter-spacing: 0.05em !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  z-index: 20 !important;
+}
+
+/* 標題內文字與圖示 */
+.homepage-sci-fi .panel-tag *,
+.homepage-sci-fi .card-title * {
+  color: #ffffff !important;
+  stroke: #ffffff !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* 導覽區正常排版 */
+.homepage-sci-fi .nav-grid {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)) !important;
+  gap: 0.85rem !important;
+  width: 100% !important;
+}
+
+/* 數據區正常排版：標題佔整列，四卡正常排列 */
+.homepage-sci-fi .home-kpi-grid.home-zone,
+.homepage-sci-fi .home-zone-stats.home-kpi-grid {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)) !important;
+  gap: 0.85rem !important;
+  align-items: stretch !important;
+}
+
+.homepage-sci-fi .home-kpi-grid.home-zone > .panel-tag,
+.homepage-sci-fi .home-zone-stats.home-kpi-grid > .panel-tag {
+  grid-column: 1 / -1 !important;
+  justify-self: start !important;
+}
+
+/* 小卡保留白銀框，但不再加多餘角線 */
+.homepage-sci-fi .nav-card,
+.homepage-sci-fi .home-kpi-grid article,
+.homepage-sci-fi .info-card,
+.homepage-sci-fi .summary-table,
+.homepage-sci-fi .notes-card {
+  position: relative !important;
+  z-index: 4 !important;
+  border: 2px solid rgba(220, 230, 240, 0.82) !important;
+  outline: 1px solid rgba(82, 96, 112, 0.18) !important;
+  outline-offset: -5px !important;
+  border-radius: 18px !important;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.58),
+      rgba(240, 246, 250, 0.34)
+    ) !important;
+  box-shadow:
+    0 8px 18px rgba(20, 30, 42, 0.06),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.70) !important;
+  overflow: hidden !important;
+}
+
+/* 備註區內容留白正常 */
+.homepage-sci-fi .notes-card {
+  padding: 1.1rem !important;
+}
+
+/* 手機 / 平板微調 */
+@media (max-width: 820px) {
+  .homepage-sci-fi .topbar {
+    margin-bottom: 0.6rem !important;
+    padding: 0.5rem 0.65rem !important;
+  }
+
+  .homepage-sci-fi .home-hero-image-banner {
+    margin: 0.55rem auto 1rem !important;
+  }
+
+  .homepage-sci-fi .nav-panel,
+  .homepage-sci-fi .home-zone,
+  .homepage-sci-fi .home-zone-stats,
+  .homepage-sci-fi .home-zone-info,
+  .homepage-sci-fi .home-zone-notes {
+    margin: 1rem auto !important;
+    padding: 0.85rem !important;
+    border-radius: 18px !important;
+    outline-offset: -5px !important;
+  }
+
+  .homepage-sci-fi .home-kpi-grid.home-zone,
+  .homepage-sci-fi .home-zone-stats.home-kpi-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 0.65rem !important;
+  }
+
+  .homepage-sci-fi .nav-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 0.65rem !important;
+  }
+
+  .homepage-sci-fi .panel-tag,
+  .homepage-sci-fi .card-title {
+    min-width: 82px !important;
+    min-height: 28px !important;
+    padding: 5px 11px !important;
+    font-size: 0.8rem !important;
+  }
+}
+
+/* v2.5.30 分類資料狀態卡片網格
+   桌機 4x2，手機 2x4
+   保留白銀科技框與分類圖示
+*/
+
+/* 分類資料狀態主區塊 */
+.homepage-sci-fi .home-zone-stats {
+  display: grid !important;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  gap: 0.85rem !important;
+  align-items: stretch !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+/* 標題橫跨整排 */
+.homepage-sci-fi .home-zone-stats > .panel-tag,
+.homepage-sci-fi .home-zone-stats > .card-title {
+  grid-column: 1 / -1 !important;
+  justify-self: start !important;
+}
+
+/* 分類卡片本體 */
+.homepage-sci-fi .home-zone-stats > article,
+.homepage-sci-fi .home-zone-stats > a,
+.homepage-sci-fi .home-zone-stats > div:not(.panel-tag):not(.card-title):not(.home-fixed-bg) {
+  min-height: 138px !important;
+  padding: 0.9rem 0.65rem !important;
+
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.38rem !important;
+
+  text-align: center !important;
+
+  border: 2px solid rgba(220, 230, 240, 0.88) !important;
+  outline: 1px solid rgba(82, 96, 112, 0.22) !important;
+  outline-offset: -5px !important;
+  border-radius: 18px !important;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.62),
+      rgba(240, 246, 250, 0.36)
+    ) !important;
+
+  box-shadow:
+    0 8px 18px rgba(20, 30, 42, 0.06),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.72) !important;
+
+  overflow: hidden !important;
+}
+
+/* 圖示保留，大小統一 */
+.homepage-sci-fi .home-zone-stats svg {
+  width: 34px !important;
+  height: 34px !important;
+  margin-bottom: 0.28rem !important;
+  stroke-width: 1.8 !important;
+}
+
+/* 分類名稱 */
+.homepage-sci-fi .home-zone-stats h3,
+.homepage-sci-fi .home-zone-stats h4,
+.homepage-sci-fi .home-zone-stats strong {
+  font-size: 1.04rem !important;
+  line-height: 1.25 !important;
+  font-weight: 900 !important;
+  margin: 0 !important;
+  color: rgba(17, 24, 32, 0.96) !important;
+}
+
+/* 資料列：總筆數 / 區塊數 / 有價格 */
+.homepage-sci-fi .home-zone-stats p,
+.homepage-sci-fi .home-zone-stats small,
+.homepage-sci-fi .home-zone-stats span {
+  font-size: 0.78rem !important;
+  line-height: 1.35 !important;
+  color: rgba(68, 80, 96, 0.88) !important;
+}
+
+/* 完成度百分比 */
+.homepage-sci-fi .home-zone-stats .percent,
+.homepage-sci-fi .home-zone-stats .completion,
+.homepage-sci-fi .home-zone-stats b {
+  font-size: 1.25rem !important;
+  line-height: 1.2 !important;
+  font-weight: 900 !important;
+  color: rgba(12, 18, 26, 0.98) !important;
+}
+
+/* 手機 / 平板：2x4 */
+@media (max-width: 820px) {
+  .homepage-sci-fi .home-zone-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 0.65rem !important;
+  }
+
+  .homepage-sci-fi .home-zone-stats > article,
+  .homepage-sci-fi .home-zone-stats > a,
+  .homepage-sci-fi .home-zone-stats > div:not(.panel-tag):not(.card-title):not(.home-fixed-bg) {
+    min-height: 124px !important;
+    padding: 0.78rem 0.5rem !important;
+    border-radius: 16px !important;
+  }
+
+  .homepage-sci-fi .home-zone-stats svg {
+    width: 30px !important;
+    height: 30px !important;
+  }
+
+  .homepage-sci-fi .home-zone-stats h3,
+  .homepage-sci-fi .home-zone-stats h4,
+  .homepage-sci-fi .home-zone-stats strong {
+    font-size: 0.96rem !important;
+  }
+
+  .homepage-sci-fi .home-zone-stats p,
+  .homepage-sci-fi .home-zone-stats small,
+  .homepage-sci-fi .home-zone-stats span {
+    font-size: 0.72rem !important;
+  }
+
+  .homepage-sci-fi .home-zone-stats .percent,
+  .homepage-sci-fi .home-zone-stats .completion,
+  .homepage-sci-fi .home-zone-stats b {
+    font-size: 1.12rem !important;
+  }
+}
+
+/* v2.5.31 精準修正分類資料狀態卡片網格
+   實際 className：
+   - home-category-grid
+   - home-category-card
+*/
+
+/* 分類資料狀態：桌機 4x2 */
+.homepage-sci-fi .home-category-grid {
+  display: grid !important;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  gap: 0.85rem !important;
+  width: 100% !important;
+  align-items: stretch !important;
+  box-sizing: border-box !important;
+}
+
+/* 分類卡片：白銀科技小卡 */
+.homepage-sci-fi .home-category-card {
+  min-height: 138px !important;
+  padding: 0.9rem 0.65rem !important;
+
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 0.38rem !important;
+
+  text-align: center !important;
+  text-decoration: none !important;
+
+  border: 2px solid rgba(220, 230, 240, 0.88) !important;
+  outline: 1px solid rgba(82, 96, 112, 0.22) !important;
+  outline-offset: -5px !important;
+  border-radius: 18px !important;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.62),
+      rgba(240, 246, 250, 0.36)
+    ) !important;
+
+  box-shadow:
+    0 8px 18px rgba(20, 30, 42, 0.06),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.72) !important;
+
+  overflow: hidden !important;
+}
+
+/* 分類圖示保留 */
+.homepage-sci-fi .home-category-card svg {
+  width: 34px !important;
+  height: 34px !important;
+  margin-bottom: 0.25rem !important;
+  stroke-width: 1.8 !important;
+  color: rgba(14, 24, 34, 0.96) !important;
+  stroke: rgba(14, 24, 34, 0.96) !important;
+}
+
+/* 分類名稱 */
+.homepage-sci-fi .home-category-card h3 {
+  font-size: 1.04rem !important;
+  line-height: 1.25 !important;
+  font-weight: 900 !important;
+  margin: 0 !important;
+  color: rgba(17, 24, 32, 0.96) !important;
+}
+
+/* 總筆數 / 區塊數 / 有價格 */
+.homepage-sci-fi .home-category-card p {
+  font-size: 0.78rem !important;
+  line-height: 1.35 !important;
+  margin: 0 !important;
+  color: rgba(68, 80, 96, 0.88) !important;
+}
+
+/* 完成度 */
+.homepage-sci-fi .home-category-card strong {
+  display: block !important;
+  font-size: 1.25rem !important;
+  line-height: 1.2 !important;
+  font-weight: 900 !important;
+  margin-top: 0.15rem !important;
+  color: rgba(12, 18, 26, 0.98) !important;
+}
+
+/* 手機 / 分割畫面：2x4 */
+@media (max-width: 900px) {
+  .homepage-sci-fi .home-category-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 0.65rem !important;
+  }
+
+  .homepage-sci-fi .home-category-card {
+    min-height: 124px !important;
+    padding: 0.78rem 0.5rem !important;
+    border-radius: 16px !important;
+  }
+
+  .homepage-sci-fi .home-category-card svg {
+    width: 30px !important;
+    height: 30px !important;
+  }
+
+  .homepage-sci-fi .home-category-card h3 {
+    font-size: 0.96rem !important;
+  }
+
+  .homepage-sci-fi .home-category-card p {
+    font-size: 0.72rem !important;
+  }
+
+  .homepage-sci-fi .home-category-card strong {
+    font-size: 1.12rem !important;
+  }
+}
+
+/* v2.5.32 資訊區左右雙卡 */
+.homepage-sci-fi .home-info-split {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important;
+  gap: 1rem !important;
+  width: 100% !important;
+  align-items: stretch !important;
+  box-sizing: border-box !important;
+}
+
+.homepage-sci-fi .home-info-split .info-card {
+  min-height: 100% !important;
+  padding: 1.15rem !important;
+  border: 2px solid rgba(220, 230, 240, 0.86) !important;
+  outline: 1px solid rgba(82, 96, 112, 0.20) !important;
+  outline-offset: -5px !important;
+  border-radius: 20px !important;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.60),
+      rgba(240, 246, 250, 0.34)
+    ) !important;
+  box-shadow:
+    0 8px 18px rgba(20, 30, 42, 0.06),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.70) !important;
+}
+
+.homepage-sci-fi .home-info-date-row {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 1rem !important;
+  padding: 0.85rem 0 !important;
+  margin: 0.4rem 0 1rem !important;
+  border-bottom: 1px dashed rgba(90, 108, 126, 0.24) !important;
+}
+
+.homepage-sci-fi .home-info-date-row span,
+.homepage-sci-fi .home-info-subblock li,
+.homepage-sci-fi .home-official-links a {
+  color: rgba(42, 54, 68, 0.92) !important;
+}
+
+.homepage-sci-fi .home-info-date-row strong {
+  font-size: 1.18rem !important;
+  color: rgba(12, 18, 26, 0.98) !important;
+}
+
+.homepage-sci-fi .home-info-subblock h3 {
+  margin: 0 0 0.65rem !important;
+  font-size: 1rem !important;
+  font-weight: 900 !important;
+  color: rgba(18, 28, 40, 0.96) !important;
+}
+
+.homepage-sci-fi .home-info-subblock ul {
+  margin: 0 !important;
+  padding-left: 1.2rem !important;
+}
+
+.homepage-sci-fi .home-info-subblock li {
+  margin: 0.42rem 0 !important;
+  line-height: 1.65 !important;
+}
+
+.homepage-sci-fi .home-official-links {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 0.65rem !important;
+  margin: 0.55rem 0 1rem !important;
+}
+
+.homepage-sci-fi .home-official-links a {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-height: 42px !important;
+  padding: 0.55rem 0.7rem !important;
+  text-decoration: none !important;
+  text-align: center !important;
+  border-radius: 14px !important;
+  border: 1px solid rgba(210, 222, 234, 0.82) !important;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.66),
+      rgba(238, 244, 249, 0.42)
+    ) !important;
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.72),
+    0 5px 14px rgba(20, 30, 42, 0.05) !important;
+  font-weight: 800 !important;
+}
+
+.homepage-sci-fi .home-official-links a:hover {
+  transform: translateY(-1px) !important;
+  border-color: rgba(120, 142, 164, 0.44) !important;
+}
+
+/* 手機版：兩卡上下堆疊 */
+@media (max-width: 820px) {
+  .homepage-sci-fi .home-info-split {
+    grid-template-columns: 1fr !important;
+    gap: 0.85rem !important;
+  }
+
+  .homepage-sci-fi .home-info-split .info-card {
+    padding: 0.95rem !important;
+    border-radius: 18px !important;
+  }
+
+  .homepage-sci-fi .home-official-links {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 0.55rem !important;
+  }
+
+  .homepage-sci-fi .home-official-links a {
+    min-height: 38px !important;
+    font-size: 0.84rem !important;
+  }
+}
+
+/* v2.5.33 移除資訊區內框標題前方數字
+   外層「3 資料區」保留，內框只顯示文字標題
+*/
+.homepage-sci-fi .home-info-split .card-title span:first-child {
+  display: none !important;
+}
+
+/* 內框標題重新整理寬度，不留數字空位 */
+.homepage-sci-fi .home-info-split .card-title {
+  min-width: auto !important;
+  width: fit-content !important;
+  max-width: max-content !important;
+  padding-left: 16px !important;
+  padding-right: 16px !important;
+  gap: 0 !important;
+}
+
+/* homepage status notes split start */
+.status-notes-row {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 28px;
+  align-items: stretch;
+}
+
+.status-notes-row .summary-card,
+.status-notes-row .notes-card {
+  min-height: 300px;
+}
+
+.notes-card {
+  position: relative;
+  overflow: hidden;
+  padding-bottom: 128px;
+  isolation: isolate;
+}
+
+.notes-card > *:not(.kether-clan-watermark) {
+  position: relative;
+  z-index: 1;
+}
+
+.home-status-notes {
+  color: #334155;
+  line-height: 1.8;
+}
+
+.home-status-notes p {
+  margin: 0 0 8px;
+}
+
+.note-lines {
+  height: 34px;
+  border-bottom: 1px dashed #c9d1d9;
+}
+
+.kether-clan-watermark {
+  position: absolute;
+  right: 28px;
+  bottom: 22px;
+  width: 96px;
+  height: 96px;
+  pointer-events: none;
+  user-select: none;
+  z-index: 0;
+  opacity: 0.22;
+}
+
+.kether-clan-watermark img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: grayscale(100%) contrast(1.12);
+}
+
+@media (max-width: 640px) {
+  .status-notes-row {
+    grid-template-columns: 1fr;
+  }
+
+  .notes-card {
+    padding-bottom: 112px;
+  }
+
+  .kether-clan-watermark {
+    width: 82px;
+    height: 82px;
+    right: 18px;
+    bottom: 16px;
+  }
+}
+/* homepage status notes split end */
+
+/* homepage status card top align start */
+.status-notes-row .summary-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start !important;
+  align-items: stretch;
+  padding-top: 28px !important;
+}
+
+.status-notes-row .summary-card .card-title {
+  margin-top: 0 !important;
+  margin-bottom: 22px;
+  align-self: flex-start;
+}
+
+.status-notes-row .summary-card .summary-table {
+  width: 100%;
+  margin-top: 0 !important;
+}
+
+.status-notes-row .summary-card .summary-row {
+  display: grid !important;
+  grid-template-columns: max-content minmax(0, 1fr);
+  gap: 16px;
+  align-items: start;
+}
+
+.status-notes-row .summary-card .summary-row span {
+  white-space: nowrap;
+}
+
+.status-notes-row .summary-card .summary-row b {
+  min-width: 0;
+  text-align: right;
+  overflow-wrap: break-word;
+}
+
+.status-notes-row .summary-card .total-row {
+  margin-top: 24px;
+}
+
+@media (max-width: 640px) {
+  .status-notes-row .summary-card {
+    padding-top: 24px !important;
+  }
+
+  .status-notes-row .summary-card .summary-row {
+    gap: 12px;
+  }
+}
+/* homepage status card top align end */
+
+/* official news summary start */
+.official-news-summary {
+  margin-top: 22px;
+  padding: 18px;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.68);
+  border: 1px solid rgba(148, 163, 184, 0.28);
+  box-shadow: 0 18px 42px rgba(15, 23, 42, 0.08);
+}
+
+.official-news-summary-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
+  padding: 8px 14px;
+  border-radius: 14px;
+  background: rgba(51, 65, 85, 0.9);
+  color: #ffffff;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+}
+
+.official-news-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.official-news-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-height: 128px;
+  padding: 16px;
+  border-radius: 20px;
+  color: #1f2937;
+  text-decoration: none;
+  background: rgba(248, 250, 252, 0.82);
+  border: 1px solid rgba(148, 163, 184, 0.24);
+  transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
+}
+
+.official-news-item:hover {
+  transform: translateY(-2px);
+  border-color: rgba(71, 85, 105, 0.32);
+  box-shadow: 0 18px 36px rgba(15, 23, 42, 0.12);
+}
+
+.official-news-item b {
+  font-size: 1rem;
+  color: #0f172a;
+}
+
+.official-news-item span {
+  color: #475569;
+  line-height: 1.65;
+  font-size: 0.92rem;
+}
+
+.official-news-note {
+  margin: 14px 0 0;
+  color: #64748b;
+  line-height: 1.7;
+  font-size: 0.92rem;
+}
+
+@media (max-width: 900px) {
+  .official-news-list {
+    grid-template-columns: 1fr;
+  }
+
+  .official-news-item {
+    min-height: auto;
+  }
+}
+/* official news summary end */
+
+/* official board upgrade start */
+.official-board {
+  position: relative;
+  overflow: hidden;
+}
+
+.official-board::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at top left, rgba(148, 163, 184, 0.22), transparent 34%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.72), rgba(226, 232, 240, 0.34));
+  pointer-events: none;
+}
+
+.official-board > * {
+  position: relative;
+  z-index: 1;
+}
+
+.official-board-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 18px;
+  align-items: center;
+  margin-bottom: 18px;
+  padding: 18px;
+  border-radius: 22px;
+  background: rgba(248, 250, 252, 0.78);
+  border: 1px solid rgba(148, 163, 184, 0.24);
+}
+
+.official-board-kicker {
+  display: inline-flex;
+  margin-bottom: 8px;
+  color: #64748b;
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.14em;
+}
+
+.official-board-hero h3 {
+  margin: 0 0 8px;
+  color: #0f172a;
+  font-size: 1.35rem;
+}
+
+.official-board-hero p {
+  margin: 0;
+  color: #475569;
+  line-height: 1.75;
+}
+
+.official-board-main-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 148px;
+  padding: 12px 16px;
+  border-radius: 999px;
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 900;
+  background: rgba(51, 65, 85, 0.94);
+  box-shadow: 0 16px 32px rgba(15, 23, 42, 0.16);
+}
+
+.official-board-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.official-board-card {
+  position: relative;
+}
+
+.official-board-label {
+  align-self: flex-start;
+  padding: 5px 9px;
+  border-radius: 999px;
+  color: #475569;
+  background: rgba(226, 232, 240, 0.82);
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+}
+
+@media (max-width: 900px) {
+  .official-board-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .official-board-main-link {
+    width: 100%;
+  }
+
+  .official-board-grid {
+    grid-template-columns: 1fr;
+  }
+}
+/* official board upgrade end */
+
+/* official news feed preview start */
+.official-news-feed-preview {
+  margin-top: 18px;
+  padding: 18px;
+  border-radius: 22px;
+  background: rgba(248, 250, 252, 0.78);
+  border: 1px solid rgba(148, 163, 184, 0.24);
+}
+
+.official-news-feed-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+  color: #0f172a;
+  font-weight: 900;
+}
+
+.official-news-feed-title b {
+  padding: 4px 10px;
+  border-radius: 999px;
+  color: #475569;
+  background: rgba(226, 232, 240, 0.82);
+  font-size: 0.78rem;
+}
+
+.official-news-feed-list {
+  display: grid;
+  gap: 12px;
+}
+
+.official-news-feed-item {
+  display: grid;
+  gap: 6px;
+  padding: 14px;
+  border-radius: 18px;
+  color: #334155;
+  text-decoration: none;
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
+}
+
+.official-news-feed-item:hover {
+  transform: translateY(-2px);
+  border-color: rgba(71, 85, 105, 0.32);
+  box-shadow: 0 14px 28px rgba(15, 23, 42, 0.1);
+}
+
+.official-news-feed-item b {
+  color: #0f172a;
+}
+
+.official-news-feed-item span {
+  line-height: 1.65;
+}
+
+.official-news-feed-meta {
+  color: #64748b;
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+}
+/* official news feed preview end */
+
+/* official news api status start */
+.official-news-api-status {
+  margin: 12px 0 0;
+  color: #64748b;
+  font-size: 0.82rem;
+  line-height: 1.6;
+  letter-spacing: 0.02em;
+}
+/* official news api status end */
+
+/* official news compact list start */
+.official-news-feed-preview {
+  margin-top: 16px;
+  padding: 16px;
+}
+
+.official-news-feed-title {
+  margin-bottom: 12px;
+}
+
+.official-news-feed-list {
+  gap: 8px;
+}
+
+.official-news-feed-item {
+  display: grid;
+  grid-template-columns: 148px minmax(0, 1fr);
+  align-items: center;
+  gap: 14px;
+  min-height: 0;
+  padding: 12px 14px;
+  border-radius: 16px;
+}
+
+.official-news-feed-item b {
+  overflow: hidden;
+  color: #0f172a;
+  font-size: 0.98rem;
+  line-height: 1.45;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.official-news-feed-meta {
+  color: #64748b;
+  font-size: 0.82rem;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+@media (max-width: 720px) {
+  .official-news-feed-item {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+
+  .official-news-feed-item b {
+    white-space: normal;
+  }
+}
+/* official news compact list end */
+
+/* official news compact title list start */
+.official-news-feed-preview {
+  margin-top: 16px;
+  padding: 16px;
+  border-radius: 22px;
+  background: rgba(248, 250, 252, 0.78);
+  border: 1px solid rgba(148, 163, 184, 0.24);
+}
+
+.official-news-feed-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+  color: #0f172a;
+  font-weight: 900;
+}
+
+.official-news-feed-title b {
+  padding: 4px 10px;
+  border-radius: 999px;
+  color: #475569;
+  background: rgba(226, 232, 240, 0.82);
+  font-size: 0.78rem;
+}
+
+.official-news-feed-list {
+  display: grid;
+  gap: 8px;
+}
+
+.official-news-feed-item {
+  display: grid;
+  grid-template-columns: 148px minmax(0, 1fr);
+  align-items: center;
+  gap: 14px;
+  min-height: 0;
+  padding: 12px 14px;
+  border-radius: 16px;
+  color: #334155;
+  text-decoration: none;
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
+}
+
+.official-news-feed-item:hover {
+  transform: translateY(-2px);
+  border-color: rgba(71, 85, 105, 0.32);
+  box-shadow: 0 14px 28px rgba(15, 23, 42, 0.1);
+}
+
+.official-news-feed-item b {
+  overflow: hidden;
+  color: #0f172a;
+  font-size: 0.98rem;
+  line-height: 1.45;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.official-news-feed-meta {
+  color: #64748b;
+  font-size: 0.82rem;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+@media (max-width: 720px) {
+  .official-news-feed-item {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+
+  .official-news-feed-item b {
+    white-space: normal;
+  }
+}
+/* official news compact title list end */
+
+/* official info compact dashboard start */
+.official-board-compact {
+  margin-top: 14px;
+  padding: 14px;
+  border-radius: 20px;
+  background: rgba(248, 250, 252, 0.74);
+  border: 1px solid rgba(148, 163, 184, 0.24);
+  box-shadow: 0 12px 26px rgba(15, 23, 42, 0.07);
+}
+
+.official-board-compact::before {
+  display: none;
+}
+
+.official-compact-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.official-compact-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #0f172a;
+  font-weight: 900;
+}
+
+.official-compact-title small {
+  padding: 4px 8px;
+  border-radius: 999px;
+  color: #475569;
+  background: rgba(226, 232, 240, 0.88);
+  font-size: 0.72rem;
+  font-weight: 900;
+}
+
+.official-compact-more {
+  color: #475569;
+  font-size: 0.86rem;
+  font-weight: 900;
+  text-decoration: none;
+}
+
+.official-news-feed-list-compact {
+  display: grid;
+  gap: 7px;
+}
+
+.official-news-feed-item-compact {
+  display: grid;
+  grid-template-columns: 148px minmax(0, 1fr);
+  align-items: center;
+  gap: 12px;
+  min-height: 0;
+  padding: 9px 12px;
+  border-radius: 14px;
+}
+
+.official-news-feed-item-compact b {
+  overflow: hidden;
+  color: #0f172a;
+  font-size: 0.95rem;
+  line-height: 1.35;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.official-news-api-status-compact {
+  margin: 9px 0 0;
+  color: #64748b;
+  font-size: 0.76rem;
+  line-height: 1.5;
+}
+
+@media (max-width: 720px) {
+  .official-compact-header {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .official-news-feed-item-compact {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+
+  .official-news-feed-item-compact b {
+    white-space: normal;
+  }
+}
+/* official info compact dashboard end */
+
+/* official news duplicate guard start */
+.official-news-summary.official-board + .official-news-summary.official-board,
+.official-news-summary.official-board ~ .official-news-summary.official-board,
+.official-board-compact + .official-board-compact {
+  display: none !important;
+}
+/* official news duplicate guard end */
+
+/* KETHER topbar existing buttons polish */
+.homepage-sci-fi .login-mini,
+.homepage-sci-fi .discord-mini {
+  min-height: 38px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.76);
+  background: linear-gradient(145deg, rgba(255,255,255,.72), rgba(255,255,255,.36));
+  box-shadow:
+    0 12px 28px rgba(15, 23, 42, .12),
+    inset 0 1px 0 rgba(255,255,255,.86);
+  backdrop-filter: blur(14px) saturate(160%);
+  -webkit-backdrop-filter: blur(14px) saturate(160%);
+}
+
+.homepage-sci-fi .login-mini {
+  min-width: 54px;
+  justify-content: center;
+  color: #172033;
+  font-weight: 950;
+}
+
+.homepage-sci-fi .discord-mini {
+  padding: 8px 15px;
+  color: #172033;
+  font-weight: 900;
+}
+
+.homepage-sci-fi .discord-mini svg {
+  color: #172033;
+}
+
+/* KETHER topbar existing buttons visible polish */
+.homepage-sci-fi .login-mini {
+  min-width: 58px !important;
+  min-height: 42px !important;
+  padding: 0 16px !important;
+  border-radius: 999px !important;
+  border: 1.5px solid rgba(255,255,255,.92) !important;
+  background:
+    radial-gradient(circle at 30% 20%, rgba(255,255,255,.98), rgba(255,255,255,.68) 52%, rgba(238,247,255,.48)) !important;
+  color: #172033 !important;
+  font-weight: 950 !important;
+  box-shadow:
+    0 16px 34px rgba(15,23,42,.18),
+    inset 0 1px 0 rgba(255,255,255,1) !important;
+  backdrop-filter: blur(18px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(18px) saturate(180%) !important;
+}
+
+.homepage-sci-fi .discord-mini {
+  min-height: 42px !important;
+  padding: 0 18px !important;
+  border-radius: 999px !important;
+  border: 1.5px solid rgba(255,255,255,.88) !important;
+  background:
+    linear-gradient(135deg, rgba(255,126,185,.88), rgba(148,163,255,.82)) !important;
+  color: white !important;
+  font-weight: 950 !important;
+  box-shadow:
+    0 16px 34px rgba(217,70,143,.26),
+    inset 0 1px 0 rgba(255,255,255,.72) !important;
+  backdrop-filter: blur(18px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(18px) saturate(180%) !important;
+}
+
+.homepage-sci-fi .discord-mini svg {
+  color: white !important;
+  stroke-width: 2.35 !important;
+}
+
+
+/* KETHER mobile topbar Discord fit */
+@media (max-width: 720px) {
+  .homepage-sci-fi .topbar-right {
+    gap: 8px;
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  .homepage-sci-fi .discord-mini {
+    max-width: 116px !important;
+    min-height: 40px !important;
+    padding: 0 12px !important;
+    gap: 6px !important;
+    font-size: 14px !important;
+    overflow: hidden !important;
+    white-space: nowrap !important;
+  }
+
+  .homepage-sci-fi .discord-mini svg {
+    flex: 0 0 auto;
+  }
+}
+
+
+/* KETHER mobile Discord icon-only fix */
+@media (max-width: 720px) {
+  .homepage-sci-fi .discord-mini {
+    width: 46px !important;
+    min-width: 46px !important;
+    max-width: 46px !important;
+    height: 46px !important;
+    min-height: 46px !important;
+    padding: 0 !important;
+    justify-content: center !important;
+    gap: 0 !important;
+    overflow: hidden !important;
+    font-size: 0 !important;
+    border-radius: 999px !important;
+  }
+
+  .homepage-sci-fi .discord-mini svg {
+    width: 22px !important;
+    height: 22px !important;
+    margin: 0 !important;
+    flex: 0 0 auto !important;
+  }
+}
+
+/* KETHER navigation category artwork */
+.homepage-sci-fi .nav-grid a {
+  position: relative;
+  overflow: hidden;
+  min-height: 138px;
+  padding-top: 14px;
+}
+
+.homepage-sci-fi .nav-grid a > svg {
+  display: none;
+}
+
+.homepage-sci-fi .nav-grid a::before {
+  content: "";
+  display: block;
+  width: clamp(72px, 16vw, 108px);
+  height: clamp(72px, 16vw, 108px);
+  margin: 0 auto 8px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  filter: drop-shadow(0 10px 18px rgba(15, 23, 42, .18));
+  opacity: .94;
+}
+
+.homepage-sci-fi .nav-grid a:hover::before,
+.homepage-sci-fi .nav-grid a:focus-visible::before {
+  opacity: 1;
+  transform: translateY(-1px);
+}
+
+.homepage-sci-fi .nav-grid a[href*="overview"]::before {
+  background-image: url("/icon-overview.png");
+}
+
+.homepage-sci-fi .nav-grid a[href*="overview"]:hover::before,
+.homepage-sci-fi .nav-grid a[href*="overview"]:focus-visible::before {
+  background-image: url("/icon-overview-2.png");
+}
+
+.homepage-sci-fi .nav-grid a[href*="warframe"]::before {
+  background-image: url("/icon-warframe.png");
+}
+
+.homepage-sci-fi .nav-grid a[href*="warframe"]:hover::before,
+.homepage-sci-fi .nav-grid a[href*="warframe"]:focus-visible::before {
+  background-image: url("/icon-warframe-2.png");
+}
+
+.homepage-sci-fi .nav-grid a[href*="primary"]::before {
+  background-image: url("/icon-primary.png");
+}
+
+.homepage-sci-fi .nav-grid a[href*="primary"]:hover::before,
+.homepage-sci-fi .nav-grid a[href*="primary"]:focus-visible::before {
+  background-image: url("/icon-primary-2.png");
+}
+
+.homepage-sci-fi .nav-grid a[href*="secondary"]::before {
+  background-image: url("/icon-secondary.png");
+}
+
+.homepage-sci-fi .nav-grid a[href*="secondary"]:hover::before,
+.homepage-sci-fi .nav-grid a[href*="secondary"]:focus-visible::before {
+  background-image: url("/icon-secondary2.png");
+}
+
+.homepage-sci-fi .nav-grid a[href*="melee"]::before {
+  background-image: url("/icon-melee.png");
+}
+
+.homepage-sci-fi .nav-grid a[href*="melee"]:hover::before,
+.homepage-sci-fi .nav-grid a[href*="melee"]:focus-visible::before {
+  background-image: url("/icon-melee-2.png");
+}
+
+.homepage-sci-fi .nav-grid a[href*="companion"]::before {
+  background-image: url("/icon-companion.png");
+}
+
+.homepage-sci-fi .nav-grid a[href*="companion"]:hover::before,
+.homepage-sci-fi .nav-grid a[href*="companion"]:focus-visible::before {
+  background-image: url("/icon-companion-2.png");
+}
+
+.homepage-sci-fi .nav-grid a[href*="archwing"]::before {
+  background-image: url("/icon-archwing.png");
+}
+
+.homepage-sci-fi .nav-grid a[href*="archwing"]:hover::before,
+.homepage-sci-fi .nav-grid a[href*="archwing"]:focus-visible::before {
+  background-image: url("/icon-archwing-2.png");
+}
+
+.homepage-sci-fi .nav-grid a[href*="mod"]::before {
+  background-image: url("/icon-mod.png");
+}
+
+.homepage-sci-fi .nav-grid a[href*="mod"]:hover::before,
+.homepage-sci-fi .nav-grid a[href*="mod"]:focus-visible::before {
+  background-image: url("/icon-mod-2.png");
+}
+
+@media (max-width: 720px) {
+  .homepage-sci-fi .nav-grid a {
+    min-height: 124px;
+    padding-top: 12px;
+  }
+
+  .homepage-sci-fi .nav-grid a::before {
+    width: 72px;
+    height: 72px;
+    margin-bottom: 6px;
+  }
+}
+
+/* Artist navigation image buttons */
+.artist-nav-card {
+  position: relative;
+  display: block;
+  min-height: 142px;
+  padding: 0;
+  overflow: hidden;
+  text-decoration: none;
+  border: 1px solid rgba(150, 165, 180, 0.45);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.28);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.65), 0 10px 22px rgba(20, 32, 45, 0.08);
+}
+
+.artist-nav-art {
+  position: absolute;
+  z-index: 1;
+  inset: 10px 12px 38px;
+  display: block;
+  pointer-events: none;
+}
+
+.artist-nav-state {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  object-position: center;
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 0.18s ease, transform 0.18s ease;
+}
+
+.artist-nav-state-on {
+  opacity: 0;
+}
+
+.artist-nav-card:hover .artist-nav-state-off,
+.artist-nav-card:focus-visible .artist-nav-state-off,
+.artist-nav-card:active .artist-nav-state-off {
+  opacity: 0;
+}
+
+.artist-nav-card:hover .artist-nav-state-on,
+.artist-nav-card:focus-visible .artist-nav-state-on,
+.artist-nav-card:active .artist-nav-state-on {
+  opacity: 1;
+  transform: scale(1.03);
+}
+
+.artist-nav-meta {
+  position: absolute;
+  z-index: 2;
+  left: 8px;
+  right: 8px;
+  bottom: 8px;
+  display: grid;
+  gap: 2px;
+  padding: 5px 6px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.72);
+  color: #111820;
+  text-align: center;
+  line-height: 1.15;
+  backdrop-filter: blur(6px);
+}
+
+.artist-nav-meta small {
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.artist-nav-meta b {
+  font-size: 14px;
+  font-weight: 900;
+}
+
+@media (max-width: 680px) {
+  .artist-nav-card {
+    min-height: 126px;
+  }
+
+  .artist-nav-art {
+    inset: 8px 10px 36px;
+  }
+
+  .artist-nav-meta small {
+    font-size: 9px;
+  }
+
+  .artist-nav-meta b {
+    font-size: 13px;
+  }
+}
+
+/* KETHER artist navigation containment fix */
+.nav-grid {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 10px !important;
+}
+
+.kether-artist-card {
+  position: relative !important;
+  display: block !important;
+  height: 138px !important;
+  min-height: 138px !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  border-radius: 14px !important;
+  text-decoration: none !important;
+  background: rgba(255, 255, 255, 0.22) !important;
+}
+
+.kether-artist-art {
+  position: absolute !important;
+  z-index: 1 !important;
+  left: 8px !important;
+  right: 8px !important;
+  top: 8px !important;
+  bottom: 42px !important;
+  display: block !important;
+  overflow: hidden !important;
+  pointer-events: none !important;
+}
+
+.kether-artist-img {
+  position: absolute !important;
+  inset: 0 !important;
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 100% !important;
+  max-height: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  object-fit: contain !important;
+  object-position: center !important;
+}
+
+.kether-artist-on {
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+.kether-artist-card:hover .kether-artist-off,
+.kether-artist-card:focus-visible .kether-artist-off,
+.kether-artist-card:active .kether-artist-off {
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+.kether-artist-card:hover .kether-artist-on,
+.kether-artist-card:focus-visible .kether-artist-on,
+.kether-artist-card:active .kether-artist-on {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.kether-artist-info {
+  position: absolute !important;
+  z-index: 2 !important;
+  left: 7px !important;
+  right: 7px !important;
+  bottom: 7px !important;
+  display: grid !important;
+  gap: 2px !important;
+  padding: 5px 6px !important;
+  border-radius: 10px !important;
+  text-align: center !important;
+  line-height: 1.15 !important;
+  color: #111820 !important;
+  background: rgba(255, 255, 255, 0.74) !important;
+  backdrop-filter: blur(6px) !important;
+}
+
+.kether-artist-info small {
+  font-size: 9px !important;
+  font-weight: 700 !important;
+}
+
+.kether-artist-info b {
+  font-size: 13px !important;
+  font-weight: 900 !important;
+}
+
+@media (min-width: 760px) {
+  .nav-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    gap: 14px !important;
+  }
+
+  .kether-artist-card {
+    height: 150px !important;
+    min-height: 150px !important;
+  }
+
+  .kether-artist-art {
+    bottom: 44px !important;
+  }
+
+  .kether-artist-info small {
+    font-size: 10px !important;
+  }
+
+  .kether-artist-info b {
+    font-size: 14px !important;
+  }
+}
+
+/* KETHER navigation art buttons v3 */
+.nav-grid {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 10px !important;
+  align-items: stretch !important;
+}
+
+.k-nav3-card {
+  position: relative !important;
+  display: block !important;
+  width: 100% !important;
+  height: 132px !important;
+  min-height: 132px !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  border-radius: 14px !important;
+  text-decoration: none !important;
+  background: rgba(255, 255, 255, 0.24) !important;
+  border: 1px solid rgba(120, 140, 160, 0.32) !important;
+}
+
+.k-nav3-stage {
+  position: absolute !important;
+  z-index: 1 !important;
+  inset: 8px 8px 38px 8px !important;
+  display: block !important;
+  overflow: hidden !important;
+  pointer-events: none !important;
+}
+
+.k-nav3-img {
+  position: absolute !important;
+  inset: 0 !important;
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 100% !important;
+  max-height: 100% !important;
+  min-width: 0 !important;
+  min-height: 0 !important;
+  object-fit: contain !important;
+  object-position: center center !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+}
+
+.k-nav3-off {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.k-nav3-on {
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+.k-nav3-card:hover .k-nav3-off,
+.k-nav3-card:focus-visible .k-nav3-off,
+.k-nav3-card:active .k-nav3-off {
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+.k-nav3-card:hover .k-nav3-on,
+.k-nav3-card:focus-visible .k-nav3-on,
+.k-nav3-card:active .k-nav3-on {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.k-nav3-info {
+  position: absolute !important;
+  z-index: 2 !important;
+  left: 7px !important;
+  right: 7px !important;
+  bottom: 7px !important;
+  display: grid !important;
+  gap: 2px !important;
+  padding: 5px 6px !important;
+  border-radius: 10px !important;
+  text-align: center !important;
+  line-height: 1.15 !important;
+  color: #111820 !important;
+  background: rgba(255, 255, 255, 0.76) !important;
+  backdrop-filter: blur(6px) !important;
+}
+
+.k-nav3-info small {
+  font-size: 9px !important;
+  font-weight: 700 !important;
+}
+
+.k-nav3-info b {
+  font-size: 13px !important;
+  font-weight: 900 !important;
+}
+
+@media (min-width: 760px) {
+  .nav-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    gap: 14px !important;
+  }
+
+  .k-nav3-card {
+    height: 148px !important;
+    min-height: 148px !important;
+  }
+
+  .k-nav3-stage {
+    inset: 10px 10px 42px 10px !important;
+  }
+
+  .k-nav3-info small {
+    font-size: 10px !important;
+  }
+
+  .k-nav3-info b {
+    font-size: 14px !important;
+  }
+}
+
+/* KETHER live worldstate page */
+.live-page-shell {
+  width: min(1120px, calc(100% - 24px));
+  margin: 0 auto;
+  padding: 28px 0 56px;
+  color: #172033;
+}
+
+.live-hero,
+.live-card,
+.live-section,
+.live-error {
+  border: 1px solid rgba(160, 180, 200, 0.38);
+  background: rgba(255, 255, 255, 0.76);
+  box-shadow: 0 18px 40px rgba(24, 38, 56, 0.08);
+  backdrop-filter: blur(12px);
+}
+
+.live-hero {
+  margin-bottom: 14px;
+  padding: 22px;
+  border-radius: 24px;
+}
+
+.live-eyebrow {
+  margin: 0 0 6px;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.16em;
+  color: #8a5dd8;
+}
+
+.live-hero h1 {
+  margin: 0;
+  font-size: clamp(28px, 7vw, 54px);
+  line-height: 1;
+}
+
+.live-hero p {
+  max-width: 720px;
+  margin: 12px 0 0;
+  color: #526070;
+  line-height: 1.8;
+}
+
+.live-back-link {
+  display: inline-flex;
+  margin-top: 14px;
+  color: #7d4fd1;
+  font-weight: 900;
+  text-decoration: none;
+}
+
+.live-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.live-grid-primary {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.live-card {
+  min-height: 108px;
+  padding: 14px;
+  border-radius: 18px;
+}
+
+.live-card-kicker {
+  margin: 0 0 8px;
+  font-size: 11px;
+  font-weight: 900;
+  color: #8a5dd8;
+}
+
+.live-card h2 {
+  margin: 0;
+  font-size: 18px;
+  line-height: 1.25;
+}
+
+.live-card-sub {
+  margin: 8px 0 0;
+  font-size: 12px;
+  color: #5f6b78;
+  line-height: 1.5;
+}
+
+.live-section {
+  margin-top: 14px;
+  padding: 14px;
+  border-radius: 20px;
+}
+
+.live-section-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.live-section-title h2 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.live-section-title span {
+  padding: 4px 9px;
+  border-radius: 999px;
+  background: rgba(138, 93, 216, 0.12);
+  color: #7d4fd1;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.live-list {
+  display: grid;
+  gap: 8px;
+}
+
+.live-row {
+  display: grid;
+  gap: 3px;
+  padding: 10px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(160, 180, 200, 0.25);
+}
+
+.live-row b {
+  font-size: 14px;
+}
+
+.live-row span,
+.live-empty,
+.live-source {
+  font-size: 12px;
+  color: #5f6b78;
+  line-height: 1.5;
+}
+
+.live-error {
+  padding: 18px;
+  border-radius: 18px;
+  color: #a03248;
+  font-weight: 900;
+}
+
+.live-source {
+  margin: 18px 4px 0;
+  text-align: center;
+}
+
+@media (min-width: 760px) {
+  .live-page-shell {
+    padding-top: 42px;
+  }
+
+  .live-grid,
+  .live-grid-primary {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  .live-card {
+    min-height: 126px;
+    padding: 18px;
+  }
+
+  .live-card h2 {
+    font-size: 22px;
+  }
+
+  .live-section {
+    padding: 18px;
+  }
+}
+
+/* KETHER live signal summary strip */
+.live-signal-strip {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.live-signal-chip {
+  display: grid;
+  gap: 4px;
+  min-height: 92px;
+  padding: 12px;
+  border: 1px solid rgba(150, 170, 190, 0.34);
+  border-radius: 18px;
+  background:
+    radial-gradient(circle at top left, rgba(240, 154, 215, 0.22), transparent 42%),
+    radial-gradient(circle at bottom right, rgba(138, 93, 216, 0.18), transparent 46%),
+    rgba(255, 255, 255, 0.78);
+  box-shadow: 0 14px 30px rgba(24, 38, 56, 0.08);
+  backdrop-filter: blur(10px);
+}
+
+.live-signal-chip span {
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  color: #8a5dd8;
+}
+
+.live-signal-chip b {
+  font-size: 22px;
+  line-height: 1.05;
+  color: #172033;
+}
+
+.live-signal-chip small {
+  font-size: 11px;
+  line-height: 1.4;
+  color: #5f6b78;
+}
+
+@media (min-width: 760px) {
+  .live-signal-strip {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  .live-signal-chip {
+    min-height: 104px;
+    padding: 15px;
+  }
+
+  .live-signal-chip b {
+    font-size: 26px;
+  }
+}
+
+/* KETHER live sync actions */
+.live-sync-badge {
+  display: inline-flex;
+  width: fit-content;
+  max-width: 100%;
+  margin-top: 14px;
+  padding: 7px 10px;
+  border: 1px solid rgba(138, 93, 216, 0.22);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.72);
+  color: #5f4c88;
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1.35;
+  backdrop-filter: blur(8px);
+}
+
+.live-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.live-refresh-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 38px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  color: #ffffff;
+  font-weight: 900;
+  text-decoration: none;
+  background: linear-gradient(135deg, #8a5dd8, #f09ad7);
+  box-shadow: 0 10px 22px rgba(138, 93, 216, 0.2);
+}
+
+.live-refresh-link:active {
+  transform: translateY(1px);
+}
+
+/* KETHER live colored status tags */
+.live-card,
+.live-signal-chip {
+  position: relative;
+  overflow: hidden;
+  --live-accent: #8a5dd8;
+  --live-accent-soft: rgba(138, 93, 216, 0.15);
+}
+
+.live-card::before,
+.live-signal-chip::after {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 4px;
+  background: var(--live-accent);
+  opacity: 0.82;
+}
+
+.live-status-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 2;
+  padding: 3px 8px;
+  border: 1px solid color-mix(in srgb, var(--live-accent) 42%, transparent);
+  border-radius: 999px;
+  background: var(--live-accent-soft);
+  color: var(--live-accent);
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  line-height: 1.2;
+}
+
+.live-signal-chip::before {
+  content: "SIGNAL";
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 2;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: var(--live-accent-soft);
+  color: var(--live-accent);
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  line-height: 1.2;
+}
+
+.live-signal-void::before {
+  content: "VOID";
+}
+
+.live-signal-war::before {
+  content: "FRONT";
+}
+
+.live-signal-alert::before {
+  content: "ALERT";
+}
+
+.live-signal-baro::before,
+.live-signal-baro-active::before {
+  content: "BARO";
+}
+
+.live-card-day,
+.live-signal-day {
+  --live-accent: #d48a28;
+  --live-accent-soft: rgba(212, 138, 40, 0.16);
+}
+
+.live-card-cold,
+.live-signal-cold {
+  --live-accent: #2f8fd8;
+  --live-accent-soft: rgba(47, 143, 216, 0.15);
+}
+
+.live-card-void,
+.live-signal-void {
+  --live-accent: #8a5dd8;
+  --live-accent-soft: rgba(138, 93, 216, 0.16);
+}
+
+.live-card-dream,
+.live-signal-dream {
+  --live-accent: #d85da8;
+  --live-accent-soft: rgba(216, 93, 168, 0.15);
+}
+
+.live-card-baro,
+.live-signal-baro {
+  --live-accent: #b98a2d;
+  --live-accent-soft: rgba(185, 138, 45, 0.17);
+}
+
+.live-card-baro-active,
+.live-signal-baro-active {
+  --live-accent: #1f9d72;
+  --live-accent-soft: rgba(31, 157, 114, 0.16);
+}
+
+.live-card-danger,
+.live-signal-war {
+  --live-accent: #d84f5f;
+  --live-accent-soft: rgba(216, 79, 95, 0.15);
+}
+
+.live-card-archon {
+  --live-accent: #6f5bd8;
+  --live-accent-soft: rgba(111, 91, 216, 0.16);
+}
+
+.live-card-alert,
+.live-signal-alert {
+  --live-accent: #e46fa9;
+  --live-accent-soft: rgba(228, 111, 169, 0.16);
+}
+
+.live-card .live-card-kicker,
+.live-signal-chip span {
+  color: var(--live-accent);
+}
+
+.live-card h2,
+.live-signal-chip b {
+  padding-right: 48px;
+}
+
+@media (max-width: 520px) {
+  .live-status-badge,
+  .live-signal-chip::before {
+    top: 8px;
+    right: 8px;
+    padding: 2px 7px;
+    font-size: 9px;
+  }
+
+  .live-card h2,
+  .live-signal-chip b {
+    padding-right: 42px;
+  }
+}
+
+/* KETHER live loading state */
+.live-loading-hero {
+  position: relative;
+  overflow: hidden;
+}
+
+.live-loading-pulse {
+  display: flex;
+  gap: 8px;
+  margin-top: 18px;
+}
+
+.live-loading-pulse span {
+  width: 11px;
+  height: 11px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #8a5dd8, #f09ad7);
+  box-shadow: 0 0 18px rgba(138, 93, 216, 0.32);
+  animation: livePulse 1.1s ease-in-out infinite;
+}
+
+.live-loading-pulse span:nth-child(2) {
+  animation-delay: 0.16s;
+}
+
+.live-loading-pulse span:nth-child(3) {
+  animation-delay: 0.32s;
+}
+
+@keyframes livePulse {
+  0%, 100% {
+    opacity: 0.38;
+    transform: translateY(0) scale(0.92);
+  }
+
+  50% {
+    opacity: 1;
+    transform: translateY(-4px) scale(1.08);
+  }
+}
+
+/* KETHER live silver-white tech frames */
+.live-tech-frame {
+  position: relative;
+  isolation: isolate;
+  border: 1px solid rgba(212, 222, 234, 0.92) !important;
+  background:
+    linear-gradient(rgba(198, 210, 224, 0.86), rgba(198, 210, 224, 0.86)) left 12px top 12px / 34px 1px no-repeat,
+    linear-gradient(rgba(198, 210, 224, 0.86), rgba(198, 210, 224, 0.86)) left 12px top 12px / 1px 28px no-repeat,
+    linear-gradient(rgba(198, 210, 224, 0.86), rgba(198, 210, 224, 0.86)) right 12px top 12px / 34px 1px no-repeat,
+    linear-gradient(rgba(198, 210, 224, 0.86), rgba(198, 210, 224, 0.86)) right 12px top 12px / 1px 28px no-repeat,
+    linear-gradient(rgba(198, 210, 224, 0.62), rgba(198, 210, 224, 0.62)) left 12px bottom 12px / 28px 1px no-repeat,
+    linear-gradient(rgba(198, 210, 224, 0.62), rgba(198, 210, 224, 0.62)) left 12px bottom 12px / 1px 22px no-repeat,
+    linear-gradient(rgba(198, 210, 224, 0.62), rgba(198, 210, 224, 0.62)) right 12px bottom 12px / 28px 1px no-repeat,
+    linear-gradient(rgba(198, 210, 224, 0.62), rgba(198, 210, 224, 0.62)) right 12px bottom 12px / 1px 22px no-repeat,
+    radial-gradient(circle at top left, rgba(255, 255, 255, 0.88), transparent 34%),
+    radial-gradient(circle at bottom right, rgba(198, 214, 232, 0.28), transparent 42%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(246, 249, 252, 0.84)) !important;
+  box-shadow:
+    0 16px 34px rgba(50, 64, 84, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.98),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.52),
+    inset 0 -18px 32px rgba(214, 225, 238, 0.18) !important;
+  overflow: hidden;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.live-hero.live-tech-frame {
+  border-radius: 26px;
+}
+
+.live-section.live-tech-frame {
+  border-radius: 22px;
+}
+
+.live-card.live-tech-frame,
+.live-signal-chip.live-tech-frame {
+  border-radius: 18px;
+}
+
+.live-row.live-tech-frame {
+  border-radius: 14px;
+}
+
+.live-tech-frame:hover {
+  border-color: rgba(226, 234, 244, 0.98) !important;
+  box-shadow:
+    0 18px 38px rgba(124, 112, 214, 0.13),
+    inset 0 1px 0 rgba(255, 255, 255, 1),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.66),
+    inset 0 -18px 32px rgba(214, 225, 238, 0.24) !important;
+}
+
+.live-tech-frame .live-card-kicker,
+.live-tech-frame .live-section-title h2,
+.live-tech-frame .live-row b {
+  color: #172033;
+}
+
+.live-tech-frame .live-card-sub,
+.live-tech-frame .live-row span,
+.live-tech-frame .live-empty {
+  color: #5f6b78;
+}
+
+@media (max-width: 520px) {
+  .live-tech-frame {
+    background:
+      linear-gradient(rgba(198, 210, 224, 0.72), rgba(198, 210, 224, 0.72)) left 9px top 9px / 24px 1px no-repeat,
+      linear-gradient(rgba(198, 210, 224, 0.72), rgba(198, 210, 224, 0.72)) left 9px top 9px / 1px 20px no-repeat,
+      linear-gradient(rgba(198, 210, 224, 0.72), rgba(198, 210, 224, 0.72)) right 9px top 9px / 24px 1px no-repeat,
+      linear-gradient(rgba(198, 210, 224, 0.72), rgba(198, 210, 224, 0.72)) right 9px top 9px / 1px 20px no-repeat,
+      radial-gradient(circle at top left, rgba(255, 255, 255, 0.88), transparent 34%),
+      radial-gradient(circle at bottom right, rgba(198, 214, 232, 0.22), transparent 42%),
+      linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(246, 249, 252, 0.86)) !important;
+  }
+}
+
+/* KETHER live frosted glass override */
+.live-page-shell {
+  color: #172033;
+}
+
+.live-tech-frame,
+.live-hero,
+.live-card,
+.live-section,
+.live-row,
+.live-signal-chip,
+.live-error {
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.58), rgba(235, 241, 248, 0.34)),
+    radial-gradient(circle at top left, rgba(255, 255, 255, 0.52), transparent 36%),
+    radial-gradient(circle at bottom right, rgba(154, 178, 210, 0.18), transparent 46%) !important;
+  border-color: rgba(224, 232, 242, 0.72) !important;
+  box-shadow:
+    0 18px 42px rgba(42, 58, 78, 0.10),
+    inset 0 1px 0 rgba(255, 255, 255, 0.82),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.32) !important;
+  backdrop-filter: blur(18px) saturate(145%) !important;
+  -webkit-backdrop-filter: blur(18px) saturate(145%) !important;
+}
+
+.live-hero.live-tech-frame,
+.live-section.live-tech-frame {
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.64), rgba(240, 245, 252, 0.38)),
+    radial-gradient(circle at top right, rgba(240, 154, 215, 0.13), transparent 42%),
+    radial-gradient(circle at bottom left, rgba(138, 93, 216, 0.10), transparent 44%) !important;
+}
+
+.live-card.live-tech-frame,
+.live-signal-chip.live-tech-frame {
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.52), rgba(237, 243, 250, 0.30)),
+    radial-gradient(circle at top left, rgba(255, 255, 255, 0.45), transparent 38%),
+    radial-gradient(circle at bottom right, rgba(138, 93, 216, 0.10), transparent 48%) !important;
+}
+
+.live-row.live-tech-frame {
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.44), rgba(241, 246, 252, 0.26)) !important;
+}
+
+.live-tech-frame::before {
+  opacity: 0.72;
+}
+
+.live-tech-frame::after {
+  border-color: rgba(235, 241, 248, 0.38);
+}
+
+.live-card h2,
+.live-signal-chip b,
+.live-hero h1,
+.live-section-title h2,
+.live-row b {
+  color: rgba(23, 32, 51, 0.96) !important;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.42);
+}
+
+.live-card-sub,
+.live-row span,
+.live-empty,
+.live-source,
+.live-hero p {
+  color: rgba(67, 80, 96, 0.88) !important;
+}
+
+.live-sync-badge {
+  background: rgba(255, 255, 255, 0.42) !important;
+  border-color: rgba(224, 232, 242, 0.68) !important;
+  backdrop-filter: blur(14px) saturate(140%) !important;
+  -webkit-backdrop-filter: blur(14px) saturate(140%) !important;
+}
+
+@media (max-width: 520px) {
+  .live-tech-frame,
+  .live-hero,
+  .live-card,
+  .live-section,
+  .live-row,
+  .live-signal-chip,
+  .live-error {
+    background:
+      linear-gradient(135deg, rgba(255, 255, 255, 0.62), rgba(238, 244, 250, 0.40)),
+      radial-gradient(circle at top left, rgba(255, 255, 255, 0.48), transparent 38%) !important;
+    backdrop-filter: blur(14px) saturate(135%) !important;
+    -webkit-backdrop-filter: blur(14px) saturate(135%) !important;
+  }
+}
+
+/* KETHER notification bell scroll fix */
+.kether-notification-panel,
+.kether-notifications-panel,
+.kether-bell-panel,
+.kether-bell-popover,
+.notification-panel,
+.notifications-panel,
+.notification-popover,
+.notifications-popover,
+.bell-panel,
+.bell-popover,
+[data-notification-panel],
+[data-bell-panel] {
+  max-height: min(72vh, 520px) !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  overscroll-behavior: contain !important;
+  -webkit-overflow-scrolling: touch !important;
+  touch-action: pan-y !important;
+}
+
+.kether-notification-panel *,
+.kether-notifications-panel *,
+.kether-bell-panel *,
+.kether-bell-popover *,
+.notification-panel *,
+.notifications-panel *,
+.notification-popover *,
+.notifications-popover *,
+.bell-panel *,
+.bell-popover *,
+[data-notification-panel] *,
+[data-bell-panel] * {
+  overscroll-behavior: contain;
+}
+
+.kether-notification-panel::-webkit-scrollbar,
+.kether-notifications-panel::-webkit-scrollbar,
+.kether-bell-panel::-webkit-scrollbar,
+.kether-bell-popover::-webkit-scrollbar,
+.notification-panel::-webkit-scrollbar,
+.notifications-panel::-webkit-scrollbar,
+.notification-popover::-webkit-scrollbar,
+.notifications-popover::-webkit-scrollbar,
+.bell-panel::-webkit-scrollbar,
+.bell-popover::-webkit-scrollbar,
+[data-notification-panel]::-webkit-scrollbar,
+[data-bell-panel]::-webkit-scrollbar {
+  width: 6px;
+}
+
+.kether-notification-panel::-webkit-scrollbar-thumb,
+.kether-notifications-panel::-webkit-scrollbar-thumb,
+.kether-bell-panel::-webkit-scrollbar-thumb,
+.kether-bell-popover::-webkit-scrollbar-thumb,
+.notification-panel::-webkit-scrollbar-thumb,
+.notifications-panel::-webkit-scrollbar-thumb,
+.notification-popover::-webkit-scrollbar-thumb,
+.notifications-popover::-webkit-scrollbar-thumb,
+.bell-panel::-webkit-scrollbar-thumb,
+.bell-popover::-webkit-scrollbar-thumb,
+[data-notification-panel]::-webkit-scrollbar-thumb,
+[data-bell-panel]::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: rgba(138, 93, 216, 0.34);
+}
+
+@media (max-width: 640px) {
+  .kether-notification-panel,
+  .kether-notifications-panel,
+  .kether-bell-panel,
+  .kether-bell-popover,
+  .notification-panel,
+  .notifications-panel,
+  .notification-popover,
+  .notifications-popover,
+  .bell-panel,
+  .bell-popover,
+  [data-notification-panel],
+  [data-bell-panel] {
+    max-height: 64vh !important;
+  }
+}
+
+/* KETHER homepage remarks list */
+.home-remarks-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 10px;
+  color: #334155;
+  font-size: 14px;
+  line-height: 1.75;
+  font-weight: 700;
+}
+
+.home-remarks-list li {
+  position: relative;
+  padding-left: 18px;
+}
+
+.home-remarks-list li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #7c3aed;
+  font-weight: 900;
+}
+
+@media (max-width: 640px) {
+  .home-remarks-list {
+    font-size: 13px;
+    line-height: 1.65;
+    gap: 8px;
+  }
+}
+
+/* KETHER nav icon hover and size fix start */
+.k-nav3-stage {
+  width: clamp(86px, 13vw, 118px);
+  height: clamp(86px, 13vw, 118px);
+  display: grid;
+  place-items: center;
+  position: relative;
+  margin: 0 auto;
+}
+
+.k-nav3-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  transition: opacity 0.22s ease, transform 0.22s ease, filter 0.22s ease;
+}
+
+.k-nav3-off {
+  opacity: 1;
+}
+
+.k-nav3-on {
+  opacity: 0;
+}
+
+.k-nav3-card:hover .k-nav3-off,
+.k-nav3-card:focus-visible .k-nav3-off {
+  opacity: 0;
+}
+
+.k-nav3-card:hover .k-nav3-on,
+.k-nav3-card:focus-visible .k-nav3-on {
+  opacity: 1;
+  transform: scale(1.04);
+  filter: drop-shadow(0 8px 16px rgba(124, 58, 237, 0.24));
+}
+
+.k-nav3-img[src*="icon-mod"] {
+  width: 92%;
+  height: 92%;
+  object-fit: contain;
+}
+
+@media (max-width: 640px) {
+  .k-nav3-stage {
+    width: 92px;
+    height: 92px;
+  }
+
+  .k-nav3-img[src*="icon-mod"] {
+    width: 88%;
+    height: 88%;
+  }
+}
+/* KETHER nav icon hover and size fix end */
+
+/* KETHER nav icon anti crop fix start */
+.k-nav3-card {
+  overflow: visible !important;
+  min-height: clamp(220px, 28vw, 280px);
+  display: grid;
+  align-content: start;
+  gap: 12px;
+  padding-top: clamp(18px, 3vw, 28px);
+}
+
+.k-nav3-stage {
+  width: clamp(70px, 10vw, 96px) !important;
+  height: clamp(70px, 10vw, 96px) !important;
+  min-width: clamp(70px, 10vw, 96px);
+  min-height: clamp(70px, 10vw, 96px);
+  margin: 0 auto 8px;
+  display: grid;
+  place-items: center;
+  position: relative;
+  overflow: visible !important;
+  z-index: 2;
+}
+
+.k-nav3-img {
+  position: absolute;
+  inset: 0;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain !important;
+  object-position: center;
+  display: block;
+}
+
+.k-nav3-info {
+  position: relative;
+  z-index: 3;
+  margin-top: 4px;
+}
+
+.k-nav3-img[src*="icon-mod"] {
+  width: 86% !important;
+  height: 86% !important;
+  inset: 7%;
+}
+
+@media (max-width: 640px) {
+  .k-nav3-card {
+    min-height: 210px;
+    gap: 10px;
+    padding-top: 18px;
+  }
+
+  .k-nav3-stage {
+    width: 76px !important;
+    height: 76px !important;
+    min-width: 76px;
+    min-height: 76px;
+  }
+
+  .k-nav3-img[src*="icon-mod"] {
+    width: 84% !important;
+    height: 84% !important;
+    inset: 8%;
+  }
+}
+/* KETHER nav icon anti crop fix end */
+
+/* KETHER mod nav icon size tune start */
+.k-nav3-img[src*="icon-mod"] {
+  width: 112% !important;
+  height: 112% !important;
+  max-width: none !important;
+  max-height: none !important;
+  inset: -6% !important;
+  object-fit: contain !important;
+  object-position: center !important;
+}
+
+@media (max-width: 640px) {
+  .k-nav3-img[src*="icon-mod"] {
+    width: 108% !important;
+    height: 108% !important;
+    inset: -4% !important;
+  }
+}
+/* KETHER mod nav icon size tune end */
+
+/* KETHER mini music player */
+.kether-mini-player {
+  position: fixed;
+  right: clamp(14px, 3vw, 26px);
+  bottom: clamp(14px, 3vw, 26px);
+  z-index: 90;
+  width: min(340px, calc(100vw - 28px));
+  padding: 14px;
+  border-radius: 26px;
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.86), rgba(239, 246, 255, 0.74)),
+    radial-gradient(circle at 20% 20%, rgba(236, 72, 153, 0.16), transparent 36%),
+    radial-gradient(circle at 90% 10%, rgba(124, 58, 237, 0.18), transparent 34%);
+  box-shadow:
+    0 22px 48px rgba(15, 23, 42, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.78);
+  backdrop-filter: blur(18px) saturate(1.35);
+  -webkit-backdrop-filter: blur(18px) saturate(1.35);
+  color: #172033;
+}
+
+.kether-mini-player-core {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.kether-mini-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.kether-mini-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.16em;
+  color: #6d28d9;
+}
+
+.kether-mini-close,
+.kether-mini-controls button,
+.kether-mini-bubble {
+  border: 0;
+  cursor: pointer;
+  color: inherit;
+}
+
+.kether-mini-close {
+  width: 30px;
+  height: 30px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  background: rgba(255, 255, 255, 0.72);
+  box-shadow: inset 0 0 0 1px rgba(148, 163, 184, 0.2);
+}
+
+.kether-mini-title {
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  padding: 12px 14px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.74);
+  font-weight: 900;
+  line-height: 1.35;
+}
+
+.kether-mini-title span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.kether-mini-controls {
+  display: grid;
+  grid-template-columns: 1fr 58px 1fr;
+  gap: 10px;
+  align-items: center;
+  margin-top: 12px;
+}
+
+.kether-mini-controls button {
+  height: 44px;
+  border-radius: 16px;
+  display: grid;
+  place-items: center;
+  background: rgba(255, 255, 255, 0.78);
+  box-shadow:
+    inset 0 0 0 1px rgba(148, 163, 184, 0.2),
+    0 10px 22px rgba(15, 23, 42, 0.08);
+}
+
+.kether-mini-controls button:disabled {
+  opacity: 0.48;
+  cursor: not-allowed;
+}
+
+.kether-mini-controls .kether-mini-play {
+  height: 54px;
+  border-radius: 20px;
+  color: white;
+  background: linear-gradient(135deg, #8b5cf6, #ec4899);
+  box-shadow:
+    0 14px 28px rgba(236, 72, 153, 0.24),
+    inset 0 1px 0 rgba(255, 255, 255, 0.32);
+}
+
+.kether-mini-note {
+  margin: 10px 2px 0;
+  color: #64748b;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.kether-mini-player.is-collapsed {
+  width: auto;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.kether-mini-bubble {
+  width: 58px;
+  height: 58px;
+  border-radius: 22px;
+  display: grid;
+  place-items: center;
+  color: white;
+  background: linear-gradient(135deg, #7c3aed, #ec4899);
+  box-shadow: 0 18px 36px rgba(124, 58, 237, 0.28);
+}
+
+@media (max-width: 640px) {
+  .kether-mini-player {
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+    width: auto;
+    padding: 12px;
+    border-radius: 22px;
+  }
+
+  .kether-mini-player.is-collapsed {
+    left: auto;
+    right: 14px;
+    bottom: 14px;
+  }
+
+  .kether-mini-title {
+    min-height: 44px;
+    font-size: 14px;
+  }
+
+  .kether-mini-controls {
+    grid-template-columns: 1fr 54px 1fr;
+  }
+}
+
+/* KETHER floating mini music player */
+.kether-mini-player {
+  position: fixed;
+  right: clamp(14px, 3vw, 26px);
+  bottom: clamp(14px, 3vw, 26px);
+  z-index: 999;
+  width: min(340px, calc(100vw - 28px));
+  padding: 14px;
+  border-radius: 26px;
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.88), rgba(239, 246, 255, 0.76)),
+    radial-gradient(circle at 20% 20%, rgba(236, 72, 153, 0.16), transparent 36%),
+    radial-gradient(circle at 90% 10%, rgba(124, 58, 237, 0.18), transparent 34%);
+  box-shadow:
+    0 22px 48px rgba(15, 23, 42, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.78);
+  backdrop-filter: blur(18px) saturate(1.35);
+  -webkit-backdrop-filter: blur(18px) saturate(1.35);
+  color: #172033;
+}
+
+.kether-mini-player-core {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.kether-mini-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.kether-mini-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.16em;
+  color: #6d28d9;
+}
+
+.kether-mini-close,
+.kether-mini-controls button,
+.kether-mini-bubble {
+  border: 0;
+  cursor: pointer;
+  color: inherit;
+}
+
+.kether-mini-close {
+  width: 30px;
+  height: 30px;
+  border-radius: 999px;
+  display: grid;
+  place-items: center;
+  background: rgba(255, 255, 255, 0.72);
+  box-shadow: inset 0 0 0 1px rgba(148, 163, 184, 0.2);
+}
+
+.kether-mini-title {
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  padding: 12px 14px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.74);
+  font-weight: 900;
+  line-height: 1.35;
+}
+
+.kether-mini-title span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.kether-mini-controls {
+  display: grid;
+  grid-template-columns: 1fr 58px 1fr;
+  gap: 10px;
+  align-items: center;
+  margin-top: 12px;
+}
+
+.kether-mini-controls button {
+  height: 44px;
+  border-radius: 16px;
+  display: grid;
+  place-items: center;
+  background: rgba(255, 255, 255, 0.78);
+  box-shadow:
+    inset 0 0 0 1px rgba(148, 163, 184, 0.2),
+    0 10px 22px rgba(15, 23, 42, 0.08);
+}
+
+.kether-mini-controls button:disabled {
+  opacity: 0.48;
+  cursor: not-allowed;
+}
+
+.kether-mini-controls .kether-mini-play {
+  height: 54px;
+  border-radius: 20px;
+  color: white;
+  background: linear-gradient(135deg, #8b5cf6, #ec4899);
+  box-shadow:
+    0 14px 28px rgba(236, 72, 153, 0.24),
+    inset 0 1px 0 rgba(255, 255, 255, 0.32);
+}
+
+.kether-mini-note {
+  margin: 10px 2px 0;
+  color: #64748b;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.kether-mini-player.is-collapsed {
+  width: auto;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.kether-mini-bubble {
+  width: 58px;
+  height: 58px;
+  border-radius: 22px;
+  display: grid;
+  place-items: center;
+  color: white;
+  background: linear-gradient(135deg, #7c3aed, #ec4899);
+  box-shadow: 0 18px 36px rgba(124, 58, 237, 0.28);
+}
+
+@media (max-width: 640px) {
+  .kether-mini-player {
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+    width: auto;
+    padding: 12px;
+    border-radius: 22px;
+  }
+
+  .kether-mini-player.is-collapsed {
+    left: auto;
+    right: 14px;
+    bottom: 14px;
+  }
+
+  .kether-mini-title {
+    min-height: 44px;
+    font-size: 14px;
+  }
+
+  .kether-mini-controls {
+    grid-template-columns: 1fr 54px 1fr;
+  }
+}
+
+/* KETHER compact fixed mini player start */
+.kether-mini-player {
+  position: fixed !important;
+  right: max(12px, env(safe-area-inset-right)) !important;
+  bottom: max(12px, env(safe-area-inset-bottom)) !important;
+  left: auto !important;
+  top: auto !important;
+  z-index: 2147483000 !important;
+  width: min(270px, calc(100vw - 24px)) !important;
+  padding: 10px !important;
+  border-radius: 20px !important;
+  transform: none !important;
+  contain: layout style;
+}
+
+.kether-mini-head {
+  margin-bottom: 7px !important;
+}
+
+.kether-mini-brand {
+  gap: 6px !important;
+  font-size: 9px !important;
+  letter-spacing: 0.12em !important;
+}
+
+.kether-mini-close {
+  width: 24px !important;
+  height: 24px !important;
+}
+
+.kether-mini-title {
+  min-height: 36px !important;
+  padding: 8px 10px !important;
+  border-radius: 14px !important;
+  font-size: 12px !important;
+}
+
+.kether-mini-controls {
+  grid-template-columns: 1fr 46px 1fr !important;
+  gap: 7px !important;
+  margin-top: 8px !important;
+}
+
+.kether-mini-controls button {
+  height: 34px !important;
+  border-radius: 12px !important;
+}
+
+.kether-mini-controls .kether-mini-play {
+  height: 42px !important;
+  border-radius: 15px !important;
+}
+
+.kether-mini-note {
+  margin-top: 7px !important;
+  font-size: 10px !important;
+}
+
+.kether-mini-bubble {
+  width: 48px !important;
+  height: 48px !important;
+  border-radius: 18px !important;
+}
+
+.kether-mini-player.is-collapsed {
+  width: auto !important;
+  padding: 0 !important;
+}
+
+@media (max-width: 640px) {
+  .kether-mini-player {
+    right: max(10px, env(safe-area-inset-right)) !important;
+    bottom: max(10px, env(safe-area-inset-bottom)) !important;
+    left: auto !important;
+    width: min(248px, calc(100vw - 20px)) !important;
+    padding: 9px !important;
+    border-radius: 18px !important;
+  }
+
+  .kether-mini-player.is-collapsed {
+    right: max(10px, env(safe-area-inset-right)) !important;
+    bottom: max(10px, env(safe-area-inset-bottom)) !important;
+    left: auto !important;
+    width: auto !important;
+    padding: 0 !important;
+  }
+
+  .kether-mini-title {
+    min-height: 34px !important;
+    font-size: 11px !important;
+  }
+
+  .kether-mini-controls {
+    grid-template-columns: 1fr 42px 1fr !important;
+  }
+
+  .kether-mini-controls button {
+    height: 32px !important;
+  }
+
+  .kether-mini-controls .kether-mini-play {
+    height: 40px !important;
+  }
+}
+/* KETHER compact fixed mini player end */
+
+/* KETHER mini player default collapsed left start */
+.kether-mini-player {
+  left: max(12px, env(safe-area-inset-left)) !important;
+  right: auto !important;
+  bottom: max(12px, env(safe-area-inset-bottom)) !important;
+  top: auto !important;
+}
+
+.kether-mini-player.is-collapsed {
+  left: max(12px, env(safe-area-inset-left)) !important;
+  right: auto !important;
+  bottom: max(12px, env(safe-area-inset-bottom)) !important;
+  top: auto !important;
+  width: auto !important;
+  padding: 0 !important;
+}
+
+.kether-mini-bubble {
+  width: 46px !important;
+  height: 46px !important;
+  border-radius: 17px !important;
+}
+
+@media (max-width: 640px) {
+  .kether-mini-player {
+    left: max(10px, env(safe-area-inset-left)) !important;
+    right: auto !important;
+    bottom: max(10px, env(safe-area-inset-bottom)) !important;
+    width: min(248px, calc(100vw - 20px)) !important;
+  }
+
+  .kether-mini-player.is-collapsed {
+    left: max(10px, env(safe-area-inset-left)) !important;
+    right: auto !important;
+    bottom: max(10px, env(safe-area-inset-bottom)) !important;
+    width: auto !important;
+    padding: 0 !important;
+  }
+
+  .kether-mini-bubble {
+    width: 44px !important;
+    height: 44px !important;
+    border-radius: 16px !important;
+  }
+}
+/* KETHER mini player default collapsed left end */
+
+/* KETHER dynamic info carousel start */
+.kether-dynamic-info {
+  margin: clamp(14px, 3vw, 22px) auto 0;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.88), rgba(239, 246, 255, 0.76)),
+    radial-gradient(circle at 8% 50%, rgba(236, 72, 153, 0.16), transparent 34%),
+    radial-gradient(circle at 90% 10%, rgba(124, 58, 237, 0.16), transparent 30%);
+  box-shadow:
+    0 16px 34px rgba(15, 23, 42, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(16px) saturate(1.25);
+  -webkit-backdrop-filter: blur(16px) saturate(1.25);
+  overflow: hidden;
+}
+
+.kether-dynamic-info-badge {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 10px;
+  border-radius: 999px;
+  color: #ffffff;
+  background: linear-gradient(135deg, #7c3aed, #ec4899);
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  box-shadow: 0 10px 22px rgba(124, 58, 237, 0.22);
+  white-space: nowrap;
+}
+
+.kether-dynamic-info-window {
+  min-width: 0;
+  overflow: hidden;
+}
+
+.kether-dynamic-info-message {
+  margin: 0;
+  color: #334155;
+  font-size: 14px;
+  font-weight: 850;
+  line-height: 1.65;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  animation: ketherDynamicInfoIn 0.38s ease both;
+}
+
+.kether-dynamic-info-dots {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.kether-dynamic-info-dots button {
+  width: 7px;
+  height: 7px;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: rgba(100, 116, 139, 0.32);
+  cursor: pointer;
+  transition:
+    width 0.2s ease,
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.kether-dynamic-info-dots button.is-active {
+  width: 18px;
+  background: linear-gradient(135deg, #7c3aed, #ec4899);
+  transform: translateY(-1px);
+}
+
+@keyframes ketherDynamicInfoIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+    filter: blur(4px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+@media (max-width: 640px) {
+  .kether-dynamic-info {
+    grid-template-columns: 1fr auto;
+    gap: 9px;
+    padding: 11px;
+    border-radius: 20px;
+  }
+
+  .kether-dynamic-info-badge {
+    grid-column: 1 / 2;
+    font-size: 11px;
+    padding: 7px 9px;
+  }
+
+  .kether-dynamic-info-window {
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
+
+  .kether-dynamic-info-message {
+    font-size: 13px;
+    line-height: 1.6;
+  }
+
+  .kether-dynamic-info-dots {
+    grid-column: 2 / 3;
+    grid-row: 1;
+  }
+}
+/* KETHER dynamic info carousel end */
+
+/* KETHER mini player resume prompt start */
+.kether-mini-collapsed-row {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.kether-mini-resume-toast,
+.kether-mini-resume-prompt {
+  border: 0;
+  cursor: pointer;
+  font-weight: 900;
+  color: #ffffff;
+  background: linear-gradient(135deg, #7c3aed, #ec4899);
+  box-shadow:
+    0 14px 28px rgba(124, 58, 237, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.28);
+}
+
+.kether-mini-resume-toast {
+  height: 40px;
+  padding: 0 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.kether-mini-resume-prompt {
+  width: 100%;
+  margin-top: 8px;
+  padding: 8px 10px;
+  border-radius: 14px;
+  font-size: 11px;
+  line-height: 1.35;
+}
+
+@media (max-width: 640px) {
+  .kether-mini-collapsed-row {
+    gap: 7px;
+  }
+
+  .kether-mini-resume-toast {
+    height: 36px;
+    padding: 0 10px;
+    font-size: 11px;
+  }
+
+  .kether-mini-resume-prompt {
+    font-size: 10px;
+  }
+}
+/* KETHER mini player resume prompt end */
+
+/* KETHER database overview dashboard */
+.database-overview-dashboard {
+  margin: 0 0 22px;
+  padding: 22px;
+  border: 1px solid rgba(148, 163, 184, 0.24);
+  border-radius: 28px;
+  background:
+    radial-gradient(circle at top left, rgba(168, 85, 247, 0.18), transparent 38%),
+    radial-gradient(circle at top right, rgba(56, 189, 248, 0.14), transparent 36%),
+    rgba(255, 255, 255, 0.78);
+  box-shadow: 0 18px 42px rgba(15, 23, 42, 0.12);
+  backdrop-filter: blur(18px);
+}
+
+.database-overview-head {
+  display: grid;
+  gap: 6px;
+  margin-bottom: 18px;
+}
+
+.database-overview-head p {
+  margin: 0;
+  color: #7c3aed;
+  font-size: 12px;
+  font-weight: 950;
+  letter-spacing: 0.18em;
+}
+
+.database-overview-head h2 {
+  margin: 0;
+  color: #0f172a;
+  font-size: clamp(24px, 4vw, 38px);
+  font-weight: 950;
+}
+
+.database-overview-head span {
+  color: #64748b;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.database-overview-metrics {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.database-overview-metrics article {
+  min-height: 112px;
+  padding: 16px;
+  border-radius: 22px;
+  border: 1px solid rgba(148, 163, 184, 0.22);
+  background: rgba(255, 255, 255, 0.74);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.76);
+}
+
+.database-overview-metrics span {
+  display: block;
+  color: #64748b;
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.database-overview-metrics b {
+  display: block;
+  margin-top: 8px;
+  color: #111827;
+  font-size: 26px;
+  font-weight: 950;
+}
+
+.database-overview-metrics small {
+  display: block;
+  margin-top: 6px;
+  color: #64748b;
+  font-size: 12px;
+  font-weight: 800;
+  line-height: 1.5;
+}
+
+.database-overview-sections {
+  margin-top: 14px;
+  padding: 16px;
+  border-radius: 22px;
+  background: rgba(248, 250, 252, 0.7);
+  border: 1px solid rgba(148, 163, 184, 0.18);
+}
+
+.database-overview-sections h3 {
+  margin: 0 0 12px;
+  color: #0f172a;
+  font-size: 16px;
+  font-weight: 950;
+}
+
+.database-overview-sections div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.database-overview-sections span {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 12px;
+  border-radius: 999px;
+  background: white;
+  color: #334155;
+  font-size: 13px;
+  font-weight: 900;
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
+}
+
+.database-overview-sections em {
+  color: #7c3aed;
+  font-style: normal;
+  font-weight: 950;
+}
+
+@media (max-width: 900px) {
+  .database-overview-metrics {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 560px) {
+  .database-overview-dashboard {
+    padding: 16px;
+    border-radius: 24px;
+  }
+
+  .database-overview-metrics {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* KETHER bot hero vertical fix start */
+.kether-bot-hero-shell {
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  align-items: stretch !important;
+}
+
+.kether-bot-kicker,
+.kether-bot-hero-banner,
+.kether-bot-hero-copy {
+  width: 100% !important;
+  max-width: none !important;
+  grid-column: 1 / -1 !important;
+}
+
+.kether-bot-kicker {
+  order: 1;
+}
+
+.kether-bot-hero-banner {
+  order: 2;
+}
+
+.kether-bot-hero-copy {
+  order: 3;
+}
+
+.kether-bot-hero-banner img {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center;
+}
+/* KETHER bot hero vertical fix end */
+
+/* KETHER overview page reset start */
+.kether-overview-v2 {
+  display: grid;
+  gap: 18px;
+}
+
+.kether-overview-hero-shell {
+  padding: 22px;
+  border-radius: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(239, 246, 255, 0.76)),
+    radial-gradient(circle at 8% 10%, rgba(236, 72, 153, 0.13), transparent 32%),
+    radial-gradient(circle at 92% 0%, rgba(124, 58, 237, 0.16), transparent 32%);
+  box-shadow:
+    0 22px 48px rgba(15, 23, 42, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(18px) saturate(1.25);
+  -webkit-backdrop-filter: blur(18px) saturate(1.25);
+}
+
+.kether-overview-kicker {
+  margin: 0 0 12px;
+  color: #7c3aed;
+  font-size: 12px;
+  font-weight: 950;
+  letter-spacing: 0.18em;
+}
+
+.kether-overview-hero-banner {
+  width: 100%;
+  min-height: 240px;
+  border-radius: 28px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.62);
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  box-shadow:
+    0 24px 50px rgba(15, 23, 42, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.72);
+}
+
+.kether-overview-hero-banner img {
+  width: 100%;
+  height: 100%;
+  min-height: 240px;
+  display: block;
+  object-fit: cover;
+  object-position: center;
+}
+
+.kether-overview-hero-copy {
+  margin-top: 18px;
+}
+
+.kether-overview-hero-copy h1 {
+  margin: 0;
+  color: #172033;
+  font-size: clamp(28px, 4vw, 42px);
+  letter-spacing: -0.04em;
+}
+
+.kether-overview-hero-copy p {
+  margin: 12px 0 0;
+  max-width: 860px;
+  color: #475569;
+  font-size: 15px;
+  line-height: 1.85;
+  font-weight: 800;
+}
+
+.kether-overview-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.kether-overview-hero-actions a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0 16px;
+  border-radius: 999px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 900;
+  color: #334155;
+  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid rgba(148, 163, 184, 0.18);
+}
+
+.kether-overview-metric-grid,
+.kether-overview-mini-summary {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.kether-overview-mini-summary {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.kether-overview-metric-grid article,
+.kether-overview-mini-summary article,
+.kether-overview-chart-card,
+.kether-overview-error {
+  border: 1px solid rgba(148, 163, 184, 0.22);
+  background: rgba(255, 255, 255, 0.82);
+  box-shadow: 0 14px 34px rgba(15, 23, 42, 0.08);
+  backdrop-filter: blur(14px);
+}
+
+.kether-overview-metric-grid article,
+.kether-overview-mini-summary article {
+  padding: 18px;
+  border-radius: 22px;
+}
+
+.kether-overview-metric-grid span,
+.kether-overview-mini-summary span {
+  display: block;
+  color: #64748b;
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.kether-overview-metric-grid strong,
+.kether-overview-mini-summary b {
+  display: block;
+  margin-top: 8px;
+  color: #0f172a;
+  font-size: clamp(22px, 3vw, 30px);
+  line-height: 1.15;
+  font-weight: 950;
+}
+
+.kether-overview-metric-grid small,
+.kether-overview-mini-summary small {
+  display: block;
+  margin-top: 7px;
+  color: #64748b;
+  font-size: 12px;
+  line-height: 1.5;
+  font-weight: 800;
+}
+
+.kether-overview-chart-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 16px;
+}
+
+.kether-overview-chart-card {
+  padding: 20px;
+  border-radius: 26px;
+}
+
+.kether-overview-wide-card {
+  grid-column: 1 / -1;
+}
+
+.kether-overview-chart-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: 16px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.18);
+}
+
+.kether-overview-chart-head p {
+  margin: 0 0 6px;
+  color: #7c3aed;
+  font-size: 11px;
+  font-weight: 950;
+  letter-spacing: 0.18em;
+}
+
+.kether-overview-chart-head h2 {
+  margin: 0;
+  color: #0f172a;
+  font-size: clamp(22px, 3vw, 30px);
+  font-weight: 950;
+}
+
+.kether-overview-chart-head > span {
+  flex: 0 0 auto;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: rgba(124, 58, 237, 0.1);
+  color: #6d28d9;
+  font-size: 13px;
+  font-weight: 950;
+}
+
+.kether-overview-bar-list,
+.kether-overview-progress-list,
+.kether-overview-value-chart {
+  display: grid;
+  gap: 12px;
+}
+
+.kether-overview-bar-item,
+.kether-overview-progress-item,
+.kether-overview-value-item {
+  padding: 12px 14px;
+  border-radius: 18px;
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  background: rgba(248, 250, 252, 0.76);
+}
+
+.kether-overview-bar-top,
+.kether-overview-progress-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.kether-overview-bar-top b,
+.kether-overview-progress-top b,
+.kether-overview-value-meta b {
+  color: #0f172a;
+  font-size: 14px;
+  font-weight: 950;
+}
+
+.kether-overview-bar-top span,
+.kether-overview-progress-top span,
+.kether-overview-value-item span {
+  color: #7c3aed;
+  font-size: 13px;
+  font-weight: 950;
+}
+
+.kether-overview-bar-track,
+.kether-overview-progress-track,
+.kether-overview-value-bar {
+  overflow: hidden;
+  height: 12px;
+  border-radius: 999px;
+  background: rgba(226, 232, 240, 0.9);
+}
+
+.kether-overview-bar-track i,
+.kether-overview-progress-track i,
+.kether-overview-value-bar i {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #7c3aed, #ec4899);
+}
+
+.kether-overview-bar-item small,
+.kether-overview-progress-item small,
+.kether-overview-value-meta small {
+  display: block;
+  margin-top: 8px;
+  color: #64748b;
+  font-size: 12px;
+  line-height: 1.5;
+  font-weight: 800;
+}
+
+.kether-overview-value-item {
+  display: grid;
+  grid-template-columns: minmax(0, 220px) minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 14px;
+}
+
+.kether-overview-value-meta small {
+  margin-top: 4px;
+}
+
+.kether-overview-error {
+  padding: 18px;
+  border-radius: 22px;
+  border-color: rgba(248, 113, 113, 0.28);
+  background: rgba(254, 242, 242, 0.88);
+  color: #991b1b;
+}
+
+.kether-overview-error h2 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 950;
+}
+
+.kether-overview-error p {
+  margin: 10px 0 0;
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 1.7;
+}
+
+@media (max-width: 1100px) {
+  .kether-overview-metric-grid,
+  .kether-overview-mini-summary {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .kether-overview-chart-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .kether-overview-value-item {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .kether-overview-hero-shell,
+  .kether-overview-chart-card {
+    padding: 16px;
+    border-radius: 24px;
+  }
+
+  .kether-overview-hero-banner,
+  .kether-overview-hero-banner img {
+    min-height: 170px;
+  }
+
+  .kether-overview-metric-grid,
+  .kether-overview-mini-summary {
+    grid-template-columns: 1fr;
+  }
+
+  .kether-overview-chart-head {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+/* KETHER overview page reset end */
+
+/* KETHER overview top actions start */
+.kether-overview-top-actions {
+  position: fixed;
+  top: 18px;
+  right: 18px;
+  z-index: 80;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 48px;
+  padding: 8px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  background: rgba(255, 255, 255, 0.74);
+  box-shadow:
+    0 18px 38px rgba(15, 23, 42, 0.14),
+    inset 0 1px 0 rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(18px) saturate(1.22);
+  -webkit-backdrop-filter: blur(18px) saturate(1.22);
+}
+
+.kether-overview-discord-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-height: 34px;
+  padding: 0 12px;
+  border-radius: 999px;
+  color: #ffffff;
+  background: linear-gradient(135deg, #5865f2, #7c3aed);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 950;
+  box-shadow: 0 10px 22px rgba(88, 101, 242, 0.28);
+}
+
+@media (max-width: 640px) {
+  .kether-overview-top-actions {
+    top: 14px;
+    right: 14px;
+    gap: 7px;
+    padding: 7px 8px;
+  }
+
+  .kether-overview-discord-action span {
+    display: none;
+  }
+
+  .kether-overview-discord-action {
+    width: 34px;
+    padding: 0;
+  }
+}
+/* KETHER overview top actions end */
+
+/* KETHER bot top actions start */
+.kether-bot-top-actions {
+  position: fixed;
+  top: 18px;
+  right: 18px;
+  z-index: 80;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 48px;
+  padding: 8px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  background: rgba(255, 255, 255, 0.74);
+  box-shadow:
+    0 18px 38px rgba(15, 23, 42, 0.14),
+    inset 0 1px 0 rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(18px) saturate(1.22);
+  -webkit-backdrop-filter: blur(18px) saturate(1.22);
+}
+
+.kether-bot-discord-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-height: 34px;
+  padding: 0 12px;
+  border-radius: 999px;
+  color: #ffffff;
+  background: linear-gradient(135deg, #5865f2, #7c3aed);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 950;
+  box-shadow: 0 10px 22px rgba(88, 101, 242, 0.28);
+}
+
+@media (max-width: 640px) {
+  .kether-bot-top-actions {
+    top: 14px;
+    right: 14px;
+    gap: 7px;
+    padding: 7px 8px;
+  }
+
+  .kether-bot-discord-action span {
+    display: none;
+  }
+
+  .kether-bot-discord-action {
+    width: 34px;
+    padding: 0;
+  }
+}
+/* KETHER bot top actions end */
+
+/* KETHER database top actions start */
+.kether-database-top-actions {
+  position: fixed;
+  top: 18px;
+  right: 18px;
+  z-index: 80;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 48px;
+  padding: 8px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  background: rgba(255, 255, 255, 0.74);
+  box-shadow:
+    0 18px 38px rgba(15, 23, 42, 0.14),
+    inset 0 1px 0 rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(18px) saturate(1.22);
+  -webkit-backdrop-filter: blur(18px) saturate(1.22);
+}
+
+.kether-database-discord-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-height: 34px;
+  padding: 0 12px;
+  border-radius: 999px;
+  color: #ffffff;
+  background: linear-gradient(135deg, #5865f2, #7c3aed);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 950;
+  box-shadow: 0 10px 22px rgba(88, 101, 242, 0.28);
+}
+
+@media (max-width: 640px) {
+  .kether-database-top-actions {
+    top: 14px;
+    right: 14px;
+    gap: 7px;
+    padding: 7px 8px;
+  }
+
+  .kether-database-discord-action span {
+    display: none;
+  }
+
+  .kether-database-discord-action {
+    width: 34px;
+    padding: 0;
+  }
+}
+/* KETHER database top actions end */
+
+/* KETHER database hero block start */
+.kether-database-hero-shell {
+  padding: 22px;
+  border-radius: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(239, 246, 255, 0.76)),
+    radial-gradient(circle at 8% 10%, rgba(236, 72, 153, 0.13), transparent 32%),
+    radial-gradient(circle at 92% 0%, rgba(124, 58, 237, 0.16), transparent 32%);
+  box-shadow:
+    0 22px 48px rgba(15, 23, 42, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(18px) saturate(1.25);
+  -webkit-backdrop-filter: blur(18px) saturate(1.25);
+}
+
+.kether-database-kicker {
+  margin: 0 0 12px;
+  color: #7c3aed;
+  font-size: 13px;
+  font-weight: 950;
+  letter-spacing: 0.18em;
+}
+
+.kether-database-hero-banner {
+  width: 100%;
+  min-height: 240px;
+  border-radius: 28px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.62);
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  box-shadow:
+    0 24px 50px rgba(15, 23, 42, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.72);
+}
+
+.kether-database-hero-banner img {
+  width: 100%;
+  height: 100%;
+  min-height: 240px;
+  display: block;
+  object-fit: cover;
+  object-position: center;
+}
+
+.kether-database-hero-copy {
+  margin-top: 18px;
+}
+
+.kether-database-hero-copy h1 {
+  margin: 0;
+  color: #172033;
+  font-size: clamp(28px, 4vw, 42px);
+  line-height: 1.12;
+  font-weight: 950;
+  letter-spacing: -0.04em;
+}
+
+.kether-database-hero-copy p {
+  margin: 12px 0 0;
+  max-width: 860px;
+  color: #475569;
+  font-size: 15px;
+  line-height: 1.85;
+  font-weight: 800;
+}
+
+.kether-database-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.kether-database-hero-actions a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0 16px;
+  border-radius: 999px;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 900;
+  color: #334155;
+  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.72);
+}
+
+.kether-database-hero-actions a:hover {
+  color: #6d28d9;
+  background: rgba(245, 243, 255, 0.94);
+}
+
+@media (max-width: 640px) {
+  .kether-database-hero-shell {
+    padding: 16px;
+    border-radius: 24px;
+  }
+
+  .kether-database-hero-banner,
+  .kether-database-hero-banner img {
+    min-height: 170px;
+  }
+
+  .kether-database-kicker {
+    font-size: 12px;
+    letter-spacing: 0.14em;
+  }
+
+  .kether-database-hero-actions a {
+    min-height: 40px;
+    padding: 0 13px;
+    font-size: 13px;
+  }
+}
+/* KETHER database hero block end */

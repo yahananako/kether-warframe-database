@@ -1,25 +1,68 @@
 import Link from "next/link";
-import { MessageCircle, Radio, Sparkles } from "lucide-react";
+import { Search, Bell, Menu, CalendarDays, Info, ClipboardList, Pencil, MessageCircle } from "lucide-react";
 import { fetchSheetRows } from "../lib/sheets";
 import HomeSearchFloating from "../components/HomeSearchFloating";
-import HomeNotificationsFloating from "../components/HomeNotificationsFloating";
-import HomeMenuFloating from "../components/HomeMenuFloating";
-import HomeAuthMini from "../components/HomeAuthMini";
-import HomePersonalProgress from "../components/HomePersonalProgress";
-import KetherClanWatermark from "../components/KetherClanWatermark";
+import HomeNotificationsFloating from "../components/HomeNotificationsFloating"; import HomeMenuFloating from "../components/HomeMenuFloating"; import HomeAuthMini from "../components/HomeAuthMini"; import HomePersonalProgress from "../components/HomePersonalProgress"; import KetherClanWatermark from "../components/KetherClanWatermark";
 import OfficialNewsBoard from "../components/OfficialNewsBoard";
 import KetherDynamicInfo from "../components/KetherDynamicInfo";
-import HomeStarChartInfo from "../components/HomeStarChartInfo";
-
+import { homepageRemarks } from "../data/siteUpdates";
 const navItems = [
-  { label: "總覽", key: "overview", href: "/database/overview", image: "/icon-overview.png", activeImage: "/icon-overview-2.png" },
-  { label: "戰甲", key: "warframes", href: "/database/warframes", image: "/icon-warframe.png", activeImage: "/icon-warframe-2.png" },
-  { label: "主要武器", key: "primary", href: "/database/primary", image: "/icon-primary.png", activeImage: "/icon-primary-2.png" },
-  { label: "次要武器", key: "secondary", href: "/database/secondary", image: "/icon-secondary.png", activeImage: "/icon-secondary-2.png" },
-  { label: "近戰武器", key: "melee", href: "/database/melee", image: "/icon-melee.png", activeImage: "/icon-melee-2.png" },
-  { label: "同伴", key: "companions", href: "/database/companions", image: "/icon-companion.png", activeImage: "/icon-companion-2.png" },
-  { label: "曲翼", key: "archwing", href: "/database/archwing", image: "/icon-archwing.png", activeImage: "/icon-archwing-2.png" },
-  { label: "MOD資料庫", key: "mods", href: "/database/mods", image: "/icon-mod.png", activeImage: "/icon-mod-2.png" },
+  {
+    label: "總覽",
+    key: "overview",
+    href: "/database/overview",
+    image: "/icon-overview.png",
+    activeImage: "/icon-overview-2.png",
+  },
+  {
+    label: "戰甲",
+    key: "warframes",
+    href: "/database/warframes",
+    image: "/icon-warframe.png",
+    activeImage: "/icon-warframe-2.png",
+  },
+  {
+    label: "主要武器",
+    key: "primary",
+    href: "/database/primary",
+    image: "/icon-primary.png",
+    activeImage: "/icon-primary-2.png",
+  },
+  {
+    label: "次要武器",
+    key: "secondary",
+    href: "/database/secondary",
+    image: "/icon-secondary.png",
+    activeImage: "/icon-secondary-2.png",
+  },
+  {
+    label: "近戰武器",
+    key: "melee",
+    href: "/database/melee",
+    image: "/icon-melee.png",
+    activeImage: "/icon-melee-2.png",
+  },
+  {
+    label: "同伴",
+    key: "companions",
+    href: "/database/companions",
+    image: "/icon-companion.png",
+    activeImage: "/icon-companion-2.png",
+  },
+  {
+    label: "曲翼",
+    key: "archwing",
+    href: "/database/archwing",
+    image: "/icon-archwing.png",
+    activeImage: "/icon-archwing-2.png",
+  },
+  {
+    label: "MOD資料庫",
+    key: "mods",
+    href: "/database/mods",
+    image: "/icon-mod.png",
+    activeImage: "/icon-mod-2.png",
+  },
 ];
 
 function isOwned(value: string): boolean {
@@ -32,35 +75,24 @@ function hasPrice(value: string): boolean {
 }
 
 export default async function HomePage() {
-  const dataCategories = navItems.filter((item) => item.key !== "overview");
+  const dataCategories = navItems.filter((item) => item.key !== "overview" && item.key !== "bot");
 
   const results = await Promise.all(
     dataCategories.map(async (item) => {
-      try {
-        const result = await fetchSheetRows(item.key);
-        const rows = result.rows;
-        const owned = rows.filter((row) => isOwned(row.owned)).length;
-        const priced = rows.filter((row) => hasPrice(row.price)).length;
-        const sections = new Set(rows.map((row) => row.section || "未分類"));
+      const result = await fetchSheetRows(item.key);
+      const rows = result.rows;
+      const owned = rows.filter((row) => isOwned(row.owned)).length;
+      const priced = rows.filter((row) => hasPrice(row.price)).length;
+      const sections = new Set(rows.map((row) => row.section || "未分類"));
 
-        return {
-          ...item,
-          count: rows.length,
-          owned,
-          priced,
-          sectionCount: sections.size,
-          completion: rows.length > 0 ? Math.round((owned / rows.length) * 100) : 0,
-        };
-      } catch {
-        return {
-          ...item,
-          count: 0,
-          owned: 0,
-          priced: 0,
-          sectionCount: 0,
-          completion: 0,
-        };
-      }
+      return {
+        ...item,
+        count: rows.length,
+        owned,
+        priced,
+        sectionCount: sections.size,
+        completion: rows.length > 0 ? Math.round((owned / rows.length) * 100) : 0
+      };
     })
   );
 
@@ -70,173 +102,268 @@ export default async function HomePage() {
   const totalSections = results.reduce((sum, item) => sum + item.sectionCount, 0);
   const totalCompletion = totalRows > 0 ? Math.round((totalOwned / totalRows) * 100) : 0;
 
-  return (
-    <main className="min-h-screen bg-[#f6f3ff] text-slate-950">
+  return (<>
       <HomeMenuFloating />
-      <HomeSearchFloating />
-      <HomeNotificationsFloating />
 
-      <div className="mx-auto flex w-full max-w-7xl flex-col gap-6 px-4 py-6 sm:px-6 lg:px-8">
-        <header className="rounded-[34px] border border-white/70 bg-white/80 p-5 shadow-2xl shadow-violet-200/30 backdrop-blur sm:p-8">
-          <div className="flex flex-wrap items-center justify-between gap-4">
-            <div>
-              <p className="text-xs font-black tracking-[0.28em] text-violet-600">
-                KETHER OF PARADISO
-              </p>
-              <h1 className="mt-2 text-4xl font-black tracking-tight text-slate-950 sm:text-6xl">
-                KETHER
-              </h1>
-            </div>
+    <main style={{ position: "relative", isolation: "isolate" }} className="page-shell homepage-sci-fi">
+      
+      <div className="home-fixed-bg" aria-hidden="true" />
+<div className="corner corner-lt" />
+      <div className="corner corner-rt" />
+      <div className="corner corner-lb" />
+      <div className="corner corner-rb home-tech-card home-tech-corner" />
 
-            <Link
-              href="https://discord.gg"
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-2 rounded-full bg-[#5865f2] px-5 py-3 text-sm font-black text-white shadow-lg shadow-indigo-300/50"
-            >
-              <MessageCircle size={18} />
-              Discord
-            </Link>
-          </div>
+      <header className="topbar">
+        <div className="topbar-left">
+  <HomeMenuFloating />
+<span>KETHER</span>
+        </div>
 
-          <div className="mt-6 overflow-hidden rounded-[30px] border border-white/70 bg-white/70 shadow-xl shadow-slate-200/70">
-            <img
-              src="/home-hero-banner.png"
-              alt="KETHER OF PARADISO Warframe Database 首頁橫版圖"
-              className="h-auto w-full object-cover"
-            />
-          </div>
-        </header>
+        <div className="topbar-right">
+          <HomeSearchFloating />
+          <HomeNotificationsFloating />
+          <HomeAuthMini />
+          <a className="discord-mini" href="https://discord.gg/MFhTb8XMZ" target="_blank" rel="noreferrer">
+            <MessageCircle size={18} />
+            Discord
+          </a>
+        </div>
+      </header>
 
-        <KetherDynamicInfo />
+      <section className="home-hero-image-banner" aria-label="KETHER OF PARADISO Warframe Database">
+        <div
+  style={{
+    width: "100%",
+    borderRadius: 28,
+    overflow: "hidden",
+    border: "1px solid rgba(255, 255, 255, 0.72)",
+    background: "rgba(255, 255, 255, 0.55)",
+    boxShadow: "0 18px 45px rgba(15, 23, 42, 0.10)",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    padding: 0
+  }}
+>
+  <img
+    src="/home-hero-banner.png"
+    alt="KETHER OF PARADISO Warframe Database 首頁橫版圖"
+    style={{
+      width: "100%",
+      height: "auto",
+      objectFit: "contain",
+      objectPosition: "center",
+      display: "block",
+      borderRadius: 20
+    }}
+  />
+</div>
+      </section>
 
-        <section className="grid gap-4 md:grid-cols-3">
-          <article className="rounded-[28px] border border-white/70 bg-white/80 p-5 shadow-xl shadow-violet-200/30 backdrop-blur">
-            <span className="text-sm font-black text-slate-500">總資料數</span>
-            <strong className="mt-2 block text-4xl font-black text-slate-950">
-              {totalRows.toLocaleString("zh-TW")}
-            </strong>
-            <p className="mt-2 text-sm font-bold text-slate-500">
-              Google Sheets 全分類資料量
-            </p>
-          </article>
+      <KetherDynamicInfo />
 
-          <article className="rounded-[28px] border border-white/70 bg-white/80 p-5 shadow-xl shadow-violet-200/30 backdrop-blur">
-            <span className="text-sm font-black text-slate-500">有價格資料</span>
-            <strong className="mt-2 block text-4xl font-black text-slate-950">
-              {totalPriced.toLocaleString("zh-TW")}
-            </strong>
-            <p className="mt-2 text-sm font-bold text-slate-500">
-              目前可追價的資料列
-            </p>
-          </article>
 
-          <article className="rounded-[28px] border border-white/70 bg-white/80 p-5 shadow-xl shadow-violet-200/30 backdrop-blur">
-            <span className="text-sm font-black text-slate-500">已購買完成率</span>
-            <strong className="mt-2 block text-4xl font-black text-slate-950">
-              {totalCompletion}%
-            </strong>
-            <p className="mt-2 text-sm font-bold text-slate-500">
-              {totalOwned.toLocaleString("zh-TW")} 筆已標記
-            </p>
-          </article>
-        </section>
+      <section className="hero">
+</section>
 
-        <section className="rounded-[34px] border border-white/70 bg-white/80 p-5 shadow-2xl shadow-violet-200/30 backdrop-blur sm:p-8">
-          <div className="mb-5 flex items-center gap-3">
-            <Sparkles className="text-violet-600" size={22} />
-            <h2 className="text-2xl font-black text-slate-950">導航區</h2>
-          </div>
+      <section className="home-kpi-grid home-zone home-zone-stats">
+        <div className="panel-tag">數據區</div>
 
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {navItems.map((item) => {
-              const stats = results.find((result) => result.key === item.key);
+        <article className="home-kpi-card">
+          <span>總資料數</span>
+          <strong>{totalRows.toLocaleString("zh-TW")}</strong>
+          <p>Google Sheets 全分類資料量</p>
+        </article>
 
-              return (
-                <Link
-                  key={item.key}
-                  href={item.href}
-                  className="group rounded-[26px] border border-slate-200/70 bg-white p-4 shadow-lg shadow-slate-200/60 transition hover:-translate-y-1 hover:shadow-xl"
-                >
-                  <div className="flex items-center gap-3">
-                    <img
-                      src={item.image}
-                      alt={item.label}
-                      className="h-12 w-12 object-contain transition group-hover:hidden"
-                    />
-                    <img
-                      src={item.activeImage}
-                      alt={`${item.label} active`}
-                      className="hidden h-12 w-12 object-contain transition group-hover:block"
-                    />
+        <article className="home-kpi-card">
+          <span>有價格資料</span>
+          <strong>{totalPriced.toLocaleString("zh-TW")}</strong>
+          <p>目前可追價的資料列</p>
+        </article>
 
-                    <div>
-                      <strong className="block text-lg font-black text-slate-950">
-                        {item.label}
-                      </strong>
-                      <span className="text-xs font-bold text-slate-500">
-                        {stats
-                          ? `${stats.count.toLocaleString("zh-TW")} 筆｜區塊 ${stats.sectionCount}｜有價格 ${stats.priced}`
-                          : "查看總覽資料"}
-                      </span>
-                    </div>
-                  </div>
-                </Link>
-              );
-            })}
-          </div>
-        </section>
-
-        <section className="grid gap-6 lg:grid-cols-[1.05fr_0.95fr]">
-          <div className="relative overflow-hidden rounded-[34px]">
-            <KetherClanWatermark />
-            <div className="relative z-10">
-              <HomeStarChartInfo
-                totalRows={totalRows}
-                totalPriced={totalPriced}
-                totalSections={totalSections}
-              />
-            </div>
-          </div>
-
-          <article className="rounded-[34px] border border-white/70 bg-white/80 p-6 shadow-2xl shadow-violet-200/30 backdrop-blur">
-            <p className="text-xs font-black tracking-[0.22em] text-violet-600">
-              WARFRAME LINKS
-            </p>
-            <h2 className="mt-2 text-3xl font-black text-slate-950">
-              小希星圖網址情報局
-            </h2>
-
-            <div className="mt-5 grid gap-3">
-              <a href="https://www.warframe.com" target="_blank" rel="noreferrer" className="rounded-[20px] bg-white p-4 font-black text-slate-700 shadow">
-                Warframe 官方網站
-              </a>
-              <a href="https://www.warframe.com/news" target="_blank" rel="noreferrer" className="rounded-[20px] bg-white p-4 font-black text-slate-700 shadow">
-                官方新聞
-              </a>
-              <a href="https://forums.warframe.com" target="_blank" rel="noreferrer" className="rounded-[20px] bg-white p-4 font-black text-slate-700 shadow">
-                官方論壇
-              </a>
-              <Link href="/live" className="inline-flex items-center gap-2 rounded-[20px] bg-slate-950 p-4 font-black text-white shadow">
-                <Radio size={18} />
-                小希星圖電波局
-              </Link>
-            </div>
-          </article>
-        </section>
-
-        <HomeAuthMini />
         <HomePersonalProgress
           totalRows={totalRows}
           fallbackOwned={totalOwned}
           fallbackCompletion={totalCompletion}
         />
-        <OfficialNewsBoard />
+      </section>
 
-        <footer className="rounded-[28px] border border-white/70 bg-white/70 p-5 text-center text-sm font-black text-slate-500 shadow-xl shadow-violet-200/20 backdrop-blur">
-          https://kether-warframe-database.vercel.app ｜ Website by ヤハ奈々子・羊咩・凱洛
-        </footer>
-      </div>
-    </main>
-  );
+      <section className="nav-panel home-zone home-zone-nav" id="navigation">
+        <div className="panel-tag">導航區</div>
+
+        <div className="nav-grid">
+          {navItems.map((item) => {
+            const stats = results.find((result) => result.key === item.key);
+
+            return (
+              <Link
+                key={item.key}
+                href={item.href}
+                className="nav-card k-nav3-card"
+                aria-label={item.label}
+              >
+                <span className="k-nav3-stage" aria-hidden="true">
+                  <img
+                    src={item.image}
+                    alt=""
+                    className="k-nav3-img k-nav3-off"
+                    draggable={false}
+                  />
+                  <img
+                    src={item.activeImage}
+                    alt=""
+                    className="k-nav3-img k-nav3-on"
+                    draggable={false}
+                  />
+                </span>
+
+                <span className="k-nav3-info">
+                  {stats ? (
+                    <>
+                      <small>
+                        {stats.count.toLocaleString("zh-TW")} 筆｜區塊 {stats.sectionCount}｜有價格 {stats.priced}
+                      </small>
+                      <b>{stats.completion}%</b>
+                    </>
+                  ) : (
+                    <>
+                      <small>查看全部分類與總覽資料</small>
+                      <b>總覽</b>
+                    </>
+                  )}
+                </span>
+              </Link>
+            );
+          })}
+        </div>
+      </section>
+
+      
+
+      <section className="dashboard-grid home-zone home-zone-info home-zone-notes">
+        <div className="panel-tag">資料區</div>
+        
+<div className="home-info-split">
+  <article className="info-card home-site-info-card">
+    <div className="card-title">
+      <span>3</span>
+      <span>KETHER 星圖航標資訊</span>
+    </div>
+
+    <div className="home-info-date-row">
+      <span>更新日期</span>
+      <strong>2026/7/6</strong>
+    </div>
+
+    <div className="home-info-subblock">
+      <h3>網站更新摘要</h3>
+      <ul>
+        <li>目前版本為 V2.5.1 + BOT V3.5-E17，網站、資料庫與 Discord Bot 狀態集中顯示。</li>
+        <li>資料庫狀態：Google Sheets、分類分頁、區塊總數、交易價格與 Discord 個人進度已合併在此區塊。</li>
+        <li>Discord 登入、氏族權限驗證、個人進度與 BOT V3.5-E17 指令中樞持續運作中。</li>
+        <li>星圖備用區：首頁、BOT、總覽與各資料頁上方區塊統一成小希風格。</li>
+      </ul>
+    </div>
+  </article>
+
+  <article className="info-card home-warframe-info-card">
+    <div className="card-title">
+      <span>3</span>
+      <span>小希星圖網址情報局</span>
+    </div>
+
+    <div className="home-official-links">
+      <a href="https://www.warframe.com" target="_blank" rel="noreferrer">
+        Warframe 官方網站
+      </a>
+      <a href="https://www.warframe.com/news" target="_blank" rel="noreferrer">
+        官方新聞
+      </a>
+      <a href="https://www.warframe.com/updates" target="_blank" rel="noreferrer">
+        更新紀錄
+      </a>
+      <a href="https://forums.warframe.com" target="_blank" rel="noreferrer">
+        官方論壇
+      </a>
+    </div>
+
+    <div className="home-info-subblock">
+      <h3>網址與情報用途</h3>
+      <ul>
+        <li>查詢 Warframe 官方公告、版本更新與活動情報。</li>
+        <li>快速前往官方網站、新聞、更新紀錄與論壇。</li>
+        <li>小希星圖電波局已建立，後續可串接更多即時情報來源。</li>
+      </ul>
+
+            <OfficialNewsBoard />
+</div>
+  </article>
+</div>
+
+
+        <div className="status-notes-row">
+          <article className="info-card summary-card">
+            <div className="card-title">
+              <ClipboardList size={18} />
+              <span>資料庫狀態</span>
+            </div>
+
+            <div className="summary-table">
+              <div className="summary-row">
+                <span>資料來源</span>
+                <b>Google Sheets + Discord 個人進度</b>
+              </div>
+
+              <div className="summary-row">
+                <span>分頁數</span>
+                <b>{results.length}</b>
+              </div>
+
+              <div className="summary-row">
+                <span>區塊總數</span>
+                <b>{totalSections}</b>
+              </div>
+
+              <div className="summary-row">
+                <span>價格更新</span>
+                <b>每日 4:00</b>
+              </div>
+
+              <div className="summary-row">
+                <span>Discord 個人化</span>
+                <b>登入／權限／個人進度已啟用</b>
+              </div>
+            </div>
+          </article>
+
+          <article className="info-card summary-card">
+            <div className="card-title">
+              <ClipboardList size={18} />
+              <span>星圖備用區</span>
+            </div>
+
+            <ul className="home-remarks-list">
+              {homepageRemarks.map((remark) => (
+                <li key={remark}>{remark}</li>
+              ))}
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <footer className="home-footer-signature">
+        <a
+          href="https://kether-warframe-database.vercel.app"
+          target="_blank"
+          rel="noreferrer"
+          className="home-footer-link"
+        >
+          https://kether-warframe-database.vercel.app
+        </a>
+        <span className="home-footer-divider">｜</span>
+        <span className="home-footer-designer">Website by ヤハ奈々子・羊咩・凱洛</span>
+      </footer>
+
+</main>
+  </>);
 }
