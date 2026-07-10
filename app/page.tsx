@@ -6,6 +6,7 @@ import HomeNotificationsFloating from "../components/HomeNotificationsFloating";
 import OfficialNewsBoard from "../components/OfficialNewsBoard";
 import MiniMusicPlayer from "../components/MiniMusicPlayer";
 import KetherDynamicInfo from "../components/KetherDynamicInfo";
+import { homepageRemarks } from "../data/siteUpdates";
 const navItems = [
   {
     label: "總覽",
@@ -343,11 +344,9 @@ export default async function HomePage() {
             </div>
 
             <ul className="home-remarks-list">
-              <li>KETHER 目前進入修繕模式：先修既有問題，不新增大型功能、不更新版本號。</li>
-              <li>/live 小希星圖電波局已建立，支援 Warframe 即時世界狀態與逾時失聯提示。</li>
-              <li>鈴鐺公告面板正在修復手機捲動問題，公告內容會同步顯示最新修繕進度。</li>
-              <li>Discord 登入守門結界已整理為 proxy，首頁公開，資料頁與個人頁維持權限驗證。</li>
-              <li>繪師美工圖等待入場中，後續會再替首頁與電波局做正式視覺換裝。</li>
+              {homepageRemarks.map((remark) => (
+                <li key={remark}>{remark}</li>
+              ))}
             </ul>
           </article>
         </div>
