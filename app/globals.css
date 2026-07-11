@@ -9924,3 +9924,101 @@ a.nav-card {
     scale: 1 !important;
   }
 }
+
+/* KETHER nav image-only full-frame fix */
+.home-new-nav-item {
+  position: relative !important;
+  min-height: auto !important;
+  aspect-ratio: 1 / 1 !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+  gap: 0 !important;
+}
+
+.home-new-nav-label {
+  display: none !important;
+}
+
+.home-new-nav-icon {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  min-width: 100% !important;
+  min-height: 100% !important;
+  max-width: 100% !important;
+  max-height: 100% !important;
+  flex: none !important;
+  border-radius: inherit !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  overflow: hidden !important;
+}
+
+.home-new-nav-icon img,
+.home-new-nav-icon-normal,
+.home-new-nav-icon-active,
+.home-new-nav-item:hover .home-new-nav-icon-normal,
+.home-new-nav-item:hover .home-new-nav-icon-active {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  min-width: 100% !important;
+  min-height: 100% !important;
+  max-width: 100% !important;
+  max-height: 100% !important;
+  object-fit: contain !important;
+  object-position: center !important;
+  transform: none !important;
+  scale: 1 !important;
+}
+
+.home-new-nav-icon-normal {
+  opacity: 1 !important;
+}
+
+.home-new-nav-icon-active {
+  opacity: 0 !important;
+}
+
+.home-new-nav-item:hover .home-new-nav-icon-normal {
+  opacity: 0 !important;
+}
+
+.home-new-nav-item:hover .home-new-nav-icon-active {
+  opacity: 1 !important;
+}
+
+@media (max-width: 760px) {
+  .home-new-nav-item {
+    min-height: auto !important;
+    aspect-ratio: 1 / 1 !important;
+    padding: 0 !important;
+  }
+
+  .home-new-nav-icon {
+    width: 100% !important;
+    height: 100% !important;
+    min-width: 100% !important;
+    min-height: 100% !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
+  }
+
+  .home-new-nav-icon img,
+  .home-new-nav-icon-normal,
+  .home-new-nav-icon-active,
+  .home-new-nav-item:hover .home-new-nav-icon-normal,
+  .home-new-nav-item:hover .home-new-nav-icon-active {
+    width: 100% !important;
+    height: 100% !important;
+    min-width: 100% !important;
+    min-height: 100% !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
+    object-fit: contain !important;
+    transform: none !important;
+    scale: 1 !important;
+  }
+}
