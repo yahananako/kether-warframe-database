@@ -237,6 +237,28 @@ export default function HomeNewPage() {
               </Link>
             ))}
           </div>
+
+          <div className="home-new-official-rss">
+            <div className="home-new-official-rss-head">
+              <span>官方資訊 RSS</span>
+              <strong>Warframe 官方情報摘要</strong>
+            </div>
+
+            <ul>
+              <li>
+                <em>官方新聞</em>
+                <b>用於追蹤活動公告、版本資訊與官方最新消息。</b>
+              </li>
+              <li>
+                <em>掉落資料</em>
+                <b>用於確認物品來源、掉落表與資料校對。</b>
+              </li>
+              <li>
+                <em>更新紀錄</em>
+                <b>用於追蹤版本修正、平衡調整與系統變更。</b>
+              </li>
+            </ul>
+          </div>
         </section>
 
 
