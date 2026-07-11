@@ -4844,7 +4844,7 @@ a.nav-card {
 .notes-card {
   position: relative;
   overflow: hidden;
-  padding-bottom: 128px;
+  padding-bottom: 42px;
   isolation: isolate;
 }
 
@@ -4892,14 +4892,15 @@ a.nav-card {
   }
 
   .notes-card {
-    padding-bottom: 112px;
+    padding-bottom: 34px;
   }
 
   .kether-clan-watermark {
-    width: 82px;
-    height: 82px;
-    right: 18px;
-    bottom: 16px;
+    width: 58px;
+    height: 58px;
+    right: 14px;
+    bottom: 12px;
+    opacity: .16;
   }
 }
 /* homepage status notes split end */
