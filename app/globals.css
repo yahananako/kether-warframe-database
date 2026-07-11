@@ -11398,3 +11398,112 @@ a.nav-card {
     font-size: clamp(15px, 4vw, 22px);
   }
 }
+
+/* ===== home new footer artistic upgrade ===== */
+.home-new-art-footer {
+  position: relative;
+  isolation: isolate;
+}
+
+.home-new-art-footer::before {
+  content: "";
+  display: block;
+  width: min(760px, 82%);
+  height: 1px;
+  margin: 0 auto 18px;
+  background:
+    linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(203, 213, 225, 0.42) 12%,
+      rgba(255, 255, 255, 0.96) 50%,
+      rgba(203, 213, 225, 0.42) 88%,
+      transparent 100%
+    );
+  box-shadow:
+    0 0 16px rgba(255, 255, 255, 0.78),
+    0 0 28px rgba(168, 185, 255, 0.32);
+}
+
+.home-new-art-footer::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 9px;
+  z-index: -1;
+  width: min(220px, 42%);
+  height: 18px;
+  border-radius: 999px;
+  transform: translateX(-50%);
+  background:
+    radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.72), transparent 64%);
+  filter: blur(8px);
+  opacity: 0.72;
+  pointer-events: none;
+}
+
+.home-new-art-footer-builder span {
+  font-size: 0.58em !important;
+  opacity: 0.58 !important;
+  letter-spacing: 0.08em !important;
+  color: rgba(71, 85, 105, 0.68) !important;
+}
+
+.home-new-art-footer-builder b {
+  position: relative;
+  display: inline-block;
+  padding: 0 2px;
+  font-weight: 800 !important;
+  background:
+    linear-gradient(
+      100deg,
+      #6d5dfc 0%,
+      #b05cff 28%,
+      #ec6bcf 56%,
+      #8aa2ff 82%,
+      #ffffff 100%
+    ) !important;
+  background-size: 180% 100% !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  color: transparent !important;
+  text-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.82),
+    0 0 12px rgba(236, 107, 207, 0.28),
+    0 0 24px rgba(138, 162, 255, 0.22);
+}
+
+.home-new-art-footer-builder b::after {
+  content: "✦";
+  position: absolute;
+  right: -20px;
+  top: -8px;
+  color: #d946ef;
+  font-size: 0.58em;
+  -webkit-text-fill-color: initial;
+  text-shadow:
+    0 0 8px rgba(217, 70, 239, 0.72),
+    0 0 16px rgba(255, 255, 255, 0.7);
+  opacity: 0.82;
+}
+
+.home-new-art-footer-url a {
+  opacity: 0.88;
+  text-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.72),
+    0 0 12px rgba(168, 185, 255, 0.16);
+}
+
+@media (max-width: 760px) {
+  .home-new-art-footer::before {
+    width: 88%;
+    margin-bottom: 14px;
+  }
+
+  .home-new-art-footer-builder b::after {
+    right: -14px;
+    top: -6px;
+    font-size: 0.52em;
+  }
+}
