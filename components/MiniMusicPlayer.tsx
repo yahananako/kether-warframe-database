@@ -426,7 +426,7 @@ export default function MiniMusicPlayer() {
           </div>
 
           <div className="kether-mini-controls">
-            <button type="button" onClick={previousTrack} aria-label="上一首">
+            <button type="button" className="kether-mini-skip" onClick={previousTrack} aria-label="上一首">
               <ChevronLeft size={19} />
             </button>
 
@@ -440,7 +440,7 @@ export default function MiniMusicPlayer() {
               {playing ? <Pause size={19} /> : <Play size={19} />}
             </button>
 
-            <button type="button" onClick={nextTrack} aria-label="下一首">
+            <button type="button" className="kether-mini-skip" onClick={nextTrack} aria-label="下一首">
               <ChevronRight size={19} />
             </button>
           </div>

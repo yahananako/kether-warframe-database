@@ -12378,3 +12378,136 @@ a.nav-card {
   }
 }
 
+
+/* KETHER mini music player polish */
+.kether-mini-title {
+  position: relative;
+  overflow: hidden;
+  white-space: nowrap;
+  max-width: 100%;
+  border-radius: 999px;
+  padding: 7px 12px;
+  background: linear-gradient(145deg, rgba(255,255,255,.70), rgba(255,255,255,.32));
+  border: 1px solid rgba(255,255,255,.72);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.86),
+    0 10px 22px rgba(15,23,42,.10);
+}
+
+.kether-mini-title::before,
+.kether-mini-title::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 34px;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.kether-mini-title::before {
+  left: 0;
+  background: linear-gradient(90deg, rgba(255,255,255,.92), rgba(255,255,255,0));
+}
+
+.kether-mini-title::after {
+  right: 0;
+  background: linear-gradient(270deg, rgba(255,255,255,.92), rgba(255,255,255,0));
+}
+
+.kether-mini-marquee {
+  display: inline-flex;
+  align-items: center;
+  gap: 44px;
+  width: max-content;
+  min-width: 100%;
+  animation: ketherMiniTitleMarquee 18s linear infinite;
+  color: #172033;
+  font-weight: 850;
+  letter-spacing: .04em;
+}
+
+.kether-mini-marquee > span {
+  flex: 0 0 auto;
+}
+
+@keyframes ketherMiniTitleMarquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-50% - 22px));
+  }
+}
+
+.kether-mini-controls {
+  gap: 10px;
+}
+
+.kether-mini-controls button,
+.kether-mini-skip,
+.kether-mini-play {
+  border: 1px solid rgba(255,255,255,.78);
+  background:
+    radial-gradient(circle at 30% 20%, rgba(255,255,255,.96), rgba(255,255,255,.52) 58%, rgba(226,238,255,.38));
+  color: #172033;
+  box-shadow:
+    0 12px 26px rgba(15,23,42,.16),
+    inset 0 1px 0 rgba(255,255,255,.92);
+  backdrop-filter: blur(16px) saturate(170%);
+  -webkit-backdrop-filter: blur(16px) saturate(170%);
+  transition:
+    transform .16s ease,
+    box-shadow .16s ease,
+    background .16s ease;
+}
+
+.kether-mini-controls button:hover,
+.kether-mini-controls button:focus-visible {
+  transform: translateY(-1px);
+  box-shadow:
+    0 16px 32px rgba(15,23,42,.20),
+    inset 0 1px 0 rgba(255,255,255,1);
+}
+
+.kether-mini-controls button:active {
+  transform: translateY(1px) scale(.98);
+}
+
+.kether-mini-skip {
+  width: 38px;
+  height: 38px;
+  border-radius: 999px;
+}
+
+.kether-mini-play {
+  width: 46px;
+  height: 46px;
+  border-radius: 999px;
+  background:
+    linear-gradient(135deg, rgba(255,126,185,.88), rgba(148,163,255,.82)) !important;
+  color: white !important;
+}
+
+.kether-mini-play svg {
+  color: white;
+}
+
+/* Reduce extra bottom breathing room caused by fixed mini player */
+@media (max-width: 720px) {
+  body {
+    padding-bottom: 86px !important;
+  }
+
+  .kether-mini-player {
+    bottom: 14px !important;
+  }
+
+  .kether-mini-title {
+    padding: 6px 10px;
+  }
+
+  .kether-mini-marquee {
+    animation-duration: 16s;
+  }
+}
