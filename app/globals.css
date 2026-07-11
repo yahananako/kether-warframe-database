@@ -12380,7 +12380,21 @@ a.nav-card {
 }
 
 
-/* KETHER mini music player polish */
+/* KETHER mobile bottom blank trim */
+@media (max-width: 720px) {
+  .page-shell.homepage-sci-fi {
+    min-height: auto !important;
+    padding-bottom: 12px !important;
+  }
+
+  .home-new-footer {
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+  }
+}
+
+
+/* KETHER mini music player mobile dock layout */
 .kether-mini-title {
   position: relative;
   overflow: hidden;
@@ -12388,32 +12402,11 @@ a.nav-card {
   max-width: 100%;
   border-radius: 999px;
   padding: 7px 12px;
-  background: linear-gradient(145deg, rgba(255,255,255,.70), rgba(255,255,255,.32));
-  border: 1px solid rgba(255,255,255,.72);
+  background: rgba(255,255,255,.84);
+  border: 1px solid rgba(255,255,255,.88);
   box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.86),
-    0 10px 22px rgba(15,23,42,.10);
-}
-
-.kether-mini-title::before,
-.kether-mini-title::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  width: 34px;
-  height: 100%;
-  z-index: 2;
-  pointer-events: none;
-}
-
-.kether-mini-title::before {
-  left: 0;
-  background: linear-gradient(90deg, rgba(255,255,255,.92), rgba(255,255,255,0));
-}
-
-.kether-mini-title::after {
-  right: 0;
-  background: linear-gradient(270deg, rgba(255,255,255,.92), rgba(255,255,255,0));
+    inset 0 1px 0 rgba(255,255,255,.92),
+    0 8px 18px rgba(15,23,42,.10);
 }
 
 .kether-mini-marquee {
@@ -12448,27 +12441,19 @@ a.nav-card {
 .kether-mini-controls button,
 .kether-mini-skip,
 .kether-mini-play {
-  border: 1px solid rgba(255,255,255,.78);
+  border: 1px solid rgba(255,255,255,.82);
   background:
-    radial-gradient(circle at 30% 20%, rgba(255,255,255,.96), rgba(255,255,255,.52) 58%, rgba(226,238,255,.38));
+    radial-gradient(circle at 30% 20%, rgba(255,255,255,.98), rgba(255,255,255,.56) 58%, rgba(226,238,255,.40));
   color: #172033;
   box-shadow:
-    0 12px 26px rgba(15,23,42,.16),
-    inset 0 1px 0 rgba(255,255,255,.92);
+    0 10px 22px rgba(15,23,42,.15),
+    inset 0 1px 0 rgba(255,255,255,.94);
   backdrop-filter: blur(16px) saturate(170%);
   -webkit-backdrop-filter: blur(16px) saturate(170%);
   transition:
     transform .16s ease,
     box-shadow .16s ease,
     background .16s ease;
-}
-
-.kether-mini-controls button:hover,
-.kether-mini-controls button:focus-visible {
-  transform: translateY(-1px);
-  box-shadow:
-    0 16px 32px rgba(15,23,42,.20),
-    inset 0 1px 0 rgba(255,255,255,1);
 }
 
 .kether-mini-controls button:active {
@@ -12486,7 +12471,7 @@ a.nav-card {
   height: 46px;
   border-radius: 999px;
   background:
-    linear-gradient(135deg, rgba(255,126,185,.88), rgba(148,163,255,.82)) !important;
+    linear-gradient(135deg, rgba(255,126,185,.90), rgba(148,163,255,.86)) !important;
   color: white !important;
 }
 
@@ -12494,30 +12479,84 @@ a.nav-card {
   color: white;
 }
 
-/* Reduce extra bottom breathing room caused by fixed mini player */
 @media (max-width: 720px) {
   .kether-mini-player {
-    bottom: 14px !important;
+    left: 12px !important;
+    right: 12px !important;
+    bottom: 12px !important;
+    width: auto !important;
+    max-width: none !important;
+    padding: 10px 12px 9px !important;
+    border-radius: 24px !important;
+    background:
+      linear-gradient(145deg, rgba(255,255,255,.94), rgba(242,247,255,.88)) !important;
+    border: 1px solid rgba(255,255,255,.92) !important;
+    box-shadow:
+      0 18px 42px rgba(15,23,42,.20),
+      inset 0 1px 0 rgba(255,255,255,.95) !important;
+    backdrop-filter: blur(22px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(22px) saturate(180%) !important;
+  }
+
+  .kether-mini-close {
+    width: 28px !important;
+    height: 28px !important;
+    min-width: 28px !important;
+    min-height: 28px !important;
+    top: 8px !important;
+    right: 8px !important;
+    border-radius: 999px !important;
+    background: rgba(255,255,255,.86) !important;
+    box-shadow: 0 8px 18px rgba(15,23,42,.12) !important;
   }
 
   .kether-mini-title {
-    padding: 6px 10px;
+    margin-top: 6px !important;
+    padding: 6px 10px !important;
+    min-height: 34px !important;
+    display: flex !important;
+    align-items: center !important;
   }
 
   .kether-mini-marquee {
-    animation-duration: 16s;
+    animation-duration: 15s;
+    font-size: 13px !important;
+    line-height: 1.2 !important;
+  }
+
+  .kether-mini-controls {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 12px !important;
+    margin-top: 10px !important;
+    margin-bottom: 8px !important;
+  }
+
+  .kether-mini-skip {
+    width: 42px !important;
+    height: 42px !important;
+    min-width: 42px !important;
+    min-height: 42px !important;
+  }
+
+  .kether-mini-play {
+    width: 52px !important;
+    height: 52px !important;
+    min-width: 52px !important;
+    min-height: 52px !important;
+  }
+
+  .kether-mini-player a,
+  .kether-mini-player p,
+  .kether-mini-player small {
+    font-size: 11px !important;
+    line-height: 1.35 !important;
+  }
+
+  .kether-mini-player button:not(.kether-mini-close):not(.kether-mini-play):not(.kether-mini-skip) {
+    min-height: 34px !important;
+    border-radius: 999px !important;
   }
 }
 
-/* KETHER mobile bottom blank trim */
-@media (max-width: 720px) {
-  .page-shell.homepage-sci-fi {
-    min-height: auto !important;
-    padding-bottom: 12px !important;
-  }
-
-  .home-new-footer {
-    margin-bottom: 0 !important;
-    padding-bottom: 0 !important;
-  }
-}
