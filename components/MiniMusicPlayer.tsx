@@ -236,6 +236,12 @@ export default function MiniMusicPlayer() {
 
             window.__ketherMiniMusicPlayer = player;
             playerRef.current = player;
+      // KETHER mini music playlist loop
+      try {
+        (player as unknown as { setLoop?: (loop: boolean) => void }).setLoop?.(true);
+      } catch {
+        // YouTube player may not expose setLoop before playlist is ready.
+      }
             setReady(true);
             setTimeout(syncTitle, 400);
 
@@ -311,28 +317,62 @@ export default function MiniMusicPlayer() {
   }
 
   function nextTrack() {
-    if (!ready || !playerRef.current) return;
+  if (!ready || !playerRef.current) return;
 
-    rememberWantsPlaying(true);
-    setResumeNeeded(false);
-    playerRef.current.nextVideo();
-    playerRef.current.playVideo();
-    setPlaying(true);
-    setTimeout(syncTitle, 650);
-    checkIfResumePromptIsNeeded();
+  rememberWantsPlaying(true);
+  setResumeNeeded(false);
+
+  const player = playerRef.current as unknown as {
+    getPlaylist?: () => unknown[];
+    getPlaylistIndex?: () => number;
+    playVideoAt?: (index: number) => void;
+    nextVideo: () => void;
+    playVideo: () => void;
+  };
+
+  const playlist = player.getPlaylist?.();
+  const index = player.getPlaylistIndex?.();
+
+  if (Array.isArray(playlist) && playlist.length > 0 && typeof index === "number" && player.playVideoAt) {
+    player.playVideoAt((index + 1) % playlist.length);
+  } else {
+    player.nextVideo();
+    player.playVideo();
   }
+
+  setPlaying(true);
+  setTimeout(syncTitle, 650);
+  checkIfResumePromptIsNeeded();
+}
 
   function previousTrack() {
-    if (!ready || !playerRef.current) return;
+  if (!ready || !playerRef.current) return;
 
-    rememberWantsPlaying(true);
-    setResumeNeeded(false);
-    playerRef.current.previousVideo();
-    playerRef.current.playVideo();
-    setPlaying(true);
-    setTimeout(syncTitle, 650);
-    checkIfResumePromptIsNeeded();
+  rememberWantsPlaying(true);
+  setResumeNeeded(false);
+
+  const player = playerRef.current as unknown as {
+    getPlaylist?: () => unknown[];
+    getPlaylistIndex?: () => number;
+    playVideoAt?: (index: number) => void;
+    previousVideo: () => void;
+    playVideo: () => void;
+  };
+
+  const playlist = player.getPlaylist?.();
+  const index = player.getPlaylistIndex?.();
+
+  if (Array.isArray(playlist) && playlist.length > 0 && typeof index === "number" && player.playVideoAt) {
+    player.playVideoAt((index - 1 + playlist.length) % playlist.length);
+  } else {
+    player.previousVideo();
+    player.playVideo();
   }
+
+  setPlaying(true);
+  setTimeout(syncTitle, 650);
+  checkIfResumePromptIsNeeded();
+}
 
   if (!mounted) return null;
 
