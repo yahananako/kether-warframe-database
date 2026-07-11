@@ -12508,3 +12508,16 @@ a.nav-card {
     animation-duration: 16s;
   }
 }
+
+/* KETHER mobile bottom blank trim */
+@media (max-width: 720px) {
+  .page-shell.homepage-sci-fi {
+    min-height: auto !important;
+    padding-bottom: 12px !important;
+  }
+
+  .home-new-footer {
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+  }
+}
