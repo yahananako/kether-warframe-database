@@ -10309,3 +10309,67 @@ a.nav-card {
     font-size: 12px !important;
   }
 }
+
+/* KETHER database info split layout fix */
+.home-new-database-info-grid {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr) !important;
+  grid-template-areas:
+    "version notes"
+    "status notes" !important;
+  gap: 14px !important;
+  align-items: stretch !important;
+}
+
+.home-new-database-info-card:nth-child(1) {
+  grid-area: version !important;
+}
+
+.home-new-database-info-card:nth-child(2) {
+  grid-area: status !important;
+}
+
+.home-new-database-info-card:nth-child(3) {
+  grid-area: notes !important;
+}
+
+.home-new-database-info-card {
+  min-height: 132px !important;
+}
+
+.home-new-database-info-card:nth-child(3) {
+  min-height: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+}
+
+.home-new-database-info-card:nth-child(3) p {
+  font-size: 14px !important;
+  line-height: 1.8 !important;
+}
+
+@media (max-width: 760px) {
+  .home-new-database-info-grid {
+    grid-template-columns: 1fr !important;
+    grid-template-areas:
+      "version"
+      "status"
+      "notes" !important;
+    gap: 8px !important;
+  }
+
+  .home-new-database-info-card {
+    min-height: auto !important;
+  }
+
+  .home-new-database-info-card:nth-child(3) {
+    min-height: auto !important;
+    justify-content: flex-start !important;
+  }
+
+  .home-new-database-info-card:nth-child(3) p {
+    font-size: 12px !important;
+    line-height: 1.65 !important;
+  }
+}
