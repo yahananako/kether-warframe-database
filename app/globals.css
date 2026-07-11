@@ -9771,4 +9771,25 @@ a.nav-card {
   transform: none;
 }
 /* KETHER home-new search result no-link polish end */
+/* KETHER home-new nav title polish start */
+.home-new-nav-heading h2 {
+  margin: 5px 0 0 !important;
+  font-size: clamp(20px, 3vw, 30px) !important;
+  line-height: 1.08 !important;
+  font-weight: 950 !important;
+  letter-spacing: -0.035em !important;
+  color: transparent !important;
+  background:
+    linear-gradient(135deg, #101827 0%, #263445 42%, #64748b 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  text-shadow: none !important;
+}
+
+@media (max-width: 760px) {
+  .home-new-nav-heading h2 {
+    font-size: 20px !important;
+  }
+}
+/* KETHER home-new nav title polish end */
 /* KETHER home-new rebuild end */
