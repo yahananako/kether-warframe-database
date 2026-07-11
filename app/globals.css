@@ -12560,3 +12560,57 @@ a.nav-card {
   }
 }
 
+
+/* KETHER mini music skip buttons forced polish */
+.kether-mini-controls > button:first-child,
+.kether-mini-controls > button:last-child {
+  width: 42px !important;
+  height: 42px !important;
+  min-width: 42px !important;
+  min-height: 42px !important;
+  padding: 0 !important;
+  border-radius: 999px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border: 1.5px solid rgba(255,255,255,.95) !important;
+  background:
+    linear-gradient(135deg, rgba(255,126,185,.92), rgba(148,163,255,.88)) !important;
+  color: white !important;
+  box-shadow:
+    0 12px 26px rgba(124,58,237,.26),
+    inset 0 1px 0 rgba(255,255,255,.95) !important;
+  backdrop-filter: blur(18px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(18px) saturate(180%) !important;
+}
+
+.kether-mini-controls > button:first-child svg,
+.kether-mini-controls > button:last-child svg {
+  width: 22px !important;
+  height: 22px !important;
+  stroke-width: 3 !important;
+  color: white !important;
+  filter: drop-shadow(0 2px 5px rgba(80,40,160,.28));
+}
+
+.kether-mini-controls > button:first-child:active,
+.kether-mini-controls > button:last-child:active {
+  transform: translateY(1px) scale(.94) !important;
+}
+
+@media (max-width: 720px) {
+  .kether-mini-controls > button:first-child,
+  .kether-mini-controls > button:last-child {
+    width: 40px !important;
+    height: 40px !important;
+    min-width: 40px !important;
+    min-height: 40px !important;
+  }
+
+  .kether-mini-controls > button:first-child svg,
+  .kether-mini-controls > button:last-child svg {
+    width: 21px !important;
+    height: 21px !important;
+  }
+}
+
