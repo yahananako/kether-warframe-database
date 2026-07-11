@@ -11225,3 +11225,102 @@ a.nav-card {
     max-width: 40px !important;
   }
 }
+
+/* KETHER official RSS 4 rows full width bigger zh text */
+.home-new-official-rss-live {
+  width: 100% !important;
+  max-width: none !important;
+  box-sizing: border-box !important;
+}
+
+.home-new-official-rss-live .home-new-official-news-list {
+  width: 100% !important;
+  max-width: none !important;
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  gap: 9px !important;
+  align-items: stretch !important;
+}
+
+.home-new-official-rss-live .home-new-official-news-list li {
+  width: 100% !important;
+  max-width: none !important;
+  box-sizing: border-box !important;
+  display: block !important;
+}
+
+.home-new-official-rss-live .home-new-official-news-list li a {
+  width: 100% !important;
+  max-width: none !important;
+  box-sizing: border-box !important;
+  min-height: 50px !important;
+  padding: 10px 14px !important;
+  display: grid !important;
+  grid-template-columns: 66px minmax(0, 1fr) !important;
+  align-items: center !important;
+  gap: 12px !important;
+}
+
+.home-new-official-rss-live .home-new-official-news-list em {
+  width: 66px !important;
+  min-width: 66px !important;
+  max-width: 66px !important;
+  font-size: 14px !important;
+  font-weight: 950 !important;
+  text-align: left !important;
+}
+
+.home-new-official-rss-live .home-new-official-news-list span {
+  width: 100% !important;
+  min-width: 0 !important;
+  max-width: 100% !important;
+  display: block !important;
+  color: #172033 !important;
+  font-size: clamp(15px, 1.25vw, 18px) !important;
+  line-height: 1.42 !important;
+  font-weight: 920 !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+}
+
+.home-new-official-rss-head span {
+  font-size: clamp(18px, 1.6vw, 24px) !important;
+}
+
+.home-new-official-rss-head strong {
+  font-size: clamp(13px, 1.1vw, 16px) !important;
+}
+
+@media (max-width: 760px) {
+  .home-new-official-rss-live .home-new-official-news-list {
+    gap: 7px !important;
+  }
+
+  .home-new-official-rss-live .home-new-official-news-list li a {
+    min-height: 42px !important;
+    padding: 8px 9px !important;
+    grid-template-columns: 48px minmax(0, 1fr) !important;
+    gap: 7px !important;
+  }
+
+  .home-new-official-rss-live .home-new-official-news-list em {
+    width: 48px !important;
+    min-width: 48px !important;
+    max-width: 48px !important;
+    font-size: 10.5px !important;
+  }
+
+  .home-new-official-rss-live .home-new-official-news-list span {
+    font-size: clamp(11px, 2.8vw, 14px) !important;
+    line-height: 1.34 !important;
+  }
+
+  .home-new-official-rss-head span {
+    font-size: clamp(15px, 4vw, 20px) !important;
+  }
+
+  .home-new-official-rss-head strong {
+    font-size: clamp(10px, 2.6vw, 13px) !important;
+  }
+}

@@ -59,7 +59,7 @@ export default function HomeNewOfficialNews() {
     void loadNews();
   }, []);
 
-  const items = data?.items ?? [];
+  const items = (data?.items ?? []).slice(0, 4);
 
   return (
     <div className="home-new-official-rss home-new-official-rss-live">
@@ -90,7 +90,7 @@ export default function HomeNewOfficialNews() {
         </ul>
       ) : (
         <div className="home-new-official-news-empty">
-          {loading ? "正在接收官方情報訊號喵..." : "官方資訊暫時同步失敗，稍後再試喵"}
+          {loading ? "正在同步官方最新資訊喵..." : "官方資訊暫時同步失敗，稍後再試喵"}
         </div>
       )}
     </div>
