@@ -11,30 +11,35 @@ const NOTICE_STORAGE_KEY = "kether-home-new-notice-read-version";
  * 使用者讀過目前版本後，紅點會消失。
  * 下次公告內容更新，版本改掉，紅點才會重新出現。
  */
-const NOTICES_VERSION = "2026-07-11-home-new-notice-002";
+const NOTICES_VERSION = "site-foundation-2026-07-12";
 
 const notices = [
   {
-    tag: "首頁",
-    title: "新版首頁建置中",
-    body: "目前正在 /home-new 逐步重建新版首頁，確認穩定後才會替換正式首頁。",
-  },
-  {
-    tag: "資料庫",
-    title: "資料庫導覽已完成",
-    body: "總覽、戰甲、主要武器、次要武器、近戰武器、同伴、曲翼、MOD 資料庫已整理成兩行入口。",
-  },
-  {
     tag: "系統",
-    title: "銀白科技玻璃框架",
-    body: "首頁版圖、導覽區與數據庫狀態已改成銀白透明玻璃質感。",
+    title: "網站基礎架構完成",
+    body: "KETHER 網站基礎架構已完成，後續進入資料內容更新與功能細節優化階段。",
   },
   {
-    tag: "小希",
-    title: "功能接線中",
-    body: "選單、搜尋、鈴鐺會先在新首頁測試頁確認，再接回正式首頁。",
+    tag: "手機",
+    title: "首頁介面整理完成",
+    body: "手機版首頁、玻璃選單、搜尋、鈴鐺與導覽區已完成整理。",
   },
-];
+  {
+    tag: "音樂",
+    title: "KETHER RADIO 優化",
+    body: "音樂播放器已加入循環播放、標題跑馬燈與控制按鍵優化。",
+  },
+  {
+    tag: "導覽",
+    title: "分類素材已接入",
+    body: "分類導覽素材已接入，後續依繪師圖確認尺寸、位置與顯示效果。",
+  },
+  {
+    tag: "資料",
+    title: "同步系統維持運作",
+    body: "Discord 登入、個人進度與 Google Sheets 資料同步將持續維護。",
+  },
+]
 
 export default function HomeNewInlineNotifications() {
   const [open, setOpen] = useState(false);

@@ -3,25 +3,30 @@ import { Bell, Database, ShieldCheck, Sparkles } from "lucide-react";
 
 const updates = [
   {
-    version: "v2.2.0",
-    title: "Discord 個人進度啟用",
-    content: "首頁已接上 Discord 個人已購買與個人完成度，未登入時顯示表格統計。"
+    version: "V2.5.1",
+    title: "網站基礎架構完成",
+    content: "KETHER 網站基礎架構已完成，後續進入資料內容更新與功能細節優化階段。",
   },
   {
-    version: "v2.2.0",
-    title: "導航區整合分類狀態",
-    content: "首頁導航卡片已整合分類筆數、區塊數、有價格數與完成度。"
+    version: "V2.5.1",
+    title: "手機版首頁整理完成",
+    content: "手機版首頁、玻璃選單、搜尋、鈴鐺與導覽區已完成整理，主要入口維持既有結構並完成視覺優化。",
   },
   {
-    version: "v2.2.0",
-    title: "資料庫狀態與備註合併",
-    content: "首頁資料庫狀態與備註已整合成單一資訊區塊。"
+    version: "V2.5.1",
+    title: "KETHER RADIO 優化",
+    content: "音樂播放器已加入循環播放、標題跑馬燈與控制按鍵優化，避免播放清單停在最後一首。",
   },
   {
-    version: "v2.2.0",
-    title: "Discord 權限驗證完成",
-    content: "網站會檢查 Discord Guild ID，Role ID 可選；登出後會自動回首頁。"
-  }
+    version: "V2.5.1",
+    title: "分類導覽素材接入",
+    content: "分類導覽素材已接入網站，後續依繪師圖確認尺寸、位置與實際顯示效果。",
+  },
+  {
+    version: "V2.5.1",
+    title: "同步系統維護中",
+    content: "Discord 登入、個人進度與 Google Sheets 資料同步維持運作，BOT 版本同步記錄為 V3.5-E17。",
+  },
 ];
 
 export default function NotificationsPage() {
