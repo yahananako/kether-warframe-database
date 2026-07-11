@@ -11683,3 +11683,126 @@ a.nav-card {
     padding-right: 4px !important;
   }
 }
+
+/* KETHER footer absolute final clean override */
+.home-new-footer,
+.home-new-art-footer {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 28px auto 0 !important;
+  padding: 18px 24px 96px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 8px !important;
+  box-sizing: border-box !important;
+  overflow: hidden !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.42) !important;
+  background: transparent !important;
+}
+
+.home-new-footer::before,
+.home-new-footer::after,
+.home-new-art-footer::before,
+.home-new-art-footer::after {
+  content: none !important;
+  display: none !important;
+}
+
+.home-new-footer-url,
+.home-new-footer-url a,
+.home-new-art-footer-url,
+.home-new-art-footer-url a {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 auto !important;
+  padding: 0 !important;
+  text-align: center !important;
+  color: rgba(55, 65, 81, 0.88) !important;
+  font-family: Arial, "Noto Sans TC", "Hiragino Sans", "Yu Gothic UI", sans-serif !important;
+  font-size: clamp(12px, 1.05vw, 16px) !important;
+  line-height: 1.45 !important;
+  font-weight: 750 !important;
+  letter-spacing: 0.01em !important;
+  text-decoration: none !important;
+  white-space: nowrap !important;
+  word-break: normal !important;
+  overflow-wrap: normal !important;
+  background: none !important;
+  background-image: none !important;
+  -webkit-background-clip: initial !important;
+  background-clip: initial !important;
+  -webkit-text-fill-color: rgba(55, 65, 81, 0.88) !important;
+  text-shadow: none !important;
+  filter: none !important;
+}
+
+.home-new-footer-credit,
+.home-new-art-footer-builder,
+.home-new-art-footer-builder span,
+.home-new-art-footer-builder b,
+.home-new-footer-builder,
+.home-new-footer-builder span,
+.home-new-footer-builder b,
+.home-new-footer-builder-label,
+.home-new-footer-builder-name {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+  padding: 0 4px 0 0 !important;
+  text-align: right !important;
+  color: rgba(107, 92, 125, 0.62) !important;
+  font-family: Arial, "Noto Sans TC", "Hiragino Sans", "Yu Gothic UI", sans-serif !important;
+  font-size: clamp(11px, 0.9vw, 14px) !important;
+  line-height: 1.45 !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.02em !important;
+  font-style: normal !important;
+  opacity: 1 !important;
+  background: none !important;
+  background-image: none !important;
+  background-size: auto !important;
+  -webkit-background-clip: initial !important;
+  background-clip: initial !important;
+  -webkit-text-fill-color: rgba(107, 92, 125, 0.62) !important;
+  text-shadow: none !important;
+  filter: none !important;
+  box-shadow: none !important;
+}
+
+.home-new-art-footer-builder b::after,
+.home-new-footer-builder b::after,
+.home-new-footer-credit::after,
+.home-new-footer-builder-name::after {
+  content: none !important;
+  display: none !important;
+}
+
+@media (max-width: 760px) {
+  .home-new-footer,
+  .home-new-art-footer {
+    padding: 16px 12px 96px !important;
+    gap: 7px !important;
+  }
+
+  .home-new-footer-url,
+  .home-new-footer-url a,
+  .home-new-art-footer-url,
+  .home-new-art-footer-url a {
+    font-size: clamp(10px, 2.45vw, 13px) !important;
+  }
+
+  .home-new-footer-credit,
+  .home-new-art-footer-builder,
+  .home-new-art-footer-builder span,
+  .home-new-art-footer-builder b,
+  .home-new-footer-builder,
+  .home-new-footer-builder span,
+  .home-new-footer-builder b,
+  .home-new-footer-builder-label,
+  .home-new-footer-builder-name {
+    font-size: clamp(10px, 2.35vw, 12px) !important;
+    padding-right: 2px !important;
+  }
+}
