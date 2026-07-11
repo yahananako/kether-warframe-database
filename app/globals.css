@@ -12118,3 +12118,86 @@ a.nav-card {
     padding: 0 12px 12px;
   }
 }
+
+/* KETHER clean small section titles requested by artist */
+.home-new-nav-heading h2,
+.home-new-database-heading h2,
+.home-new-official-heading h2,
+.home-new-fold-head strong {
+  color: rgba(31, 41, 55, 0.86) !important;
+  background: none !important;
+  background-image: none !important;
+  -webkit-background-clip: initial !important;
+  background-clip: initial !important;
+  -webkit-text-fill-color: rgba(31, 41, 55, 0.86) !important;
+  text-shadow: none !important;
+  filter: none !important;
+  font-size: clamp(12px, 1.2vw, 15px) !important;
+  line-height: 1.25 !important;
+  font-weight: 850 !important;
+  letter-spacing: 0.08em !important;
+}
+
+/* 上方英文小標也稍微縮小，避免電腦版太像手機大標 */
+.home-new-nav-heading p,
+.home-new-database-heading p,
+.home-new-official-heading p,
+.home-new-fold-head em {
+  color: rgba(124, 58, 237, 0.62) !important;
+  font-size: clamp(8px, 0.72vw, 10px) !important;
+  line-height: 1.25 !important;
+  font-weight: 850 !important;
+  letter-spacing: 0.14em !important;
+}
+
+/* 收合標題列高度一起縮，讓電腦版比較像網站 */
+.home-new-fold-head {
+  min-height: 50px !important;
+  padding: 12px 16px !important;
+}
+
+.home-new-fold-head span {
+  gap: 3px !important;
+}
+
+.home-new-fold-head b {
+  width: 30px !important;
+  height: 30px !important;
+  flex: 0 0 30px !important;
+  font-size: 17px !important;
+}
+
+/* 資料庫導覽標題區也縮 */
+.home-new-nav-heading {
+  margin-bottom: 10px !important;
+}
+
+@media (max-width: 760px) {
+  .home-new-nav-heading h2,
+  .home-new-database-heading h2,
+  .home-new-official-heading h2,
+  .home-new-fold-head strong {
+    font-size: clamp(11px, 3vw, 14px) !important;
+    letter-spacing: 0.06em !important;
+  }
+
+  .home-new-nav-heading p,
+  .home-new-database-heading p,
+  .home-new-official-heading p,
+  .home-new-fold-head em {
+    font-size: clamp(7px, 2vw, 9px) !important;
+    letter-spacing: 0.1em !important;
+  }
+
+  .home-new-fold-head {
+    min-height: 46px !important;
+    padding: 10px 12px !important;
+  }
+
+  .home-new-fold-head b {
+    width: 28px !important;
+    height: 28px !important;
+    flex-basis: 28px !important;
+    font-size: 16px !important;
+  }
+}
