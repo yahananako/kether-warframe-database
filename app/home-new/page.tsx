@@ -142,6 +142,35 @@ export default function HomeNewPage() {
             ))}
           </div>
         </section>
+
+
+        <section className="home-new-database-card">
+          <div className="home-new-database-heading">
+            <p>KETHER DATABASE CORE</p>
+            <h2>資料庫狀態</h2>
+          </div>
+
+          <div className="home-new-database-core-grid">
+            <article className="home-new-database-core-item">
+              <span>資料來源</span>
+              <strong>Google Sheets</strong>
+              <p>目前資料由試算表同步至網站顯示。</p>
+            </article>
+
+            <article className="home-new-database-core-item">
+              <span>資料分類</span>
+              <strong>7 類</strong>
+              <p>戰甲、主要武器、次要武器、近戰武器、同伴、曲翼、MOD。</p>
+            </article>
+
+            <article className="home-new-database-core-item">
+              <span>同步節奏</span>
+              <strong>每日 04:00</strong>
+              <p>資料會依照設定時間刷新。</p>
+            </article>
+          </div>
+        </section>
+
       </div>
     </main>
   );
