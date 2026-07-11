@@ -11324,3 +11324,77 @@ a.nav-card {
     font-size: clamp(10px, 2.6vw, 13px) !important;
   }
 }
+
+/* ===== home new artistic footer ===== */
+.home-new-art-footer {
+  width: 100%;
+  margin-top: 24px;
+  padding: 18px 8px 34px;
+}
+
+.home-new-art-footer-url {
+  margin: 0;
+  text-align: center;
+}
+
+.home-new-art-footer-url a {
+  color: rgba(36, 43, 62, 0.86);
+  font-size: clamp(13px, 1.1vw, 17px);
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(120, 130, 170, 0.28);
+  padding-bottom: 2px;
+  transition: all 0.2s ease;
+}
+
+.home-new-art-footer-url a:hover {
+  color: #7b4ce2;
+  border-bottom-color: rgba(123, 76, 226, 0.48);
+}
+
+.home-new-art-footer-builder {
+  margin: 12px 0 0;
+  text-align: right;
+  color: rgba(57, 48, 78, 0.82);
+  font-family: "Segoe Script", "Bradley Hand", "Comic Sans MS", cursive;
+  font-size: clamp(18px, 1.6vw, 28px);
+  line-height: 1.45;
+  letter-spacing: 0.04em;
+  font-style: italic;
+  text-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.75),
+    0 4px 14px rgba(198, 154, 255, 0.22);
+}
+
+.home-new-art-footer-builder span {
+  margin-right: 8px;
+  font-size: 0.72em;
+  opacity: 0.78;
+}
+
+.home-new-art-footer-builder b {
+  font-weight: 700;
+  background: linear-gradient(90deg, #7a48e6 0%, #d66adf 45%, #6d7cff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+@media (max-width: 760px) {
+  .home-new-art-footer {
+    margin-top: 18px;
+    padding: 14px 6px 26px;
+  }
+
+  .home-new-art-footer-url a {
+    font-size: clamp(11px, 2.6vw, 14px);
+    word-break: break-all;
+  }
+
+  .home-new-art-footer-builder {
+    margin-top: 10px;
+    font-size: clamp(15px, 4vw, 22px);
+  }
+}
