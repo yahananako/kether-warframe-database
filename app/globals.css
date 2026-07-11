@@ -10567,3 +10567,64 @@ a.nav-card {
     height: 4px !important;
   }
 }
+
+/* KETHER database notes top aligned and larger text fix */
+.home-new-database-info-card:nth-child(3),
+.home-new-database-notes-card {
+  justify-content: flex-start !important;
+  align-items: stretch !important;
+}
+
+.home-new-database-notes-card > span {
+  margin-bottom: 12px !important;
+}
+
+.home-new-notebook-list {
+  margin-top: 0 !important;
+}
+
+.home-new-notebook-list li {
+  min-height: 42px !important;
+  padding: 10px 12px 10px 32px !important;
+  font-size: 14px !important;
+  line-height: 1.65 !important;
+  font-weight: 820 !important;
+}
+
+.home-new-notebook-list li::before {
+  left: 14px !important;
+  top: 18px !important;
+  width: 7px !important;
+  height: 7px !important;
+}
+
+@media (max-width: 760px) {
+  .home-new-database-info-card:nth-child(3),
+  .home-new-database-notes-card {
+    justify-content: flex-start !important;
+    align-items: stretch !important;
+  }
+
+  .home-new-database-notes-card > span {
+    margin-bottom: 7px !important;
+  }
+
+  .home-new-notebook-list {
+    margin-top: 0 !important;
+  }
+
+  .home-new-notebook-list li {
+    min-height: 34px !important;
+    padding: 7px 7px 7px 23px !important;
+    font-size: 10.5px !important;
+    line-height: 1.45 !important;
+    font-weight: 820 !important;
+  }
+
+  .home-new-notebook-list li::before {
+    left: 9px !important;
+    top: 13px !important;
+    width: 5px !important;
+    height: 5px !important;
+  }
+}

@@ -181,7 +181,6 @@ export default function HomeNewPage() {
 
             <article className="home-new-database-info-card home-new-database-notes-card">
               <span>備註</span>
-              <strong>長期公告</strong>
 
               <ul className="home-new-notebook-list">
                 <li>首頁目前在 /home-new 測試中，確認穩定後才會替換正式首頁。</li>
