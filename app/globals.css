@@ -10628,3 +10628,19 @@ a.nav-card {
     height: 5px !important;
   }
 }
+
+/* KETHER database card label 2x size fix */
+.home-new-database-info-card > span {
+  font-size: 28px !important;
+  line-height: 1.15 !important;
+  letter-spacing: 0.08em !important;
+  font-weight: 950 !important;
+}
+
+@media (max-width: 760px) {
+  .home-new-database-info-card > span {
+    font-size: 20px !important;
+    line-height: 1.15 !important;
+    letter-spacing: 0.06em !important;
+  }
+}
