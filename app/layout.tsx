@@ -46,6 +46,9 @@ export const metadata: Metadata = {
     description:
       "Warframe 氏族資料庫，整理戰甲、武器、MOD、同伴、曲翼、交易追價與 Discord 個人進度。",
   },
+  verification: {
+    google: "8eJKJ7Zs2V3ZkBYMIUpsmKEgZvee73ngvSWCTASKtbg",
+  },
   robots: {
     index: true,
     follow: true,
