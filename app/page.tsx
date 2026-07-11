@@ -1,369 +1,274 @@
 import Link from "next/link";
-import { Search, Bell, Menu, CalendarDays, Info, ClipboardList, Pencil, MessageCircle } from "lucide-react";
-import { fetchSheetRows } from "../lib/sheets";
-import HomeSearchFloating from "../components/HomeSearchFloating";
-import HomeNotificationsFloating from "../components/HomeNotificationsFloating"; import HomeMenuFloating from "../components/HomeMenuFloating"; import HomeAuthMini from "../components/HomeAuthMini"; import HomePersonalProgress from "../components/HomePersonalProgress"; import KetherClanWatermark from "../components/KetherClanWatermark";
-import OfficialNewsBoard from "../components/OfficialNewsBoard";
+import { MessageCircle, UserRound } from "lucide-react";
 import KetherDynamicInfo from "../components/KetherDynamicInfo";
-import { homepageRemarks } from "../data/siteUpdates";
+import HomeNewInlineMenu from "../components/HomeNewInlineMenu";
+import HomeNewInlineSearch from "../components/HomeNewInlineSearch";
+import HomeNewInlineNotifications from "../components/HomeNewInlineNotifications";
+import HomeNewOfficialNews from "../components/HomeNewOfficialNews";
+
+const databaseStats = [
+  { label: "資料來源", value: "Google Sheets" },
+  { label: "資料分頁", value: "7" },
+  { label: "資料區塊", value: "41" },
+  { label: "同步節奏", value: "每日 04:00" },
+];
+
 const navItems = [
   {
     label: "總覽",
-    key: "overview",
     href: "/database/overview",
     image: "/icon-overview.png",
     activeImage: "/icon-overview-2.png",
   },
   {
     label: "戰甲",
-    key: "warframes",
     href: "/database/warframes",
     image: "/icon-warframe.png",
     activeImage: "/icon-warframe-2.png",
   },
   {
     label: "主要武器",
-    key: "primary",
     href: "/database/primary",
     image: "/icon-primary.png",
     activeImage: "/icon-primary-2.png",
   },
   {
     label: "次要武器",
-    key: "secondary",
     href: "/database/secondary",
     image: "/icon-secondary.png",
     activeImage: "/icon-secondary-2.png",
   },
   {
     label: "近戰武器",
-    key: "melee",
     href: "/database/melee",
     image: "/icon-melee.png",
     activeImage: "/icon-melee-2.png",
   },
   {
     label: "同伴",
-    key: "companions",
     href: "/database/companions",
     image: "/icon-companion.png",
     activeImage: "/icon-companion-2.png",
   },
   {
     label: "曲翼",
-    key: "archwing",
     href: "/database/archwing",
     image: "/icon-archwing.png",
     activeImage: "/icon-archwing-2.png",
   },
   {
     label: "MOD資料庫",
-    key: "mods",
     href: "/database/mods",
     image: "/icon-mod.png",
     activeImage: "/icon-mod-2.png",
   },
 ];
 
-function isOwned(value: string): boolean {
-  return String(value || "").includes("已購買");
-}
+const officialItems = [
+  {
+    label: "Warframe 官方網站",
+    href: "https://www.warframe.com/zh-hant",
+    description: "官方首頁、活動資訊與遊戲入口。",
+  },
+  {
+    label: "官方新聞",
+    href: "https://www.warframe.com/zh-hant/news",
+    description: "官方公告、活動、更新與開發消息。",
+  },
+  {
+    label: "官方掉落表",
+    href: "https://www.warframe.com/droptables",
+    description: "官方掉落資料查詢，用於確認物品來源。",
+  },
+  {
+    label: "官方更新資訊",
+    href: "https://forums.warframe.com/forum/3-pc-update-notes/",
+    description: "版本更新、修正內容與官方補丁紀錄。",
+  },
+];
 
-function hasPrice(value: string): boolean {
-  const number = Number(String(value || "").replace(/[^\d.]/g, ""));
-  return Number.isFinite(number) && number > 0;
-}
+export default function HomeNewPage() {
+  return (
+    <main className="home-new-page">
+      <div className="home-new-shell">
+        <section className="home-new-hero-card">
+          <div className="home-new-topbar">
+            <div className="home-new-brand">
+              <HomeNewInlineMenu />
 
-export default async function HomePage() {
-  const dataCategories = navItems.filter((item) => item.key !== "overview" && item.key !== "bot");
+              <span>KETHER</span>
+            </div>
 
-  const results = await Promise.all(
-    dataCategories.map(async (item) => {
-      const result = await fetchSheetRows(item.key);
-      const rows = result.rows;
-      const owned = rows.filter((row) => isOwned(row.owned)).length;
-      const priced = rows.filter((row) => hasPrice(row.price)).length;
-      const sections = new Set(rows.map((row) => row.section || "未分類"));
+            <div className="home-new-hero-actions" aria-label="首頁快捷入口">
+              <HomeNewInlineSearch />
 
-      return {
-        ...item,
-        count: rows.length,
-        owned,
-        priced,
-        sectionCount: sections.size,
-        completion: rows.length > 0 ? Math.round((owned / rows.length) * 100) : 0
-      };
-    })
-  );
+              <HomeNewInlineNotifications />
 
-  const totalRows = results.reduce((sum, item) => sum + item.count, 0);
-  const totalOwned = results.reduce((sum, item) => sum + item.owned, 0);
-  const totalPriced = results.reduce((sum, item) => sum + item.priced, 0);
-  const totalSections = results.reduce((sum, item) => sum + item.sectionCount, 0);
-  const totalCompletion = totalRows > 0 ? Math.round((totalOwned / totalRows) * 100) : 0;
-
-  return (<>
-      <HomeMenuFloating />
-
-    <main style={{ position: "relative", isolation: "isolate" }} className="page-shell homepage-sci-fi">
-      
-      <div className="home-fixed-bg" aria-hidden="true" />
-<div className="corner corner-lt" />
-      <div className="corner corner-rt" />
-      <div className="corner corner-lb" />
-      <div className="corner corner-rb home-tech-card home-tech-corner" />
-
-      <header className="topbar">
-        <div className="topbar-left">
-  <HomeMenuFloating />
-<span>KETHER</span>
-        </div>
-
-        <div className="topbar-right">
-          <HomeSearchFloating />
-          <HomeNotificationsFloating />
-          <HomeAuthMini />
-          <a className="discord-mini" href="https://discord.gg/MFhTb8XMZ" target="_blank" rel="noreferrer">
-            <MessageCircle size={18} />
-            Discord
-          </a>
-        </div>
-      </header>
-
-      <section className="home-hero-image-banner" aria-label="KETHER OF PARADISO Warframe Database">
-        <div
-  style={{
-    width: "100%",
-    borderRadius: 28,
-    overflow: "hidden",
-    border: "1px solid rgba(255, 255, 255, 0.72)",
-    background: "rgba(255, 255, 255, 0.55)",
-    boxShadow: "0 18px 45px rgba(15, 23, 42, 0.10)",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    padding: 0
-  }}
->
-  <img
-    src="/home-hero-banner.png"
-    alt="KETHER OF PARADISO Warframe Database 首頁橫版圖"
-    style={{
-      width: "100%",
-      height: "auto",
-      objectFit: "contain",
-      objectPosition: "center",
-      display: "block",
-      borderRadius: 20
-    }}
-  />
-</div>
-      </section>
-
-      <KetherDynamicInfo />
-
-
-      <section className="hero">
-</section>
-
-      <section className="home-kpi-grid home-zone home-zone-stats">
-        <div className="panel-tag">數據區</div>
-
-        <article className="home-kpi-card">
-          <span>總資料數</span>
-          <strong>{totalRows.toLocaleString("zh-TW")}</strong>
-          <p>Google Sheets 全分類資料量</p>
-        </article>
-
-        <article className="home-kpi-card">
-          <span>有價格資料</span>
-          <strong>{totalPriced.toLocaleString("zh-TW")}</strong>
-          <p>目前可追價的資料列</p>
-        </article>
-
-        <HomePersonalProgress
-          totalRows={totalRows}
-          fallbackOwned={totalOwned}
-          fallbackCompletion={totalCompletion}
-        />
-      </section>
-
-      <section className="nav-panel home-zone home-zone-nav" id="navigation">
-        <div className="panel-tag">導航區</div>
-
-        <div className="nav-grid">
-          {navItems.map((item) => {
-            const stats = results.find((result) => result.key === item.key);
-
-            return (
-              <Link
-                key={item.key}
-                href={item.href}
-                className="nav-card k-nav3-card"
-                aria-label={item.label}
-              >
-                <span className="k-nav3-stage" aria-hidden="true">
-                  <img
-                    src={item.image}
-                    alt=""
-                    className="k-nav3-img k-nav3-off"
-                    draggable={false}
-                  />
-                  <img
-                    src={item.activeImage}
-                    alt=""
-                    className="k-nav3-img k-nav3-on"
-                    draggable={false}
-                  />
-                </span>
-
-                <span className="k-nav3-info">
-                  {stats ? (
-                    <>
-                      <small>
-                        {stats.count.toLocaleString("zh-TW")} 筆｜區塊 {stats.sectionCount}｜有價格 {stats.priced}
-                      </small>
-                      <b>{stats.completion}%</b>
-                    </>
-                  ) : (
-                    <>
-                      <small>查看全部分類與總覽資料</small>
-                      <b>總覽</b>
-                    </>
-                  )}
-                </span>
+              <Link href="/profile" className="home-new-round-action" aria-label="個人頁面">
+                <UserRound size={18} />
+                <span>個人</span>
               </Link>
-            );
-          })}
-        </div>
-      </section>
 
-      
-
-      <section className="dashboard-grid home-zone home-zone-info home-zone-notes">
-        <div className="panel-tag">資料區</div>
-        
-<div className="home-info-split">
-  <article className="info-card home-site-info-card">
-    <div className="card-title">
-      <span>3</span>
-      <span>KETHER 星圖航標資訊</span>
-    </div>
-
-    <div className="home-info-date-row">
-      <span>更新日期</span>
-      <strong>2026/7/6</strong>
-    </div>
-
-    <div className="home-info-subblock">
-      <h3>網站更新摘要</h3>
-      <ul>
-        <li>目前版本為 V2.5.1 + BOT V3.5-E17，網站、資料庫與 Discord Bot 狀態集中顯示。</li>
-        <li>資料庫狀態：Google Sheets、分類分頁、區塊總數、交易價格與 Discord 個人進度已合併在此區塊。</li>
-        <li>Discord 登入、氏族權限驗證、個人進度與 BOT V3.5-E17 指令中樞持續運作中。</li>
-        <li>星圖備用區：首頁、BOT、總覽與各資料頁上方區塊統一成小希風格。</li>
-      </ul>
-    </div>
-  </article>
-
-  <article className="info-card home-warframe-info-card">
-    <div className="card-title">
-      <span>3</span>
-      <span>小希星圖網址情報局</span>
-    </div>
-
-    <div className="home-official-links">
-      <a href="https://www.warframe.com" target="_blank" rel="noreferrer">
-        Warframe 官方網站
-      </a>
-      <a href="https://www.warframe.com/news" target="_blank" rel="noreferrer">
-        官方新聞
-      </a>
-      <a href="https://www.warframe.com/updates" target="_blank" rel="noreferrer">
-        更新紀錄
-      </a>
-      <a href="https://forums.warframe.com" target="_blank" rel="noreferrer">
-        官方論壇
-      </a>
-    </div>
-
-    <div className="home-info-subblock">
-      <h3>網址與情報用途</h3>
-      <ul>
-        <li>查詢 Warframe 官方公告、版本更新與活動情報。</li>
-        <li>快速前往官方網站、新聞、更新紀錄與論壇。</li>
-        <li>小希星圖電波局已建立，後續可串接更多即時情報來源。</li>
-      </ul>
-
-            <OfficialNewsBoard />
-</div>
-  </article>
-</div>
-
-
-        <div className="status-notes-row">
-          <article className="info-card summary-card">
-            <div className="card-title">
-              <ClipboardList size={18} />
-              <span>資料庫狀態</span>
+              <Link
+                href="https://discord.gg"
+                target="_blank"
+                rel="noreferrer"
+                className="home-new-discord-action"
+                aria-label="Discord 入口"
+              >
+                <MessageCircle size={18} />
+                <span>Discord</span>
+              </Link>
             </div>
+          </div>
 
-            <div className="summary-table">
-              <div className="summary-row">
-                <span>資料來源</span>
-                <b>Google Sheets + Discord 個人進度</b>
-              </div>
+          <div className="home-new-banner">
+            <img
+              src="/home-hero-banner.png"
+              alt="KETHER OF PARADISO Warframe Database 首頁版圖"
+            />
+          </div>
 
-              <div className="summary-row">
-                <span>分頁數</span>
-                <b>{results.length}</b>
-              </div>
+          <div className="home-new-dynamic-inside">
+            <KetherDynamicInfo />
+          </div>
+        </section>
 
-              <div className="summary-row">
-                <span>區塊總數</span>
-                <b>{totalSections}</b>
-              </div>
+        <details className="home-new-fold-card home-new-fold-nav">
+          <summary className="home-new-fold-head">
+            <span>
+              <em>KETHER DATABASE NAVIGATION</em>
+              <strong>資料庫導覽</strong>
+            </span>
+            <b aria-hidden="true">⌄</b>
+          </summary>
 
-              <div className="summary-row">
-                <span>價格更新</span>
-                <b>每日 4:00</b>
-              </div>
+        <section className="home-new-nav-card">
+<div className="home-new-nav-grid">
+            {navItems.map((item) => (
+              <Link key={item.href} href={item.href} className="home-new-nav-item">
+                <span className="home-new-nav-icon">
+                  <img className="home-new-nav-icon-normal" src={item.image} alt={item.label} />
+                  <img className="home-new-nav-icon-active" src={item.activeImage} alt="" aria-hidden="true" />
+                </span>
 
-              <div className="summary-row">
-                <span>Discord 個人化</span>
-                <b>登入／權限／個人進度已啟用</b>
+                <span className="home-new-nav-label">{item.label}</span>
+              </Link>
+            ))}
+          </div>
+
+          <div className="home-new-section-divider" aria-hidden="true">
+            <span />
+          </div>
+
+          <div className="home-new-database-line" aria-label="資料庫狀態">
+            {databaseStats.map((item) => (
+              <div key={item.label} className="home-new-database-chip">
+                <span>{item.label}</span>
+                <strong>{item.value}</strong>
               </div>
+            ))}
+          </div>
+        </section>
+        </details>
+
+        <details className="home-new-fold-card home-new-fold-database">
+          <summary className="home-new-fold-head">
+            <span>
+              <em>KETHER DATABASE CORE</em>
+              <strong>資料庫資訊</strong>
+            </span>
+            <b aria-hidden="true">⌄</b>
+          </summary>
+
+          <section className="home-new-database-card">
+            <div className="home-new-database-info-grid">
+              <article className="home-new-database-info-card">
+                <span>目前版本</span>
+                <strong>V2.5.2+BOT-3.5.1</strong>
+              </article>
+
+              <article className="home-new-database-info-card">
+                <span>資料庫狀態</span>
+
+                <ul className="home-new-database-status-list">
+                  <li>
+                    <em>資料來源</em>
+                    <b>Google Sheets</b>
+                  </li>
+                  <li>
+                    <em>每日更新時間</em>
+                    <b>04:00</b>
+                  </li>
+                  <li>
+                    <em>目前資料總數</em>
+                    <b>41 區塊</b>
+                  </li>
+                  <li>
+                    <em>同步狀態</em>
+                    <b>同步正常</b>
+                  </li>
+                </ul>
+              </article>
+
+              <article className="home-new-database-info-card home-new-database-notes-card">
+                <span>備註</span>
+
+                <ul className="home-new-notebook-list">
+                  <li>新版首頁已接入正式首頁，後續功能會依版本逐步確認與優化。</li>
+                  <li>功能會分段接線：選單、搜尋、鈴鐺、導覽、資料庫資訊逐步確認。</li>
+                  <li>資料以 Google Sheets 為主來源，網站僅顯示整理後的資料內容。</li>
+                  <li>版本號只在功能確認完成後更新，不在半成品階段提前變更。</li>
+                  <li>若資料顯示異常，先確認同步狀態與最新部署版本。</li>
+                </ul>
+              </article>
             </div>
-          </article>
+          </section>
+        </details>
 
-          <article className="info-card summary-card">
-            <div className="card-title">
-              <ClipboardList size={18} />
-              <span>星圖備用區</span>
-            </div>
+        <details className="home-new-fold-card home-new-fold-official">
+          <summary className="home-new-fold-head">
+            <span>
+              <em>KETHER OFFICIAL DATA</em>
+              <strong>官方資料</strong>
+            </span>
+            <b aria-hidden="true">⌄</b>
+          </summary>
 
-            <ul className="home-remarks-list">
-              {homepageRemarks.map((remark) => (
-                <li key={remark}>{remark}</li>
+          <section className="home-new-official-card">
+            <div className="home-new-official-grid">
+              {officialItems.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="home-new-official-item"
+                >
+                  <span>{item.label}</span>
+                  <p>{item.description}</p>
+                </Link>
               ))}
-            </ul>
-          </article>
-        </div>
-      </section>
+            </div>
 
-      <footer className="home-footer-signature">
+            <HomeNewOfficialNews />
+          </section>
+        </details>
+      <footer className="home-new-footer">
         <a
+          className="home-new-footer-url"
           href="https://kether-warframe-database.vercel.app"
           target="_blank"
           rel="noreferrer"
-          className="home-footer-link"
         >
           https://kether-warframe-database.vercel.app
         </a>
-        <span className="home-footer-divider">｜</span>
-        <span className="home-footer-designer">Website by ヤハ奈々子・羊咩・凱洛</span>
-      </footer>
 
-</main>
-  </>);
+        <p className="home-new-footer-credit">
+          builder by ヤハ奈々子、羊咩、凱洛
+        </p>
+      </footer>
+      </div>
+    </main>
+  );
 }
