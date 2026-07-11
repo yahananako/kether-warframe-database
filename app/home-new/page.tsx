@@ -134,7 +134,7 @@ export default function HomeNewPage() {
           </div>
         </section>
 
-        <details className="home-new-fold-card home-new-fold-nav" open>
+        <details className="home-new-fold-card home-new-fold-nav">
           <summary className="home-new-fold-head">
             <span>
               <em>KETHER DATABASE NAVIGATION</em>
@@ -172,7 +172,7 @@ export default function HomeNewPage() {
         </section>
         </details>
 
-        <details className="home-new-fold-card home-new-fold-database" open>
+        <details className="home-new-fold-card home-new-fold-database">
           <summary className="home-new-fold-head">
             <span>
               <em>KETHER DATABASE CORE</em>
@@ -226,7 +226,7 @@ export default function HomeNewPage() {
           </section>
         </details>
 
-        <details className="home-new-fold-card home-new-fold-official" open>
+        <details className="home-new-fold-card home-new-fold-official">
           <summary className="home-new-fold-head">
             <span>
               <em>KETHER OFFICIAL DATA</em>
