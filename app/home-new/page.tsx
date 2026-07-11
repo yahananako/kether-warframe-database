@@ -153,8 +153,7 @@ export default function HomeNewPage() {
           <div className="home-new-database-info-grid">
             <article className="home-new-database-info-card">
               <span>目前版本</span>
-              <strong>網站 V2.5.1</strong>
-              <p>Discord Bot：V3.5-E17。新版首頁目前在 /home-new 測試中，確認穩定後才替換正式首頁。</p>
+              <strong>V2.5.2+BOT-3.5.1</strong>
             </article>
 
             <article className="home-new-database-info-card">
