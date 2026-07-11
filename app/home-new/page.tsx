@@ -264,6 +264,7 @@ export default function HomeNewPage() {
           builder by ヤハ奈々子、羊咩、凱洛
         </p>
       </footer>
-
+      </div>
     </main>
   );
+}
