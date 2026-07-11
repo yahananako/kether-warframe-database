@@ -1,44 +1,82 @@
 import { NextResponse } from "next/server";
 
-import {
-  OFFICIAL_NEWS_BOARD,
-  OFFICIAL_NEWS_LINKS,
-} from "../../../data/officialNews";
-import { getOfficialNewsItems } from "../../../lib/officialNewsFeed";
+export const revalidate = 1800;
 
-export const dynamic = "force-dynamic";
+const WARFRAME_NEWS_RSS_URL = "https://www.warframe.com/news/rss";
+
+function readTag(source: string, tag: string) {
+  const match = source.match(new RegExp(`<${tag}[^>]*>([\\s\\S]*?)<\\/${tag}>`, "i"));
+  return match?.[1]?.trim() ?? "";
+}
+
+function decodeEntities(value: string) {
+  return value
+    .replace(/<!\[CDATA\[([\s\S]*?)\]\]>/g, "$1")
+    .replace(/&#(\d+);/g, (_, code) => String.fromCharCode(Number(code)))
+    .replace(/&#x([0-9a-f]+);/gi, (_, code) => String.fromCharCode(parseInt(code, 16)))
+    .replace(/&amp;/g, "&")
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">")
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'");
+}
+
+function cleanText(value: string) {
+  return decodeEntities(value)
+    .replace(/<[^>]+>/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
+}
 
 export async function GET() {
-  const result = await getOfficialNewsItems();
-  const items = result.items;
-  const isFallback = items.every((item) => item.source === "static-placeholder");
-
-  return NextResponse.json(
-    {
-      ok: true,
-      route: "/api/official-news",
-      mode: isFallback ? "static-news-items-source" : "rss-news-items-source",
-      message:
-        "官方新聞 API 已接上 RSS／Atom 抓取工具函式；未設定來源或抓取失敗時會回傳靜態備援資料。",
-      generatedAt: new Date().toISOString(),
-      board: OFFICIAL_NEWS_BOARD,
-      links: OFFICIAL_NEWS_LINKS,
-      items,
-      itemCount: items.length,
-      feedEnabled: result.debug.feedEnabled,
-      feedDebug: result.debug,
-      nextSteps: [
-        "查看 feedDebug.status",
-        "查看 feedDebug.httpStatus",
-        "查看 feedDebug.parser",
-        "查看 feedDebug.parsedCount",
-        "查看 feedDebug.fallbackReason",
-      ],
-    },
-    {
+  try {
+    const response = await fetch(WARFRAME_NEWS_RSS_URL, {
+      next: { revalidate: 1800 },
       headers: {
-        "Cache-Control": "public, max-age=300, s-maxage=300",
+        accept: "application/rss+xml, application/xml, text/xml",
       },
+    });
+
+    if (!response.ok) {
+      return NextResponse.json(
+        {
+          items: [],
+          error: `Warframe RSS fetch failed: ${response.status}`,
+        },
+        { status: 502 },
+      );
     }
-  );
+
+    const xml = await response.text();
+    const itemBlocks = Array.from(xml.matchAll(/<item>([\s\S]*?)<\/item>/gi));
+
+    const items = itemBlocks.slice(0, 6).map((match) => {
+      const block = match[1] ?? "";
+      const title = cleanText(readTag(block, "title"));
+      const link = cleanText(readTag(block, "link"));
+      const description = cleanText(readTag(block, "description"));
+      const pubDate = cleanText(readTag(block, "pubDate"));
+
+      return {
+        title,
+        link,
+        description,
+        pubDate,
+      };
+    }).filter((item) => item.title && item.link);
+
+    return NextResponse.json({
+      source: WARFRAME_NEWS_RSS_URL,
+      updatedAt: new Date().toISOString(),
+      items,
+    });
+  } catch (error) {
+    return NextResponse.json(
+      {
+        items: [],
+        error: error instanceof Error ? error.message : "Unknown RSS error",
+      },
+      { status: 500 },
+    );
+  }
 }

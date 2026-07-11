@@ -11054,3 +11054,116 @@ a.nav-card {
     line-height: 1.25;
   }
 }
+
+/* KETHER official live RSS polish */
+.home-new-official-refresh {
+  min-height: 34px;
+  padding: 0 12px;
+  border: 1px solid rgba(255, 255, 255, 0.58);
+  border-radius: 999px;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.34), rgba(241, 245, 249, 0.12)),
+    rgba(255, 255, 255, 0.1);
+  color: #334155;
+  box-shadow:
+    0 8px 18px rgba(15, 23, 42, 0.055),
+    inset 0 1px 0 rgba(255, 255, 255, 0.58);
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 12px;
+  font-weight: 950;
+}
+
+.home-new-official-refresh:disabled {
+  opacity: 0.68;
+}
+
+.home-new-official-news-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 7px;
+}
+
+.home-new-official-news-list li a {
+  min-height: 42px;
+  padding: 8px 10px;
+  border-radius: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.44);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.22), rgba(241, 245, 249, 0.075)),
+    rgba(255, 255, 255, 0.055);
+  color: #172033;
+  text-decoration: none;
+  box-shadow:
+    0 8px 18px rgba(15, 23, 42, 0.045),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 10px;
+}
+
+.home-new-official-news-list li a:hover {
+  border-color: rgba(255, 255, 255, 0.82);
+  box-shadow:
+    0 0 18px rgba(255, 255, 255, 0.48),
+    0 14px 28px rgba(124, 58, 237, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.68);
+}
+
+.home-new-official-news-list em {
+  min-width: 48px;
+  color: rgba(124, 58, 237, 0.88);
+  font-style: normal;
+  font-size: clamp(10px, 0.95vw, 13px);
+  font-weight: 950;
+  white-space: nowrap;
+}
+
+.home-new-official-news-list span {
+  min-width: 0;
+  color: #172033;
+  font-size: clamp(11px, 1vw, 15px);
+  line-height: 1.35;
+  font-weight: 880;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.home-new-official-news-empty {
+  padding: 14px;
+  border-radius: 16px;
+  color: rgba(71, 85, 105, 0.82);
+  background: rgba(255, 255, 255, 0.12);
+  font-size: 13px;
+  font-weight: 900;
+  text-align: center;
+}
+
+@media (max-width: 760px) {
+  .home-new-official-refresh {
+    min-height: 30px;
+    padding: 0 9px;
+    font-size: 10px;
+  }
+
+  .home-new-official-news-list li a {
+    min-height: 36px;
+    padding: 6px;
+    border-radius: 11px;
+    gap: 6px;
+  }
+
+  .home-new-official-news-list em {
+    min-width: 38px;
+    font-size: 9px;
+  }
+
+  .home-new-official-news-list span {
+    font-size: clamp(9px, 2.4vw, 11px);
+  }
+}
