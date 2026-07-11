@@ -30,6 +30,7 @@ const notices = [
 
 export default function HomeNewInlineNotifications() {
   const [open, setOpen] = useState(false);
+  const [hasUnread, setHasUnread] = useState(true);
 
   useEffect(() => {
     const handlePanelOpen = (event: Event) => {
@@ -52,6 +53,7 @@ export default function HomeNewInlineNotifications() {
       const next = !current;
 
       if (next) {
+        setHasUnread(false);
         window.dispatchEvent(new CustomEvent(PANEL_EVENT, { detail: "notice" }));
       }
 
@@ -69,7 +71,7 @@ export default function HomeNewInlineNotifications() {
         onClick={toggleNotice}
       >
         {open ? <X size={22} /> : <Bell size={22} />}
-        <span aria-hidden="true" />
+        {hasUnread ? <span aria-hidden="true" /> : null}
       </button>
 
       {open ? (
