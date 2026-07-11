@@ -12614,3 +12614,16 @@ a.nav-card {
   }
 }
 
+
+/* KETHER mini music player final position */
+@media (max-width: 720px) {
+  .kether-mini-player {
+    left: 50% !important;
+    right: auto !important;
+    bottom: max(18px, env(safe-area-inset-bottom)) !important;
+    width: min(88vw, 360px) !important;
+    max-width: 360px !important;
+    transform: translateX(-50%) !important;
+  }
+}
+
