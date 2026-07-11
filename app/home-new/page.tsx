@@ -168,83 +168,88 @@ export default function HomeNewPage() {
         </section>
 
 
-        <section className="home-new-database-card">
-          <div className="home-new-database-heading">
-            <p>KETHER DATABASE CORE</p>
-            <h2>資料庫資訊</h2>
-          </div>
+        <details className="home-new-fold-card home-new-fold-database" open>
+          <summary className="home-new-fold-head">
+            <span>
+              <em>KETHER DATABASE CORE</em>
+              <strong>資料庫資訊</strong>
+            </span>
+            <b aria-hidden="true">⌄</b>
+          </summary>
 
-          <div className="home-new-database-info-grid">
-            <article className="home-new-database-info-card">
-              <span>目前版本</span>
-              <strong>V2.5.2+BOT-3.5.1</strong>
-            </article>
+          <section className="home-new-database-card">
+            <div className="home-new-database-info-grid">
+              <article className="home-new-database-info-card">
+                <span>目前版本</span>
+                <strong>V2.5.2+BOT-3.5.1</strong>
+              </article>
 
-            <article className="home-new-database-info-card">
-              <span>資料庫狀態</span>
+              <article className="home-new-database-info-card">
+                <span>資料庫狀態</span>
 
-              <ul className="home-new-database-status-list">
-                <li>
-                  <em>資料來源</em>
-                  <b>Google Sheets</b>
-                </li>
-                <li>
-                  <em>每日更新時間</em>
-                  <b>04:00</b>
-                </li>
-                <li>
-                  <em>目前資料總數</em>
-                  <b>41 區塊</b>
-                </li>
-                <li>
-                  <em>同步狀態</em>
-                  <b>同步正常</b>
-                </li>
-              </ul>
-            </article>
+                <ul className="home-new-database-status-list">
+                  <li>
+                    <em>資料來源</em>
+                    <b>Google Sheets</b>
+                  </li>
+                  <li>
+                    <em>每日更新時間</em>
+                    <b>04:00</b>
+                  </li>
+                  <li>
+                    <em>目前資料總數</em>
+                    <b>41 區塊</b>
+                  </li>
+                  <li>
+                    <em>同步狀態</em>
+                    <b>同步正常</b>
+                  </li>
+                </ul>
+              </article>
 
-            <article className="home-new-database-info-card home-new-database-notes-card">
-              <span>備註</span>
+              <article className="home-new-database-info-card home-new-database-notes-card">
+                <span>備註</span>
 
-              <ul className="home-new-notebook-list">
-                <li>首頁目前在 /home-new 測試中，確認穩定後才會替換正式首頁。</li>
-                <li>功能會分段接線：選單、搜尋、鈴鐺、導覽、資料庫資訊逐步確認。</li>
-                <li>資料以 Google Sheets 為主來源，網站僅顯示整理後的資料內容。</li>
-                <li>版本號只在功能確認完成後更新，不在半成品階段提前變更。</li>
-                <li>若資料顯示異常，先確認同步狀態與最新部署版本。</li>
-              </ul>
-            </article>
-          </div>
-        </section>
+                <ul className="home-new-notebook-list">
+                  <li>首頁目前在 /home-new 測試中，確認穩定後才會替換正式首頁。</li>
+                  <li>功能會分段接線：選單、搜尋、鈴鐺、導覽、資料庫資訊逐步確認。</li>
+                  <li>資料以 Google Sheets 為主來源，網站僅顯示整理後的資料內容。</li>
+                  <li>版本號只在功能確認完成後更新，不在半成品階段提前變更。</li>
+                  <li>若資料顯示異常，先確認同步狀態與最新部署版本。</li>
+                </ul>
+              </article>
+            </div>
+          </section>
+        </details>
 
+        <details className="home-new-fold-card home-new-fold-official" open>
+          <summary className="home-new-fold-head">
+            <span>
+              <em>KETHER OFFICIAL DATA</em>
+              <strong>官方資料</strong>
+            </span>
+            <b aria-hidden="true">⌄</b>
+          </summary>
 
-        <section className="home-new-official-card">
-          <div className="home-new-official-heading">
-            <p>KETHER OFFICIAL DATA</p>
-            <h2>官方資料</h2>
-          </div>
+          <section className="home-new-official-card">
+            <div className="home-new-official-grid">
+              {officialItems.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="home-new-official-item"
+                >
+                  <span>{item.label}</span>
+                  <p>{item.description}</p>
+                </Link>
+              ))}
+            </div>
 
-          <div className="home-new-official-grid">
-            {officialItems.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                target="_blank"
-                rel="noreferrer"
-                className="home-new-official-item"
-              >
-                <span>{item.label}</span>
-                <p>{item.description}</p>
-              </Link>
-            ))}
-          </div>
-
-          <HomeNewOfficialNews />
-        </section>
-
-
-      </div>
-    
+            <HomeNewOfficialNews />
+          </section>
+        </details>
       <footer className="home-new-footer">
         <a
           className="home-new-footer-url"
