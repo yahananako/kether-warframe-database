@@ -63,6 +63,29 @@ const navItems = [
   },
 ];
 
+const officialItems = [
+  {
+    label: "Warframe 官方網站",
+    href: "https://www.warframe.com/zh-hant",
+    description: "官方首頁、活動資訊與遊戲入口。",
+  },
+  {
+    label: "官方新聞",
+    href: "https://www.warframe.com/zh-hant/news",
+    description: "官方公告、活動、更新與開發消息。",
+  },
+  {
+    label: "官方掉落表",
+    href: "https://www.warframe.com/droptables",
+    description: "官方掉落資料查詢，用於確認物品來源。",
+  },
+  {
+    label: "官方更新資訊",
+    href: "https://forums.warframe.com/forum/3-pc-update-notes/",
+    description: "版本更新、修正內容與官方補丁紀錄。",
+  },
+];
+
 export default function HomeNewPage() {
   return (
     <main className="home-new-page">
@@ -192,6 +215,30 @@ export default function HomeNewPage() {
             </article>
           </div>
         </section>
+
+
+        <section className="home-new-official-card">
+          <div className="home-new-official-heading">
+            <p>KETHER OFFICIAL DATA</p>
+            <h2>官方資料</h2>
+          </div>
+
+          <div className="home-new-official-grid">
+            {officialItems.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                target="_blank"
+                rel="noreferrer"
+                className="home-new-official-item"
+              >
+                <span>{item.label}</span>
+                <p>{item.description}</p>
+              </Link>
+            ))}
+          </div>
+        </section>
+
 
       </div>
     </main>
