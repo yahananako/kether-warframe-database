@@ -10709,3 +10709,42 @@ a.nav-card {
     height: clamp(4px, 1.2vw, 6px) !important;
   }
 }
+
+/* KETHER database status responsive font sizing */
+.home-new-database-status-list li {
+  min-height: clamp(34px, 3.6vw, 48px) !important;
+  padding:
+    clamp(6px, 0.8vw, 10px)
+    clamp(8px, 1vw, 13px) !important;
+  gap: clamp(5px, 0.8vw, 12px) !important;
+}
+
+.home-new-database-status-list em {
+  font-size: clamp(10px, 0.95vw, 14px) !important;
+  line-height: 1.2 !important;
+}
+
+.home-new-database-status-list b {
+  font-size: clamp(11px, 1vw, 15px) !important;
+  line-height: 1.2 !important;
+}
+
+@media (max-width: 760px) {
+  .home-new-database-status-list li {
+    min-height: clamp(28px, 7.2vw, 38px) !important;
+    padding:
+      clamp(4px, 1.5vw, 7px)
+      clamp(5px, 1.8vw, 8px) !important;
+    gap: clamp(3px, 1.2vw, 6px) !important;
+  }
+
+  .home-new-database-status-list em {
+    font-size: clamp(8px, 2.2vw, 11px) !important;
+    line-height: 1.15 !important;
+  }
+
+  .home-new-database-status-list b {
+    font-size: clamp(8.5px, 2.35vw, 12px) !important;
+    line-height: 1.15 !important;
+  }
+}
