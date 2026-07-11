@@ -147,26 +147,26 @@ export default function HomeNewPage() {
         <section className="home-new-database-card">
           <div className="home-new-database-heading">
             <p>KETHER DATABASE CORE</p>
-            <h2>資料庫狀態</h2>
+            <h2>資料庫資訊</h2>
           </div>
 
-          <div className="home-new-database-core-grid">
-            <article className="home-new-database-core-item">
-              <span>資料來源</span>
-              <strong>Google Sheets</strong>
-              <p>目前資料由試算表同步至網站顯示。</p>
+          <div className="home-new-database-info-grid">
+            <article className="home-new-database-info-card">
+              <span>目前版本</span>
+              <strong>網站 V2.5.1</strong>
+              <p>Discord Bot：V3.5-E17。新版首頁目前在 /home-new 測試中，確認穩定後才替換正式首頁。</p>
             </article>
 
-            <article className="home-new-database-core-item">
-              <span>資料分類</span>
-              <strong>7 類</strong>
-              <p>戰甲、主要武器、次要武器、近戰武器、同伴、曲翼、MOD。</p>
+            <article className="home-new-database-info-card">
+              <span>資料庫狀態</span>
+              <strong>同步正常</strong>
+              <p>資料來源 Google Sheets。資料分頁 7、資料區塊 41，預計每日 04:00 同步更新。</p>
             </article>
 
-            <article className="home-new-database-core-item">
-              <span>同步節奏</span>
-              <strong>每日 04:00</strong>
-              <p>資料會依照設定時間刷新。</p>
+            <article className="home-new-database-info-card">
+              <span>備註</span>
+              <strong>逐步建置中</strong>
+              <p>目前先在新首頁測試選單、搜尋、鈴鐺、導覽與資料庫資訊，確認穩定後再接回正式首頁。</p>
             </article>
           </div>
         </section>
