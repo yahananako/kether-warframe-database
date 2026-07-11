@@ -9454,4 +9454,58 @@ a.nav-card {
   z-index: 1;
 }
 /* KETHER home-new menu frosted polish end */
+/* KETHER home-new menu three columns start */
+.home-new-menu-panel {
+  width: min(760px, calc(100vw - 36px)) !important;
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 12px !important;
+}
+
+.home-new-menu-panel-head {
+  grid-column: 1 / -1;
+  min-height: auto !important;
+  margin: 0 !important;
+  padding: 12px 14px !important;
+}
+
+.home-new-menu-group {
+  min-width: 0;
+  margin: 0 !important;
+}
+
+.home-new-menu-links {
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  gap: 8px !important;
+}
+
+.home-new-menu-group:nth-of-type(2) .home-new-menu-links {
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+}
+
+.home-new-menu-link {
+  min-height: 38px !important;
+  padding: 0 10px !important;
+  font-size: 12px !important;
+}
+
+@media (max-width: 760px) {
+  .home-new-menu-panel {
+    width: min(520px, calc(100vw - 24px)) !important;
+    grid-template-columns: 1fr !important;
+    max-height: 62dvh !important;
+    overflow-y: auto !important;
+  }
+
+  .home-new-menu-panel-head {
+    grid-column: auto;
+  }
+
+  .home-new-menu-links,
+  .home-new-menu-group:nth-of-type(2) .home-new-menu-links {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+/* KETHER home-new menu three columns end */
 /* KETHER home-new rebuild end */
