@@ -11927,3 +11927,56 @@ a.nav-card {
     word-spacing: 0.12em !important;
   }
 }
+
+/* KETHER desktop navigation compact single-row fix */
+@media (min-width: 901px) {
+  .home-new-nav-grid {
+    display: grid !important;
+    grid-template-columns: repeat(8, minmax(0, 1fr)) !important;
+    gap: clamp(8px, 0.8vw, 12px) !important;
+    align-items: stretch !important;
+  }
+
+  .home-new-nav-item {
+    aspect-ratio: 1 / 0.72 !important;
+    min-height: clamp(72px, 7vw, 104px) !important;
+    max-height: 112px !important;
+    padding: 0 !important;
+    border-radius: clamp(16px, 1.4vw, 22px) !important;
+    transform: none !important;
+  }
+
+  .home-new-nav-item:hover {
+    transform: none !important;
+  }
+
+  .home-new-nav-icon {
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    border-radius: inherit !important;
+  }
+
+  .home-new-nav-icon img,
+  .home-new-nav-icon-normal,
+  .home-new-nav-icon-active {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain !important;
+    object-position: center !important;
+    transform: none !important;
+    scale: 1 !important;
+  }
+
+  .home-new-nav-label {
+    display: none !important;
+  }
+}
+
+/* 平板以下維持原本 4 + 4 */
+@media (max-width: 900px) {
+  .home-new-nav-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  }
+}
