@@ -245,20 +245,18 @@ export default function HomeNewPage() {
 
       </div>
     
-      <footer className="home-new-art-footer">
-        <p className="home-new-art-footer-url">
-          <a
-            href="https://kether-warframe-database.vercel.app"
-            target="_blank"
-            rel="noreferrer"
-          >
-            https://kether-warframe-database.vercel.app
-          </a>
-        </p>
+      <footer className="home-new-footer">
+        <a
+          className="home-new-footer-url"
+          href="https://kether-warframe-database.vercel.app"
+          target="_blank"
+          rel="noreferrer"
+        >
+          https://kether-warframe-database.vercel.app
+        </a>
 
-        <p className="home-new-art-footer-builder">
-          <span>builder by</span>
-          <b>ヤハ奈々子、羊咩、凱洛</b>
+        <p className="home-new-footer-credit">
+          builder by ヤハ奈々子、羊咩、凱洛
         </p>
       </footer>
 

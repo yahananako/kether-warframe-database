@@ -11806,3 +11806,124 @@ a.nav-card {
     padding-right: 2px !important;
   }
 }
+
+/* KETHER footer readable credit final fix */
+.home-new-footer,
+.home-new-art-footer {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 28px auto 0 !important;
+  padding: 18px 24px 104px !important;
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  gap: 12px !important;
+  box-sizing: border-box !important;
+  overflow: hidden !important;
+  border-top: 1px solid rgba(148, 163, 184, 0.26) !important;
+  background: transparent !important;
+}
+
+.home-new-footer::before,
+.home-new-footer::after,
+.home-new-art-footer::before,
+.home-new-art-footer::after {
+  content: none !important;
+  display: none !important;
+}
+
+.home-new-footer-url,
+.home-new-footer-url:visited,
+.home-new-footer-url:hover {
+  display: block !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  text-align: center !important;
+  color: rgba(55, 65, 81, 0.88) !important;
+  font-family: Arial, "Noto Sans TC", "Hiragino Sans", "Yu Gothic UI", sans-serif !important;
+  font-size: clamp(12px, 1.05vw, 16px) !important;
+  line-height: 1.45 !important;
+  font-weight: 760 !important;
+  letter-spacing: 0.01em !important;
+  text-decoration: none !important;
+  white-space: nowrap !important;
+  word-break: normal !important;
+  overflow-wrap: normal !important;
+  background: none !important;
+  -webkit-text-fill-color: rgba(55, 65, 81, 0.88) !important;
+  text-shadow: none !important;
+  filter: none !important;
+}
+
+.home-new-footer-credit,
+.home-new-art-footer-builder {
+  display: block !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 10px 0 0 !important;
+  box-sizing: border-box !important;
+  text-align: right !important;
+  color: rgba(107, 92, 125, 0.64) !important;
+  font-family: Arial, "Noto Sans TC", "Hiragino Sans", "Yu Gothic UI", sans-serif !important;
+  font-size: clamp(10px, 0.82vw, 13px) !important;
+  line-height: 1.55 !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.08em !important;
+  font-style: normal !important;
+  white-space: normal !important;
+  word-spacing: 0.18em !important;
+  background: none !important;
+  background-image: none !important;
+  -webkit-background-clip: initial !important;
+  background-clip: initial !important;
+  -webkit-text-fill-color: rgba(107, 92, 125, 0.64) !important;
+  text-shadow: none !important;
+  filter: none !important;
+  box-shadow: none !important;
+}
+
+.home-new-footer-credit * ,
+.home-new-art-footer-builder * {
+  display: inline !important;
+  color: inherit !important;
+  font: inherit !important;
+  letter-spacing: inherit !important;
+  word-spacing: inherit !important;
+  background: none !important;
+  background-image: none !important;
+  -webkit-background-clip: initial !important;
+  background-clip: initial !important;
+  -webkit-text-fill-color: currentColor !important;
+  text-shadow: none !important;
+  filter: none !important;
+}
+
+.home-new-footer-credit::after,
+.home-new-footer-credit *::after,
+.home-new-art-footer-builder::after,
+.home-new-art-footer-builder *::after {
+  content: none !important;
+  display: none !important;
+}
+
+@media (max-width: 760px) {
+  .home-new-footer,
+  .home-new-art-footer {
+    padding: 16px 14px 104px !important;
+    gap: 9px !important;
+  }
+
+  .home-new-footer-url,
+  .home-new-footer-url:visited,
+  .home-new-footer-url:hover {
+    font-size: clamp(10px, 2.45vw, 13px) !important;
+  }
+
+  .home-new-footer-credit,
+  .home-new-art-footer-builder {
+    padding-right: 6px !important;
+    font-size: clamp(9px, 2.15vw, 11px) !important;
+    letter-spacing: 0.05em !important;
+    word-spacing: 0.12em !important;
+  }
+}
