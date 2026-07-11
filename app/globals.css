@@ -11167,3 +11167,61 @@ a.nav-card {
     font-size: clamp(9px, 2.4vw, 11px);
   }
 }
+
+/* KETHER official RSS full-width rows fix */
+.home-new-official-rss,
+.home-new-official-rss-live {
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+.home-new-official-news-list {
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+.home-new-official-news-list li {
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+.home-new-official-news-list li a {
+  width: 100% !important;
+  box-sizing: border-box !important;
+  display: grid !important;
+  grid-template-columns: minmax(48px, auto) minmax(0, 1fr) !important;
+  align-items: center !important;
+}
+
+.home-new-official-news-list em {
+  width: 52px !important;
+  min-width: 52px !important;
+  max-width: 52px !important;
+  text-align: left !important;
+}
+
+.home-new-official-news-list span {
+  width: 100% !important;
+  min-width: 0 !important;
+  display: block !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+}
+
+.home-new-official-news-empty {
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+@media (max-width: 760px) {
+  .home-new-official-news-list li a {
+    grid-template-columns: minmax(38px, auto) minmax(0, 1fr) !important;
+  }
+
+  .home-new-official-news-list em {
+    width: 40px !important;
+    min-width: 40px !important;
+    max-width: 40px !important;
+  }
+}
