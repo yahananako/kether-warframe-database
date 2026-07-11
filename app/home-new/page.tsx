@@ -132,6 +132,10 @@ export default function HomeNewPage() {
             ))}
           </div>
 
+          <div className="home-new-section-divider" aria-hidden="true">
+            <span />
+          </div>
+
           <div className="home-new-database-line" aria-label="資料庫狀態">
             {databaseStats.map((item) => (
               <div key={item.label} className="home-new-database-chip">
