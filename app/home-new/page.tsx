@@ -159,7 +159,21 @@ export default function HomeNewPage() {
             <article className="home-new-database-info-card">
               <span>資料庫狀態</span>
               <strong>同步正常</strong>
-              <p>資料來源 Google Sheets。資料分頁 7、資料區塊 41，預計每日 04:00 同步更新。</p>
+
+              <ul className="home-new-database-status-list">
+                <li>
+                  <em>資料來源</em>
+                  <b>Google Sheets</b>
+                </li>
+                <li>
+                  <em>每日更新時間</em>
+                  <b>04:00</b>
+                </li>
+                <li>
+                  <em>目前資料總數</em>
+                  <b>41 區塊</b>
+                </li>
+              </ul>
             </article>
 
             <article className="home-new-database-info-card">

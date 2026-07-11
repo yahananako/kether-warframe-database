@@ -10373,3 +10373,107 @@ a.nav-card {
     line-height: 1.65 !important;
   }
 }
+
+/* KETHER database status vertical list and mobile same layout */
+.home-new-database-status-list {
+  margin: 12px 0 0 !important;
+  padding: 0 !important;
+  list-style: none !important;
+  display: grid !important;
+  gap: 8px !important;
+}
+
+.home-new-database-status-list li {
+  min-height: 42px !important;
+  padding: 8px 10px !important;
+  border-radius: 15px !important;
+  border: 1px solid rgba(255, 255, 255, 0.46) !important;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.22), rgba(241, 245, 249, 0.075)),
+    rgba(255, 255, 255, 0.055) !important;
+  box-shadow:
+    0 8px 18px rgba(15, 23, 42, 0.045),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 10px !important;
+  backdrop-filter: blur(16px) saturate(1.32) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(1.32) !important;
+}
+
+.home-new-database-status-list em {
+  color: rgba(71, 85, 105, 0.82) !important;
+  font-style: normal !important;
+  font-size: 12px !important;
+  font-weight: 900 !important;
+  white-space: nowrap !important;
+}
+
+.home-new-database-status-list b {
+  color: #172033 !important;
+  font-size: 13px !important;
+  font-weight: 950 !important;
+  text-align: right !important;
+  white-space: nowrap !important;
+}
+
+/* 手機版也維持電腦版：左上下兩格，右邊備註 */
+@media (max-width: 760px) {
+  .home-new-database-info-grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr) !important;
+    grid-template-areas:
+      "version notes"
+      "status notes" !important;
+    gap: 8px !important;
+    align-items: stretch !important;
+  }
+
+  .home-new-database-info-card {
+    min-height: 112px !important;
+    padding: 9px !important;
+    border-radius: 16px !important;
+  }
+
+  .home-new-database-info-card:nth-child(3) {
+    min-height: 100% !important;
+    justify-content: center !important;
+  }
+
+  .home-new-database-info-card span {
+    margin-bottom: 6px !important;
+    font-size: 9px !important;
+    letter-spacing: 0.1em !important;
+  }
+
+  .home-new-database-info-card strong {
+    font-size: 14px !important;
+    line-height: 1.2 !important;
+  }
+
+  .home-new-database-info-card p {
+    margin-top: 6px !important;
+    font-size: 10px !important;
+    line-height: 1.5 !important;
+  }
+
+  .home-new-database-status-list {
+    margin-top: 7px !important;
+    gap: 5px !important;
+  }
+
+  .home-new-database-status-list li {
+    min-height: 31px !important;
+    padding: 5px 6px !important;
+    border-radius: 11px !important;
+    gap: 5px !important;
+  }
+
+  .home-new-database-status-list em {
+    font-size: 8px !important;
+  }
+
+  .home-new-database-status-list b {
+    font-size: 9px !important;
+  }
+}
