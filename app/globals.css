@@ -12495,10 +12495,6 @@ a.nav-card {
 
 /* Reduce extra bottom breathing room caused by fixed mini player */
 @media (max-width: 720px) {
-  body {
-    padding-bottom: 86px !important;
-  }
-
   .kether-mini-player {
     bottom: 14px !important;
   }
