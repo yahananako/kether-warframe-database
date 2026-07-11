@@ -12627,3 +12627,78 @@ a.nav-card {
   }
 }
 
+
+/* KETHER mini music controls crystal dock */
+.kether-mini-player .kether-mini-controls {
+  width: fit-content !important;
+  margin: 10px auto 8px !important;
+  padding: 7px 9px !important;
+  display: grid !important;
+  grid-template-columns: 42px 54px 42px !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 9px !important;
+  border-radius: 999px !important;
+  background:
+    linear-gradient(135deg, rgba(255,255,255,.72), rgba(245,238,255,.50)) !important;
+  border: 1px solid rgba(255,255,255,.82) !important;
+  box-shadow:
+    0 12px 28px rgba(124,58,237,.16),
+    inset 0 1px 0 rgba(255,255,255,.95) !important;
+  backdrop-filter: blur(18px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(18px) saturate(180%) !important;
+}
+
+.kether-mini-player .kether-mini-controls > button {
+  margin: 0 !important;
+  padding: 0 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-radius: 999px !important;
+}
+
+.kether-mini-player .kether-mini-controls > button:first-child,
+.kether-mini-player .kether-mini-controls > button:last-child {
+  width: 42px !important;
+  height: 42px !important;
+  min-width: 42px !important;
+  min-height: 42px !important;
+}
+
+.kether-mini-player .kether-mini-controls .kether-mini-play {
+  width: 54px !important;
+  height: 54px !important;
+  min-width: 54px !important;
+  min-height: 54px !important;
+  transform: translateY(-1px) !important;
+  box-shadow:
+    0 14px 30px rgba(236,72,153,.28),
+    0 6px 14px rgba(124,58,237,.18),
+    inset 0 1px 0 rgba(255,255,255,.92) !important;
+}
+
+@media (max-width: 720px) {
+  .kether-mini-player .kether-mini-controls {
+    margin: 9px auto 7px !important;
+    padding: 6px 8px !important;
+    grid-template-columns: 40px 52px 40px !important;
+    gap: 8px !important;
+  }
+
+  .kether-mini-player .kether-mini-controls > button:first-child,
+  .kether-mini-player .kether-mini-controls > button:last-child {
+    width: 40px !important;
+    height: 40px !important;
+    min-width: 40px !important;
+    min-height: 40px !important;
+  }
+
+  .kether-mini-player .kether-mini-controls .kether-mini-play {
+    width: 52px !important;
+    height: 52px !important;
+    min-width: 52px !important;
+    min-height: 52px !important;
+  }
+}
+
