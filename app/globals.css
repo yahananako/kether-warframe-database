@@ -9831,3 +9831,96 @@ a.nav-card {
     0 1px 0 rgba(255, 255, 255, 0.38),
     0 0 16px rgba(255, 255, 255, 0.18) !important;
 }
+
+/* KETHER nav button stable hover icon swap fix */
+.home-new-nav-item,
+.home-new-nav-item:hover {
+  transform: none !important;
+}
+
+.home-new-nav-label,
+.home-new-nav-item:hover .home-new-nav-label {
+  font-size: 15px !important;
+  transform: none !important;
+  scale: 1 !important;
+}
+
+.home-new-nav-icon {
+  width: 58px !important;
+  height: 58px !important;
+  min-width: 58px !important;
+  min-height: 58px !important;
+  max-width: 58px !important;
+  max-height: 58px !important;
+  overflow: hidden !important;
+  flex: 0 0 58px !important;
+}
+
+.home-new-nav-icon img,
+.home-new-nav-icon-normal,
+.home-new-nav-icon-active,
+.home-new-nav-item:hover .home-new-nav-icon-normal,
+.home-new-nav-item:hover .home-new-nav-icon-active {
+  width: 58px !important;
+  height: 58px !important;
+  min-width: 58px !important;
+  min-height: 58px !important;
+  max-width: 58px !important;
+  max-height: 58px !important;
+  object-fit: contain !important;
+  transform: none !important;
+  scale: 1 !important;
+}
+
+.home-new-nav-icon-normal {
+  opacity: 1 !important;
+}
+
+.home-new-nav-icon-active {
+  position: absolute !important;
+  inset: 0 !important;
+  opacity: 0 !important;
+}
+
+.home-new-nav-item:hover .home-new-nav-icon-normal {
+  opacity: 0 !important;
+}
+
+.home-new-nav-item:hover .home-new-nav-icon-active {
+  opacity: 1 !important;
+}
+
+@media (max-width: 760px) {
+  .home-new-nav-label,
+  .home-new-nav-item:hover .home-new-nav-label {
+    font-size: 10px !important;
+    transform: none !important;
+    scale: 1 !important;
+  }
+
+  .home-new-nav-icon {
+    width: 38px !important;
+    height: 38px !important;
+    min-width: 38px !important;
+    min-height: 38px !important;
+    max-width: 38px !important;
+    max-height: 38px !important;
+    flex: 0 0 38px !important;
+  }
+
+  .home-new-nav-icon img,
+  .home-new-nav-icon-normal,
+  .home-new-nav-icon-active,
+  .home-new-nav-item:hover .home-new-nav-icon-normal,
+  .home-new-nav-item:hover .home-new-nav-icon-active {
+    width: 38px !important;
+    height: 38px !important;
+    min-width: 38px !important;
+    min-height: 38px !important;
+    max-width: 38px !important;
+    max-height: 38px !important;
+    object-fit: contain !important;
+    transform: none !important;
+    scale: 1 !important;
+  }
+}
