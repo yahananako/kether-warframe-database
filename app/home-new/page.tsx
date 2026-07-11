@@ -134,13 +134,17 @@ export default function HomeNewPage() {
           </div>
         </section>
 
-        <section className="home-new-nav-card">
-          <div className="home-new-nav-heading">
-            <p>KETHER DATABASE NAVIGATION</p>
-            <h2>資料庫導覽</h2>
-          </div>
+        <details className="home-new-fold-card home-new-fold-nav" open>
+          <summary className="home-new-fold-head">
+            <span>
+              <em>KETHER DATABASE NAVIGATION</em>
+              <strong>資料庫導覽</strong>
+            </span>
+            <b aria-hidden="true">⌄</b>
+          </summary>
 
-          <div className="home-new-nav-grid">
+        <section className="home-new-nav-card">
+<div className="home-new-nav-grid">
             {navItems.map((item) => (
               <Link key={item.href} href={item.href} className="home-new-nav-item">
                 <span className="home-new-nav-icon">
@@ -166,7 +170,7 @@ export default function HomeNewPage() {
             ))}
           </div>
         </section>
-
+        </details>
 
         <details className="home-new-fold-card home-new-fold-database" open>
           <summary className="home-new-fold-head">

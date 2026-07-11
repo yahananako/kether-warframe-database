@@ -12201,3 +12201,129 @@ a.nav-card {
     font-size: 16px !important;
   }
 }
+
+/* KETHER artist title 60 percent clean fold final */
+.home-new-nav-heading h2,
+.home-new-database-heading h2,
+.home-new-official-heading h2,
+.home-new-fold-head strong {
+  display: block !important;
+  color: rgba(31, 41, 55, 0.88) !important;
+  background: none !important;
+  background-image: none !important;
+  -webkit-background-clip: initial !important;
+  background-clip: initial !important;
+  -webkit-text-fill-color: rgba(31, 41, 55, 0.88) !important;
+  text-shadow: none !important;
+  filter: none !important;
+  font-size: clamp(18px, 1.8vw, 24px) !important;
+  line-height: 1.18 !important;
+  font-weight: 880 !important;
+  letter-spacing: 0.04em !important;
+}
+
+.home-new-nav-heading p,
+.home-new-database-heading p,
+.home-new-official-heading p,
+.home-new-fold-head em {
+  display: block !important;
+  color: rgba(124, 58, 237, 0.62) !important;
+  font-size: clamp(9px, 0.82vw, 12px) !important;
+  line-height: 1.25 !important;
+  font-weight: 850 !important;
+  letter-spacing: 0.14em !important;
+  font-style: normal !important;
+  margin: 0 !important;
+}
+
+/* 強制收合標題英文 / 中文上下排列 */
+.home-new-fold-head span {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  gap: 4px !important;
+  min-width: 0 !important;
+}
+
+.home-new-fold-head {
+  min-height: 58px !important;
+  padding: 14px 18px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 14px !important;
+}
+
+.home-new-fold-head b {
+  width: 34px !important;
+  height: 34px !important;
+  flex: 0 0 34px !important;
+  font-size: 19px !important;
+}
+
+/* 導覽收合後，裡面的 nav card 不要再多一層大外框 */
+.home-new-fold-nav .home-new-nav-card {
+  margin: 0 !important;
+  padding: 0 22px 22px !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+/* 電腦版導覽維持一排縮小 */
+@media (min-width: 901px) {
+  .home-new-fold-nav .home-new-nav-grid {
+    grid-template-columns: repeat(8, minmax(0, 1fr)) !important;
+    gap: clamp(8px, 0.8vw, 12px) !important;
+  }
+
+  .home-new-fold-nav .home-new-nav-item {
+    aspect-ratio: 1 / 0.72 !important;
+    min-height: clamp(72px, 7vw, 104px) !important;
+    max-height: 112px !important;
+  }
+}
+
+/* 手機版維持 4 + 4 */
+@media (max-width: 900px) {
+  .home-new-fold-nav .home-new-nav-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  }
+}
+
+@media (max-width: 760px) {
+  .home-new-nav-heading h2,
+  .home-new-database-heading h2,
+  .home-new-official-heading h2,
+  .home-new-fold-head strong {
+    font-size: clamp(15px, 4vw, 19px) !important;
+    letter-spacing: 0.03em !important;
+  }
+
+  .home-new-nav-heading p,
+  .home-new-database-heading p,
+  .home-new-official-heading p,
+  .home-new-fold-head em {
+    font-size: clamp(8px, 2.2vw, 10px) !important;
+    letter-spacing: 0.1em !important;
+  }
+
+  .home-new-fold-head {
+    min-height: 54px !important;
+    padding: 12px !important;
+  }
+
+  .home-new-fold-head b {
+    width: 30px !important;
+    height: 30px !important;
+    flex-basis: 30px !important;
+    font-size: 17px !important;
+  }
+
+  .home-new-fold-nav .home-new-nav-card {
+    padding: 0 12px 12px !important;
+  }
+}
