@@ -1,6 +1,7 @@
 import Link from "next/link";
-import { Bell, Menu, MessageCircle, Search, UserRound } from "lucide-react";
+import { Bell, MessageCircle, Search, UserRound } from "lucide-react";
 import KetherDynamicInfo from "../../components/KetherDynamicInfo";
+import HomeNewInlineMenu from "../../components/HomeNewInlineMenu";
 
 const databaseStats = [
   { label: "資料來源", value: "Google Sheets" },
@@ -67,9 +68,7 @@ export default function HomeNewPage() {
         <section className="home-new-hero-card">
           <div className="home-new-topbar">
             <div className="home-new-brand">
-              <button className="home-new-menu-button" type="button" aria-label="開啟選單">
-                <Menu size={26} />
-              </button>
+              <HomeNewInlineMenu />
 
               <span>KETHER</span>
             </div>
