@@ -9752,4 +9752,23 @@ a.nav-card {
   }
 }
 /* KETHER home-new search and notice functions end */
+/* KETHER home-new search result no-link polish start */
+.home-new-search-result {
+  cursor: default;
+}
+
+.home-new-search-result small {
+  margin-top: 4px;
+  display: block;
+  color: rgba(71, 85, 105, 0.82);
+  font-size: 12px;
+  line-height: 1.45;
+  font-weight: 760;
+}
+
+.home-new-search-result:hover {
+  color: #263445;
+  transform: none;
+}
+/* KETHER home-new search result no-link polish end */
 /* KETHER home-new rebuild end */

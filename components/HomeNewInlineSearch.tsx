@@ -1,28 +1,123 @@
 "use client";
 
-import Link from "next/link";
-import { ArrowRight, Search, X } from "lucide-react";
-import { useMemo, useState } from "react";
+import { Search, X } from "lucide-react";
+import { useEffect, useMemo, useState } from "react";
+
+const PANEL_EVENT = "home-new-panel-open";
 
 const searchItems = [
-  { label: "正式首頁", href: "/", tag: "KETHER" },
-  { label: "新首頁測試", href: "/home-new", tag: "KETHER" },
-  { label: "個人頁面", href: "/profile", tag: "個人" },
-  { label: "資料庫總覽", href: "/database/overview", tag: "資料庫" },
-  { label: "戰甲", href: "/database/warframes", tag: "資料庫" },
-  { label: "主要武器", href: "/database/primary", tag: "資料庫" },
-  { label: "次要武器", href: "/database/secondary", tag: "資料庫" },
-  { label: "近戰武器", href: "/database/melee", tag: "資料庫" },
-  { label: "同伴", href: "/database/companions", tag: "資料庫" },
-  { label: "曲翼", href: "/database/archwing", tag: "資料庫" },
-  { label: "MOD資料庫", href: "/database/mods", tag: "資料庫" },
-  { label: "小希 Bot", href: "/bot", tag: "工具" },
-  { label: "星圖電波局", href: "/live", tag: "工具" },
+  {
+    label: "戰甲",
+    source: "資料庫",
+    type: "資料分類",
+    description: "查看 Warframe 戰甲資料、取得方式、備註與收藏狀態。",
+    keywords: "warframe 戰甲 資料庫 取得 database",
+  },
+  {
+    label: "主要武器",
+    source: "資料庫",
+    type: "資料分類",
+    description: "查看主要武器資料、交易價格、用途與備註。",
+    keywords: "primary 主要武器 武器 資料庫",
+  },
+  {
+    label: "次要武器",
+    source: "資料庫",
+    type: "資料分類",
+    description: "查看次要武器資料、交易價格、用途與備註。",
+    keywords: "secondary 次要武器 武器 資料庫",
+  },
+  {
+    label: "近戰武器",
+    source: "資料庫",
+    type: "資料分類",
+    description: "查看近戰武器資料、交易價格、用途與備註。",
+    keywords: "melee 近戰武器 武器 資料庫",
+  },
+  {
+    label: "同伴",
+    source: "資料庫",
+    type: "資料分類",
+    description: "查看同伴、寵物相關資料與取得方向。",
+    keywords: "companion pet 同伴 寵物 資料庫",
+  },
+  {
+    label: "曲翼",
+    source: "資料庫",
+    type: "資料分類",
+    description: "查看曲翼、曲翼武器、亡靈骸甲相關資料。",
+    keywords: "archwing necramech 曲翼 亡靈骸甲 資料庫",
+  },
+  {
+    label: "MOD資料庫",
+    source: "資料庫",
+    type: "資料分類",
+    description: "查看 MOD 系列、用途、價格與備註。",
+    keywords: "mod 模組 資料庫 primed galvanized archon",
+  },
+  {
+    label: "/price",
+    source: "Bot",
+    type: "Discord 指令",
+    description: "查詢 Warframe Market 交易價格。",
+    keywords: "bot price 查價 市場 白金 warframe market",
+  },
+  {
+    label: "/戰甲取得",
+    source: "Bot",
+    type: "Discord 指令",
+    description: "查詢指定戰甲的取得方式。",
+    keywords: "bot 戰甲取得 warframe acquisition",
+  },
+  {
+    label: "/武器取得",
+    source: "Bot",
+    type: "Discord 指令",
+    description: "查詢指定武器的取得方式。",
+    keywords: "bot 武器取得 weapon acquisition",
+  },
+  {
+    label: "/同伴取得",
+    source: "Bot",
+    type: "Discord 指令",
+    description: "查詢同伴或寵物的取得方式。",
+    keywords: "bot 同伴取得 companion pet",
+  },
+  {
+    label: "/材料取得",
+    source: "Bot",
+    type: "Discord 指令",
+    description: "查詢材料來源與推薦刷法。",
+    keywords: "bot 材料取得 material farm",
+  },
+  {
+    label: "/核桃取得",
+    source: "Bot",
+    type: "Discord 指令",
+    description: "查詢遺物 / 核桃取得與 Prime 相關資訊。",
+    keywords: "bot 核桃取得 relic 遺物 prime",
+  },
 ];
 
 export default function HomeNewInlineSearch() {
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
+
+  useEffect(() => {
+    const handlePanelOpen = (event: Event) => {
+      const customEvent = event as CustomEvent<string>;
+
+      if (customEvent.detail !== "search") {
+        setOpen(false);
+      }
+    };
+
+    window.addEventListener(PANEL_EVENT, handlePanelOpen);
+
+    return () => {
+      window.removeEventListener(PANEL_EVENT, handlePanelOpen);
+    };
+  }, []);
 
   const results = useMemo(() => {
     const keyword = query.trim().toLowerCase();
@@ -32,13 +127,22 @@ export default function HomeNewInlineSearch() {
     }
 
     return searchItems.filter((item) => {
-      return (
-        item.label.toLowerCase().includes(keyword) ||
-        item.tag.toLowerCase().includes(keyword) ||
-        item.href.toLowerCase().includes(keyword)
-      );
+      const haystack = `${item.label} ${item.source} ${item.type} ${item.description} ${item.keywords}`.toLowerCase();
+      return haystack.includes(keyword);
     });
   }, [query]);
+
+  const toggleSearch = () => {
+    setOpen((current) => {
+      const next = !current;
+
+      if (next) {
+        window.dispatchEvent(new CustomEvent(PANEL_EVENT, { detail: "search" }));
+      }
+
+      return next;
+    });
+  };
 
   return (
     <div className="home-new-action-wrap">
@@ -47,7 +151,7 @@ export default function HomeNewInlineSearch() {
         type="button"
         aria-label={open ? "關閉搜尋" : "開啟搜尋"}
         aria-expanded={open}
-        onClick={() => setOpen((value) => !value)}
+        onClick={toggleSearch}
       >
         {open ? <X size={22} /> : <Search size={22} />}
       </button>
@@ -64,7 +168,7 @@ export default function HomeNewInlineSearch() {
           <section className="home-new-pop-panel home-new-search-panel" aria-label="KETHER 搜尋">
             <div className="home-new-pop-head">
               <p>KETHER SEARCH</p>
-              <strong>星圖搜尋</strong>
+              <strong>資料庫 × Bot 搜尋</strong>
             </div>
 
             <label className="home-new-search-box">
@@ -72,7 +176,7 @@ export default function HomeNewInlineSearch() {
               <input
                 value={query}
                 onChange={(event) => setQuery(event.target.value)}
-                placeholder="搜尋資料庫、Bot、星圖電波局..."
+                placeholder="搜尋戰甲、MOD、材料、/price..."
                 autoFocus
               />
             </label>
@@ -80,21 +184,16 @@ export default function HomeNewInlineSearch() {
             <div className="home-new-search-results">
               {results.length > 0 ? (
                 results.map((item) => (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    className="home-new-search-result"
-                    onClick={() => setOpen(false)}
-                  >
+                  <article key={`${item.source}-${item.label}`} className="home-new-search-result">
                     <span>
-                      <em>{item.tag}</em>
+                      <em>{item.source}｜{item.type}</em>
                       <strong>{item.label}</strong>
+                      <small>{item.description}</small>
                     </span>
-                    <ArrowRight size={16} />
-                  </Link>
+                  </article>
                 ))
               ) : (
-                <div className="home-new-empty-state">沒有找到對應入口喵</div>
+                <div className="home-new-empty-state">沒有找到對應資料喵</div>
               )}
             </div>
           </section>

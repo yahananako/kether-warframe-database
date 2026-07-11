@@ -1,7 +1,9 @@
 "use client";
 
 import { Bell, X } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
+const PANEL_EVENT = "home-new-panel-open";
 
 const notices = [
   {
@@ -29,6 +31,34 @@ const notices = [
 export default function HomeNewInlineNotifications() {
   const [open, setOpen] = useState(false);
 
+  useEffect(() => {
+    const handlePanelOpen = (event: Event) => {
+      const customEvent = event as CustomEvent<string>;
+
+      if (customEvent.detail !== "notice") {
+        setOpen(false);
+      }
+    };
+
+    window.addEventListener(PANEL_EVENT, handlePanelOpen);
+
+    return () => {
+      window.removeEventListener(PANEL_EVENT, handlePanelOpen);
+    };
+  }, []);
+
+  const toggleNotice = () => {
+    setOpen((current) => {
+      const next = !current;
+
+      if (next) {
+        window.dispatchEvent(new CustomEvent(PANEL_EVENT, { detail: "notice" }));
+      }
+
+      return next;
+    });
+  };
+
   return (
     <div className="home-new-action-wrap">
       <button
@@ -36,7 +66,7 @@ export default function HomeNewInlineNotifications() {
         type="button"
         aria-label={open ? "關閉通知" : "開啟通知"}
         aria-expanded={open}
-        onClick={() => setOpen((value) => !value)}
+        onClick={toggleNotice}
       >
         {open ? <X size={22} /> : <Bell size={22} />}
         <span aria-hidden="true" />
