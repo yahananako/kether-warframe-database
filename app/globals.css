@@ -11543,3 +11543,143 @@ a.nav-card {
   font-style: italic;
   font-family: "Segoe Print", "Comic Sans MS", "DFKai-SB", cursive;
 }
+
+/* KETHER final footer layout hard fix */
+.home-new-footer,
+.home-new-art-footer {
+  width: 100% !important;
+  max-width: 1180px !important;
+  margin: 28px auto 0 !important;
+  padding: 24px 28px 96px !important;
+  display: grid !important;
+  grid-template-columns: 1fr !important;
+  gap: 14px !important;
+  position: relative !important;
+  box-sizing: border-box !important;
+  overflow: visible !important;
+}
+
+.home-new-footer::before,
+.home-new-art-footer::before {
+  content: "" !important;
+  display: block !important;
+  width: min(760px, 82%) !important;
+  height: 1px !important;
+  margin: 0 auto 4px !important;
+  background:
+    linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(203, 213, 225, 0.42) 12%,
+      rgba(255, 255, 255, 0.96) 50%,
+      rgba(203, 213, 225, 0.42) 88%,
+      transparent 100%
+    ) !important;
+  box-shadow:
+    0 0 16px rgba(255, 255, 255, 0.78),
+    0 0 28px rgba(168, 185, 255, 0.32) !important;
+}
+
+.home-new-footer-url,
+.home-new-art-footer-url {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: block !important;
+  text-align: center !important;
+  box-sizing: border-box !important;
+}
+
+.home-new-footer-url,
+.home-new-footer-url a,
+.home-new-art-footer-url,
+.home-new-art-footer-url a {
+  color: rgba(36, 43, 62, 0.84) !important;
+  font-size: clamp(12px, 1.05vw, 16px) !important;
+  line-height: 1.35 !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.03em !important;
+  text-decoration: none !important;
+  word-break: normal !important;
+  overflow-wrap: normal !important;
+  white-space: nowrap !important;
+}
+
+.home-new-footer-credit,
+.home-new-art-footer-builder {
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: block !important;
+  text-align: right !important;
+  align-self: auto !important;
+  justify-self: stretch !important;
+  position: static !important;
+  box-sizing: border-box !important;
+  color: rgba(88, 28, 135, 0.9) !important;
+  font-family: "Segoe Script", "Segoe Print", "Bradley Hand", "Comic Sans MS", cursive !important;
+  font-size: clamp(18px, 1.7vw, 28px) !important;
+  line-height: 1.35 !important;
+  letter-spacing: 0.04em !important;
+  font-style: italic !important;
+  text-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.82),
+    0 0 12px rgba(236, 107, 207, 0.28),
+    0 0 24px rgba(138, 162, 255, 0.22) !important;
+}
+
+.home-new-footer-credit,
+.home-new-art-footer-builder b {
+  background:
+    linear-gradient(
+      100deg,
+      #6d5dfc 0%,
+      #b05cff 28%,
+      #ec6bcf 56%,
+      #8aa2ff 82%,
+      #ffffff 100%
+    ) !important;
+  background-size: 180% 100% !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  background-clip: text !important;
+  color: transparent !important;
+}
+
+.home-new-art-footer-builder span {
+  font-size: 0.58em !important;
+  opacity: 0.58 !important;
+  letter-spacing: 0.08em !important;
+  -webkit-text-fill-color: rgba(71, 85, 105, 0.68) !important;
+  color: rgba(71, 85, 105, 0.68) !important;
+}
+
+@media (max-width: 760px) {
+  .home-new-footer,
+  .home-new-art-footer {
+    margin-top: 22px !important;
+    padding: 20px 14px 96px !important;
+    gap: 12px !important;
+  }
+
+  .home-new-footer::before,
+  .home-new-art-footer::before {
+    width: 88% !important;
+  }
+
+  .home-new-footer-url,
+  .home-new-footer-url a,
+  .home-new-art-footer-url,
+  .home-new-art-footer-url a {
+    font-size: clamp(10px, 2.45vw, 13px) !important;
+    white-space: nowrap !important;
+    letter-spacing: 0 !important;
+  }
+
+  .home-new-footer-credit,
+  .home-new-art-footer-builder {
+    font-size: clamp(16px, 4vw, 22px) !important;
+    padding-right: 4px !important;
+  }
+}
