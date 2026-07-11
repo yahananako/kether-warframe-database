@@ -1,7 +1,9 @@
 import Link from "next/link";
-import { Bell, MessageCircle, Search, UserRound } from "lucide-react";
+import { MessageCircle, UserRound } from "lucide-react";
 import KetherDynamicInfo from "../../components/KetherDynamicInfo";
 import HomeNewInlineMenu from "../../components/HomeNewInlineMenu";
+import HomeNewInlineSearch from "../../components/HomeNewInlineSearch";
+import HomeNewInlineNotifications from "../../components/HomeNewInlineNotifications";
 
 const databaseStats = [
   { label: "資料來源", value: "Google Sheets" },
@@ -74,13 +76,9 @@ export default function HomeNewPage() {
             </div>
 
             <div className="home-new-hero-actions" aria-label="首頁快捷入口">
-              <button className="home-new-icon-action" type="button" aria-label="搜尋">
-                <Search size={22} />
-              </button>
+              <HomeNewInlineSearch />
 
-              <button className="home-new-icon-action" type="button" aria-label="通知">
-                <Bell size={22} />
-              </button>
+              <HomeNewInlineNotifications />
 
               <Link href="/profile" className="home-new-round-action" aria-label="個人頁面">
                 <UserRound size={18} />
