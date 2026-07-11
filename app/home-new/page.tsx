@@ -158,7 +158,6 @@ export default function HomeNewPage() {
 
             <article className="home-new-database-info-card">
               <span>資料庫狀態</span>
-              <strong>同步正常</strong>
 
               <ul className="home-new-database-status-list">
                 <li>
@@ -173,13 +172,24 @@ export default function HomeNewPage() {
                   <em>目前資料總數</em>
                   <b>41 區塊</b>
                 </li>
+                <li>
+                  <em>同步狀態</em>
+                  <b>同步正常</b>
+                </li>
               </ul>
             </article>
 
-            <article className="home-new-database-info-card">
+            <article className="home-new-database-info-card home-new-database-notes-card">
               <span>備註</span>
-              <strong>逐步建置中</strong>
-              <p>目前先在新首頁測試選單、搜尋、鈴鐺、導覽與資料庫資訊，確認穩定後再接回正式首頁。</p>
+              <strong>長期公告</strong>
+
+              <ul className="home-new-notebook-list">
+                <li>首頁目前在 /home-new 測試中，確認穩定後才會替換正式首頁。</li>
+                <li>功能會分段接線：選單、搜尋、鈴鐺、導覽、資料庫資訊逐步確認。</li>
+                <li>資料以 Google Sheets 為主來源，網站僅顯示整理後的資料內容。</li>
+                <li>版本號只在功能確認完成後更新，不在半成品階段提前變更。</li>
+                <li>若資料顯示異常，先確認同步狀態與最新部署版本。</li>
+              </ul>
             </article>
           </div>
         </section>
