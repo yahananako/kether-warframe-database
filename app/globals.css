@@ -9251,4 +9251,41 @@ a.nav-card {
   }
 }
 /* KETHER home-new inline menu end */
+/* KETHER home-new menu top overlay fix start */
+.home-new-inline-menu {
+  position: relative;
+  z-index: 120;
+}
+
+.home-new-menu-backdrop {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 900 !important;
+  border: 0;
+  background: rgba(15, 23, 42, 0.08);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+  cursor: default;
+}
+
+.home-new-menu-panel {
+  position: fixed !important;
+  top: 18px !important;
+  left: 18px !important;
+  z-index: 999 !important;
+  width: min(380px, calc(100vw - 36px)) !important;
+  max-height: calc(100dvh - 36px);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+@media (max-width: 760px) {
+  .home-new-menu-panel {
+    top: 12px !important;
+    left: 10px !important;
+    width: min(340px, calc(100vw - 20px)) !important;
+    max-height: calc(100dvh - 24px);
+  }
+}
+/* KETHER home-new menu top overlay fix end */
 /* KETHER home-new rebuild end */
