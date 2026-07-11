@@ -10680,3 +10680,32 @@ a.nav-card {
     letter-spacing: 0 !important;
   }
 }
+
+/* KETHER notebook notes responsive font sizing */
+.home-new-notebook-list li {
+  font-size: clamp(13px, 1.15vw, 16px) !important;
+  line-height: 1.72 !important;
+  padding: clamp(9px, 1vw, 13px) clamp(10px, 1vw, 14px) clamp(9px, 1vw, 13px) clamp(30px, 2.4vw, 38px) !important;
+}
+
+.home-new-notebook-list li::before {
+  left: clamp(12px, 1.2vw, 16px) !important;
+  top: clamp(17px, 1.45vw, 23px) !important;
+  width: clamp(6px, 0.55vw, 8px) !important;
+  height: clamp(6px, 0.55vw, 8px) !important;
+}
+
+@media (max-width: 760px) {
+  .home-new-notebook-list li {
+    font-size: clamp(10px, 2.6vw, 13px) !important;
+    line-height: 1.55 !important;
+    padding: clamp(6px, 1.8vw, 9px) clamp(7px, 1.8vw, 10px) clamp(6px, 1.8vw, 9px) clamp(22px, 5.2vw, 30px) !important;
+  }
+
+  .home-new-notebook-list li::before {
+    left: clamp(8px, 2.2vw, 11px) !important;
+    top: clamp(12px, 3vw, 17px) !important;
+    width: clamp(4px, 1.2vw, 6px) !important;
+    height: clamp(4px, 1.2vw, 6px) !important;
+  }
+}
