@@ -4,6 +4,14 @@ import { Bell, X } from "lucide-react";
 import { useEffect, useState } from "react";
 
 const PANEL_EVENT = "home-new-panel-open";
+const NOTICE_STORAGE_KEY = "kether-home-new-notice-read-version";
+
+/**
+ * 鈴鐺公告內容有更新時，只改這一行版本。
+ * 使用者讀過目前版本後，紅點會消失。
+ * 下次公告內容更新，版本改掉，紅點才會重新出現。
+ */
+const NOTICES_VERSION = "2026-07-11-home-new-notice-002";
 
 const notices = [
   {
@@ -30,7 +38,12 @@ const notices = [
 
 export default function HomeNewInlineNotifications() {
   const [open, setOpen] = useState(false);
-  const [hasUnread, setHasUnread] = useState(true);
+  const [hasUnread, setHasUnread] = useState(false);
+
+  useEffect(() => {
+    const readVersion = window.localStorage.getItem(NOTICE_STORAGE_KEY);
+    setHasUnread(readVersion !== NOTICES_VERSION);
+  }, []);
 
   useEffect(() => {
     const handlePanelOpen = (event: Event) => {
@@ -48,12 +61,17 @@ export default function HomeNewInlineNotifications() {
     };
   }, []);
 
+  const markNoticeAsRead = () => {
+    window.localStorage.setItem(NOTICE_STORAGE_KEY, NOTICES_VERSION);
+    setHasUnread(false);
+  };
+
   const toggleNotice = () => {
     setOpen((current) => {
       const next = !current;
 
       if (next) {
-        setHasUnread(false);
+        markNoticeAsRead();
         window.dispatchEvent(new CustomEvent(PANEL_EVENT, { detail: "notice" }));
       }
 
