@@ -9254,37 +9254,125 @@ a.nav-card {
 /* KETHER home-new menu top overlay fix start */
 .home-new-inline-menu {
   position: relative;
-  z-index: 120;
+  z-index: 40;
 }
 
+/* 保留點空白關閉，但不要做成可見全畫面遮罩 */
 .home-new-menu-backdrop {
   position: fixed !important;
   inset: 0 !important;
-  z-index: 900 !important;
+  z-index: 30 !important;
   border: 0;
-  background: rgba(15, 23, 42, 0.08);
-  backdrop-filter: blur(2px);
-  -webkit-backdrop-filter: blur(2px);
+  background: transparent !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
   cursor: default;
 }
 
+/* 橫式選單：從 KETHER 左側按鈕下方展開，浮在版圖上面 */
 .home-new-menu-panel {
-  position: fixed !important;
-  top: 18px !important;
-  left: 18px !important;
-  z-index: 999 !important;
-  width: min(380px, calc(100vw - 36px)) !important;
-  max-height: calc(100dvh - 36px);
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
+  position: absolute !important;
+  top: calc(100% + 12px) !important;
+  left: 0 !important;
+  z-index: 60 !important;
+  width: min(860px, calc(100vw - 36px)) !important;
+  max-height: none !important;
+  overflow: visible !important;
+
+  display: grid;
+  grid-template-columns: 160px 1fr 1.7fr 1fr;
+  gap: 12px;
+
+  padding: 14px;
+  border-radius: 26px;
+  border: 1px solid rgba(255, 255, 255, 0.66);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.24), rgba(226, 232, 240, 0.08)),
+    radial-gradient(circle at 18% 0%, rgba(255, 255, 255, 0.34), transparent 42%),
+    rgba(255, 255, 255, 0.105);
+  box-shadow:
+    0 0 0 1px rgba(226, 232, 240, 0.36),
+    0 22px 50px rgba(15, 23, 42, 0.18),
+    0 0 28px rgba(255, 255, 255, 0.38),
+    inset 0 1px 0 rgba(255, 255, 255, 0.76);
+  backdrop-filter: blur(24px) saturate(1.45);
+  -webkit-backdrop-filter: blur(24px) saturate(1.45);
+}
+
+.home-new-menu-panel-head {
+  margin: 0;
+  min-height: 100%;
+  padding: 12px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.home-new-menu-group {
+  margin: 0 !important;
+  min-width: 0;
+}
+
+.home-new-menu-group h3 {
+  margin: 0 0 8px;
+}
+
+.home-new-menu-links {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 7px;
+}
+
+.home-new-menu-group:nth-of-type(2) .home-new-menu-links {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.home-new-menu-link {
+  min-height: 38px;
+  padding: 0 10px;
+  border-radius: 15px;
+  font-size: 12px;
+}
+
+/* 讓展開選單一定壓在版圖上方，不被 banner 蓋住 */
+.home-new-topbar {
+  position: relative;
+  z-index: 20;
+}
+
+.home-new-banner {
+  position: relative;
+  z-index: 1;
 }
 
 @media (max-width: 760px) {
   .home-new-menu-panel {
-    top: 12px !important;
-    left: 10px !important;
-    width: min(340px, calc(100vw - 20px)) !important;
-    max-height: calc(100dvh - 24px);
+    top: calc(100% + 10px) !important;
+    left: -2px !important;
+    width: min(520px, calc(100vw - 24px)) !important;
+    max-height: 62dvh !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch;
+
+    grid-template-columns: 1fr;
+    gap: 10px;
+    padding: 12px;
+    border-radius: 24px;
+  }
+
+  .home-new-menu-panel-head {
+    min-height: auto;
+  }
+
+  .home-new-menu-links,
+  .home-new-menu-group:nth-of-type(2) .home-new-menu-links {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .home-new-menu-link {
+    min-height: 38px;
+    font-size: 12px;
   }
 }
 /* KETHER home-new menu top overlay fix end */
