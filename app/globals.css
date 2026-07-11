@@ -11507,3 +11507,39 @@ a.nav-card {
     font-size: 0.52em;
   }
 }
+
+/* home-new footer layout */
+.home-new-footer {
+  margin-top: 20px;
+  padding: 20px 24px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.home-new-footer-url {
+  display: block;
+  width: 100%;
+  text-align: center;
+  color: rgba(55, 65, 81, 0.92);
+  text-decoration: none;
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  word-break: break-all;
+}
+
+.home-new-footer-url:hover {
+  color: rgba(124, 58, 237, 0.95);
+}
+
+.home-new-footer-credit {
+  align-self: flex-end;
+  text-align: right;
+  margin: 0;
+  color: rgba(88, 28, 135, 0.92);
+  font-size: 18px;
+  line-height: 1.5;
+  letter-spacing: 0.06em;
+  font-style: italic;
+  font-family: "Segoe Print", "Comic Sans MS", "DFKai-SB", cursive;
+}
