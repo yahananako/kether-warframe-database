@@ -10022,3 +10022,84 @@ a.nav-card {
     scale: 1 !important;
   }
 }
+
+/* KETHER nav image glow effect fix */
+.home-new-nav-item {
+  isolation: isolate !important;
+}
+
+.home-new-nav-item::before {
+  content: "" !important;
+  position: absolute !important;
+  inset: -18% !important;
+  z-index: 0 !important;
+  border-radius: inherit !important;
+  background:
+    radial-gradient(circle at 50% 45%, rgba(255, 255, 255, 0.72), transparent 42%),
+    radial-gradient(circle at 50% 50%, rgba(168, 185, 255, 0.34), transparent 62%),
+    radial-gradient(circle at 50% 50%, rgba(236, 72, 153, 0.18), transparent 72%) !important;
+  opacity: 0 !important;
+  filter: blur(18px) !important;
+  transition: opacity 180ms ease !important;
+  pointer-events: none !important;
+}
+
+.home-new-nav-item::after {
+  content: "" !important;
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 2 !important;
+  border-radius: inherit !important;
+  pointer-events: none !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.76),
+    inset 0 -1px 0 rgba(148, 163, 184, 0.14),
+    0 0 0 1px rgba(255, 255, 255, 0.38) !important;
+  transition:
+    box-shadow 180ms ease,
+    border-color 180ms ease !important;
+}
+
+.home-new-nav-item:hover::before {
+  opacity: 1 !important;
+}
+
+.home-new-nav-item:hover::after {
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    inset 0 -1px 0 rgba(148, 163, 184, 0.16),
+    0 0 0 1px rgba(255, 255, 255, 0.82),
+    0 0 18px rgba(255, 255, 255, 0.78),
+    0 0 34px rgba(168, 185, 255, 0.38),
+    0 0 46px rgba(236, 72, 153, 0.18) !important;
+}
+
+.home-new-nav-icon {
+  z-index: 1 !important;
+}
+
+.home-new-nav-icon img {
+  z-index: 1 !important;
+}
+
+/* 讓圖片本體也有一點淡淡發光，但不變大 */
+.home-new-nav-item:hover .home-new-nav-icon-active {
+  filter:
+    drop-shadow(0 0 10px rgba(255, 255, 255, 0.72))
+    drop-shadow(0 0 18px rgba(168, 185, 255, 0.28)) !important;
+}
+
+@media (max-width: 760px) {
+  .home-new-nav-item::before {
+    inset: -14% !important;
+    filter: blur(12px) !important;
+  }
+
+  .home-new-nav-item:hover::after {
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.82),
+      0 0 0 1px rgba(255, 255, 255, 0.72),
+      0 0 16px rgba(255, 255, 255, 0.58),
+      0 0 26px rgba(168, 185, 255, 0.28) !important;
+  }
+}
