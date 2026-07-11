@@ -10644,3 +10644,39 @@ a.nav-card {
     letter-spacing: 0.06em !important;
   }
 }
+
+/* KETHER database version card compact and large version text */
+.home-new-database-info-card:nth-child(1) {
+  min-height: 92px !important;
+  padding: 12px 14px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  gap: 8px !important;
+}
+
+.home-new-database-info-card:nth-child(1) > span {
+  margin-bottom: 0 !important;
+}
+
+.home-new-database-info-card:nth-child(1) > strong {
+  font-size: 28px !important;
+  line-height: 1.12 !important;
+  letter-spacing: 0.02em !important;
+  font-weight: 950 !important;
+  word-break: keep-all !important;
+}
+
+@media (max-width: 760px) {
+  .home-new-database-info-card:nth-child(1) {
+    min-height: 78px !important;
+    padding: 9px !important;
+    gap: 5px !important;
+  }
+
+  .home-new-database-info-card:nth-child(1) > strong {
+    font-size: 20px !important;
+    line-height: 1.12 !important;
+    letter-spacing: 0 !important;
+  }
+}
