@@ -36,12 +36,14 @@ export default function DatabaseOverviewPage({
   subtitle,
   error,
   categoryStats = [],
+  hideHero = false,
 }: {
   rows: SheetRow[];
   title: string;
   subtitle: string;
   error?: string | null;
   categoryStats?: OverviewCategoryStat[];
+  hideHero?: boolean;
 }) {
   const total = rows.length;
   const pricedRows = rows.filter((row) => priceNumber(row.price) > 0);
@@ -57,47 +59,49 @@ export default function DatabaseOverviewPage({
 
   return (
     <section className="kether-overview-v2">
-      <section className="kether-overview-hero-shell">
-        <p className="kether-overview-kicker">KETHER DATABASE OVERVIEW</p>
+      {!hideHero ? (
+        <section className="kether-overview-hero-shell">
+          <p className="kether-overview-kicker">KETHER DATABASE OVERVIEW</p>
 
-        <div className="kether-overview-hero-banner">
-          <img
-            src="/home-hero-banner.png"
-            alt="KETHER OF PARADISO Warframe 資料庫總覽版圖"
-          />
-        </div>
-
-        <div className="kether-overview-hero-copy">
-          <h1>{title}</h1>
-          <p>
-            {subtitle}
-            <br />
-            小希把總覽頁整理成全資料庫圖表控制台，讓各分類資料量、價格完成度與收藏進度更好看懂。
-          </p>
-
-          <div className="kether-overview-hero-actions">
-            <Link href="/">
-              <ArrowLeft size={16} />
-              返回首頁
-            </Link>
-
-            <Link href="/bot">
-              <Bot size={16} />
-              小希 Bot 中樞
-            </Link>
-
-            <Link href="/live">
-              <Radio size={16} />
-              小希星圖電波局
-            </Link>
-
-            <Link href="/profile">
-              <Bell size={16} />
-              個人進度
-            </Link>
+          <div className="kether-overview-hero-banner">
+            <img
+              src="/home-hero-banner.png"
+              alt="KETHER OF PARADISO Warframe 資料庫總覽版圖"
+            />
           </div>
-        </div>
-      </section>
+
+          <div className="kether-overview-hero-copy">
+            <h1>{title}</h1>
+            <p>
+              {subtitle}
+              <br />
+              小希把總覽頁整理成全資料庫圖表控制台，讓各分類資料量、價格完成度與收藏進度更好看懂。
+            </p>
+
+            <div className="kether-overview-hero-actions">
+              <Link href="/">
+                <ArrowLeft size={16} />
+                返回首頁
+              </Link>
+
+              <Link href="/bot">
+                <Bot size={16} />
+                小希 Bot 中樞
+              </Link>
+
+              <Link href="/live">
+                <Radio size={16} />
+                小希星圖電波局
+              </Link>
+
+              <Link href="/profile">
+                <Bell size={16} />
+                個人進度
+              </Link>
+            </div>
+          </div>
+        </section>
+      ) : null}
 
       {error ? (
         <section className="kether-overview-error">
