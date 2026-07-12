@@ -1,8 +1,24 @@
 import Link from "next/link";
-import { MessageCircle, UserRound } from "lucide-react";
+import {
+  Crown,
+  MessageCircle,
+  Shield,
+  Sparkles,
+  Users,
+  UserRound,
+} from "lucide-react";
+
+import KetherDynamicInfo from "../../components/KetherDynamicInfo";
 import HomeNewInlineMenu from "../../components/HomeNewInlineMenu";
 import HomeNewInlineSearch from "../../components/HomeNewInlineSearch";
 import HomeNewInlineNotifications from "../../components/HomeNewInlineNotifications";
+
+const databaseStats = [
+  { label: "資料來源", value: "Google Sheets" },
+  { label: "資料分頁", value: "7" },
+  { label: "資料區塊", value: "41" },
+  { label: "同步節奏", value: "每日 04:00" },
+];
 
 const navItems = [
   {
@@ -63,11 +79,13 @@ export default function ClanPage() {
           <div className="home-new-topbar">
             <div className="home-new-brand">
               <HomeNewInlineMenu />
+
               <span>KETHER</span>
             </div>
 
-            <div className="home-new-hero-actions" aria-label="氏族頁快捷入口">
+            <div className="home-new-hero-actions" aria-label="氏族中心快捷入口">
               <HomeNewInlineSearch />
+
               <HomeNewInlineNotifications />
 
               <Link href="/profile" className="home-new-round-action" aria-label="個人頁面">
@@ -94,6 +112,10 @@ export default function ClanPage() {
               alt="KETHER OF PARADISO 氏族資料中心版圖"
             />
           </div>
+
+          <div className="home-new-dynamic-inside">
+            <KetherDynamicInfo />
+          </div>
         </section>
 
         <details className="home-new-fold-card home-new-fold-nav">
@@ -118,6 +140,19 @@ export default function ClanPage() {
                 </Link>
               ))}
             </div>
+
+            <div className="home-new-section-divider" aria-hidden="true">
+              <span />
+            </div>
+
+            <div className="home-new-database-line" aria-label="資料庫狀態">
+              {databaseStats.map((item) => (
+                <div key={item.label} className="home-new-database-chip">
+                  <span>{item.label}</span>
+                  <strong>{item.value}</strong>
+                </div>
+              ))}
+            </div>
           </section>
         </details>
 
@@ -125,7 +160,49 @@ export default function ClanPage() {
           <p>KETHER CLAN CENTER</p>
           <h1>氏族資料中心</h1>
           <span>
-            這裡是 KETHER 氏族頁入口。後續可放氏族介紹、成員資訊、Discord 規則、活動公告與氏族進度。
+            KETHER 氏族的入口頁。之後這裡會整理氏族介紹、Discord 規則、成員資訊、活動公告與氏族進度。
+          </span>
+        </section>
+
+        <section className="auth-grid">
+          <article>
+            <Crown size={34} />
+            <h3>氏族身份</h3>
+            <p>
+              未來可顯示 Discord 身分組、氏族權限、管理階級與成員狀態。
+            </p>
+          </article>
+
+          <article>
+            <Users size={34} />
+            <h3>成員中心</h3>
+            <p>
+              預留氏族成員名單、活躍狀態、Warframe 資料與個人名片整合。
+            </p>
+          </article>
+
+          <article>
+            <Shield size={34} />
+            <h3>氏族規則</h3>
+            <p>
+              可放 Discord 規範、氏族招募條件、活動規則與注意事項。
+            </p>
+          </article>
+
+          <article>
+            <Sparkles size={34} />
+            <h3>活動公告</h3>
+            <p>
+              預留氏族活動、資源需求、開團資訊與重要公告。
+            </p>
+          </article>
+        </section>
+
+        <section className="kether-overview-intro-card">
+          <p>KETHER CLAN NOTE</p>
+          <h1>氏族系統規劃</h1>
+          <span>
+            目前氏族頁先作為固定入口與版型統一頁。後續可逐步接入 Discord 成員資料、氏族公告與個人資料中心。
           </span>
         </section>
 
