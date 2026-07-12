@@ -1,7 +1,6 @@
 import Link from "next/link";
 import {
   BadgeCheck,
-  Bot,
   Database,
   KeyRound,
   MessageCircle,
@@ -85,16 +84,9 @@ const clanCards = [
   {
     icon: KeyRound,
     title: "網站登入與權限",
-    text: "網站已接上 Discord OAuth，後續會依 Guild ID 與身分組確認可使用的個人功能與群組功能。",
-    actionLabel: "前往登入",
-    href: "/login",
-  },
-  {
-    icon: Bot,
-    title: "BOT 與網站連動",
-    text: "小希 BOT 負責 Discord 內快速查詢，網站負責完整資料表、個人進度與群組資料庫。",
-    actionLabel: "查看 BOT",
-    href: "/bot",
+    text: "KETHER 網站使用 Discord 連結登入，後續會依 Discord 群組與身分組確認可使用的個人功能與群組功能。",
+    actionLabel: "使用 Discord 登入",
+    href: "/api/auth/signin/discord",
   },
 ];
 
