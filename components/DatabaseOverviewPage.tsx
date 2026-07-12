@@ -72,31 +72,41 @@ export default function DatabaseOverviewPage({
         </section>
       ) : (
         <>
-          <section className="kether-overview-metric-grid">
-            <article>
-              <span>總覽資料</span>
-              <strong>{formatNumber(total)}</strong>
-              <small>總覽分頁目前資料筆數</small>
-            </article>
+          <details className="home-new-fold-card kether-overview-chart-fold" open>
+            <summary className="home-new-fold-head">
+              <span>
+                <em>KETHER DATABASE CORE</em>
+                <strong>全資料庫核心統計</strong>
+              </span>
+              <b aria-hidden="true">⌄</b>
+            </summary>
 
-            <article>
-              <span>全分類資料</span>
-              <strong>{formatNumber(categoryTotal)}</strong>
-              <small>戰甲、武器、同伴、曲翼、MOD 合計</small>
-            </article>
+            <section className="kether-overview-metric-grid kether-overview-grid-in-fold">
+              <article>
+                <span>總覽資料</span>
+                <strong>{formatNumber(total)}</strong>
+                <small>總覽分頁目前資料筆數</small>
+              </article>
 
-            <article>
-              <span>全分類估值</span>
-              <strong>{categoryValue ? `${formatNumber(categoryValue)} 白金` : "待更新"}</strong>
-              <small>{formatNumber(categoryPriced)} 筆已有價格</small>
-            </article>
+              <article>
+                <span>全分類資料</span>
+                <strong>{formatNumber(categoryTotal)}</strong>
+                <small>戰甲、武器、同伴、曲翼、MOD 合計</small>
+              </article>
 
-            <article>
-              <span>全分類已購買</span>
-              <strong>{percent(categoryOwned, categoryTotal)}%</strong>
-              <small>{formatNumber(categoryOwned)} / {formatNumber(categoryTotal)} 筆</small>
-            </article>
-          </section>
+              <article>
+                <span>全分類估值</span>
+                <strong>{categoryValue ? `${formatNumber(categoryValue)} 白金` : "待更新"}</strong>
+                <small>{formatNumber(categoryPriced)} 筆已有價格</small>
+              </article>
+
+              <article>
+                <span>全分類已購買</span>
+                <strong>{percent(categoryOwned, categoryTotal)}%</strong>
+                <small>{formatNumber(categoryOwned)} / {formatNumber(categoryTotal)} 筆</small>
+              </article>
+            </section>
+          </details>
 
           <details className="home-new-fold-card kether-overview-chart-fold">
             <summary className="home-new-fold-head">
@@ -203,25 +213,35 @@ export default function DatabaseOverviewPage({
             </article>
           </details>
 
-          <section className="kether-overview-mini-summary">
-            <article>
-              <span>總覽價格完成</span>
-              <b>{percent(pricedRows.length, total)}%</b>
-              <small>{formatNumber(pricedRows.length)} / {formatNumber(total)}</small>
-            </article>
+          <details className="home-new-fold-card kether-overview-chart-fold" open>
+            <summary className="home-new-fold-head">
+              <span>
+                <em>KETHER OVERVIEW SUMMARY</em>
+                <strong>總覽分頁統計</strong>
+              </span>
+              <b aria-hidden="true">⌄</b>
+            </summary>
 
-            <article>
-              <span>總覽已購買</span>
-              <b>{percent(ownedRows.length, total)}%</b>
-              <small>{formatNumber(ownedRows.length)} / {formatNumber(total)}</small>
-            </article>
+            <section className="kether-overview-mini-summary kether-overview-grid-in-fold">
+              <article>
+                <span>總覽價格完成</span>
+                <b>{percent(pricedRows.length, total)}%</b>
+                <small>{formatNumber(pricedRows.length)} / {formatNumber(total)}</small>
+              </article>
 
-            <article>
-              <span>總覽估值</span>
-              <b>{totalValue ? `${formatNumber(totalValue)} 白金` : "待更新"}</b>
-              <small>只計算總覽分頁</small>
-            </article>
-          </section>
+              <article>
+                <span>總覽已購買</span>
+                <b>{percent(ownedRows.length, total)}%</b>
+                <small>{formatNumber(ownedRows.length)} / {formatNumber(total)}</small>
+              </article>
+
+              <article>
+                <span>總覽估值</span>
+                <b>{totalValue ? `${formatNumber(totalValue)} 白金` : "待更新"}</b>
+                <small>只計算總覽分頁</small>
+              </article>
+            </section>
+          </details>
         </>
       )}
     </section>

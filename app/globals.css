@@ -12776,3 +12776,14 @@ a.nav-card {
     padding: 14px;
   }
 }
+
+/* KETHER overview statistic grids inside fold cards */
+.kether-overview-grid-in-fold {
+  margin: 0 22px 22px;
+}
+
+@media (max-width: 760px) {
+  .kether-overview-grid-in-fold {
+    margin: 0 12px 12px;
+  }
+}
