@@ -12787,3 +12787,22 @@ a.nav-card {
     margin: 0 12px 12px;
   }
 }
+
+/* KETHER bot fold sections */
+.kether-bot-fold {
+  overflow: hidden;
+}
+
+.kether-bot-fold-body {
+  margin: 0 22px 22px;
+}
+
+.kether-bot-fold > .kether-bot-panel {
+  box-sizing: border-box;
+}
+
+@media (max-width: 760px) {
+  .kether-bot-fold-body {
+    margin: 0 12px 12px;
+  }
+}

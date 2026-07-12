@@ -239,48 +239,68 @@ export default function BotPage() {
         </section>
 
         <section className="kether-bot-content-shell">
-          <section className="kether-bot-focus-grid" aria-label="小希 BOT 主要用途">
-            {focusCards.map((card) => {
-              const Icon = card.icon;
-
-              return (
-                <article key={card.title} className="kether-bot-focus-card">
-                  <div className="kether-bot-focus-icon">
-                    <Icon size={20} />
-                  </div>
-
-                  <h2>{card.title}</h2>
-                  <p>{card.text}</p>
-                </article>
-              );
-            })}
-          </section>
-
           <BotKetherSearchPanel />
 
-          <section className="kether-bot-panel">
-            <div className="kether-bot-section-title">
-              <Swords size={19} />
-              <div>
-                <h2>Discord 指令清單</h2>
-                <p>實際可用指令以 Discord 伺服器內顯示為準。</p>
+          <details className="home-new-fold-card kether-bot-fold">
+            <summary className="home-new-fold-head">
+              <span>
+                <em>KETHER BOT GUIDE</em>
+                <strong>BOT 功能說明</strong>
+              </span>
+              <b aria-hidden="true">⌄</b>
+            </summary>
+
+            <section className="kether-bot-focus-grid kether-bot-fold-body" aria-label="小希 BOT 主要用途">
+              {focusCards.map((card) => {
+                const Icon = card.icon;
+
+                return (
+                  <article key={card.title} className="kether-bot-focus-card">
+                    <div className="kether-bot-focus-icon">
+                      <Icon size={20} />
+                    </div>
+
+                    <h2>{card.title}</h2>
+                    <p>{card.text}</p>
+                  </article>
+                );
+              })}
+            </section>
+          </details>
+
+          <details className="home-new-fold-card kether-bot-fold">
+            <summary className="home-new-fold-head">
+              <span>
+                <em>KETHER DISCORD COMMANDS</em>
+                <strong>Discord 指令清單</strong>
+              </span>
+              <b aria-hidden="true">⌄</b>
+            </summary>
+
+            <section className="kether-bot-panel kether-bot-fold-body">
+              <div className="kether-bot-section-title">
+                <Swords size={19} />
+                <div>
+                  <h2>Discord 指令清單</h2>
+                  <p>實際可用指令以 Discord 伺服器內顯示為準。</p>
+                </div>
               </div>
-            </div>
 
-            <div className="kether-bot-command-grid">
-              {botCommands.map((command) => (
-                <article key={command.name} className="kether-bot-command-card">
-                  <div className="kether-bot-command-top">
-                    <strong>{command.name}</strong>
-                    <span>{command.status}</span>
-                  </div>
+              <div className="kether-bot-command-grid">
+                {botCommands.map((command) => (
+                  <article key={command.name} className="kether-bot-command-card">
+                    <div className="kether-bot-command-top">
+                      <strong>{command.name}</strong>
+                      <span>{command.status}</span>
+                    </div>
 
-                  <p className="kether-bot-alias">{command.alias}</p>
-                  <p>{command.description}</p>
-                </article>
-              ))}
-            </div>
-          </section>
+                    <p className="kether-bot-alias">{command.alias}</p>
+                    <p>{command.description}</p>
+                  </article>
+                ))}
+              </div>
+            </section>
+          </details>
 
           <section className="kether-bot-panel kether-bot-note-panel">
             <div className="kether-bot-section-title">
