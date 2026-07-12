@@ -1,21 +1,79 @@
 import Link from "next/link";
 import {
+  BarChart3,
   Bot,
   CircleHelp,
   Database,
-  ExternalLink,
-  Gamepad2,
-  KeyRound,
   MessageCircle,
-  Radio,
   Search,
   ShieldCheck,
   Swords,
+  UserRound,
 } from "lucide-react";
+
 import BotKetherSearchPanel from "../../components/BotKetherSearchPanel";
-import HomeNotificationsFloating from "../../components/HomeNotificationsFloating";
-import HomeSearchFloating from "../../components/HomeSearchFloating";
-import HomeMenuFloating from "../../components/HomeMenuFloating";
+import KetherDynamicInfo from "../../components/KetherDynamicInfo";
+import HomeNewInlineMenu from "../../components/HomeNewInlineMenu";
+import HomeNewInlineSearch from "../../components/HomeNewInlineSearch";
+import HomeNewInlineNotifications from "../../components/HomeNewInlineNotifications";
+
+const databaseStats = [
+  { label: "資料來源", value: "Google Sheets" },
+  { label: "資料分頁", value: "7" },
+  { label: "資料區塊", value: "41" },
+  { label: "同步節奏", value: "每日 04:00" },
+];
+
+const navItems = [
+  {
+    label: "總覽",
+    href: "/database/overview",
+    image: "/icon-overview.png",
+    activeImage: "/icon-overview-2.png",
+  },
+  {
+    label: "戰甲",
+    href: "/database/warframes",
+    image: "/icon-warframe.png",
+    activeImage: "/icon-warframe-2.png",
+  },
+  {
+    label: "主要武器",
+    href: "/database/primary",
+    image: "/icon-primary.png",
+    activeImage: "/icon-primary-2.png",
+  },
+  {
+    label: "次要武器",
+    href: "/database/secondary",
+    image: "/icon-secondary.png",
+    activeImage: "/icon-secondary-2.png",
+  },
+  {
+    label: "近戰武器",
+    href: "/database/melee",
+    image: "/icon-melee.png",
+    activeImage: "/icon-melee-2.png",
+  },
+  {
+    label: "同伴",
+    href: "/database/companions",
+    image: "/icon-companion.png",
+    activeImage: "/icon-companion-2.png",
+  },
+  {
+    label: "曲翼",
+    href: "/database/archwing",
+    image: "/icon-archwing.png",
+    activeImage: "/icon-archwing-2.png",
+  },
+  {
+    label: "MOD",
+    href: "/database/mods",
+    image: "/icon-mod.png",
+    activeImage: "/icon-mod-2.png",
+  },
+];
 
 const botCommands = [
   {
@@ -88,466 +146,342 @@ const focusCards = [
 
 export default function BotPage() {
   return (
-    <main className="kether-bot-page">
-      <HomeMenuFloating />
+    <main className="home-new-page">
+      <div className="home-new-shell">
+        <section className="home-new-hero-card">
+          <div className="home-new-topbar">
+            <div className="home-new-brand">
+              <HomeNewInlineMenu />
 
-      <div className="kether-bot-top-actions" aria-label="BOT 快捷功能">
-        <HomeSearchFloating />
-        <HomeNotificationsFloating />
-        <Link
-          href="https://discord.gg"
-          target="_blank"
-          rel="noreferrer"
-          className="kether-bot-discord-action"
-          aria-label="Discord 入口"
-        >
-          <MessageCircle size={18} />
-          <span>Discord</span>
-        </Link>
-      </div>
+              <span>KETHER</span>
+            </div>
 
+            <div className="home-new-hero-actions" aria-label="BOT 頁快捷入口">
+              <HomeNewInlineSearch />
 
-      <section className="kether-bot-hero">
-          <p className="kether-bot-kicker">
-            <Bot size={16} />
-            KETHER DISCORD BOT
-          </p>
-        <div className="kether-bot-hero-banner">
-          <img
-            src="/home-hero-banner.png"
-            alt="KETHER OF PARADISO Warframe 資料庫首頁版圖"
-          />
-        </div>
+              <HomeNewInlineNotifications />
 
-        <div className="kether-bot-hero-copy">
+              <Link href="/profile" className="home-new-round-action" aria-label="個人頁面">
+                <UserRound size={18} />
+                <span>個人</span>
+              </Link>
 
+              <Link
+                href="https://discord.gg/MFhTb8XMZ"
+                target="_blank"
+                rel="noreferrer"
+                className="home-new-discord-action"
+                aria-label="Discord 入口"
+              >
+                <MessageCircle size={18} />
+                <span>Discord</span>
+              </Link>
+            </div>
+          </div>
+
+          <div className="home-new-banner">
+            <img
+              src="/home-hero-banner.png"
+              alt="KETHER OF PARADISO 小希 BOT 指令中樞版圖"
+            />
+          </div>
+
+          <div className="home-new-dynamic-inside">
+            <KetherDynamicInfo />
+          </div>
+        </section>
+
+        <details className="home-new-fold-card home-new-fold-nav">
+          <summary className="home-new-fold-head">
+            <span>
+              <em>KETHER DATABASE NAVIGATION</em>
+              <strong>資料庫導覽</strong>
+            </span>
+            <b aria-hidden="true">⌄</b>
+          </summary>
+
+          <section className="home-new-nav-card">
+            <div className="home-new-nav-grid">
+              {navItems.map((item) => (
+                <Link key={item.href} href={item.href} className="home-new-nav-item">
+                  <span className="home-new-nav-icon">
+                    <img className="home-new-nav-icon-normal" src={item.image} alt={item.label} />
+                    <img className="home-new-nav-icon-active" src={item.activeImage} alt="" aria-hidden="true" />
+                  </span>
+
+                  <span className="home-new-nav-label">{item.label}</span>
+                </Link>
+              ))}
+            </div>
+
+            <div className="home-new-section-divider" aria-hidden="true">
+              <span />
+            </div>
+
+            <div className="home-new-database-line" aria-label="資料庫狀態">
+              {databaseStats.map((item) => (
+                <div key={item.label} className="home-new-database-chip">
+                  <span>{item.label}</span>
+                  <strong>{item.value}</strong>
+                </div>
+              ))}
+            </div>
+          </section>
+        </details>
+
+        <section className="kether-overview-intro-card">
+          <p>KETHER DISCORD BOT</p>
           <h1>小希 Bot 指令中樞</h1>
-
-          <p>
+          <span>
             小希 BOT 是 KETHER Warframe 資料庫的 Discord 查詢助手，負責把常用資料、
             取得方式與網站入口整理成聊天頻道內可以快速呼叫的指令。
-          </p>
+          </span>
+        </section>
 
-          <div className="kether-bot-actions">
-            <Link href="/" className="kether-bot-primary">
-              返回首頁
-            </Link>
+        <section className="kether-bot-content-shell">
+          <section className="kether-bot-focus-grid" aria-label="小希 BOT 主要用途">
+            {focusCards.map((card) => {
+              const Icon = card.icon;
 
-            <Link href="/live" className="kether-bot-secondary">
-              <Radio size={16} />
-              小希星圖電波局
-            </Link>
+              return (
+                <article key={card.title} className="kether-bot-focus-card">
+                  <div className="kether-bot-focus-icon">
+                    <Icon size={20} />
+                  </div>
 
-            <a href="/api/auth/discord/login" className="kether-bot-secondary">
-              <KeyRound size={16} />
-              Discord 登入
-            </a>
+                  <h2>{card.title}</h2>
+                  <p>{card.text}</p>
+                </article>
+              );
+            })}
+          </section>
 
-            <a
-              href="https://discord.gg/MFhTb8XMZ"
-              target="_blank"
-              rel="noreferrer"
-              className="kether-bot-secondary"
-            >
-              <ExternalLink size={16} />
-              加入 Discord
-            </a>
-          </div>
-        </div>
-      </section>
+          <BotKetherSearchPanel />
 
-      <section className="kether-bot-focus-grid" aria-label="小希 BOT 主要用途">
-        {focusCards.map((card) => {
-          const Icon = card.icon;
-
-          return (
-            <article key={card.title} className="kether-bot-focus-card">
-              <div className="kether-bot-focus-icon">
-                <Icon size={20} />
+          <section className="kether-bot-panel">
+            <div className="kether-bot-section-title">
+              <Swords size={19} />
+              <div>
+                <h2>Discord 指令清單</h2>
+                <p>實際可用指令以 Discord 伺服器內顯示為準。</p>
               </div>
+            </div>
 
-              <h2>{card.title}</h2>
-              <p>{card.text}</p>
-            </article>
-          );
-        })}
-      </section>
+            <div className="kether-bot-command-grid">
+              {botCommands.map((command) => (
+                <article key={command.name} className="kether-bot-command-card">
+                  <div className="kether-bot-command-top">
+                    <strong>{command.name}</strong>
+                    <span>{command.status}</span>
+                  </div>
 
-      <BotKetherSearchPanel />
+                  <p className="kether-bot-alias">{command.alias}</p>
+                  <p>{command.description}</p>
+                </article>
+              ))}
+            </div>
+          </section>
 
-      <section className="kether-bot-panel">
-        <div className="kether-bot-section-title">
-          <Swords size={19} />
-          <div>
-            <h2>Discord 指令清單</h2>
-            <p>實際可用指令以 Discord 伺服器內顯示為準。</p>
-          </div>
-        </div>
-
-        <div className="kether-bot-command-grid">
-          {botCommands.map((command) => (
-            <article key={command.name} className="kether-bot-command-card">
-              <div className="kether-bot-command-top">
-                <strong>{command.name}</strong>
-                <span>{command.status}</span>
+          <section className="kether-bot-panel kether-bot-note-panel">
+            <div className="kether-bot-section-title">
+              <CircleHelp size={19} />
+              <div>
+                <h2>使用提醒</h2>
+                <p>BOT 與網站功能分工如下。</p>
               </div>
+            </div>
 
-              <p className="kether-bot-alias">{command.alias}</p>
-              <p>{command.description}</p>
-            </article>
-          ))}
-        </div>
-      </section>
+            <div className="kether-bot-note-list">
+              <p>
+                <b>Discord BOT：</b>
+                適合在群組內快速查詢資料、取得方式與指令說明。
+              </p>
 
-      <section className="kether-bot-panel kether-bot-note-panel">
-        <div className="kether-bot-section-title">
-          <CircleHelp size={19} />
-          <div>
-            <h2>使用提醒</h2>
-            <p>BOT 與網站功能分工如下。</p>
-          </div>
-        </div>
+              <p>
+                <b>KETHER 網站：</b>
+                適合查看完整分類、價格欄位、已購買狀態與個人進度。
+              </p>
 
-        <div className="kether-bot-note-list">
-          <p>
-            <b>Discord BOT：</b>
-            適合在群組內快速查詢資料、取得方式與指令說明。
+              <p>
+                <b>Discord 登入：</b>
+                用於網站權限與個人化進度，和 BOT 指令本體分開管理。
+              </p>
+            </div>
+          </section>
+        </section>
+
+        <footer className="home-new-footer">
+          <a
+            className="home-new-footer-url"
+            href="https://kether-warframe-database.vercel.app"
+            target="_blank"
+            rel="noreferrer"
+          >
+            https://kether-warframe-database.vercel.app
+          </a>
+
+          <p className="home-new-footer-credit">
+            builder by ヤハ奈々子、羊咩、凱洛
           </p>
+        </footer>
 
-          <p>
-            <b>KETHER 網站：</b>
-            適合查看完整分類、價格欄位、已購買狀態與個人進度。
-          </p>
-
-          <p>
-            <b>Discord 登入：</b>
-            用於網站權限與個人化進度，和 BOT 指令本體分開管理。
-          </p>
-        </div>
-      </section>
-
-      <style>{`
-        .kether-bot-page {
-          width: min(1120px, calc(100% - 28px));
-          margin: 0 auto;
-          padding: clamp(28px, 5vw, 56px) 0 clamp(72px, 8vw, 110px);
-          color: #172033;
-        }
-
-        .kether-bot-hero,
-        .kether-bot-panel,
-        .kether-bot-focus-card {
-          border: 1px solid rgba(255, 255, 255, 0.72);
-          background:
-            linear-gradient(135deg, rgba(255, 255, 255, 0.88), rgba(239, 246, 255, 0.74)),
-            radial-gradient(circle at 12% 12%, rgba(236, 72, 153, 0.14), transparent 34%),
-            radial-gradient(circle at 90% 0%, rgba(124, 58, 237, 0.16), transparent 32%);
-          box-shadow:
-            0 22px 48px rgba(15, 23, 42, 0.12),
-            inset 0 1px 0 rgba(255, 255, 255, 0.82);
-          backdrop-filter: blur(18px) saturate(1.25);
-          -webkit-backdrop-filter: blur(18px) saturate(1.25);
-        }
-
-        .kether-bot-hero {
-          display: grid;
-          grid-template-columns: minmax(0, 1fr) 260px;
-          gap: clamp(18px, 4vw, 34px);
-          align-items: center;
-          padding: clamp(22px, 5vw, 42px);
-          border-radius: 32px;
-          overflow: hidden;
-        }
-
-        .kether-bot-kicker {
-          display: inline-flex;
-          align-items: center;
-          gap: 8px;
-          margin: 0 0 12px;
-          padding: 8px 12px;
-          border-radius: 999px;
-          color: #ffffff;
-          background: linear-gradient(135deg, #7c3aed, #ec4899);
-          font-size: 12px;
-          font-weight: 900;
-          letter-spacing: 0.14em;
-        }
-
-        .kether-bot-hero h1 {
-          margin: 0;
-          font-size: clamp(34px, 6vw, 62px);
-          line-height: 1.04;
-          letter-spacing: -0.05em;
-        }
-
-        .kether-bot-hero-copy > p:not(.kether-bot-kicker) {
-          max-width: 760px;
-          margin: 16px 0 0;
-          color: #475569;
-          font-size: clamp(15px, 2vw, 18px);
-          font-weight: 750;
-          line-height: 1.8;
-        }
-
-        .kether-bot-actions {
-          display: flex;
-          flex-wrap: wrap;
-          gap: 10px;
-          margin-top: 24px;
-        }
-
-        .kether-bot-primary,
-        .kether-bot-secondary {
-          min-height: 44px;
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          gap: 8px;
-          padding: 0 15px;
-          border-radius: 16px;
-          text-decoration: none;
-          font-size: 14px;
-          font-weight: 900;
-        }
-
-        .kether-bot-primary {
-          color: #ffffff;
-          background: linear-gradient(135deg, #7c3aed, #ec4899);
-          box-shadow: 0 14px 28px rgba(124, 58, 237, 0.22);
-        }
-
-        .kether-bot-secondary {
-          color: #334155;
-          background: rgba(255, 255, 255, 0.72);
-          box-shadow: inset 0 0 0 1px rgba(148, 163, 184, 0.22);
-        }
-
-        .kether-bot-sigil {
-          min-height: 240px;
-          border-radius: 28px;
-          display: grid;
-          place-items: center;
-          text-align: center;
-          color: #ffffff;
-          background:
-            radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.28), transparent 32%),
-            linear-gradient(145deg, #312e81, #7c3aed 48%, #ec4899);
-          box-shadow:
-            0 24px 50px rgba(124, 58, 237, 0.24),
-            inset 0 1px 0 rgba(255, 255, 255, 0.34);
-        }
-
-        .kether-bot-sigil span {
-          margin-top: 10px;
-          font-size: 26px;
-          font-weight: 950;
-          letter-spacing: 0.2em;
-        }
-
-        .kether-bot-sigil b {
-          font-size: 12px;
-          letter-spacing: 0.2em;
-          opacity: 0.82;
-        }
-
-        .kether-bot-hero-banner {
-          width: 100%;
-          min-height: 240px;
-          border-radius: 28px;
-          overflow: hidden;
-          background: rgba(255, 255, 255, 0.62);
-          border: 1px solid rgba(255, 255, 255, 0.72);
-          box-shadow:
-            0 24px 50px rgba(15, 23, 42, 0.12),
-            inset 0 1px 0 rgba(255, 255, 255, 0.72);
-        }
-
-        .kether-bot-hero-banner img {
-          width: 100%;
-          height: 100%;
-          min-height: 240px;
-          display: block;
-          object-fit: cover;
-          object-position: center;
-        }
-
-        .kether-bot-focus-grid {
-          display: grid;
-          grid-template-columns: repeat(3, minmax(0, 1fr));
-          gap: 14px;
-          margin-top: 16px;
-        }
-
-        .kether-bot-focus-card {
-          padding: 18px;
-          border-radius: 24px;
-        }
-
-        .kether-bot-focus-icon {
-          width: 42px;
-          height: 42px;
-          border-radius: 16px;
-          display: grid;
-          place-items: center;
-          color: #ffffff;
-          background: linear-gradient(135deg, #7c3aed, #ec4899);
-          box-shadow: 0 12px 24px rgba(124, 58, 237, 0.2);
-        }
-
-        .kether-bot-focus-card h2 {
-          margin: 14px 0 7px;
-          font-size: 17px;
-        }
-
-        .kether-bot-focus-card p,
-        .kether-bot-command-card p,
-        .kether-bot-note-list p {
-          margin: 0;
-          color: #475569;
-          font-size: 14px;
-          font-weight: 750;
-          line-height: 1.7;
-        }
-
-        .kether-bot-panel {
-          margin-top: 16px;
-          padding: clamp(18px, 4vw, 28px);
-          border-radius: 30px;
-        }
-
-        .kether-bot-section-title {
-          display: flex;
-          align-items: flex-start;
-          gap: 12px;
-          margin-bottom: 16px;
-        }
-
-        .kether-bot-section-title > svg {
-          flex: 0 0 auto;
-          margin-top: 4px;
-          color: #7c3aed;
-        }
-
-        .kether-bot-section-title h2 {
-          margin: 0;
-          font-size: clamp(22px, 3vw, 30px);
-          letter-spacing: -0.03em;
-        }
-
-        .kether-bot-section-title p {
-          margin: 5px 0 0;
-          color: #64748b;
-          font-size: 14px;
-          font-weight: 800;
-        }
-
-        .kether-bot-command-grid {
-          display: grid;
-          grid-template-columns: repeat(2, minmax(0, 1fr));
-          gap: 12px;
-        }
-
-        .kether-bot-command-card {
-          padding: 15px;
-          border-radius: 22px;
-          background: rgba(255, 255, 255, 0.72);
-          border: 1px solid rgba(148, 163, 184, 0.16);
-          box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7);
-        }
-
-        .kether-bot-command-top {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          gap: 10px;
-          margin-bottom: 8px;
-        }
-
-        .kether-bot-command-top strong {
-          font-size: 16px;
-          letter-spacing: -0.02em;
-        }
-
-        .kether-bot-command-top span {
-          flex: 0 0 auto;
-          padding: 5px 8px;
-          border-radius: 999px;
-          color: #6d28d9;
-          background: rgba(124, 58, 237, 0.1);
-          font-size: 11px;
-          font-weight: 900;
-        }
-
-        .kether-bot-alias {
-          margin-bottom: 7px !important;
-          color: #7c3aed !important;
-          font-size: 12px !important;
-          font-weight: 900 !important;
-          letter-spacing: 0.06em;
-        }
-
-        .kether-bot-note-panel {
-          margin-bottom: 22px;
-        }
-
-        .kether-bot-note-list {
-          display: grid;
-          gap: 10px;
-        }
-
-        .kether-bot-note-list p {
-          padding: 13px 14px;
-          border-radius: 18px;
-          background: rgba(255, 255, 255, 0.7);
-          border: 1px solid rgba(148, 163, 184, 0.14);
-        }
-
-        .kether-bot-note-list b {
-          color: #172033;
-        }
-
-        @media (max-width: 860px) {
-          .kether-bot-hero {
-            grid-template-columns: 1fr;
+        <style>{`
+          .kether-bot-content-shell {
+            display: grid;
+            gap: 16px;
           }
 
-          .kether-bot-hero-banner,
-          .kether-bot-hero-banner img {
-            min-height: 170px;
+          .kether-bot-panel,
+          .kether-bot-focus-card {
+            border: 1px solid rgba(255, 255, 255, 0.72);
+            background:
+              linear-gradient(135deg, rgba(255, 255, 255, 0.88), rgba(239, 246, 255, 0.74)),
+              radial-gradient(circle at 12% 12%, rgba(236, 72, 153, 0.14), transparent 34%),
+              radial-gradient(circle at 90% 0%, rgba(124, 58, 237, 0.16), transparent 32%);
+            box-shadow:
+              0 22px 48px rgba(15, 23, 42, 0.12),
+              inset 0 1px 0 rgba(255, 255, 255, 0.82);
+            backdrop-filter: blur(18px) saturate(1.25);
+            -webkit-backdrop-filter: blur(18px) saturate(1.25);
           }
 
-          .kether-bot-focus-grid,
-          .kether-bot-command-grid {
-            grid-template-columns: 1fr;
-          }
-        }
-
-        @media (max-width: 560px) {
-          .kether-bot-page {
-            width: min(100% - 20px, 1120px);
-            padding-top: 22px;
+          .kether-bot-focus-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 14px;
           }
 
-          .kether-bot-hero {
+          .kether-bot-focus-card {
             padding: 18px;
             border-radius: 24px;
           }
 
-          .kether-bot-actions {
+          .kether-bot-focus-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 16px;
             display: grid;
-            grid-template-columns: 1fr;
+            place-items: center;
+            color: #ffffff;
+            background: linear-gradient(135deg, #7c3aed, #ec4899);
+            box-shadow: 0 12px 24px rgba(124, 58, 237, 0.2);
           }
 
-          .kether-bot-primary,
-          .kether-bot-secondary {
-            width: 100%;
+          .kether-bot-focus-card h2 {
+            margin: 14px 0 7px;
+            font-size: 17px;
+          }
+
+          .kether-bot-focus-card p,
+          .kether-bot-command-card p,
+          .kether-bot-note-list p {
+            margin: 0;
+            color: #475569;
+            font-size: 14px;
+            font-weight: 750;
+            line-height: 1.7;
           }
 
           .kether-bot-panel {
-            border-radius: 24px;
+            padding: clamp(18px, 4vw, 28px);
+            border-radius: 30px;
           }
-        }
-      `}</style>
+
+          .kether-bot-section-title {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 16px;
+          }
+
+          .kether-bot-section-title > svg {
+            flex: 0 0 auto;
+            margin-top: 4px;
+            color: #7c3aed;
+          }
+
+          .kether-bot-section-title h2 {
+            margin: 0;
+            font-size: clamp(22px, 3vw, 30px);
+            letter-spacing: -0.03em;
+          }
+
+          .kether-bot-section-title p {
+            margin: 5px 0 0;
+            color: #64748b;
+            font-size: 14px;
+            font-weight: 800;
+          }
+
+          .kether-bot-command-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px;
+          }
+
+          .kether-bot-command-card {
+            padding: 15px;
+            border-radius: 22px;
+            background: rgba(255, 255, 255, 0.72);
+            border: 1px solid rgba(148, 163, 184, 0.16);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7);
+          }
+
+          .kether-bot-command-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            margin-bottom: 8px;
+          }
+
+          .kether-bot-command-top strong {
+            font-size: 16px;
+            letter-spacing: -0.02em;
+          }
+
+          .kether-bot-command-top span {
+            flex: 0 0 auto;
+            padding: 5px 8px;
+            border-radius: 999px;
+            color: #6d28d9;
+            background: rgba(124, 58, 237, 0.1);
+            font-size: 11px;
+            font-weight: 900;
+          }
+
+          .kether-bot-alias {
+            margin-bottom: 7px !important;
+            color: #7c3aed !important;
+            font-size: 12px !important;
+            font-weight: 900 !important;
+            letter-spacing: 0.06em;
+          }
+
+          .kether-bot-note-list {
+            display: grid;
+            gap: 10px;
+          }
+
+          .kether-bot-note-list p {
+            padding: 13px 14px;
+            border-radius: 18px;
+            background: rgba(255, 255, 255, 0.7);
+            border: 1px solid rgba(148, 163, 184, 0.14);
+          }
+
+          .kether-bot-note-list b {
+            color: #172033;
+          }
+
+          @media (max-width: 860px) {
+            .kether-bot-focus-grid,
+            .kether-bot-command-grid {
+              grid-template-columns: 1fr;
+            }
+          }
+        `}</style>
+      </div>
     </main>
   );
 }
