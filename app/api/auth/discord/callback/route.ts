@@ -246,7 +246,7 @@ export async function GET(request: NextRequest) {
     );
   }
 
-  const sessionRoleIds = roleCheckEnabled ? matchedRoleIds : memberData.roles;
+  const sessionRoleIds = memberData.roles;
 
   const sessionPayload = buildDiscordSessionPayload({
     discordUser: {

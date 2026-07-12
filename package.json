@@ -9,15 +9,16 @@
     "discord:register-card": "node scripts/register-warframe-card-command.mjs"
   },
   "dependencies": {
+    "@neondatabase/serverless": "^1.1.0",
+    "lucide-react": "latest",
     "next": "latest",
     "react": "latest",
-    "react-dom": "latest",
-    "lucide-react": "latest"
+    "react-dom": "latest"
   },
   "devDependencies": {
-    "typescript": "latest",
     "@types/node": "latest",
     "@types/react": "latest",
-    "@types/react-dom": "latest"
+    "@types/react-dom": "latest",
+    "typescript": "latest"
   }
 }
