@@ -72,7 +72,7 @@ export default function DatabaseOverviewPage({
         </section>
       ) : (
         <>
-          <details className="home-new-fold-card kether-overview-chart-fold" open>
+          <details className="home-new-fold-card kether-overview-chart-fold">
             <summary className="home-new-fold-head">
               <span>
                 <em>KETHER DATABASE CORE</em>
@@ -213,7 +213,7 @@ export default function DatabaseOverviewPage({
             </article>
           </details>
 
-          <details className="home-new-fold-card kether-overview-chart-fold" open>
+          <details className="home-new-fold-card kether-overview-chart-fold">
             <summary className="home-new-fold-head">
               <span>
                 <em>KETHER OVERVIEW SUMMARY</em>
