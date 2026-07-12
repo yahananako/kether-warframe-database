@@ -4,42 +4,51 @@ import Link from "next/link";
 import { KeyRound } from "lucide-react";
 import { useEffect, useState } from "react";
 
-type SessionState = "loading" | "guest" | "signed-in";
+type SessionResponse = {
+  ok?: boolean;
+  authenticated?: boolean;
+};
+
+type SessionState = "loading" | "guest" | "authenticated";
 
 export default function ClanDiscordAccessCard() {
   const [state, setState] = useState<SessionState>("loading");
 
   useEffect(() => {
-    let alive = true;
+    let active = true;
 
-    async function checkSession() {
+    async function loadSession() {
       try {
-        const res = await fetch("/api/auth/session", {
+        const response = await fetch("/api/auth/session", {
+          method: "GET",
+          credentials: "include",
           cache: "no-store",
         });
 
-        if (!alive) return;
+        const data = (await response
+          .json()
+          .catch(() => ({}))) as SessionResponse;
 
-        if (!res.ok) {
-          setState("guest");
-          return;
-        }
+        if (!active) return;
 
-        const data = await res.json();
-        setState(data?.user ? "signed-in" : "guest");
+        const authenticated = Boolean(data.ok && data.authenticated);
+        setState(authenticated ? "authenticated" : "guest");
       } catch {
-        if (alive) setState("guest");
+        if (active) {
+          setState("guest");
+        }
       }
     }
 
-    checkSession();
+    loadSession();
 
     return () => {
-      alive = false;
+      active = false;
     };
   }, []);
 
-  if (state === "loading" || state === "signed-in") {
+  /* 讀取中與已認證時都不顯示登入卡片 */
+  if (state !== "guest") {
     return null;
   }
 
@@ -52,11 +61,10 @@ export default function ClanDiscordAccessCard() {
       <h2>網站登入與權限</h2>
 
       <p>
-        KETHER 網站使用 Discord 連結登入。登入後會依 Discord 群組與身分組，
-        開啟可使用的個人功能與群組功能。
+        使用 Discord 登入後，網站會依群組與身分組確認個人功能及群組權限。
       </p>
 
-      <Link href="/profile">使用 Discord 登入</Link>
+      <Link href="/login">使用 Discord 登入</Link>
     </article>
   );
 }

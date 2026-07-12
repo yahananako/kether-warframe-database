@@ -6,7 +6,6 @@ import {
   MessageCircle,
   Shield,
   Sparkles,
-  UserRound,
   Users,
 } from "lucide-react";
 
@@ -15,6 +14,7 @@ import HomeNewInlineMenu from "../../components/HomeNewInlineMenu";
 import HomeNewInlineSearch from "../../components/HomeNewInlineSearch";
 import HomeNewInlineNotifications from "../../components/HomeNewInlineNotifications";
 import ClanDiscordAccessCard from "../../components/ClanDiscordAccessCard";
+import HomeAuthAction from "../../components/HomeAuthAction";
 
 const databaseStats = [
   { label: "資料來源", value: "Google Sheets" },
@@ -115,10 +115,7 @@ export default function ClanPage() {
 
               <HomeNewInlineNotifications />
 
-              <Link href="/profile" className="home-new-round-action" aria-label="個人頁面">
-                <UserRound size={18} />
-                <span>個人</span>
-              </Link>
+              <HomeAuthAction />
 
               <Link
                 href="https://discord.gg/MFhTb8XMZ"
