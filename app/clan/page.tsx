@@ -2,7 +2,6 @@ import Link from "next/link";
 import {
   BadgeCheck,
   Database,
-  KeyRound,
   MessageCircle,
   Shield,
   Sparkles,
@@ -14,6 +13,7 @@ import KetherDynamicInfo from "../../components/KetherDynamicInfo";
 import HomeNewInlineMenu from "../../components/HomeNewInlineMenu";
 import HomeNewInlineSearch from "../../components/HomeNewInlineSearch";
 import HomeNewInlineNotifications from "../../components/HomeNewInlineNotifications";
+import ClanDiscordAccessCard from "../../components/ClanDiscordAccessCard";
 
 const databaseStats = [
   { label: "資料來源", value: "Google Sheets" },
@@ -73,22 +73,6 @@ const navItems = [
   },
 ];
 
-const clanCards = [
-  {
-    icon: MessageCircle,
-    title: "Discord 群組連結",
-    text: "KETHER 目前使用 Discord 作為登入、氏族交流、BOT 指令與公告通知的主要入口。",
-    actionLabel: "加入 Discord",
-    href: "https://discord.gg/MFhTb8XMZ",
-  },
-  {
-    icon: KeyRound,
-    title: "網站登入與權限",
-    text: "KETHER 網站使用 Discord 連結登入，後續會依 Discord 群組與身分組確認可使用的個人功能與群組功能。",
-    actionLabel: "使用 Discord 登入",
-    href: "/api/auth/signin/discord",
-  },
-];
 
 const roadmapItems = [
   {
@@ -207,30 +191,8 @@ export default function ClanPage() {
           </span>
         </section>
 
-        <section className="kether-clan-quick-grid" aria-label="KETHER 氏族主要入口">
-          {clanCards.map((card) => {
-            const Icon = card.icon;
-            const isExternal = card.href.startsWith("http");
-
-            return (
-              <article key={card.title} className="kether-clan-card">
-                <div className="kether-clan-card-icon">
-                  <Icon size={22} />
-                </div>
-
-                <h2>{card.title}</h2>
-                <p>{card.text}</p>
-
-                {isExternal ? (
-                  <a href={card.href} target="_blank" rel="noreferrer">
-                    {card.actionLabel}
-                  </a>
-                ) : (
-                  <Link href={card.href}>{card.actionLabel}</Link>
-                )}
-              </article>
-            );
-          })}
+        <section className="kether-clan-quick-grid" aria-label="KETHER 氏族登入入口">
+          <ClanDiscordAccessCard />
         </section>
 
         <details className="home-new-fold-card kether-clan-fold">
