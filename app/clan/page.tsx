@@ -1,6 +1,7 @@
 import Link from "next/link";
 import {
   BadgeCheck,
+  KeyRound,
   Database,
   MessageCircle,
   Shield,
