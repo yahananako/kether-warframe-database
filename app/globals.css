@@ -12844,3 +12844,147 @@ a.nav-card {
     gap: 12px;
   }
 }
+
+/* KETHER clan page content */
+.kether-clan-quick-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.kether-clan-card,
+.kether-clan-info-grid article,
+.kether-clan-roadmap-card,
+.kether-clan-note {
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.86), rgba(239, 246, 255, 0.72)),
+    radial-gradient(circle at 12% 12%, rgba(236, 72, 153, 0.13), transparent 32%),
+    radial-gradient(circle at 92% 0%, rgba(124, 58, 237, 0.15), transparent 34%);
+  box-shadow:
+    0 20px 44px rgba(15, 23, 42, 0.11),
+    inset 0 1px 0 rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(18px) saturate(1.25);
+  -webkit-backdrop-filter: blur(18px) saturate(1.25);
+}
+
+.kether-clan-card {
+  padding: 18px;
+  border-radius: 26px;
+  display: grid;
+  gap: 10px;
+}
+
+.kether-clan-card-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 16px;
+  display: grid;
+  place-items: center;
+  color: #ffffff;
+  background: linear-gradient(135deg, #7c3aed, #ec4899);
+  box-shadow: 0 12px 24px rgba(124, 58, 237, 0.2);
+}
+
+.kether-clan-card h2,
+.kether-clan-roadmap-card h3,
+.kether-clan-info-grid h3 {
+  margin: 0;
+  color: #172033;
+  letter-spacing: -0.03em;
+}
+
+.kether-clan-card h2 {
+  font-size: 18px;
+}
+
+.kether-clan-card p,
+.kether-clan-roadmap-card p,
+.kether-clan-info-grid p,
+.kether-clan-note p {
+  margin: 0;
+  color: #475569;
+  font-size: 14px;
+  font-weight: 750;
+  line-height: 1.75;
+}
+
+.kether-clan-card a {
+  width: fit-content;
+  min-height: 38px;
+  padding: 0 14px;
+  border-radius: 999px;
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 900;
+  display: inline-flex;
+  align-items: center;
+  background: linear-gradient(135deg, rgba(244, 114, 182, 0.9), rgba(139, 92, 246, 0.86));
+  box-shadow: 0 12px 24px rgba(124, 58, 237, 0.18);
+}
+
+.kether-clan-fold {
+  overflow: hidden;
+}
+
+.kether-clan-fold-body {
+  margin: 0 22px 22px;
+}
+
+.kether-clan-info-grid,
+.kether-clan-roadmap-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.kether-clan-info-grid article,
+.kether-clan-roadmap-card {
+  padding: 16px;
+  border-radius: 22px;
+  display: grid;
+  gap: 8px;
+}
+
+.kether-clan-info-grid svg,
+.kether-clan-roadmap-card svg {
+  color: #7c3aed;
+}
+
+.kether-clan-roadmap-card div {
+  width: 40px;
+  height: 40px;
+  border-radius: 15px;
+  display: grid;
+  place-items: center;
+  background: rgba(124, 58, 237, 0.1);
+}
+
+.kether-clan-note {
+  padding: 18px;
+  border-radius: 22px;
+  display: grid;
+  gap: 12px;
+}
+
+@media (max-width: 900px) {
+  .kether-clan-quick-grid,
+  .kether-clan-info-grid,
+  .kether-clan-roadmap-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 760px) {
+  .kether-clan-fold-body {
+    margin: 0 12px 12px;
+  }
+
+  .kether-clan-card,
+  .kether-clan-info-grid article,
+  .kether-clan-roadmap-card,
+  .kether-clan-note {
+    border-radius: 20px;
+  }
+}
