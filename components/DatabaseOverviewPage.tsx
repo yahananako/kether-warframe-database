@@ -1,5 +1,3 @@
-import Link from "next/link";
-import { ArrowLeft, Bell, Bot, Radio } from "lucide-react";
 import type { SheetRow } from "../lib/sheets";
 
 export type OverviewCategoryStat = {
@@ -56,47 +54,15 @@ export default function DatabaseOverviewPage({
   const maxCategoryValue = Math.max(...categoryStats.map((item) => item.value), 1);
 
   return (
-    <section className="kether-overview-v2">
-      <section className="kether-overview-hero-shell">
-        <p className="kether-overview-kicker">KETHER DATABASE OVERVIEW</p>
-
-        <div className="kether-overview-hero-banner">
-          <img
-            src="/home-hero-banner.png"
-            alt="KETHER OF PARADISO Warframe 資料庫總覽版圖"
-          />
-        </div>
-
-        <div className="kether-overview-hero-copy">
-          <h1>{title}</h1>
-          <p>
-            {subtitle}
-            <br />
-            小希把總覽頁整理成全資料庫圖表控制台，讓各分類資料量、價格完成度與收藏進度更好看懂。
-          </p>
-
-          <div className="kether-overview-hero-actions">
-            <Link href="/">
-              <ArrowLeft size={16} />
-              返回首頁
-            </Link>
-
-            <Link href="/bot">
-              <Bot size={16} />
-              小希 Bot 中樞
-            </Link>
-
-            <Link href="/live">
-              <Radio size={16} />
-              小希星圖電波局
-            </Link>
-
-            <Link href="/profile">
-              <Bell size={16} />
-              個人進度
-            </Link>
-          </div>
-        </div>
+    <section className="kether-overview-v2 kether-overview-home-shell">
+      <section className="kether-overview-intro-card">
+        <p>KETHER DATABASE OVERVIEW</p>
+        <h1>{title}</h1>
+        <span>
+          {subtitle}
+          <br />
+          小希把總覽頁整理成全資料庫圖表控制台，讓各分類資料量、價格完成度與收藏進度更好看懂。
+        </span>
       </section>
 
       {error ? (
@@ -132,16 +98,16 @@ export default function DatabaseOverviewPage({
             </article>
           </section>
 
-          <section className="kether-overview-chart-grid">
-            <article className="kether-overview-chart-card">
-              <div className="kether-overview-chart-head">
-                <div>
-                  <p>KETHER CHART</p>
-                  <h2>各頁資料量統計</h2>
-                </div>
-                <span>COUNT</span>
-              </div>
+          <details className="home-new-fold-card kether-overview-chart-fold">
+            <summary className="home-new-fold-head">
+              <span>
+                <em>KETHER CHART COUNT</em>
+                <strong>各頁資料量統計</strong>
+              </span>
+              <b aria-hidden="true">⌄</b>
+            </summary>
 
+            <article className="kether-overview-chart-card kether-overview-chart-card-in-fold">
               <div className="kether-overview-bar-list">
                 {categoryStats.map((item) => {
                   const width = Math.max(10, Math.round((item.total / maxCategoryTotal) * 100));
@@ -166,16 +132,18 @@ export default function DatabaseOverviewPage({
                 })}
               </div>
             </article>
+          </details>
 
-            <article className="kether-overview-chart-card">
-              <div className="kether-overview-chart-head">
-                <div>
-                  <p>KETHER CHART</p>
-                  <h2>完成度統計</h2>
-                </div>
-                <span>PROGRESS</span>
-              </div>
+          <details className="home-new-fold-card kether-overview-chart-fold">
+            <summary className="home-new-fold-head">
+              <span>
+                <em>KETHER CHART PROGRESS</em>
+                <strong>完成度統計</strong>
+              </span>
+              <b aria-hidden="true">⌄</b>
+            </summary>
 
+            <article className="kether-overview-chart-card kether-overview-chart-card-in-fold">
               <div className="kether-overview-progress-list">
                 {categoryStats.map((item) => {
                   const pricedRate = percent(item.priced, item.total);
@@ -198,40 +166,42 @@ export default function DatabaseOverviewPage({
                 })}
               </div>
             </article>
-          </section>
+          </details>
 
-          <article className="kether-overview-chart-card kether-overview-wide-card">
-            <div className="kether-overview-chart-head">
-              <div>
-                <p>KETHER CHART</p>
-                <h2>各頁估值統計</h2>
+          <details className="home-new-fold-card kether-overview-chart-fold">
+            <summary className="home-new-fold-head">
+              <span>
+                <em>KETHER CHART PLATINUM</em>
+                <strong>各頁估值統計</strong>
+              </span>
+              <b aria-hidden="true">⌄</b>
+            </summary>
+
+            <article className="kether-overview-chart-card kether-overview-chart-card-in-fold">
+              <div className="kether-overview-value-chart">
+                {categoryStats.map((item) => {
+                  const width = item.value > 0
+                    ? Math.max(10, Math.round((item.value / maxCategoryValue) * 100))
+                    : 0;
+
+                  return (
+                    <div key={item.key} className="kether-overview-value-item">
+                      <div className="kether-overview-value-meta">
+                        <b>{item.label}</b>
+                        <small>{formatNumber(item.total)} 筆資料</small>
+                      </div>
+
+                      <div className="kether-overview-value-bar">
+                        <i style={{ width: `${width}%` }} />
+                      </div>
+
+                      <span>{item.value ? `${formatNumber(item.value)} 白金` : "待更新"}</span>
+                    </div>
+                  );
+                })}
               </div>
-              <span>PLATINUM</span>
-            </div>
-
-            <div className="kether-overview-value-chart">
-              {categoryStats.map((item) => {
-                const width = item.value > 0
-                  ? Math.max(10, Math.round((item.value / maxCategoryValue) * 100))
-                  : 0;
-
-                return (
-                  <div key={item.key} className="kether-overview-value-item">
-                    <div className="kether-overview-value-meta">
-                      <b>{item.label}</b>
-                      <small>{formatNumber(item.total)} 筆資料</small>
-                    </div>
-
-                    <div className="kether-overview-value-bar">
-                      <i style={{ width: `${width}%` }} />
-                    </div>
-
-                    <span>{item.value ? `${formatNumber(item.value)} 白金` : "待更新"}</span>
-                  </div>
-                );
-              })}
-            </div>
-          </article>
+            </article>
+          </details>
 
           <section className="kether-overview-mini-summary">
             <article>

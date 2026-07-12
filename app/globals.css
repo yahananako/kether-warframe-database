@@ -12702,3 +12702,77 @@ a.nav-card {
   }
 }
 
+
+/* KETHER official database overview homepage-style shell */
+.kether-overview-home-shell {
+  gap: 18px;
+}
+
+.kether-overview-intro-card {
+  position: relative;
+  padding: 22px;
+  border-radius: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.34), rgba(226, 232, 240, 0.08)),
+    rgba(255, 255, 255, 0.12);
+  box-shadow:
+    0 0 0 1px rgba(226, 232, 240, 0.34),
+    0 18px 42px rgba(15, 23, 42, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.76);
+  backdrop-filter: blur(22px) saturate(1.35);
+  -webkit-backdrop-filter: blur(22px) saturate(1.35);
+}
+
+.kether-overview-intro-card p {
+  margin: 0 0 6px;
+  color: rgba(124, 58, 237, 0.66);
+  font-size: 11px;
+  line-height: 1.2;
+  font-weight: 900;
+  letter-spacing: 0.14em;
+}
+
+.kether-overview-intro-card h1 {
+  margin: 0 0 8px;
+  color: rgba(31, 41, 55, 0.9);
+  font-size: clamp(20px, 2vw, 28px);
+  line-height: 1.15;
+  font-weight: 950;
+  letter-spacing: 0.04em;
+}
+
+.kether-overview-intro-card span {
+  display: block;
+  color: rgba(71, 85, 105, 0.84);
+  font-size: 14px;
+  line-height: 1.75;
+  font-weight: 720;
+}
+
+.kether-overview-chart-fold {
+  overflow: hidden;
+}
+
+.kether-overview-chart-fold .kether-overview-chart-card-in-fold {
+  margin: 0 22px 22px;
+}
+
+.kether-overview-chart-card-in-fold {
+  padding: 18px;
+}
+
+@media (max-width: 760px) {
+  .kether-overview-intro-card {
+    padding: 16px;
+    border-radius: 24px;
+  }
+
+  .kether-overview-chart-fold .kether-overview-chart-card-in-fold {
+    margin: 0 12px 12px;
+  }
+
+  .kether-overview-chart-card-in-fold {
+    padding: 14px;
+  }
+}
