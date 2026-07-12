@@ -56,7 +56,7 @@ export default function ClanDiscordAccessCard() {
         開啟可使用的個人功能與群組功能。
       </p>
 
-      <Link href="/api/auth/signin/discord">使用 Discord 登入</Link>
+      <Link href="/profile">使用 Discord 登入</Link>
     </article>
   );
 }
