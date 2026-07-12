@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import Link from "next/link";
 import { ArrowLeft, Bell, Bot, Radio } from "lucide-react";
 import type { SheetRow } from "../lib/sheets";
@@ -165,7 +166,7 @@ export default function DatabaseOverviewPage({
     </article>
   );
 
-  const renderChartFold = (title: string, label: string, content: JSX.Element) => (
+  const renderChartFold = (title: string, label: string, content: ReactNode) => (
     collapsibleCharts ? (
       <details className="kether-database-fold kether-database-chart-fold" open>
         <summary>
@@ -379,7 +380,7 @@ export default function DatabaseOverviewPage({
     </article>
   );
 
-  const renderChartFold = (title: string, label: string, content: JSX.Element) => (
+  const renderChartFold = (title: string, label: string, content: ReactNode) => (
     collapsibleCharts ? (
       <details className="kether-database-fold kether-database-chart-fold" open>
         <summary>
@@ -535,7 +536,7 @@ export default function DatabaseOverviewPage({
     </article>
   );
 
-  const renderChartFold = (title: string, label: string, content: JSX.Element) => (
+  const renderChartFold = (title: string, label: string, content: ReactNode) => (
     collapsibleCharts ? (
       <details className="kether-database-fold kether-database-chart-fold" open>
         <summary>
@@ -690,7 +691,7 @@ export default function DatabaseOverviewPage({
     </article>
   );
 
-  const renderChartFold = (title: string, label: string, content: JSX.Element) => (
+  const renderChartFold = (title: string, label: string, content: ReactNode) => (
     collapsibleCharts ? (
       <details className="kether-database-fold kether-database-chart-fold" open>
         <summary>
