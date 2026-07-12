@@ -302,32 +302,42 @@ export default function BotPage() {
             </section>
           </details>
 
-          <section className="kether-bot-panel kether-bot-note-panel">
-            <div className="kether-bot-section-title">
-              <CircleHelp size={19} />
-              <div>
-                <h2>使用提醒</h2>
-                <p>BOT 與網站功能分工如下。</p>
+          <details className="home-new-fold-card kether-bot-fold">
+            <summary className="home-new-fold-head">
+              <span>
+                <em>KETHER BOT NOTE</em>
+                <strong>使用提醒</strong>
+              </span>
+              <b aria-hidden="true">⌄</b>
+            </summary>
+
+            <section className="kether-bot-panel kether-bot-note-panel kether-bot-fold-body">
+              <div className="kether-bot-section-title">
+                <CircleHelp size={19} />
+                <div>
+                  <h2>使用提醒</h2>
+                  <p>BOT 與網站功能分工如下。</p>
+                </div>
               </div>
-            </div>
 
-            <div className="kether-bot-note-list">
-              <p>
-                <b>Discord BOT：</b>
-                適合在群組內快速查詢資料、取得方式與指令說明。
-              </p>
+              <div className="kether-bot-note-list">
+                <p>
+                  <b>Discord BOT：</b>
+                  適合在群組內快速查詢資料、取得方式與指令說明。
+                </p>
 
-              <p>
-                <b>KETHER 網站：</b>
-                適合查看完整分類、價格欄位、已購買狀態與個人進度。
-              </p>
+                <p>
+                  <b>KETHER 網站：</b>
+                  適合查看完整分類、價格欄位、已購買狀態與個人進度。
+                </p>
 
-              <p>
-                <b>Discord 登入：</b>
-                用於網站權限與個人化進度，和 BOT 指令本體分開管理。
-              </p>
-            </div>
-          </section>
+                <p>
+                  <b>Discord 登入：</b>
+                  用於網站權限與個人化進度，和 BOT 指令本體分開管理。
+                </p>
+              </div>
+            </section>
+          </details>
         </section>
 
         <footer className="home-new-footer">
