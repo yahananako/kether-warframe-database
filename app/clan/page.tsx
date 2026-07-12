@@ -14,6 +14,7 @@ import HomeNewInlineMenu from "../../components/HomeNewInlineMenu";
 import HomeNewInlineSearch from "../../components/HomeNewInlineSearch";
 import HomeNewInlineNotifications from "../../components/HomeNewInlineNotifications";
 import ClanDiscordAccessCard from "../../components/ClanDiscordAccessCard";
+import ClanAnnouncementBoard from "../../components/ClanAnnouncementBoard";
 import HomeAuthAction from "../../components/HomeAuthAction";
 
 const databaseStats = [
@@ -188,6 +189,8 @@ export default function ClanPage() {
             Discord 入口、網站登入說明、BOT 連動說明與未來群組資料庫的展示中心。
           </span>
         </section>
+
+        <ClanAnnouncementBoard />
 
         <section className="kether-clan-quick-grid" aria-label="KETHER 氏族登入入口">
           <ClanDiscordAccessCard />
