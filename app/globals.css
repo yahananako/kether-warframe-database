@@ -12806,3 +12806,41 @@ a.nav-card {
     margin: 0 12px 12px;
   }
 }
+
+/* KETHER database category pages inside shared homepage shell */
+.kether-category-content-shell {
+  display: grid;
+  gap: 16px;
+}
+
+.kether-category-content-shell .owned-sync-banner {
+  margin: 0;
+}
+
+.kether-category-content-shell .section-stats-panel,
+.kether-category-content-shell .db-tool-panel,
+.kether-category-content-shell .db-table-card {
+  margin-top: 0;
+}
+
+.home-new-nav-item.is-current {
+  box-shadow:
+    0 0 0 1px rgba(244, 114, 182, 0.42),
+    0 0 28px rgba(244, 114, 182, 0.26),
+    0 18px 36px rgba(15, 23, 42, 0.08),
+    inset 0 1px 0 rgba(255,255,255,0.82);
+}
+
+.home-new-nav-item.is-current .home-new-nav-icon-normal {
+  opacity: 0;
+}
+
+.home-new-nav-item.is-current .home-new-nav-icon-active {
+  opacity: 1;
+}
+
+@media (max-width: 760px) {
+  .kether-category-content-shell {
+    gap: 12px;
+  }
+}
