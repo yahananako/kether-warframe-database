@@ -7,6 +7,7 @@ export type DiscordSessionPayload = {
   sub: string;
   username: string | null;
   globalName: string | null;
+  guildNickname: string | null;
   avatar: string | null;
   banner: string | null;
   accentColor: number | null;
@@ -30,6 +31,7 @@ type BuildSessionPayloadArgs = {
     nameplatePalette?: string | null;
   };
   guildId: string;
+  guildNickname?: string | null;
   roleIds: string[];
 };
 
@@ -48,6 +50,7 @@ export function buildDiscordSessionPayload(args: BuildSessionPayloadArgs): Disco
     sub: args.discordUser.id,
     username: args.discordUser.username,
     globalName: args.discordUser.globalName,
+    guildNickname: args.guildNickname ?? null,
     avatar: args.discordUser.avatar,
     banner: args.discordUser.banner ?? null,
     accentColor: args.discordUser.accentColor ?? null,
@@ -95,6 +98,7 @@ export function verifyDiscordSessionCookieValue(value: string, secret: string) {
 
     return {
       ...payload,
+      guildNickname: payload.guildNickname ?? null,
       banner: payload.banner ?? null,
       accentColor: payload.accentColor ?? null,
       avatarDecorationAsset: payload.avatarDecorationAsset ?? null,

@@ -260,6 +260,7 @@ export async function GET(request: NextRequest) {
       nameplatePalette: userData.collectibles?.nameplate?.palette ?? null
     },
     guildId,
+    guildNickname: memberData.nick ?? null,
     roleIds: sessionRoleIds
   });
 

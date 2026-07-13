@@ -41,6 +41,7 @@ export async function GET(request: NextRequest) {
       id: session.sub,
       username: session.username,
       globalName: session.globalName,
+      guildNickname: session.guildNickname,
       avatar: session.avatar,
       banner: session.banner,
       accentColor: session.accentColor,

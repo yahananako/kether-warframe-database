@@ -1,3 +1,4 @@
+import { del } from "@vercel/blob";
 import { NextRequest, NextResponse } from "next/server";
 
 import {
@@ -10,9 +11,7 @@ export const dynamic = "force-dynamic";
 
 const UUID_PATTERN =
   /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
-
 const CATEGORIES = new Set(["important", "event", "general"]);
-const VISIBILITIES = new Set(["public", "members"]);
 const STATUSES = new Set(["draft", "published", "archived"]);
 
 type AnnouncementRow = {
@@ -21,8 +20,8 @@ type AnnouncementRow = {
   content: string;
   category: string;
   status: string;
-  visibility: string;
   is_pinned: boolean;
+  image_pathname: string | null;
   published_at: string | null;
 };
 
@@ -46,6 +45,25 @@ function errorResponse(error: unknown) {
   );
 }
 
+function isValidImagePathname(pathname: string | null, slug: string) {
+  return (
+    pathname === null ||
+    (pathname.startsWith(`clan-announcements/${slug}/`) &&
+      pathname.length <= 500 &&
+      !pathname.includes(".."))
+  );
+}
+
+async function removeBlobQuietly(pathname: string | null) {
+  if (!pathname) return;
+
+  try {
+    await del(pathname);
+  } catch (error) {
+    console.error("Failed to remove clan announcement image:", error);
+  }
+}
+
 export async function PATCH(
   request: NextRequest,
   context: { params: Promise<{ id: string }> },
@@ -64,7 +82,7 @@ export async function PATCH(
     const existingRows = await access.sql`
       SELECT
         id, title, content, category, status,
-        visibility, is_pinned, published_at
+        is_pinned, image_pathname, published_at
       FROM clan_announcements
       WHERE id = ${id}
         AND group_id = ${access.group.id}
@@ -102,15 +120,15 @@ export async function PATCH(
     const category = has("category")
       ? String(body.category)
       : existing.category;
-    const visibility = has("visibility")
-      ? String(body.visibility)
-      : existing.visibility;
-    const status = has("status")
-      ? String(body.status)
-      : existing.status;
+    const status = has("status") ? String(body.status) : existing.status;
     const isPinned = has("isPinned")
       ? body.isPinned === true
       : existing.is_pinned;
+    const imagePathname = has("imagePathname")
+      ? typeof body.imagePathname === "string" && body.imagePathname.trim()
+        ? body.imagePathname.trim()
+        : null
+      : existing.image_pathname;
 
     if (!title || title.length > 120) {
       return NextResponse.json(
@@ -133,16 +151,16 @@ export async function PATCH(
       );
     }
 
-    if (!VISIBILITIES.has(visibility)) {
+    if (!STATUSES.has(status)) {
       return NextResponse.json(
-        { ok: false, message: "公告閱讀權限不正確。" },
+        { ok: false, message: "公告發布狀態不正確。" },
         { status: 400 },
       );
     }
 
-    if (!STATUSES.has(status)) {
+    if (!isValidImagePathname(imagePathname, access.group.slug)) {
       return NextResponse.json(
-        { ok: false, message: "公告發布狀態不正確。" },
+        { ok: false, message: "公告圖片路徑不正確。" },
         { status: 400 },
       );
     }
@@ -164,17 +182,22 @@ export async function PATCH(
         content = ${content},
         category = ${category},
         status = ${status},
-        visibility = ${visibility},
+        visibility = 'members',
         is_pinned = ${isPinned},
+        image_pathname = ${imagePathname},
         published_at = ${publishedAt}
       WHERE id = ${id}
         AND group_id = ${access.group.id}
         AND deleted_at IS NULL
       RETURNING
         id, title, content, category, status,
-        visibility, is_pinned, author_name,
+        is_pinned, author_name, image_pathname,
         published_at, created_at, updated_at
     `;
+
+    if (existing.image_pathname !== imagePathname) {
+      await removeBlobQuietly(existing.image_pathname);
+    }
 
     return NextResponse.json({
       ok: true,
@@ -210,15 +233,21 @@ export async function DELETE(
       WHERE id = ${id}
         AND group_id = ${access.group.id}
         AND deleted_at IS NULL
-      RETURNING id
+      RETURNING id, image_pathname
     `;
 
-    if (rows.length === 0) {
+    const deleted = rows[0] as
+      | { id: string; image_pathname: string | null }
+      | undefined;
+
+    if (!deleted) {
       return NextResponse.json(
         { ok: false, message: "找不到這則氏族公告。" },
         { status: 404 },
       );
     }
+
+    await removeBlobQuietly(deleted.image_pathname);
 
     return NextResponse.json({
       ok: true,
