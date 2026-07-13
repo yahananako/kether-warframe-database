@@ -13387,3 +13387,196 @@ a.nav-card {
     height: 16px;
   }
 }
+
+
+/* KETHER NEKO SIGNAL home link + navigation fold control final */
+.live-hero-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin: 0 0 8px;
+}
+
+.live-hero-title-row .live-eyebrow {
+  min-width: 0;
+  margin: 0 !important;
+}
+
+.live-home-link {
+  min-height: 40px;
+  padding: 0 14px;
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  border: 1px solid rgba(139, 92, 246, 0.34);
+  border-radius: 999px;
+  color: #6d28d9;
+  background:
+    radial-gradient(circle at 30% 18%, rgba(255, 255, 255, 0.96), transparent 38%),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.94), rgba(241, 232, 255, 0.76));
+  box-shadow:
+    0 9px 22px rgba(109, 40, 217, 0.13),
+    inset 0 1px 0 rgba(255, 255, 255, 0.96);
+  color: #6d28d9 !important;
+  font-size: 0.82rem;
+  font-weight: 850;
+  line-height: 1;
+  text-decoration: none;
+  white-space: nowrap;
+  backdrop-filter: blur(14px) saturate(145%);
+  -webkit-backdrop-filter: blur(14px) saturate(145%);
+  transition: transform 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
+}
+
+.live-home-link:hover {
+  transform: translateY(-1px);
+  border-color: rgba(217, 70, 239, 0.55);
+  box-shadow:
+    0 12px 27px rgba(168, 85, 247, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 1);
+}
+
+.live-home-link:active {
+  transform: translateY(1px) scale(0.98);
+}
+
+.live-home-link:focus-visible {
+  outline: 3px solid rgba(196, 181, 253, 0.72);
+  outline-offset: 3px;
+}
+
+/* 資料庫導覽縮放鈕：收合向下、展開向上 */
+.home-new-page .home-new-fold-nav > .home-new-fold-head {
+  cursor: pointer !important;
+  user-select: none !important;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.home-new-page .home-new-fold-nav > .home-new-fold-head::-webkit-details-marker {
+  display: none !important;
+}
+
+.home-new-page .home-new-fold-nav > .home-new-fold-head > .home-new-fold-icon {
+  position: relative !important;
+  width: 42px !important;
+  height: 42px !important;
+  min-width: 42px !important;
+  min-height: 42px !important;
+  flex: 0 0 42px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border: 1px solid rgba(139, 92, 246, 0.30) !important;
+  border-radius: 999px !important;
+  color: transparent !important;
+  font-size: 0 !important;
+  background-image: none !important;
+  background:
+    radial-gradient(circle at 32% 22%, rgba(255, 255, 255, 0.98), transparent 36%),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.94), rgba(237, 233, 254, 0.74)) !important;
+  box-shadow:
+    0 9px 21px rgba(91, 33, 182, 0.12),
+    0 0 0 1px rgba(255, 255, 255, 0.56),
+    inset 0 1px 0 rgba(255, 255, 255, 0.98) !important;
+  overflow: visible !important;
+  pointer-events: none !important;
+  transform: none !important;
+  transition: transform 170ms ease, border-color 170ms ease, box-shadow 170ms ease, background 170ms ease !important;
+}
+
+.home-new-page .home-new-fold-nav > .home-new-fold-head > .home-new-fold-icon::before {
+  content: "" !important;
+  position: absolute !important;
+  left: 50% !important;
+  top: 47% !important;
+  width: 11px !important;
+  height: 11px !important;
+  border: 0 !important;
+  border-right: 3px solid #6d28d9 !important;
+  border-bottom: 3px solid #6d28d9 !important;
+  border-radius: 1.5px !important;
+  background: none !important;
+  filter: drop-shadow(0 0 6px rgba(139, 92, 246, 0.38)) !important;
+  transform: translate(-50%, -62%) rotate(45deg) !important;
+  transition: top 170ms ease, transform 170ms ease, border-color 170ms ease !important;
+}
+
+.home-new-page .home-new-fold-nav[open] > .home-new-fold-head > .home-new-fold-icon {
+  border-color: rgba(217, 70, 239, 0.36) !important;
+  background-image: none !important;
+  background:
+    radial-gradient(circle at 32% 22%, rgba(255, 255, 255, 0.98), transparent 36%),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.96), rgba(250, 232, 255, 0.78)) !important;
+  box-shadow:
+    0 10px 24px rgba(192, 38, 211, 0.14),
+    0 0 0 1px rgba(255, 255, 255, 0.62),
+    inset 0 1px 0 rgba(255, 255, 255, 1) !important;
+  transform: none !important;
+}
+
+.home-new-page .home-new-fold-nav[open] > .home-new-fold-head > .home-new-fold-icon::before {
+  top: 56% !important;
+  border-right-color: #db2777 !important;
+  border-bottom-color: #db2777 !important;
+  transform: translate(-50%, -38%) rotate(225deg) !important;
+}
+
+.home-new-page .home-new-fold-nav > .home-new-fold-head:hover > .home-new-fold-icon {
+  transform: translateY(-1px) !important;
+  border-color: rgba(168, 85, 247, 0.48) !important;
+  box-shadow:
+    0 12px 27px rgba(124, 58, 237, 0.16),
+    0 0 0 1px rgba(255, 255, 255, 0.72),
+    inset 0 1px 0 rgba(255, 255, 255, 1) !important;
+}
+
+.home-new-page .home-new-fold-nav > .home-new-fold-head:focus-visible {
+  outline: 3px solid rgba(196, 181, 253, 0.68) !important;
+  outline-offset: 3px !important;
+  border-radius: 18px !important;
+}
+
+@media (max-width: 760px) {
+  .live-hero-title-row {
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .live-home-link {
+    min-height: 36px;
+    padding: 0 11px;
+    gap: 5px;
+    font-size: 0.75rem;
+  }
+
+  .home-new-page .home-new-fold-nav > .home-new-fold-head > .home-new-fold-icon {
+    width: 38px !important;
+    height: 38px !important;
+    min-width: 38px !important;
+    min-height: 38px !important;
+    flex-basis: 38px !important;
+  }
+
+  .home-new-page .home-new-fold-nav > .home-new-fold-head > .home-new-fold-icon::before {
+    width: 10px !important;
+    height: 10px !important;
+    border-right-width: 2.5px !important;
+    border-bottom-width: 2.5px !important;
+  }
+}
+
+@media (max-width: 430px) {
+  .live-home-link span {
+    display: none;
+  }
+
+  .live-home-link {
+    width: 38px;
+    min-width: 38px;
+    padding: 0;
+    border-radius: 50%;
+  }
+}

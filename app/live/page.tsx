@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { MessageCircle, UserRound } from "lucide-react";
+import { House, MessageCircle, UserRound } from "lucide-react";
 
 import KetherDynamicInfo from "../../components/KetherDynamicInfo";
 import HomeNewInlineMenu from "../../components/HomeNewInlineMenu";
@@ -421,7 +421,7 @@ export default async function LivePage() {
         </section>
 
         <details className="home-new-fold-card home-new-fold-nav">
-          <summary className="home-new-fold-head">
+          <summary className="home-new-fold-head" aria-label="展開或收合資料庫導覽">
             <span>
               <em>KETHER DATABASE NAVIGATION</em>
               <strong>資料庫導覽</strong>
@@ -460,7 +460,18 @@ export default async function LivePage() {
 
         <section className="kether-live-content-shell">
           <section className="live-hero live-tech-frame">
-        <p className="live-eyebrow">KETHER NEKO SIGNAL</p>
+        <div className="live-hero-title-row">
+          <p className="live-eyebrow">KETHER NEKO SIGNAL</p>
+          <Link
+            href="/"
+            className="live-home-link"
+            aria-label="回首頁"
+            title="回首頁"
+          >
+            <House size={17} aria-hidden="true" />
+            <span>回首頁</span>
+          </Link>
+        </div>
         <h1>小希星圖電波局</h1>
         <p>
           小希正在監聽 Warframe 星系脈動：平原循環、虛空裂縫、入侵戰線、突擊任務與 Baro Ki'Teer 的虛空商船。
