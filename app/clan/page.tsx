@@ -114,30 +114,7 @@ export default function ClanPage() {
             </div>
 
             <div className="home-new-hero-actions" aria-label="氏族中心快捷入口">
-              <Link
-          href="/"
-          className="home-new-home-action"
-          aria-label="返回首頁"
-          title="返回首頁"
-        >
-          <svg
-            viewBox="0 0 24 24"
-            width="19"
-            height="19"
-            aria-hidden="true"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <path d="m3 10 9-7 9 7" />
-            <path d="M5 9v11h14V9" />
-            <path d="M9 20v-6h6v6" />
-          </svg>
-        </Link>
-
-        <HomeNewInlineSearch />
+              <HomeNewInlineSearch />
 
               <HomeNewInlineNotifications />
 
@@ -206,8 +183,35 @@ export default function ClanPage() {
           </section>
         </details>
 
-        <section className="kether-overview-intro-card">
-          <p>KETHER CLAN PAGE</p>
+        <section className="kether-overview-intro-card kether-clan-intro-card">
+          <div className="kether-clan-intro-topline">
+            <p>KETHER CLAN PAGE</p>
+
+            <Link
+              href="/"
+              className="kether-clan-home-link"
+              aria-label="回首頁"
+              title="回首頁"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                width="18"
+                height="18"
+                aria-hidden="true"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="m3 10 9-7 9 7" />
+                <path d="M5 9v11h14V9" />
+                <path d="M9 20v-6h6v6" />
+              </svg>
+              回首頁
+            </Link>
+          </div>
+
           <h1>KETHER OF PARADISO</h1>
           <span>
             這裡是 KETHER OF PARADISO 的專屬氏族頁，集中顯示氏族公告、Discord 權限、資料庫授權與 KETHER 訂閱狀態。
