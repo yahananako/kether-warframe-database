@@ -196,13 +196,39 @@ export default async function OverviewPage() {
           </section>
         </details>
 
-        <DatabaseOverviewPage
-          rows={overviewData.rows}
-          title={overviewData.config.title}
-          subtitle={overviewData.config.subtitle}
-          error={overviewData.error}
-          categoryStats={categoryResults}
-        />
+        <div className="kether-database-overview-wrap">
+          <Link
+            href="/"
+            className="kether-database-home-link"
+            aria-label="回首頁"
+            title="回首頁"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              width="18"
+              height="18"
+              aria-hidden="true"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="m3 10 9-7 9 7" />
+              <path d="M5 9v11h14V9" />
+              <path d="M9 20v-6h6v6" />
+            </svg>
+            <span>回首頁</span>
+          </Link>
+
+          <DatabaseOverviewPage
+            rows={overviewData.rows}
+            title={overviewData.config.title}
+            subtitle={overviewData.config.subtitle}
+            error={overviewData.error}
+            categoryStats={categoryResults}
+          />
+        </div>
 
         <footer className="home-new-footer">
           <a
