@@ -114,7 +114,30 @@ export default function ClanPage() {
             </div>
 
             <div className="home-new-hero-actions" aria-label="氏族中心快捷入口">
-              <HomeNewInlineSearch />
+              <Link
+          href="/"
+          className="home-new-home-action"
+          aria-label="返回首頁"
+          title="返回首頁"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            width="19"
+            height="19"
+            aria-hidden="true"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path d="m3 10 9-7 9 7" />
+            <path d="M5 9v11h14V9" />
+            <path d="M9 20v-6h6v6" />
+          </svg>
+        </Link>
+
+        <HomeNewInlineSearch />
 
               <HomeNewInlineNotifications />
 

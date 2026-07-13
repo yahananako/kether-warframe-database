@@ -13291,3 +13291,57 @@ a.nav-card {
   }
 }
 
+
+
+/* KETHER 上方返回首頁鍵 */
+.home-new-home-action {
+  width: 42px;
+  height: 42px;
+  flex: 0 0 42px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(167, 139, 250, 0.38);
+  border-radius: 999px;
+  color: #7c3aed;
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.94),
+      rgba(246, 240, 255, 0.8)
+    );
+  box-shadow:
+    0 8px 22px rgba(124, 58, 237, 0.13),
+    inset 0 1px 0 rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  text-decoration: none;
+  transition:
+    transform 0.18s ease,
+    box-shadow 0.18s ease,
+    border-color 0.18s ease,
+    background 0.18s ease;
+}
+
+.home-new-home-action:hover {
+  transform: translateY(-1px);
+  border-color: rgba(192, 132, 252, 0.65);
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 1),
+      rgba(250, 232, 255, 0.92)
+    );
+  box-shadow:
+    0 10px 26px rgba(168, 85, 247, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 1);
+}
+
+.home-new-home-action:active {
+  transform: translateY(1px) scale(0.97);
+}
+
+.home-new-home-action:focus-visible {
+  outline: 3px solid rgba(216, 180, 254, 0.65);
+  outline-offset: 3px;
+}
