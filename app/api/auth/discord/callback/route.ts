@@ -216,33 +216,9 @@ export async function GET(request: NextRequest) {
     ? memberData.roles.filter((roleId) => allowedRoleIds.includes(roleId))
     : [];
 
-  const hasAllowedRole = !roleCheckEnabled || matchedRoleIds.length > 0;
-
-  if (!hasAllowedRole) {
+  const hasAllowedRole = !roleCheckEnabled || matchedRoleIds.length > 0;  if (!hasAllowedRole) {
     return clearOauthState(
-      NextResponse.json(
-        {
-          ok: false,
-          error: "Discord guild role is not allowed.",
-          discordUser: {
-            id: userData.id,
-            username: userData.username ?? null,
-            globalName: userData.global_name ?? null,
-            avatar: userData.avatar ?? null,
-            banner: userData.banner ?? null,
-            accentColor: userData.accent_color ?? null
-          },
-          guildAccess: {
-            guildId,
-            isMember: true,
-            roleCheckEnabled,
-            hasAllowedRole: false,
-            authorized: false,
-            matchedRoleIds: []
-          }
-        },
-        { status: 403 }
-      )
+      NextResponse.redirect(new URL("/", request.url))
     );
   }
 
