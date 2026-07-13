@@ -13580,3 +13580,95 @@ a.nav-card {
     border-radius: 50%;
   }
 }
+
+
+/* KETHER DISCORD BOT 標題框內回首頁鍵 */
+.kether-bot-intro-card {
+  padding-right: 22px;
+}
+
+.kether-bot-intro-topline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 6px;
+}
+
+.kether-bot-intro-topline > p {
+  min-width: 0;
+  margin: 0;
+}
+
+.kether-bot-home-link {
+  min-height: 38px;
+  padding: 0 13px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  flex: 0 0 auto;
+  border: 1px solid rgba(99, 102, 241, 0.38);
+  border-radius: 999px;
+  color: #6d28d9;
+  background:
+    radial-gradient(circle at 30% 18%, rgba(255, 255, 255, 0.98), transparent 38%),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.96), rgba(237, 233, 254, 0.88));
+  box-shadow:
+    0 8px 20px rgba(79, 70, 229, 0.14),
+    inset 0 1px 0 rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(14px) saturate(145%);
+  -webkit-backdrop-filter: blur(14px) saturate(145%);
+  text-decoration: none;
+  font-size: 0.82rem;
+  line-height: 1;
+  font-weight: 850;
+  white-space: nowrap;
+  transition:
+    transform 0.18s ease,
+    border-color 0.18s ease,
+    box-shadow 0.18s ease,
+    background 0.18s ease;
+}
+
+.kether-bot-home-link:hover {
+  transform: translateY(-1px);
+  border-color: rgba(124, 58, 237, 0.62);
+  background:
+    radial-gradient(circle at 30% 18%, rgba(255, 255, 255, 1), transparent 38%),
+    linear-gradient(145deg, rgba(255, 255, 255, 1), rgba(224, 231, 255, 0.94));
+  box-shadow:
+    0 10px 24px rgba(109, 40, 217, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 1);
+}
+
+.kether-bot-home-link:active {
+  transform: translateY(1px) scale(0.97);
+}
+
+.kether-bot-home-link:focus-visible {
+  outline: 3px solid rgba(196, 181, 253, 0.72);
+  outline-offset: 3px;
+}
+
+@media (max-width: 760px) {
+  .kether-bot-intro-card {
+    padding-right: 16px;
+  }
+
+  .kether-bot-intro-topline {
+    gap: 8px;
+  }
+
+  .kether-bot-home-link {
+    min-height: 34px;
+    padding: 0 10px;
+    gap: 5px;
+    font-size: 0.76rem;
+  }
+
+  .kether-bot-home-link svg {
+    width: 16px;
+    height: 16px;
+  }
+}

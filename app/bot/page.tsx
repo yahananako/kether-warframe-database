@@ -229,8 +229,35 @@ export default function BotPage() {
           </section>
         </details>
 
-        <section className="kether-overview-intro-card">
-          <p>KETHER DISCORD BOT</p>
+        <section className="kether-overview-intro-card kether-bot-intro-card">
+          <div className="kether-bot-intro-topline">
+            <p>KETHER DISCORD BOT</p>
+
+            <Link
+              href="/"
+              className="kether-bot-home-link"
+              aria-label="回首頁"
+              title="回首頁"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                width="18"
+                height="18"
+                aria-hidden="true"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="m3 10 9-7 9 7" />
+                <path d="M5 9v11h14V9" />
+                <path d="M9 20v-6h6v6" />
+              </svg>
+              <span>回首頁</span>
+            </Link>
+          </div>
+
           <h1>小希 Bot 指令中樞</h1>
           <span>
             小希 BOT 是 KETHER Warframe 資料庫的 Discord 查詢助手，負責把常用資料、
