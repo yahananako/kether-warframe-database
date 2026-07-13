@@ -190,9 +190,9 @@ export default function ClanPage() {
           </span>
         </section>
 
-        <ClanAccessStatus />
-
         <ClanAnnouncementBoard />
+
+        <ClanAccessStatus />
 
         <section className="kether-clan-quick-grid" aria-label="KETHER 氏族登入入口">
           <ClanDiscordAccessCard />

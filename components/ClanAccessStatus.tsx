@@ -144,7 +144,7 @@ export default function ClanAccessStatus() {
   const subscriptionEndsAt = billing?.plan?.subscriptionEndsAt || null;
 
   return (
-    <details className="home-new-fold-card kether-clan-fold" open>
+    <details className="home-new-fold-card kether-clan-fold">
       <summary className="home-new-fold-head">
         <span>
           <em>KETHER CLAN DATABASE ACCESS</em>
