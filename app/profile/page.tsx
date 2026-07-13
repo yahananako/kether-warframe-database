@@ -1,23 +1,18 @@
 import Link from "next/link";
 
 import {
-  UserRound,
-  ShieldCheck,
-  Database,
-  BarChart3,
-  Users,
-  LogOut,
   MessageCircle,
+  UserRound,
 } from "lucide-react";
 
 import AuthSessionStatus from "../../components/AuthSessionStatus";
-import ProfileOwnedSummary from "../../components/ProfileOwnedSummary";
-import PermissionVerificationStatus from "../../components/PermissionVerificationStatus";
 import BillingPlanStatus from "../../components/BillingPlanStatus";
-import KetherDynamicInfo from "../../components/KetherDynamicInfo";
 import HomeNewInlineMenu from "../../components/HomeNewInlineMenu";
-import HomeNewInlineSearch from "../../components/HomeNewInlineSearch";
 import HomeNewInlineNotifications from "../../components/HomeNewInlineNotifications";
+import HomeNewInlineSearch from "../../components/HomeNewInlineSearch";
+import KetherDynamicInfo from "../../components/KetherDynamicInfo";
+import ProfileOwnedSummary from "../../components/ProfileOwnedSummary";
+import ProfilePrivacyDisclaimer from "../../components/ProfilePrivacyDisclaimer";
 
 const databaseStats = [
   { label: "資料來源", value: "Google Sheets" },
@@ -85,13 +80,11 @@ export default function ProfilePage() {
           <div className="home-new-topbar">
             <div className="home-new-brand">
               <HomeNewInlineMenu />
-
               <span>KETHER</span>
             </div>
 
             <div className="home-new-hero-actions" aria-label="個人中心快捷入口">
               <HomeNewInlineSearch />
-
               <HomeNewInlineNotifications />
 
               <Link href="/profile" className="home-new-round-action" aria-label="個人頁面">
@@ -166,85 +159,74 @@ export default function ProfilePage() {
           <p>KETHER PROFILE CENTER</p>
           <h1>個人進度中心</h1>
           <span>
-            Discord session 與個人化資料庫前置架構。未來會在這裡集中顯示個人已購買紀錄、完成度、缺少清單與收藏統計。
+            Discord 個人名片、收藏摘要、方案狀態與資料使用說明集中於此。
+            除 Discord 名片外，其餘內容預設收起。
           </span>
-        </section>
-
-        <section className="auth-hero-card">
-          <UserRound size={68} strokeWidth={1.4} />
-
-          <h2>你的 Warframe 收藏進度將會在這裡展開</h2>
-
-          <p>
-            目前網站仍是 Google Sheets 只讀資料模式。Discord 登入後，
-            每位使用者都會擁有自己的已購買紀錄、完成度、缺少清單與收藏統計。
-          </p>
-
-          <div className="auth-actions">
-            <Link className="auth-primary" href="/login">
-              <ShieldCheck size={20} />
-              前往登入頁
-            </Link>
-
-            <a className="auth-primary" href="/api/auth/session">
-              <Database size={20} />
-              查看登入狀態
-            </a>
-
-            <a className="auth-primary" href="/api/auth/logout">
-              <LogOut size={20} />
-              登出 Discord
-            </a>
-          </div>
         </section>
 
         <AuthSessionStatus />
 
-        <section className="auth-grid">
-          <ProfileOwnedSummary />
-        </section>
+        <details className="home-new-fold-card">
+          <summary className="home-new-fold-head">
+            <span>
+              <em>KETHER PERSONAL COLLECTION</em>
+              <strong>個人收藏摘要</strong>
+            </span>
+            <b aria-hidden="true">⌄</b>
+          </summary>
 
-        <section className="auth-flow">
-          <h2>個人化資料庫流程</h2>
+          <section style={{ padding: 18 }}>
+            <ProfileOwnedSummary />
+          </section>
+        </details>
 
-          <div>
-            <span>1</span>
-            <p>使用者透過 Discord 登入</p>
-          </div>
+        <details className="home-new-fold-card">
+          <summary className="home-new-fold-head">
+            <span>
+              <em>PERSONAL DATABASE FLOW</em>
+              <strong>個人化資料庫流程</strong>
+            </span>
+            <b aria-hidden="true">⌄</b>
+          </summary>
 
-          <div>
-            <span>2</span>
-            <p>網站檢查 Discord Guild ID，並可選擇檢查 Role ID</p>
-          </div>
+          <section className="auth-flow" style={{ margin: 18 }}>
+            <div>
+              <span>1</span>
+              <p>使用者透過 Discord 登入</p>
+            </div>
 
-          <div>
-            <span>3</span>
-            <p>通過後建立 Discord session cookie</p>
-          </div>
+            <div>
+              <span>2</span>
+              <p>網站檢查 Discord Guild ID，並依設定檢查 Role ID</p>
+            </div>
 
-          <div>
-            <span>4</span>
-            <p>讀寫個人已購買、完成度與方案狀態資料</p>
-          </div>
-        </section>
+            <div>
+              <span>3</span>
+              <p>通過後建立 Discord session cookie</p>
+            </div>
 
-        <section className="auth-grid">
-          <article>
-            <BarChart3 size={34} />
-            <h3>完成度統計</h3>
-            <p>總覽會依照使用者自己的資料計算戰甲、武器、同伴、MOD 等完成度。</p>
-          </article>
+            <div>
+              <span>4</span>
+              <p>讀寫個人已購買、完成度與方案狀態資料</p>
+            </div>
+          </section>
+        </details>
 
-          <article>
-            <Users size={34} />
-            <h3>多群組支援</h3>
-            <p>未來每個 Discord 群組會有獨立設定、允許身分組與訂閱狀態。</p>
-          </article>
+        <details className="home-new-fold-card">
+          <summary className="home-new-fold-head">
+            <span>
+              <em>KETHER PERSONAL PLAN</em>
+              <strong>個人方案狀態</strong>
+            </span>
+            <b aria-hidden="true">⌄</b>
+          </summary>
 
-          <PermissionVerificationStatus />
+          <section className="auth-grid" style={{ padding: 18 }}>
+            <BillingPlanStatus />
+          </section>
+        </details>
 
-          <BillingPlanStatus />
-        </section>
+        <ProfilePrivacyDisclaimer />
 
         <footer className="home-new-footer">
           <a

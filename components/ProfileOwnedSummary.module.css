@@ -1,0 +1,62 @@
+.summaryCard {
+  width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+  border: 1px solid rgba(143, 86, 199, 0.2);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.metric {
+  min-width: 0;
+  padding: 14px 12px;
+  text-align: center;
+}
+
+.metric + .metric {
+  border-left: 1px solid rgba(143, 86, 199, 0.14);
+}
+
+.metric span {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 12px;
+  font-weight: 750;
+  color: rgba(48, 50, 62, 0.66);
+}
+
+.metric strong {
+  display: block;
+  overflow-wrap: anywhere;
+  font-size: clamp(15px, 2.6vw, 21px);
+  line-height: 1.2;
+  color: #282331;
+}
+
+.message {
+  margin: 0;
+  padding: 10px 14px;
+  border-top: 1px solid rgba(143, 86, 199, 0.14);
+  text-align: center;
+  font-size: 12px;
+  color: rgba(48, 50, 62, 0.7);
+}
+
+@media (max-width: 520px) {
+  .metric {
+    padding: 12px 7px;
+  }
+
+  .metric span {
+    font-size: 10px;
+  }
+
+  .metric strong {
+    font-size: 14px;
+  }
+}

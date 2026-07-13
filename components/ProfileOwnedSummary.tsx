@@ -2,25 +2,25 @@
 
 import { useEffect, useMemo, useState } from "react";
 
+import styles from "./ProfileOwnedSummary.module.css";
+
 type OwnedItem = {
   item_key?: string;
   category?: string;
   section?: string;
   owned?: boolean;
-  updated_at?: string;
 };
 
 type OwnedListResponse = {
   ok: boolean;
   authenticated?: boolean;
   message?: string;
-  count?: number;
   items?: OwnedItem[];
-  discordUser?: {
-    id: string;
-    username: string | null;
-    globalName: string | null;
-  };
+};
+
+type SummaryMetric = {
+  label: string;
+  value: string;
 };
 
 export default function ProfileOwnedSummary() {
@@ -28,125 +28,95 @@ export default function ProfileOwnedSummary() {
   const [data, setData] = useState<OwnedListResponse | null>(null);
   const [error, setError] = useState<string | null>(null);
 
-  async function loadOwnedItems() {
-    setLoading(true);
-    setError(null);
-
-    try {
-      const response = await fetch("/api/user-owned/list", {
-        method: "GET",
-        credentials: "include",
-        cache: "no-store"
-      });
-
-      const payload = (await response.json().catch(() => ({}))) as OwnedListResponse;
-      setData(payload);
-
-      if (!payload.ok) {
-        setError(payload.message || "個人已購買資料讀取失敗。");
-      }
-    } catch {
-      setError("個人已購買資料讀取失敗。");
-    } finally {
-      setLoading(false);
-    }
-  }
-
   useEffect(() => {
-    loadOwnedItems();
+    let active = true;
+
+    async function loadOwnedItems() {
+      setLoading(true);
+      setError(null);
+
+      try {
+        const response = await fetch("/api/user-owned/list", {
+          method: "GET",
+          credentials: "include",
+          cache: "no-store",
+        });
+
+        const payload = (await response
+          .json()
+          .catch(() => ({}))) as OwnedListResponse;
+
+        if (!active) return;
+
+        setData(payload);
+
+        if (!payload.ok) {
+          setError(payload.message || "個人已購買資料讀取失敗。");
+        }
+      } catch {
+        if (!active) return;
+        setError("個人已購買資料讀取失敗。");
+      } finally {
+        if (active) setLoading(false);
+      }
+    }
+
+    void loadOwnedItems();
+
+    return () => {
+      active = false;
+    };
   }, []);
 
-  const ownedItems = useMemo(() => {
-    return (data?.items || []).filter((item) => item.owned !== false);
-  }, [data]);
+  const ownedItems = useMemo(
+    () => (data?.items || []).filter((item) => item.owned !== false),
+    [data]
+  );
 
   const ownedCount = ownedItems.length;
-  const sectionCount = new Set(ownedItems.map((item) => item.section || "未分類")).size;
-  const latestUpdate = ownedItems
-    .map((item) => item.updated_at)
-    .filter(Boolean)
-    .sort()
-    .at(-1);
+  const sectionCount = new Set(
+    ownedItems.map((item) => item.section || "未分類")
+  ).size;
+
+  let metrics: SummaryMetric[];
+  let message: string | null = null;
 
   if (loading) {
-    return (
-      <>
-        <article className="profile-card">
-          <h3>個人已購買</h3>
-          <strong>讀取中</strong>
-          <p>正在讀取 Discord 個人已購買紀錄。</p>
-        </article>
-        <article className="profile-card">
-          <h3>完成度</h3>
-          <strong>讀取中</strong>
-          <p>等待個人資料同步。</p>
-        </article>
-        <article className="profile-card">
-          <h3>收藏總價</h3>
-          <strong>規劃中</strong>
-          <p>下一階段會依未購買清單估算白金。</p>
-        </article>
-        <article className="profile-card">
-          <h3>Discord 權限</h3>
-          <strong>讀取中</strong>
-          <p>正在確認登入狀態。</p>
-        </article>
-      </>
-    );
-  }
-
-  if (error || !data?.authenticated) {
-    return (
-      <>
-        <article className="profile-card">
-          <h3>個人已購買</h3>
-          <strong>未登入</strong>
-          <p>{error || "請先登入 Discord 才能讀取個人紀錄。"}</p>
-        </article>
-        <article className="profile-card">
-          <h3>完成度</h3>
-          <strong>待登入</strong>
-          <p>登入後依個人已購買資料計算。</p>
-        </article>
-        <article className="profile-card">
-          <h3>收藏總價</h3>
-          <strong>規劃中</strong>
-          <p>登入後可延伸估算未購買項目價格。</p>
-        </article>
-        <article className="profile-card">
-          <h3>Discord 權限</h3>
-          <strong>未授權</strong>
-          <p>請重新登入 Discord。</p>
-        </article>
-      </>
-    );
+    metrics = [
+      { label: "個人已購買", value: "讀取中" },
+      { label: "完成度", value: "讀取中" },
+      { label: "收藏總價", value: "規劃中" },
+    ];
+  } else if (error || !data?.authenticated) {
+    metrics = [
+      { label: "個人已購買", value: "未登入" },
+      { label: "完成度", value: "待登入" },
+      { label: "收藏總價", value: "規劃中" },
+    ];
+    message = error || "請先登入 Discord 才能讀取個人紀錄。";
+  } else {
+    metrics = [
+      { label: "個人已購買", value: `${ownedCount} 筆` },
+      {
+        label: "完成度",
+        value: ownedCount > 0 ? `${sectionCount} 區塊` : "0 筆",
+      },
+      { label: "收藏總價", value: "規劃中" },
+    ];
   }
 
   return (
-    <>
-      <article className="profile-card">
-        <h3>個人已購買</h3>
-        <strong>{ownedCount} 筆</strong>
-        <p>已綁定目前 Discord 使用者的個人紀錄。</p>
-      </article>
-      <article className="profile-card">
-        <h3>完成度</h3>
-        <strong>{ownedCount > 0 ? "已啟用" : "0 筆"}</strong>
-        <p>目前已記錄 {sectionCount} 個區塊的收藏狀態。</p>
-      </article>
-      <article className="profile-card">
-        <h3>收藏總價</h3>
-        <strong>規劃中</strong>
-        <p>下一階段會依未購買資料估算所需白金。</p>
-      </article>
-      <article className="profile-card">
-        <h3>Discord 權限</h3>
-        <strong>已授權</strong>
-        <p>
-          {data.discordUser?.globalName || data.discordUser?.username || "Discord 使用者"}
-          {latestUpdate ? `，最後更新：${latestUpdate}` : "，個人資料已連接。"}
-        </p>
-      </article>
-    </>
+    <article className={styles.summaryCard} aria-label="個人收藏摘要">
+      <div className={styles.metrics}>
+        {metrics.map((metric) => (
+          <div key={metric.label} className={styles.metric}>
+            <span>{metric.label}</span>
+            <strong>{metric.value}</strong>
+          </div>
+        ))}
+      </div>
+
+      {message && <p className={styles.message}>{message}</p>}
+    </article>
   );
 }
