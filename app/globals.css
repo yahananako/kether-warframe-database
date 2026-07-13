@@ -12988,3 +12988,224 @@ a.nav-card {
     border-radius: 20px;
   }
 }
+
+/* KETHER SAFE CRYSTAL FOLD INSTALLER START */
+
+/* 個人頁與共用快捷按鈕水晶化 */
+.home-new-page .home-new-round-action,
+.home-new-page .home-new-discord-action,
+.home-new-page .home-new-icon-action,
+.home-new-page .home-new-menu-button,
+.home-new-page .auth-primary {
+  position: relative !important;
+  overflow: hidden !important;
+  isolation: isolate !important;
+  border: 1px solid rgba(255, 255, 255, 0.82) !important;
+  backdrop-filter: blur(18px) saturate(1.42) !important;
+  -webkit-backdrop-filter: blur(18px) saturate(1.42) !important;
+  transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease, filter 160ms ease !important;
+}
+
+.home-new-page .home-new-round-action,
+.home-new-page .home-new-icon-action,
+.home-new-page .home-new-menu-button {
+  color: rgba(63, 51, 82, 0.94) !important;
+  background:
+    radial-gradient(circle at 28% 16%, rgba(255, 255, 255, 0.94), transparent 34%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.7), rgba(235, 226, 255, 0.36)),
+    rgba(255, 255, 255, 0.22) !important;
+  box-shadow:
+    0 0 0 1px rgba(226, 232, 240, 0.34),
+    0 10px 24px rgba(88, 65, 125, 0.11),
+    0 0 22px rgba(255, 255, 255, 0.38),
+    inset 0 1px 0 rgba(255, 255, 255, 0.94) !important;
+}
+
+.home-new-page .home-new-discord-action,
+.home-new-page .auth-primary {
+  color: #fff !important;
+  background:
+    radial-gradient(circle at 26% 12%, rgba(255, 255, 255, 0.46), transparent 34%),
+    linear-gradient(135deg, rgba(246, 174, 218, 0.94), rgba(214, 137, 232, 0.9) 48%, rgba(158, 168, 255, 0.92)) !important;
+  box-shadow:
+    0 12px 28px rgba(184, 104, 214, 0.22),
+    0 0 22px rgba(255, 255, 255, 0.34),
+    inset 0 1px 0 rgba(255, 255, 255, 0.66) !important;
+}
+
+.home-new-page .home-new-round-action:hover,
+.home-new-page .home-new-discord-action:hover,
+.home-new-page .home-new-icon-action:hover,
+.home-new-page .home-new-menu-button:hover,
+.home-new-page .auth-primary:hover {
+  transform: translateY(-1px) !important;
+  border-color: rgba(255, 255, 255, 0.98) !important;
+  filter: brightness(1.04) !important;
+}
+
+.home-new-page .home-new-round-action:active,
+.home-new-page .home-new-discord-action:active,
+.home-new-page .home-new-icon-action:active,
+.home-new-page .home-new-menu-button:active,
+.home-new-page .auth-primary:active {
+  transform: translateY(1px) scale(0.98) !important;
+}
+
+/* 三個收合標題統一銀白科技條 */
+.home-new-page .home-new-fold-card {
+  position: relative !important;
+  overflow: hidden !important;
+  border-radius: 24px !important;
+  border: 1px solid rgba(255, 255, 255, 0.84) !important;
+  background: rgba(248, 250, 252, 0.18) !important;
+  box-shadow:
+    0 0 0 1px rgba(203, 213, 225, 0.34),
+    0 18px 42px rgba(15, 23, 42, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9) !important;
+  backdrop-filter: blur(24px) saturate(1.35) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(1.35) !important;
+}
+
+.home-new-page .home-new-fold-card > summary {
+  list-style: none !important;
+}
+
+.home-new-page .home-new-fold-card > summary::-webkit-details-marker {
+  display: none !important;
+}
+
+.home-new-page .home-new-fold-head {
+  width: 100% !important;
+  min-height: 60px !important;
+  padding: 13px 16px !important;
+  box-sizing: border-box !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 14px !important;
+  cursor: pointer !important;
+  user-select: none !important;
+  background: rgba(248, 250, 252, 0.48) !important;
+  border-bottom: 1px solid transparent !important;
+}
+
+.home-new-page .home-new-fold-card[open] > .home-new-fold-head {
+  background: rgba(241, 245, 249, 0.62) !important;
+  border-bottom-color: rgba(203, 213, 225, 0.42) !important;
+}
+
+.home-new-page .home-new-fold-head > span {
+  min-width: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  gap: 4px !important;
+}
+
+.home-new-page .home-new-fold-head em {
+  display: block !important;
+  margin: 0 !important;
+  color: rgba(102, 83, 128, 0.72) !important;
+  background: none !important;
+  background-image: none !important;
+  -webkit-text-fill-color: rgba(102, 83, 128, 0.72) !important;
+  font-size: clamp(9px, 0.82vw, 12px) !important;
+  line-height: 1.2 !important;
+  font-style: normal !important;
+  font-weight: 850 !important;
+  letter-spacing: 0.13em !important;
+  text-shadow: none !important;
+}
+
+.home-new-page .home-new-fold-head strong {
+  display: block !important;
+  margin: 0 !important;
+  color: rgba(31, 41, 55, 0.92) !important;
+  background: none !important;
+  background-image: none !important;
+  -webkit-background-clip: initial !important;
+  background-clip: initial !important;
+  -webkit-text-fill-color: rgba(31, 41, 55, 0.92) !important;
+  text-shadow: none !important;
+  filter: none !important;
+  font-size: clamp(17px, 1.65vw, 22px) !important;
+  line-height: 1.16 !important;
+  font-weight: 900 !important;
+  letter-spacing: 0.035em !important;
+}
+
+/* 真正 SVG 圖示：收起向下，展開向上 */
+.home-new-page .home-new-fold-head > b {
+  position: relative !important;
+  width: 36px !important;
+  height: 36px !important;
+  flex: 0 0 36px !important;
+  overflow: hidden !important;
+  border-radius: 999px !important;
+  border: 1px solid rgba(255, 255, 255, 0.9) !important;
+  color: transparent !important;
+  font-size: 0 !important;
+  background-color: rgba(255, 255, 255, 0.54) !important;
+  background-image: url('/ui/kether-chevron-down.svg') !important;
+  background-repeat: no-repeat !important;
+  background-position: center !important;
+  background-size: 24px 24px !important;
+  box-shadow:
+    0 0 0 1px rgba(203, 213, 225, 0.24),
+    0 8px 18px rgba(60, 52, 83, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.94) !important;
+  transform: none !important;
+  transition: transform 180ms ease, background-color 180ms ease, box-shadow 180ms ease !important;
+}
+
+.home-new-page .home-new-fold-card[open] .home-new-fold-head > b {
+  background-color: rgba(245, 239, 255, 0.72) !important;
+  background-image: url('/ui/kether-chevron-up.svg') !important;
+  box-shadow:
+    0 0 0 1px rgba(216, 194, 255, 0.42),
+    0 10px 24px rgba(124, 58, 237, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.96) !important;
+}
+
+.home-new-page .home-new-fold-head:hover > b {
+  transform: translateY(-1px) !important;
+}
+
+/* 收合區內部避免第二層厚框 */
+.home-new-page .home-new-fold-nav .home-new-nav-card {
+  margin: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+@media (max-width: 760px) {
+  .home-new-page .home-new-fold-card {
+    border-radius: 20px !important;
+  }
+
+  .home-new-page .home-new-fold-head {
+    min-height: 55px !important;
+    padding: 11px 12px !important;
+    gap: 10px !important;
+  }
+
+  .home-new-page .home-new-fold-head em {
+    font-size: clamp(8px, 2vw, 10px) !important;
+    letter-spacing: 0.1em !important;
+  }
+
+  .home-new-page .home-new-fold-head strong {
+    font-size: clamp(15px, 4vw, 18px) !important;
+  }
+
+  .home-new-page .home-new-fold-head > b {
+    width: 32px !important;
+    height: 32px !important;
+    flex-basis: 32px !important;
+    background-size: 22px 22px !important;
+  }
+}
+
+/* KETHER SAFE CRYSTAL FOLD INSTALLER END */
