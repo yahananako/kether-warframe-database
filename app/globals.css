@@ -13798,3 +13798,52 @@ a.nav-card {
     border-radius: 50%;
   }
 }
+
+/* KETHER login menu portal layer fix start */
+.home-new-menu-backdrop.home-new-menu-backdrop-portal {
+  position: fixed !important;
+  inset: 0 !important;
+  z-index: 2147483000 !important;
+  display: block !important;
+  width: 100vw !important;
+  height: 100dvh !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  cursor: default !important;
+}
+
+.home-new-menu-panel.home-new-menu-panel-portal {
+  position: fixed !important;
+  top: var(--kether-menu-top) !important;
+  left: var(--kether-menu-left) !important;
+  right: auto !important;
+  bottom: auto !important;
+  z-index: 2147483001 !important;
+  max-height: calc(100dvh - var(--kether-menu-top) - 12px) !important;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+  overscroll-behavior: contain !important;
+  -webkit-overflow-scrolling: touch !important;
+  isolation: isolate !important;
+  transform: translateZ(0) !important;
+}
+
+.home-new-menu-panel.home-new-menu-panel-portal::before {
+  z-index: 0 !important;
+}
+
+.home-new-menu-panel.home-new-menu-panel-portal > * {
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 760px) {
+  .home-new-menu-panel.home-new-menu-panel-portal {
+    max-height: calc(100dvh - var(--kether-menu-top) - 10px) !important;
+  }
+}
+/* KETHER login menu portal layer fix end */
