@@ -123,7 +123,7 @@ export default function ProfilePage() {
               <em>KETHER DATABASE NAVIGATION</em>
               <strong>資料庫導覽</strong>
             </span>
-            <b aria-hidden="true">⌄</b>
+            <b className="home-new-fold-icon" aria-hidden="true" />
           </summary>
 
           <section className="home-new-nav-card">
@@ -172,7 +172,7 @@ export default function ProfilePage() {
               <em>KETHER PERSONAL COLLECTION</em>
               <strong>個人收藏摘要</strong>
             </span>
-            <b aria-hidden="true">⌄</b>
+            <b className="home-new-fold-icon" aria-hidden="true" />
           </summary>
 
           <section style={{ padding: 18 }}>
@@ -186,7 +186,7 @@ export default function ProfilePage() {
               <em>PERSONAL DATABASE FLOW</em>
               <strong>個人化資料庫流程</strong>
             </span>
-            <b aria-hidden="true">⌄</b>
+            <b className="home-new-fold-icon" aria-hidden="true" />
           </summary>
 
           <section className="auth-flow" style={{ margin: 18 }}>
@@ -218,7 +218,7 @@ export default function ProfilePage() {
               <em>KETHER PERSONAL PLAN</em>
               <strong>個人方案狀態</strong>
             </span>
-            <b aria-hidden="true">⌄</b>
+            <b className="home-new-fold-icon" aria-hidden="true" />
           </summary>
 
           <section className="auth-grid" style={{ padding: 18 }}>

@@ -151,7 +151,7 @@ export default function ClanPage() {
               <em>KETHER DATABASE NAVIGATION</em>
               <strong>資料庫導覽</strong>
             </span>
-            <b aria-hidden="true">⌄</b>
+            <b className="home-new-fold-icon" aria-hidden="true" />
           </summary>
 
           <section className="home-new-nav-card">
@@ -207,7 +207,7 @@ export default function ClanPage() {
               <em>KETHER CLAN INFO</em>
               <strong>氏族與網站連動資訊</strong>
             </span>
-            <b aria-hidden="true">⌄</b>
+            <b className="home-new-fold-icon" aria-hidden="true" />
           </summary>
 
           <section className="kether-clan-info-grid kether-clan-fold-body">
@@ -243,7 +243,7 @@ export default function ClanPage() {
               <em>KETHER GROUP DATABASE</em>
               <strong>未來付費群組獨立庫規劃</strong>
             </span>
-            <b aria-hidden="true">⌄</b>
+            <b className="home-new-fold-icon" aria-hidden="true" />
           </summary>
 
           <section className="kether-clan-roadmap-grid kether-clan-fold-body">
@@ -270,7 +270,7 @@ export default function ClanPage() {
               <em>KETHER CLAN NOTE</em>
               <strong>目前建置狀態</strong>
             </span>
-            <b aria-hidden="true">⌄</b>
+            <b className="home-new-fold-icon" aria-hidden="true" />
           </summary>
 
           <section className="kether-clan-note kether-clan-fold-body">

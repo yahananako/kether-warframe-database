@@ -197,7 +197,7 @@ export default function BotPage() {
               <em>KETHER DATABASE NAVIGATION</em>
               <strong>資料庫導覽</strong>
             </span>
-            <b aria-hidden="true">⌄</b>
+            <b className="home-new-fold-icon" aria-hidden="true" />
           </summary>
 
           <section className="home-new-nav-card">
@@ -247,7 +247,7 @@ export default function BotPage() {
                 <em>KETHER BOT GUIDE</em>
                 <strong>BOT 功能說明</strong>
               </span>
-              <b aria-hidden="true">⌄</b>
+              <b className="home-new-fold-icon" aria-hidden="true" />
             </summary>
 
             <section className="kether-bot-focus-grid kether-bot-fold-body" aria-label="小希 BOT 主要用途">
@@ -274,7 +274,7 @@ export default function BotPage() {
                 <em>KETHER DISCORD COMMANDS</em>
                 <strong>Discord 指令清單</strong>
               </span>
-              <b aria-hidden="true">⌄</b>
+              <b className="home-new-fold-icon" aria-hidden="true" />
             </summary>
 
             <section className="kether-bot-panel kether-bot-fold-body">
@@ -308,7 +308,7 @@ export default function BotPage() {
                 <em>KETHER BOT NOTE</em>
                 <strong>使用提醒</strong>
               </span>
-              <b aria-hidden="true">⌄</b>
+              <b className="home-new-fold-icon" aria-hidden="true" />
             </summary>
 
             <section className="kether-bot-panel kether-bot-note-panel kether-bot-fold-body">

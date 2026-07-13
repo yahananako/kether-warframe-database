@@ -164,7 +164,7 @@ export default async function OverviewPage() {
               <em>KETHER DATABASE NAVIGATION</em>
               <strong>資料庫導覽</strong>
             </span>
-            <b aria-hidden="true">⌄</b>
+            <b className="home-new-fold-icon" aria-hidden="true" />
           </summary>
 
           <section className="home-new-nav-card">
