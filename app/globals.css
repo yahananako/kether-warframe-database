@@ -13209,3 +13209,85 @@ a.nav-card {
 }
 
 /* KETHER SAFE CRYSTAL FOLD INSTALLER END */
+
+/* KETHER PROFILE CARD ACTION BUTTONS */
+.profile-card-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.profile-card-actions .profile-home-button,
+.profile-card-actions .profile-discord-logout-button {
+  min-width: 168px;
+  min-height: 52px;
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 24px;
+  border: 1px solid rgba(255, 255, 255, 0.42);
+  border-radius: 999px;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 900;
+  line-height: 1.15;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  text-shadow: 0 1px 2px rgba(15, 23, 42, 0.22);
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease,
+    filter 180ms ease;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* 回首頁：紫藍色 */
+.profile-card-actions .profile-home-button {
+  background: linear-gradient(135deg, #8b5cf6 0%, #626cf4 48%, #3f83f8 100%);
+  box-shadow:
+    0 12px 28px rgba(91, 83, 235, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.36);
+}
+
+/* 登出 Discord：灰藍色 */
+.profile-card-actions .profile-discord-logout-button {
+  background: linear-gradient(135deg, #8190a8 0%, #667a96 48%, #506782 100%);
+  box-shadow:
+    0 12px 28px rgba(65, 86, 111, 0.24),
+    inset 0 1px 0 rgba(255, 255, 255, 0.32);
+}
+
+.profile-card-actions .profile-home-button:hover,
+.profile-card-actions .profile-discord-logout-button:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.04);
+}
+
+.profile-card-actions .profile-home-button:active,
+.profile-card-actions .profile-discord-logout-button:active {
+  transform: translateY(0) scale(0.985);
+}
+
+.profile-card-actions .profile-home-button:focus-visible,
+.profile-card-actions .profile-discord-logout-button:focus-visible {
+  outline: 3px solid rgba(255, 255, 255, 0.9);
+  outline-offset: 3px;
+}
+
+@media (max-width: 520px) {
+  .profile-card-actions {
+    gap: 10px;
+  }
+
+  .profile-card-actions .profile-home-button,
+  .profile-card-actions .profile-discord-logout-button {
+    min-width: min(100%, 220px);
+    min-height: 48px;
+    padding: 11px 20px;
+    font-size: 15px;
+  }
+}
+

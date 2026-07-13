@@ -259,11 +259,17 @@ export default function AuthSessionStatus() {
             </div>
           </div>
 
-          <div className="auth-actions" style={{ marginTop: 22 }}>
-            <a className="auth-primary" href="/api/auth/logout">
-              登出 Discord
-            </a>
-          </div>
+          <div className="auth-actions profile-card-actions" style={{ marginTop: 22 }}>
+          <a className="profile-home-button" href="/">
+            回首頁
+          </a>
+          <a
+            className="profile-discord-logout-button"
+            href="/api/auth/logout"
+          >
+            登出 Discord
+          </a>
+        </div>
         </div>
       </div>
     </section>
