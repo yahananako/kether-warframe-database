@@ -16,6 +16,7 @@ import HomeNewInlineNotifications from "../../components/HomeNewInlineNotificati
 import ClanDiscordAccessCard from "../../components/ClanDiscordAccessCard";
 import ClanAnnouncementBoard from "../../components/ClanAnnouncementBoard";
 import ClanAccessStatus from "../../components/ClanAccessStatus";
+import ClanPrivacyDisclaimer from "../../components/ClanPrivacyDisclaimer";
 import HomeAuthAction from "../../components/HomeAuthAction";
 
 const databaseStats = [
@@ -193,6 +194,8 @@ export default function ClanPage() {
         <ClanAnnouncementBoard />
 
         <ClanAccessStatus />
+
+        <ClanPrivacyDisclaimer />
 
         <section className="kether-clan-quick-grid" aria-label="KETHER 氏族登入入口">
           <ClanDiscordAccessCard />
