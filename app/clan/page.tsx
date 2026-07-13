@@ -15,6 +15,7 @@ import HomeNewInlineSearch from "../../components/HomeNewInlineSearch";
 import HomeNewInlineNotifications from "../../components/HomeNewInlineNotifications";
 import ClanDiscordAccessCard from "../../components/ClanDiscordAccessCard";
 import ClanAnnouncementBoard from "../../components/ClanAnnouncementBoard";
+import ClanAccessStatus from "../../components/ClanAccessStatus";
 import HomeAuthAction from "../../components/HomeAuthAction";
 
 const databaseStats = [
@@ -185,10 +186,11 @@ export default function ClanPage() {
           <p>KETHER CLAN PAGE</p>
           <h1>KETHER OF PARADISO</h1>
           <span>
-            這裡是 KETHER OF PARADISO 的專屬氏族頁。此頁會作為 KETHER 群組的
-            Discord 入口、網站登入說明、BOT 連動說明與未來群組資料庫的展示中心。
+            這裡是 KETHER OF PARADISO 的專屬氏族頁，集中顯示氏族公告、Discord 權限、資料庫授權與 KETHER 訂閱狀態。
           </span>
         </section>
+
+        <ClanAccessStatus />
 
         <ClanAnnouncementBoard />
 
