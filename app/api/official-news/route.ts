@@ -4,8 +4,7 @@ export const revalidate = 1800;
 
 const OFFICIAL_NEWS_PAGE = "https://www.warframe.com/zh-hant/news";
 const OFFICIAL_NEWS_RSS_CANDIDATES = [
-  "https://www.warframe.com/news/rss",
-  "https://forums.warframe.com/forum/3-pc-update-build-notes.xml",
+  "https://forums.warframe.com/forum/3-pc-update-build-notes.xml/",
 ];
 
 type NewsItem = {

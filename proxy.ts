@@ -13,6 +13,7 @@ type DiscordSessionPayload = {
           "/",
             "/login",
               "/unauthorized",
+  "/api/official-news",
   "/api/discord",
                 "/api/auth/discord/login",
                   "/api/auth/discord/callback",
