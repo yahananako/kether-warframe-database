@@ -5,6 +5,7 @@ import HomeNewInlineMenu from "../../components/HomeNewInlineMenu";
 import HomeNewInlineSearch from "../../components/HomeNewInlineSearch";
 import HomeNewInlineNotifications from "../../components/HomeNewInlineNotifications";
 import HomeNewOfficialNews from "../../components/HomeNewOfficialNews";
+import { KETHER_VERSION_LABEL } from "../../data/siteVersion";
 
 const databaseStats = [
   { label: "資料來源", value: "Google Sheets" },
@@ -185,7 +186,7 @@ export default function HomeNewPage() {
             <div className="home-new-database-info-grid">
               <article className="home-new-database-info-card">
                 <span>目前版本</span>
-                <strong>V2.5.2+BOT-3.5.1</strong>
+                <strong>{KETHER_VERSION_LABEL}</strong>
               </article>
 
               <article className="home-new-database-info-card">

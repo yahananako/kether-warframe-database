@@ -1,31 +1,32 @@
 import Link from "next/link";
 import { Bell, Database, ShieldCheck, Sparkles } from "lucide-react";
+import { KETHER_APP_VERSION, KETHER_BOT_VERSION } from "../../data/siteVersion";
 
 const updates = [
   {
-    version: "V2.5.1",
+    version: KETHER_APP_VERSION,
     title: "網站基礎架構完成",
     content: "KETHER 網站基礎架構已完成，後續進入資料內容更新與功能細節優化階段。",
   },
   {
-    version: "V2.5.1",
+    version: KETHER_APP_VERSION,
     title: "手機版首頁整理完成",
     content: "手機版首頁、玻璃選單、搜尋、鈴鐺與導覽區已完成整理，主要入口維持既有結構並完成視覺優化。",
   },
   {
-    version: "V2.5.1",
+    version: KETHER_APP_VERSION,
     title: "KETHER RADIO 優化",
     content: "音樂播放器已加入循環播放、標題跑馬燈與控制按鍵優化，避免播放清單停在最後一首。",
   },
   {
-    version: "V2.5.1",
+    version: KETHER_APP_VERSION,
     title: "分類導覽素材接入",
     content: "分類導覽素材已接入網站，後續依繪師圖確認尺寸、位置與實際顯示效果。",
   },
   {
-    version: "V2.5.1",
+    version: KETHER_APP_VERSION,
     title: "同步系統維護中",
-    content: "Discord 登入、個人進度與 Google Sheets 資料同步維持運作，BOT 版本同步記錄為 V3.5-E17。",
+    content: `Discord 登入、個人進度與 Google Sheets 資料同步維持運作，BOT 版本同步記錄為 ${KETHER_BOT_VERSION}。`,
   },
 ];
 
@@ -57,7 +58,7 @@ export default function NotificationsPage() {
         <div className="summary-table">
           <div className="summary-row">
             <span>網站版本</span>
-            <b>v2.2.0</b>
+            <b>{KETHER_APP_VERSION}</b>
           </div>
           <div className="summary-row">
             <span>Discord 個人化</span>
