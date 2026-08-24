@@ -677,6 +677,23 @@
   font-family: Georgia, serif;
 }
 
+.volumeDirectory { width: min(1000px, 100%); margin: 72px auto 90px; }
+.volumeDirectory > header { margin-bottom: 24px; }
+.volumeDirectory > header p { margin: 0 0 8px; color: var(--chapter-accent); font-size: 9px; font-weight: 900; letter-spacing: .16em; }
+.volumeDirectory > header h2 { margin: 0; font-family: Georgia, "Noto Serif TC", serif; font-size: clamp(34px, 8vw, 56px); font-weight: 500; }
+.volumeDirectory > header span { color: var(--book-muted); font-size: 10px; }
+.volumeChapterGrid { display: grid; gap: 10px; }
+.volumeChapterCard { display: grid; grid-template-columns: 48px minmax(0, 1fr) 22px; gap: 14px; align-items: center; padding: 18px; border: 1px solid var(--book-line); border-radius: 18px 6px 18px 6px; color: inherit; background: linear-gradient(120deg, color-mix(in srgb, var(--chapter-accent) 7%, transparent), var(--book-panel)); text-decoration: none; transition: border-color 160ms ease, transform 160ms ease; }
+.volumeChapterCard:hover { border-color: color-mix(in srgb, var(--chapter-accent) 55%, transparent); transform: translateY(-2px); }
+.volumeChapterCard > svg { width: 18px; color: var(--chapter-accent); }
+.volumeChapterNumber { color: var(--chapter-accent); font-family: Georgia, serif; font-size: 18px; }
+.volumeChapterCard p { margin: 0 0 5px; color: var(--chapter-accent); font-size: 8px; font-weight: 900; letter-spacing: .1em; }
+.volumeChapterCard h3 { margin: 0; font-family: Georgia, "Noto Serif TC", serif; font-size: 22px; font-weight: 500; line-height: 1.25; }
+.volumeChapterCard small, .volumeChapterCard strong { display: block; margin-top: 5px; color: var(--book-muted); font-size: 8px; }
+.volumeChapterCard div > span { display: -webkit-box; margin-top: 10px; overflow: hidden; color: #bfc7cf; font-size: 10px; line-height: 1.65; -webkit-box-orient: vertical; -webkit-line-clamp: 2; }
+.singlePassage { width: min(900px, 100%); margin: 54px auto 0; }
+.singlePassage .passageHeader h1 { margin: 0; font-family: Georgia, "Noto Serif TC", "Songti TC", serif; font-size: clamp(34px, 8vw, 58px); font-weight: 500; line-height: 1.13; letter-spacing: -.045em; }
+
 .narrative {
   width: min(900px, 100%);
   margin: 0 auto;
@@ -1229,6 +1246,12 @@
     align-items: flex-start;
     flex-direction: column;
   }
+}
+
+@media (max-width: 560px) {
+  .volumeChapterCard { grid-template-columns: 36px minmax(0, 1fr) 16px; gap: 9px; padding: 14px 11px; }
+  .volumeChapterCard h3 { font-size: 18px; }
+  .singlePassage { margin-top: 30px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
