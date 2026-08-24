@@ -691,6 +691,8 @@
 .volumeChapterCard h3 { margin: 0; font-family: Georgia, "Noto Serif TC", serif; font-size: 22px; font-weight: 500; line-height: 1.25; }
 .volumeChapterCard small, .volumeChapterCard strong { display: block; margin-top: 5px; color: var(--book-muted); font-size: 8px; }
 .volumeChapterCard div > span { display: -webkit-box; margin-top: 10px; overflow: hidden; color: #bfc7cf; font-size: 10px; line-height: 1.65; -webkit-box-orient: vertical; -webkit-line-clamp: 2; }
+.volumeChapterCard:has(.sideStoryThumb) { grid-template-columns: 96px 40px minmax(0, 1fr) 22px; }
+.sideStoryThumb { width: 96px; height: 72px; border-radius: 12px 4px 12px 4px; object-fit: cover; }
 .singlePassage { width: min(900px, 100%); margin: 54px auto 0; }
 .singlePassage .passageHeader h1 { margin: 0; font-family: Georgia, "Noto Serif TC", "Songti TC", serif; font-size: clamp(34px, 8vw, 58px); font-weight: 500; line-height: 1.13; letter-spacing: -.045em; }
 
@@ -1252,6 +1254,8 @@
   .volumeChapterCard { grid-template-columns: 36px minmax(0, 1fr) 16px; gap: 9px; padding: 14px 11px; }
   .volumeChapterCard h3 { font-size: 18px; }
   .singlePassage { margin-top: 30px; }
+  .volumeChapterCard:has(.sideStoryThumb) { grid-template-columns: 64px 26px minmax(0, 1fr) 14px; }
+  .sideStoryThumb { width: 64px; height: 64px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
