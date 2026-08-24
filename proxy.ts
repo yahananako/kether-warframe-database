@@ -11,6 +11,7 @@ type DiscordSessionPayload = {
 
         const PUBLIC_PATHS = [
           "/",
+            "/story",
             "/login",
               "/unauthorized",
   "/api/official-news",

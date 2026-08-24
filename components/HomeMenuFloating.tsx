@@ -3,7 +3,8 @@
 import { useEffect, useState } from "react";
 
 const links = [
-  ["首頁", "/", "回到 KETHER 首頁"], ["小希星圖電波局", "/live", "即時戰況、裂縫、循環與 Baro 雷達"],
+  ["首頁", "/", "回到 KETHER 首頁"], ["劇情流程", "/story", "Warframe 主線、支線與世界時間線"],
+  ["小希星圖電波局", "/live", "即時戰況、裂縫、循環與 Baro 雷達"],
   ["小希 Bot 指令", "/bot", "Discord Bot 功能總覽"],
   ["總覽", "/database/overview", "資料庫統計與完成度"],
   ["戰甲", "/database/warframes", "Warframe 戰甲資料"],

@@ -8,6 +8,7 @@ import type { CSSProperties, MouseEvent as ReactMouseEvent } from "react";
 
 const mainLinks = [
   { label: "首頁", href: "/" },
+  { label: "故事", href: "/story" },
   { label: "個人", href: "/profile" },
   { label: "氏族", href: "/clan" },
   { label: "電波局", href: "/live" },
