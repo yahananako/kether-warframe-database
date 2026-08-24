@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function StoryPassagePage({ params }: Props) {
   const route = await params;
-  const chapter = storyChapters.find((item) => item.slug === route.chapter);
+  const chapter = storyChapters.find((item) => item.slug === route.chapter) as StoryChapter | undefined;
   const passage = chapter?.passages.find((item) => item.id === route.passage);
   if (!chapter || !passage) notFound();
   const readingOrder = storyChapters.flatMap<{ chapter: StoryChapter; passage: StoryPassage }>((volume) =>
