@@ -104,6 +104,11 @@ export default function StoryDirectoryPage() {
           </div>
         </aside>
 
+        <section className={styles.readingGuide}>
+          <div><p className={styles.eyebrow}>SIDE STORY ARCHIVE</p><h2>主線之外，還有人等待被記住</h2><p>支線故事書完整收錄有獨立劇情的任務，並依故事年代排列；主線已出現的事件，在支線版會提供更詳細正文。</p></div>
+          <Link className={styles.startReading} href="/story/side">開啟支線故事書<ArrowRight aria-hidden="true" /></Link>
+        </section>
+
         <section className={styles.chapterDirectory} aria-labelledby="chapter-directory-title">
           <header className={styles.directoryHeading}>
             <div>
