@@ -61,11 +61,11 @@ export default function StoryDirectoryPage() {
             <dl className={styles.directoryStats}>
               <div>
                 <dt>章節</dt>
-                <dd>{storyChapters.length}</dd>
+                <dd>{storyChapters.length} 卷</dd>
               </div>
               <div>
                 <dt>故事段落</dt>
-                <dd>{totalPassages}</dd>
+                <dd>{totalPassages} 章</dd>
               </div>
               <div>
                 <dt>更新</dt>
@@ -113,7 +113,7 @@ export default function StoryDirectoryPage() {
               </p>
               <h2 id="chapter-directory-title">章節目錄</h2>
             </div>
-            <p>每一張封面都是一個獨立頁面，內含章內導覽、官方圖片與詳細正文。</p>
+            <p>五張封面對應五大篇章；進入篇章後，可從卷內目錄選擇每一個獨立故事頁。</p>
           </header>
 
           <div className={styles.chapterGrid}>
@@ -137,7 +137,7 @@ export default function StoryDirectoryPage() {
                   <footer>
                     <span>
                       <BookOpenText aria-hidden="true" />
-                      {chapter.passages.length} 節
+                      {chapter.passages.length} 章
                     </span>
                     <span>
                       <Clock3 aria-hidden="true" />
