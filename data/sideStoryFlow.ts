@@ -6,7 +6,7 @@ export type SideStory = {
 
 export type SideStoryEra = {
   slug: string; number: string; title: string; englishTitle: string;
-  era: string; deck: string; accent: string; stories: readonly SideStory[];
+  era: string; deck: string; accent: string; heroImage: string; stories: readonly SideStory[];
 };
 
 const guide = (slug: string) => `https://www.warframe.com/en/guides/quests/${slug}`;
@@ -14,7 +14,7 @@ const guide = (slug: string) => `https://www.warframe.com/en/guides/quests/${slu
 export const sideStoryEras: readonly SideStoryEra[] = [
   {
     slug: "early-origin-system", number: "I", title: "甦醒後的星系", englishTitle: "THE AWAKENING ERA",
-    era: "Tenno 甦醒初期", accent: "#55b8d1",
+    era: "Tenno 甦醒初期", accent: "#55b8d1", heroImage: "https://www-static.warframe.com/images/guide/quests/vor-key.jpg",
     deck: "Tenno 一面修復力量，一面從失竊的遺物、感染者與失落 Warframe 身上，拼回 Orokin 滅亡後的世界。",
     stories: [
       { slug: "howl-of-the-kubrow", title: "庫狛取得任務", englishTitle: "HOWL OF THE KUBROW", period: "Tenno 甦醒初期", deck: "一枚庫狛蛋與 Orokin 培育技術，讓 Orbiter 第一次多出一個會呼吸的同伴。", paragraphs: ["Tenno 從地球森林取得庫狛蛋，尋找孵化器模組並重建早已失傳的培育程序。這不是單純取得寵物：庫狛曾被 Orokin 改造成戰場同伴，帝國消失後，野生族群重新適應地球。", "當幼獸完成孵化與戰鬥試煉，Orbiter 不再只是兵器倉庫。這段小故事替 Tenno 的孤獨生活加入陪伴，也開啟後續所有同伴系統的情感起點。"], characters: ["Tenno", "Lotus", "庫狛"], meaning: "在滿是人造兵器的星系裡，照顧另一個生命本身就是重建自我的方式。", source: guide("howl-of-the-kubrow") },
@@ -26,7 +26,7 @@ export const sideStoryEras: readonly SideStoryEra[] = [
   },
   {
     slug: "lost-warframes", number: "II", title: "失落戰甲的記憶", englishTitle: "LEGENDS OF THE LOST",
-    era: "星圖擴張期", accent: "#c99b56", deck: "散落星系的 Warframe 藍圖不是獎品清單，而是一群被帝國利用、敬畏或遺忘的生命墓誌。",
+    era: "星圖擴張期", accent: "#c99b56", heroImage: "https://www-static.warframe.com/images/guide/quests/sacrifice-key.jpg", deck: "散落星系的 Warframe 藍圖不是獎品清單，而是一群被帝國利用、敬畏或遺忘的生命墓誌。",
     stories: [
       { slug: "the-limbo-theorem", title: "Limbo 定理", englishTitle: "THE LIMBO THEOREM", period: "裂隙數學遺跡", deck: "一套散落的證明式，記錄 Limbo 如何跨越裂隙，又如何在最後一次計算中粉身碎骨。", paragraphs: ["Ordis 解析 Limbo 留下的數學定理，Tenno 依序找回戰甲部件。每一段證明都顯示 Limbo 曾精準穿梭 Rift。", "最後的躍遷因計算失誤而失敗，殘骸散落星系。重建 Limbo 既是復原戰甲，也是替一名過度自信的探索者完成墓誌。"], characters: ["Limbo", "Ordis", "Tenno"], meaning: "知識能打開現實的縫，也會讓最聰明的人誤以為自己不可能犯錯。", source: guide("the-limbo-theorem") },
       { slug: "hidden-messages", title: "隱藏的信息", englishTitle: "HIDDEN MESSAGES", period: "Orokin 神話謎語", deck: "Lotus 用謎語引導 Tenno 尋找 Mirage，卻逐步想起她曾如何獨自戰到最後。", paragraphs: ["三則以古典神話包裝的謎語指向不同星球，背後是 Mirage 與 Sentient 作戰的最後路線。", "Lotus 原以為自己能冷靜重播紀錄，卻在終點回想 Mirage 帶著笑容犧牲。重建戰甲成為一次遲到的哀悼。"], characters: ["Mirage", "Lotus", "Tenno"], meaning: "Lotus 並非永遠平靜的任務聲音；她記得每一個沒能帶回來的孩子。", source: guide("hidden-messages") },
@@ -39,7 +39,7 @@ export const sideStoryEras: readonly SideStoryEra[] = [
   },
   {
     slug: "open-worlds", number: "III", title: "三座邊境與反抗", englishTitle: "OPEN WORLD CHRONICLES",
-    era: "Cetus → Fortuna → Deimos", accent: "#65b66b", deck: "宏大戰爭之外，Ostron、Solaris 與 Entrati 家族各自守著土地、債務和無法放下的人。",
+    era: "Cetus → Fortuna → Deimos", accent: "#65b66b", heroImage: "https://www-static.warframe.com/images/guide/quests/deimos-key.jpg", deck: "宏大戰爭之外，Ostron、Solaris 與 Entrati 家族各自守著土地、債務和無法放下的人。",
     stories: [
       { slug: "sayas-vigil", title: "Saya 的守夜", englishTitle: "SAYA'S VIGIL", period: "Cetus・夜靈平野", deck: "Saya 尋找失蹤多年的 Onkko；答案不是團圓，而是他為了某個未來選擇消失。", paragraphs: ["Tenno 從 Grineer 挖掘場找回玻璃碎片，逐步還原 Onkko 對 Eidolon 與 Unum 的研究。", "Onkko 透過 Quills 看見多種未來，選擇讓 Saya 相信自己死亡。Saya 得到能結束等待的答案，卻仍必須獨自承受被保護的代價。"], characters: ["Saya", "Onkko", "Konzu", "Tenno"], meaning: "知道未來不會消除悲傷，只會迫使人選擇願意承受哪一種失去。", source: guide("sayas-vigil") },
       { slug: "mask-of-the-revenant", title: "Revenant 的面具", englishTitle: "MASK OF THE REVENANT", period: "夜靈平野・夜間", deck: "一名守望者為封印 Eidolon 而墜入湖中，最終變成介於 Warframe 與 Sentient 之間的 Revenant。", paragraphs: ["Nakak 收到一副會低語的面具，Tenno 依照異象尋找散落部件。", "Revenant 原是看守者，為阻止 Eidolon 復生而被污染。他的力量不是單純墮落，而是長年封印敵人留下的傷痕。"], characters: ["Nakak", "Revenant", "Unum", "Tenno"], meaning: "守門的人若永遠無人接替，終有一天會與門後的怪物變得相似。", source: guide("mask-of-the-revenant") },
@@ -51,7 +51,7 @@ export const sideStoryEras: readonly SideStoryEra[] = [
   },
   {
     slug: "corpus-shadows", number: "IV", title: "Corpus 的王與幽靈", englishTitle: "CORPUS SCHISMS",
-    era: "Parvos 回歸 → Tempestarii", accent: "#a881d8", deck: "Corpus 的創始者回到現代，揭穿後繼者的空洞；虛空中的幽靈船則等待一首延遲多年的安魂曲。",
+    era: "Parvos 回歸 → Tempestarii", accent: "#a881d8", heroImage: "https://www-static.warframe.com/images/guide/quests/newwar-key.jpg", deck: "Corpus 的創始者回到現代，揭穿後繼者的空洞；虛空中的幽靈船則等待一首延遲多年的安魂曲。",
     stories: [
       { slug: "deadlock-protocol", title: "僵局協議", englishTitle: "THE DEADLOCK PROTOCOL", period: "Corpus 艦隊・Granum Void", deck: "Nef Anyo 聲稱自己是 Parvos Granum 的繼承者，真正的創始者卻從虛空回來否定他。", paragraphs: ["Corpus 董事會陷入權力僵局，Nef 以血統神話爭奪控制權。Tenno 進入 Granum Void，找到被時間囚禁的 Parvos。", "Parvos 鄙視 Nef 的懶惰，卻不是仁慈改革者。他欣賞 Solaris 的意志，也依然把競爭與犧牲視為真理。Protea 最後一次護主，Tenno 則把她從循環中帶回。"], characters: ["Parvos Granum", "Nef Anyo", "Protea", "Tenno"], meaning: "推翻偽王不代表迎來好王；Corpus 的原始理念同樣把人的價值交給勝負衡量。", source: guide("the-deadlock-protocol") },
       { slug: "call-of-the-tempestarii", title: "暴風雨的呼喚", englishTitle: "CALL OF THE TEMPESTARII", period: "Void Storm", deck: "Corpus 船長 Vala 尋找毀滅艦隊的幽靈船，Tempestarii 則仍在執行一項無法完成的救援。", paragraphs: ["Railjack 收到求救訊號，卻遇見由 Sevagoth 影子守護的幽靈船。它反覆穿越 Void Storm，只為尋找失散的船長。", "Tenno 找回 Sevagoth 遺體並舉行太空葬。歌曲讓漫長任務結束，也把 Vala 的復仇推向 Sisters of Parvos。"], characters: ["Sevagoth", "Cy", "Vala Glarios", "Tenno"], meaning: "有些幽靈留下不是因為怨恨，而是因為最後一名船員仍未被帶回家。", source: guide("call-of-the-tempestarii") },
@@ -59,7 +59,7 @@ export const sideStoryEras: readonly SideStoryEra[] = [
   },
   {
     slug: "after-the-new-war", number: "V", title: "新世戰爭之後", englishTitle: "AFTERMATH",
-    era: "Narmer 戰後 → 1999 餘波", accent: "#d46f98", deck: "大型戰爭結束後，Kahl、Stalker、Jade 與 Hex 必須回答同一件事：沒有命令與仇恨時，要為誰活下去？",
+    era: "Narmer 戰後 → 1999 餘波", accent: "#d46f98", heroImage: "https://www-static.warframe.com/images/guide/quests/jadeshadows-key.jpg", deck: "大型戰爭結束後，Kahl、Stalker、Jade 與 Hex 必須回答同一件事：沒有命令與仇恨時，要為誰活下去？",
     stories: [
       { slug: "veilbreaker", title: "破冪者", englishTitle: "VEILBREAKER", period: "Narmer 戰後", deck: "Kahl-175 逃離面紗控制，把每一個仍被奪走意志的人都稱為兄弟。", paragraphs: ["Kahl 從新世戰爭倖存，與 Daughter 建立營地。他襲擊 Narmer 設施並拆除面紗。", "他不再只救 Grineer；Corpus、Ostron 與陌生人都能成為兄弟。Kahl 的自由不是獲得更高軍階，而是不再等待別人告訴他誰值得救。"], characters: ["Kahl-175", "Daughter", "Pazuul"], meaning: "真正的破冪不是摘掉裝置，而是拒絕讓陣營替自己決定誰算同伴。", source: guide("veilbreaker") },
       { slug: "jade-shadows", title: "翠玉魅影", englishTitle: "JADE SHADOWS", period: "Narmer 戰後", deck: "Stalker 為瀕死的 Jade 向 Tenno 求助，Orokin 時代被埋葬的愛與孩子終於來到世上。", paragraphs: ["Stalker 原名 Sorren，與 Jade 因禁忌關係遭 Orokin 懲罰並轉化。Jade 長久維持腹中的生命，直到身體再也無法承受。", "Tenno、Hunhow 與 Stalker 暫時跨越敵我。Jade 犧牲後，Stalker 帶著孩子逃離，甚至一名 Corpus 艦長也在看見嬰兒時選擇停火。"], characters: ["Stalker", "Jade", "Hunhow", "Tenno"], meaning: "仇恨不能被一句原諒抹去，但守護一個新生命能讓人第一次走向不同方向。", source: guide("jade-shadows") },
@@ -76,3 +76,14 @@ export const getSideStory = (eraSlug: string, storySlug: string) => {
   const era = getSideStoryEra(eraSlug); const story = era?.stories.find((item) => item.slug === storySlug);
   return era && story ? { era, story } : undefined;
 };
+
+const storyImages: Record<string, string> = {
+  "sayas-vigil": "https://www-static.warframe.com/images/guide/quests/saya-key.jpg",
+  "vox-solaris": "https://www-static.warframe.com/images/guide/quests/fortuna-key.jpg",
+  "heart-of-deimos": "https://www-static.warframe.com/images/guide/quests/deimos-key.jpg",
+  "jade-shadows": "https://www-static.warframe.com/images/guide/quests/jadeshadows-key.jpg",
+  "jade-constellations": "https://www-static.warframe.com/images/guide/quests/jadeshadows-key.jpg",
+};
+
+export const getSideStoryImage = (era: SideStoryEra, story: SideStory) =>
+  storyImages[story.slug] ?? era.heroImage;
