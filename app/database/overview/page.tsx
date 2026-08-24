@@ -134,7 +134,7 @@ export default async function OverviewPage() {
               </Link>
 
               <Link
-                href="https://discord.gg"
+                href="https://discord.gg/TNGYQb5mBN"
                 target="_blank"
                 rel="noreferrer"
                 className="home-new-discord-action"

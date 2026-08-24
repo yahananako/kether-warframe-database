@@ -20,7 +20,7 @@ export default function UnauthorizedPage() {
           <Link className="auth-primary" href="/login">
             前往登入頁
           </Link>
-          <a className="auth-secondary" href="https://discord.gg/MFhTb8XMZ" target="_blank" rel="noreferrer">
+          <a className="auth-secondary" href="https://discord.gg/TNGYQb5mBN" target="_blank" rel="noreferrer">
             <MessageCircle size={20} />
             加入 Discord
           </a>

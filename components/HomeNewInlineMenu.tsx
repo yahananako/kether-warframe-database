@@ -160,7 +160,7 @@ export default function HomeNewInlineMenu() {
                     ))}
 
                     <a
-                      href="https://discord.gg"
+                      href="https://discord.gg/TNGYQb5mBN"
                       target="_blank"
                       rel="noreferrer"
                       className="home-new-menu-link"

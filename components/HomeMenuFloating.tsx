@@ -56,7 +56,7 @@ export default function HomeMenuFloating() {
               ))}
             </nav>
 
-            <a className="k-discord" href="https://discord.gg" target="_blank" rel="noreferrer">
+            <a className="k-discord" href="https://discord.gg/TNGYQb5mBN" target="_blank" rel="noreferrer">
               Discord 入口
             </a>
           </div>

@@ -167,7 +167,7 @@ export default function BotPage() {
               </Link>
 
               <Link
-                href="https://discord.gg/MFhTb8XMZ"
+                href="https://discord.gg/TNGYQb5mBN"
                 target="_blank"
                 rel="noreferrer"
                 className="home-new-discord-action"
