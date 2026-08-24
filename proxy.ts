@@ -37,6 +37,7 @@ type DiscordSessionPayload = {
 
                                         return (
                                             PUBLIC_PATHS.includes(normalizedPathname) ||
+                                                normalizedPathname.startsWith("/story/") ||
                                                 normalizedPathname.startsWith("/_next/") ||
                                                     normalizedPathname.startsWith("/favicon") ||
                                                         normalizedPathname.startsWith("/images/") ||

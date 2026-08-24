@@ -1,700 +1,1106 @@
-export type StoryKind = "歷史背景" | "主線" | "關鍵支線" | "最新章節";
-
-export type StoryStep = {
-  id: string;
-  title: string;
-  englishTitle: string;
-  kind: StoryKind;
-  prerequisite: string;
-  unlock: string;
-  summary: string;
-  spoilers: string[];
-  note?: string;
+export type StorySource = {
+  readonly label: string;
+  readonly url: string;
 };
 
-export type StoryArc = {
-  id: string;
-  number: string;
-  kicker: string;
-  title: string;
-  era: string;
-  summary: string;
-  steps: StoryStep[];
+export type StoryImage = {
+  readonly src: string;
+  readonly alt: string;
+  readonly caption: string;
 };
 
-export const STORY_UPDATED_AT = "2026.08.24";
+export type StoryMeaning = {
+  readonly title: string;
+  readonly text: string;
+};
 
-export const storyArcs: StoryArc[] = [
-  {
-    id: "before-awakening",
-    number: "00",
-    kicker: "世界歷史",
-    title: "夢醒之前",
-    era: "遠古・Orokin 時代 → Tenno 長眠",
-    summary:
-      "這一段不是可接取的任務，而是散落在主線、資料庫條目與限時事件中的遠古背景。先知道名詞，之後的真相會更容易拼起來。",
-    steps: [
-      {
-        id: "orokin-and-void",
-        title: "Orokin 帝國與虛空",
-        englishTitle: "The Orokin Empire & the Void",
-        kind: "歷史背景",
-        prerequisite: "背景設定｜非任務",
-        unlock: "理解帝國、Entrati 與科技根源",
-        summary:
-          "Orokin 以生物科技、轉移與虛空研究建立帝國；他們的繁榮，同時埋下了往後所有災難的種子。",
-        spoilers: [
-          "Albrecht Entrati 的虛空實驗讓帝國接觸到一個會回望觀察者的存在；往後的「牆中人」與 Void War 都從這裡延伸。",
-          "帝國把身體、記憶與生命視為可替換資源，這種權力結構也塑造了 Warframe、Dax 與 Tenno 的命運。",
-        ],
-      },
-      {
-        id: "zariman",
-        title: "Zariman Ten Zero 事故",
-        englishTitle: "The Zariman Ten Zero Incident",
-        kind: "歷史背景",
-        prerequisite: "背景設定｜主線逐步揭露",
-        unlock: "理解 Tenno、Operator 與 Drifter",
-        summary:
-          "一艘殖民船在虛空中失事，倖存的孩子成為帝國既畏懼又需要的力量。",
-        spoilers: [
-          "孩子們因虛空獲得能力；不同選擇與可能性，最終形成 Operator 與 Drifter 兩條彼此交會的生命路徑。",
-          "Margulis 試圖保護孩子，Orokin 卻把他們改造成可操控 Warframe 的武器。",
-        ],
-      },
-      {
-        id: "old-war",
-        title: "Sentient 與遠古之戰",
-        englishTitle: "The Sentients & the Old War",
-        kind: "歷史背景",
-        prerequisite: "背景設定｜The Second Dream 後逐步揭露",
-        unlock: "理解 Tau、Lotus 與 Tenno 的誕生",
-        summary:
-          "Orokin 創造 Sentient 前往 Tau 改造世界；造物回頭反抗造主，遠古之戰席捲整個始源星系。",
-        spoilers: [
-          "Sentient 回到始源星系後幾乎擊敗 Orokin，直到 Tenno 以 Warframe 參戰，才改變戰局。",
-          "Natah 原本肩負滲透與摧毀 Tenno 的任務，卻成為 Lotus，選擇把 Tenno 隱藏起來。",
-        ],
-      },
-      {
-        id: "betrayal",
-        title: "背叛與長夢",
-        englishTitle: "The Betrayal & the Long Dream",
-        kind: "歷史背景",
-        prerequisite: "背景設定｜The Second Dream／The Sacrifice",
-        unlock: "接到現代故事的起點",
-        summary:
-          "Orokin 勝利儀式後帝國迅速崩解，Tenno 被 Lotus 送入長眠；Grineer 與 Corpus 則在廢墟上成為新霸權。",
-        spoilers: [
-          "Tenno 在 Natah、Lotus 與其他勢力的推動下反抗 Orokin；真相並不是單一人物的一次背叛。",
-          "Warframe 並非單純機器。The Sacrifice 會補上 Umbra、Helminth 病毒與「轉移」之間最關鍵的一塊。",
-        ],
-      },
-    ],
-  },
-  {
-    id: "awakening",
-    number: "01",
-    kicker: "官方 Arc 1",
-    title: "覺醒與始源星系",
-    era: "地球 → 火星／火衛二",
-    summary:
-      "先學會生存、打開星圖，並認識 Grineer、Corpus、Infested 與幾個會陪你走到終局的家族。",
-    steps: [
-      {
-        id: "awakening-quest",
-        title: "覺醒",
-        englishTitle: "Awakening",
-        kind: "主線",
-        prerequisite: "建立角色後自動開始",
-        unlock: "基礎移動、戰鬥與第一套裝備",
-        summary:
-          "沉睡已久的 Tenno 被喚醒；Lotus 引導你逃離 Grineer 將軍 Vor 的控制。",
-        spoilers: [
-          "你目前看見的「Tenno」身分只是故事刻意保留的表面答案，真正的操作者要到 The Second Dream 才會揭露。",
-        ],
-      },
-      {
-        id: "vors-prize",
-        title: "Vor 的戰利品",
-        englishTitle: "Vor's Prize",
-        kind: "主線",
-        prerequisite: "完成教學",
-        unlock: "軌道飛行器、鑄造廠、Mod 與自由星圖",
-        summary:
-          "解除 Vor 植入的控制裝置，修復自己的 Orbiter，正式踏上始源星系。",
-        spoilers: [
-          "Vor 對 Orokin 與虛空力量的執著不會在這裡結束；他之後會以另一種形式出現在虛空。",
-        ],
-      },
-      {
-        id: "sayas-vigil",
-        title: "Saya 的守夜",
-        englishTitle: "Saya's Vigil",
-        kind: "主線",
-        prerequisite: "完成 Vor's Prize，造訪地球 Cetus",
-        unlock: "夜靈平野、Ostron／Quills 故事入口",
-        summary:
-          "協助 Saya 尋找失蹤已久的丈夫 Onkko，第一次接觸夜靈平野與 Unum 的祕密。",
-        spoilers: [
-          "Onkko 並非單純失蹤；他因看見多種未來而選擇離開 Saya，加入 Quills 並保護更大的因果走向。",
-        ],
-      },
-      {
-        id: "vox-solaris",
-        title: "索拉里斯之聲",
-        englishTitle: "Vox Solaris",
-        kind: "主線",
-        prerequisite: "抵達金星 Fortuna",
-        unlock: "Orb Vallis、Solaris United 與債役制度背景",
-        summary:
-          "在 Nef Anyo 的債務殖民地裡協助 Eudico，認識 Corpus 統治下的日常代價。",
-        spoilers: [
-          "Solaris 工人可被回收身體部位、扣押頭顱與人格；Vox Solaris 是他們反抗 Corpus 的地下網路。",
-        ],
-      },
-      {
-        id: "once-awake",
-        title: "一朝醒來",
-        englishTitle: "Once Awake",
-        kind: "主線",
-        prerequisite: "依金星／水星交會點指引開啟",
-        unlock: "Infested 威脅與後續星圖",
-        summary:
-          "Grineer 的生物武器實驗喚醒 Infested；你第一次正面理解感染者不是普通敵軍。",
-        spoilers: [
-          "Infestation 會吞噬生物與機械並重組意識；它與製造 Warframe 的 Helminth 菌株有密切但不完全相同的關係。",
-        ],
-      },
-      {
-        id: "heart-of-deimos",
-        title: "火衛二之心",
-        englishTitle: "Heart of Deimos",
-        kind: "主線",
-        prerequisite: "開啟火衛二並完成星圖提示",
-        unlock: "Necralisk、Entrati、Helminth 與 Necramech",
-        summary:
-          "進入被感染吞噬的 Entrati 家族領地，維持驅動虛空科技的 Heart 運作。",
-        spoilers: [
-          "Entrati 家族彼此傷害卻仍共同守住 Heart；這個家族與 Albrecht 的研究，會在 Whispers in the Walls 成為主線核心。",
-          "完成後可逐步取得 Necramech；它也是進入 The New War 前必須準備的裝備之一。",
-        ],
-      },
-      {
-        id: "the-archwing",
-        title: "曲翼",
-        englishTitle: "The Archwing",
-        kind: "主線",
-        prerequisite: "完成 Once Awake 並推進火星路線",
-        unlock: "太空任務、Archwing 系統",
-        summary:
-          "打造 Archwing，從行星地表走向太空戰場，也為日後 Railjack 戰鬥建立基礎。",
-        spoilers: [
-          "任務本身以系統解鎖為主，但它讓 Tenno 能介入 Fomorian、深空與之後的 Railjack 衝突。",
-        ],
-      },
-    ],
-  },
-  {
-    id: "war-within",
-    number: "02",
-    kicker: "官方 Arc 2",
-    title: "內戰傳奇",
-    era: "天王星 → Lua → Kuva 要塞",
-    summary:
-      "這是 Warframe 身分揭密的核心段落。若只想先追主線，請一路完成到 The Sacrifice。",
-    steps: [
-      {
-        id: "natah",
-        title: "Natah",
-        englishTitle: "Natah",
-        kind: "主線",
-        prerequisite: "抵達天王星並調查異常無人機",
-        unlock: "Sentient、Hunhow 與 Lotus 身世",
-        summary:
-          "天王星深海出現不該甦醒的訊號，Lotus 的過去開始追上現在。",
-        spoilers: [
-          "Lotus 原名 Natah，是 Sentient 領袖 Hunhow 的女兒；她被派來滲透 Orokin 並消滅 Tenno。",
-          "她最終沒有完成任務，而是以 Lotus 的身分讓 Tenno 進入長夢。",
-        ],
-      },
-      {
-        id: "second-dream",
-        title: "第二場夢",
-        englishTitle: "The Second Dream",
-        kind: "主線",
-        prerequisite: "完成 Natah 並推進至海王星路線",
-        unlock: "Operator、Lua 與 Focus",
-        summary:
-          "Stalker 與 Hunhow 追查 Tenno 真相；你將第一次真正回答「我究竟是誰」。",
-        spoilers: [
-          "Warframe 是被遠端「轉移」操控的載體，真正的 Tenno 是藏在 Lua 儲藏室中的 Zariman 孩子。",
-          "Lotus 把 Lua 藏進虛空以保護孩子；任務結尾 Operator 被帶回 Orbiter。",
-        ],
-      },
-      {
-        id: "rising-tide",
-        title: "澎湃狂潮",
-        englishTitle: "Rising Tide",
-        kind: "主線",
-        prerequisite: "完成 The Second Dream，依任務指引重建 Railjack",
-        unlock: "Railjack、Cephalon Cy",
-        summary:
-          "找回 Old War 時代的 Railjack 殘骸，與 Cephalon Cy 重建能進行深空作戰的戰艦。",
-        spoilers: [
-          "Cy 曾在 Old War 失去船員，對再次指揮艦艇充滿創傷；修復 Railjack 也是 The New War 的實際前置。",
-        ],
-        note: "系統上可較早完成；敘事上可把它視為 The New War 的備戰章。",
-      },
-      {
-        id: "the-war-within",
-        title: "內戰",
-        englishTitle: "The War Within",
-        kind: "主線",
-        prerequisite: "完成 The Second Dream 與 Sedna 交會點",
-        unlock: "完整 Operator 能力、Kuva 要塞與 Queens",
-        summary:
-          "Grineer 雙子女皇盯上你的身體；Tenno 必須不靠 Warframe 面對恐懼與控制。",
-        spoilers: [
-          "女皇企圖用 Continuity 奪取 Operator 身體；你在 Teshin 引導下重新掌握轉移與虛空能力。",
-          "任務揭露 Teshin 受 Kuva 與 Dax 誓約束縛，也讓玩家的選擇傾向首次被明確記錄。",
-        ],
-      },
-      {
-        id: "chains-of-harrow",
-        title: "Harrow 的枷鎖",
-        englishTitle: "Chains of Harrow",
-        kind: "主線",
-        prerequisite: "完成 The War Within 並通過 Mot（Void）",
-        unlock: "Rell、Red Veil 與牆中人",
-        summary:
-          "一段來自廢棄飛船的求救訊號，把你帶進 Rell 長年獨自承受的噩夢。",
-        spoilers: [
-          "Rell 是被其他 Zariman 孩子排斥的 Tenno；他把自己束縛於 Harrow，長久壓制牆中人對現實的侵入。",
-          "釋放 Rell 後，牆中人的注意力轉向玩家；那聲「Hey, kiddo」成為後續 Void War 的陰影。",
-        ],
-      },
-      {
-        id: "apostasy-prologue",
-        title: "背叛序幕",
-        englishTitle: "Apostasy Prologue",
-        kind: "主線",
-        prerequisite: "完成 Chains of Harrow，調查 Orbiter 私人房間",
-        unlock: "Lotus 失蹤與下一段主線",
-        summary:
-          "一段短而關鍵的敘事序幕：某位熟悉的人回來，Lotus 做出無法忽視的選擇。",
-        spoilers: [
-          "Ballas 現身並帶走 Lotus；她重新以 Sentient 的 Natah 形象出現，Tenno 失去一直以來的引導者。",
-        ],
-      },
-      {
-        id: "the-sacrifice",
-        title: "犧牲",
-        englishTitle: "The Sacrifice",
-        kind: "主線",
-        prerequisite: "完成 Apostasy Prologue",
-        unlock: "Excalibur Umbra、Warframe 起源真相",
-        summary:
-          "追查一具保有記憶的 Warframe，從他的痛苦中看見 Ballas 與 Warframe 計畫的本質。",
-        spoilers: [
-          "Umbra 原是被 Ballas 強迫感染的 Dax；Ballas讓他永遠記得自己親手殺死兒子的瞬間。",
-          "Operator 並不是抹除 Warframe 的痛苦，而是與它共同承受；這也解釋了轉移能安撫某些 Warframe 意識。",
-        ],
-      },
-    ],
-  },
-  {
-    id: "new-war",
-    number: "03",
-    kicker: "官方 Arc 3",
-    title: "新世戰爭",
-    era: "序幕 → Narmer → Zariman／Duviri",
-    summary:
-      "Sentient 戰爭真正降臨。這一章會重整始源星系，也讓 Operator、Drifter 與 Lotus 的關係走到新階段。",
-    steps: [
-      {
-        id: "prelude-to-war",
-        title: "戰爭序幕",
-        englishTitle: "Prelude to War",
-        kind: "主線",
-        prerequisite: "完成 The Sacrifice",
-        unlock: "Chimera Prologue、Erra、The Maker",
-        summary:
-          "三段短篇把 Ballas、Natah、Erra 與 Sentient 艦隊推到全面戰爭前夜。",
-        spoilers: [
-          "Ballas 表面受 Sentient 控制，實際一直操弄 Natah 與 Erra；Paracesis 則被打造為對 Sentient 的武器。",
-          "Natah 的記憶與忠誠遭反覆改寫，The New War 的衝突不只是陣營對戰，也是身分與操控。",
-        ],
-      },
-      {
-        id: "the-new-war",
-        title: "新世戰爭",
-        englishTitle: "The New War",
-        kind: "主線",
-        prerequisite: "完成 Prelude to War，持有 Railjack 與 Necramech",
-        unlock: "Drifter、Narmer 後續與新星圖狀態",
-        summary:
-          "Sentient 入侵始源星系。這是一段會暫時鎖定其他活動的長篇電影式任務，開始前請先準備時間。",
-        spoilers: [
-          "Ballas 以 Narmer 面紗統治星系，並背叛幾乎所有盟友；Operator 被投入虛空，Drifter 則在另一條可能性中行動。",
-          "Operator 與 Drifter 在 Zariman 相遇並共享可能性。結尾由玩家決定 Lotus／Natah／Margulis 的顯示身分。",
-          "牆中人以巨大的 Vitruvian 形象出現，將戰爭主軸從 Sentient 推向更深的虛空危機。",
-        ],
-      },
-      {
-        id: "angels-of-zariman",
-        title: "Zariman 的天使",
-        englishTitle: "Angels of the Zariman",
-        kind: "關鍵支線",
-        prerequisite: "完成 The New War",
-        unlock: "Chrysalith、Holdfasts、Voidplume 與更多 Zariman 真相",
-        summary:
-          "回到一切開始的殖民船；仍留在船上的人與虛空天使，讓 Zariman 事故不再只是回憶。",
-        spoilers: [
-          "Holdfasts 是由虛空與記憶維繫的存在；玩家協助他們抵抗被 Void Angel 吞噬與遺忘。",
-          "Zariman 卡在現實與虛空之間，成為阻擋牆中人進一步侵入的關鍵楔子。",
-        ],
-      },
-      {
-        id: "veilbreaker",
-        title: "破冪者",
-        englishTitle: "Veilbreaker",
-        kind: "關鍵支線",
-        prerequisite: "完成 The New War",
-        unlock: "Kahl 駐軍與 Narmer 戰後支線",
-        summary:
-          "從 Kahl-175 的視角清理 Narmer 殘黨，補上普通士兵在大戰後如何活下來。",
-        spoilers: [
-          "Kahl 脫離面紗後選擇營救不同陣營的「兄弟」，並與 Daughter 建立出意外務實的合作。",
-        ],
-      },
-      {
-        id: "jade-shadows",
-        title: "翠玉魅影",
-        englishTitle: "Jade Shadows",
-        kind: "主線",
-        prerequisite: "完成 The New War",
-        unlock: "Stalker／Jade 故事與 Ascension",
-        summary:
-          "短篇電影任務轉向 Stalker；長年追殺 Tenno 的敵人，也有一段被 Orokin 摧毀的人生。",
-        spoilers: [
-          "Jade 與 Sorren（Stalker）曾是相愛的 Orokin 時代人物，兩人因禁忌關係受罰並成為 Warframe。",
-          "Jade 犧牲自己誕下孩子 Sirius／Orion；Hunhow 與 Tenno 都在這段故事中暫時放下敵意。",
-        ],
-      },
-      {
-        id: "duviri-paradox",
-        title: "雙衍悖論",
-        englishTitle: "The Duviri Paradox",
-        kind: "主線",
-        prerequisite: "天王星交會點後可開啟；進入 The Hex 前必須完成",
-        unlock: "Duviri、Drifter、Circuit 與悖論背景",
-        summary:
-          "玩法上能較早進入；若想保留身分揭密，建議在 The New War 後遊玩，會更容易理解 Drifter 的位置。",
-        spoilers: [
-          "Duviri 是 Drifter 在虛空中以情緒與《Tales of Duviri》塑造的世界；Dominus Thrax 映照其被困住的自我。",
-          "任務結尾的援手與 The New War 中 Drifter 幫助 Operator 的事件互相閉合，形成悖論。",
-        ],
-        note: "官方指南把它列在 Arc 3；目前可於土星的天王星交會點解鎖後接取。",
-      },
-    ],
-  },
-  {
-    id: "void-war",
-    number: "04",
-    kicker: "官方 Arc 4",
-    title: "虛空戰爭與 1999",
-    era: "Sanctum Anatomica → 1999 Höllvania",
-    summary:
-      "Albrecht Entrati 的失蹤、牆中人的追逐與 1999 年交會。這是目前主線通往未來 Tau 篇章的最前線。",
-    steps: [
-      {
-        id: "whispers-in-the-walls",
-        title: "牆中低語",
-        englishTitle: "Whispers in the Walls",
-        kind: "主線",
-        prerequisite: "完成 Heart of Deimos 與 The New War",
-        unlock: "Sanctum Anatomica、Cavia、Murmur",
-        summary:
-          "Entrati 家族收到 Albrecht 的訊號；你深入地下實驗室，尋找他留下的時間與虛空計畫。",
-        spoilers: [
-          "Albrecht 為躲避牆中人前往 1999，留下 Kalymos Sequence 與大型時間裝置。",
-          "Loid 對 Albrecht 的感情與被遺留的傷痕，成為啟動後續計畫的核心；牆中人則試圖用「冷漠」切斷連結。",
-        ],
-      },
-      {
-        id: "lotus-eaters",
-        title: "食蓮者",
-        englishTitle: "The Lotus Eaters",
-        kind: "主線",
-        prerequisite: "完成 Whispers in the Walls",
-        unlock: "The Hex 前導",
-        summary:
-          "一段沒有戰鬥的短篇序幕；Lotus 聽見來自 1999 的呼喚，Drifter 準備跨越時間。",
-        spoilers: [
-          "Lotus 感受到牆中人的威脅並指引 Drifter 前往 1999；這段任務直接銜接 The Hex。",
-        ],
-      },
-      {
-        id: "the-hex",
-        title: "六煞",
-        englishTitle: "The Hex",
-        kind: "主線",
-        prerequisite: "完成 The Lotus Eaters 與 The Duviri Paradox",
-        unlock: "Höllvania、Hex Syndicate、KIM 與 Atomicycle",
-        summary:
-          "Drifter 回到 1999，與六名 Protoframe 合作，試圖阻止一場早已注定失敗的災難。",
-        spoilers: [
-          "Albrecht 把 Protoframe 與 Techrot 危機留在 1999，Drifter 必須透過關係與時間循環找到不同結局。",
-          "第一次任務結局無法救下所有人；完成後推進 Hex 聲望與 Chemistry，才能走向 Finale。",
-        ],
-      },
-      {
-        id: "hex-finale",
-        title: "六煞終章",
-        englishTitle: "The Hex Finale",
-        kind: "最新章節",
-        prerequisite: "完成 The Hex，依 KIM、Chemistry 與 Syndicate 提示推進",
-        unlock: "1999 完整結局與後續 KIM 故事",
-        summary:
-          "把與 Hex 建立的連結帶回關鍵時刻；這不是單純提高數值，而是 The Hex 真正的收束。",
-        spoilers: [
-          "Drifter 以理解每位成員的恐懼與選擇改寫失敗循環，讓團隊在跨年事件中存活。",
-          "這段結局為後續 1999 對話、關係故事與 Fables & Frontiers 奠定狀態。",
-        ],
-        note: "遊戲會顯示尚缺的條件；先把 Hex Syndicate 與 KIM 關係穩定推進即可。",
-      },
-    ],
-  },
-];
+export type StoryPassage = {
+  readonly id: string;
+  readonly kicker: string;
+  readonly title: string;
+  readonly englishTitle: string;
+  readonly period: string;
+  readonly summary: string;
+  readonly paragraphs: readonly string[];
+  readonly characters: readonly string[];
+  readonly image?: StoryImage;
+  readonly meaning: StoryMeaning;
+};
 
-export const sideStories = [
-  {
-    era: "Arc 1 前後",
-    title: "庫狛取得任務",
-    englishTitle: "Howl of the Kubrow",
-    insertAfter: "Vor's Prize 後",
-    focus: "取得第一隻 Kubrow，也補充 Orokin 生物設計與同伴系統。",
-  },
-  {
-    era: "早期星圖",
-    title: "失竊之夢",
-    englishTitle: "Stolen Dreams",
-    insertAfter: "火星／火衛一階段",
-    focus: "Maroo、奧秘與 Orokin 遺物；可接到 The New Strange。",
-  },
-  {
-    era: "早期星圖",
-    title: "新疑謎團",
-    englishTitle: "The New Strange",
-    insertAfter: "Stolen Dreams 後",
-    focus: "Cephalon Simaris、Sanctuary 與 Chroma 的早期線索。",
-  },
-  {
-    era: "早期星圖",
-    title: "寡言的男人",
-    englishTitle: "A Man of Few Words",
-    insertAfter: "抵達中繼站後",
-    focus: "Darvo 與 Clem 的 Grineer 逃亡小故事。",
-  },
-  {
-    era: "Infested",
-    title: "零號病患",
-    englishTitle: "Patient Zero",
-    insertAfter: "Once Awake 後",
-    focus: "Mutalist Alad V 與 Infestation 事件鏈的可重玩核心。",
-  },
-  {
-    era: "Warframe 傳說",
-    title: "Limbo 定理",
-    englishTitle: "The Limbo Theorem",
-    insertAfter: "取得 Archwing 後",
-    focus: "Limbo 的裂隙實驗與一次致命計算錯誤。",
-  },
-  {
-    era: "Warframe 傳說",
-    title: "隱藏的信息",
-    englishTitle: "Hidden Messages",
-    insertAfter: "中期星圖",
-    focus: "從謎語追索 Mirage 在 Old War 的最後一戰。",
-  },
-  {
-    era: "Warframe 傳說",
-    title: "Inaros 之沙",
-    englishTitle: "Sands of Inaros",
-    insertAfter: "拜訪 Baro Ki'Teer 後",
-    focus: "火星居民、Baro 身世與守護者 Inaros 的傳說。",
-  },
-  {
-    era: "Warframe 傳說",
-    title: "銀光林地",
-    englishTitle: "The Silver Grove",
-    insertAfter: "The Second Dream 前後",
-    focus: "New Loka、Titania 與地球生態重生的真相。",
-  },
-  {
-    era: "Cephalon／Sentient",
-    title: "Octavia 的讚歌",
-    englishTitle: "Octavia's Anthem",
-    insertAfter: "The Second Dream 後",
-    focus: "Cephalon Suda、Hunhow 與以音樂對抗 Sentient 的故事。",
-  },
-  {
-    era: "Corpus／殖民地",
-    title: "Glast 的千鈞一策",
-    englishTitle: "The Glast Gambit",
-    insertAfter: "The War Within 前後",
-    focus: "Mycona 殖民地、Nef Anyo 與感染免疫兒童的倫理選擇。",
-  },
-  {
-    era: "Infested",
-    title: "Jordas 樞律",
-    englishTitle: "The Jordas Precept",
-    insertAfter: "中後期星圖",
-    focus: "遭 Infestation 吞噬的 Cephalon 與巨型感染體。",
-  },
-  {
-    era: "夜靈平野",
-    title: "Revenant 的面具",
-    englishTitle: "Mask of the Revenant",
-    insertAfter: "Saya's Vigil 並提高 Quills 聲望後",
-    focus: "Unum、Eidolon 與 Revenant 如何被其力量改變。",
-  },
-  {
-    era: "Corpus",
-    title: "僵局協議",
-    englishTitle: "The Deadlock Protocol",
-    insertAfter: "The War Within 前後",
-    focus: "Corpus 創辦者 Parvos Granum、Protea 與 Granum Void；建議在 The New War 前完成。",
-  },
-  {
-    era: "Railjack",
-    title: "暴風雨的呼喚",
-    englishTitle: "Call of the Tempestarii",
-    insertAfter: "Rising Tide 後",
-    focus: "Sevagoth、Tempestarii 與 Corpus 深空戰線。",
-  },
-  {
-    era: "Orb Vallis",
-    title: "浪潮騎士",
-    englishTitle: "The Waverider",
-    insertAfter: "Vox Solaris 後",
-    focus: "Ventkids、Yareli 與 K-Drive 文化。",
-  },
-  {
-    era: "地球",
-    title: "Koumei 與五命運",
-    englishTitle: "Koumei & the Five Fates",
-    insertAfter: "Saya's Vigil 後",
-    focus: "Cetus、命運絲線與 Infested Oni 的獨立篇章。",
-  },
-] as const;
+export type StoryChapter = {
+  readonly slug: string;
+  readonly number: string;
+  readonly label: string;
+  readonly title: string;
+  readonly englishTitle: string;
+  readonly era: string;
+  readonly deck: string;
+  readonly readTime: string;
+  readonly spoilerLevel: string;
+  readonly heroImage: string;
+  readonly heroAlt: string;
+  readonly accent: string;
+  readonly sources: readonly StorySource[];
+  readonly passages: readonly StoryPassage[];
+};
 
-export const retiredLore = [
-  {
-    title: "Gradivus Dilemma",
-    status: "歷史事件・無法完整重玩",
-    summary:
-      "Grineer 與 Corpus 爭奪火星，Tenno 被迫選邊；這也是 Alad V、Sargas Ruk 與陣營力量轉變的重要節點。",
-  },
-  {
-    title: "Alad V 事件鏈",
-    status: "部分只剩首領與任務殘片",
-    summary:
-      "從 Hunt for Alad V、Patient Zero、Tubemen of Regor 到 Shadow Debt，解釋 Alad V 為何感染、治癒，又與 Sentient 產生聯繫。",
-  },
-  {
-    title: "Cicero Crisis → Eyes of Blight",
-    status: "歷史事件・部分週期玩法保留",
-    summary:
-      "Vay Hek 的地球破壞與 Fomorian 襲擊建立了中繼站戰爭背景；Vesper Relay 的命運也與 2026 的 The Shadowgrapher 呼應。",
-  },
-  {
-    title: "Scarlet Spear",
-    status: "歷史事件・無法完整重玩",
-    summary:
-      "Tenno 與 Little Duck 協同地面、太空小隊抵抗 Sentient 入侵，是 The New War 前最直接的戰爭升溫。",
-  },
-  {
-    title: "Operation: Orphix Venom",
-    status: "劇情事件已結束・玩法概念保留",
-    summary:
-      "Sentient 以 Orphix 壓制 Warframe，迫使 Tenno 倚賴 Necramech；替 The New War 的裝備與戰術前置提供背景。",
-  },
-] as const;
+export const STORY_BOOK_UPDATED_AT = "2026.08.24";
 
-export const currentBranches = [
+export const storyChapters = [
   {
-    title: "遠古和平",
-    englishTitle: "The Old Peace",
-    date: "2025.12.10",
-    kind: "最新電影主線",
-    prerequisite: "至少完成 The Lotus Eaters（其前置為 Whispers in the Walls）",
-    placement: "在 Dark Refractory 中回看 Old War；通往未來 Tau 篇章",
-    summary:
-      "親歷 Orokin 與 Sentient 脆弱和平崩解的記憶，揭露玩家在遠古戰爭中被遺忘的角色。",
-    sourceUrl: "https://www.warframe.com/en/news/the-old-peace-available-now",
+    "slug": "origins",
+    "number": "00",
+    "label": "序章",
+    "title": "黃金帝國的罪",
+    "englishTitle": "ORIGINS OF THE TENNO",
+    "era": "遠古・Orokin 時代 → Tenno 長眠",
+    "deck": "在 Tenno 睜開眼睛之前，Orokin 已經把整個始源星系推向一場無法回頭的戰爭。這一章從虛空、Zariman、Sentient 與 Warframe 的誕生說起。",
+    "readTime": "約 12 分鐘",
+    "spoilerLevel": "全篇重大劇透",
+    "heroImage": "https://www-static.warframe.com/images/guide/quests/sacrifice-key.jpg",
+    "heroAlt": "The Sacrifice 官方任務主視覺",
+    "accent": "#c89b4f",
+    "sources": [
+      {
+        "label": "The Sacrifice 官方指南",
+        "url": "https://www.warframe.com/en/guides/quests/the-sacrifice"
+      },
+      {
+        "label": "The Old Peace 官方公告",
+        "url": "https://www.warframe.com/en/news/the-old-peace-available-now"
+      },
+      {
+        "label": "Warframe 官方任務指南",
+        "url": "https://www.warframe.com/en/guides/quests"
+      }
+    ],
+    "passages": [
+      {
+        "id": "golden-empire",
+        "kicker": "01・帝國",
+        "title": "黃金照耀之處，眾生皆為材料",
+        "englishTitle": "THE OROKIN EMPIRE",
+        "period": "遠古始源星系",
+        "summary": "Orokin 以近乎神明的姿態統治人類，但他們真正擅長的不是創造，而是把生命、身體與記憶都變成可替換的資源。",
+        "paragraphs": [
+          "Orokin 帝國把始源星系建造成一座金碧輝煌的階級機器。最高階層透過 Continuity 把意識轉移到新身體，延續近乎不朽的生命；Dax 被誓約束縛，Corpus 的前身崇拜利益與秩序，底層人類則被當成勞力、實驗材料或政治工具。帝國看似永恆，實際上每一根支柱都建立在控制之上。",
+          "Albrecht Entrati 對虛空的研究，讓 Orokin 第一次跨過現實的邊界。他在實驗中遇見一個與自己相似、卻不屬於自己的存在。Albrecht 帶回了虛空科技，也把一雙看不見的眼睛帶回現實。往後所有關於「牆中人」、Murmur 與 Void War 的恐懼，都可追溯到這一次回望。",
+          "帝國把虛空當作能源與道路，卻拒絕承認它可能具有意志。這種傲慢成為 Warframe 世界最深的原罪：每當 Orokin 以為自己征服了某種力量，那股力量便會以另一種形態回來索債。"
+        ],
+        "characters": [
+          "Albrecht Entrati",
+          "Orokin",
+          "Dax",
+          "Ballas"
+        ],
+        "meaning": {
+          "title": "這段歷史為什麼重要？",
+          "text": "Warframe 的大多數敵人並非突然出現；Grineer、Corpus、Infested、Sentient，甚至牆中人的危機，都是 Orokin 制度與實驗留下的回聲。"
+        }
+      },
+      {
+        "id": "zariman",
+        "kicker": "02・失事",
+        "title": "Zariman Ten Zero：孩子們的第一場夢",
+        "englishTitle": "THE ZARIMAN INCIDENT",
+        "period": "殖民 Tau 計畫",
+        "summary": "一艘前往 Tau 的殖民船消失於虛空。當它重新出現時，成年人已被瘋狂吞沒，只有孩子活了下來。",
+        "paragraphs": [
+          "Zariman Ten Zero 原本承載著前往 Tau 的殖民者。一次錯誤的虛空跳躍讓整艘船困在不屬於現實的地方。虛空放大了恐懼、慾望與暴力，成年人逐漸失去理智；孩子們則在災難中獲得無法解釋的力量。為了生存，他們不得不對抗曾經保護自己的父母。",
+          "船隻回到始源星系後，Orokin 把倖存者視為危險的怪物。Margulis 嘗試照顧與安撫孩子，並建立後來稱為 Transference 的連結技術。她的憐憫違背 Orokin 的需求，最終遭到處決；Ballas 則把她留下的研究改造成兵器系統。",
+          "The New War 與 The Duviri Paradox 後來揭露：Zariman 的選擇並不只產生單一結果。Operator 是被救回、沉睡於 Lua 的孩子；Drifter 則是沒有離開災難、在虛空中長大的另一種可能。兩者不是簡單的過去與未來，而是同一個人被不同答案分開的存在。"
+        ],
+        "characters": [
+          "Zariman 孩子",
+          "Margulis",
+          "Operator",
+          "Drifter"
+        ],
+        "image": {
+          "src": "https://www-static.warframe.com/images/guide/quests/seconddream-key.jpg",
+          "alt": "The Second Dream 官方任務主視覺",
+          "caption": "The Second Dream 最終揭露 Tenno 真正沉睡的位置，以及 Warframe 背後的操作者。"
+        },
+        "meaning": {
+          "title": "Operator 與 Drifter 的差別",
+          "text": "Operator 經歷了被救回、接受 Orokin 訓練與長夢；Drifter 則在未被救回的可能性中活下來，並以 Duviri 保護自己。"
+        }
+      },
+      {
+        "id": "sentients",
+        "kicker": "03・造物",
+        "title": "Sentient：被命令開拓 Tau 的造物",
+        "englishTitle": "THE SENTIENT REBELLION",
+        "period": "Tau 開拓期 → Old War",
+        "summary": "Orokin 創造能自行適應的機械生命前往 Tau。當造物理解了主人的本質，它們選擇不讓 Tau 成為下一個被掠奪的世界。",
+        "paragraphs": [
+          "前往 Tau 的旅程漫長而致命，Orokin 因此創造能自我修復、繁殖並適應環境的 Sentient。設計者原本以為穿越虛空會使它們失去繁殖能力，足以防止反叛；但 Sentient 抵達 Tau 後建立了自己的文明，也看清 Orokin 遲早會把新世界耗盡。",
+          "Sentient 回到始源星系發動 Old War。虛空會傷害它們，卻無法抹去它們對 Orokin 的憎恨。Hunhow、Erra 與其他領袖把戰線一路推回帝國核心，Orokin 的傳統軍隊、Dax 與科技紛紛失效。",
+          "Natah 被塑造成最後的滲透者。她要進入 Lua、找到 Tenno，並在戰爭結束後消滅這些最危險的武器。然而，當她真正接觸孩子們，任務、記憶與渴望開始彼此衝突。日後的 Lotus，便誕生在這道裂縫裡。"
+        ],
+        "characters": [
+          "Hunhow",
+          "Erra",
+          "Natah",
+          "Sentient"
+        ],
+        "meaning": {
+          "title": "Sentient 並非單純侵略者",
+          "text": "它們確實對始源星系造成浩劫，但最初的反抗來自被創造、被利用，以及保護 Tau 不受 Orokin 掠奪的意志。"
+        }
+      },
+      {
+        "id": "warframes",
+        "kicker": "04・兵器",
+        "title": "Warframe 計畫：把痛苦鑄造成盔甲",
+        "englishTitle": "THE WARFRAME PROJECT",
+        "period": "Old War 中期",
+        "summary": "當 Dax 與常規兵器無法阻止 Sentient，Ballas 把 Infestation、人體與 Orokin 技術熔成了新的戰爭容器。",
+        "paragraphs": [
+          "Warframe 並不是普通機械。Orokin 以 Helminth 菌株改造人類，把戰士、囚犯與犧牲者變成具有超常力量的生物兵器。最初的個體仍保留疼痛、記憶與暴怒，無法被帝國穩定控制，因此曾被視為失敗品。",
+          "Zariman 孩子的 Transference 改變了一切。Tenno 能進入 Warframe 的感知，承受它們無法表達的創傷，讓狂亂的身體得到平靜。Orokin 將這份共感包裝成完美武器：孩子被藏在 Lua 的 Reservoir 中沉睡，意識則透過 Warframe 投射到戰場。",
+          "The Sacrifice 透過 Excalibur Umbra 證明，至少部分 Warframe 仍保留人格碎片。Operator 能駕馭它們，不是因為意志更強，而是因為 Tenno 知道被奪走身體與選擇是什麼感覺。那句沒有說出口的理解，正是 Orokin 永遠學不會的力量。"
+        ],
+        "characters": [
+          "Ballas",
+          "Helminth",
+          "Excalibur Umbra",
+          "Tenno"
+        ],
+        "meaning": {
+          "title": "Tenno 的真正力量",
+          "text": "不只是虛空能量，而是承受並理解另一個生命的痛苦。這份共感在 The Sacrifice 與後續 Void War 中反覆成為破局關鍵。"
+        }
+      },
+      {
+        "id": "betrayal",
+        "kicker": "05・長夢",
+        "title": "勝利之後的背叛，帝國最後一夜",
+        "englishTitle": "THE BETRAYAL & THE LONG DREAM",
+        "period": "Old War 終局",
+        "summary": "Tenno 擊退 Sentient，卻在勝利典禮上把刀轉向 Orokin。帝國一夜崩解，孩子們則被 Lotus 送進漫長睡眠。",
+        "paragraphs": [
+          "Old War 結束時，Orokin 在 Terminus 舉行勝利儀式。Tenno 接受榮耀後突然攻擊帝國領袖，黃金王朝的核心在短時間內被斬碎。這場「背叛」不是單一命令能解釋的事件：Margulis 的死亡、Ballas 的陰謀、Natah 的任務，以及 Tenno 對 Orokin 奴役的反抗，全都在同一夜交會。",
+          "Natah 沒有按照原定計畫殺死 Tenno。她成為 Lotus，把 Lua 與 Reservoir 藏進虛空，再讓 Warframe 與孩子進入低溫長眠。她究竟是出於母性、被改寫的記憶，還是自己做出的選擇，日後會被不同勢力反覆爭奪定義。",
+          "失去 Orokin 後，Grineer 複製人大軍與 Corpus 商業帝國瓜分廢墟。Infestation 在無人控制的設施裡蔓延，倖存的 Dax、Cephalon 與殖民地各自求生。多年之後，Grineer 將軍 Vor 開始挖掘沉睡的 Warframe——現代故事於是從一具甦醒的身體重新開始。"
+        ],
+        "characters": [
+          "Lotus",
+          "Natah",
+          "Tenno",
+          "Stalker"
+        ],
+        "meaning": {
+          "title": "下一章",
+          "text": "帝國的末日不是故事終點，而是始源星系現代秩序的起點。沉睡的 Tenno 將在 Grineer 與 Corpus 的夾縫中重新醒來。"
+        }
+      }
+    ]
   },
   {
-    title: "暗影繪師",
-    englishTitle: "The Shadowgrapher",
-    date: "2026.03.25",
-    kind: "最新獨立故事",
-    prerequisite: "完成 The War Within",
-    placement: "可在主線中期後遊玩；內容回望 Vesper Relay 與歷史事件",
-    summary:
-      "以新的角度追索一段被戰爭與影像留下的記憶，補上中繼站和 Tenno 過往的斷層。",
-    sourceUrl: "https://www.warframe.com/en/news/the-shadowgrapher-available-now",
+    "slug": "awakening",
+    "number": "01",
+    "label": "第一章",
+    "title": "夢醒於槍火",
+    "englishTitle": "AWAKENING",
+    "era": "地球 → 金星 → 火衛二",
+    "deck": "Tenno 從長夢中醒來，還不知道自己是誰。Lotus 的聲音、Vor 的控制器，以及一艘逐步修復的 Orbiter，構成了新生命的第一條路。",
+    "readTime": "約 16 分鐘",
+    "spoilerLevel": "主線完整劇透",
+    "heroImage": "https://www-static.warframe.com/images/guide/quests/vor-key.jpg",
+    "heroAlt": "Vor's Prize 官方任務主視覺",
+    "accent": "#39a8c4",
+    "sources": [
+      {
+        "label": "Vor's Prize 官方指南",
+        "url": "https://www.warframe.com/en/guides/quests/vors-prize"
+      },
+      {
+        "label": "Saya's Vigil 官方指南",
+        "url": "https://www.warframe.com/en/guides/quests/sayas-vigil"
+      },
+      {
+        "label": "Vox Solaris 官方指南",
+        "url": "https://www.warframe.com/en/guides/quests/vox-solaris"
+      },
+      {
+        "label": "Once Awake 官方指南",
+        "url": "https://www.warframe.com/en/guides/quests/once-awake"
+      },
+      {
+        "label": "Heart of Deimos 官方指南",
+        "url": "https://www.warframe.com/en/guides/quests/heart-of-deimos"
+      },
+      {
+        "label": "The Archwing 官方指南",
+        "url": "https://www.warframe.com/en/guides/quests/the-archwing"
+      }
+    ],
+    "passages": [
+      {
+        "id": "awakening",
+        "kicker": "01・甦醒",
+        "title": "冰冷艙門開啟，Lotus 在耳邊呼喚",
+        "englishTitle": "AWAKENING",
+        "period": "地球・Orokin 遺跡",
+        "summary": "Grineer 正在挖掘沉睡的 Warframe。Tenno 必須在記憶空白的狀態下選擇第一副身體與武器，從遺跡中逃出去。",
+        "paragraphs": [
+          "地球的古老遺跡裡，一具 Warframe 從低溫艙醒來。Lotus 以通訊引導它移動、戰鬥，並在 Excalibur、Mag、Volt 之間選擇最初的身體。對剛甦醒的 Tenno 而言，Lotus 是唯一熟悉自己的聲音，也是唯一聲稱知道該往哪裡走的人。",
+          "Captain Vor 想把這件 Orokin 遺物變成 Grineer 的戰利品。他將 Ascaris 控制裝置植入 Warframe，企圖遠端癱瘓甚至奪取它。Tenno 在逃亡時取回槍械與近戰武器，第一次體會自身機動性與殺傷力，也第一次看到 Grineer 如何把整個星系視為可征服的領土。",
+          "這時的 Tenno 認為自己就是 Warframe。故事故意不解釋沉睡、Lotus 與身體的真相；玩家與角色共享同一片空白，只能先相信那道聲音。"
+        ],
+        "characters": [
+          "Lotus",
+          "Captain Vor",
+          "Tenno",
+          "Ordis"
+        ],
+        "meaning": {
+          "title": "第一個謎題",
+          "text": "為什麼 Lotus 能遠距喚醒 Warframe？Tenno 為什麼沒有過去？答案要到 The Second Dream 才真正揭曉。"
+        }
+      },
+      {
+        "id": "vors-prize",
+        "kicker": "02・解放",
+        "title": "Vor 的戰利品：奪回自己的軌道",
+        "englishTitle": "VOR'S PRIZE",
+        "period": "地球與 Grineer 航線",
+        "summary": "Tenno 修復 Orbiter、救出商人 Darvo，並在 Ascaris 摧毀自己之前找到解除控制的方法。",
+        "paragraphs": [
+          "逃離遺跡後，Tenno 登上一艘受損的 Orbiter。Cephalon Ordis 的記憶同樣殘破，船上的 Arsenal、Foundry、Mod Station 與 Navigation 必須逐一修復。每找回一個模組，Tenno 就從被追捕的遺物，變回能自行選擇裝備與目的地的行動者。",
+          "Corpus 商人 Darvo 因拒絕配合 Vor 而遭囚禁。救出他後，Tenno 得知解除 Ascaris 的方法，並在 Grineer 設施中蒐集材料製造破解器。Vor 試圖以裝置直接摧毀 Warframe，卻被 Tenno 反過來擊敗。",
+          "Vor 沒有真正放棄 Orokin 與虛空。他的身體後來被 Janus Key 的力量改變，在 Void 中成為一個不斷重複信仰宣言的存在。初見時只是新手敵人的將軍，最終也成了 Orokin 遺產腐蝕眾生的例子。"
+        ],
+        "characters": [
+          "Captain Vor",
+          "Darvo",
+          "Ordis",
+          "Lotus"
+        ],
+        "meaning": {
+          "title": "Tenno 第一次真正自由",
+          "text": "完成任務後，Orbiter 與星圖完全開放。從此不再只是逃離 Vor，而是能選擇要保護誰、追查哪一段真相。"
+        }
+      },
+      {
+        "id": "sayas-vigil",
+        "kicker": "03・平野",
+        "title": "Saya 的守夜：失去一個人，也守住一個未來",
+        "englishTitle": "SAYA'S VIGIL",
+        "period": "Cetus・夜靈平野",
+        "summary": "Ostron 長者 Saya 仍在等待失蹤的丈夫 Onkko。散落的玻璃碎片，藏著他離開的真正理由。",
+        "paragraphs": [
+          "Tenno 抵達 Cetus，認識依靠 Unum 高塔生存的 Ostron。Konzu 請求協助 Saya 尋找 Onkko 的線索。Grineer 在夜靈平野進行挖掘，而散落於營地與洞穴的玻璃碎片，記錄著 Onkko 最後的研究。",
+          "Onkko 並沒有被單純殺害。他透過 Quills 所見的多重可能性，發現若繼續留在 Saya 身邊，某些更糟的未來將無法避免。他選擇讓愛人相信自己已死，自己則躲在密室裡成為 Quill Onkko，守護 Unum 與未來的因果。",
+          "Saya 得到的不是團圓，而是一個能讓等待停止的答案。這條支線把 Warframe 的宏大時間觀落到普通人的傷口：看見未來不代表能保留所有幸福，有時只能選擇哪一種失去。"
+        ],
+        "characters": [
+          "Saya",
+          "Onkko",
+          "Konzu",
+          "Unum"
+        ],
+        "meaning": {
+          "title": "Quills 的世界觀",
+          "text": "Quills 不是預言單一路線，而是觀察多種可能並選擇能存續的分支。這種思維會在 Operator、Drifter 與 Eternalism 中再次出現。"
+        }
+      },
+      {
+        "id": "vox-solaris",
+        "kicker": "04・債役",
+        "title": "Vox Solaris：連身體都不屬於自己的城市",
+        "englishTitle": "VOX SOLARIS",
+        "period": "金星・Fortuna",
+        "summary": "Fortuna 的 Solaris 以勞動償還永遠還不完的債。Nef Anyo 用金錢、信仰與器官回收，把整座城市鎖進帳本。",
+        "paragraphs": [
+          "Eudico 曾是 Solaris United 的領袖，卻在一次失敗反抗後選擇沉默。Tenno 認識年輕工人 Thursby，也看見 Nef Anyo 如何以債務懲罰任何不服從的人：失去工作只是開始，義體、器官，甚至保存人格的頭部都可能被收走。",
+          "當 Nef 的行動再次威脅工人，Eudico 被迫重拾 Vox Solaris 的身分。Tenno 破壞 Corpus 設施、奪回資源，讓 Fortuna 重新燃起反抗。這不是徹底勝利，卻證明 Nef 的帳本並非宇宙法則。",
+          "Solaris 的身體改造與 Orokin 的 Continuity 形成殘酷對照：上層把更換身體視為永生，底層則被迫拆解自己還債。Vox Solaris 因此不只是開放世界序章，也是 Corpus 社會最清楚的控訴。"
+        ],
+        "characters": [
+          "Eudico",
+          "Nef Anyo",
+          "Thursby",
+          "Little Duck"
+        ],
+        "meaning": {
+          "title": "Vox Solaris 的真正含義",
+          "text": "它既是反抗網路，也是「Solaris 的聲音」。當制度把人化成數字，發聲本身就是奪回人格。"
+        }
+      },
+      {
+        "id": "once-awake",
+        "kicker": "05・感染",
+        "title": "Once Awake：Grineer 喚醒不該碰觸的瘟疫",
+        "englishTitle": "ONCE AWAKE",
+        "period": "水星周邊",
+        "summary": "Grineer 科學家試圖把 Infestation 變成武器，卻只證明這種生命不接受任何人的控制。",
+        "paragraphs": [
+          "Lotus 發現 Grineer 在研究一種古老生物樣本。Tenno 潛入設施時，感染已突破控制，血肉與機械開始融合，原本的士兵成為沒有陣營之分的 Infested 群體。",
+          "Dr. Tengus 等 Grineer 研究者以為能把感染者投向敵人，卻低估了它改寫宿主與環境的速度。Tenno 一邊防守資料、一邊阻止病原擴散，最後只能用火力封鎖失控區域。",
+          "這段任務第一次讓玩家理解 Infested 不是野獸種族，而是一套會吞噬、記錄並重組生命的系統。它與 Helminth 及 Warframe 的關係尚未公開，但早已在背景中埋下。"
+        ],
+        "characters": [
+          "Lotus",
+          "Dr. Tengus",
+          "Infested",
+          "Grineer"
+        ],
+        "meaning": {
+          "title": "之後會回來的線索",
+          "text": "Infested 與 Warframe 同源卻不同調。Heart of Deimos、The Sacrifice 與 Helminth 系統會逐步說明這份血緣。"
+        }
+      },
+      {
+        "id": "heart-of-deimos",
+        "kicker": "06・家族",
+        "title": "Heart of Deimos：在感染之中跳動的心臟",
+        "englishTitle": "HEART OF DEIMOS",
+        "period": "火衛二・Cambion Drift",
+        "summary": "Entrati 家族被 Infestation 困在自己的家園。維持虛空技術的 Heart 正在衰竭，而這個破碎家庭幾乎無法停止互相責怪。",
+        "paragraphs": [
+          "Loid 的訊息把 Tenno 引向火衛二。Necralisk 深處住著 Entrati 家族：Mother、Father、Daughter、Son 與 Grandmother。Infestation 奪走他們原本的名字與身體，也放大多年累積的嫉妒、怨恨與失望。",
+          "Heart of Deimos 是始源星系許多虛空技術的關鍵。當它受損，Warframe 的 Transference 也受到影響。Tenno 穿過 Cambion Drift，使用借來的 Necramech 對抗失控機體，最後修復 Heart，避免整個系統斷裂。",
+          "任務表面解決的是設備危機，真正被修復的卻是家族連結。Grandmother 讓成員以新的稱呼重新認識彼此；他們沒有突然變成完美家人，但終於願意承認彼此仍在同一座家中。"
+        ],
+        "characters": [
+          "Mother",
+          "Father",
+          "Daughter",
+          "Son",
+          "Grandmother",
+          "Loid"
+        ],
+        "image": {
+          "src": "https://www-static.warframe.com/images/guide/quests/deimos-key.jpg",
+          "alt": "Heart of Deimos 官方任務主視覺",
+          "caption": "火衛二把 Orokin 家族史、Infestation、Necramech 與 Albrecht Entrati 的研究接到同一條主線。"
+        },
+        "meaning": {
+          "title": "為什麼是主線前置？",
+          "text": "它不只解鎖 Necramech。Entrati、Loid、Albrecht 與地下實驗室會在 Whispers in the Walls 成為 Void War 的核心。"
+        }
+      },
+      {
+        "id": "archwing",
+        "kicker": "07・展翼",
+        "title": "The Archwing：Tenno 離開地面",
+        "englishTitle": "THE ARCHWING",
+        "period": "火星航線與深空",
+        "summary": "Grineer 的 Fomorian 威脅逼近。Tenno 打造 Archwing，第一次在沒有重力與地形保護的深空作戰。",
+        "paragraphs": [
+          "Lotus 得知 Grineer 正準備以大型戰艦壓制 Tenno。普通 Warframe 無法在真空中自由行動，因此玩家必須蒐集零件、打造 Archwing，並在 Corpus 與 Grineer 爭奪的區域完成首次飛行。",
+          "Archwing 讓 Tenno 的戰場從走廊與行星表面延伸到宇宙。它也是日後 Railjack、Fomorian 戰役、海底任務與 Necramech 深空部署的技術基礎。",
+          "完成這一段時，Tenno 已不再只是被 Lotus 救出的甦醒者。地球、Fortuna、Cetus 與 Deimos 的居民開始把這名戰士視為可以求援的力量；而更深的身分真相，也即將在天王星浮出水面。"
+        ],
+        "characters": [
+          "Lotus",
+          "Tenno",
+          "Grineer",
+          "Corpus"
+        ],
+        "meaning": {
+          "title": "下一章",
+          "text": "天王星出現陌生的藍色無人機。當 Lotus 要求停止追查，Tenno 第一次發現那道最可信任的聲音也在隱瞞過去。"
+        }
+      }
+    ]
   },
   {
-    title: "翠玉魅影：星座",
-    englishTitle: "Jade Shadows: Constellations",
-    date: "2026.06.17",
-    kind: "Jade 後日談",
-    prerequisite: "完成 Jade Shadows",
-    placement: "建議緊接 Jade Shadows",
-    summary:
-      "延續 Stalker、孩子與 Jade 的故事，並開啟 Uranus Proxima 的 Pontis Tower 內容。",
-    sourceUrl: "https://www.warframe.com/en/patch-notes/pc/43-0-0",
+    "slug": "war-within",
+    "number": "02",
+    "label": "第二章",
+    "title": "夢中之人",
+    "englishTitle": "THE WAR WITHIN SAGA",
+    "era": "天王星 → Lua → Kuva 要塞",
+    "deck": "Lotus 的身分、Warframe 的操作者、Tenno 的童年與體內的力量接連曝光。這一卷不是得到新能力，而是把被他人定義的人生重新握回手中。",
+    "readTime": "約 22 分鐘",
+    "spoilerLevel": "身份真相重大劇透",
+    "heroImage": "https://www-static.warframe.com/images/guide/quests/seconddream-key.jpg",
+    "heroAlt": "The Second Dream 官方任務主視覺",
+    "accent": "#755bd6",
+    "sources": [
+      {
+        "label": "Natah 官方指南",
+        "url": "https://www.warframe.com/en/guides/quests/natah"
+      },
+      {
+        "label": "The Second Dream 官方指南",
+        "url": "https://www.warframe.com/en/guides/quests/the-second-dream"
+      },
+      {
+        "label": "Rising Tide 官方指南",
+        "url": "https://www.warframe.com/en/guides/quests/rising-tide"
+      },
+      {
+        "label": "The War Within 官方指南",
+        "url": "https://www.warframe.com/en/guides/quests/the-war-within"
+      },
+      {
+        "label": "Chains of Harrow 官方指南",
+        "url": "https://www.warframe.com/en/guides/quests/chains-of-harrow"
+      },
+      {
+        "label": "Apostasy Prologue 官方指南",
+        "url": "https://www.warframe.com/en/guides/quests/apostasy"
+      },
+      {
+        "label": "The Sacrifice 官方指南",
+        "url": "https://www.warframe.com/en/guides/quests/the-sacrifice"
+      }
+    ],
+    "passages": [
+      {
+        "id": "natah",
+        "kicker": "01・名字",
+        "title": "Natah：Lotus 不願回答的過去",
+        "englishTitle": "NATAH",
+        "period": "天王星深海",
+        "summary": "神祕無人機與 Hunhow 的聲音迫使 Lotus 承認：她不是人類，也不是 Margulis，而是 Sentient Natah。",
+        "paragraphs": [
+          "Tenno 在天王星任務中掃描到陌生無人機。Lotus 立刻要求停止調查，反常的恐懼反而讓真相更加明顯。Tyl Regor 的挖掘喚醒了 Hunhow，這名沉睡於海底的 Sentient 隨即透過訊號呼喚自己的女兒。",
+          "Lotus 原名 Natah，被派往 Orokin 內部控制 Tenno。她完成了摧毀帝國的前半任務，卻沒有在最後殺死孩子。Hunhow 認為她遭 Orokin 改寫，Lotus 則堅稱自己做出了選擇。",
+          "任務沒有給出一個能永久定案的答案。Natah、Lotus 與 Margulis 是不同身分，也是不斷被他人投射的角色。往後 Ballas、Erra、Hunhow 與 Tenno 都會嘗試告訴她「真正是誰」。"
+        ],
+        "characters": [
+          "Lotus",
+          "Natah",
+          "Hunhow",
+          "Tyl Regor"
+        ],
+        "meaning": {
+          "title": "Lotus 的核心衝突",
+          "text": "她的記憶可能被改造，但不代表所有情感都是假的。Warframe 後半主線一直追問：一個被創造的人，能不能自己選擇成為誰？"
+        }
+      },
+      {
+        "id": "second-dream",
+        "kicker": "02・真身",
+        "title": "The Second Dream：Warframe 背後的孩子",
+        "englishTitle": "THE SECOND DREAM",
+        "period": "Lua・Reservoir",
+        "summary": "Hunhow 與 Stalker 尋找 Tenno 的真正弱點。答案不在任何 Warframe 裡，而在被藏進虛空的月球。",
+        "paragraphs": [
+          "Hunhow 與 Stalker 聯手，企圖找到 Tenno 的本體。Lotus 迫使 Lua 從虛空回到現實，讓玩家進入 Reservoir。一路上，Stalker 因發現自己與 Warframe 的相似而動搖；Hunhow 則不斷逼他斬斷那份疑問。",
+          "在儲藏室深處，Warframe 抱起一名孩子。玩家此刻才知道，自己一直操控的戰士不是全部的自我。Tenno 是 Zariman 倖存者，肉身長眠，意識透過 Transference 進入 Warframe。過去所有甦醒、受傷與死亡感，都發生在一場被技術維持的第二場夢裡。",
+          "Stalker 最終沒有對孩子下手，Hunhow 的 War 劍卻刺入 Warframe。即使與 Operator 的連結一度中斷，Warframe 仍自行折斷劍刃救下主人。那一刻究竟是殘留意志、Operator 的本能，還是兩者之間更深的共鳴，遊戲刻意沒有完全說死。",
+          "Operator 被帶回 Orbiter，玩家選擇 Focus School，第一次以真正身體醒來。這不是故事解答，而是身分問題的開始：如果戰場上的英雄一直是夢中的投影，醒來後還剩下什麼？"
+        ],
+        "characters": [
+          "Operator",
+          "Lotus",
+          "Stalker",
+          "Hunhow"
+        ],
+        "meaning": {
+          "title": "Warframe 最大的第一次翻轉",
+          "text": "玩家與角色同時發現「自己」並不是畫面中那副盔甲。從此之後，Warframe 與 Operator 的關係由工具變成共生。"
+        }
+      },
+      {
+        "id": "rising-tide",
+        "kicker": "03・遺艦",
+        "title": "Rising Tide：重建一艘失去船員的戰艦",
+        "englishTitle": "RISING TIDE",
+        "period": "Old War 殘骸",
+        "summary": "Cephalon Cy 引導 Tenno 找回 Railjack 殘骸。每一塊零件都帶著 Old War 船員死亡前的聲音。",
+        "paragraphs": [
+          "Tenno 收到 Railjack Cephalon 藍圖並喚醒 Cy。這名指揮 Cephalon 冷靜、嚴苛，卻對自己過去的失敗避而不談。玩家前往不同戰場尋找推進、機身與武裝殘骸，重建一艘能穿越深空的戰艦。",
+          "修復過程逐步揭露 Cy 曾在 Old War 指揮一艘船。他判斷任務不可完成，卻仍服從命令，最終失去全體船員。新的 Railjack 不是單純裝備，也讓 Cy 得到再次保護船員、重新定義忠誠的機會。",
+          "敘事上，Rising Tide 是 The New War 的備戰章。Sentient 不再只是藏在海底或訊號中的敵人，Tenno 必須擁有能直接進入它們艦隊的船。"
+        ],
+        "characters": [
+          "Cephalon Cy",
+          "Tenno",
+          "Old War 船員"
+        ],
+        "meaning": {
+          "title": "戰艦也是角色",
+          "text": "Railjack 承載的不只是火力。Cy 的創傷讓每一次出航都像是在回答：服從失敗過一次後，還能不能重新成為指揮官？"
+        }
+      },
+      {
+        "id": "war-within",
+        "kicker": "04・奪身",
+        "title": "The War Within：女皇想要 Tenno 的身體",
+        "englishTitle": "THE WAR WITHIN",
+        "period": "Lua → Kuva 要塞",
+        "summary": "Grineer 雙子女皇利用 Teshin 與 Kuva 引誘 Operator。失去 Warframe 後，孩子必須獨自穿過記憶與恐懼。",
+        "paragraphs": [
+          "Lotus 發現 Teshin 行蹤異常。追查途中，Operator 被捲入 Grineer Queens 的計畫。年老女皇想以 Continuity 奪取 Tenno 年輕、充滿虛空力量的身體；Teshin 身為 Dax，則被 Kuva 與古老誓約強迫服從。",
+          "Operator 與 Warframe 的連結被切斷，只能在山道與幻境中面對 Zariman 記憶。玩家重新學會 Void Sling、隱形、能量衝擊與 Transference。這些能力不是突然獲得，而是長期被 Margulis、Lotus 與夢境壓抑的本能。",
+          "回到 Kuva 要塞後，Operator 以自己的身體與力量破壞女皇的 Continuity。玩家可選擇如何處理 Kuva，形成太陽、月亮與中立傾向；這不是簡單善惡值，而是角色對力量、控制與自我認知的態度。",
+          "任務結束時，Tenno 首次證明自己不必躲在 Warframe 後面。醒來的孩子不再只是需要 Lotus 保護的對象，也能反過來打破 Orokin 留下的誓約。"
+        ],
+        "characters": [
+          "Operator",
+          "Teshin",
+          "Elder Queen",
+          "Worm Queen",
+          "Lotus"
+        ],
+        "image": {
+          "src": "https://www-static.warframe.com/images/guide/quests/warwithin-key.jpg",
+          "alt": "The War Within 官方任務主視覺",
+          "caption": "The War Within 把戰場移進 Operator 的記憶，並讓玩家真正掌握不依賴 Warframe 的虛空能力。"
+        },
+        "meaning": {
+          "title": "「內戰」發生在哪裡？",
+          "text": "既是 Grineer 權力鬥爭，也是 Operator 體內的戰爭：依賴與獨立、恐懼與力量、被保護的孩子與能做決定的人。"
+        }
+      },
+      {
+        "id": "chains-of-harrow",
+        "kicker": "05・孤獨",
+        "title": "Chains of Harrow：Rell 獨自守住門外之物",
+        "englishTitle": "CHAINS OF HARROW",
+        "period": "遺棄飛船與 Red Veil",
+        "summary": "Red Veil 的求救把 Tenno 帶向 Rell。這名被同伴排斥的 Zariman 孩子，數百年來一直用自己壓制牆中人。",
+        "paragraphs": [
+          "Palladino 請求 Tenno 尋找 Red Veil 的神聖存在 Rell。調查過程充滿重複聲音、情緒卡片與被 Harrow 鎖鏈束縛的幽靈。玩家逐漸理解 Rell 對情緒與社交的表達方式不同，也因此在 Zariman 上遭其他孩子排斥。",
+          "Rell 比其他人更早察覺虛空中有某種存在。他把意識永久綁進 Harrow，靠痛苦與儀式阻止牆中人進入現實。當其他 Tenno 在 Lua 長眠，他一個人維持這場看不見的戰爭。",
+          "Operator 最終解除鎖鏈，讓 Rell 得以休息。代價是牆中人的注意力失去原本屏障，開始直接靠近玩家。從此 Orbiter 會出現與 Operator 相同面孔的訪客，以輕佻的「Hey, kiddo」提醒：門已經開了一條縫。"
+        ],
+        "characters": [
+          "Rell",
+          "Harrow",
+          "Palladino",
+          "牆中人"
+        ],
+        "meaning": {
+          "title": "一場遲到的理解",
+          "text": "Rell 沒被當成英雄，也沒有和其他孩子一起被保護。他承擔了所有人都不知道的工作，直到玩家終於看見他。"
+        }
+      },
+      {
+        "id": "apostasy",
+        "kicker": "06・離去",
+        "title": "Apostasy Prologue：Lotus 離開王座",
+        "englishTitle": "APOSTASY PROLOGUE",
+        "period": "Lua・Reservoir",
+        "summary": "Ballas 穿過記憶來到 Lotus 面前。她摘下頭盔、握住他的手，留下 Tenno 獨自面對空白通訊。",
+        "paragraphs": [
+          "完成 Chains of Harrow 並進入 Orbiter 私人房間後，Operator 追隨一團神祕能量回到 Lua。過去與現在交疊，Ballas 以 Margulis 的名字呼喚 Lotus。",
+          "Lotus 摘下象徵身分的頭盔，顯露 Sentient 的形貌，隨 Ballas 離去。這一幕刻意不解釋她是自願、被喚醒，還是遭到控制。對 Tenno 而言，只剩任務通訊中的模擬聲音與被遺棄感。",
+          "Ballas 把 Margulis、Natah 與 Lotus 混為自己失去的所有物。他看似前來尋人，實際延續 Orokin 最典型的暴力：不允許對方擁有自己定義的名字。"
+        ],
+        "characters": [
+          "Lotus",
+          "Ballas",
+          "Operator",
+          "Margulis"
+        ],
+        "meaning": {
+          "title": "母親不再回答",
+          "text": "主線從此讓 Tenno 在沒有 Lotus 即時引導的情況下前進。這也是角色真正成年以前最劇烈的一次失去。"
+        }
+      },
+      {
+        "id": "sacrifice",
+        "kicker": "07・共感",
+        "title": "The Sacrifice：與 Umbra 一起承受記憶",
+        "englishTitle": "THE SACRIFICE",
+        "period": "地球 → Lua",
+        "summary": "一具能自行行動的 Excalibur Umbra 留下痕跡。追查它的過去，也揭露 Ballas 如何把一個父親變成永遠記得罪行的 Warframe。",
+        "paragraphs": [
+          "Operator 在地球找到 Warframe 殘骸，重建 Excalibur Umbra。與其他 Warframe 不同，Umbra 抗拒控制並自行逃走。玩家透過掃描與 Orokin 記憶密碼追蹤它，也逐步進入它最痛苦的回憶。",
+          "Umbra 原是一名 Dax，發現 Ballas 向 Sentient 洩漏情報。Ballas 以 Helminth 感染他，並強迫他在轉化過程中殺死自己的兒子 Isaah。Umbra 被設計成保留那一刻，讓記憶成為永不停止的刑罰。",
+          "Operator 多次嘗試壓制 Umbra 都失敗，直到不再把它當作需要征服的武器。Tenno 進入記憶，和 Umbra 一起承受喪子之痛。這份共感讓兩者真正同步，並共同對抗 Ballas。",
+          "Ballas 被 Umbra 刺傷後交出 Paracesis 藍圖，試圖把 Tenno 推向與 Sentient 的下一場戰爭。Lotus 的失蹤仍未解決，但 Tenno 此刻已知道：Orokin 能製造身體，卻無法理解連結為何能超越控制。"
+        ],
+        "characters": [
+          "Excalibur Umbra",
+          "Operator",
+          "Ballas",
+          "Isaah"
+        ],
+        "meaning": {
+          "title": "本章的答案",
+          "text": "Tenno 並非因操控能力而特殊，而是能與被封在 Warframe 裡的痛苦共處。力量不是命令，而是「這份傷，我陪你一起記得」。"
+        }
+      }
+    ]
   },
   {
-    title: "寓言與前線：遲到了",
-    englishTitle: "Fables & Frontiers: Running Late",
-    date: "2026.08.12",
-    kind: "Hex KIM 後日談",
-    prerequisite:
-      "完成 The Hex 與 Hex Finale、Hex Syndicate Rank 5，並與 Amir 達 Chemistry Rank 5",
-    placement: "Hex Finale 後；六天 KIM 文字冒險，每日一段",
-    summary:
-      "由 Amir 擔任 Fablemaster，與 Hex 成員進行一場永久保留、可重玩的桌上角色扮演式 KIM 小故事。",
-    sourceUrl: "https://www.warframe.com/en/patch-notes/pc/43-5-0",
+    "slug": "new-war",
+    "number": "03",
+    "label": "第三章",
+    "title": "新世戰爭",
+    "englishTitle": "THE NEW WAR",
+    "era": "Sentient 入侵 → Narmer → Zariman／Duviri",
+    "deck": "Sentient 艦隊壓境，Ballas 戴上救世主的面具。當 Operator 從現實消失，另一個從未離開 Zariman 的自己走進了戰場。",
+    "readTime": "約 26 分鐘",
+    "spoilerLevel": "The New War 全結局劇透",
+    "heroImage": "https://www-static.warframe.com/images/guide/quests/newwar-key.jpg",
+    "heroAlt": "The New War 官方任務主視覺",
+    "accent": "#d05f76",
+    "sources": [
+      {
+        "label": "Prelude to War 官方指南",
+        "url": "https://www.warframe.com/en/guides/quests/prelude-to-war"
+      },
+      {
+        "label": "The New War 官方指南",
+        "url": "https://www.warframe.com/en/guides/quests/the-new-war"
+      },
+      {
+        "label": "Angels of the Zariman 官方指南",
+        "url": "https://www.warframe.com/en/guides/quests/angels-of-the-zariman"
+      },
+      {
+        "label": "Veilbreaker 官方指南",
+        "url": "https://www.warframe.com/en/guides/quests/veilbreaker"
+      },
+      {
+        "label": "Jade Shadows 官方指南",
+        "url": "https://www.warframe.com/en/guides/quests/jade-shadows"
+      },
+      {
+        "label": "The Duviri Paradox 官方指南",
+        "url": "https://www.warframe.com/en/guides/quests/the-duviri-paradox"
+      }
+    ],
+    "passages": [
+      {
+        "id": "prelude",
+        "kicker": "01・序幕",
+        "title": "Chimera、Erra、The Maker：戰爭前的三次欺騙",
+        "englishTitle": "PRELUDE TO WAR",
+        "period": "The Sacrifice 之後",
+        "summary": "Ballas、Natah 與 Erra 在 Sentient 母艦中互相扮演俘虜、領袖與救世者。真正掌握局勢的人，從未站在表面位置。",
+        "paragraphs": [
+          "Chimera Prologue 中，受傷的 Ballas 看似成為 Sentient 囚徒，暗中把 Paracesis 交給 Tenno。Erra 章節則讓玩家看見 Old War 記憶：Natah 的兄長似乎曾被 Tenno 摧毀，卻又在現在重新出現。",
+          "The Maker 顯示 Natah 被固定於裝置上，Erra 與 Ballas 討論即將到來的戰爭。當鏡頭遠離，Ballas 卻放下象徵奴役的鎖鏈，Erra反而服從地跟隨。他從一開始就不是單純囚徒。",
+          "三段短篇的作用，是讓所有陣營都失去可信表面。Natah 的記憶可能被修改，Erra 的復活疑點重重，Ballas 則一邊扮演受害者，一邊把每個人推向自己設計的舞台。"
+        ],
+        "characters": [
+          "Ballas",
+          "Natah",
+          "Erra",
+          "Operator"
+        ],
+        "meaning": {
+          "title": "戰爭的真正武器",
+          "text": "Sentient 艦隊很強大，但 Ballas 最致命的能力是操控敘事：讓每個人相信自己正在做出選擇。"
+        }
+      },
+      {
+        "id": "invasion",
+        "kicker": "02・失守",
+        "title": "入侵日：Kahl、Veso 與 Teshin 的最後戰線",
+        "englishTitle": "THE INVASION",
+        "period": "始源星系全面戰爭",
+        "summary": "玩家暫時離開 Warframe，從 Grineer 士兵、Corpus 工程師與 Dax 的視角看見星系如何在一天內崩潰。",
+        "paragraphs": [
+          "Grineer 士兵 Kahl-175 在地面迎戰 Sentient。沒有 Tenno 的速度與力量，他靠命令小隊、撿拾武器與引爆炸彈推進。當指揮官只關心戰況，他仍選擇救下身邊的兄弟。",
+          "Corpus 工程師 Veso-R 對抗入侵艦隊與失控機械，最終違抗 Alad V 的投降決定，讓自己所在的戰艦撞向 Sentient 母艦。他未必自稱英雄，卻在最後一次操作中選擇不把生存交給懦弱的上司。",
+          "Teshin 潛入 Murex，擊敗 Sentient 並接近核心，卻被 Erra 攔截。這三段視角讓戰爭不再只是 Tenno 的神話：普通士兵也在同一刻作出犧牲，只是歷史未必會記住名字。",
+          "Operator、Lotus 與 Necramech 最終突入戰場。Ballas 奪走勝利，刺傷 Lotus，將 Operator 與她一同投入虛空。Tenno 從現實消失，始源星系正式失守。"
+        ],
+        "characters": [
+          "Kahl-175",
+          "Veso-R",
+          "Teshin",
+          "Erra",
+          "Ballas"
+        ],
+        "meaning": {
+          "title": "為何讓玩家操作敵對陣營？",
+          "text": "Grineer 與 Corpus 不是只有複製人和帳本。當帝國層級崩潰，個體仍能選擇忠誠、勇氣與犧牲。"
+        }
+      },
+      {
+        "id": "narmer",
+        "kicker": "03・面紗",
+        "title": "Narmer 的和平：不准痛苦，也不准醒來",
+        "englishTitle": "THE NARMER REGIME",
+        "period": "入侵後",
+        "summary": "Ballas 建立 Narmer，以 Veil 把服從包裝成幸福。沒有戰爭的城市，也失去了質疑與自我。",
+        "paragraphs": [
+          "多年或某種被扭曲的時間之後，Drifter 在 Narmer 統治的星系活動。Veil 會把使用者困在最渴望的幻象裡，將恐懼與缺憾改寫成對 Ballas 的感恩。Grineer、Corpus 甚至舊有盟友都被納入同一信仰。",
+          "Drifter 沒有 Operator 的完整虛空力量，也無法隨意使用 Warframe。他與 Ordis、Hunhow 合作，追獵 Archon 取得晶體，逐步修復奄奄一息的 Lotus。Hunhow 曾是敵人，此刻卻比 Ballas 更願意承認 Natah 是有選擇的人。",
+          "Narmer 的恐怖不只在精神控制，而在它提供真正誘人的安慰。面紗讓受傷的人看見理想家庭、肯定與安全；摘下它等於重新接受失去。自由因此不是舒服的狀態，而是願意承受真實。"
+        ],
+        "characters": [
+          "Drifter",
+          "Hunhow",
+          "Ordis",
+          "Archons",
+          "Ballas"
+        ],
+        "meaning": {
+          "title": "Ballas 的終極帝國",
+          "text": "Orokin 用階級統治，Narmer 用幸福幻象統治。兩者核心相同：只有 Ballas 有權決定別人應該成為誰。"
+        }
+      },
+      {
+        "id": "eternalism",
+        "kicker": "04・悖論",
+        "title": "Operator 與 Drifter：同一個選擇的兩個答案",
+        "englishTitle": "ETERNALISM",
+        "period": "Zariman 與虛空交界",
+        "summary": "兩個版本的 Tenno 在 Zariman 相遇。Eternalism 不是平行宇宙的簡單複製，而是所有可能答案同時存在。",
+        "paragraphs": [
+          "Zariman 課堂記憶以選擇題解釋 Eternalism：一個事件的不同結果，都可能在各自的現實中成立。Operator 接受牆中人的交易並被救出；Drifter 則留在那艘船與虛空裡，沒有被 Lotus 帶走。",
+          "兩人在餐桌上相遇並決定由誰回到戰場。這不是兩個陌生人交換工作，而是同一個人第一次看見自己若走過另一條路會成為什麼樣子。Operator 保留孩子的外表與力量，Drifter 帶著在孤獨中長大的時間。",
+          "這場會面也解釋 Drifter 為何能拯救一個從未認識的 Lotus：即使記憶不同，彼此仍共享某種因果與情感。虛空把答案分開，也讓答案重新相遇。"
+        ],
+        "characters": [
+          "Operator",
+          "Drifter",
+          "牆中人",
+          "Lotus"
+        ],
+        "meaning": {
+          "title": "不是時間旅行的替身",
+          "text": "Drifter 不是成年 Operator 從未來回來，而是 Zariman 災難中另一個同時成立的自己。"
+        }
+      },
+      {
+        "id": "finale",
+        "kicker": "05・終局",
+        "title": "太陽之下，Ballas 要所有人見證他的愛",
+        "englishTitle": "THE NEW WAR FINALE",
+        "period": "太陽附近",
+        "summary": "Ballas 決定摧毀始源星系、前往 Tau，並把這場毀滅說成自己被背叛後的必然。Tenno 與 Lotus 必須終止他的劇本。",
+        "paragraphs": [
+          "Erra 終於看清 Ballas 只是利用 Sentient，選擇幫助 Tenno 推進並在崩塌中犧牲。Lotus 的力量逐漸恢復，卻仍在 Natah、Margulis 與 Lotus 的記憶之間撕裂。",
+          "Ballas 將 Praghasa 對準太陽，準備吞噬能量並帶領剩餘勢力前往 Tau。他用 Veil 迫使眾人崇拜，也不斷指責 Lotus 不夠愛他。這場星系級危機的核心，竟是他無法接受任何人擺脫所有權。",
+          "Tenno 打碎鏡像與謊言，Lotus 最終靠近 Ballas，以自己的力量終結他。玩家可選擇她往後顯示為 Natah、Lotus 或 Margulis；選擇改變名字與外觀，卻不抹去她同時經歷過的所有身分。",
+          "勝利後，巨大的牆中人形象從虛空出現。它伸出的手指缺少一截，與 Zariman 交易的記憶互相呼應。Sentient 戰爭結束了，真正的 Void War 才剛把臉貼到現實之外。"
+        ],
+        "characters": [
+          "Lotus",
+          "Ballas",
+          "Erra",
+          "Operator／Drifter",
+          "牆中人"
+        ],
+        "meaning": {
+          "title": "第一個十年故事的終點",
+          "text": "The New War 終結 Ballas 與 Sentient 戰爭主軸，也把核心問題交給下一篇：虛空中的存在究竟想從 Tenno 身上取回什麼？"
+        }
+      },
+      {
+        "id": "zariman-aftermath",
+        "kicker": "06・歸船",
+        "title": "Angels of the Zariman：回到一切開始的地方",
+        "englishTitle": "ANGELS OF THE ZARIMAN",
+        "period": "The New War 之後",
+        "summary": "Zariman 卡在現實與虛空的傷口上。留守船內的 Holdfasts 既像倖存者，也像由記憶重新拼出的亡靈。",
+        "paragraphs": [
+          "Tenno 回到 Zariman，認識 Quinn、Hombask、Cavalero 與 Archimedean Yonta。四人曾在災難中死亡或消失，如今依靠虛空能量與自我記憶維持形體，被稱為 Holdfasts。",
+          "Void Angels 是被虛空吞噬的存在，會誘惑其他人放棄痛苦、投入無差別的歌聲。Holdfasts 必須一次次記住自己是誰，才不會成為下一個天使。",
+          "Zariman 現在像一枚楔子，卡住現實與虛空之間的裂口。Tenno 幫助 Holdfasts，不只是重返童年創傷，也是守住牆中人尚未完全跨過的門檻。"
+        ],
+        "characters": [
+          "Quinn",
+          "Yonta",
+          "Hombask",
+          "Cavalero",
+          "Void Angels"
+        ],
+        "meaning": {
+          "title": "創傷沒有因勝利消失",
+          "text": "The New War 解救星系，卻沒有讓 Zariman 的過去結束。回去面對它，是 Operator 與 Drifter 共同故事的下一步。"
+        }
+      },
+      {
+        "id": "duviri",
+        "kicker": "07・王國",
+        "title": "The Duviri Paradox：Drifter 為自己造的牢籠",
+        "englishTitle": "THE DUVIRI PARADOX",
+        "period": "虛空中的 Duviri",
+        "summary": "一個永遠重複處刑的王國、由情緒控制的天空，以及不願長大的國王。這裡是 Drifter 在 Zariman 絕望中創造的避難所。",
+        "paragraphs": [
+          "困在 Zariman 的 Drifter 以故事書《Tales of Duviri》與強烈情緒塑造出 Duviri。Dominus Thrax 控制每一天的情緒與循環，Drifter 則在反覆處刑中失去反抗意志。",
+          "一隻來自現實的手與 Teshin 的引導打破循環。Drifter 學會戰鬥、騎乘 Kaithe、穿過 Undercroft，逐步理解 Thrax 並非單純外來暴君，而是自己恐懼與拒絕離開的投影。",
+          "Drifter 最終奪回控制，卻沒有摧毀 Duviri，而是選擇離開並保留這個世界。任務結尾的援手與 The New War 中對 Operator 的幫助互相形成因果：誰先救了誰，已無法用直線時間回答。"
+        ],
+        "characters": [
+          "Drifter",
+          "Dominus Thrax",
+          "Teshin",
+          "Acrithis"
+        ],
+        "meaning": {
+          "title": "推薦閱讀位置",
+          "text": "遊戲可較早開啟 Duviri，但放在 The New War 後閱讀，Operator、Drifter 與悖論的情感會更完整。"
+        }
+      },
+      {
+        "id": "aftermath",
+        "kicker": "08・餘波",
+        "title": "Veilbreaker 與 Jade Shadows：敵人也有必須守護的人",
+        "englishTitle": "AFTERMATH & JADE SHADOWS",
+        "period": "Narmer 戰後",
+        "summary": "Kahl 解救被面紗控制的兄弟；Stalker 則為一個瀕死生命向 Tenno 求助。戰爭結束後，舊敵開始以自己的名字活下去。",
+        "paragraphs": [
+          "Kahl-175 從 Narmer 控制中逃脫，與 Daughter 建立營地。他不再只救 Grineer，而把 Corpus、Ostron 與任何被面紗奪走意志的人都稱作兄弟。Veilbreaker 讓戰爭開場的普通士兵真正擁有後續。",
+          "Jade Shadows 把視角交給 Stalker。玩家得知他原名 Sorren，與 Jade 在 Orokin 時代相愛；兩人因禁忌關係受罰並被轉化。Jade 長久維持著腹中的生命，最終在 Tenno、Hunhow 與 Stalker 面前耗盡自己。",
+          "Stalker 帶著孩子逃離 Corpus 追捕。Corpus 艦長在看見嬰兒後選擇停火，短暫打破敵我規則。這不是讓 Stalker 的過去罪行消失，而是讓他從只剩仇恨的角色，重新成為能選擇守護的人。"
+        ],
+        "characters": [
+          "Kahl-175",
+          "Daughter",
+          "Stalker／Sorren",
+          "Jade",
+          "Hunhow"
+        ],
+        "image": {
+          "src": "https://www-static.warframe.com/images/guide/quests/jadeshadows-key.jpg",
+          "alt": "Jade Shadows 官方任務主視覺",
+          "caption": "Jade Shadows 重新書寫 Stalker：追殺 Tenno 的陰影，也曾是一名被 Orokin 奪走人生的人。"
+        },
+        "meaning": {
+          "title": "戰後主題",
+          "text": "The New War 之後的故事不再只分陣營，而是追問：失去命令與仇恨之後，每個人願意為誰重新活一次？"
+        }
+      }
+    ]
   },
-] as const;
+  {
+    "slug": "void-war",
+    "number": "04",
+    "label": "第四章",
+    "title": "牆中低語",
+    "englishTitle": "THE VOID WAR",
+    "era": "Sanctum Anatomica → 1999 → Old War 記憶",
+    "deck": "Albrecht Entrati 逃往 1999，卻把一條跨越年代的路留給 Drifter。牆中人不靠艦隊征服世界；它讓人相信彼此的連結毫無意義。",
+    "readTime": "約 30 分鐘",
+    "spoilerLevel": "截至 2026.08 最新劇透",
+    "heroImage": "https://www-static.warframe.com/images/guide/quests/whispers-key.jpg",
+    "heroAlt": "Whispers in the Walls 官方任務主視覺",
+    "accent": "#b94d91",
+    "sources": [
+      {
+        "label": "Whispers in the Walls 官方指南",
+        "url": "https://www.warframe.com/en/guides/quests/whispers-in-the-walls"
+      },
+      {
+        "label": "The Lotus Eaters 官方指南",
+        "url": "https://www.warframe.com/en/guides/quests/the-lotus-eaters"
+      },
+      {
+        "label": "The Hex 官方指南",
+        "url": "https://www.warframe.com/en/guides/quests/the-hex"
+      },
+      {
+        "label": "The Old Peace 官方公告",
+        "url": "https://www.warframe.com/en/news/the-old-peace-available-now"
+      },
+      {
+        "label": "The Shadowgrapher 官方公告",
+        "url": "https://www.warframe.com/en/news/the-shadowgrapher-available-now"
+      },
+      {
+        "label": "Update 43.5 官方說明",
+        "url": "https://www.warframe.com/en/patch-notes/pc/43-5-0"
+      }
+    ],
+    "passages": [
+      {
+        "id": "whispers",
+        "kicker": "01・地下",
+        "title": "Whispers in the Walls：Albrecht 留下的鐘開始轉動",
+        "englishTitle": "WHISPERS IN THE WALLS",
+        "period": "火衛二・Sanctum Anatomica",
+        "summary": "Loid 的求救把 Tenno 帶進 Entrati 地下實驗室。Albrecht 已經離開，但他的時間裝置、筆記與模仿他的低語都在等待。",
+        "paragraphs": [
+          "The New War 後，Loid 喚醒地表之下的另一名 Loid——不是 Necraloid，而是曾陪伴 Albrecht Entrati 的真人。Sanctum Anatomica 保存著 Albrecht 對虛空、時間與牆中人的研究，也關著被留下的人所承受的漫長寂寞。",
+          "Tenno 依照 Kalymos Sequence 啟動實驗室，取得 Grimoire，對抗從幾何、肢體與石塊中拼出的 Murmur。這些敵人不像 Sentient 有明確國度，它們更像「冷漠」伸入現實的手指。",
+          "Albrecht 已前往 1999，因為那是一個牆中人難以完整追蹤的時間節點。他留下巨大的 Vessels 與時間裝置，等待一名能以 Transference、虛空與情感連結的人完成後續。",
+          "任務結尾，Loid 以一次跨越恐懼的吻表達對 Albrecht 的感情。牆中人的分身在旁觀看並退去，暗示它難以理解的不是武器，而是人為何願意在可能受傷時仍靠近彼此。"
+        ],
+        "characters": [
+          "Loid",
+          "Albrecht Entrati",
+          "Cavia",
+          "Murmur",
+          "牆中人"
+        ],
+        "meaning": {
+          "title": "Void War 的戰場",
+          "text": "不是單純擊敗更多敵人，而是對抗 Indifference——讓生命彼此疏離、把愛與痛苦都說成毫無意義的力量。"
+        }
+      },
+      {
+        "id": "cavia",
+        "kicker": "02・被棄者",
+        "title": "Cavia：被送進虛空的實驗動物",
+        "englishTitle": "THE CAVIA",
+        "period": "Albrecht 實驗末期",
+        "summary": "Fibonacci、Bird 3 與 Tagfer 因實驗獲得語言與自我，也失去了同伴 Minn。智慧沒有讓創傷變輕，只讓他們更清楚自己被犧牲。",
+        "paragraphs": [
+          "Albrecht 將動物送入虛空，觀察接觸後的變化。倖存者成為 Cavia：自負卻恐懼的 Fibonacci、溫柔混亂的 Bird 3，以及一直為 Minn 哀悼的 Tagfer。",
+          "他們不是 Albrecht 留下的可愛助手，而是實驗的受害者。獲得語言後，他們能說出憤怒、愛與被遺棄感，也能清楚質問 Loid 為何仍替 Albrecht辯護。",
+          "Tenno 與 Cavia 建立聲望的過程，延續 The Sacrifice 的主題：真正的修復不是要求受害者原諒，而是承認傷害、陪伴他們決定往後怎麼活。"
+        ],
+        "characters": [
+          "Fibonacci",
+          "Bird 3",
+          "Tagfer",
+          "Minn",
+          "Loid"
+        ],
+        "meaning": {
+          "title": "Albrecht 不是無瑕導師",
+          "text": "他確實對抗牆中人，也曾把生命當作研究材料。Void War 不讓玩家用簡單英雄與反派掩蓋這份矛盾。"
+        }
+      },
+      {
+        "id": "lotus-eaters",
+        "kicker": "03・呼喚",
+        "title": "The Lotus Eaters：海岸盡頭的聲音",
+        "englishTitle": "THE LOTUS EATERS",
+        "period": "Whispers in the Walls 後",
+        "summary": "Lotus 在 Lua 海岸聽見來自 1999 的訊號。沒有戰鬥的短篇，卻把 Drifter 推入主線最關鍵的時間裂縫。",
+        "paragraphs": [
+          "Lotus 獨自站在海岸，彷彿被遠方聲音吸引。Operator／Drifter 前往她身邊，確認 Albrecht 與 1999 的呼喚已經穿過時間抵達現在。",
+          "Lotus 無法親自踏入那段年代，任務因此落到 Drifter 身上。與 Operator 相比，Drifter 更熟悉被困在時間循環、依靠情感重寫結果的經驗。",
+          "The Lotus Eaters 像一次吸氣：沒有首領與獎勵堆疊，只讓玩家在進入 1999 前看見 Lotus 也會被虛空觸動。她不再只是發布任務的人，而是同樣站在未知邊緣的生命。"
+        ],
+        "characters": [
+          "Lotus",
+          "Drifter",
+          "Albrecht Entrati"
+        ],
+        "meaning": {
+          "title": "為何由 Drifter 前往 1999？",
+          "text": "Duviri 已證明 Drifter 能在循環中保留關係、改寫必敗結局。這正是 Hex 所需要的能力。"
+        }
+      },
+      {
+        "id": "hex-arrival",
+        "kicker": "04・一九九九",
+        "title": "The Hex：末日前夜的六名 Protoframe",
+        "englishTitle": "THE HEX",
+        "period": "Höllvania・1999",
+        "summary": "Drifter 穿越時間來到 Höllvania，認識 Arthur、Aoi、Amir、Lettie、Quincy 與 Eleanor。每個人都被 Warframe 技術改變，卻仍保留一張人類的臉。",
+        "paragraphs": [
+          "Höllvania 同時遭受 Scaldra 軍事封鎖與 Techrot 感染。Albrecht 以 Entrati 的名字活動，把部分 Warframe 技術帶到這個年代，造就六名 Protoframe。Arthur 對應 Excalibur、Aoi 對應 Mag、Amir 對應 Volt、Lettie 對應 Trinity、Quincy 對應 Cyte-09、Eleanor 則對應 Nyx。",
+          "Drifter 加入 Hex，駕駛 Atomicycle 穿過城市，輪流以各成員的視角作戰。這種切換讓玩家不只看見能力，也看見團隊內部的裂痕：Arthur 過度扛責、Quincy 不信任領袖、Lettie 用工作逃避恐懼，Eleanor 則因感染與心靈能力逐漸接近人類之外。",
+          "Albrecht 聲稱必須在關鍵時刻完成某件事，卻再次把答案藏在操控與試驗裡。Drifter 追逐他，也發現牆中人已能模仿熟悉面孔，把每一份懷疑放大成背叛。"
+        ],
+        "characters": [
+          "Arthur",
+          "Aoi",
+          "Amir",
+          "Lettie",
+          "Quincy",
+          "Eleanor",
+          "Drifter"
+        ],
+        "image": {
+          "src": "https://www-static.warframe.com/images/guide/quests/hex-key.jpg",
+          "alt": "The Hex 官方任務主視覺",
+          "caption": "The Hex 把 Warframe 的象徵重新放回人類面孔：力量、感染與關係都變得更直接。"
+        },
+        "meaning": {
+          "title": "Protoframe 是什麼？",
+          "text": "不是單純換外觀的 Warframe，而是仍保留人類人格、身體與社會關係的轉化者。"
+        }
+      },
+      {
+        "id": "hex-finale",
+        "kicker": "05・循環",
+        "title": "第一次必敗，第二次以關係改寫結局",
+        "englishTitle": "THE HEX FINALE",
+        "period": "跨年前最後一天",
+        "summary": "Drifter 明知災難會發生，第一次仍無法救下所有人。答案不是更大的火力，而是讓每位成員不再獨自面對自己的死法。",
+        "paragraphs": [
+          "The Hex 的初次結局讓團隊在不同戰線逐一失敗。Drifter 被迫看著熟悉的人死亡，城市與時間重置。這種循環與 Duviri 相似：知道事件會重來，不代表失去就不會痛。",
+          "任務後，玩家透過 KIM 對話、Syndicate 聲望與 Chemistry 理解每名成員。這些日常訊息不是附加戀愛系統，而是 Finale 的敘事機制。Drifter 必須知道他們如何害怕、如何逃避，才可能在關鍵時刻說出能改變選擇的話。",
+          "回到跨年夜時，Drifter 不再單純替所有人戰鬥，而是讓 Hex 彼此支援。Arthur 不必獨自當英雄，Quincy 願意相信團隊，其他成員也在自己的崩潰點獲得連結。循環因此產生新結果。",
+          "這是對 Indifference 最直接的反擊：世界並非因 Drifter 更強而改寫，而是因六個人終於不再被自己的孤獨分隔。"
+        ],
+        "characters": [
+          "Drifter",
+          "The Hex",
+          "Albrecht Entrati",
+          "牆中人"
+        ],
+        "meaning": {
+          "title": "關係就是主線力量",
+          "text": "Warframe 從 The Sacrifice 的共感走到 The Hex 的團隊連結。對抗虛空冷漠的武器，不是另一把更大的劍。"
+        }
+      },
+      {
+        "id": "old-peace",
+        "kicker": "06・記憶",
+        "title": "The Old Peace：進入遠古和平崩解的現場",
+        "englishTitle": "THE OLD PEACE",
+        "period": "Dark Refractory・Old War 記憶",
+        "summary": "Albrecht 的裝置讓玩家親歷 Orokin 與 Sentient 曾經短暫存在的脆弱和平，以及那份條約如何走向毀滅。",
+        "paragraphs": [
+          "透過 Dark Refractory，玩家進入長久只存在於傳說與資料庫中的 Old War 記憶。Orokin 與 Sentient 不是從第一秒就只有殲滅；雙方曾出現一段充滿猜疑的和平，也有人真心希望停止戰爭。",
+          "The Old Peace 讓 Tenno 看見自己在遠古事件中的位置，並認識 Sentient Adis。當條約崩解，個人選擇與帝國結構互相擠壓，再次證明 Orokin 無法接受造物擁有平等意志。",
+          "任務不只補歷史，而是替未來 Tau 篇章建立情感。Tau 不再只是 Sentient 的遙遠故鄉，而是一個承載被殖民恐懼、反抗記憶與尚未完成和解的地方。"
+        ],
+        "characters": [
+          "Adis",
+          "Orokin",
+          "Sentient",
+          "Tenno",
+          "Albrecht Entrati"
+        ],
+        "meaning": {
+          "title": "最新主線的位置",
+          "text": "官方前置至少要求完成 The Lotus Eaters。它以 Old War 記憶連接當下 Void War，並為未來 Tau 故事鋪路。"
+        }
+      },
+      {
+        "id": "new-branches",
+        "kicker": "07・餘響",
+        "title": "Shadowgrapher 與 Constellations：被主線遺漏的人",
+        "englishTitle": "THE SHADOWGRAPHER & CONSTELLATIONS",
+        "period": "2026 故事支線",
+        "summary": "最新支線回頭整理 Vesper Relay、Stalker 與 Jade 的餘波，讓歷史不再只由大型戰爭命名。",
+        "paragraphs": [
+          "The Shadowgrapher 在完成 The War Within 後即可展開，從影像與記憶追索 Vesper Relay 相關事件。它讓早期限時活動造成的歷史斷層重新被看見：中繼站的毀滅不是背景裝飾，而是某些人一生無法離開的現場。",
+          "Jade Shadows: Constellations 緊接 Jade Shadows，繼續 Stalker、孩子與 Jade 留下的選擇。任務把焦點放在失去之後如何成為父親，也讓玩家先前在 Jade Shadows 的決定產生後續回聲。",
+          "兩條故事都說明現階段 Warframe 不只向前衝往 Tau，也在回收多年更新中被忽略的情感債。當宇宙級戰爭退到遠景，個人的記憶終於有位置被完整說完。"
+        ],
+        "characters": [
+          "The Shadowgrapher",
+          "Stalker",
+          "Jade",
+          "Sirius／Orion"
+        ],
+        "meaning": {
+          "title": "支線不是填充物",
+          "text": "主線定義世界發生什麼，支線則回答事件對某個人留下什麼。完整故事需要兩者一起閱讀。"
+        }
+      },
+      {
+        "id": "current-frontier",
+        "kicker": "08・現在",
+        "title": "Fables & Frontiers，以及尚未抵達的 Tau",
+        "englishTitle": "THE CURRENT FRONTIER",
+        "period": "截至 2026.08",
+        "summary": "Amir 以 KIM 主持一場六天桌上冒險，讓 Hex 在末日之後擁有普通而荒唐的回憶；真正的 Tau 大篇章仍在前方。",
+        "paragraphs": [
+          "完成 The Hex、Hex Finale，將 Hex Syndicate 提升至 Rank 5，並與 Amir 達到 Chemistry Rank 5 後，可開啟 Fables & Frontiers: Running Late。Amir 擔任 Fablemaster，讓 Hex 成員在 KIM 中扮演幻想角色。",
+          "這段六天文字冒險永久保留，每日解鎖一段。它沒有把團隊再次丟進星系末日，而是讓一群曾注定死亡的人浪費時間、爭論規則、一起玩遊戲。對經歷循環的角色而言，能擁有「不重要的一天」本身就是勝利。",
+          "截至 2026 年 8 月，Tau 仍是即將到來的未來篇章，不能當成已完成故事。The Old Peace 已把道路打開，牆中人的陰影也未消失。下一卷尚未命名，但棋盤上的兩條線——Tau 與 Void——正逐漸交會。"
+        ],
+        "characters": [
+          "Amir",
+          "The Hex",
+          "Drifter",
+          "Adis",
+          "牆中人"
+        ],
+        "meaning": {
+          "title": "故事目前停在哪裡？",
+          "text": "最新可玩內容已走到 The Old Peace、The Shadowgrapher、Constellations 與 Fables & Frontiers；Tau 主篇仍待官方推出。"
+        }
+      }
+    ]
+  }
+] as const satisfies readonly StoryChapter[];
 
-export const officialSources = [
-  {
-    label: "Warframe 官方任務指南",
-    url: "https://www.warframe.com/en/guides/quests",
-    description: "四大主線 Arc 與目前官方建議順序",
-  },
-  {
-    label: "The Duviri Paradox 官方指南",
-    url: "https://www.warframe.com/en/guides/quests/the-duviri-paradox",
-    description: "目前解鎖位置與 The Hex 前置說明",
-  },
-  {
-    label: "The Old Peace 官方公告",
-    url: "https://www.warframe.com/en/news/the-old-peace-available-now",
-    description: "最新電影任務與 The Lotus Eaters 前置",
-  },
-  {
-    label: "The Shadowgrapher 官方公告",
-    url: "https://www.warframe.com/en/news/the-shadowgrapher-available-now",
-    description: "2026 獨立故事與 The War Within 前置",
-  },
-  {
-    label: "Update 43.5 官方更新說明",
-    url: "https://www.warframe.com/en/patch-notes/pc/43-5-0",
-    description: "Fables & Frontiers 完整解鎖條件",
-  },
-] as const;
+export function getStoryChapter(slug: string) {
+  return storyChapters.find((chapter) => chapter.slug === slug);
+}
