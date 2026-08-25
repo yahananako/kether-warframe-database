@@ -47,7 +47,7 @@ const illustrationFiles: Readonly<Record<string, string>> = {
   "side-howl-of-the-kubrow": "https://www.gamepur.com/wp-content/uploads/2021/05/Warframe-Kubrow.jpg",
   "side-stolen-dreams": "https://www.trueachievements.com/customimages/038575.jpg",
   "side-the-new-strange": "https://i.imgur.com/zvqkMX1.jpg",
-  "side-a-man-of-few-words": "https://www-static.warframe.com/uploads/thumbnails/42829d3578cce902b9ec4d520159a2db_1600x900.png",
+  "side-a-man-of-few-words": "https://www.gamepur.com/wp-content/uploads/2020/03/23131855/Clem-Warframe.jpg",
   "side-patient-zero": "https://i.imgur.com/uvUUROA.jpg",
   "side-the-limbo-theorem": "https://i.imgur.com/8X4TduF.jpg",
   "side-hidden-messages": "https://thenerdstash.com/wp-content/uploads/2024/03/Warframe-mirage-quest-1.jpg",
