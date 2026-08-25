@@ -7,6 +7,7 @@ import { ArrowLeft, ArrowRight, ChevronRight, ExternalLink, ShieldAlert, Sparkle
 import HomeNewInlineMenu from "../../../../components/HomeNewInlineMenu";
 import type { StoryChapter, StoryPassage } from "../../../../data/storyFlow";
 import { storyChapters } from "../../../../data/storyFlow";
+import { getMainStoryIllustration } from "../../../../data/storyIllustrations";
 import styles from "../../story.module.css";
 
 type Props = { params: Promise<{ chapter: string; passage: string }> };
@@ -34,6 +35,7 @@ export default async function StoryPassagePage({ params }: Props) {
   const previous = readingOrder[readingIndex - 1];
   const next = readingOrder[readingIndex + 1];
   const passageIndex = chapter.passages.findIndex((item) => item.id === passage.id);
+  const illustration = getMainStoryIllustration(passage.id, passage.title);
 
   return (
     <main className={styles.bookPage} style={{ "--chapter-accent": chapter.accent } as CSSProperties}>
@@ -44,7 +46,7 @@ export default async function StoryPassagePage({ params }: Props) {
           <header className={styles.passageHeader}><div className={styles.passageNumber}>{String(passageIndex + 1).padStart(2, "0")}</div><div><p>{chapter.number}・{chapter.label}／{passage.kicker}</p><h1>{passage.title}</h1><small>{passage.englishTitle}</small><strong>{passage.period}</strong></div></header>
           <p className={styles.passageLead}>{passage.summary}</p>
           <aside className={styles.fullSpoilerWarning}><ShieldAlert /><div><strong>{chapter.spoilerLevel}</strong><p>以下為完整故事正文，會直接說明事件真相與結局。</p></div></aside>
-          {passage.image ? <figure className={styles.storyFigure}><img src={passage.image.src} alt={passage.image.alt} /><figcaption>{passage.image.caption}</figcaption></figure> : null}
+          <figure className={styles.storyFigure}><img src={illustration.src} alt={illustration.alt} /><figcaption>{illustration.caption}</figcaption></figure>
           <div className={styles.prose}>{passage.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}</div>
           <div className={styles.meaningCard}><Sparkles /><div><strong>{passage.meaning.title}</strong><p>{passage.meaning.text}</p></div></div>
           <div className={styles.characterRow}><Users /><span>本章人物</span><div>{passage.characters.map((character) => <small key={character}>{character}</small>)}</div></div>
