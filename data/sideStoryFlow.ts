@@ -77,13 +77,3 @@ export const getSideStory = (eraSlug: string, storySlug: string) => {
   return era && story ? { era, story } : undefined;
 };
 
-const storyImages: Record<string, string> = {
-  "sayas-vigil": "https://www-static.warframe.com/images/guide/quests/saya-key.jpg",
-  "vox-solaris": "https://www-static.warframe.com/images/guide/quests/fortuna-key.jpg",
-  "heart-of-deimos": "https://www-static.warframe.com/images/guide/quests/deimos-key.jpg",
-  "jade-shadows": "https://www-static.warframe.com/images/guide/quests/jadeshadows-key.jpg",
-  "jade-constellations": "https://www-static.warframe.com/images/guide/quests/jadeshadows-key.jpg",
-};
-
-export const getSideStoryImage = (era: SideStoryEra, story: SideStory) =>
-  storyImages[story.slug] ?? era.heroImage;
