@@ -64,11 +64,11 @@ const illustrationFiles: Readonly<Record<string, string>> = {
   "side-koumei-five-fates": "/story-covers/koumei-five-fates.jpg",
   "side-deadlock-protocol": "/story-covers/deadlock-protocol.jpg",
   "side-call-of-the-tempestarii": "/story-covers/call-of-the-tempestarii.jpg",
-  "side-veilbreaker": "https://www-static.warframe.com/images/guide/quests/veilbreaker-key.jpg",
+  "side-veilbreaker": "/story-covers/veilbreaker.jpg",
   "side-jade-shadows": "https://www-static.warframe.com/images/guide/quests/jadeshadows-key.jpg",
-  "side-the-shadowgrapher": "https://www-static.warframe.com/images/guide/quests/shadowgrapher-key.jpg",
-  "side-jade-constellations": "https://www-static.warframe.com/images/guide/quests/constellations-key.jpg",
-  "side-fables-frontiers": "https://www-static.warframe.com/images/guide/quests/fables-key.jpg",
+  "side-the-shadowgrapher": "/story-covers/shadowgrapher.jpg",
+  "side-jade-constellations": "/story-covers/jade-constellations.jpg",
+  "side-fables-frontiers": "/story-covers/fables-frontiers.jpg",
 };
 
 export function getMainStoryIllustration(id: string, title: string): StoryIllustration {
