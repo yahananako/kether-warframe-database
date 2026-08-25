@@ -60,15 +60,15 @@ const illustrationFiles: Readonly<Record<string, string>> = {
   "side-mask-of-the-revenant": "RevenantPrime",
   "side-vox-solaris": "HildrynPrime",
   "side-the-waverider": "Yareli",
-  "side-heart-of-deimos": "Lavos",
+  "side-heart-of-deimos": "Bonewidow",
   "side-koumei-five-fates": "Koumei",
   "side-deadlock-protocol": "ProteaPrime",
   "side-call-of-the-tempestarii": "Wraith",
   "side-veilbreaker": "Styanax",
-  "side-jade-shadows": "BansheePrime",
-  "side-the-shadowgrapher": "Loki",
-  "side-jade-constellations": "Dagath",
-  "side-fables-frontiers": "Wukong",
+  "side-jade-shadows": "Harmony",
+  "side-the-shadowgrapher": "Vesper77",
+  "side-jade-constellations": "Evensong",
+  "side-fables-frontiers": "Reconifex",
 };
 
 export function getMainStoryIllustration(id: string, title: string): StoryIllustration {
