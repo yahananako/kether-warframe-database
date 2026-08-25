@@ -109,6 +109,11 @@ export default function StoryDirectoryPage() {
           <Link className={styles.startReading} href="/story/side">開啟支線故事書<ArrowRight aria-hidden="true" /></Link>
         </section>
 
+        <section className={styles.readingGuide}>
+          <div><p className={styles.eyebrow}>WARFRAME LORE ARCHIVE</p><h2>每一副戰甲，都曾有人活在其中</h2><p>依官方任務與敘事整理戰甲身世；只收錄能由正史證實的故事，不替沉默的戰甲虛構過去。</p></div>
+          <Link className={styles.startReading} href="/story/warframes">開啟戰甲故事書<ArrowRight aria-hidden="true" /></Link>
+        </section>
+
         <section className={styles.chapterDirectory} aria-labelledby="chapter-directory-title">
           <header className={styles.directoryHeading}>
             <div>
