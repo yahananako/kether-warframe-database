@@ -37,3 +37,7 @@ export function getWarframeRole(name: string, description = ""): WarframeRole {
   if (/減傷|護甲|生存|坦|surviv|armor/.test(text)) return "survival";
   return "damage";
 }
+
+export function isWarframeName(name: string): boolean {
+  return Boolean(roleMap[normalizeWarframeName(name)]);
+}

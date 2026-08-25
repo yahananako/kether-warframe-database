@@ -3,7 +3,7 @@
 import { useMemo, useState } from "react";
 import { Crosshair, EyeOff, HeartPulse, Shield, Sparkles, Wind } from "lucide-react";
 import type { SheetRow } from "../lib/sheets";
-import { getWarframeRole, normalizeWarframeName, WARFRAME_ROLES, type WarframeRole } from "../data/warframeRoles";
+import { getWarframeRole, isWarframeName, normalizeWarframeName, WARFRAME_ROLES, type WarframeRole } from "../data/warframeRoles";
 import { warframeStories } from "../data/warframeStories";
 import styles from "../app/database/warframes/warframes.module.css";
 
@@ -24,7 +24,7 @@ export default function WarframeRoleArchive({ rows }: { rows: SheetRow[] }) {
   const [role, setRole] = useState<WarframeRole>("damage");
   const [query, setQuery] = useState("");
   const storyMap = useMemo(() => new Map(warframeStories.map((story) => [normalizeWarframeName(story.name), story])), []);
-  const classified = useMemo(() => rows.map((row) => ({
+  const classified = useMemo(() => rows.filter((row) => isWarframeName(row.englishName || row.chineseName)).map((row) => ({
     row,
     role: getWarframeRole(row.englishName || row.chineseName, row.description),
     story: storyMap.get(normalizeWarframeName(row.englishName || row.chineseName)),
