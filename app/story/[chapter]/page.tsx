@@ -6,6 +6,7 @@ import { ArrowLeft, ArrowRight, BookOpenText, ChevronRight, Clock3, ShieldAlert 
 
 import HomeNewInlineMenu from "../../../components/HomeNewInlineMenu";
 import { getStoryChapter, storyChapters } from "../../../data/storyFlow";
+import { getMainStoryIllustration } from "../../../data/storyIllustrations";
 import styles from "../story.module.css";
 
 type Props = { params: Promise<{ chapter: string }> };
@@ -51,6 +52,7 @@ export default async function StoryVolumePage({ params }: Props) {
             <div className={styles.volumeChapterGrid}>
               {chapter.passages.map((passage, index) => (
                 <Link href={`/story/${chapter.slug}/${passage.id}`} key={passage.id} className={styles.volumeChapterCard}>
+                  <img className={styles.sideStoryThumb} src={getMainStoryIllustration(passage.id, passage.title).src} alt={`${passage.title}專屬故事圖片`} />
                   <span className={styles.volumeChapterNumber}>{String(index + 1).padStart(2, "0")}</span>
                   <div><p>{passage.kicker}</p><h3>{passage.title}</h3><small>{passage.englishTitle}</small><strong>{passage.period}</strong><span>{passage.summary}</span></div>
                   <ArrowRight />
