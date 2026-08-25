@@ -9,8 +9,9 @@ import styles from "../app/database/warframes/warframes.module.css";
 
 const roleOrder: WarframeRole[] = ["damage", "control", "support", "survival", "stealth"];
 const roleIcons = { damage: Crosshair, control: Wind, support: HeartPulse, survival: Shield, stealth: EyeOff };
+const warframeImageUrl = (name: string) => `https://cdn.warframestat.us/img/${name.toLowerCase().replace(/[’']/g, "").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")}.png`;
 
-export default function WarframeRoleArchive({ rows, images }: { rows: SheetRow[]; images: Record<string, string> }) {
+export default function WarframeRoleArchive({ rows }: { rows: SheetRow[] }) {
   const [role, setRole] = useState<WarframeRole>("damage");
   const [query, setQuery] = useState("");
   const storyMap = useMemo(() => new Map(warframeStories.map((story) => [normalizeWarframeName(story.name), story])), []);
@@ -38,7 +39,7 @@ export default function WarframeRoleArchive({ rows, images }: { rows: SheetRow[]
       <div className={styles.frameGrid}>{visible.map(({ row, story }, index) => {
         const name = row.englishName || row.chineseName;
         return <article className={styles.frameCard} key={`${name}-${index}`}>
-          <div className={styles.frameVisual}><img src={images[name.toLowerCase()] ?? story?.image ?? "/icon-warframe-2.png"} alt={`${name} 戰甲圖片`} onError={(event) => { event.currentTarget.onerror = null; event.currentTarget.src = "/icon-warframe-2.png"; }} /><span>{WARFRAME_ROLES[role].label}</span></div>
+          <div className={styles.frameVisual}><img src={warframeImageUrl(name)} alt={`${name} 戰甲圖片`} onError={(event) => { event.currentTarget.onerror = null; event.currentTarget.src = story?.image ?? "/icon-warframe-2.png"; }} /><span>{WARFRAME_ROLES[role].label}</span></div>
           <div className={styles.frameBody}><p>{row.chineseName || "戰甲"}</p><h3>{name}</h3><small>{row.description || row.note || WARFRAME_ROLES[role].description}</small>
             <div className={styles.frameMeta}><b>{row.price || "價格待更新"}{row.price && !/白金/.test(row.price) ? " 白金" : ""}</b>{row.marketUrl ? <a href={row.marketUrl} target="_blank" rel="noreferrer">交易網站</a> : null}</div>
             {story ? <details className={styles.lore}><summary>展開戰甲故事</summary><strong>{story.epithet}</strong><p>{story.summary}</p>{story.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}<footer><span>關鍵人物：{story.characters.join("、")}</span><a href={story.source.url} target="_blank" rel="noreferrer">官方來源</a></footer></details> : <div className={styles.noLore}>尚無可由官方正史證實的個人故事</div>}
