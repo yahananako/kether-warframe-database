@@ -51,7 +51,7 @@ export default function WarframeRoleArchive({ rows }: { rows: SheetRow[] }) {
           <div className={styles.frameVisual}><img src={warframeImageUrl(name)} alt={`${name} 戰甲圖片`} onError={(event) => { event.currentTarget.onerror = null; event.currentTarget.src = "/icon-warframe-2.png"; }} /><span>{WARFRAME_ROLES[role].label}</span></div>
           <div className={styles.frameBody}><p>{row.chineseName || "戰甲"}</p><h3>{name}</h3><small>{row.description || row.note || WARFRAME_ROLES[role].description}</small>
             <div className={styles.frameMeta}><b>{row.price || "價格待更新"}{row.price && !/白金/.test(row.price) ? " 白金" : ""}</b>{row.marketUrl ? <a href={row.marketUrl} target="_blank" rel="noreferrer">交易網站</a> : null}</div>
-            {story ? <details className={styles.lore}><summary>展開戰甲故事</summary><strong>{story.epithet}</strong><p>{story.summary}</p>{story.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}<footer><span>關鍵人物：{story.characters.join("、")}</span><a href={story.source.url} target="_blank" rel="noreferrer">官方來源</a></footer></details> : <div className={styles.noLore}>尚無可由官方正史證實的個人故事</div>}
+            {story ? <details className={styles.lore}><summary>展開戰甲故事</summary><strong>{story.epithet}</strong><p>{story.summary}</p>{story.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}<footer><span>關鍵人物：{story.characters.join("、")}</span><a href={story.source.url} target="_blank" rel="noreferrer">官方來源</a></footer></details> : <div className={styles.noLore}>遊戲內 Codex、Leverian 與 Prime 敘事整理中</div>}
           </div>
         </article>;
       })}</div>
