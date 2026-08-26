@@ -62,7 +62,7 @@ function containsChinese(value: string) {
 }
 
 async function translateToTraditionalChinese(value: string) {
-  const text = cleanText(value).slice(0, 360);
+  const text = cleanText(value).slice(0, 520);
   if (!text || containsChinese(text)) return text;
 
   const endpoint = new URL("https://translate.googleapis.com/translate_a/single");
@@ -74,7 +74,7 @@ async function translateToTraditionalChinese(value: string) {
 
   const response = await fetch(endpoint, {
     next: { revalidate: 1800 },
-    signal: AbortSignal.timeout(8000),
+    signal: AbortSignal.timeout(15000),
     headers: { "user-agent": "KETHER-Warframe-Database/1.0" },
   });
   if (!response.ok) throw new Error(`translation failed: ${response.status}`);
@@ -91,13 +91,17 @@ async function translateToTraditionalChinese(value: string) {
 }
 
 async function translateNewsItems(items: NewsItem[]) {
-  return Promise.all(items.map(async (item) => {
+  return Promise.all(items.slice(0, 4).map(async (item) => {
     if (containsChinese(item.title) && containsChinese(item.description)) return item;
     try {
-      const [title, description] = await Promise.all([
-        translateToTraditionalChinese(item.title),
-        translateToTraditionalChinese(item.description),
-      ]);
+      const separator = "[[KETHER_NEWS]]";
+      const sourceDescription = cleanText(item.description).slice(0, 190);
+      const combined = `${item.title}\n${separator}\n${sourceDescription}`;
+      const translatedCombined = await translateToTraditionalChinese(combined);
+      const parts = translatedCombined.split(separator);
+      const title = (parts[0] || item.title).trim();
+      const description = (parts.slice(1).join(separator) || sourceDescription).trim();
+
       return {
         ...item,
         title,
@@ -132,7 +136,7 @@ function parseRss(xml: string): NewsItem[] {
   const itemBlocks = Array.from(xml.matchAll(/<item>([\s\S]*?)<\/item>/gi));
 
   return itemBlocks
-    .slice(0, 6)
+    .slice(0, 4)
     .map((match) => {
       const block = match[1] ?? "";
       const title = cleanText(readTag(block, "title"));
