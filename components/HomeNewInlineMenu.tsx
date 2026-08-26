@@ -17,7 +17,8 @@ const mainLinks = [
 
 const databaseLinks = [
   { label: "總覽", href: "/database/overview" },
-  { label: "戰甲", href: "/database/warframes" },
+  { label: "一般戰甲", href: "/database/warframes" },
+  { label: "Prime 戰甲", href: "/database/warframes/prime" },
   { label: "主要武器", href: "/database/primary" },
   { label: "次要武器", href: "/database/secondary" },
   { label: "近戰武器", href: "/database/melee" },
