@@ -66,29 +66,45 @@ async function translateToTraditionalChinese(value: string) {
   const text = cleanText(value).slice(0, 520);
   if (!text || containsChinese(text)) return text;
 
-  const endpoint = new URL("https://translate.googleapis.com/translate_a/single");
-  endpoint.searchParams.set("client", "gtx");
-  endpoint.searchParams.set("sl", "auto");
-  endpoint.searchParams.set("tl", "zh-TW");
-  endpoint.searchParams.set("dt", "t");
-  endpoint.searchParams.set("q", text);
+  try {
+    const endpoint = new URL("https://translate.googleapis.com/translate_a/single");
+    endpoint.searchParams.set("client", "gtx");
+    endpoint.searchParams.set("sl", "auto");
+    endpoint.searchParams.set("tl", "zh-TW");
+    endpoint.searchParams.set("dt", "t");
+    endpoint.searchParams.set("q", text);
 
-  const response = await fetch(endpoint, {
+    const response = await fetch(endpoint, {
+      next: { revalidate: 1800 },
+      signal: AbortSignal.timeout(10000),
+      headers: { "user-agent": "KETHER-Warframe-Database/1.0" },
+    });
+    if (!response.ok) throw new Error("google translation unavailable");
+
+    const payload = (await response.json()) as unknown;
+    if (Array.isArray(payload) && Array.isArray(payload[0])) {
+      const translated = payload[0]
+        .map((part: unknown) => Array.isArray(part) && typeof part[0] === "string" ? part[0] : "")
+        .join("")
+        .trim();
+      if (translated) return translated;
+    }
+  } catch {
+    // Continue to the second translation source.
+  }
+
+  const fallback = new URL("https://api.mymemory.translated.net/get");
+  fallback.searchParams.set("q", text.slice(0, 450));
+  fallback.searchParams.set("langpair", "en|zh-TW");
+  const response = await fetch(fallback, {
     next: { revalidate: 1800 },
     signal: AbortSignal.timeout(15000),
     headers: { "user-agent": "KETHER-Warframe-Database/1.0" },
   });
-  if (!response.ok) throw new Error(`translation failed: ${response.status}`);
+  if (!response.ok) throw new Error("translation unavailable");
 
-  const payload = (await response.json()) as unknown;
-  if (!Array.isArray(payload) || !Array.isArray(payload[0])) return text;
-
-  const translated = payload[0]
-    .map((part: unknown) => Array.isArray(part) && typeof part[0] === "string" ? part[0] : "")
-    .join("")
-    .trim();
-
-  return translated || text;
+  const payload = (await response.json()) as { responseData?: { translatedText?: string } };
+  return cleanText(payload.responseData?.translatedText || text);
 }
 
 async function translateNewsItems(items: NewsItem[]) {
