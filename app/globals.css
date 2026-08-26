@@ -10970,8 +10970,8 @@ a.nav-card {
 }
 
 .home-new-official-news-list li a {
-  min-height: 42px;
-  padding: 8px 10px;
+  min-height: 58px;
+  padding: 10px 12px;
   border-radius: 15px;
   border: 1px solid rgba(255, 255, 255, 0.44);
   background:
@@ -11011,6 +11011,43 @@ a.nav-card {
   font-size: clamp(11px, 1vw, 15px);
   line-height: 1.35;
   font-weight: 880;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+
+.home-new-official-news-list .home-new-official-news-copy {
+  display: grid;
+  gap: 3px;
+  white-space: normal;
+  overflow: visible;
+}
+
+.home-new-official-news-copy strong {
+  color: #172033;
+  font-size: clamp(11px, 1vw, 15px);
+  line-height: 1.35;
+  font-weight: 900;
+}
+
+.home-new-official-news-copy small {
+  color: rgba(51, 65, 85, 0.82);
+  font-size: clamp(9px, .86vw, 12px);
+  line-height: 1.45;
+  font-weight: 650;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.home-new-official-news-copy i {
+  color: rgba(100, 116, 139, 0.68);
+  font-size: 9px;
+  line-height: 1.3;
+  font-style: normal;
+  font-weight: 650;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
