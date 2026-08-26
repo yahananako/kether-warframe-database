@@ -1,18 +1,18 @@
 import { KETHER_VERSION_LABEL } from "./siteVersion";
 
 export const ketherDynamicMessages = [
-  "KETHER 星圖航標資訊已整合：版本、更新日期、資料庫狀態與更新備忘錄集中顯示。",
+  "戰甲檔案館已完成分流：一般戰甲與 Prime 戰甲各自擁有獨立頁面。",
   `目前版本：${KETHER_VERSION_LABEL}。`,
-  "資料庫狀態：Google Sheets + Discord 個人進度持續連線中。",
-  "/bot、/database/overview 與各資料頁上方區塊已進入統一視覺整理。",
-  "/live 小希星圖電波局已上線，支援 Warframe 即時世界狀態。",
+  "一般戰甲收錄 60 位：定位、圖片、故事與遊戲內入手條件已整合。",
+  "Prime 戰甲保留白金價格、交易網站與個人持有資料。",
+  "故事書主線與支線已使用任務專屬封面；小希星圖電波局持續運作中。",
 ];
 
 export const homepageRemarks = [
   `目前版本：${KETHER_VERSION_LABEL}。`,
-  "更新日期：2026/7/11。",
-  "資料庫狀態：Google Sheets、分類分頁、交易價格、Discord 個人進度持續連線中。",
+  "更新日期：2026/8/26。",
+  "資料庫狀態：一般戰甲 60 位、Prime 專頁、分類分頁、交易價格與 Discord 個人進度持續連線中。",
   "價格更新節奏：每日 4:00。",
   "Discord 個人化：登入、權限、個人進度已啟用。",
-  "更新備忘錄：首頁、BOT、總覽與各資料頁上方區塊統一成小希風格。",
+  "更新備忘錄：戰甲雙版本分頁、任務專屬故事封面與首頁導覽已同步完成。",
 ];
