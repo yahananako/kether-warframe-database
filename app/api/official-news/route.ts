@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 
+export const dynamic = "force-dynamic";
 export const revalidate = 1800;
 
 const OFFICIAL_NEWS_PAGE = "https://www.warframe.com/zh-hant/news";
