@@ -5,30 +5,30 @@ import { KETHER_APP_VERSION, KETHER_BOT_VERSION } from "../../data/siteVersion";
 const updates = [
   {
     version: KETHER_APP_VERSION,
-    title: "網站基礎架構完成",
-    content: "KETHER 網站基礎架構已完成，後續進入資料內容更新與功能細節優化階段。",
+    title: "一般戰甲檔案館上線",
+    content: "收錄 60 位一般戰甲的圖片、五種定位、遊戲內故事與入手條件，並移除交易價格與市場連結。",
   },
   {
     version: KETHER_APP_VERSION,
-    title: "手機版首頁整理完成",
-    content: "手機版首頁、玻璃選單、搜尋、鈴鐺與導覽區已完成整理，主要入口維持既有結構並完成視覺優化。",
+    title: "Prime 戰甲獨立分頁",
+    content: "Prime 戰甲已與一般版本分離，獨立保留白金價格、Warframe Market 交易連結與個人持有資料。",
   },
   {
     version: KETHER_APP_VERSION,
-    title: "KETHER RADIO 優化",
-    content: "音樂播放器已加入循環播放、標題跑馬燈與控制按鍵優化，避免播放清單停在最後一首。",
+    title: "故事書專屬封面更新",
+    content: "主線與支線故事各自使用任務專屬封面，修復失效圖片並停止共用主要圖片或戰甲圖片。",
   },
   {
     version: KETHER_APP_VERSION,
-    title: "分類導覽素材接入",
-    content: "分類導覽素材已接入網站，後續依繪師圖確認尺寸、位置與實際顯示效果。",
+    title: "首頁資訊全面同步",
+    content: "首頁導覽、漢堡選單、搜尋、鈴鐺與動態跑馬燈皆已更新為最新資料庫結構。",
   },
   {
     version: KETHER_APP_VERSION,
-    title: "同步系統維護中",
-    content: `Discord 登入、個人進度與 Google Sheets 資料同步維持運作，BOT 版本同步記錄為 ${KETHER_BOT_VERSION}。`,
+    title: "同步系統維持運作",
+    content: `Google Sheets、Discord 個人進度與每日 04:00 價格同步維持運作，BOT 版本為 ${KETHER_BOT_VERSION}。`,
   },
-];
+]
 
 export default function NotificationsPage() {
   return (
@@ -65,12 +65,12 @@ export default function NotificationsPage() {
             <b>已啟用</b>
           </div>
           <div className="summary-row">
-            <span>首頁個人進度</span>
-            <b>已接上</b>
+            <span>一般戰甲收錄</span>
+            <b>60 位</b>
           </div>
           <div className="summary-row">
-            <span>導航分類狀態</span>
-            <b>已整合</b>
+            <span>戰甲版本分頁</span>
+            <b>一般／Prime 已分離</b>
           </div>
         </div>
       </section>
