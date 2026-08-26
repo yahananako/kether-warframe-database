@@ -6,9 +6,11 @@ import { useEffect, useState } from "react";
 
 type OfficialNewsItem = {
   title: string;
+  originalTitle?: string;
   link: string;
   description: string;
   pubDate: string;
+  translated?: boolean;
 };
 
 type OfficialNewsResponse = {
@@ -64,7 +66,7 @@ export default function HomeNewOfficialNews() {
   return (
     <div className="home-new-official-rss home-new-official-rss-live">
       <div className="home-new-official-rss-head">
-        <span>官方資訊 RSS</span>
+        <span>官方資訊 RSS・繁體中文</span>
 
         <button
           className="home-new-official-refresh"
@@ -83,7 +85,7 @@ export default function HomeNewOfficialNews() {
             <li key={item.link}>
               <Link href={item.link} target="_blank" rel="noreferrer">
                 <em>{formatDate(item.pubDate)}</em>
-                <span>{item.title}</span>
+                <span className="home-new-official-news-copy"><strong>{item.title}</strong>{item.description ? <small>{item.description}</small> : null}{item.originalTitle ? <i>EN｜{item.originalTitle}</i> : null}</span>
               </Link>
             </li>
           ))}
