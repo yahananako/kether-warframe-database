@@ -1,19 +1,16 @@
 import Link from "next/link";
 import HomeNewInlineMenu from "../../../components/HomeNewInlineMenu";
-import DataTable from "../../../components/DataTable";
 import WarframeRoleArchive from "../../../components/WarframeRoleArchive";
-import { fetchSheetRows } from "../../../lib/sheets";
-import { isWarframeName } from "../../../data/warframeRoles";
+import { regularWarframes } from "../../../data/regularWarframes";
 import styles from "./warframes.module.css";
 
-export const metadata = { title: "戰甲資料庫｜定位、故事與交易｜KETHER", description: "依傷害、群控、支援、生存與匿蹤分類的 Warframe 戰甲資料庫。" };
+export const metadata = { title: "一般戰甲｜定位、故事與入手條件｜KETHER", description: "依傷害、群控、支援、生存與匿蹤分類的一般 Warframe 資料庫。" };
 
-export default async function WarframesPage() {
-  const { rows, error } = await fetchSheetRows("warframes");
-  const warframeRows = rows.filter((row) => isWarframeName(row.englishName || row.chineseName));
+export default function WarframesPage() {
   return <main className={styles.page}><div className={styles.shell}>
     <header className={styles.top}><Link className={styles.brand} href="/"><span className={styles.brandMark}><b>K</b></span><span><strong>KETHER</strong><small>WARFRAME DATABASE</small></span></Link><HomeNewInlineMenu /><Link className={styles.back} href="/">回到導覽</Link></header>
-    <section className={styles.hero}><p>WARFRAME ROLE ARCHIVE</p><h1>戰甲資料庫</h1><span>從戰場定位開始選擇戰甲。傷害、群控、支援、生存與匿蹤五大分類，整合用途、交易資料與官方身世故事。</span></section>
-    {error ? <section className={styles.archive}><h2>戰甲資料讀取失敗</h2><p>{error}</p></section> : <><WarframeRoleArchive rows={warframeRows} /><details className={styles.archive}><summary>開啟完整交易與個人持有資料表</summary><DataTable rows={warframeRows} category="warframes" /></details></>}
+    <nav className={styles.editionTabs} aria-label="戰甲版本"><Link className={styles.activeEdition} href="/database/warframes"><b>一般戰甲</b><small>入手條件與故事</small></Link><Link href="/database/warframes/prime"><b>Prime 戰甲</b><small>價格與交易資料</small></Link></nav>
+    <section className={styles.hero}><p>REGULAR WARFRAME ARCHIVE</p><h1>一般戰甲</h1><span>收錄一般版本戰甲的定位、圖片、遊戲內故事與入手條件；不顯示交易價格與交易網站。</span></section>
+    <WarframeRoleArchive mode="regular" regularFrames={regularWarframes} />
   </div></main>;
 }
