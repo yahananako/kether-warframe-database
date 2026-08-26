@@ -9,9 +9,12 @@ const OFFICIAL_NEWS_RSS_CANDIDATES = [
 
 type NewsItem = {
   title: string;
+  originalTitle?: string;
   link: string;
   description: string;
+  originalDescription?: string;
   pubDate: string;
+  translated?: boolean;
 };
 
 function readTag(source: string, tag: string) {
@@ -52,6 +55,61 @@ function normalizeLink(value: string) {
   }
 
   return value;
+}
+
+function containsChinese(value: string) {
+  return /[\u3400-\u9fff]/.test(value);
+}
+
+async function translateToTraditionalChinese(value: string) {
+  const text = cleanText(value).slice(0, 360);
+  if (!text || containsChinese(text)) return text;
+
+  const endpoint = new URL("https://translate.googleapis.com/translate_a/single");
+  endpoint.searchParams.set("client", "gtx");
+  endpoint.searchParams.set("sl", "auto");
+  endpoint.searchParams.set("tl", "zh-TW");
+  endpoint.searchParams.set("dt", "t");
+  endpoint.searchParams.set("q", text);
+
+  const response = await fetch(endpoint, {
+    next: { revalidate: 1800 },
+    signal: AbortSignal.timeout(8000),
+    headers: { "user-agent": "KETHER-Warframe-Database/1.0" },
+  });
+  if (!response.ok) throw new Error(`translation failed: ${response.status}`);
+
+  const payload = (await response.json()) as unknown;
+  if (!Array.isArray(payload) || !Array.isArray(payload[0])) return text;
+
+  const translated = payload[0]
+    .map((part: unknown) => Array.isArray(part) && typeof part[0] === "string" ? part[0] : "")
+    .join("")
+    .trim();
+
+  return translated || text;
+}
+
+async function translateNewsItems(items: NewsItem[]) {
+  return Promise.all(items.map(async (item) => {
+    if (containsChinese(item.title) && containsChinese(item.description)) return item;
+    try {
+      const [title, description] = await Promise.all([
+        translateToTraditionalChinese(item.title),
+        translateToTraditionalChinese(item.description),
+      ]);
+      return {
+        ...item,
+        title,
+        description,
+        originalTitle: title !== item.title ? item.title : undefined,
+        originalDescription: description !== item.description ? item.description : undefined,
+        translated: title !== item.title || description !== item.description,
+      };
+    } catch {
+      return item;
+    }
+  }));
 }
 
 async function fetchText(url: string) {
@@ -140,12 +198,13 @@ export async function GET() {
   for (const url of OFFICIAL_NEWS_RSS_CANDIDATES) {
     try {
       const xml = await fetchText(url);
-      const items = parseRss(xml);
+      const rawItems = parseRss(xml);
+      const items = await translateNewsItems(rawItems);
 
       if (items.length > 0) {
         return NextResponse.json({
           source: url,
-          mode: "rss",
+          mode: "rss-translated",
           updatedAt: new Date().toISOString(),
           items,
         });
@@ -159,7 +218,8 @@ export async function GET() {
 
   try {
     const html = await fetchText(OFFICIAL_NEWS_PAGE);
-    const items = parseWarframeNewsPage(html);
+    const rawItems = parseWarframeNewsPage(html);
+    const items = await translateNewsItems(rawItems);
 
     return NextResponse.json({
       source: OFFICIAL_NEWS_PAGE,
