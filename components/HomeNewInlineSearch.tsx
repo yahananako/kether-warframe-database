@@ -7,11 +7,18 @@ const PANEL_EVENT = "home-new-panel-open";
 
 const searchItems = [
   {
-    label: "戰甲",
+    label: "一般戰甲",
     source: "資料庫",
     type: "資料分類",
-    description: "查看 Warframe 戰甲資料、取得方式、備註與收藏狀態。",
-    keywords: "warframe 戰甲 資料庫 取得 database",
+    description: "查看 60 位一般戰甲的定位、圖片、故事與遊戲內入手條件。",
+    keywords: "warframe 一般戰甲 資料庫 入手條件 故事 database",
+  },
+  {
+    label: "Prime 戰甲",
+    source: "資料庫",
+    type: "資料分類",
+    description: "查看 Prime 戰甲圖片、定位、故事、白金價格與交易連結。",
+    keywords: "prime warframe p版 戰甲 白金 交易 market",
   },
   {
     label: "主要武器",
