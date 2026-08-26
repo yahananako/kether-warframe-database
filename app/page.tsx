@@ -9,8 +9,8 @@ import { KETHER_VERSION_LABEL } from "../data/siteVersion";
 
 const databaseStats = [
   { label: "資料來源", value: "Google Sheets" },
-  { label: "資料分頁", value: "7" },
-  { label: "資料區塊", value: "41" },
+  { label: "資料分頁", value: "9" },
+  { label: "戰甲收錄", value: "60＋Prime" },
   { label: "同步節奏", value: "每日 04:00" },
 ];
 
@@ -22,8 +22,14 @@ const navItems = [
     activeImage: "/icon-overview-2.png",
   },
   {
-    label: "戰甲",
+    label: "一般戰甲",
     href: "/database/warframes",
+    image: "/icon-warframe.png",
+    activeImage: "/icon-warframe-2.png",
+  },
+  {
+    label: "Prime 戰甲",
+    href: "/database/warframes/prime",
     image: "/icon-warframe.png",
     activeImage: "/icon-warframe-2.png",
   },
@@ -203,7 +209,7 @@ export default function HomeNewPage() {
                   </li>
                   <li>
                     <em>目前資料總數</em>
-                    <b>41 區塊</b>
+                    <b>一般戰甲 60 位＋Prime 專頁</b>
                   </li>
                   <li>
                     <em>同步狀態</em>
@@ -216,11 +222,11 @@ export default function HomeNewPage() {
                 <span>備註</span>
 
                 <ul className="home-new-notebook-list">
-                  <li>新版首頁已接入正式首頁，後續功能會依版本逐步確認與優化。</li>
-                  <li>功能會分段接線：選單、搜尋、鈴鐺、導覽、資料庫資訊逐步確認。</li>
-                  <li>資料以 Google Sheets 為主來源，網站僅顯示整理後的資料內容。</li>
-                  <li>版本號只在功能確認完成後更新，不在半成品階段提前變更。</li>
-                  <li>若資料顯示異常，先確認同步狀態與最新部署版本。</li>
+                  <li>戰甲檔案館已拆分為「一般戰甲」與「Prime 戰甲」兩座獨立頁面。</li>
+                  <li>一般戰甲收錄 60 位，提供定位分類、圖片、故事與遊戲內入手條件。</li>
+                  <li>Prime 戰甲獨立顯示白金價格、交易連結與個人持有資料。</li>
+                  <li>故事書主線與支線皆採任務專屬封面，不再共用戰甲圖片。</li>
+                  <li>資料價格每日 04:00 同步；若顯示異常，請重新整理或確認最新部署。</li>
                 </ul>
               </article>
             </div>
