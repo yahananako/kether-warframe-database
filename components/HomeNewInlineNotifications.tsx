@@ -11,33 +11,33 @@ const NOTICE_STORAGE_KEY = "kether-home-new-notice-read-version";
  * 使用者讀過目前版本後，紅點會消失。
  * 下次公告內容更新，版本改掉，紅點才會重新出現。
  */
-const NOTICES_VERSION = "site-foundation-2026-07-12";
+const NOTICES_VERSION = "warframe-archive-v2.6.0-2026-08-26";
 
 const notices = [
   {
-    tag: "系統",
-    title: "網站基礎架構完成",
-    body: "KETHER 網站基礎架構已完成，後續進入資料內容更新與功能細節優化階段。",
+    tag: "版本",
+    title: "KETHER V2.6.0 已上線",
+    body: "首頁資料、導航選單、搜尋與小希情報鈴已同步至最新版本。",
   },
   {
-    tag: "手機",
-    title: "首頁介面整理完成",
-    body: "手機版首頁、玻璃選單、搜尋、鈴鐺與導覽區已完成整理。",
+    tag: "戰甲",
+    title: "一般戰甲檔案館開放",
+    body: "已收錄 60 位一般戰甲，包含圖片、五種定位、遊戲內故事與入手條件。",
   },
   {
-    tag: "音樂",
-    title: "KETHER RADIO 優化",
-    body: "音樂播放器已加入循環播放、標題跑馬燈與控制按鍵優化。",
+    tag: "Prime",
+    title: "Prime 戰甲獨立成頁",
+    body: "Prime 戰甲已與一般版本分離，保留白金價格、交易網站與個人持有資料。",
   },
   {
-    tag: "導覽",
-    title: "分類素材已接入",
-    body: "分類導覽素材已接入，後續依繪師圖確認尺寸、位置與顯示效果。",
+    tag: "故事",
+    title: "主線與支線專屬封面",
+    body: "故事書各篇章改用任務專屬封面，不再以主要圖片或戰甲圖片代替。",
   },
   {
-    tag: "資料",
-    title: "同步系統維持運作",
-    body: "Discord 登入、個人進度與 Google Sheets 資料同步將持續維護。",
+    tag: "同步",
+    title: "首頁跑馬燈同步更新",
+    body: "首頁動態資訊已更新為戰甲雙版本、故事封面與目前資料庫狀態。",
   },
 ]
 
