@@ -1,0 +1,8 @@
+{
+  "versionCode": 33,
+  "versionName": "3.0.3",
+  "apkUrl": "https://github.com/yahananako/kether-warframe-database/releases/download/app-v3.0.3/KETHER-Warframe-v3.0.3.apk",
+  "sha256": "7e8643c09ce0d533dd42d288ff48ce31676202835703c302f143316f968e693e",
+  "required": false,
+  "notes": "v3.0.3 啟用 APP 內下載更新、加入安裝權限引導，並重製 Warframe 中文啟動畫面。"
+}
