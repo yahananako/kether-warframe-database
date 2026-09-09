@@ -1,0 +1,5 @@
+{
+  "versionName": "3.0.4",
+  "versionCode": 34,
+  "releaseNotes": "啟用 GitHub Actions 自動發布、安全更新安裝器與網站圖片同步。"
+}
