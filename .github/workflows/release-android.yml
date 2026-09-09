@@ -15,6 +15,11 @@ on:
         description: "更新內容"
         required: true
         type: string
+  push:
+    branches:
+      - main
+    paths:
+      - "android/release-request.json"
 
 permissions:
   contents: write
@@ -26,16 +31,35 @@ concurrency:
 jobs:
   release:
     runs-on: ubuntu-latest
-    env:
-      VERSION_NAME: ${{ inputs.version_name }}
-      VERSION_CODE: ${{ inputs.version_code }}
-      RELEASE_NOTES: ${{ inputs.release_notes }}
-      APK_NAME: KETHER-Warframe-v${{ inputs.version_name }}.apk
     steps:
       - name: 取得專案
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+
+      - name: 讀取發布版本
+        env:
+          INPUT_VERSION_NAME: ${{ inputs.version_name }}
+          INPUT_VERSION_CODE: ${{ inputs.version_code }}
+          INPUT_RELEASE_NOTES: ${{ inputs.release_notes }}
+        run: |
+          if [[ "$GITHUB_EVENT_NAME" == "workflow_dispatch" ]]; then
+            VERSION_NAME="$INPUT_VERSION_NAME"
+            VERSION_CODE="$INPUT_VERSION_CODE"
+            RELEASE_NOTES="$INPUT_RELEASE_NOTES"
+          else
+            VERSION_NAME="$(jq -r '.versionName' android/release-request.json)"
+            VERSION_CODE="$(jq -r '.versionCode' android/release-request.json)"
+            RELEASE_NOTES="$(jq -r '.releaseNotes' android/release-request.json)"
+          fi
+          echo "VERSION_NAME=$VERSION_NAME" >> "$GITHUB_ENV"
+          echo "VERSION_CODE=$VERSION_CODE" >> "$GITHUB_ENV"
+          echo "APK_NAME=KETHER-Warframe-v${VERSION_NAME}.apk" >> "$GITHUB_ENV"
+          {
+            echo "RELEASE_NOTES<<KETHER_NOTES"
+            echo "$RELEASE_NOTES"
+            echo "KETHER_NOTES"
+          } >> "$GITHUB_ENV"
 
       - name: 設定 Java
         uses: actions/setup-java@v4
@@ -143,7 +167,7 @@ jobs:
       - name: 保存建置成品
         uses: actions/upload-artifact@v4
         with:
-          name: KETHER-Warframe-v${{ inputs.version_name }}
+          name: KETHER-Warframe-v${{ env.VERSION_NAME }}
           path: |
             dist/${{ env.APK_NAME }}
             dist/sha256.txt
