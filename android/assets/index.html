@@ -106,4 +106,6 @@
   <script src="app-v25.js"></script>
   <script src="v3-data.js"></script>
   <script src="app-v30.js"></script>
+  <script src="search-data.js"></script>
+  <script src="app-v31.js"></script>
 </div><script>(()=>{const boot=document.getElementById('kether-boot');if(!boot)return;document.body.classList.add('booting');const returning=new URLSearchParams(location.search).get('returning')==='1';if(returning){boot.remove();document.body.classList.remove('booting');return}const duration=8000,lines=[...boot.querySelectorAll('.boot-line')],bar=document.getElementById('boot-progress'),percent=document.getElementById('boot-percent'),start=performance.now();function frame(now){const raw=Math.min(1,(now-start)/duration),value=Math.round((1-Math.pow(1-raw,1.55))*100);bar.style.width=value+'%';percent.textContent=value+'%';const shown=Math.min(lines.length,Math.floor(raw*lines.length+1));lines.forEach((line,i)=>line.classList.toggle('show',i<shown));if(raw<1){requestAnimationFrame(frame)}else{bar.style.width='100%';percent.textContent='100%';lines[lines.length-1].textContent='［完成］KETHER 軌道系統待命_';setTimeout(()=>{boot.classList.add('is-complete');document.body.classList.remove('booting');setTimeout(()=>boot.remove(),520)},400)}}requestAnimationFrame(frame)})();</script></body></html>

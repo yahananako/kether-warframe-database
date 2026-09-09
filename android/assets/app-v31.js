@@ -1,0 +1,22 @@
+(()=>{
+  'use strict';
+  const root=document.getElementById('kether-mobile-v5'),body=document.getElementById('k5-body');
+  const data=window.KETHER_SEARCH_DATA;
+  if(!root||!body||!data)return;
+  const originalSheetSearch=window.ketherBotSearch;
+  const kinds=[['warframes','戰甲'],['weapons','武器'],['companions','同伴'],['materials','材料']];
+  const intentWords=/(請問|幫我|幫忙|想要|想找|我要|查詢|搜尋|搜索|怎麼|如何|哪裡|在哪裡|在哪|取得|獲得|入手|掉落|怎樣|哪個|什麼|價格|多少|好用嗎|好用|配裝|的|是|有|嗎|呢|喵)/gi;
+  const normalize=value=>String(value||'').toLowerCase().normalize('NFKC').replace(/[臺台]/g,'台').replace(/[？?，,。.!！：:；;、｜|／/\\_\-・\[\]()（）\s]/g,'');
+  const cleanQuery=value=>String(value||'').replace(intentWords,' ').replace(/\s+/g,' ').trim();
+  const values=item=>[item.key,item.name,...(item.aliases||[])].filter(Boolean);
+  function distance(a,b){a=normalize(a);b=normalize(b);if(!a)return b.length;if(!b)return a.length;let prev=Array.from({length:b.length+1},(_,i)=>i);for(let i=1;i<=a.length;i++){let next=[i];for(let j=1;j<=b.length;j++)next[j]=Math.min(next[j-1]+1,prev[j]+1,prev[j-1]+(a[i-1]===b[j-1]?0:1));prev=next}return prev[b.length]}
+  function score(item,raw,clean){const q=normalize(clean)||normalize(raw),full=normalize(raw);if(!q)return 0;let best=0;for(const value of values(item)){const key=normalize(value);if(!key)continue;if(key===q)best=Math.max(best,1000);else if(full.includes(key)&&key.length>=2)best=Math.max(best,900+Math.min(key.length,40));else if(key.startsWith(q)||q.startsWith(key))best=Math.max(best,720-Math.abs(key.length-q.length));else if(key.includes(q)||q.includes(key))best=Math.max(best,560-Math.abs(key.length-q.length));else{const d=distance(key,q),limit=q.length<=3?1:q.length<=7?2:3;if(d<=limit)best=Math.max(best,360-d*45)}}return best}
+  function localSearch(raw){const clean=cleanQuery(raw),found=[];for(const [key,label] of kinds){for(const item of data[key]||[]){if(!item)continue;const value=score(item,raw,clean);if(value>0)found.push({item,label,score:value})}}const seen=new Set();return found.sort((a,b)=>b.score-a.score||String(a.item.name).localeCompare(String(b.item.name),'zh-Hant')).filter(entry=>{const key=(entry.label+'|'+entry.item.name).toLowerCase();if(seen.has(key))return false;seen.add(key);return true}).slice(0,8)}
+  function splitName(value){const parts=String(value||'').split(/\s*\/\s*/);return{en:parts[0]||value,zh:parts[1]||parts[0]||value}}
+  function toChat(entry,query){const item=entry.item,name=splitName(item.name),detail=[item.tips,item.notes].filter(Boolean).join(' '),section=item.category||item.weaponType||entry.label;return{zh:name.zh,en:name.en,section,desc:item.parts||detail,source:item.source||item.acquisition||item.recommended||'',note:(normalize(query)!==normalize(name.zh)&&normalize(query)!==normalize(name.en)?'智慧辨識：'+query+' → '+item.name+'。 ':'')+detail}}
+  window.ketherBotSearch=query=>{const hits=localSearch(query);if(hits.length){window.ketherBotSheetResults&&window.ketherBotSheetResults(hits.map(x=>toChat(x,query)),query);return}if(originalSheetSearch)originalSheetSearch(query);else window.ketherBotSheetResults&&window.ketherBotSheetResults([],query)};
+  function enhance(){const form=body.querySelector('#v21-form');if(!form||form.dataset.smartSearch)return;form.dataset.smartSearch='1';const input=form.querySelector('#v21-input');if(input)input.placeholder='例如：核彈妹怎麼取得？';const first=body.querySelector('#v21-msgs .v21-msg');if(first)first.lastChild.textContent='中文名、英文名、玩家俗稱或整句問題都能搜尋；打錯一兩個字也會嘗試辨識喵。';const chips=document.createElement('div');chips.className='v31-chips';chips.innerHTML=['核彈妹','劍神','瓦喵','奶媽','毒媽','水妹'].map(x=>'<button type="button">'+x+'</button>').join('');form.before(chips);chips.querySelectorAll('button').forEach(button=>button.onclick=()=>{input.value=button.textContent;form.requestSubmit()})}
+  const style=document.createElement('style');style.textContent='#kether-mobile-v5 .v31-chips{display:flex;gap:7px;overflow-x:auto;padding:2px 1px 4px;scrollbar-width:none}#kether-mobile-v5 .v31-chips button{flex:0 0 auto;padding:8px 11px;border:1px solid rgba(112,231,255,.28);border-radius:999px;background:#151e2d;color:var(--k5-cyan);font-weight:700}';document.head.appendChild(style);
+  new MutationObserver(enhance).observe(body,{childList:true,subtree:true});
+  enhance();
+})();
