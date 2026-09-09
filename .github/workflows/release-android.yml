@@ -1,0 +1,150 @@
+name: 發布 KETHER Android
+
+on:
+  workflow_dispatch:
+    inputs:
+      version_name:
+        description: "版本名稱，例如 3.0.4"
+        required: true
+        type: string
+      version_code:
+        description: "遞增整數，例如 34"
+        required: true
+        type: number
+      release_notes:
+        description: "更新內容"
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+concurrency:
+  group: kether-android-release
+  cancel-in-progress: false
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    env:
+      VERSION_NAME: ${{ inputs.version_name }}
+      VERSION_CODE: ${{ inputs.version_code }}
+      RELEASE_NOTES: ${{ inputs.release_notes }}
+      APK_NAME: KETHER-Warframe-v${{ inputs.version_name }}.apk
+    steps:
+      - name: 取得專案
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: 設定 Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: 設定 Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: 安裝 Android 建置工具
+        run: sdkmanager "platforms;android-35" "build-tools;35.0.0"
+
+      - name: 驗證版本與簽章設定
+        env:
+          ANDROID_KEYSTORE_BASE64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+          ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          ANDROID_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
+          ANDROID_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
+        run: |
+          [[ "$VERSION_NAME" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]
+          [[ "$VERSION_CODE" =~ ^[0-9]+$ ]]
+          test -n "$ANDROID_KEYSTORE_BASE64"
+          test -n "$ANDROID_KEYSTORE_PASSWORD"
+          test -n "$ANDROID_KEY_ALIAS"
+          test -n "$ANDROID_KEY_PASSWORD"
+
+      - name: 準備 APP 原始碼與網站圖片
+        run: |
+          mkdir -p build/assets/site-assets build/res/values build/res/drawable build/classes build/dex build/apk dist
+          cp android/assets/* build/assets/
+          cp public/icon-*.png build/assets/site-assets/
+          cp public/home-ui-bg.png public/home-hero-banner.png public/kether-clan-logo.png public/stat-card-silver-frame-filled.png build/assets/site-assets/
+          cp public/kether-clan-logo.png build/assets/kether-clan-logo.png
+          cp public/home-hero-banner.png build/assets/kether-hero-official.png
+          cp android/res/values/styles.xml build/res/values/styles.xml
+          cp public/kether-clan-logo.png build/res/drawable/kether_app_icon.png
+          cp android/AndroidManifest.xml build/AndroidManifest.xml
+          sed -i -E "s/android:versionCode=\"[0-9]+\"/android:versionCode=\"${VERSION_CODE}\"/" build/AndroidManifest.xml
+          sed -i -E "s/android:versionName=\"[0-9]+\.[0-9]+\.[0-9]+\"/android:versionName=\"${VERSION_NAME}\"/" build/AndroidManifest.xml
+          sed -i -E "s/版本 [0-9]+\.[0-9]+\.[0-9]+/版本 ${VERSION_NAME}/g" build/assets/index.html
+
+      - name: 編譯與簽署 APK
+        env:
+          ANDROID_KEYSTORE_BASE64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+          ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          ANDROID_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
+          ANDROID_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
+        run: |
+          BUILD_TOOLS="$ANDROID_HOME/build-tools/35.0.0"
+          PLATFORM="$ANDROID_HOME/platforms/android-35/android.jar"
+          printf '%s' "$ANDROID_KEYSTORE_BASE64" | base64 --decode > build/kether-release.keystore
+          javac -source 8 -target 8 -classpath "$PLATFORM" -d build/classes $(find android/src -name '*.java' -print)
+          "$BUILD_TOOLS/d8" --lib "$PLATFORM" --output build/dex $(find build/classes -name '*.class' -print)
+          "$BUILD_TOOLS/aapt" package -f -M build/AndroidManifest.xml -S build/res -A build/assets -I "$PLATFORM" -F build/apk/KETHER-unsigned.apk
+          cp build/dex/classes.dex build/apk/classes.dex
+          (cd build/apk && "$BUILD_TOOLS/aapt" add KETHER-unsigned.apk classes.dex)
+          "$BUILD_TOOLS/zipalign" -f 4 build/apk/KETHER-unsigned.apk build/apk/KETHER-aligned.apk
+          "$BUILD_TOOLS/apksigner" sign \
+            --ks build/kether-release.keystore \
+            --ks-key-alias "$ANDROID_KEY_ALIAS" \
+            --ks-pass "pass:$ANDROID_KEYSTORE_PASSWORD" \
+            --key-pass "pass:$ANDROID_KEY_PASSWORD" \
+            --out "dist/$APK_NAME" \
+            build/apk/KETHER-aligned.apk
+          "$BUILD_TOOLS/apksigner" verify --verbose "dist/$APK_NAME"
+          "$BUILD_TOOLS/aapt" dump badging "dist/$APK_NAME" | head -n 2
+          sha256sum "dist/$APK_NAME" | tee dist/sha256.txt
+
+      - name: 建立或更新 GitHub Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          TAG="app-v${VERSION_NAME}"
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            gh release upload "$TAG" "dist/$APK_NAME" --clobber
+            gh release edit "$TAG" --title "KETHER Warframe v${VERSION_NAME}" --notes "$RELEASE_NOTES"
+          else
+            gh release create "$TAG" "dist/$APK_NAME" --target "$GITHUB_SHA" --title "KETHER Warframe v${VERSION_NAME}" --notes "$RELEASE_NOTES"
+          fi
+
+      - name: 更新 APP 自動更新清單
+        run: |
+          SHA256="$(cut -d' ' -f1 dist/sha256.txt)"
+          DOWNLOAD_URL="https://github.com/${GITHUB_REPOSITORY}/releases/download/app-v${VERSION_NAME}/${APK_NAME}"
+          node - "$VERSION_CODE" "$VERSION_NAME" "$DOWNLOAD_URL" "$SHA256" "$RELEASE_NOTES" <<'NODE'
+          const fs = require('fs');
+          const [, , versionCode, versionName, apkUrl, sha256, notes] = process.argv;
+          const manifest = { versionCode: Number(versionCode), versionName, apkUrl, sha256, required: false, notes };
+          fs.writeFileSync('public/app-update.json', JSON.stringify(manifest, null, 2) + '\n');
+          NODE
+
+      - name: 提交更新清單
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/app-update.json
+          if git diff --cached --quiet; then
+            echo "更新清單沒有變更"
+          else
+            git commit -m "chore: publish Android v${VERSION_NAME} update manifest"
+            git push origin HEAD:main
+          fi
+
+      - name: 保存建置成品
+        uses: actions/upload-artifact@v4
+        with:
+          name: KETHER-Warframe-v${{ inputs.version_name }}
+          path: |
+            dist/${{ env.APK_NAME }}
+            dist/sha256.txt
+          retention-days: 30

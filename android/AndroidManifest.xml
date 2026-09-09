@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="tw.kether.app"
+    android:versionCode="33"
+    android:versionName="3.0.3">
+    <uses-sdk android:minSdkVersion="23" android:targetSdkVersion="28" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
+    <application
+        android:allowBackup="true"
+        android:label="KETHER"
+        android:icon="@drawable/kether_app_icon"
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="false">
+        <provider
+            android:name=".UpdateFileProvider"
+            android:authorities="tw.kether.app.updates"
+            android:exported="false"
+            android:grantUriPermissions="true" />
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+</manifest>
