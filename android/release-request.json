@@ -1,5 +1,5 @@
 {
-  "versionName": "3.0.4",
-  "versionCode": 34,
-  "releaseNotes": "啟用 GitHub Actions 自動發布、安全更新安裝器與網站圖片同步。"
+  "versionName": "3.0.5",
+  "versionCode": 35,
+  "releaseNotes": "新增中文智慧搜尋：支援中文名、英文名、玩家俗稱、自然語句與模糊錯字辨識。"
 }
