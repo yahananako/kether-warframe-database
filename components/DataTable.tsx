@@ -17,6 +17,10 @@ function priceNumber(value: string): number | null {
 }
 
 function displayPrice(value: string): string {
+  const text = String(value || "").trim();
+  if (text.includes("不可交易")) return "不可交易";
+  if (text.includes("待更新")) return "待更新";
+
   const number = priceNumber(value);
   if (number === null) return "待更新";
   return `${number} 白金`;
@@ -161,7 +165,8 @@ export default function DataTable({
         row.price,
         displayOwned(row.personalOwned),
         row.source,
-        row.note
+        row.note,
+        ...(row.aliases || [])
       ].join(" ").toLowerCase();
 
       const matchQuery = text.includes(query.trim().toLowerCase());
@@ -380,7 +385,22 @@ export default function DataTable({
             return (
               <div className="db-row" key={`${row.section}-${row.englishName}-${index}`}>
                 <span><b className="section-pill">{row.section || "未分類"}</b></span>
-                <span>{row.chineseName || "未命名"}</span>
+                <span>
+                  <span className="equipment-name-cell">
+                    {row.imageUrl && (
+                      <img
+                        className="equipment-thumb"
+                        src={row.imageUrl}
+                        alt=""
+                        loading="lazy"
+                        onError={(event) => {
+                          event.currentTarget.hidden = true;
+                        }}
+                      />
+                    )}
+                    <b>{row.chineseName || "未命名"}</b>
+                  </span>
+                </span>
                 <span>{row.englishName || "—"}</span>
                 <span>{row.description || row.note || "—"}</span>
                 <span>
@@ -420,7 +440,20 @@ export default function DataTable({
             return (
               <article className="mobile-data-card" key={`${row.section}-${row.englishName}-mobile-${index}`}>
                 <b className="section-pill">{row.section || "未分類"}</b>
-                <h3>{row.chineseName || "未命名"}</h3>
+                <div className="mobile-equipment-heading">
+                  {row.imageUrl && (
+                    <img
+                      className="equipment-thumb equipment-thumb-mobile"
+                      src={row.imageUrl}
+                      alt=""
+                      loading="lazy"
+                      onError={(event) => {
+                        event.currentTarget.hidden = true;
+                      }}
+                    />
+                  )}
+                  <h3>{row.chineseName || "未命名"}</h3>
+                </div>
                 <p>{row.englishName || "—"}</p>
                 <small>{row.description || row.note || "—"}</small>
                 <div>
