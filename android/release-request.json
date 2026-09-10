@@ -1,5 +1,5 @@
 {
-  "versionName": "3.0.5",
-  "versionCode": 35,
-  "releaseNotes": "新增中文智慧搜尋：支援中文名、英文名、玩家俗稱、自然語句與模糊錯字辨識。"
+  "versionName": "3.0.6",
+  "versionCode": 36,
+  "releaseNotes": "修正小希 BOT 搜尋只顯示最佳結果；氏族 Logo 改為透明去背；電波局與午夜電波完整繁體中文化。"
 }
