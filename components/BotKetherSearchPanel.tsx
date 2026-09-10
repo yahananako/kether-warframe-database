@@ -10,6 +10,13 @@ type SearchResult = {
   weaponType?: string;
   series?: string;
   category?: string;
+  price?: string;
+  marketUrl?: string;
+  marketKind?: string;
+  marketSlug?: string;
+  marketName?: string;
+  tradeNote?: string;
+  livePriceLabel?: string;
   details: {
     label: string;
     value: string;
@@ -20,6 +27,16 @@ type SearchResponse = {
   query: string;
   count: number;
   results: SearchResult[];
+};
+
+type MarketPriceResponse = {
+  available?: boolean;
+  tradeable?: boolean;
+  upstreamError?: boolean;
+  kind?: "item" | "lich";
+  lowestSell?: number | null;
+  priceLabel?: string;
+  marketUrl?: string;
 };
 
 const modeConfig: Record<
@@ -41,7 +58,7 @@ const modeConfig: Record<
     badge: "武器",
     icon: Swords,
     placeholder: "輸入武器名稱，例如：托里德、Ocucor、Glaive Prime",
-    quickSearches: ["托里德", "Ocucor", "Glaive Prime", "凶惡", "靈化"],
+    quickSearches: ["赤毒努寇", "Kuva Ghoulsaw", "Glaive Prime", "凶惡", "靈化"],
     apiPath: "/api/bot-search/weapon",
     emptyText: "找不到武器取得資料喵，試試英文名、中文名或系列關鍵字。",
   },
@@ -121,7 +138,43 @@ export default function BotKetherSearchPanel() {
       if (!response.ok) throw new Error("search failed");
 
       const data = (await response.json()) as SearchResponse;
-      setResults(data.results ?? []);
+      let nextResults = data.results ?? [];
+      const weapon = nextMode === "weapon" ? nextResults[0] : undefined;
+
+      if (weapon?.marketSlug) {
+        try {
+          const priceResponse = await fetch(
+            `/api/market-price?kind=${weapon.marketKind === "lich" ? "lich" : "item"}&slug=${encodeURIComponent(weapon.marketSlug)}`,
+            { method: "GET" },
+          );
+          const market = (await priceResponse.json()) as MarketPriceResponse;
+          const livePriceLabel = market.lowestSell
+            ? `${market.priceLabel ?? "最低線上賣單"}：${market.lowestSell} 白金`
+            : market.upstreamError
+              ? "即時價格暫時無法取得"
+              : market.available
+                ? market.kind === "lich"
+                  ? "目前沒有線上玄骸拍賣"
+                  : "目前沒有線上賣單"
+                : market.tradeable === false
+                  ? "不可交易"
+                  : weapon.price || "價格待更新";
+
+          nextResults = nextResults.map((result, index) => index === 0
+            ? {
+              ...result,
+              marketUrl: market.marketUrl || result.marketUrl,
+              livePriceLabel,
+            }
+            : result);
+        } catch {
+          nextResults = nextResults.map((result, index) => index === 0
+            ? { ...result, livePriceLabel: "即時價格暫時無法取得" }
+            : result);
+        }
+      }
+
+      setResults(nextResults);
     } catch {
       setError("小希查詢台暫時失聯，請稍後再試喵。");
       setResults([]);
@@ -236,6 +289,18 @@ export default function BotKetherSearchPanel() {
                     </div>
                   ))}
                 </div>
+
+                {result.price || result.livePriceLabel || result.marketUrl ? (
+                  <div className="kether-bot-search-market">
+                    <b>{result.livePriceLabel || `參考價格：${result.price}`}</b>
+                    {result.marketUrl ? (
+                      <a href={result.marketUrl} target="_blank" rel="noreferrer">
+                        {result.marketKind === "lich" ? "開啟玄骸拍賣頁" : "開啟交易頁"}
+                      </a>
+                    ) : null}
+                    {result.tradeNote ? <small>{result.tradeNote}</small> : null}
+                  </div>
+                ) : null}
               </article>
             );
           })}
@@ -491,6 +556,37 @@ export default function BotKetherSearchPanel() {
           font-weight: 750;
           line-height: 1.65;
           white-space: pre-wrap;
+        }
+
+        .kether-bot-search-market {
+          display: grid;
+          gap: 8px;
+          margin-top: 12px;
+          padding-top: 12px;
+          border-top: 1px solid rgba(124, 58, 237, 0.16);
+        }
+
+        .kether-bot-search-market b {
+          color: #7c3aed;
+          font-size: 13px;
+        }
+
+        .kether-bot-search-market a {
+          width: fit-content;
+          padding: 8px 11px;
+          border-radius: 12px;
+          color: #ffffff;
+          background: linear-gradient(135deg, #7c3aed, #ec4899);
+          font-size: 12px;
+          font-weight: 900;
+          text-decoration: none;
+        }
+
+        .kether-bot-search-market small {
+          color: #64748b;
+          font-size: 11px;
+          font-weight: 700;
+          line-height: 1.55;
         }
 
         @media (max-width: 760px) {

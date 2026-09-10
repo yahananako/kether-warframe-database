@@ -1,9 +1,9 @@
 import {
-  WEAPON_ACQUISITION_DATA,
   WEAPON_SERIES_CHOICES,
   WEAPON_TYPE_CHOICES,
 } from "./data/weapons";
 import type { WeaponAcquisitionRecord } from "./data/weapons";
+import { ALL_WEAPON_ACQUISITION_DATA } from "./data/allWeapons";
 
 function normalize(value: string) {
   return value
@@ -81,7 +81,7 @@ function findWeapon(
 
   if (!normalized) return null;
 
-  const filtered = WEAPON_ACQUISITION_DATA.filter((record) =>
+  const filtered = ALL_WEAPON_ACQUISITION_DATA.filter((record) =>
     recordMatchesFilters(record, rawWeaponType, rawSeries),
   );
 
@@ -101,7 +101,7 @@ function findWeapon(
 }
 
 function buildWeaponListPreview() {
-  const grouped = WEAPON_ACQUISITION_DATA.reduce<Record<string, string[]>>((acc, record) => {
+  const grouped = ALL_WEAPON_ACQUISITION_DATA.reduce<Record<string, string[]>>((acc, record) => {
     const key = `${record.weaponType}｜${record.series}`;
     acc[key] ??= [];
     acc[key].push(record.name);
@@ -121,6 +121,50 @@ function formatChoiceName(record: WeaponAcquisitionRecord) {
   return `${record.name}｜${record.weaponType}｜${record.series}`;
 }
 
+async function getMarketPriceText(record: WeaponAcquisitionRecord) {
+  if (record.marketKind !== "lich" || !record.marketSlug) {
+    return record.price || (record.marketUrl ? "價格待更新" : "不可交易");
+  }
+
+  try {
+    const response = await fetch(
+      `https://api.warframe.market/v1/auctions/search?type=lich&weapon_url_name=${encodeURIComponent(record.marketSlug)}&buyout_policy=direct&sort_by=price_asc`,
+      {
+        headers: {
+          Accept: "application/json",
+          Platform: "pc",
+          "User-Agent": "KETHER-Discord-BOT price lookup",
+        },
+        cache: "no-store",
+        signal: AbortSignal.timeout(2_000),
+      },
+    );
+
+    if (!response.ok) return "即時價格暫時無法取得";
+
+    const payload = await response.json();
+    const auctions = Array.isArray(payload?.payload?.auctions) ? payload.payload.auctions : [];
+    const prices = auctions
+      .filter((auction: any) => {
+        const status = auction?.owner?.status;
+        return auction?.visible !== false &&
+          auction?.closed !== true &&
+          auction?.private !== true &&
+          auction?.is_direct_sell !== false &&
+          (status === "online" || status === "ingame");
+      })
+      .map((auction: any) => Number(auction?.buyout_price ?? auction?.starting_price ?? 0))
+      .filter((price: number) => Number.isFinite(price) && price > 0)
+      .sort((left: number, right: number) => left - right);
+
+    return prices[0]
+      ? `${prices[0]} 白金（最低線上玄骸拍賣）`
+      : "目前沒有線上玄骸拍賣";
+  } catch {
+    return "即時價格暫時無法取得";
+  }
+}
+
 export function searchWeaponAcquisitionChoices(
   rawQuery: string | null | undefined,
   rawWeaponType?: string | null,
@@ -128,7 +172,7 @@ export function searchWeaponAcquisitionChoices(
 ) {
   const query = normalize(String(rawQuery ?? ""));
 
-  const scored = WEAPON_ACQUISITION_DATA
+  const scored = ALL_WEAPON_ACQUISITION_DATA
     .filter((record) => recordMatchesFilters(record, rawWeaponType, rawSeries))
     .map((record) => {
       const searchable = getSearchableValues(record).map(normalize);
@@ -155,7 +199,7 @@ export function searchWeaponAcquisitionChoices(
   }));
 }
 
-export function buildWeaponAcquisitionResponse(
+export async function buildWeaponAcquisitionResponse(
   rawName: string | null | undefined,
   rawWeaponType?: string | null,
   rawSeries?: string | null,
@@ -183,7 +227,7 @@ export function buildWeaponAcquisitionResponse(
   const record = findWeapon(name, rawWeaponType, rawSeries);
 
   if (!record) {
-    const examples = WEAPON_ACQUISITION_DATA
+    const examples = ALL_WEAPON_ACQUISITION_DATA
       .filter((item) => recordMatchesFilters(item, rawWeaponType, rawSeries))
       .slice(0, 16)
       .map((item) => item.name)
@@ -196,6 +240,8 @@ export function buildWeaponAcquisitionResponse(
         "也可以輸入前兩個字使用自動補全。",
     };
   }
+
+  const priceText = await getMarketPriceText(record);
 
   return {
     embeds: [
@@ -228,9 +274,19 @@ export function buildWeaponAcquisitionResponse(
             name: "備註",
             value: record.notes,
           },
+          {
+            name: record.marketKind === "lich" ? "玄骸拍賣參考" : "白金參考",
+            value: priceText,
+          },
+          ...(record.marketUrl
+            ? [{
+              name: "交易頁",
+              value: `[開啟 Warframe Market${record.marketKind === "lich" ? " 玄骸拍賣" : ""}](${record.marketUrl})${record.tradeNote ? `\n${record.tradeNote}` : ""}`,
+            }]
+            : []),
         ],
         footer: {
-          text: "E-14｜武器資料新增＋類型分類＋系列分類＋中文自動補全",
+          text: "E-15｜赤毒武器系列＋玄骸拍賣價＋交易連結",
         },
       },
     ],

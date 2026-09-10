@@ -20,6 +20,7 @@ function displayPrice(value: string): string {
   const text = String(value || "").trim();
   if (text.includes("不可交易")) return "不可交易";
   if (text.includes("待更新")) return "待更新";
+  if (text.includes("拍賣") || text.includes("浮動")) return text;
 
   const number = priceNumber(value);
   if (number === null) return "待更新";
@@ -27,7 +28,8 @@ function displayPrice(value: string): string {
 }
 
 function hasPrice(value: string): boolean {
-  return priceNumber(value) !== null;
+  const text = String(value || "");
+  return priceNumber(value) !== null || text.includes("拍賣") || text.includes("浮動");
 }
 
 function textOwned(value: string): boolean {
@@ -46,8 +48,14 @@ function makeSlugBase(name: string): string {
 
 function itemKeyFromRow(row: SheetRow): string {
   if (row.marketUrl) {
-    const last = row.marketUrl.split("/").filter(Boolean).pop();
-    if (last) return last;
+    try {
+      const market = new URL(row.marketUrl);
+      const lichWeapon = market.searchParams.get("weapon_url_name");
+      const last = market.pathname.split("/").filter(Boolean).pop();
+      if (lichWeapon || last) return lichWeapon || last || "";
+    } catch {
+      // Fall through to the stable name-based key.
+    }
   }
 
   const base = makeSlugBase(row.englishName || row.chineseName);

@@ -6,6 +6,11 @@ import { Bell, X, Sparkles, ExternalLink } from "lucide-react";
 
 const notices = [
   {
+    version: "V2.6.1",
+    title: "赤毒武器系列同步完成",
+    content: "21 把赤毒武器已同步到表格、網站、小希 BOT 與 Android APP；查詢附已轉化玄骸拍賣價與交易頁。"
+  },
+  {
     version: "修繕",
     title: "鈴鐺公告面板調整中",
     content: "小希正在修復首頁鈴鐺公告列表捲動問題，讓手機版也能順順查看完整更新內容。"

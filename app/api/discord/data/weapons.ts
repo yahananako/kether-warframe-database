@@ -10,6 +10,12 @@ export type WeaponAcquisitionRecord = {
   parts: string;
   tips: string;
   notes: string;
+  price?: string;
+  marketUrl?: string;
+  marketKind?: "item" | "lich";
+  marketSlug?: string;
+  marketName?: string;
+  tradeNote?: string;
 };
 
 export const WEAPON_TYPE_CHOICES = [

@@ -1,5 +1,5 @@
 {
-  "versionName": "3.0.7",
-  "versionCode": 37,
-  "releaseNotes": "小希 BOT 搜尋只顯示唯一最佳結果；新增 Warframe Market 即時最低線上賣單、白金顯示與交易頁按鈕；補齊 APP 武器搜尋資料。"
+  "versionName": "3.0.8",
+  "versionCode": 38,
+  "releaseNotes": "補齊 21 把赤毒武器系列（含赤毒屍鬼輪鋸）；小希 BOT 保持唯一最佳結果；新增已轉化赤毒玄骸的 Warframe Market 即時最低線上拍賣價與交易頁；同步網站、原始表格與 APP 搜尋資料。"
 }

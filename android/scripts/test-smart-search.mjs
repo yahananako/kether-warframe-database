@@ -54,6 +54,20 @@ assert.equal(
   "https://warframe.market/items/acceltra_prime_set",
 );
 
+const kuvaNukor = search("赤毒努寇怎麼取得？");
+assert.equal(kuvaNukor.length, 1);
+assert.equal(kuvaNukor[0]?.en, "Kuva Nukor");
+assert.equal(kuvaNukor[0]?.marketKind, "lich");
+assert.equal(kuvaNukor[0]?.price, "玄骸拍賣浮動");
+assert.equal(
+  kuvaNukor[0]?.marketUrl,
+  "https://warframe.market/auctions/search?type=lich&weapon_url_name=kuva_nukor",
+);
+
+const kuvaGhoulsaw = search("赤毒屍鬼輪鋸");
+assert.equal(kuvaGhoulsaw.length, 1);
+assert.equal(kuvaGhoulsaw[0]?.en, "Kuva Ghoulsaw");
+
 const tradeableWeapons = window.KETHER_SEARCH_DATA.weapons.filter(
   (item) => item?.marketUrl,
 );

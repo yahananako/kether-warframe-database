@@ -5,6 +5,11 @@ import { KETHER_APP_VERSION, KETHER_BOT_VERSION } from "../../data/siteVersion";
 const updates = [
   {
     version: KETHER_APP_VERSION,
+    title: "赤毒武器系列同步完成",
+    content: "21 把赤毒武器已同步到 Google Sheets、網站、小希 BOT 與 Android APP，並加入已轉化玄骸即時拍賣價及交易頁。",
+  },
+  {
+    version: KETHER_APP_VERSION,
     title: "一般戰甲檔案館上線",
     content: "收錄 60 位一般戰甲的圖片、五種定位、遊戲內故事與入手條件，並移除交易價格與市場連結。",
   },

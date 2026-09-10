@@ -1,11 +1,14 @@
 {
   "name": "kether-warframe-database",
-  "version": "2.5.2",
+  "version": "2.6.1",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "data:kuva": "node scripts/generate-kuva-catalog.mjs",
+    "sheet:kuva": "node scripts/prepare-kuva-sheet-update.mjs",
+    "test:kuva": "node scripts/test-kuva-sync.mjs",
     "test:android-search": "node android/scripts/test-smart-search.mjs",
     "discord:register-card": "node scripts/register-warframe-card-command.mjs"
   },

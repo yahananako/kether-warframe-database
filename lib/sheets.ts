@@ -1,4 +1,5 @@
 import { EQUIPMENT_CATALOG } from "../data/equipmentCatalog.generated";
+import { KUVA_WEAPONS } from "../data/kuvaWeapons.generated";
 
 export type SheetRow = {
   section: string;
@@ -257,7 +258,17 @@ function normalizedEquipmentName(value: string): string {
 }
 
 function mergeEquipmentCatalog(category: string, sheetRows: SheetRow[]): SheetRow[] {
-  const catalogRows = EQUIPMENT_CATALOG.filter((row) => row.category === category);
+  const catalogByEnglishName = new Map(
+    EQUIPMENT_CATALOG.map((row) => [normalizedEquipmentName(row.englishName), row]),
+  );
+
+  for (const row of KUVA_WEAPONS) {
+    catalogByEnglishName.set(normalizedEquipmentName(row.englishName), row);
+  }
+
+  const catalogRows = [...catalogByEnglishName.values()].filter(
+    (row) => row.category === category,
+  );
 
   if (catalogRows.length === 0) {
     return sheetRows.filter((row) => !isLikelyMod(row));

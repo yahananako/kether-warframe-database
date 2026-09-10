@@ -43,7 +43,11 @@ function matchRow(row: SheetRow, query: string): boolean {
 }
 
 function displayPrice(value: string): string {
-  const number = Number(String(value || "").replace(/[^\d.]/g, ""));
+  const text = String(value || "").trim();
+  if (text.includes("不可交易")) return "不可交易";
+  if (text.includes("拍賣") || text.includes("浮動")) return text;
+
+  const number = Number(text.replace(/[^\d.]/g, ""));
   if (!Number.isFinite(number) || number <= 0) return "待更新";
   return `${number} 白金`;
 }

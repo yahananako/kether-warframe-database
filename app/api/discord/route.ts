@@ -1589,7 +1589,7 @@ export async function POST(request: Request) {
 
       return Response.json({
         type: RESPONSE_TYPE.CHANNEL_MESSAGE_WITH_SOURCE,
-        data: buildWeaponAcquisitionResponse(
+        data: await buildWeaponAcquisitionResponse(
           name,
           typeof weaponTypeOption?.value === "string" ? weaponTypeOption.value : null,
           typeof seriesOption?.value === "string" ? seriesOption.value : null,

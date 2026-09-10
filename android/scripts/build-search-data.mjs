@@ -132,10 +132,19 @@ const extraAliases = {
   Zephyr: ["鳥姐", "鳥甲", "風女"],
 };
 
-const equipmentCatalog = readExportedArray(
+const baseEquipmentCatalog = readExportedArray(
   "data/equipmentCatalog.generated.ts",
   "EQUIPMENT_CATALOG",
 );
+const kuvaCatalog = readExportedArray(
+  "data/kuvaWeapons.generated.ts",
+  "KUVA_WEAPONS",
+);
+const equipmentCatalogMap = new Map();
+for (const item of [...baseEquipmentCatalog, ...kuvaCatalog]) {
+  equipmentCatalogMap.set(normalizedEnglishName(item.englishName), item);
+}
+const equipmentCatalog = [...equipmentCatalogMap.values()];
 const equipmentByEnglishName = new Map(
   equipmentCatalog.map((item) => [normalizedEnglishName(item.englishName), item]),
 );
@@ -182,7 +191,7 @@ warframes.push({
 const detailedWeapons = readExportedArray(
   "app/api/discord/data/weapons.ts",
   "WEAPON_ACQUISITION_DATA",
-).filter(Boolean);
+).filter((record) => record && record.seriesKey !== "kuva");
 const detailedWeaponNames = new Set(
   detailedWeapons.map((record) => {
     const english = String(record.name || "").split(/\s*\/\s*/)[0].trim();
@@ -198,9 +207,10 @@ const weapons = detailedWeapons.map((record) => {
     aliases: [...new Set([...(record.aliases || []), ...(catalog.aliases || [])])],
     price: catalog.price,
     marketUrl: catalog.marketUrl,
-    marketSlug: marketSlugFromUrl(catalog.marketUrl),
-    marketName: catalog.englishName,
-    tradeNote: catalog.marketUrl ? "白金價格為 Warframe Market 的 PC 參考價。" : "此物品目前不可交易。",
+    marketKind: catalog.marketKind || (catalog.marketUrl ? "item" : ""),
+    marketSlug: catalog.marketSlug || marketSlugFromUrl(catalog.marketUrl),
+    marketName: catalog.marketName || catalog.englishName,
+    tradeNote: catalog.tradeNote || (catalog.marketUrl ? "白金價格為 Warframe Market 的 PC 參考價。" : "此物品目前不可交易。"),
   };
 });
 
@@ -212,21 +222,22 @@ for (const catalog of equipmentCatalog) {
     key: marketSlug(catalog.englishName).replace(/_/g, "-"),
     name: `${catalog.englishName} / ${catalog.chineseName}`,
     aliases: catalog.aliases || [],
-    weaponType: catalog.section,
-    weaponTypeKey: catalog.category,
-    series: isPrime ? "P版 / Prime" : catalog.section,
-    seriesKey: isPrime ? "prime" : catalog.category,
+    weaponType: catalog.weaponType || catalog.section,
+    weaponTypeKey: catalog.weaponTypeKey || catalog.category,
+    series: catalog.series || (isPrime ? "P版 / Prime" : catalog.section),
+    seriesKey: catalog.seriesKey || (isPrime ? "prime" : catalog.category),
     source: catalog.source,
-    parts: catalog.marketUrl
+    parts: catalog.parts || (catalog.marketUrl
       ? "可開啟 Warframe Market 查看可交易套裝或部件。"
-      : "依遊戲內來源取得或製作。",
-    tips: catalog.description,
-    notes: catalog.note,
+      : "依遊戲內來源取得或製作。"),
+    tips: catalog.tips || catalog.description,
+    notes: catalog.notes || catalog.note,
     price: catalog.price,
     marketUrl: catalog.marketUrl,
-    marketSlug: slug,
-    marketName: catalog.englishName,
-    tradeNote: catalog.marketUrl ? "白金價格為 Warframe Market 的 PC 參考價。" : "此物品目前不可交易。",
+    marketKind: catalog.marketKind || (catalog.marketUrl ? "item" : ""),
+    marketSlug: catalog.marketSlug || slug,
+    marketName: catalog.marketName || catalog.englishName,
+    tradeNote: catalog.tradeNote || (catalog.marketUrl ? "白金價格為 Warframe Market 的 PC 參考價。" : "此物品目前不可交易。"),
   });
 }
 
