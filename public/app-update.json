@@ -1,8 +1,8 @@
 {
-  "versionCode": 35,
-  "versionName": "3.0.5",
-  "apkUrl": "https://github.com/yahananako/kether-warframe-database/releases/download/app-v3.0.5/KETHER-Warframe-v3.0.5.apk",
-  "sha256": "a8ca566bf087ceb3096e1be43b359fc34aa57556db6e3e2f7756a87f248372ef",
+  "versionCode": 36,
+  "versionName": "3.0.6",
+  "apkUrl": "https://github.com/yahananako/kether-warframe-database/releases/download/app-v3.0.6/KETHER-Warframe-v3.0.6.apk",
+  "sha256": "cbf2e14f85ec2e40f3ef0d72944c8ddc7dc8db5e8e161857be03c9d18ce1342d",
   "required": false,
-  "notes": "新增中文智慧搜尋：支援中文名、英文名、玩家俗稱、自然語句與模糊錯字辨識。"
+  "notes": "小希 BOT 中文／別名精確搜尋只顯示最佳結果；啟動畫面與 APP 圖示改用透明氏族 Logo；電波局與午夜電波完整繁體中文化。"
 }
