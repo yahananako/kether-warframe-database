@@ -77,7 +77,7 @@ export async function GET(request: NextRequest) {
     });
   }
 
-  const results = embeds.map((embed, index) => {
+  const results = embeds.slice(0, 1).map((embed, index) => {
     const fields = embed.fields ?? [];
     const title = cleanTitle(String(embed.title ?? `遺物查詢結果 ${index + 1}`));
 

@@ -33,6 +33,11 @@ function getWeaponRecords(): AnyWeaponRecord[] {
       parts: item.marketUrl ? "可開啟 Warframe Market 查看可交易套裝或部件。" : "依遊戲內來源取得或製作。",
       tips: item.description,
       notes: item.note,
+      price: item.price,
+      marketUrl: item.marketUrl,
+      marketSlug: item.marketUrl.split("/").filter(Boolean).pop() ?? "",
+      marketName: item.englishName,
+      tradeNote: item.marketUrl ? "白金價格為 Warframe Market 的 PC 參考價。" : "",
     });
   }
 
@@ -165,12 +170,17 @@ export async function GET(request: NextRequest) {
 
       return String(a.record.name ?? "").localeCompare(String(b.record.name ?? ""), "zh-Hant");
     })
-    .slice(0, 12)
+    .slice(0, 1)
     .map(({ record }) => ({
       name: String(record.name ?? "未命名武器"),
       weaponType: String(record.weaponType ?? "未分類"),
       series: String(record.series ?? "未分類"),
       details: getDetailRows(record),
+      price: String(record.price ?? ""),
+      marketUrl: String(record.marketUrl ?? ""),
+      marketSlug: String(record.marketSlug ?? ""),
+      marketName: String(record.marketName ?? ""),
+      tradeNote: String(record.tradeNote ?? ""),
     }));
 
   return NextResponse.json({
