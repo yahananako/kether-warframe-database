@@ -11,6 +11,16 @@ function normalize(value: unknown) {
     .replace(/[｜|／/\\:_\-・，,。.\[\]()（）]/g, "");
 }
 
+function marketSlug(value: string) {
+  return value
+    .trim()
+    .replace(/[’']/g, "")
+    .replace(/&/g, " and ")
+    .replace(/[^A-Za-z0-9]+/g, "_")
+    .replace(/^_+|_+$/g, "")
+    .toLowerCase();
+}
+
 function pickText(record: AnyWarframeRecord, keys: string[]) {
   for (const key of keys) {
     const value = record[key];
@@ -83,12 +93,21 @@ export async function GET(request: NextRequest) {
 
       return String(a.record.name ?? "").localeCompare(String(b.record.name ?? ""), "zh-Hant");
     })
-    .slice(0, 12)
-    .map(({ record }) => ({
-      name: String(record.name ?? "未命名戰甲"),
-      category: String(record.category ?? "未分類"),
-      details: getDetailRows(record),
-    }));
+    .slice(0, 1)
+    .map(({ record }) => {
+      const name = String(record.name ?? "未命名戰甲");
+      const englishName = name.split(/\s*\/\s*/)[0].trim();
+      const primeName = `${englishName} Prime`;
+
+      return {
+        name,
+        category: String(record.category ?? "未分類"),
+        details: getDetailRows(record),
+        marketSlug: `${marketSlug(primeName)}_set`,
+        marketName: `${primeName} 套裝`,
+        tradeNote: "普通版戰甲不可交易；白金價格與交易連結顯示 Prime 套裝。",
+      };
+    });
 
   return NextResponse.json({
     query,

@@ -83,7 +83,7 @@ export async function GET(request: NextRequest) {
 
       return String(a.record.name ?? "").localeCompare(String(b.record.name ?? ""), "zh-Hant");
     })
-    .slice(0, 12)
+    .slice(0, 1)
     .map(({ record }) => ({
       name: String(record.name ?? "未命名材料"),
       category: String(record.category ?? "未分類"),

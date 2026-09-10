@@ -8,8 +8,8 @@ const siteRoot = path.resolve(process.argv[2] || path.join(androidRoot, "..", "k
 
 function readExportedArray(relativePath, exportName) {
   const source = fs.readFileSync(path.join(siteRoot, relativePath), "utf8");
-  const marker = `export const ${exportName}`;
-  const markerAt = source.indexOf(marker);
+  const marker = new RegExp(`export\\s+const\\s+${exportName}\\b`);
+  const markerAt = source.search(marker);
   if (markerAt < 0) throw new Error(`找不到 ${exportName}`);
   const assignment = source.indexOf("=", markerAt);
   const start = source.indexOf("[", assignment);
@@ -38,6 +38,36 @@ function readExportedArray(relativePath, exportName) {
     }
   }
   throw new Error(`${exportName} 陣列沒有結尾`);
+}
+
+function marketSlug(value) {
+  return String(value || "")
+    .trim()
+    .replace(/[’']/g, "")
+    .replace(/&/g, " and ")
+    .replace(/[^A-Za-z0-9]+/g, "_")
+    .replace(/^_+|_+$/g, "")
+    .toLowerCase();
+}
+
+function normalizedEnglishName(value) {
+  return String(value || "")
+    .toLowerCase()
+    .replace(/[’']/g, "")
+    .replace(/[^a-z0-9]+/g, "");
+}
+
+function marketSlugFromUrl(value) {
+  return String(value || "").split("/").filter(Boolean).pop() || "";
+}
+
+function primeWarframeMarket(english) {
+  const name = `${english} Prime`;
+  return {
+    marketSlug: `${marketSlug(name)}_set`,
+    marketName: `${name} 套裝`,
+    tradeNote: "普通版戰甲不可交易；白金價格與交易連結顯示 Prime 套裝。",
+  };
 }
 
 const extraAliases = {
@@ -102,6 +132,14 @@ const extraAliases = {
   Zephyr: ["鳥姐", "鳥甲", "風女"],
 };
 
+const equipmentCatalog = readExportedArray(
+  "data/equipmentCatalog.generated.ts",
+  "EQUIPMENT_CATALOG",
+);
+const equipmentByEnglishName = new Map(
+  equipmentCatalog.map((item) => [normalizedEnglishName(item.englishName), item]),
+);
+
 const detailedWarframes = readExportedArray(
   "app/api/discord/data/warframes.ts",
   "WARFRAME_ACQUISITION_DATA",
@@ -115,7 +153,8 @@ const warframes = regularWarframes.map((regular) => {
   const english = String(regular.name);
   const detailed = detailedByName.get(english.toLowerCase());
   const aliases = [...new Set([english, ...(detailed?.aliases || []), ...(extraAliases[english] || [])])];
-  if (detailed) return { ...detailed, aliases };
+  const trade = primeWarframeMarket(english);
+  if (detailed) return { ...detailed, aliases, ...trade };
   return {
     key: english.toLowerCase().replace(/[^a-z0-9]+/g, "-"),
     name: english,
@@ -125,6 +164,7 @@ const warframes = regularWarframes.map((regular) => {
     parts: "依取得方式收集主設計圖、頭部神經光元、機體與系統。",
     tips: "可輸入英文名、中文俗稱或一句問題搜尋。",
     notes: "KETHER 一般戰甲資料庫",
+    ...trade,
   };
 });
 
@@ -139,11 +179,62 @@ warframes.push({
   notes: "劍神通常指 Excalibur Umbra。",
 });
 
+const detailedWeapons = readExportedArray(
+  "app/api/discord/data/weapons.ts",
+  "WEAPON_ACQUISITION_DATA",
+).filter(Boolean);
+const detailedWeaponNames = new Set(
+  detailedWeapons.map((record) => {
+    const english = String(record.name || "").split(/\s*\/\s*/)[0].trim();
+    return normalizedEnglishName(english);
+  }),
+);
+const weapons = detailedWeapons.map((record) => {
+  const english = String(record.name || "").split(/\s*\/\s*/)[0].trim();
+  const catalog = equipmentByEnglishName.get(normalizedEnglishName(english));
+  if (!catalog) return record;
+  return {
+    ...record,
+    aliases: [...new Set([...(record.aliases || []), ...(catalog.aliases || [])])],
+    price: catalog.price,
+    marketUrl: catalog.marketUrl,
+    marketSlug: marketSlugFromUrl(catalog.marketUrl),
+    marketName: catalog.englishName,
+    tradeNote: catalog.marketUrl ? "白金價格為 Warframe Market 的 PC 參考價。" : "此物品目前不可交易。",
+  };
+});
+
+for (const catalog of equipmentCatalog) {
+  if (detailedWeaponNames.has(normalizedEnglishName(catalog.englishName))) continue;
+  const slug = marketSlugFromUrl(catalog.marketUrl);
+  const isPrime = /\bPrime\b/i.test(catalog.englishName);
+  weapons.push({
+    key: marketSlug(catalog.englishName).replace(/_/g, "-"),
+    name: `${catalog.englishName} / ${catalog.chineseName}`,
+    aliases: catalog.aliases || [],
+    weaponType: catalog.section,
+    weaponTypeKey: catalog.category,
+    series: isPrime ? "P版 / Prime" : catalog.section,
+    seriesKey: isPrime ? "prime" : catalog.category,
+    source: catalog.source,
+    parts: catalog.marketUrl
+      ? "可開啟 Warframe Market 查看可交易套裝或部件。"
+      : "依遊戲內來源取得或製作。",
+    tips: catalog.description,
+    notes: catalog.note,
+    price: catalog.price,
+    marketUrl: catalog.marketUrl,
+    marketSlug: slug,
+    marketName: catalog.englishName,
+    tradeNote: catalog.marketUrl ? "白金價格為 Warframe Market 的 PC 參考價。" : "此物品目前不可交易。",
+  });
+}
+
 const payload = {
   version: 1,
   generatedFrom: "KETHER website database",
   warframes,
-  weapons: readExportedArray("app/api/discord/data/weapons.ts", "WEAPON_ACQUISITION_DATA").filter(Boolean),
+  weapons,
   companions: readExportedArray("app/api/discord/data/companions.ts", "COMPANION_ACQUISITION_DATA").filter(Boolean),
   materials: readExportedArray("app/api/discord/data/materials.ts", "MATERIAL_ACQUISITION_DATA").filter(Boolean),
 };
