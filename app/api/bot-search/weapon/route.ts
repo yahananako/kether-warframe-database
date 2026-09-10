@@ -1,7 +1,43 @@
 import { NextRequest, NextResponse } from "next/server";
 import { WEAPON_ACQUISITION_DATA } from "../../discord/data/weapons";
+import { EQUIPMENT_CATALOG } from "../../../../data/equipmentCatalog.generated";
 
 type AnyWeaponRecord = Record<string, unknown>;
+
+function catalogRecordKey(value: string) {
+  return String(value || "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
+}
+
+function getWeaponRecords(): AnyWeaponRecord[] {
+  const records = new Map<string, AnyWeaponRecord>();
+
+  for (const record of (WEAPON_ACQUISITION_DATA as AnyWeaponRecord[]).filter(Boolean)) {
+    const key = String(record.key || catalogRecordKey(String(record.name || "")));
+    records.set(key, record);
+  }
+
+  for (const item of EQUIPMENT_CATALOG) {
+    const key = catalogRecordKey(item.englishName);
+    records.set(key, {
+      key,
+      name: `${item.chineseName} / ${item.englishName}`,
+      aliases: item.aliases,
+      weaponType: item.section,
+      weaponTypeKey: item.category,
+      series: / Prime$/i.test(item.englishName) ? "P版 / Prime" : item.section,
+      seriesKey: / Prime$/i.test(item.englishName) ? "prime" : item.category,
+      source: item.source,
+      parts: item.marketUrl ? "可開啟 Warframe Market 查看可交易套裝或部件。" : "依遊戲內來源取得或製作。",
+      tips: item.description,
+      notes: item.note,
+    });
+  }
+
+  return [...records.values()];
+}
 
 function normalize(value: unknown) {
   return String(value ?? "")
@@ -108,7 +144,7 @@ export async function GET(request: NextRequest) {
     });
   }
 
-  const records = (WEAPON_ACQUISITION_DATA as AnyWeaponRecord[])
+  const records = getWeaponRecords()
     .map((record) => {
       const searchable = getSearchValues(record);
 

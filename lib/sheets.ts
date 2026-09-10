@@ -1,3 +1,5 @@
+import { EQUIPMENT_CATALOG } from "../data/equipmentCatalog.generated";
+
 export type SheetRow = {
   section: string;
   chineseName: string;
@@ -10,6 +12,8 @@ export type SheetRow = {
   source: string;
   note: string;
   marketUrl: string;
+  imageUrl?: string;
+  aliases?: string[];
 };
 
 export const SHEET_ID = "1ll27z4P_9a9ly2HsxNJdOHW2mzTL8_BHUqLZUtxy9Lc";
@@ -245,6 +249,50 @@ function isLikelyMod(row: SheetRow): boolean {
   return modKeywords.some((keyword) => text.includes(keyword));
 }
 
+function normalizedEquipmentName(value: string): string {
+  return String(value || "")
+    .toLowerCase()
+    .replace(/[’']/g, "")
+    .replace(/[^a-z0-9\u3400-\u9fff]/g, "");
+}
+
+function mergeEquipmentCatalog(category: string, sheetRows: SheetRow[]): SheetRow[] {
+  const catalogRows = EQUIPMENT_CATALOG.filter((row) => row.category === category);
+
+  if (catalogRows.length === 0) {
+    return sheetRows.filter((row) => !isLikelyMod(row));
+  }
+
+  const cleanSheetRows = sheetRows.filter((row) => !isLikelyMod(row));
+  const sheetByEnglishName = new Map(
+    cleanSheetRows.map((row) => [normalizedEquipmentName(row.englishName), row]),
+  );
+  const catalogNames = new Set(
+    catalogRows.map((row) => normalizedEquipmentName(row.englishName)),
+  );
+
+  const mergedCatalogRows: SheetRow[] = catalogRows.map((catalogRow) => {
+    const sheetRow = sheetByEnglishName.get(
+      normalizedEquipmentName(catalogRow.englishName),
+    );
+
+    return {
+      ...catalogRow,
+      price:
+        sheetRow?.price && sheetRow.price !== "待更新"
+          ? sheetRow.price
+          : catalogRow.price,
+      owned: sheetRow?.owned || catalogRow.owned,
+    };
+  });
+
+  const additionalRows = cleanSheetRows.filter(
+    (row) => !catalogNames.has(normalizedEquipmentName(row.englishName)),
+  );
+
+  return [...mergedCatalogRows, ...additionalRows];
+}
+
 function normalizeRow(row: string[], category: string, section: string): SheetRow | null {
   const chineseName = String(row[0] || "").trim();
   const englishName = String(row[1] || "").trim();
@@ -327,7 +375,14 @@ export async function fetchSheetRows(category: string): Promise<{
   error?: string;
 }> {
   if (category !== "mods") {
-    return fetchOneSheet(category);
+    const result = await fetchOneSheet(category);
+    const rows = mergeEquipmentCatalog(category, result.rows);
+
+    return {
+      config: result.config,
+      rows,
+      error: rows.length > 0 ? undefined : result.error,
+    };
   }
 
   const sourceCategories = ["warframes", "primary", "secondary", "melee", "companions", "archwing"];

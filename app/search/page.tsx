@@ -33,7 +33,8 @@ function matchRow(row: SheetRow, query: string): boolean {
     row.tradeText,
     row.owned,
     row.source,
-    row.note
+    row.note,
+    ...(row.aliases || [])
   ]
     .join(" ")
     .toLowerCase();
