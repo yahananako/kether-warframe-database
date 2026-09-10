@@ -1,8 +1,8 @@
 {
-  "versionCode": 37,
-  "versionName": "3.0.7",
-  "apkUrl": "https://github.com/yahananako/kether-warframe-database/releases/download/app-v3.0.7/KETHER-Warframe-v3.0.7.apk",
-  "sha256": "a25bda9b30aac18a26566ff2291e6e2cf8fb5c8a740714e94cd338d14ffbb10f",
+  "versionCode": 38,
+  "versionName": "3.0.8",
+  "apkUrl": "https://github.com/yahananako/kether-warframe-database/releases/download/app-v3.0.8/KETHER-Warframe-v3.0.8.apk",
+  "sha256": "4572d1541eef8c1b19dea5f495c8985da91a8ac6c9eafde620c2cba4a015c188",
   "required": false,
-  "notes": "小希 BOT 搜尋只顯示唯一最佳結果；新增 Warframe Market 即時最低線上賣單、白金顯示與交易頁按鈕；補齊 APP 武器搜尋資料。"
+  "notes": "補齊 21 把赤毒武器系列（含赤毒屍鬼輪鋸）；小希 BOT 保持唯一最佳結果；新增已轉化赤毒玄骸的 Warframe Market 即時最低線上拍賣價與交易頁；同步網站、原始表格與 APP 搜尋資料。"
 }
