@@ -1,8 +1,8 @@
 {
-  "versionCode": 36,
-  "versionName": "3.0.6",
-  "apkUrl": "https://github.com/yahananako/kether-warframe-database/releases/download/app-v3.0.6/KETHER-Warframe-v3.0.6.apk",
-  "sha256": "cbf2e14f85ec2e40f3ef0d72944c8ddc7dc8db5e8e161857be03c9d18ce1342d",
+  "versionCode": 37,
+  "versionName": "3.0.7",
+  "apkUrl": "https://github.com/yahananako/kether-warframe-database/releases/download/app-v3.0.7/KETHER-Warframe-v3.0.7.apk",
+  "sha256": "a25bda9b30aac18a26566ff2291e6e2cf8fb5c8a740714e94cd338d14ffbb10f",
   "required": false,
-  "notes": "小希 BOT 中文／別名精確搜尋只顯示最佳結果；啟動畫面與 APP 圖示改用透明氏族 Logo；電波局與午夜電波完整繁體中文化。"
+  "notes": "小希 BOT 搜尋只顯示唯一最佳結果；新增 Warframe Market 即時最低線上賣單、白金顯示與交易頁按鈕；補齊 APP 武器搜尋資料。"
 }
