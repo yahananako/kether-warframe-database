@@ -1,7 +1,9 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import type { SheetRow } from "../lib/sheets"; import { fetchUserOwnedItems, toggleUserOwnedItem } from "../lib/userOwnedClient";
+import type { SheetRow } from "../lib/sheets";
+import { classifyDatabaseRow } from "../data/categoryTaxonomy";
+import { fetchUserOwnedItems, toggleUserOwnedItem } from "../lib/userOwnedClient";
 
 type FilterMode = "all" | "owned" | "missing" | "priced" | "unpriced";
 type SortMode = "none" | "priceHigh" | "priceLow" | "name";
@@ -127,24 +129,38 @@ export default function DataTable({
     return rows.map((row) => {
       const key = itemKeyFromRow(row);
       const owned = key in ownedMap ? ownedMap[key] : textOwned(row.owned);
+      const classification = classifyDatabaseRow(category, row);
 
       return {
         ...row,
         itemKey: key,
-        personalOwned: owned
+        personalOwned: owned,
+        classificationKey: classification.key,
+        classification: classification.label,
+        classificationDescription: classification.description,
+        classificationAccent: classification.accent,
       };
     });
-  }, [rows, ownedMap]);
+  }, [rows, ownedMap, category]);
 
   const sectionStats = useMemo(() => {
-    const map = new Map<string, { section: string; total: number; priced: number; owned: number }>();
+    const map = new Map<string, {
+      section: string;
+      description: string;
+      accent: string;
+      total: number;
+      priced: number;
+      owned: number;
+    }>();
 
     for (const row of rowsWithOwned) {
-      const key = row.section || "未分類";
+      const key = row.classification || "未分類";
 
       if (!map.has(key)) {
         map.set(key, {
           section: key,
+          description: row.classificationDescription,
+          accent: row.classificationAccent,
           total: 0,
           priced: 0,
           owned: 0
@@ -157,7 +173,7 @@ export default function DataTable({
       if (row.personalOwned) current.owned += 1;
     }
 
-    return Array.from(map.values()).sort((a, b) => b.total - a.total);
+    return Array.from(map.values());
   }, [rowsWithOwned]);
 
   const sections = sectionStats.map((item) => item.section);
@@ -165,6 +181,7 @@ export default function DataTable({
   const filteredRows = useMemo(() => {
     let result = rowsWithOwned.filter((row) => {
       const text = [
+        row.classification,
         row.section,
         row.chineseName,
         row.englishName,
@@ -178,7 +195,7 @@ export default function DataTable({
       ].join(" ").toLowerCase();
 
       const matchQuery = text.includes(query.trim().toLowerCase());
-      const matchSection = section === "all" || row.section === section;
+      const matchSection = section === "all" || row.classification === section;
       const priced = hasPrice(row.price);
 
       const matchFilter =
@@ -299,38 +316,49 @@ export default function DataTable({
   )}
       </section>
 
-      <section className="section-stats-panel">
+      <section className="database-classification-panel" aria-label="資料分類導覽">
+        <div className="database-classification-heading">
+          <span>KETHER CATEGORY MAP</span>
+          <div>
+            <h2>分類導覽</h2>
+            <p>選擇分類後，搜尋、價格與個人持有進度會一起套用。</p>
+          </div>
+        </div>
+
+        <div className="section-stats-panel">
         <button
-          className={section === "all" ? "section-stat-card is-active" : "section-stat-card"}
+          className={section === "all" ? "section-stat-card is-active accent-all" : "section-stat-card accent-all"}
           onClick={() => setSection("all")}
         >
-          <span>全部區塊</span>
+          <span>全部分類</span>
           <strong>{rowsWithOwned.length}</strong>
           <small>有價格 {pricedCount}｜已購買 {ownedCount}</small>
         </button>
 
         {sectionStats.map((item) => (
           <button
-            className={section === item.section ? "section-stat-card is-active" : "section-stat-card"}
+            className={`${section === item.section ? "section-stat-card is-active" : "section-stat-card"} accent-${item.accent}`}
             key={item.section}
             onClick={() => setSection(item.section)}
           >
             <span>{item.section}</span>
             <strong>{item.total}</strong>
+            <em>{item.description}</em>
             <small>有價格 {item.priced}｜已購買 {item.owned}</small>
           </button>
         ))}
+        </div>
       </section>
 
       <section className="db-tool-panel enhanced-tools">
         <input
-          placeholder="搜尋區塊 / 中文名 / 英文名 / 用途 / 價格..."
+          placeholder="搜尋分類 / 中文名 / 英文名 / 用途 / 價格..."
           value={query}
           onChange={(event) => setQuery(event.target.value)}
         />
 
         <select className="section-select" value={section} onChange={(event) => setSection(event.target.value)}>
-          <option value="all">全部區塊</option>
+          <option value="all">全部分類</option>
           {sections.map((item) => (
             <option value={item} key={item}>{item}</option>
           ))}
@@ -369,7 +397,7 @@ export default function DataTable({
             <h2>資料表</h2>
             <p>
               目前顯示 {filteredRows.length} / {rowsWithOwned.length} 筆資料。
-              區塊 {sections.length} 個，有價格 {pricedCount} 筆，個人已購買 {ownedCount} 筆。
+              分類 {sections.length} 個，有價格 {pricedCount} 筆，個人已購買 {ownedCount} 筆。
             </p>
           </div>
           <span>Discord 個人進度</span>
@@ -377,7 +405,7 @@ export default function DataTable({
 
         <div className="db-table desktop-table">
           <div className="db-row db-head">
-            <span>區塊</span>
+            <span>分類</span>
             <span>中文名</span>
             <span>英文名</span>
             <span>用途 / 說明</span>
@@ -392,7 +420,12 @@ export default function DataTable({
 
             return (
               <div className="db-row" key={`${row.section}-${row.englishName}-${index}`}>
-                <span><b className="section-pill">{row.section || "未分類"}</b></span>
+                <span>
+                  <b className={`section-pill accent-${row.classificationAccent}`}>{row.classification}</b>
+                  {row.section && row.section !== row.classification ? (
+                    <small className="section-source-label">{row.section}</small>
+                  ) : null}
+                </span>
                 <span>
                   <span className="equipment-name-cell">
                     {row.imageUrl && (
@@ -447,7 +480,10 @@ export default function DataTable({
 
             return (
               <article className="mobile-data-card" key={`${row.section}-${row.englishName}-mobile-${index}`}>
-                <b className="section-pill">{row.section || "未分類"}</b>
+                <div className="mobile-classification-row">
+                  <b className={`section-pill accent-${row.classificationAccent}`}>{row.classification}</b>
+                  {row.section && row.section !== row.classification ? <small>{row.section}</small> : null}
+                </div>
                 <div className="mobile-equipment-heading">
                   {row.imageUrl && (
                     <img
@@ -489,7 +525,7 @@ export default function DataTable({
         {filteredRows.length === 0 && (
           <div className="empty-state">
             <h2>沒有找到資料</h2>
-            <p>請調整搜尋字、區塊或篩選條件。</p>
+            <p>請調整搜尋字、分類或篩選條件。</p>
           </div>
         )}
       </section>

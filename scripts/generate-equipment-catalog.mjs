@@ -245,7 +245,7 @@ function archwingSection(item) {
   if (item.category === "Arch-Melee") return "曲翼近戰武器";
   if (["Mausolon", "Cortege", "Morgha"].includes(item.name)) return "曲翼槍／亡靈武器";
   if (item.category === "Arch-Gun") return "曲翼槍";
-  if (["Voidrig", "Bonewidow"].includes(item.name)) return "亡靈機甲";
+  if (["Voidrig", "Bonewidow"].includes(item.name)) return "亡骸機甲";
   return "亡靈專屬武器";
 }
 
@@ -392,7 +392,7 @@ async function main() {
       };
     })
     .sort((a, b) => {
-      const sectionOrder = ["曲翼", "曲翼槍", "曲翼槍／亡靈武器", "曲翼近戰武器", "亡靈機甲", "亡靈專屬武器"];
+      const sectionOrder = ["曲翼", "曲翼槍", "曲翼槍／亡靈武器", "曲翼近戰武器", "亡骸機甲", "亡靈專屬武器"];
       const sectionDiff = sectionOrder.indexOf(a.section) - sectionOrder.indexOf(b.section);
       return sectionDiff || a.englishName.localeCompare(b.englishName);
     });

@@ -36,31 +36,31 @@ export const SHEET_GIDS: Record<string, { gid: string; sheetName: string; title:
     gid: "1365606609",
     sheetName: "主要武器",
     title: "主要武器",
-    subtitle: "主要武器資料、交易價格與市場連結。"
+    subtitle: "主要武器依標準、Prime、赤毒、教條與應感系列分類，附交易價格與市場連結。"
   },
   secondary: {
     gid: "1587192708",
     sheetName: "次要武器",
     title: "次要武器",
-    subtitle: "次要武器資料、交易價格與市場連結。"
+    subtitle: "次要武器依標準、Prime、赤毒、教條與應感系列分類，附交易價格與市場連結。"
   },
   melee: {
     gid: "1282903836",
     sheetName: "近戰武器",
     title: "近戰武器",
-    subtitle: "近戰武器資料、交易價格與市場連結。"
+    subtitle: "近戰武器依標準、Prime、赤毒、教條與應感系列分類，附交易價格與市場連結。"
   },
   companions: {
     gid: "674918338",
     sheetName: "同伴",
     title: "同伴",
-    subtitle: "同伴、寵物與相關裝備資料。"
+    subtitle: "守護、恐鳥、獵犬、庫狛、庫娃、擬狐獸、孤生獸與同伴武器分類資料。"
   },
   archwing: {
     gid: "1952688920",
     sheetName: "曲翼",
     title: "曲翼",
-    subtitle: "曲翼、曲翼武器、亡靈骸甲與相關資料。"
+    subtitle: "曲翼、曲翼槍、曲翼近戰、亡骸機甲與專屬武器分類資料。"
   },
   mods: {
     gid: "2143967540",

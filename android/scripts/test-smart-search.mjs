@@ -68,6 +68,13 @@ const kuvaGhoulsaw = search("赤毒屍鬼輪鋸");
 assert.equal(kuvaGhoulsaw.length, 1);
 assert.equal(kuvaGhoulsaw[0]?.en, "Kuva Ghoulsaw");
 
+assert.equal(search("擬狐獸")[0]?.en, "Vulpaphyla");
+assert.equal(search("孤生獸")[0]?.en, "Predasite");
+assert.equal(search("Crescent 擬狐獸")[0]?.en, "Crescent Vulpaphyla");
+assert.equal(search("Vizier 孤生獸")[0]?.en, "Vizier Predasite");
+assert.equal(search("骨寡婦")[0]?.en, "Bonewidow");
+assert.equal(search("虛空魂")[0]?.en, "Voidrig");
+
 const tradeableWeapons = window.KETHER_SEARCH_DATA.weapons.filter(
   (item) => item?.marketUrl,
 );

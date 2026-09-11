@@ -11,13 +11,28 @@ const NOTICE_STORAGE_KEY = "kether-home-new-notice-read-version";
  * 使用者讀過目前版本後，紅點會消失。
  * 下次公告內容更新，版本改掉，紅點才會重新出現。
  */
-const NOTICES_VERSION = "kuva-weapons-v2.6.1-2026-09-10";
+const NOTICES_VERSION = "live-taxonomy-v2.6.2-2026-09-11";
 
 const notices = [
   {
     tag: "版本",
-    title: "KETHER V2.6.1 已上線",
-    body: "赤毒武器系列已同步到原始表格、網站、小希 BOT 與 Android APP。",
+    title: "KETHER V2.6.2 已上線",
+    body: "電波局獨立頁面、五大裝備分類與同伴／亡骸機甲資料已同步至網站、表格、BOT 與 Android APP。",
+  },
+  {
+    tag: "電波局",
+    title: "12 座情報站各自成頁",
+    body: "循環、虛空商人、裂縫、入侵、突擊、執政官、警報與新聞都能從區塊直接進入完整頁面。",
+  },
+  {
+    tag: "分類",
+    title: "五大裝備頁重新分類",
+    body: "主要、次要、近戰、同伴與曲翼加入清楚的系列篩選與分類標籤。",
+  },
+  {
+    tag: "補齊",
+    title: "同伴與亡骸機甲資料補齊",
+    body: "新增擬狐獸、孤生獸分類，曲翼頁明確列出骨寡婦與虛空魂。",
   },
   {
     tag: "赤毒",

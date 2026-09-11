@@ -5,6 +5,11 @@ import { KETHER_APP_VERSION, KETHER_BOT_VERSION } from "../../data/siteVersion";
 const updates = [
   {
     version: KETHER_APP_VERSION,
+    title: "電波局與五大裝備分類改版",
+    content: "12 座即時情報站皆有獨立美化頁面；主要、次要、近戰、同伴與曲翼加入分類導覽，並補齊擬狐獸、孤生獸、骨寡婦與虛空魂。",
+  },
+  {
+    version: KETHER_APP_VERSION,
     title: "赤毒武器系列同步完成",
     content: "21 把赤毒武器已同步到 Google Sheets、網站、小希 BOT 與 Android APP，並加入已轉化玄骸即時拍賣價及交易頁。",
   },

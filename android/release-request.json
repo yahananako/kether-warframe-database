@@ -1,5 +1,5 @@
 {
-  "versionName": "3.0.8",
-  "versionCode": 38,
-  "releaseNotes": "補齊 21 把赤毒武器系列（含赤毒屍鬼輪鋸）；小希 BOT 保持唯一最佳結果；新增已轉化赤毒玄骸的 Warframe Market 即時最低線上拍賣價與交易頁；同步網站、原始表格與 APP 搜尋資料。"
+  "versionName": "3.0.9",
+  "versionCode": 39,
+  "releaseNotes": "電波局 12 座情報站各自新增美化獨立頁面；主要、次要、近戰、同伴與曲翼完成分類；同伴補齊擬狐獸與孤生獸，曲翼補齊骨寡婦與虛空魂；同步網站、Google Sheets、小希 BOT 與 APP 搜尋資料。"
 }

@@ -6,9 +6,9 @@ import { Bell, X, Sparkles, ExternalLink } from "lucide-react";
 
 const notices = [
   {
-    version: "V2.6.1",
-    title: "赤毒武器系列同步完成",
-    content: "21 把赤毒武器已同步到表格、網站、小希 BOT 與 Android APP；查詢附已轉化玄骸拍賣價與交易頁。"
+    version: "V2.6.2",
+    title: "電波局與五大分類同步完成",
+    content: "電波局 12 座情報站皆有獨立頁面；主要、次要、近戰、同伴、曲翼重新分類，並補齊擬狐獸、孤生獸、骨寡婦與虛空魂。"
   },
   {
     version: "修繕",

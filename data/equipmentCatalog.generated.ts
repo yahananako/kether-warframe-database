@@ -3472,7 +3472,7 @@ export const EQUIPMENT_CATALOG: EquipmentCatalogRow[] = [
   },
   {
     "category": "archwing",
-    "section": "亡靈機甲",
+    "section": "亡骸機甲",
     "chineseName": "骨寡婦",
     "englishName": "Bonewidow",
     "description": "這架令人聞風喪膽的亡骸機甲是以紀念源拓氏女主所塑造的。是一架強悍的前線機甲，其護甲和生命值均優於護盾。骨寡婦能夠抓取並扔擲敵人、部署重裝盾牌強化個體防禦，還可以裝備巨刃砍穿敵人。",
@@ -3497,7 +3497,7 @@ export const EQUIPMENT_CATALOG: EquipmentCatalogRow[] = [
   },
   {
     "category": "archwing",
-    "section": "亡靈機甲",
+    "section": "亡骸機甲",
     "chineseName": "虛空魂",
     "englishName": "Voidrig",
     "description": "雖毫不花俏，但能把事情搞定後，再完成更多的目標。裝有了電化護甲，這架粗製但已達堪用的機甲，能靠大批的炸藥使敵人在戰場上深陷險境。",
