@@ -69,6 +69,8 @@ jobs:
 
       - name: 設定 Android SDK
         uses: android-actions/setup-android@v3
+        with:
+          packages: platform-tools
 
       - name: 安裝 Android 建置工具
         run: sdkmanager "platforms;android-35" "build-tools;35.0.0"
