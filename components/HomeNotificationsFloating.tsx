@@ -6,9 +6,9 @@ import { Bell, X, Sparkles, ExternalLink } from "lucide-react";
 
 const notices = [
   {
-    version: "V2.6.3",
-    title: "戰甲詳情與系列任務同步完成",
-    content: "65 位一般戰甲皆有技能、來源、Prime 行情與獨立配裝頁；系列任務故事書同步至網站與 Android APP。"
+    version: "V2.6.4",
+    title: "Android APP 下載器修復",
+    content: "APP 3.0.11 改用 Android 系統下載器並顯示真實進度；若下載失敗，可一鍵切換瀏覽器下載。"
   },
   {
     version: "修繕",

@@ -1,5 +1,5 @@
 {
-  "versionName": "3.0.10",
-  "versionCode": 40,
-  "releaseNotes": "新增 65 位一般戰甲的獨立技能、取得來源、Prime 即時行情與配裝頁；加入六條系列任務故事航路；補進 Follie、Nokko、Oraxia、Sirius & Orion、Uriel；APP 頁尾改為預設收合快速航標，修正無 Prime 戰甲的交易連結，並更新 Android SDK 建置流程。"
+  "versionName": "3.0.11",
+  "versionCode": 41,
+  "releaseNotes": "修正 APP 更新下載卡住：改用 Android 系統下載器並顯示真實進度；下載完成自動驗證 SHA256 並開啟安裝器；若系統下載失敗，可一鍵改用瀏覽器下載。"
 }

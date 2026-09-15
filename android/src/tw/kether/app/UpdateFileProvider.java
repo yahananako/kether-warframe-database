@@ -30,8 +30,17 @@ public class UpdateFileProvider extends ContentProvider {
     @Override public Cursor query(Uri uri, String[] projection, String selection, String[] args, String order) {
         try {
             File file = updateFile(uri);
-            MatrixCursor cursor = new MatrixCursor(new String[] { OpenableColumns.DISPLAY_NAME, OpenableColumns.SIZE });
-            cursor.addRow(new Object[] { "KETHER-Warframe-update.apk", file.length() });
+            String[] columns = projection == null || projection.length == 0
+                ? new String[] { OpenableColumns.DISPLAY_NAME, OpenableColumns.SIZE }
+                : projection;
+            Object[] row = new Object[columns.length];
+            for (int index = 0; index < columns.length; index++) {
+                if (OpenableColumns.DISPLAY_NAME.equals(columns[index])) row[index] = "KETHER-Warframe-update.apk";
+                else if (OpenableColumns.SIZE.equals(columns[index])) row[index] = file.length();
+                else row[index] = null;
+            }
+            MatrixCursor cursor = new MatrixCursor(columns);
+            cursor.addRow(row);
             return cursor;
         } catch (Exception ignored) { return null; }
     }
