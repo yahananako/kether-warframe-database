@@ -1,8 +1,8 @@
 {
-  "versionCode": 40,
-  "versionName": "3.0.10",
-  "apkUrl": "https://github.com/yahananako/kether-warframe-database/releases/download/app-v3.0.10/KETHER-Warframe-v3.0.10.apk",
-  "sha256": "9e89dd5cfd68a2425912c25f1dd408a45a471b9e538f4b3934090ac0196473fd",
+  "versionCode": 41,
+  "versionName": "3.0.11",
+  "apkUrl": "https://github.com/yahananako/kether-warframe-database/releases/download/app-v3.0.11/KETHER-Warframe-v3.0.11.apk",
+  "sha256": "499daed2da5bf89374ee15c82b5074618942971b4e189c887c7a177ecad87280",
   "required": false,
-  "notes": "新增 65 位一般戰甲的獨立技能、取得來源、Prime 即時行情與配裝頁；加入六條系列任務故事航路；補進 Follie、Nokko、Oraxia、Sirius & Orion、Uriel；APP 頁尾改為預設收合快速航標，修正無 Prime 戰甲的交易連結，並更新 Android SDK 建置流程。"
+  "notes": "修正 APP 更新下載卡住：改用 Android 系統下載器並顯示真實進度；下載完成自動驗證 SHA256 並開啟安裝器；若系統下載失敗，可一鍵改用瀏覽器下載。"
 }
