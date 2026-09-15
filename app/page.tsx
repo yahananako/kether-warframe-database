@@ -209,7 +209,7 @@ export default function HomeNewPage() {
                   </li>
                   <li>
                     <em>目前資料總數</em>
-                    <b>一般戰甲 60 位＋Prime 專頁</b>
+                    <b>一般戰甲 65 位＋Prime 專頁</b>
                   </li>
                   <li>
                     <em>同步狀態</em>
@@ -223,9 +223,9 @@ export default function HomeNewPage() {
 
                 <ul className="home-new-notebook-list">
                   <li>戰甲檔案館已拆分為「一般戰甲」與「Prime 戰甲」兩座獨立頁面。</li>
-                  <li>一般戰甲收錄 60 位，提供定位分類、圖片、故事與遊戲內入手條件。</li>
+                  <li>一般戰甲收錄 65 位，提供定位分類、圖片、技能、故事與遊戲內入手條件。</li>
                   <li>Prime 戰甲獨立顯示白金價格、交易連結與個人持有資料。</li>
-                  <li>故事書主線與支線皆採任務專屬封面，不再共用戰甲圖片。</li>
+                  <li>故事書新增系列任務航路，主線、支線與系列索引皆可獨立閱讀。</li>
                   <li>資料價格每日 04:00 同步；若顯示異常，請重新整理或確認最新部署。</li>
                 </ul>
               </article>

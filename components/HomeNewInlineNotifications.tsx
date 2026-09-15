@@ -11,13 +11,13 @@ const NOTICE_STORAGE_KEY = "kether-home-new-notice-read-version";
  * 使用者讀過目前版本後，紅點會消失。
  * 下次公告內容更新，版本改掉，紅點才會重新出現。
  */
-const NOTICES_VERSION = "live-taxonomy-v2.6.2-2026-09-11";
+const NOTICES_VERSION = "warframe-dossiers-v2.6.3-2026-09-15";
 
 const notices = [
   {
     tag: "版本",
-    title: "KETHER V2.6.2 已上線",
-    body: "電波局獨立頁面、五大裝備分類與同伴／亡骸機甲資料已同步至網站、表格、BOT 與 Android APP。",
+    title: "KETHER V2.6.3 已上線",
+    body: "戰甲獨立詳情／配裝頁、系列任務故事書與 Android 3.0.10 已同步完成。",
   },
   {
     tag: "電波局",
@@ -47,7 +47,7 @@ const notices = [
   {
     tag: "戰甲",
     title: "一般戰甲檔案館開放",
-    body: "已收錄 60 位一般戰甲，包含圖片、五種定位、遊戲內故事與入手條件。",
+    body: "已收錄 65 位一般戰甲，包含獨立技能、來源、Prime 行情與配裝頁。",
   },
   {
     tag: "Prime",
@@ -56,8 +56,8 @@ const notices = [
   },
   {
     tag: "故事",
-    title: "主線與支線專屬封面",
-    body: "故事書各篇章改用任務專屬封面，不再以主要圖片或戰甲圖片代替。",
+    title: "系列任務故事書",
+    body: "新增六條連續任務航路，可依因果順序讀完覺醒、夢與真相、新世戰爭、扎日曼與虛空前線。",
   },
   {
     tag: "同步",

@@ -5,6 +5,11 @@ import { KETHER_APP_VERSION, KETHER_BOT_VERSION } from "../../data/siteVersion";
 const updates = [
   {
     version: KETHER_APP_VERSION,
+    title: "系列任務故事書上線",
+    content: "主線與支線之外新增六條連續任務航路，網站與 Android APP 共用相同節點與閱讀順序。",
+  },
+  {
+    version: KETHER_APP_VERSION,
     title: "電波局與五大裝備分類改版",
     content: "12 座即時情報站皆有獨立美化頁面；主要、次要、近戰、同伴與曲翼加入分類導覽，並補齊擬狐獸、孤生獸、骨寡婦與虛空魂。",
   },
@@ -16,7 +21,7 @@ const updates = [
   {
     version: KETHER_APP_VERSION,
     title: "一般戰甲檔案館上線",
-    content: "收錄 60 位一般戰甲的圖片、五種定位、遊戲內故事與入手條件，並移除交易價格與市場連結。",
+    content: "收錄 65 位一般戰甲，並新增每位戰甲的技能、來源、Prime 行情與獨立配裝頁。",
   },
   {
     version: KETHER_APP_VERSION,
@@ -76,7 +81,7 @@ export default function NotificationsPage() {
           </div>
           <div className="summary-row">
             <span>一般戰甲收錄</span>
-            <b>60 位</b>
+            <b>65 位</b>
           </div>
           <div className="summary-row">
             <span>戰甲版本分頁</span>

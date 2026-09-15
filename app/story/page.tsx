@@ -11,10 +11,7 @@ import {
 } from "lucide-react";
 
 import HomeNewInlineMenu from "../../components/HomeNewInlineMenu";
-import {
-  STORY_BOOK_UPDATED_AT,
-  storyChapters,
-} from "../../data/storyFlow";
+import { STORY_BOOK_UPDATED_AT, storyChapters } from "../../data/storyFlow";
 import styles from "./story.module.css";
 
 export const metadata: Metadata = {
@@ -72,7 +69,10 @@ export default function StoryDirectoryPage() {
                 <dd>{STORY_BOOK_UPDATED_AT.slice(0, 7)}</dd>
               </div>
             </dl>
-            <Link className={styles.startReading} href={"/story/" + storyChapters[0].slug}>
+            <Link
+              className={styles.startReading}
+              href={"/story/" + storyChapters[0].slug}
+            >
               從序章開始閱讀
               <ArrowRight aria-hidden="true" />
             </Link>
@@ -104,13 +104,40 @@ export default function StoryDirectoryPage() {
           </div>
         </aside>
 
-        <section className={styles.readingGuide}>
-          <div><p className={styles.eyebrow}>SIDE STORY ARCHIVE</p><h2>主線之外，還有人等待被記住</h2><p>支線故事書完整收錄有獨立劇情的任務，並依故事年代排列；主線已出現的事件，在支線版會提供更詳細正文。</p></div>
-          <Link className={styles.startReading} href="/story/side">開啟支線故事書<ArrowRight aria-hidden="true" /></Link>
+        <section className={styles.readingShelves} aria-label="其他故事書">
+          <article className={styles.readingGuide}>
+            <div>
+              <p className={styles.eyebrow}>SIDE STORY ARCHIVE</p>
+              <h2>主線之外，還有人等待被記住</h2>
+              <p>
+                支線故事書完整收錄有獨立劇情的任務，並依故事年代排列；主線已出現的事件，在支線版會提供更詳細正文。
+              </p>
+            </div>
+            <Link className={styles.startReading} href="/story/side">
+              開啟支線故事書
+              <ArrowRight aria-hidden="true" />
+            </Link>
+          </article>
+          <article className={styles.readingGuide}>
+            <div>
+              <p className={styles.eyebrow}>QUEST SERIES ARCHIVE</p>
+              <h2>沿著同一條因果，把任務一路讀完</h2>
+              <p>
+                系列任務故事書把互相承接的主線與世界事件排成六條航路，適合想理解前置、後續與閱讀順序的
+                Tenno。
+              </p>
+            </div>
+            <Link className={styles.startReading} href="/story/series">
+              開啟系列任務故事書
+              <ArrowRight aria-hidden="true" />
+            </Link>
+          </article>
         </section>
 
-
-        <section className={styles.chapterDirectory} aria-labelledby="chapter-directory-title">
+        <section
+          className={styles.chapterDirectory}
+          aria-labelledby="chapter-directory-title"
+        >
           <header className={styles.directoryHeading}>
             <div>
               <p className={styles.eyebrow}>
@@ -119,7 +146,9 @@ export default function StoryDirectoryPage() {
               </p>
               <h2 id="chapter-directory-title">章節目錄</h2>
             </div>
-            <p>五張封面對應五大篇章；進入篇章後，可從卷內目錄選擇每一個獨立故事頁。</p>
+            <p>
+              五張封面對應五大篇章；進入篇章後，可從卷內目錄選擇每一個獨立故事頁。
+            </p>
           </header>
 
           <div className={styles.chapterGrid}>

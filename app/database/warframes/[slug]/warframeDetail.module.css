@@ -1,0 +1,567 @@
+.page {
+  min-height: 100vh;
+  padding: 18px;
+  color: #edf8ff;
+  background:
+    radial-gradient(
+      circle at 85% 3%,
+      rgba(67, 197, 234, 0.2),
+      transparent 30rem
+    ),
+    linear-gradient(145deg, #061019, #0c2230 48%, #07131c);
+}
+
+.shell {
+  width: min(1180px, 100%);
+  margin: auto;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 18px;
+  padding: 12px 0 24px;
+  border-bottom: 1px solid rgba(126, 211, 241, 0.17);
+}
+
+.topbar a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #dff7ff;
+  text-decoration: none;
+}
+.topbar a svg {
+  width: 17px;
+}
+.topbar span {
+  color: #7196a6;
+  font-size: 11px;
+  letter-spacing: 0.09em;
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 32px;
+  align-items: center;
+  min-height: 590px;
+  padding: 48px 0;
+}
+
+.heroCopy > p:first-child,
+.sectionHead p,
+.buildCta p,
+.buildHero p {
+  margin: 0;
+  color: #72dcff;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.19em;
+}
+.heroCopy h1,
+.buildHero h1 {
+  margin: 12px 0;
+  font-size: clamp(52px, 9vw, 104px);
+  line-height: 0.9;
+  letter-spacing: -0.055em;
+}
+.roleBadge {
+  display: inline-flex;
+  padding: 7px 11px;
+  border: 1px solid rgba(112, 220, 255, 0.35);
+  border-radius: 999px;
+  color: #9ceaff;
+  background: rgba(52, 179, 218, 0.08);
+  font-size: 12px;
+  font-weight: 800;
+}
+.description {
+  max-width: 680px;
+  margin: 20px 0 0;
+  color: #aec6d1;
+  font-size: 16px;
+  line-height: 1.85;
+}
+.heroActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin-top: 25px;
+}
+.heroActions a,
+.buildCta a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 46px;
+  padding: 0 17px;
+  border: 1px solid rgba(116, 220, 255, 0.28);
+  border-radius: 14px;
+  color: #eafbff;
+  background: #0e2c3a;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 900;
+}
+.heroActions a:first-child,
+.buildCta a {
+  border: 0;
+  color: #07141b;
+  background: linear-gradient(135deg, #65dff5, #f0cf7e);
+}
+.heroActions svg,
+.buildCta svg {
+  width: 16px;
+}
+
+.heroArt {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 510px;
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid rgba(129, 217, 247, 0.18);
+  border-radius: 34px 10px 34px 10px;
+  background: radial-gradient(
+    circle,
+    rgba(97, 204, 239, 0.22),
+    transparent 62%
+  );
+}
+.heroArt > div {
+  position: absolute;
+  width: 70%;
+  aspect-ratio: 1;
+  border: 1px solid rgba(112, 220, 255, 0.18);
+  border-radius: 50%;
+  box-shadow:
+    0 0 0 45px rgba(112, 220, 255, 0.025),
+    0 0 0 90px rgba(112, 220, 255, 0.018);
+}
+.heroArt img {
+  position: relative;
+  z-index: 1;
+  width: 90%;
+  height: 450px;
+  object-fit: contain;
+  filter: drop-shadow(0 25px 30px rgba(0, 0, 0, 0.55));
+}
+.heroArt figcaption {
+  position: absolute;
+  z-index: 2;
+  right: 16px;
+  bottom: 16px;
+  left: 16px;
+  padding: 11px 14px;
+  border-radius: 12px;
+  color: #a7c1cc;
+  background: rgba(4, 13, 19, 0.82);
+  font-size: 11px;
+  line-height: 1.55;
+  backdrop-filter: blur(8px);
+}
+
+.statGrid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 9px;
+  margin-bottom: 24px;
+}
+.statGrid article {
+  display: grid;
+  grid-template-columns: 22px 1fr;
+  gap: 3px 9px;
+  align-items: center;
+  padding: 15px;
+  border: 1px solid rgba(124, 211, 242, 0.15);
+  border-radius: 16px;
+  background: rgba(8, 27, 38, 0.76);
+}
+.statGrid svg {
+  grid-row: 1 / 3;
+  width: 20px;
+  color: #68d7f8;
+}
+.statGrid span {
+  color: #789caa;
+  font-size: 10px;
+}
+.statGrid strong {
+  font-size: 19px;
+}
+
+.section {
+  margin-bottom: 22px;
+  padding: 26px;
+  border: 1px solid rgba(124, 211, 242, 0.17);
+  border-radius: 24px;
+  background: rgba(7, 24, 35, 0.76);
+  box-shadow: 0 20px 55px rgba(0, 0, 0, 0.2);
+}
+.sectionHead {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 18px;
+  margin-bottom: 19px;
+}
+.sectionHead h2 {
+  margin: 7px 0 0;
+  font-size: 30px;
+}
+.sectionHead > span {
+  color: #7899a7;
+  font-size: 11px;
+}
+.abilityGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+.abilityGrid details {
+  overflow: hidden;
+  border: 1px solid rgba(122, 211, 242, 0.16);
+  border-radius: 16px;
+  background: #0a202d;
+}
+.abilityGrid summary {
+  display: grid;
+  grid-template-columns: 28px 42px 1fr 20px;
+  gap: 9px;
+  align-items: center;
+  min-height: 70px;
+  padding: 10px 14px;
+  cursor: pointer;
+  list-style: none;
+}
+.abilityGrid summary::-webkit-details-marker {
+  display: none;
+}
+.abilityGrid summary > span {
+  color: #68d7f8;
+  font-family: Georgia, serif;
+  font-size: 11px;
+}
+.abilityGrid summary img {
+  width: 38px;
+  height: 38px;
+  object-fit: contain;
+}
+.abilityGrid summary strong {
+  font-size: 16px;
+}
+.abilityGrid summary i {
+  color: #68d7f8;
+  font-size: 18px;
+  font-style: normal;
+}
+.abilityGrid details[open] summary i {
+  transform: rotate(45deg);
+}
+.abilityGrid details > p {
+  margin: 0;
+  padding: 0 16px 17px;
+  color: #abc3ce;
+  font-size: 13px;
+  line-height: 1.75;
+}
+.passive,
+.acquisition {
+  display: flex;
+  gap: 12px;
+  margin-top: 12px;
+  padding: 15px;
+  border: 1px solid rgba(238, 207, 126, 0.18);
+  border-radius: 15px;
+  background: rgba(238, 207, 126, 0.055);
+}
+.passive svg,
+.acquisition svg {
+  width: 20px;
+  flex: 0 0 20px;
+  color: #f0cf7e;
+}
+.passive strong {
+  color: #f0cf7e;
+}
+.passive p,
+.acquisition p {
+  margin: 4px 0 0;
+  color: #afc7d1;
+  line-height: 1.7;
+}
+
+.infoColumns {
+  display: grid;
+  grid-template-columns: 1.35fr 0.65fr;
+  gap: 18px;
+}
+.infoColumns > .section {
+  min-width: 0;
+}
+.componentList {
+  display: grid;
+  gap: 9px;
+  margin-top: 14px;
+}
+.componentList article {
+  padding: 14px;
+  border: 1px solid rgba(123, 210, 240, 0.13);
+  border-radius: 14px;
+  background: #0a202d;
+}
+.componentList h3 {
+  margin: 0 0 10px;
+  color: #e8cf8c;
+  font-size: 15px;
+}
+.componentList ul {
+  display: grid;
+  gap: 7px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.componentList li {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  color: #9ebac6;
+  font-size: 11px;
+}
+.componentList li b {
+  flex: 0 0 auto;
+  color: #72dcff;
+}
+.componentList article > p,
+.muted {
+  margin: 0;
+  color: #7696a3;
+  font-size: 11px;
+}
+
+.market :global(.warframe-market-card) {
+  display: grid;
+  align-content: start;
+  gap: 10px;
+  min-height: 100%;
+  padding: 26px;
+  border: 1px solid rgba(238, 207, 126, 0.22);
+  border-radius: 24px;
+  background: linear-gradient(
+    145deg,
+    rgba(41, 36, 27, 0.82),
+    rgba(7, 24, 35, 0.88)
+  );
+  box-shadow: 0 20px 55px rgba(0, 0, 0, 0.2);
+}
+.market :global(.warframe-market-card) > span {
+  color: #f0cf7e;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.14em;
+}
+.market :global(.warframe-market-card) h2 {
+  margin: 0;
+  font-size: 25px;
+}
+.market :global(.warframe-market-card) strong {
+  color: #fff;
+  font-size: 32px;
+}
+.market :global(.warframe-market-card) p {
+  color: #a8bdc5;
+  line-height: 1.7;
+}
+.market :global(.warframe-market-card) a {
+  display: inline-flex;
+  justify-content: center;
+  padding: 12px;
+  border-radius: 12px;
+  color: #07141b;
+  background: #f0cf7e;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.lore {
+  --lore-accent: #70dcff;
+  display: grid;
+  grid-template-columns: 34px 1fr;
+  gap: 15px;
+  padding: 18px;
+  border-left: 3px solid var(--lore-accent);
+  background: rgba(255, 255, 255, 0.025);
+}
+.lore > svg {
+  color: var(--lore-accent);
+}
+.lore span {
+  color: var(--lore-accent);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+}
+.lore h3 {
+  margin: 6px 0;
+  font-size: 25px;
+}
+.lore strong {
+  color: #dceaf0;
+  line-height: 1.7;
+}
+.lore p {
+  color: #a9c0ca;
+  line-height: 1.8;
+}
+.lore a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #72dcff;
+}
+.lore a svg {
+  width: 14px;
+}
+.emptyLore {
+  padding: 20px;
+  color: #789aa8;
+  background: #0a202d;
+}
+
+.buildCta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 25px;
+  margin: 35px 0 60px;
+  padding: 28px;
+  border: 1px solid rgba(122, 213, 244, 0.2);
+  border-radius: 26px;
+  background: linear-gradient(
+    135deg,
+    rgba(31, 105, 129, 0.25),
+    rgba(115, 86, 33, 0.15)
+  );
+}
+.buildCta h2 {
+  margin: 8px 0;
+  font-size: 28px;
+}
+.buildCta span {
+  color: #9db8c4;
+  line-height: 1.7;
+}
+.buildCta a {
+  flex: 0 0 auto;
+}
+.buildHero {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  align-items: center;
+  min-height: 380px;
+  padding: 35px 0;
+}
+.buildHero img {
+  width: 100%;
+  height: 330px;
+  object-fit: contain;
+  filter: drop-shadow(0 20px 25px rgba(0, 0, 0, 0.5));
+}
+.buildHero > div > span {
+  color: #94b7c5;
+}
+.buildNotice {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 18px;
+  padding: 14px 17px;
+  border: 1px solid rgba(241, 207, 125, 0.2);
+  border-radius: 15px;
+  background: rgba(241, 207, 125, 0.06);
+}
+.buildNotice svg {
+  width: 20px;
+  flex: 0 0 20px;
+  color: #f0cf7e;
+}
+.buildNotice p {
+  margin: 0;
+  color: #a9c0ca;
+  line-height: 1.6;
+}
+
+@media (max-width: 840px) {
+  .hero {
+    grid-template-columns: 1fr;
+    padding-top: 40px;
+  }
+  .heroArt {
+    min-height: 390px;
+  }
+  .heroArt img {
+    height: 350px;
+  }
+  .statGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .infoColumns {
+    grid-template-columns: 1fr;
+  }
+  .buildHero {
+    grid-template-columns: 1fr 220px;
+  }
+}
+
+@media (max-width: 600px) {
+  .page {
+    padding: 13px;
+  }
+  .topbar {
+    align-items: flex-start;
+  }
+  .topbar span {
+    text-align: right;
+  }
+  .hero {
+    gap: 16px;
+    min-height: 0;
+  }
+  .heroArt {
+    min-height: 360px;
+  }
+  .abilityGrid {
+    grid-template-columns: 1fr;
+  }
+  .statGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .section {
+    padding: 17px;
+  }
+  .sectionHead {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .buildCta {
+    align-items: stretch;
+    flex-direction: column;
+  }
+  .buildCta a {
+    width: 100%;
+  }
+  .buildHero {
+    grid-template-columns: 1fr;
+  }
+  .buildHero img {
+    height: 260px;
+  }
+  .componentList li {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}

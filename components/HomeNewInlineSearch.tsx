@@ -10,7 +10,7 @@ const searchItems = [
     label: "一般戰甲",
     source: "資料庫",
     type: "資料分類",
-    description: "查看 60 位一般戰甲的定位、圖片、故事與遊戲內入手條件。",
+    description: "查看 65 位一般戰甲的定位、技能、故事、取得方式與獨立配裝。",
     keywords: "warframe 一般戰甲 資料庫 入手條件 故事 database",
   },
   {

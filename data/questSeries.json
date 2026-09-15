@@ -1,0 +1,251 @@
+{
+  "updatedAt": "2026-09-15",
+  "series": [
+    {
+      "slug": "awakening-path",
+      "number": "S-01",
+      "title": "覺醒者之路",
+      "englishTitle": "PATH OF AWAKENING",
+      "era": "甦醒 → 走出地表",
+      "deck": "從冷凍艙醒來、擺脫 Vor，到第一次離開地面；這條路線替新 Tenno 串起最早期的世界觀。",
+      "accent": "#65d4ed",
+      "heroImage": "https://www-static.warframe.com/images/guide/quests/vor-key.jpg",
+      "episodes": [
+        {
+          "number": "01",
+          "title": "Tenno 覺醒",
+          "description": "Lotus 的聲音穿過長夢，Grineer 已在艙門外等待。",
+          "href": "/story/awakening/awakening"
+        },
+        {
+          "number": "02",
+          "title": "Vor 的戰利品",
+          "description": "奪回 Orbiter，也奪回替自己選擇方向的權利。",
+          "href": "/story/awakening/vors-prize"
+        },
+        {
+          "number": "03",
+          "title": "一朝醒來",
+          "description": "Grineer 的實驗喚醒 Infestation，星系的舊傷重新張開。",
+          "href": "/story/awakening/once-awake"
+        },
+        {
+          "number": "04",
+          "title": "曲翼",
+          "description": "從地表戰場飛進宇宙，Tenno 的航路正式展開。",
+          "href": "/story/awakening/archwing"
+        }
+      ]
+    },
+    {
+      "slug": "open-world-allies",
+      "number": "S-02",
+      "title": "三座邊境",
+      "englishTitle": "OPEN WORLD ALLIANCES",
+      "era": "Cetus → Fortuna → Deimos",
+      "deck": "始源星系的戰爭不只屬於軍團；Ostron、Solaris 與 Entrati 各自守著土地、債務與家。",
+      "accent": "#77c978",
+      "heroImage": "https://www-static.warframe.com/images/guide/quests/deimos-key.jpg",
+      "episodes": [
+        {
+          "number": "01",
+          "title": "Saya 的守夜",
+          "description": "在夜靈平野追索 Onkko 留下的答案。",
+          "href": "/story/awakening/sayas-vigil"
+        },
+        {
+          "number": "02",
+          "title": "索拉里斯之聲",
+          "description": "Fortuna 的債務帳本，點燃另一場反抗。",
+          "href": "/story/awakening/vox-solaris"
+        },
+        {
+          "number": "03",
+          "title": "Deimos 之心",
+          "description": "一個破碎家族維持著整個星系的虛空心跳。",
+          "href": "/story/awakening/heart-of-deimos"
+        }
+      ]
+    },
+    {
+      "slug": "dream-and-truth",
+      "number": "S-03",
+      "title": "夢與真相",
+      "englishTitle": "THE DREAM AND THE TRUTH",
+      "era": "Natah → Umbra",
+      "deck": "Lotus 是誰、Warframe 背後是誰、Tenno 又是誰——每一個答案都讓上一個答案碎裂。",
+      "accent": "#a98eea",
+      "heroImage": "https://www-static.warframe.com/images/guide/quests/seconddream-key.jpg",
+      "episodes": [
+        {
+          "number": "01",
+          "title": "Natah",
+          "description": "Lotus 不願回答的名字，從 Uranus 的深海浮出。",
+          "href": "/story/war-within/natah"
+        },
+        {
+          "number": "02",
+          "title": "第二場夢",
+          "description": "月球歸來，Warframe 背後真正的孩子睜開眼睛。",
+          "href": "/story/war-within/second-dream"
+        },
+        {
+          "number": "03",
+          "title": "內戰",
+          "description": "雙子女皇企圖奪走身體，Tenno 必須學會獨自站立。",
+          "href": "/story/war-within/war-within"
+        },
+        {
+          "number": "04",
+          "title": "Harrow 的枷鎖",
+          "description": "Rell 在無人理解的歲月裡，獨自守著門。",
+          "href": "/story/war-within/chains-of-harrow"
+        },
+        {
+          "number": "05",
+          "title": "背叛序章",
+          "description": "Lotus 離開王座，熟悉的聲音第一次沉默。",
+          "href": "/story/war-within/apostasy"
+        },
+        {
+          "number": "06",
+          "title": "犧牲",
+          "description": "Umbra 的記憶揭開 Warframe 計畫最殘酷的人性。",
+          "href": "/story/war-within/sacrifice"
+        }
+      ]
+    },
+    {
+      "slug": "new-war-cycle",
+      "number": "S-04",
+      "title": "新世戰爭紀事",
+      "englishTitle": "THE NEW WAR CYCLE",
+      "era": "前奏 → Narmer 戰後",
+      "deck": "Sentient 入侵、Narmer 統治與永恆主義，把一場戰爭變成關於選擇與醒來的長夜。",
+      "accent": "#df765f",
+      "heroImage": "https://www-static.warframe.com/images/guide/quests/newwar-key.jpg",
+      "episodes": [
+        {
+          "number": "01",
+          "title": "戰爭前奏",
+          "description": "Chimera、Erra 與 The Maker 讓所有人走進同一場欺騙。",
+          "href": "/story/new-war/prelude"
+        },
+        {
+          "number": "02",
+          "title": "入侵日",
+          "description": "Kahl、Veso 與 Teshin 從不同戰線看見星系崩落。",
+          "href": "/story/new-war/invasion"
+        },
+        {
+          "number": "03",
+          "title": "Narmer 的和平",
+          "description": "面罩消除痛苦，也消除自由。",
+          "href": "/story/new-war/narmer"
+        },
+        {
+          "number": "04",
+          "title": "永恆主義",
+          "description": "Operator 與 Drifter 是同一個選擇留下的兩個答案。",
+          "href": "/story/new-war/eternalism"
+        },
+        {
+          "number": "05",
+          "title": "太陽下的終局",
+          "description": "Ballas 要全星系見證的愛，終於走到盡頭。",
+          "href": "/story/new-war/finale"
+        },
+        {
+          "number": "06",
+          "title": "戰後餘波",
+          "description": "Veilbreaker 與 Jade Shadows 記錄勝利之後仍未停止的戰爭。",
+          "href": "/story/new-war/aftermath"
+        }
+      ]
+    },
+    {
+      "slug": "zariman-duviri",
+      "number": "S-05",
+      "title": "扎日曼雙生航路",
+      "englishTitle": "ZARIMAN AND DUVIRI",
+      "era": "失事之船 → 悖論王國",
+      "deck": "同一艘船、同一個孩子、兩種活下來的方式；Operator 與 Drifter 在虛空的兩岸重逢。",
+      "accent": "#58b8c9",
+      "heroImage": "https://www-static.warframe.com/images/guide/quests/angels-of-the-zariman-key.jpg",
+      "episodes": [
+        {
+          "number": "01",
+          "title": "Zariman Ten Zero",
+          "description": "一場失事把孩子留在虛空，也把整個故事劈成兩條可能。",
+          "href": "/story/origins/zariman"
+        },
+        {
+          "number": "02",
+          "title": "扎日曼的天使",
+          "description": "回到一切開始的船，面對沒有因勝利消失的創傷。",
+          "href": "/story/new-war/zariman-aftermath"
+        },
+        {
+          "number": "03",
+          "title": "渡域悖論",
+          "description": "Drifter 在自己創造的牢籠裡，重新學會做出選擇。",
+          "href": "/story/new-war/duviri"
+        }
+      ]
+    },
+    {
+      "slug": "void-war",
+      "number": "S-06",
+      "title": "虛空戰爭前線",
+      "englishTitle": "THE VOID WAR FRONT",
+      "era": "牆中低語 → 遠古和平",
+      "deck": "Albrecht 的鐘聲、1999 的末日與遠古和平的裂口，逐步把戰線拉向 Tau。",
+      "accent": "#d7a75a",
+      "heroImage": "https://www-static.warframe.com/images/guide/quests/whispers-key.jpg",
+      "episodes": [
+        {
+          "number": "01",
+          "title": "牆中低語",
+          "description": "Albrecht 留下的實驗室醒來，Murmur 開始穿過現實。",
+          "href": "/story/void-war/whispers"
+        },
+        {
+          "number": "02",
+          "title": "Cavia",
+          "description": "三個實驗動物替 Entrati 家族守住被遺棄的秘密。",
+          "href": "/story/void-war/cavia"
+        },
+        {
+          "number": "03",
+          "title": "Lotus Eaters",
+          "description": "海岸盡頭的聲音，將 Drifter 引向 1999。",
+          "href": "/story/void-war/lotus-eaters"
+        },
+        {
+          "number": "04",
+          "title": "The Hex",
+          "description": "六名 Protoframe 在末日前夜，等待另一種結局。",
+          "href": "/story/void-war/hex-arrival"
+        },
+        {
+          "number": "05",
+          "title": "關係改寫結局",
+          "description": "第一次必敗；第二次，理解彼此成為主線力量。",
+          "href": "/story/void-war/hex-finale"
+        },
+        {
+          "number": "06",
+          "title": "遠古和平",
+          "description": "進入和平崩解的現場，追索 Tau 戰爭真正的開端。",
+          "href": "/story/void-war/old-peace"
+        },
+        {
+          "number": "07",
+          "title": "現在的前線",
+          "description": "尚未結束的分支，把下一個答案留在航標之外。",
+          "href": "/story/void-war/current-frontier"
+        }
+      ]
+    }
+  ]
+}
