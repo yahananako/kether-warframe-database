@@ -1,5 +1,5 @@
 {
-  "versionName": "3.0.9",
-  "versionCode": 39,
-  "releaseNotes": "電波局 12 座情報站各自新增美化獨立頁面；主要、次要、近戰、同伴與曲翼完成分類；同伴補齊擬狐獸與孤生獸，曲翼補齊骨寡婦與虛空魂；同步網站、Google Sheets、小希 BOT 與 APP 搜尋資料。"
+  "versionName": "3.0.10",
+  "versionCode": 40,
+  "releaseNotes": "新增 65 位一般戰甲的獨立技能、取得來源、Prime 即時行情與配裝頁；加入六條系列任務故事航路；補進 Follie、Nokko、Oraxia、Sirius & Orion、Uriel；APP 頁尾改為預設收合快速航標，並修正無 Prime 戰甲的交易連結。"
 }

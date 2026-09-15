@@ -1,0 +1,138 @@
+.planner {
+  display: grid;
+  gap: 18px;
+}
+.heading {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 22px;
+  border: 1px solid rgba(124, 222, 255, 0.2);
+  border-radius: 22px;
+  background: rgba(6, 25, 36, 0.76);
+}
+.heading span,
+.group header span {
+  color: #70dcff;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.18em;
+}
+.heading h2,
+.group h3 {
+  margin: 7px 0;
+  color: #f2d78c;
+}
+.heading h2 {
+  font-size: 28px;
+}
+.heading p {
+  max-width: 720px;
+  margin: 0;
+  color: #9ebac6;
+  line-height: 1.75;
+}
+.heading button {
+  min-height: 42px;
+  padding: 0 15px;
+  border: 1px solid rgba(112, 220, 255, 0.35);
+  border-radius: 999px;
+  color: #dff8ff;
+  background: #0b2635;
+  font-weight: 800;
+}
+.priorityRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.priorityRow span {
+  padding: 8px 12px;
+  border-radius: 999px;
+  color: #dff8ff;
+  background: rgba(85, 196, 232, 0.11);
+  font-size: 12px;
+}
+.specialSlots,
+.arcaneGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+.group {
+  padding: 20px;
+  border: 1px solid rgba(124, 222, 255, 0.17);
+  border-radius: 22px;
+  background: rgba(6, 22, 32, 0.68);
+}
+.group header {
+  margin-bottom: 14px;
+}
+.group h3 {
+  font-size: 21px;
+}
+.modGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+.shardGrid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 10px;
+}
+.slot {
+  display: grid;
+  gap: 7px;
+  min-width: 0;
+  padding: 12px;
+  border: 1px solid rgba(121, 205, 234, 0.17);
+  border-radius: 15px;
+  background: #0b2330;
+}
+.slot > span {
+  color: #78b9d0;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+.slot select {
+  min-width: 0;
+  width: 100%;
+  padding: 10px 9px;
+  border: 1px solid rgba(120, 212, 244, 0.2);
+  border-radius: 10px;
+  color: #eefbff;
+  background: #071923;
+  font-size: 12px;
+}
+.savedNote {
+  margin: 0;
+  color: #7799a7;
+  font-size: 11px;
+  line-height: 1.7;
+}
+@media (max-width: 900px) {
+  .modGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .shardGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 620px) {
+  .heading {
+    align-items: stretch;
+    flex-direction: column;
+  }
+  .specialSlots,
+  .arcaneGrid,
+  .modGrid,
+  .shardGrid {
+    grid-template-columns: 1fr;
+  }
+  .heading button {
+    width: 100%;
+  }
+}

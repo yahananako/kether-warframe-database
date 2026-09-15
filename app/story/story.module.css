@@ -11,8 +11,16 @@
   min-height: 100vh;
   color: var(--book-ink);
   background:
-    radial-gradient(circle at 12% 3%, rgba(48, 162, 188, 0.14), transparent 34rem),
-    radial-gradient(circle at 88% 17%, rgba(146, 71, 140, 0.13), transparent 38rem),
+    radial-gradient(
+      circle at 12% 3%,
+      rgba(48, 162, 188, 0.14),
+      transparent 34rem
+    ),
+    radial-gradient(
+      circle at 88% 17%,
+      rgba(146, 71, 140, 0.13),
+      transparent 38rem
+    ),
     linear-gradient(180deg, #090d12 0%, #0c1219 38%, #080c11 100%);
 }
 
@@ -55,8 +63,11 @@
   border: 1px solid rgba(66, 197, 220, 0.45);
   border-radius: 13px 4px 13px 4px;
   color: #fff;
-  background:
-    linear-gradient(145deg, rgba(66, 197, 220, 0.95), rgba(112, 78, 191, 0.95));
+  background: linear-gradient(
+    145deg,
+    rgba(66, 197, 220, 0.95),
+    rgba(112, 78, 191, 0.95)
+  );
   box-shadow: 0 9px 28px rgba(30, 125, 153, 0.3);
   font-family: Georgia, serif;
   font-size: 20px;
@@ -264,8 +275,11 @@
   padding: 17px;
   border: 1px solid rgba(200, 155, 79, 0.28);
   border-radius: 17px;
-  background:
-    linear-gradient(120deg, rgba(200, 155, 79, 0.1), rgba(255, 255, 255, 0.035));
+  background: linear-gradient(
+    120deg,
+    rgba(200, 155, 79, 0.1),
+    rgba(255, 255, 255, 0.035)
+  );
 }
 
 .directoryNotice > svg,
@@ -287,6 +301,138 @@
   color: var(--book-muted);
   font-size: 11px;
   line-height: 1.65;
+}
+
+.readingShelves {
+  display: grid;
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.readingGuide {
+  display: grid;
+  gap: 22px;
+  align-items: center;
+  padding: 26px;
+  border: 1px solid var(--book-line);
+  border-radius: 22px 7px 22px 7px;
+  background: linear-gradient(
+    135deg,
+    rgba(66, 197, 220, 0.09),
+    rgba(200, 155, 79, 0.06)
+  );
+}
+
+.readingGuide h2 {
+  margin: 8px 0;
+  font-family: Georgia, "Noto Serif TC", serif;
+  font-size: clamp(25px, 6vw, 38px);
+  font-weight: 500;
+}
+
+.readingGuide > div > p:last-child {
+  margin: 0;
+  color: var(--book-muted);
+  font-size: 12px;
+  line-height: 1.75;
+}
+
+.readingGuide .startReading {
+  justify-self: start;
+}
+
+.seriesTimeline {
+  width: min(900px, 100%);
+  margin: 70px auto 90px;
+}
+
+.seriesTimeline > header p {
+  margin: 0;
+  color: var(--chapter-accent);
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: 0.16em;
+}
+
+.seriesTimeline > header h2 {
+  margin: 7px 0;
+  font-family: Georgia, "Noto Serif TC", serif;
+  font-size: clamp(34px, 8vw, 56px);
+  font-weight: 500;
+}
+
+.seriesTimeline > header span {
+  color: var(--book-muted);
+  font-size: 11px;
+}
+
+.seriesTimeline > div {
+  position: relative;
+  display: grid;
+  gap: 11px;
+  margin-top: 26px;
+}
+
+.seriesTimeline > div::before {
+  content: "";
+  position: absolute;
+  top: 24px;
+  bottom: 24px;
+  left: 23px;
+  width: 1px;
+  background: color-mix(in srgb, var(--chapter-accent) 55%, transparent);
+}
+
+.seriesTimeline a {
+  position: relative;
+  display: grid;
+  grid-template-columns: 48px 1fr 20px;
+  gap: 14px;
+  align-items: center;
+  padding: 17px;
+  border: 1px solid var(--book-line);
+  border-radius: 18px 6px 18px 6px;
+  color: var(--book-ink);
+  background: rgba(17, 24, 33, 0.94);
+  text-decoration: none;
+}
+
+.seriesTimeline a:hover {
+  border-color: var(--chapter-accent);
+  transform: translateX(3px);
+}
+
+.seriesTimeline a > span {
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border: 1px solid var(--chapter-accent);
+  border-radius: 50%;
+  color: var(--chapter-accent);
+  background: var(--book-bg);
+  font-family: Georgia, serif;
+  font-size: 11px;
+}
+
+.seriesTimeline h3 {
+  margin: 0;
+  font-family: Georgia, "Noto Serif TC", serif;
+  font-size: 21px;
+  font-weight: 500;
+}
+
+.seriesTimeline p {
+  margin: 5px 0 0;
+  color: var(--book-muted);
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+.seriesTimeline a > svg {
+  width: 17px;
+  color: var(--chapter-accent);
 }
 
 .chapterDirectory {
@@ -354,7 +500,11 @@
   inset: 0;
   background:
     linear-gradient(180deg, transparent 25%, rgba(7, 11, 15, 0.87)),
-    linear-gradient(90deg, color-mix(in srgb, var(--card-accent) 22%, transparent), transparent);
+    linear-gradient(
+      90deg,
+      color-mix(in srgb, var(--card-accent) 22%, transparent),
+      transparent
+    );
 }
 
 .chapterCardImage img {
@@ -522,9 +672,18 @@
   inset: 0;
   z-index: -1;
   background:
-    linear-gradient(90deg, rgba(4, 7, 10, 0.97) 0%, rgba(5, 8, 12, 0.72) 55%, rgba(5, 8, 12, 0.35)),
+    linear-gradient(
+      90deg,
+      rgba(4, 7, 10, 0.97) 0%,
+      rgba(5, 8, 12, 0.72) 55%,
+      rgba(5, 8, 12, 0.35)
+    ),
     linear-gradient(0deg, rgba(4, 7, 10, 0.92), transparent 55%),
-    linear-gradient(120deg, color-mix(in srgb, var(--chapter-accent) 24%, transparent), transparent 48%);
+    linear-gradient(
+      120deg,
+      color-mix(in srgb, var(--chapter-accent) 24%, transparent),
+      transparent 48%
+    );
 }
 
 .chapterHeroContent {
@@ -677,24 +836,118 @@
   font-family: Georgia, serif;
 }
 
-.volumeDirectory { width: min(1000px, 100%); margin: 72px auto 90px; }
-.volumeDirectory > header { margin-bottom: 24px; }
-.volumeDirectory > header p { margin: 0 0 8px; color: var(--chapter-accent); font-size: 9px; font-weight: 900; letter-spacing: .16em; }
-.volumeDirectory > header h2 { margin: 0; font-family: Georgia, "Noto Serif TC", serif; font-size: clamp(34px, 8vw, 56px); font-weight: 500; }
-.volumeDirectory > header span { color: var(--book-muted); font-size: 10px; }
-.volumeChapterGrid { display: grid; gap: 10px; }
-.volumeChapterCard { display: grid; grid-template-columns: 48px minmax(0, 1fr) 22px; gap: 14px; align-items: center; padding: 18px; border: 1px solid var(--book-line); border-radius: 18px 6px 18px 6px; color: inherit; background: linear-gradient(120deg, color-mix(in srgb, var(--chapter-accent) 7%, transparent), var(--book-panel)); text-decoration: none; transition: border-color 160ms ease, transform 160ms ease; }
-.volumeChapterCard:hover { border-color: color-mix(in srgb, var(--chapter-accent) 55%, transparent); transform: translateY(-2px); }
-.volumeChapterCard > svg { width: 18px; color: var(--chapter-accent); }
-.volumeChapterNumber { color: var(--chapter-accent); font-family: Georgia, serif; font-size: 18px; }
-.volumeChapterCard p { margin: 0 0 5px; color: var(--chapter-accent); font-size: 8px; font-weight: 900; letter-spacing: .1em; }
-.volumeChapterCard h3 { margin: 0; font-family: Georgia, "Noto Serif TC", serif; font-size: 22px; font-weight: 500; line-height: 1.25; }
-.volumeChapterCard small, .volumeChapterCard strong { display: block; margin-top: 5px; color: var(--book-muted); font-size: 8px; }
-.volumeChapterCard div > span { display: -webkit-box; margin-top: 10px; overflow: hidden; color: #bfc7cf; font-size: 10px; line-height: 1.65; -webkit-box-orient: vertical; -webkit-line-clamp: 2; }
-.volumeChapterCard:has(.sideStoryThumb) { grid-template-columns: 96px 40px minmax(0, 1fr) 22px; }
-.sideStoryThumb { width: 96px; height: 72px; border-radius: 12px 4px 12px 4px; object-fit: cover; }
-.singlePassage { width: min(900px, 100%); margin: 54px auto 0; }
-.singlePassage .passageHeader h1 { margin: 0; font-family: Georgia, "Noto Serif TC", "Songti TC", serif; font-size: clamp(34px, 8vw, 58px); font-weight: 500; line-height: 1.13; letter-spacing: -.045em; }
+.volumeDirectory {
+  width: min(1000px, 100%);
+  margin: 72px auto 90px;
+}
+.volumeDirectory > header {
+  margin-bottom: 24px;
+}
+.volumeDirectory > header p {
+  margin: 0 0 8px;
+  color: var(--chapter-accent);
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: 0.16em;
+}
+.volumeDirectory > header h2 {
+  margin: 0;
+  font-family: Georgia, "Noto Serif TC", serif;
+  font-size: clamp(34px, 8vw, 56px);
+  font-weight: 500;
+}
+.volumeDirectory > header span {
+  color: var(--book-muted);
+  font-size: 10px;
+}
+.volumeChapterGrid {
+  display: grid;
+  gap: 10px;
+}
+.volumeChapterCard {
+  display: grid;
+  grid-template-columns: 48px minmax(0, 1fr) 22px;
+  gap: 14px;
+  align-items: center;
+  padding: 18px;
+  border: 1px solid var(--book-line);
+  border-radius: 18px 6px 18px 6px;
+  color: inherit;
+  background: linear-gradient(
+    120deg,
+    color-mix(in srgb, var(--chapter-accent) 7%, transparent),
+    var(--book-panel)
+  );
+  text-decoration: none;
+  transition:
+    border-color 160ms ease,
+    transform 160ms ease;
+}
+.volumeChapterCard:hover {
+  border-color: color-mix(in srgb, var(--chapter-accent) 55%, transparent);
+  transform: translateY(-2px);
+}
+.volumeChapterCard > svg {
+  width: 18px;
+  color: var(--chapter-accent);
+}
+.volumeChapterNumber {
+  color: var(--chapter-accent);
+  font-family: Georgia, serif;
+  font-size: 18px;
+}
+.volumeChapterCard p {
+  margin: 0 0 5px;
+  color: var(--chapter-accent);
+  font-size: 8px;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+}
+.volumeChapterCard h3 {
+  margin: 0;
+  font-family: Georgia, "Noto Serif TC", serif;
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 1.25;
+}
+.volumeChapterCard small,
+.volumeChapterCard strong {
+  display: block;
+  margin-top: 5px;
+  color: var(--book-muted);
+  font-size: 8px;
+}
+.volumeChapterCard div > span {
+  display: -webkit-box;
+  margin-top: 10px;
+  overflow: hidden;
+  color: #bfc7cf;
+  font-size: 10px;
+  line-height: 1.65;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+.volumeChapterCard:has(.sideStoryThumb) {
+  grid-template-columns: 96px 40px minmax(0, 1fr) 22px;
+}
+.sideStoryThumb {
+  width: 96px;
+  height: 72px;
+  border-radius: 12px 4px 12px 4px;
+  object-fit: cover;
+}
+.singlePassage {
+  width: min(900px, 100%);
+  margin: 54px auto 0;
+}
+.singlePassage .passageHeader h1 {
+  margin: 0;
+  font-family: Georgia, "Noto Serif TC", "Songti TC", serif;
+  font-size: clamp(34px, 8vw, 58px);
+  font-weight: 500;
+  line-height: 1.13;
+  letter-spacing: -0.045em;
+}
 
 .narrative {
   width: min(900px, 100%);
@@ -823,8 +1076,11 @@
   padding: 17px;
   border: 1px solid color-mix(in srgb, var(--chapter-accent) 32%, transparent);
   border-radius: 17px;
-  background:
-    linear-gradient(120deg, color-mix(in srgb, var(--chapter-accent) 10%, transparent), rgba(255, 255, 255, 0.025));
+  background: linear-gradient(
+    120deg,
+    color-mix(in srgb, var(--chapter-accent) 10%, transparent),
+    rgba(255, 255, 255, 0.025)
+  );
 }
 
 .meaningCard > svg {
@@ -1251,11 +1507,24 @@
 }
 
 @media (max-width: 560px) {
-  .volumeChapterCard { grid-template-columns: 36px minmax(0, 1fr) 16px; gap: 9px; padding: 14px 11px; }
-  .volumeChapterCard h3 { font-size: 18px; }
-  .singlePassage { margin-top: 30px; }
-  .volumeChapterCard:has(.sideStoryThumb) { grid-template-columns: 64px 26px minmax(0, 1fr) 14px; }
-  .sideStoryThumb { width: 64px; height: 64px; }
+  .volumeChapterCard {
+    grid-template-columns: 36px minmax(0, 1fr) 16px;
+    gap: 9px;
+    padding: 14px 11px;
+  }
+  .volumeChapterCard h3 {
+    font-size: 18px;
+  }
+  .singlePassage {
+    margin-top: 30px;
+  }
+  .volumeChapterCard:has(.sideStoryThumb) {
+    grid-template-columns: 64px 26px minmax(0, 1fr) 14px;
+  }
+  .sideStoryThumb {
+    width: 64px;
+    height: 64px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

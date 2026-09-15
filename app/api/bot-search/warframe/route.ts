@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { WARFRAME_ACQUISITION_DATA } from "../../discord/data/warframes";
+import { getWarframeDetail } from "../../../../data/warframeDetails";
 
 type AnyWarframeRecord = Record<string, unknown>;
 
@@ -77,8 +78,12 @@ export async function GET(request: NextRequest) {
       const searchable = getSearchValues(record);
 
       const exact = searchable.some((value) => value === normalizedQuery);
-      const startsWith = searchable.some((value) => value.startsWith(normalizedQuery));
-      const includes = searchable.some((value) => value.includes(normalizedQuery));
+      const startsWith = searchable.some((value) =>
+        value.startsWith(normalizedQuery),
+      );
+      const includes = searchable.some((value) =>
+        value.includes(normalizedQuery),
+      );
 
       let score = 0;
       if (exact) score += 100;
@@ -91,21 +96,29 @@ export async function GET(request: NextRequest) {
     .sort((a, b) => {
       if (b.score !== a.score) return b.score - a.score;
 
-      return String(a.record.name ?? "").localeCompare(String(b.record.name ?? ""), "zh-Hant");
+      return String(a.record.name ?? "").localeCompare(
+        String(b.record.name ?? ""),
+        "zh-Hant",
+      );
     })
     .slice(0, 1)
     .map(({ record }) => {
       const name = String(record.name ?? "未命名戰甲");
       const englishName = name.split(/\s*\/\s*/)[0].trim();
       const primeName = `${englishName} Prime`;
+      const detail = getWarframeDetail(englishName);
+      const hasTradeablePrime =
+        detail?.hasPrime === true && englishName !== "Excalibur";
 
       return {
         name,
         category: String(record.category ?? "未分類"),
         details: getDetailRows(record),
-        marketSlug: `${marketSlug(primeName)}_set`,
-        marketName: `${primeName} 套裝`,
-        tradeNote: "普通版戰甲不可交易；白金價格與交易連結顯示 Prime 套裝。",
+        marketSlug: hasTradeablePrime ? `${marketSlug(primeName)}_set` : "",
+        marketName: hasTradeablePrime ? `${primeName} 套裝` : "",
+        tradeNote: hasTradeablePrime
+          ? "普通版戰甲不可交易；白金價格與交易連結顯示 Prime 套裝。"
+          : "普通版戰甲不可交易；此戰甲目前沒有可交易並查價的 Prime 套裝。",
       };
     });
 
