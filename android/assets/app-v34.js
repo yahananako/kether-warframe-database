@@ -369,7 +369,7 @@
     const footer = document.createElement("details");
     footer.className = "k5-app-footer v34-footer";
     footer.innerHTML =
-      '<summary><span><strong>KETHER OF PARADISO</strong><small>快速航標・點擊展開</small></span><b>⌃</b></summary><div><nav><button data-v34-go="warframes">一般戰甲</button><button data-v34-storytab="series">系列任務</button><a href="https://kether-warframe-database.vercel.app/live">電波局</a><a href="https://discord.gg/TNGYQb5mBN">Discord</a></nav><p>網站・小希 BOT・Android App 共用資料航線</p><span>設計者 ヤハ奈々子</span><small>APP 3.0.10・WEB 2.6.3</small></div>';
+      '<summary><span><strong>KETHER OF PARADISO</strong><small>快速航標・點擊展開</small></span><b>⌃</b></summary><div><nav><button data-v34-go="warframes">一般戰甲</button><button data-v34-storytab="series">系列任務</button><a href="https://kether-warframe-database.vercel.app/live">電波局</a><a href="https://discord.gg/TNGYQb5mBN">Discord</a></nav><p>網站・小希 BOT・Android App 共用資料航線</p><span>設計者 ヤハ奈々子</span><small>APP 3.0.11・WEB 2.6.4</small></div>';
     oldFooter.replaceWith(footer);
   }
 
@@ -385,7 +385,8 @@
       const next = String(node.nodeValue || "")
         .replaceAll("60 位一般戰甲", "65 位一般戰甲")
         .replaceAll("一般戰甲收錄 60 位", "一般戰甲收錄 65 位")
-        .replaceAll("KETHER V2.6.2", "KETHER V2.6.3")
+        .replaceAll("KETHER V2.6.2", "KETHER V2.6.4")
+        .replaceAll("KETHER V2.6.3", "KETHER V2.6.4")
         .replaceAll(
           "故事書主線與支線皆採任務專屬封面，不再共用戰甲圖片。",
           "故事書新增六條系列任務航路，與主線、支線共用閱讀資料。",

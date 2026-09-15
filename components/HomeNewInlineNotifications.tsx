@@ -11,13 +11,13 @@ const NOTICE_STORAGE_KEY = "kether-home-new-notice-read-version";
  * 使用者讀過目前版本後，紅點會消失。
  * 下次公告內容更新，版本改掉，紅點才會重新出現。
  */
-const NOTICES_VERSION = "warframe-dossiers-v2.6.3-2026-09-15";
+const NOTICES_VERSION = "android-downloader-v2.6.4-2026-09-15";
 
 const notices = [
   {
     tag: "版本",
-    title: "KETHER V2.6.3 已上線",
-    body: "戰甲獨立詳情／配裝頁、系列任務故事書與 Android 3.0.10 已同步完成。",
+    title: "KETHER V2.6.4 已上線",
+    body: "Android APP 3.0.11 改用系統下載器，加入進度顯示、續接下載與瀏覽器備援。",
   },
   {
     tag: "電波局",
