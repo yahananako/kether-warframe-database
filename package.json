@@ -13,6 +13,8 @@
     "test:kuva": "node scripts/test-kuva-sync.mjs",
     "test:warframes": "node scripts/test-warframe-details.mjs",
     "test:android-search": "node android/scripts/test-smart-search.mjs",
+    "test:discord-bot": "node --import tsx scripts/test-discord-bot.ts",
+    "discord:validate": "node scripts/register-warframe-card-command.mjs --dry-run",
     "discord:register-card": "node scripts/register-warframe-card-command.mjs"
   },
   "dependencies": {
@@ -21,13 +23,15 @@
     "lucide-react": "latest",
     "next": "latest",
     "react": "latest",
-    "react-dom": "latest"
+    "react-dom": "latest",
+    "sharp": "0.34.5"
   },
   "devDependencies": {
     "@types/node": "latest",
     "@types/react": "latest",
     "@types/react-dom": "latest",
     "opencc-js": "^1.4.2",
+    "tsx": "4.23.13",
     "typescript": "latest"
   }
 }

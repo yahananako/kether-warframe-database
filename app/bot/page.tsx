@@ -89,6 +89,12 @@ const botCommands = [
     description: "快速取得 KETHER Warframe 資料庫與網站相關入口。",
   },
   {
+    name: "/查價",
+    alias: "Warframe Market",
+    status: "交易查詢",
+    description: "查即時白金價格，並直接開啟對應的交易網站。",
+  },
+  {
     name: "/武器取得",
     alias: "Weapon Acquisition",
     status: "查詢功能",
@@ -113,16 +119,34 @@ const botCommands = [
     description: "查詢常用材料來源與取得提示。",
   },
   {
-    name: "/遺物取得",
+    name: "/核桃取得",
     alias: "Relic Acquisition",
     status: "查詢功能",
     description: "查詢遺物與相關獎勵資料。",
   },
   {
-    name: "/warframe-profile",
-    alias: "戰甲資料",
-    status: "資料查詢",
-    description: "查看指定戰甲的資料摘要與定位。",
+    name: "/戰甲名片",
+    alias: "Warframe Card",
+    status: "成員名片",
+    description: "在手機或桌面版查看指定 Discord 成員的 Warframe 名片。",
+  },
+  {
+    name: "/氏族驗證",
+    alias: "Clan Verification",
+    status: "自動驗證",
+    description: "核對個人簡介截圖的玩家 ID、氏族名稱與徽章，通過後自動授予天使。",
+  },
+  {
+    name: "/抽獎",
+    alias: "Giveaway",
+    status: "氏族活動",
+    description: "開始按鈕抽獎、結束開獎，或從原參加者中重新抽選。",
+  },
+  {
+    name: "/官方資料",
+    alias: "Warframe Profile",
+    status: "玩家資料",
+    description: "用玩家代號與平台測試讀取 Warframe 官方 Profile。",
   },
 ];
 
