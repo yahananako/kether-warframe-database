@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "postbuild": "node scripts/register-warframe-card-command.mjs --if-configured",
     "start": "next start",
     "data:kuva": "node scripts/generate-kuva-catalog.mjs",
     "data:warframes": "node scripts/generate-warframe-details.mjs",
