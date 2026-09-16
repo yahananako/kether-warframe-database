@@ -1,5 +1,6 @@
 import { WARFRAME_ACQUISITION_DATA } from "./data/warframes";
 import type { WarframeAcquisitionRecord } from "./data/warframes";
+import { getWarframeDetail } from "../../../data/warframeDetails";
 
 
 
@@ -132,6 +133,11 @@ export function buildWarframeAcquisitionResponse(rawName: string | null | undefi
     };
   }
 
+  const detail = getWarframeDetail(getEnglishName(record));
+  const marketUrl = detail?.hasPrime && detail.marketSlug
+    ? `https://warframe.market/items/${detail.marketSlug}`
+    : "";
+
   return {
     embeds: [
       {
@@ -159,11 +165,35 @@ export function buildWarframeAcquisitionResponse(rawName: string | null | undefi
             name: "備註",
             value: record.notes,
           },
+          ...(marketUrl
+            ? [
+                {
+                  name: "Prime 套裝交易",
+                  value: `[開啟 Warframe Market 交易網站](${marketUrl})\n普通版戰甲不可交易，此處顯示 Prime 套裝。`,
+                },
+              ]
+            : []),
         ],
         footer: {
           text: "E-10｜戰甲資料擴充＋中文搜尋＋中文自動補全",
         },
       },
     ],
+    components: marketUrl
+      ? [
+          {
+            type: 1,
+            components: [
+              {
+                type: 2,
+                style: 5,
+                label: "開啟 Warframe Market 交易網站",
+                url: marketUrl,
+                emoji: { name: "🔗" },
+              },
+            ],
+          },
+        ]
+      : [],
   };
 }

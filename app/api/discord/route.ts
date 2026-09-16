@@ -1,12 +1,24 @@
 import crypto from "node:crypto";
+import { after } from "next/server";
 import { buildWarframeAcquisitionResponse, searchWarframeAcquisitionChoices } from "./warframeAcquisition";
 import { buildMaterialAcquisitionResponse, searchMaterialAcquisitionChoices } from "./materialAcquisition";
 import { buildRelicAcquisitionResponse, searchRelicAcquisitionChoices } from "./relicAcquisition";
 import { buildWeaponAcquisitionResponse, searchWeaponAcquisitionChoices } from "./weaponAcquisition";
 import { buildCompanionAcquisitionResponse, searchCompanionAcquisitionChoices } from "./companionAcquisition";
+import { handleClanVerification } from "./clanVerification";
+import {
+  handleGiveawayCommand,
+  handleGiveawayComponent,
+  isGiveawayComponent,
+} from "./giveaway";
+import {
+  editOriginalInteractionResponse,
+  ephemeralMessage,
+} from "./discordApi";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
+export const maxDuration = 60;
 
 const SITE_URL = "https://kether-warframe-database.vercel.app";
 const MARKET_API = "https://api.warframe.market/v2";
@@ -16,12 +28,14 @@ const MARKET_ASSETS_URL = "https://warframe.market/static/assets/";
 const INTERACTION_TYPE = {
   PING: 1,
   APPLICATION_COMMAND: 2,
+  MESSAGE_COMPONENT: 3,
   APPLICATION_COMMAND_AUTOCOMPLETE: 4,
 };
 
 const RESPONSE_TYPE = {
   PONG: 1,
   CHANNEL_MESSAGE_WITH_SOURCE: 4,
+  DEFERRED_CHANNEL_MESSAGE_WITH_SOURCE: 5,
   APPLICATION_COMMAND_AUTOCOMPLETE_RESULT: 8,
 };
 
@@ -153,6 +167,37 @@ function jsonResponse(body: unknown, status = 200) {
     headers: {
       "Content-Type": "application/json",
     },
+  });
+}
+
+function deferInteraction(
+  interaction: any,
+  task: () => Promise<Record<string, unknown>>,
+) {
+  after(async () => {
+    let data: Record<string, unknown>;
+
+    try {
+      data = await task();
+    } catch (error) {
+      console.error("Deferred Discord interaction failed", error);
+      data = ephemeralMessage("小希處理這個指令時遇到錯誤，請稍後再試一次喵。");
+    }
+
+    try {
+      await editOriginalInteractionResponse(
+        String(interaction.application_id ?? ""),
+        String(interaction.token ?? ""),
+        data,
+      );
+    } catch (error) {
+      console.error("Update deferred Discord interaction failed", error);
+    }
+  });
+
+  return jsonResponse({
+    type: RESPONSE_TYPE.DEFERRED_CHANNEL_MESSAGE_WITH_SOURCE,
+    data: { flags: 64 },
   });
 }
 
@@ -479,7 +524,7 @@ async function resolveMarketItem(keyword: string) {
 
   const items = await getMarketItems();
 
-const directSlug = slugFromText(keyword);
+  const directSlug = slugFromText(keyword);
 
   const exactMatch = items.find((item) => {
     return (
@@ -769,6 +814,8 @@ function buildHelpMessage() {
     "",
     "**氏族功能**",
     "`/戰甲名片` 查看成員 Warframe 名片。",
+    "`/氏族驗證` 上傳個人簡介並自動取得天使身分。",
+    "`/抽獎` 開始、結束或重新抽選氏族抽獎。",
     "`/官方資料` 官方玩家資料測試。",
     "",
     "**小提示**",
@@ -858,6 +905,22 @@ async function buildMarketPriceEmbedData(rawKeyword: string, forcedRank: number 
         timestamp: new Date().toISOString(),
       },
     ],
+    components: source.startsWith("http")
+      ? [
+          {
+            type: 1,
+            components: [
+              {
+                type: 2,
+                style: 5,
+                label: "開啟 Warframe Market 交易網站",
+                url: source,
+                emoji: { name: "🔗" },
+              },
+            ],
+          },
+        ]
+      : [],
   };
 }
 
@@ -865,40 +928,24 @@ async function buildMarketPriceEmbedData(rawKeyword: string, forcedRank: number 
 async function buildKetherMessage(keyword: string | null | undefined) {
   const normalizedKeyword = String(keyword ?? "").trim();
 
-  const helpText = [
-    "KETHER 小希 Bot 指令說明",
-    "",
-    "交易功能",
-    "・/查價：查 Warframe Market 物品白金價格，可輸入物品名稱與 MOD 等級。",
-    "",
-    "資料查詢",
-    "・/核桃取得：查核桃內容、Prime 部件反查、中文關鍵字、稀有度排序。",
-    "・/材料取得：查材料來源、推薦刷法，支援中文／英文／綽號搜尋。",
-    "・/戰甲取得：查戰甲取得方式與部件來源，支援中文／英文／綽號搜尋。",
-    "・/夥伴取得：查守護、庫娃、庫狛、MOA、獵犬、火衛二寵物取得方式。",
-    "・/武器取得：查主要、次要、近戰、曲翼、亡靈骸甲武器取得方式，可依類型與系列篩選。",
-    "",
-    "武器取得順序",
-    "・先選類型，再選系列，最後輸入名稱。",
-    "・系列包含：P版 / Prime、商店、氏族、集團、赤毒、信條、靈化、活動 / 特殊、任務 / 掉落。",
-    "",
-    "氏族功能",
-    "・/戰甲名片：查看成員 Warframe 名片。",
-    "・/官方資料：查官方玩家資料測試。",
-    "",
-    "使用提示",
-    "・取得類指令的名稱欄位支援中英雙語自動補全。",
-    "・查詢顯示中英雙語，內部 value 保留英文名稱，穩定不容易壞。",
-    "・範例：Wisp Prime、藍圖、赤毒、摸屍、庫娃、托里德、兇惡、靈化。",
-  ].join("\n");
-
   if (normalizedKeyword) {
-    return {
-      content:
-        "小希目前先提供完整指令說明喵。\n" +
-        "你輸入的關鍵字：" + normalizedKeyword + "\n\n" +
-        helpText,
-    };
+    const linkResults = searchLinks(normalizedKeyword);
+
+    if (linkResults.length > 0) {
+      return buildLinkMessage(normalizedKeyword);
+    }
+
+    try {
+      const marketResult = await buildMarketPriceEmbedData(normalizedKeyword);
+
+      if (marketResult) {
+        return marketResult;
+      }
+    } catch (error) {
+      console.error("KETHER shortcut market lookup failed", error);
+    }
+
+    return buildLinkMessage(normalizedKeyword);
   }
 
   return {
@@ -949,6 +996,8 @@ async function buildKetherMessage(keyword: string | null | undefined) {
             name: "氏族功能",
             value:
               "・/戰甲名片：查看成員 Warframe 名片。\n" +
+              "・/氏族驗證：上傳遊戲個人簡介，自動核對並取得天使身分。\n" +
+              "・/抽獎：開始、結束或重新抽選氏族抽獎。\n" +
               "・/官方資料：查官方玩家資料測試。",
           },
           {
@@ -1154,10 +1203,26 @@ function getKetherDiscordAvatarUrl(user: any) {
   return `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png?size=256`;
 }
 
-function buildKetherWarframeProfileEmbed(interaction: any) {
-  const targetId = interaction.data?.target_id;
+export function buildKetherWarframeProfileEmbed(interaction: any) {
+  const userOption = Array.isArray(interaction.data?.options)
+    ? interaction.data.options.find(
+        (option: any) => option.name === "user" || option.name === "成員",
+      )
+    : null;
+  const targetId = String(
+    interaction.data?.target_id ||
+      userOption?.value ||
+      interaction.member?.user?.id ||
+      interaction.user?.id ||
+      "",
+  );
   const targetUser = targetId
-    ? interaction.data?.resolved?.users?.[targetId]
+    ? interaction.data?.resolved?.users?.[targetId] ||
+      (interaction.member?.user?.id === targetId
+        ? interaction.member.user
+        : interaction.user?.id === targetId
+          ? interaction.user
+          : null)
     : null;
 
   const viewerId =
@@ -1492,6 +1557,15 @@ export async function POST(request: Request) {
     });
   }
 
+  if (
+    interaction.type === INTERACTION_TYPE.MESSAGE_COMPONENT &&
+    isGiveawayComponent(interaction)
+  ) {
+    return deferInteraction(interaction, () =>
+      handleGiveawayComponent(interaction),
+    );
+  }
+
   if (interaction.type === INTERACTION_TYPE.APPLICATION_COMMAND_AUTOCOMPLETE) {
     const commandName = interaction.data?.name;
 
@@ -1558,6 +1632,20 @@ export async function POST(request: Request) {
   }
 
   if (interaction.type === INTERACTION_TYPE.APPLICATION_COMMAND) {
+    const commandName = interaction.data?.name;
+
+    if (commandName === "clan-verify" || commandName === "氏族驗證") {
+      return deferInteraction(interaction, () =>
+        handleClanVerification(interaction),
+      );
+    }
+
+    if (commandName === "giveaway" || commandName === "抽獎") {
+      return deferInteraction(interaction, () =>
+        handleGiveawayCommand(interaction),
+      );
+    }
+
     // KETHER_WARFRAME_PROFILE_CARD_HANDLER_START
     if (
       interaction.data?.type === 2 &&
@@ -1578,7 +1666,20 @@ export async function POST(request: Request) {
     }
     // KETHER_WARFRAME_PROFILE_CARD_HANDLER_END
 
-    const commandName = interaction.data?.name;
+    if (commandName === "warframe-card" || commandName === "戰甲名片") {
+      const embed = buildKetherWarframeProfileEmbed(interaction);
+
+      return jsonResponse({
+        type: RESPONSE_TYPE.CHANNEL_MESSAGE_WITH_SOURCE,
+        data: {
+          flags: 64,
+          embeds: [embed],
+          allowed_mentions: {
+            parse: [],
+          },
+        },
+      });
+    }
 
     if (commandName === "weapon-obtain" || commandName === "武器取得") {
       const options = Array.isArray(interaction.data?.options) ? interaction.data.options : [];
@@ -1733,6 +1834,6 @@ export async function POST(request: Request) {
 export async function GET() {
   return jsonResponse({
     ok: true,
-    name: "KETHER Discord Bot Price Image Embed Rank Link and Help Endpoint",
+    name: "KETHER Discord Bot v3.5.8 Interaction Endpoint",
   });
 }

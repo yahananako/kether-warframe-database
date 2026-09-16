@@ -290,5 +290,23 @@ export async function buildWeaponAcquisitionResponse(
         },
       },
     ],
+    components: record.marketUrl
+      ? [
+          {
+            type: 1,
+            components: [
+              {
+                type: 2,
+                style: 5,
+                label: record.marketKind === "lich"
+                  ? "開啟 Warframe Market 玄骸拍賣"
+                  : "開啟 Warframe Market 交易網站",
+                url: record.marketUrl,
+                emoji: { name: "🔗" },
+              },
+            ],
+          },
+        ]
+      : [],
   };
 }

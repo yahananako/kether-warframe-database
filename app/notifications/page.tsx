@@ -4,6 +4,11 @@ import { KETHER_APP_VERSION, KETHER_BOT_VERSION } from "../../data/siteVersion";
 
 const updates = [
   {
+    version: KETHER_BOT_VERSION,
+    title: "小希 BOT 氏族工具更新",
+    content: "新增氏族截圖自動驗證與按鈕抽獎，查價結果加入 Warframe Market 交易網站按鈕，並修復戰甲名片無回應。",
+  },
+  {
     version: KETHER_APP_VERSION,
     title: "系列任務故事書上線",
     content: "主線與支線之外新增六條連續任務航路，網站與 Android APP 共用相同節點與閱讀順序。",
