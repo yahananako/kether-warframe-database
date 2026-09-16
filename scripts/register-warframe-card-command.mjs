@@ -27,6 +27,7 @@ function loadEnvFile(path) {
 loadEnvFile(".env.local");
 
 const dryRun = process.argv.includes("--dry-run");
+const ifConfigured = process.argv.includes("--if-configured");
 
 const appId =
   process.env.DISCORD_APP_ID ||
@@ -35,10 +36,22 @@ const appId =
 
 const guildId = process.env.DISCORD_GUILD_ID;
 const botToken = process.env.DISCORD_BOT_TOKEN;
+const missingConfiguration = [
+  !appId ? "DISCORD_APP_ID / DISCORD_APPLICATION_ID / DISCORD_CLIENT_ID" : null,
+  !guildId ? "DISCORD_GUILD_ID" : null,
+  !botToken ? "DISCORD_BOT_TOKEN" : null,
+].filter(Boolean);
 
-if (!dryRun && !appId) throw new Error("缺少 DISCORD_APP_ID / DISCORD_APPLICATION_ID / DISCORD_CLIENT_ID");
-if (!dryRun && !guildId) throw new Error("缺少 DISCORD_GUILD_ID");
-if (!dryRun && !botToken) throw new Error("缺少 DISCORD_BOT_TOKEN");
+if (!dryRun && missingConfiguration.length > 0) {
+  if (ifConfigured) {
+    console.log(
+      `略過 Discord 指令同步：缺少 ${missingConfiguration.join("、")}。`,
+    );
+    process.exit(0);
+  }
+
+  throw new Error(`Discord 指令同步設定不完整：${missingConfiguration.join("、")}`);
+}
 
 const commands = [
   {
