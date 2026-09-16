@@ -676,18 +676,50 @@ async function discordFetch(method, url, body) {
   return data;
 }
 
-const existingCommands = await discordFetch("GET", baseUrl);
+let existingCommands;
+
+try {
+  existingCommands = await discordFetch("GET", baseUrl);
+} catch (error) {
+  if (ifConfigured) {
+    console.warn(
+      "略過 Discord 指令同步：無法讀取目前的 Guild 指令，網站部署會繼續。",
+    );
+    process.exit(0);
+  }
+
+  throw error;
+}
+
+let successCount = 0;
+let failureCount = 0;
 
 for (const command of commands) {
-  const existed = existingCommands.find(
-    (item) => item.name === command.name && item.type === command.type
-  );
+  try {
+    const existed = existingCommands.find(
+      (item) => item.name === command.name && item.type === command.type
+    );
 
-  if (existed) {
-    const updated = await discordFetch("PATCH", `${baseUrl}/${existed.id}`, command);
-    console.log(`已更新 ${command.type === 1 ? "Slash Command" : "User Command"}：`, updated.name);
-  } else {
-    const created = await discordFetch("POST", baseUrl, command);
-    console.log(`已建立 ${command.type === 1 ? "Slash Command" : "User Command"}：`, created.name);
+    if (existed) {
+      const updated = await discordFetch("PATCH", `${baseUrl}/${existed.id}`, command);
+      console.log(`已更新 ${command.type === 1 ? "Slash Command" : "User Command"}：`, updated.name);
+    } else {
+      const created = await discordFetch("POST", baseUrl, command);
+      console.log(`已建立 ${command.type === 1 ? "Slash Command" : "User Command"}：`, created.name);
+    }
+
+    successCount += 1;
+  } catch (error) {
+    failureCount += 1;
+
+    if (!ifConfigured) {
+      throw error;
+    }
+
+    console.warn(`同步 Discord 指令「${command.name}」失敗，繼續處理其他指令。`);
   }
 }
+
+console.log(
+  `Discord 指令同步完成：成功 ${successCount} 個，失敗 ${failureCount} 個。`,
+);
