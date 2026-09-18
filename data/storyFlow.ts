@@ -1017,6 +1017,9 @@ export const storyChapters = [
           "Albrecht 已前往 1999，因為那是一個牆中人難以完整追蹤的時間節點。他留下巨大的 Vessels 與時間裝置，等待一名能以 Transference、虛空與情感連結的人完成後續。",
           "任務結尾，Loid 以一次跨越恐懼的吻表達對 Albrecht 的感情。牆中人的分身在旁觀看並退去，暗示它難以理解的不是武器，而是人為何願意在可能受傷時仍靠近彼此。"
         ],
+        "prerequisites": ["The New War／新世戰紀","Heart of Deimos／火衛二之心"],
+        "rewards": ["Grimoire／魔典","Albrecht's Laboratories","Murmur／低語者","Sanctum Anatomica"],
+        "timeline": ["Loid 呼喚 Tenno 返回 Deimos 調查異常。","Tenno 進入 Albrecht Entrati 的實驗室。","Murmur 與 Indifference 的威脅變得具體。","Tenno 尋找 Albrecht 並防衛 Sanctum Anatomica。"],
         "characters": [
           "Loid",
           "Albrecht Entrati",
@@ -1041,6 +1044,9 @@ export const storyChapters = [
           "他們不是 Albrecht 留下的可愛助手，而是實驗的受害者。獲得語言後，他們能說出憤怒、愛與被遺棄感，也能清楚質問 Loid 為何仍替 Albrecht辯護。",
           "Tenno 與 Cavia 建立聲望的過程，延續 The Sacrifice 的主題：真正的修復不是要求受害者原諒，而是承認傷害、陪伴他們決定往後怎麼活。"
         ],
+        "prerequisites": ["Whispers in the Walls／牆中低語"],
+        "rewards": ["Cavia／殞世械靈陣營背景","Sanctum Anatomica 後續"],
+        "timeline": ["Whispers in the Walls 後，Sanctum Anatomica 成為對抗虛空威脅的前線。","Cavia 與 Loid 持續整理 Albrecht 留下的研究。","Tenno 對 Indifference 的理解逐步加深。"],
         "characters": [
           "Fibonacci",
           "Bird 3",
@@ -1065,6 +1071,9 @@ export const storyChapters = [
           "Lotus 無法親自踏入那段年代，任務因此落到 Drifter 身上。與 Operator 相比，Drifter 更熟悉被困在時間循環、依靠情感重寫結果的經驗。",
           "The Lotus Eaters 像一次吸氣：沒有首領與獎勵堆疊，只讓玩家在進入 1999 前看見 Lotus 也會被虛空觸動。她不再只是發布任務的人，而是同樣站在未知邊緣的生命。"
         ],
+        "prerequisites": ["Whispers in the Walls／牆中低語"],
+        "rewards": ["The Hex／1999 前置","Lotus 與 Drifter 劇情銜接"],
+        "timeline": ["Tenno 收到 Lotus 的呼喚。","Drifter 被引向下一個時間與世界節點。","事件把故事直接推向 1999 與 The Hex。"],
         "characters": [
           "Lotus",
           "Drifter",
@@ -1087,6 +1096,9 @@ export const storyChapters = [
           "Drifter 加入 Hex，駕駛 Atomicycle 穿過城市，輪流以各成員的視角作戰。這種切換讓玩家不只看見能力，也看見團隊內部的裂痕：Arthur 過度扛責、Quincy 不信任領袖、Lettie 用工作逃避恐懼，Eleanor 則因感染與心靈能力逐漸接近人類之外。",
           "Albrecht 聲稱必須在關鍵時刻完成某件事，卻再次把答案藏在操控與試驗裡。Drifter 追逐他，也發現牆中人已能模仿熟悉面孔，把每一份懷疑放大成背叛。"
         ],
+        "prerequisites": ["The Lotus Eaters／食蓮者","The Duviri Paradox／雙衍悖論"],
+        "rewards": ["Höllvania／霍爾瓦尼亞","The Hex","Protoframe／原型戰甲","Atomicycle"],
+        "timeline": ["Drifter 穿越到 1999 年的 Höllvania。","The Hex 六名 Protoframe 成為故事核心。","Techrot 與 Scaldra 讓城市陷入多方衝突。","Drifter 追查 Albrecht Entrati 留下的行動與目的。"],
         "characters": [
           "Arthur",
           "Aoi",
@@ -1119,6 +1131,9 @@ export const storyChapters = [
           "回到跨年夜時，Drifter 不再單純替所有人戰鬥，而是讓 Hex 彼此支援。Arthur 不必獨自當英雄，Quincy 願意相信團隊，其他成員也在自己的崩潰點獲得連結。循環因此產生新結果。",
           "這是對 Indifference 最直接的反擊：世界並非因 Drifter 更強而改寫，而是因六個人終於不再被自己的孤獨分隔。"
         ],
+        "prerequisites": ["The Hex／六煞"],
+        "rewards": ["1999 Finale","The Hex 關係與後續內容"],
+        "timeline": ["Drifter 與 Hex 的關係逐漸改變原本的結局。","1999 的循環與失敗被重新面對。","Finale 為 Hex 的命運留下新的可能。"],
         "characters": [
           "Drifter",
           "The Hex",
@@ -1142,6 +1157,9 @@ export const storyChapters = [
           "The Old Peace 讓 Tenno 看見自己在遠古事件中的位置，並認識 Sentient Adis。當條約崩解，個人選擇與帝國結構互相擠壓，再次證明 Orokin 無法接受造物擁有平等意志。",
           "任務不只補歷史，而是替未來 Tau 篇章建立情感。Tau 不再只是 Sentient 的遙遠故鄉，而是一個承載被殖民恐懼、反抗記憶與尚未完成和解的地方。"
         ],
+        "prerequisites": ["The Lotus Eaters／食蓮者"],
+        "rewards": ["Uriel Blueprint","Dark Refractory","Descendia","Perita Rebellion","La Cathédrale","Devil's Triad"],
+        "timeline": ["Tenno 使用 Albrecht 的 Dark Refractory 進入 Old War 記憶。","故事抵達 Tau 與 Orokin、Sentient 脆弱和平的年代。","Tenno 重歷 Perita 戰場與和平條約崩潰。","Adis Truth-bloom 協助 Tenno 追查被遺忘的歷史。","過去的真相為 2026 年後續 Tau 故事鋪路。"],
         "characters": [
           "Adis",
           "Orokin",
@@ -1166,6 +1184,9 @@ export const storyChapters = [
           "Jade Shadows: Constellations 緊接 Jade Shadows，繼續 Stalker、孩子與 Jade 留下的選擇。任務把焦點放在失去之後如何成為父親，也讓玩家先前在 Jade Shadows 的決定產生後續回聲。",
           "兩條故事都說明現階段 Warframe 不只向前衝往 Tau，也在回收多年更新中被忽略的情感債。當宇宙級戰爭退到遠景，個人的記憶終於有位置被完整說完。"
         ],
+        "prerequisites": ["The Hex／六煞","The Old Peace／舊日和平"],
+        "rewards": ["1999 與 Tau 後續故事接口","KETHER 未來主線擴充節點"],
+        "timeline": ["1999 與 Tau 的故事線開始同時影響現在。","Albrecht 留下的跨時間布局仍未完全揭露。","後續主線將沿官方更新持續接入此節點。"],
         "characters": [
           "The Shadowgrapher",
           "Stalker",
@@ -1189,6 +1210,9 @@ export const storyChapters = [
           "這段六天文字冒險永久保留，每日解鎖一段。它沒有把團隊再次丟進星系末日，而是讓一群曾注定死亡的人浪費時間、爭論規則、一起玩遊戲。對經歷循環的角色而言，能擁有「不重要的一天」本身就是勝利。",
           "截至 2026 年 8 月，Tau 仍是即將到來的未來篇章，不能當成已完成故事。The Old Peace 已把道路打開，牆中人的陰影也未消失。下一卷尚未命名，但棋盤上的兩條線——Tau 與 Void——正逐漸交會。"
         ],
+        "prerequisites": ["目前已發布的電影式主線"],
+        "rewards": ["主線追蹤終點","未來更新接口"],
+        "timeline": ["Tenno 已跨越 Orokin 遺產、New War、Void War、1999 與 Tau 記憶。","Indifference、Albrecht 與 Tau 仍留下未解問題。","KETHER 將以官方新主線發布內容繼續向後延伸。"],
         "characters": [
           "Amir",
           "The Hex",
