@@ -104,7 +104,7 @@ jobs:
 
           test -d "$APP_PATH"
           test -f "$APP_BINARY"
-          lipo -verify_arch arm64 "$APP_BINARY"
+          lipo "$APP_BINARY" -verify_arch arm64
           mkdir -p "$PAYLOAD_PATH"
           ditto "$APP_PATH" "$PAYLOAD_PATH/KETHER.app"
           (
