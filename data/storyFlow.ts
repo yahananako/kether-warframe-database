@@ -552,6 +552,14 @@ export const storyChapters = [
         "prerequisites": ["Natah","Neptune Junction／海王星接合點"],
         "rewards": ["Broken War","Focus 系統","Lua 節點","Operator 身分揭露"],
         "timeline": ["Tenno 追查 Stalker 與 Hunhow 的行動。","Lua 從虛空中重新出現。","Reservoir 的真相曝光。","Tenno 與自己的 Operator 身分相遇。"],
+        "scenes": [
+          {"heading":"序幕｜夢裡的人不知道自己在睡","paragraphs":["Tenno 一直以為自己就是眼前這具 Warframe。戰場上的疼痛、勝利與死亡都如此真實，以至於沒有人需要追問盔甲裡究竟是誰。Natah 事件卻讓 Lotus 的過去與 Sentient 的陰影重新浮現，Hunhow 更把目光投向一個被刻意藏起來的地方：Reservoir。","Stalker 也被拉進這場追獵。他憎恨 Tenno，卻同樣不知道自己即將看見的答案會動搖什麼。當敵人開始尋找 Reservoir，Tenno 只能跟著線索追進一段被 Lotus 隱藏多年的歷史。"],"image":{"src":"https://www-static.warframe.com/images/guide/quests/seconddream-key.jpg","alt":"The Second Dream 官方主題視覺","caption":"追尋 Reservoir 的旅程，最後指向 Tenno 自己。"}},
+          {"heading":"第一幕｜月球從虛空歸來","paragraphs":["線索一路指向 Lua。這顆月球並不是被摧毀，而是被 Lotus 藏進虛空，連同 Reservoir 與沉睡其中的秘密一起從始源星系消失。如今 Hunhow 的追擊迫使 Lotus 做出選擇：要保護秘密，就必須先把秘密帶回現實。","Tenno 穿行於 Orokin 遺構與正在崩解的防線之間。Lua 重返始源星系的那一刻，也代表多年來維持長夢的遮蔽物被撕開。Stalker 距離真相只剩下一扇門。"]},
+          {"heading":"第二幕｜Reservoir","paragraphs":["Reservoir 深處沒有一支秘密軍隊，也沒有藏著另一具 Warframe。等待 Tenno 的，是一個孩子。那個孩子坐在維生裝置之中，與戰場上無數次揮刀、開火、施展能力的自己形成近乎荒謬的反差。","Warframe 是身體，Transference 是橋，而真正跨過橋的人一直沉睡在 Lua。Tenno 第一次不是透過傳說，而是用自己的眼睛理解 Operator 的存在。過去所有關於『我是誰』的答案在這裡被重新排列。"]},
+          {"heading":"第三幕｜Stalker 的猶豫","paragraphs":["Stalker 終於有機會摧毀他追殺多年的敵人，卻在看見 Operator 後產生遲疑。Hunhow 要他完成任務，但眼前的孩子也像一面鏡子，映出某種他不願承認的可能。","Tenno 帶著 Operator 逃離 Lua，Warframe 與操作者第一次以兩個可被看見的存在同時出現在故事裡。Sentient 的追擊沒有停止，然而最大的防線已經不是武器，而是 Tenno 是否能接受自己的真相。"]},
+          {"heading":"高潮｜夢醒了","paragraphs":["回到 Orbiter 後，Operator 不再只是被藏在遠方的秘密。長夢結束，Tenno 開始以新的方式理解 Focus、Transference 與自身的虛空力量。Warframe 仍是最熟悉的戰鬥身體，卻再也不能被誤認成全部的自己。","這場覺醒沒有回答所有問題。Zariman 的傷口、Lotus 的選擇、Stalker 的身分以及虛空真正的意志仍在黑暗裡。但從這一刻開始，Warframe 的故事不再只是盔甲之間的戰爭，而是一個孩子開始尋回自己的故事。"]},
+          {"heading":"尾聲｜下一場夢不再安全","paragraphs":["Operator 已經醒來，始源星系也因此改變。Lua 回歸，Focus 被開啟，而更古老的 Orokin 遺產開始朝 Tenno 靠近。下一條路將通往 Railjack，也將通往 Grineer Queens 與 Continuity 的陰影。","第二場夢結束時，Tenno 得到的不是一個漂亮的答案，而是一個真正屬於自己的問題：如果 Warframe 不是我，那麼我是誰？"]}
+        ],
         "characters": [
           "Operator",
           "Lotus",
