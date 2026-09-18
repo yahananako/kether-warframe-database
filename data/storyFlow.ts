@@ -129,6 +129,16 @@ export const storyChapters = [
           "船隻回到始源星系後，Orokin 把倖存者視為危險的怪物。Margulis 嘗試照顧與安撫孩子，並建立後來稱為 Transference 的連結技術。她的憐憫違背 Orokin 的需求，最終遭到處決；Ballas 則把她留下的研究改造成兵器系統。",
           "The New War 與 The Duviri Paradox 後來揭露：Zariman 的選擇並不只產生單一結果。Operator 是被救回、沉睡於 Lua 的孩子；Drifter 則是沒有離開災難、在虛空中長大的另一種可能。兩者不是簡單的過去與未來，而是同一個人被不同答案分開的存在。"
         ],
+        "scenes": [
+          {"heading":"序幕｜前往 Tau 的船","paragraphs":["Zariman Ten Zero 承載的不是一支軍隊，而是一群被許諾新世界的家庭。大人帶著職責與焦慮，孩子則在漫長航程裡上課、爭吵、玩耍。他們被告知 Tau 是未來，沒有人能向他們保證抵達未來之前會發生什麼。","當航行計畫把殖民船推向一次致命的虛空跳躍，熟悉的宇宙從舷窗外消失。船沒有抵達預定目的地，而是墜進一個會把思想、恐懼與可能性都扭曲的地方。"],"image":{"src":"https://www-static.warframe.com/images/guide/quests/zariman-key.jpg","alt":"Zariman Ten Zero 與虛空主題視覺","caption":"一艘殖民船偏離航線，Tenno 的命運從這場事故開始。"}},
+          {"heading":"第一幕｜當父母不再是父母","paragraphs":["被困在虛空後，秩序開始崩壞。成年人承受的壓力逐漸轉成偏執與暴力，孩子只能在走廊、教室與居住區之間躲藏。曾經提供安全感的聲音變成必須逃避的腳步聲。","孩子們第一次面對最殘酷的選擇：想活下去，就可能必須反抗自己最親近的人。這不是英雄誕生的儀式，而是一群孩子在沒有任何英雄前來救援時，被迫學會生存。"]},
+          {"heading":"第二幕｜虛空伸出了手","paragraphs":["災難之中，孩子們與虛空建立了無法用正常物理解釋的聯繫。力量出現時沒有附帶說明，也沒有告訴他們代價。對孩子而言，那既可能是逃出生天的工具，也可能是另一種未知事物正在靠近。","後來被稱為 Tenno 的存在由此誕生。虛空沒有把他們變成傳統意義上的士兵，它只是讓這群已經失去正常童年的孩子，再也無法回到普通人的生命軌道。"]},
+          {"heading":"第三幕｜Margulis 的懷抱","paragraphs":["Zariman 回到始源星系後，倖存者沒有立刻得到歡迎。Orokin 看見的是危險、異常與可以研究的力量。Margulis 卻先看見孩子。她嘗試治療他們的創傷，隔離失控的能力，讓他們重新擁有可以稱為安全的地方。","這份保護最終與 Orokin 的需求衝突。帝國需要的不是康復的孩子，而是能被利用的力量。Margulis 為自己的選擇付出生命，留下的研究則被 Ballas 與帝國轉向 Transference 和戰爭。"],"image":{"src":"https://www-static.warframe.com/images/guide/quests/seconddream-key.jpg","alt":"The Second Dream 與 Tenno 主題視覺","caption":"孩子們被藏進長夢，而他們的意識將透過 Warframe 再次踏上戰場。"}},
+          {"heading":"尾聲｜一個孩子，兩條道路","paragraphs":["多年後，Operator 會從 Lua 的長夢中醒來；另一條不曾離開災難的可能性，則在 Duviri 中長成 Drifter。兩者共享同一個起點，卻不是簡單的年幼與成年版本。","Zariman 因此不只是一次失事。它是一個讓可能性分岔的傷口。從那一天起，Tenno 的故事同時屬於現實、虛空，以及那些本來不該同時存在卻仍彼此相遇的答案。"]}
+        ],
+        "prerequisites": ["黃金照耀之處，眾生皆為材料"],
+        "rewards": ["世界觀：Zariman Ten Zero","人物背景：Operator／Drifter","世界觀：Transference 起源"],
+        "timeline": ["Zariman Ten Zero 執行 Tau 殖民航程。","虛空跳躍事故使船隻受困，成年人逐漸失控。","孩子在災難中倖存並獲得虛空能力。","Zariman 返回後，Margulis 照顧倖存孩子。","Orokin 將相關研究轉化為 Transference 與 Tenno 戰爭體系。","永恆論揭示 Operator 與 Drifter 的不同可能性。"],
         "characters": [
           "Zariman 孩子",
           "Margulis",
