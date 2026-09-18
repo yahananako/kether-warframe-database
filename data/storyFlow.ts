@@ -170,6 +170,38 @@ export const storyChapters = [
         "prerequisites": ["Zariman Ten Zero：孩子們的第一場夢"],
         "rewards": ["世界觀：Sentient","人物：Hunhow／Erra／Natah","Old War 背景"],
         "timeline": ["Orokin 創造可適應 Tau 環境的 Sentient。","Sentient 在 Tau 建立文明並反抗 Orokin。","Old War 戰線回到始源星系。","Natah 被派往 Lua 接近並消滅 Tenno。"],
+        "scenes": [
+                  {
+                            "heading": "序幕｜Sentient：被命令開拓 Tau 的造物",
+                            "paragraphs": [
+                                      "前往 Tau 的旅程漫長而致命，Orokin 因此創造能自我修復、繁殖並適應環境的 Sentient。設計者原本以為穿越虛空會使它們失去繁殖能力，足以防止反叛；但 Sentient 抵達 Tau 後建立了自己的文明，也看清 Orokin 遲早會把新世界耗盡。"
+                            ]
+                  },
+                  {
+                            "heading": "第一幕｜局勢開始改變",
+                            "paragraphs": [
+                                      "Sentient 回到始源星系發動 Old War。虛空會傷害它們，卻無法抹去它們對 Orokin 的憎恨。Hunhow、Erra 與其他領袖把戰線一路推回帝國核心，Orokin 的傳統軍隊、Dax 與科技紛紛失效。"
+                            ]
+                  },
+                  {
+                            "heading": "第二幕｜真相與選擇",
+                            "paragraphs": [
+                                      "Natah 被塑造成最後的滲透者。她要進入 Lua、找到 Tenno，並在戰爭結束後消滅這些最危險的武器。然而，當她真正接觸孩子們，任務、記憶與渴望開始彼此衝突。日後的 Lotus，便誕生在這道裂縫裡。"
+                            ]
+                  },
+                  {
+                            "heading": "高潮｜命運交會",
+                            "paragraphs": [
+                                      "Natah 被塑造成最後的滲透者。她要進入 Lua、找到 Tenno，並在戰爭結束後消滅這些最危險的武器。然而，當她真正接觸孩子們，任務、記憶與渴望開始彼此衝突。日後的 Lotus，便誕生在這道裂縫裡。"
+                            ]
+                  },
+                  {
+                            "heading": "尾聲｜故事繼續",
+                            "paragraphs": [
+                                      "這一章的危機暫時落幕，但留下的人物關係、技術與未解問題仍會在後續主線再次出現。它不是孤立事件，而是 Tenno 下一次選擇的前因。"
+                            ]
+                  }
+        ],
         "characters": [
           "Hunhow",
           "Erra",
@@ -196,6 +228,38 @@ export const storyChapters = [
         "prerequisites": ["Sentient：被命令開拓 Tau 的造物"],
         "rewards": ["世界觀：Warframe 計畫","Helminth 背景","Transference 與 Tenno 的關係"],
         "timeline": ["Orokin 以 Helminth 菌株改造人類。","早期 Warframe 難以穩定控制。","Zariman 孩子的 Transference 與 Warframe 建立連結。","Tenno 與 Warframe 成為 Old War 的關鍵兵器。"],
+        "scenes": [
+                  {
+                            "heading": "序幕｜Warframe 計畫：把痛苦鑄造成盔甲",
+                            "paragraphs": [
+                                      "Warframe 並不是普通機械。Orokin 以 Helminth 菌株改造人類，把戰士、囚犯與犧牲者變成具有超常力量的生物兵器。最初的個體仍保留疼痛、記憶與暴怒，無法被帝國穩定控制，因此曾被視為失敗品。"
+                            ]
+                  },
+                  {
+                            "heading": "第一幕｜局勢開始改變",
+                            "paragraphs": [
+                                      "Zariman 孩子的 Transference 改變了一切。Tenno 能進入 Warframe 的感知，承受它們無法表達的創傷，讓狂亂的身體得到平靜。Orokin 將這份共感包裝成完美武器：孩子被藏在 Lua 的 Reservoir 中沉睡，意識則透過 Warframe 投射到戰場。"
+                            ]
+                  },
+                  {
+                            "heading": "第二幕｜真相與選擇",
+                            "paragraphs": [
+                                      "The Sacrifice 透過 Excalibur Umbra 證明，至少部分 Warframe 仍保留人格碎片。Operator 能駕馭它們，不是因為意志更強，而是因為 Tenno 知道被奪走身體與選擇是什麼感覺。那句沒有說出口的理解，正是 Orokin 永遠學不會的力量。"
+                            ]
+                  },
+                  {
+                            "heading": "高潮｜命運交會",
+                            "paragraphs": [
+                                      "The Sacrifice 透過 Excalibur Umbra 證明，至少部分 Warframe 仍保留人格碎片。Operator 能駕馭它們，不是因為意志更強，而是因為 Tenno 知道被奪走身體與選擇是什麼感覺。那句沒有說出口的理解，正是 Orokin 永遠學不會的力量。"
+                            ]
+                  },
+                  {
+                            "heading": "尾聲｜故事繼續",
+                            "paragraphs": [
+                                      "這一章的危機暫時落幕，但留下的人物關係、技術與未解問題仍會在後續主線再次出現。它不是孤立事件，而是 Tenno 下一次選擇的前因。"
+                            ]
+                  }
+        ],
         "characters": [
           "Ballas",
           "Helminth",
@@ -222,6 +286,38 @@ export const storyChapters = [
         "prerequisites": ["Warframe 計畫：把痛苦鑄造成盔甲"],
         "rewards": ["世界觀：Orokin 帝國覆滅","Lotus／Natah 背景","Tenno 長眠"],
         "timeline": ["Tenno 在 Old War 後返回 Orokin 勝利儀式。","Orokin 統治核心遭 Tenno 摧毀。","Natah 沒有執行消滅 Tenno 的最終任務。","Lua 與 Reservoir 被隱藏，Tenno 進入長眠。","Grineer 與 Corpus 在帝國廢墟上崛起。"],
+        "scenes": [
+                  {
+                            "heading": "序幕｜勝利之後的背叛，帝國最後一夜",
+                            "paragraphs": [
+                                      "Old War 結束時，Orokin 在 Terminus 舉行勝利儀式。Tenno 接受榮耀後突然攻擊帝國領袖，黃金王朝的核心在短時間內被斬碎。這場「背叛」不是單一命令能解釋的事件：Margulis 的死亡、Ballas 的陰謀、Natah 的任務，以及 Tenno 對 Orokin 奴役的反抗，全都在同一夜交會。"
+                            ]
+                  },
+                  {
+                            "heading": "第一幕｜局勢開始改變",
+                            "paragraphs": [
+                                      "Natah 沒有按照原定計畫殺死 Tenno。她成為 Lotus，把 Lua 與 Reservoir 藏進虛空，再讓 Warframe 與孩子進入低溫長眠。她究竟是出於母性、被改寫的記憶，還是自己做出的選擇，日後會被不同勢力反覆爭奪定義。"
+                            ]
+                  },
+                  {
+                            "heading": "第二幕｜真相與選擇",
+                            "paragraphs": [
+                                      "失去 Orokin 後，Grineer 複製人大軍與 Corpus 商業帝國瓜分廢墟。Infestation 在無人控制的設施裡蔓延，倖存的 Dax、Cephalon 與殖民地各自求生。多年之後，Grineer 將軍 Vor 開始挖掘沉睡的 Warframe——現代故事於是從一具甦醒的身體重新開始。"
+                            ]
+                  },
+                  {
+                            "heading": "高潮｜命運交會",
+                            "paragraphs": [
+                                      "失去 Orokin 後，Grineer 複製人大軍與 Corpus 商業帝國瓜分廢墟。Infestation 在無人控制的設施裡蔓延，倖存的 Dax、Cephalon 與殖民地各自求生。多年之後，Grineer 將軍 Vor 開始挖掘沉睡的 Warframe——現代故事於是從一具甦醒的身體重新開始。"
+                            ]
+                  },
+                  {
+                            "heading": "尾聲｜故事繼續",
+                            "paragraphs": [
+                                      "這一章的危機暫時落幕，但留下的人物關係、技術與未解問題仍會在後續主線再次出現。它不是孤立事件，而是 Tenno 下一次選擇的前因。"
+                            ]
+                  }
+        ],
         "characters": [
           "Lotus",
           "Natah",
@@ -290,6 +386,38 @@ export const storyChapters = [
         "prerequisites": ["Tenno 長眠"],
         "rewards": ["現代始源星系開端","Lotus 再次呼喚 Tenno"],
         "timeline": ["沉睡中的 Warframe 被喚醒。","Lotus 引導 Tenno 逃離 Grineer 搜索。","Tenno 開始重新建立與始源星系的連結。"],
+        "scenes": [
+                  {
+                            "heading": "序幕｜冰冷艙門開啟，Lotus 在耳邊呼喚",
+                            "paragraphs": [
+                                      "地球的古老遺跡裡，一具 Warframe 從低溫艙醒來。Lotus 以通訊引導它移動、戰鬥，並在 Excalibur、Mag、Volt 之間選擇最初的身體。對剛甦醒的 Tenno 而言，Lotus 是唯一熟悉自己的聲音，也是唯一聲稱知道該往哪裡走的人。"
+                            ]
+                  },
+                  {
+                            "heading": "第一幕｜局勢開始改變",
+                            "paragraphs": [
+                                      "Captain Vor 想把這件 Orokin 遺物變成 Grineer 的戰利品。他將 Ascaris 控制裝置植入 Warframe，企圖遠端癱瘓甚至奪取它。Tenno 在逃亡時取回槍械與近戰武器，第一次體會自身機動性與殺傷力，也第一次看到 Grineer 如何把整個星系視為可征服的領土。"
+                            ]
+                  },
+                  {
+                            "heading": "第二幕｜真相與選擇",
+                            "paragraphs": [
+                                      "這時的 Tenno 認為自己就是 Warframe。故事故意不解釋沉睡、Lotus 與身體的真相；玩家與角色共享同一片空白，只能先相信那道聲音。"
+                            ]
+                  },
+                  {
+                            "heading": "高潮｜命運交會",
+                            "paragraphs": [
+                                      "這時的 Tenno 認為自己就是 Warframe。故事故意不解釋沉睡、Lotus 與身體的真相；玩家與角色共享同一片空白，只能先相信那道聲音。"
+                            ]
+                  },
+                  {
+                            "heading": "尾聲｜故事繼續",
+                            "paragraphs": [
+                                      "這一章的危機暫時落幕，但留下的人物關係、技術與未解問題仍會在後續主線再次出現。它不是孤立事件，而是 Tenno 下一次選擇的前因。"
+                            ]
+                  }
+        ],
         "characters": [
           "Lotus",
           "Captain Vor",
@@ -316,6 +444,38 @@ export const storyChapters = [
         "prerequisites": ["Awakening／甦醒"],
         "rewards": ["Orbiter 基礎系統","星圖航行","Captain Vor 劇情"],
         "timeline": ["Vor 對甦醒的 Tenno 植入控制裝置。","Tenno 逃離並逐步修復 Orbiter。","Tenno 反擊 Vor，重新取得行動自由。"],
+        "scenes": [
+                  {
+                            "heading": "序幕｜Vor 的戰利品：奪回自己的軌道",
+                            "paragraphs": [
+                                      "逃離遺跡後，Tenno 登上一艘受損的 Orbiter。Cephalon Ordis 的記憶同樣殘破，船上的 Arsenal、Foundry、Mod Station 與 Navigation 必須逐一修復。每找回一個模組，Tenno 就從被追捕的遺物，變回能自行選擇裝備與目的地的行動者。"
+                            ]
+                  },
+                  {
+                            "heading": "第一幕｜局勢開始改變",
+                            "paragraphs": [
+                                      "Corpus 商人 Darvo 因拒絕配合 Vor 而遭囚禁。救出他後，Tenno 得知解除 Ascaris 的方法，並在 Grineer 設施中蒐集材料製造破解器。Vor 試圖以裝置直接摧毀 Warframe，卻被 Tenno 反過來擊敗。"
+                            ]
+                  },
+                  {
+                            "heading": "第二幕｜真相與選擇",
+                            "paragraphs": [
+                                      "Vor 沒有真正放棄 Orokin 與虛空。他的身體後來被 Janus Key 的力量改變，在 Void 中成為一個不斷重複信仰宣言的存在。初見時只是新手敵人的將軍，最終也成了 Orokin 遺產腐蝕眾生的例子。"
+                            ]
+                  },
+                  {
+                            "heading": "高潮｜命運交會",
+                            "paragraphs": [
+                                      "Vor 沒有真正放棄 Orokin 與虛空。他的身體後來被 Janus Key 的力量改變，在 Void 中成為一個不斷重複信仰宣言的存在。初見時只是新手敵人的將軍，最終也成了 Orokin 遺產腐蝕眾生的例子。"
+                            ]
+                  },
+                  {
+                            "heading": "尾聲｜故事繼續",
+                            "paragraphs": [
+                                      "這一章的危機暫時落幕，但留下的人物關係、技術與未解問題仍會在後續主線再次出現。它不是孤立事件，而是 Tenno 下一次選擇的前因。"
+                            ]
+                  }
+        ],
         "characters": [
           "Captain Vor",
           "Darvo",
@@ -342,6 +502,38 @@ export const storyChapters = [
         "prerequisites": ["Vor's Prize／Vor 的戰利品"],
         "rewards": ["Cetus／希圖斯","夜靈平野背景","Saya 與 Onkko"],
         "timeline": ["Tenno 抵達 Cetus 並認識 Ostron。","Konzu 請求 Tenno 協助 Saya。","調查揭開 Onkko 失蹤與 Eidolon 研究的線索。"],
+        "scenes": [
+                  {
+                            "heading": "序幕｜Saya 的守夜：失去一個人，也守住一個未來",
+                            "paragraphs": [
+                                      "Tenno 抵達 Cetus，認識依靠 Unum 高塔生存的 Ostron。Konzu 請求協助 Saya 尋找 Onkko 的線索。Grineer 在夜靈平野進行挖掘，而散落於營地與洞穴的玻璃碎片，記錄著 Onkko 最後的研究。"
+                            ]
+                  },
+                  {
+                            "heading": "第一幕｜局勢開始改變",
+                            "paragraphs": [
+                                      "Onkko 並沒有被單純殺害。他透過 Quills 所見的多重可能性，發現若繼續留在 Saya 身邊，某些更糟的未來將無法避免。他選擇讓愛人相信自己已死，自己則躲在密室裡成為 Quill Onkko，守護 Unum 與未來的因果。"
+                            ]
+                  },
+                  {
+                            "heading": "第二幕｜真相與選擇",
+                            "paragraphs": [
+                                      "Saya 得到的不是團圓，而是一個能讓等待停止的答案。這條支線把 Warframe 的宏大時間觀落到普通人的傷口：看見未來不代表能保留所有幸福，有時只能選擇哪一種失去。"
+                            ]
+                  },
+                  {
+                            "heading": "高潮｜命運交會",
+                            "paragraphs": [
+                                      "Saya 得到的不是團圓，而是一個能讓等待停止的答案。這條支線把 Warframe 的宏大時間觀落到普通人的傷口：看見未來不代表能保留所有幸福，有時只能選擇哪一種失去。"
+                            ]
+                  },
+                  {
+                            "heading": "尾聲｜故事繼續",
+                            "paragraphs": [
+                                      "這一章的危機暫時落幕，但留下的人物關係、技術與未解問題仍會在後續主線再次出現。它不是孤立事件，而是 Tenno 下一次選擇的前因。"
+                            ]
+                  }
+        ],
         "characters": [
           "Saya",
           "Onkko",
@@ -368,6 +560,38 @@ export const storyChapters = [
         "prerequisites": ["Saya's Vigil／Saya 的守夜"],
         "rewards": ["Fortuna／福爾圖娜","Solaris United","Eudico 與 Nef Anyo"],
         "timeline": ["Tenno 抵達 Fortuna。","Solaris 的債務與 Corpus 控制浮上檯面。","Eudico 再次面對 Vox Solaris 的反抗身分。"],
+        "scenes": [
+                  {
+                            "heading": "序幕｜Vox Solaris：連身體都不屬於自己的城市",
+                            "paragraphs": [
+                                      "Eudico 曾是 Solaris United 的領袖，卻在一次失敗反抗後選擇沉默。Tenno 認識年輕工人 Thursby，也看見 Nef Anyo 如何以債務懲罰任何不服從的人：失去工作只是開始，義體、器官，甚至保存人格的頭部都可能被收走。"
+                            ]
+                  },
+                  {
+                            "heading": "第一幕｜局勢開始改變",
+                            "paragraphs": [
+                                      "當 Nef 的行動再次威脅工人，Eudico 被迫重拾 Vox Solaris 的身分。Tenno 破壞 Corpus 設施、奪回資源，讓 Fortuna 重新燃起反抗。這不是徹底勝利，卻證明 Nef 的帳本並非宇宙法則。"
+                            ]
+                  },
+                  {
+                            "heading": "第二幕｜真相與選擇",
+                            "paragraphs": [
+                                      "Solaris 的身體改造與 Orokin 的 Continuity 形成殘酷對照：上層把更換身體視為永生，底層則被迫拆解自己還債。Vox Solaris 因此不只是開放世界序章，也是 Corpus 社會最清楚的控訴。"
+                            ]
+                  },
+                  {
+                            "heading": "高潮｜命運交會",
+                            "paragraphs": [
+                                      "Solaris 的身體改造與 Orokin 的 Continuity 形成殘酷對照：上層把更換身體視為永生，底層則被迫拆解自己還債。Vox Solaris 因此不只是開放世界序章，也是 Corpus 社會最清楚的控訴。"
+                            ]
+                  },
+                  {
+                            "heading": "尾聲｜故事繼續",
+                            "paragraphs": [
+                                      "這一章的危機暫時落幕，但留下的人物關係、技術與未解問題仍會在後續主線再次出現。它不是孤立事件，而是 Tenno 下一次選擇的前因。"
+                            ]
+                  }
+        ],
         "characters": [
           "Eudico",
           "Nef Anyo",
@@ -394,6 +618,38 @@ export const storyChapters = [
         "prerequisites": ["前期星圖推進"],
         "rewards": ["Infested／感染者背景","Grineer 生化研究"],
         "timeline": ["Grineer 研究喚醒沉睡的 Infestation。","Tenno 追查感染擴散。","Infested 成為始源星系持續存在的威脅。"],
+        "scenes": [
+                  {
+                            "heading": "序幕｜Once Awake：Grineer 喚醒不該碰觸的瘟疫",
+                            "paragraphs": [
+                                      "Lotus 發現 Grineer 在研究一種古老生物樣本。Tenno 潛入設施時，感染已突破控制，血肉與機械開始融合，原本的士兵成為沒有陣營之分的 Infested 群體。"
+                            ]
+                  },
+                  {
+                            "heading": "第一幕｜局勢開始改變",
+                            "paragraphs": [
+                                      "Dr. Tengus 等 Grineer 研究者以為能把感染者投向敵人，卻低估了它改寫宿主與環境的速度。Tenno 一邊防守資料、一邊阻止病原擴散，最後只能用火力封鎖失控區域。"
+                            ]
+                  },
+                  {
+                            "heading": "第二幕｜真相與選擇",
+                            "paragraphs": [
+                                      "這段任務第一次讓玩家理解 Infested 不是野獸種族，而是一套會吞噬、記錄並重組生命的系統。它與 Helminth 及 Warframe 的關係尚未公開，但早已在背景中埋下。"
+                            ]
+                  },
+                  {
+                            "heading": "高潮｜命運交會",
+                            "paragraphs": [
+                                      "這段任務第一次讓玩家理解 Infested 不是野獸種族，而是一套會吞噬、記錄並重組生命的系統。它與 Helminth 及 Warframe 的關係尚未公開，但早已在背景中埋下。"
+                            ]
+                  },
+                  {
+                            "heading": "尾聲｜故事繼續",
+                            "paragraphs": [
+                                      "這一章的危機暫時落幕，但留下的人物關係、技術與未解問題仍會在後續主線再次出現。它不是孤立事件，而是 Tenno 下一次選擇的前因。"
+                            ]
+                  }
+        ],
         "characters": [
           "Lotus",
           "Dr. Tengus",
@@ -420,6 +676,38 @@ export const storyChapters = [
         "prerequisites": ["完成地球至火星的前期進度"],
         "rewards": ["Deimos／火衛二","Entrati 家族","Necramech 背景"],
         "timeline": ["Tenno 回應 Deimos 的求援。","Entrati 家族與 Heart 的危機曝光。","Tenno 協助維持 Heart 並重新連結家族成員。"],
+        "scenes": [
+                  {
+                            "heading": "序幕｜Heart of Deimos：在感染之中跳動的心臟",
+                            "paragraphs": [
+                                      "Loid 的訊息把 Tenno 引向火衛二。Necralisk 深處住著 Entrati 家族：Mother、Father、Daughter、Son 與 Grandmother。Infestation 奪走他們原本的名字與身體，也放大多年累積的嫉妒、怨恨與失望。"
+                            ]
+                  },
+                  {
+                            "heading": "第一幕｜局勢開始改變",
+                            "paragraphs": [
+                                      "Heart of Deimos 是始源星系許多虛空技術的關鍵。當它受損，Warframe 的 Transference 也受到影響。Tenno 穿過 Cambion Drift，使用借來的 Necramech 對抗失控機體，最後修復 Heart，避免整個系統斷裂。"
+                            ]
+                  },
+                  {
+                            "heading": "第二幕｜真相與選擇",
+                            "paragraphs": [
+                                      "任務表面解決的是設備危機，真正被修復的卻是家族連結。Grandmother 讓成員以新的稱呼重新認識彼此；他們沒有突然變成完美家人，但終於願意承認彼此仍在同一座家中。"
+                            ]
+                  },
+                  {
+                            "heading": "高潮｜命運交會",
+                            "paragraphs": [
+                                      "任務表面解決的是設備危機，真正被修復的卻是家族連結。Grandmother 讓成員以新的稱呼重新認識彼此；他們沒有突然變成完美家人，但終於願意承認彼此仍在同一座家中。"
+                            ]
+                  },
+                  {
+                            "heading": "尾聲｜故事繼續",
+                            "paragraphs": [
+                                      "這一章的危機暫時落幕，但留下的人物關係、技術與未解問題仍會在後續主線再次出現。它不是孤立事件，而是 Tenno 下一次選擇的前因。"
+                            ]
+                  }
+        ],
         "characters": [
           "Mother",
           "Father",
@@ -453,6 +741,38 @@ export const storyChapters = [
         "prerequisites": ["前期星圖與必要節點"],
         "rewards": ["Archwing 系統","太空戰鬥"],
         "timeline": ["Corpus 威脅迫使 Tenno 尋找 Archwing 技術。","Tenno 蒐集並製作 Archwing。","Tenno 獲得在開放太空作戰的能力。"],
+        "scenes": [
+                  {
+                            "heading": "序幕｜The Archwing：Tenno 離開地面",
+                            "paragraphs": [
+                                      "Lotus 得知 Grineer 正準備以大型戰艦壓制 Tenno。普通 Warframe 無法在真空中自由行動，因此玩家必須蒐集零件、打造 Archwing，並在 Corpus 與 Grineer 爭奪的區域完成首次飛行。"
+                            ]
+                  },
+                  {
+                            "heading": "第一幕｜局勢開始改變",
+                            "paragraphs": [
+                                      "Archwing 讓 Tenno 的戰場從走廊與行星表面延伸到宇宙。它也是日後 Railjack、Fomorian 戰役、海底任務與 Necramech 深空部署的技術基礎。"
+                            ]
+                  },
+                  {
+                            "heading": "第二幕｜真相與選擇",
+                            "paragraphs": [
+                                      "完成這一段時，Tenno 已不再只是被 Lotus 救出的甦醒者。地球、Fortuna、Cetus 與 Deimos 的居民開始把這名戰士視為可以求援的力量；而更深的身分真相，也即將在天王星浮出水面。"
+                            ]
+                  },
+                  {
+                            "heading": "高潮｜命運交會",
+                            "paragraphs": [
+                                      "完成這一段時，Tenno 已不再只是被 Lotus 救出的甦醒者。地球、Fortuna、Cetus 與 Deimos 的居民開始把這名戰士視為可以求援的力量；而更深的身分真相，也即將在天王星浮出水面。"
+                            ]
+                  },
+                  {
+                            "heading": "尾聲｜故事繼續",
+                            "paragraphs": [
+                                      "這一章的危機暫時落幕，但留下的人物關係、技術與未解問題仍會在後續主線再次出現。它不是孤立事件，而是 Tenno 下一次選擇的前因。"
+                            ]
+                  }
+        ],
         "characters": [
           "Lotus",
           "Tenno",
@@ -525,6 +845,38 @@ export const storyChapters = [
         "prerequisites": ["完成 Uranus／天王星相關前期進度"],
         "rewards": ["人物：Natah／Lotus","Sentient 主線正式展開"],
         "timeline": ["Tenno 在 Uranus 接觸到異常訊號。","Hunhow 的存在與 Sentient 威脅重新浮現。","Lotus 的 Natah 身分開始被揭開。"],
+        "scenes": [
+                  {
+                            "heading": "序幕｜Natah：Lotus 不願回答的過去",
+                            "paragraphs": [
+                                      "Tenno 在天王星任務中掃描到陌生無人機。Lotus 立刻要求停止調查，反常的恐懼反而讓真相更加明顯。Tyl Regor 的挖掘喚醒了 Hunhow，這名沉睡於海底的 Sentient 隨即透過訊號呼喚自己的女兒。"
+                            ]
+                  },
+                  {
+                            "heading": "第一幕｜局勢開始改變",
+                            "paragraphs": [
+                                      "Lotus 原名 Natah，被派往 Orokin 內部控制 Tenno。她完成了摧毀帝國的前半任務，卻沒有在最後殺死孩子。Hunhow 認為她遭 Orokin 改寫，Lotus 則堅稱自己做出了選擇。"
+                            ]
+                  },
+                  {
+                            "heading": "第二幕｜真相與選擇",
+                            "paragraphs": [
+                                      "任務沒有給出一個能永久定案的答案。Natah、Lotus 與 Margulis 是不同身分，也是不斷被他人投射的角色。往後 Ballas、Erra、Hunhow 與 Tenno 都會嘗試告訴她「真正是誰」。"
+                            ]
+                  },
+                  {
+                            "heading": "高潮｜命運交會",
+                            "paragraphs": [
+                                      "任務沒有給出一個能永久定案的答案。Natah、Lotus 與 Margulis 是不同身分，也是不斷被他人投射的角色。往後 Ballas、Erra、Hunhow 與 Tenno 都會嘗試告訴她「真正是誰」。"
+                            ]
+                  },
+                  {
+                            "heading": "尾聲｜故事繼續",
+                            "paragraphs": [
+                                      "這一章的危機暫時落幕，但留下的人物關係、技術與未解問題仍會在後續主線再次出現。它不是孤立事件，而是 Tenno 下一次選擇的前因。"
+                            ]
+                  }
+        ],
         "characters": [
           "Lotus",
           "Natah",
@@ -586,6 +938,38 @@ export const storyChapters = [
         "prerequisites": ["The Second Dream／第二場夢"],
         "rewards": ["Railjack／銳捷號建造線","Cephalon Cy"],
         "timeline": ["Tenno 接觸 Cephalon Cy。","逐步尋回並修復 Railjack 零件。","Railjack 成為後續大型戰爭所需的航行兵器。"],
+        "scenes": [
+                  {
+                            "heading": "序幕｜Rising Tide：重建一艘失去船員的戰艦",
+                            "paragraphs": [
+                                      "Tenno 收到 Railjack Cephalon 藍圖並喚醒 Cy。這名指揮 Cephalon 冷靜、嚴苛，卻對自己過去的失敗避而不談。玩家前往不同戰場尋找推進、機身與武裝殘骸，重建一艘能穿越深空的戰艦。"
+                            ]
+                  },
+                  {
+                            "heading": "第一幕｜局勢開始改變",
+                            "paragraphs": [
+                                      "修復過程逐步揭露 Cy 曾在 Old War 指揮一艘船。他判斷任務不可完成，卻仍服從命令，最終失去全體船員。新的 Railjack 不是單純裝備，也讓 Cy 得到再次保護船員、重新定義忠誠的機會。"
+                            ]
+                  },
+                  {
+                            "heading": "第二幕｜真相與選擇",
+                            "paragraphs": [
+                                      "敘事上，Rising Tide 是 The New War 的備戰章。Sentient 不再只是藏在海底或訊號中的敵人，Tenno 必須擁有能直接進入它們艦隊的船。"
+                            ]
+                  },
+                  {
+                            "heading": "高潮｜命運交會",
+                            "paragraphs": [
+                                      "敘事上，Rising Tide 是 The New War 的備戰章。Sentient 不再只是藏在海底或訊號中的敵人，Tenno 必須擁有能直接進入它們艦隊的船。"
+                            ]
+                  },
+                  {
+                            "heading": "尾聲｜故事繼續",
+                            "paragraphs": [
+                                      "這一章的危機暫時落幕，但留下的人物關係、技術與未解問題仍會在後續主線再次出現。它不是孤立事件，而是 Tenno 下一次選擇的前因。"
+                            ]
+                  }
+        ],
         "characters": [
           "Cephalon Cy",
           "Tenno",
@@ -612,6 +996,38 @@ export const storyChapters = [
         "prerequisites": ["The Second Dream／第二場夢","抵達 Sedna／賽德娜"],
         "rewards": ["Operator 新能力","Personal Quarters Segment Blueprint","Broken Scepter","Orvius Blueprint","Rifle Riven Mod"],
         "timeline": ["Lotus 將 Tenno 引向 Lua 的新異常。","Grineer Queens 試圖利用 Tenno 與 Continuity。","Operator 被迫脫離熟悉的 Warframe 保護。","Tenno 掌握新的虛空能力並正面反抗 Queens。"],
+        "scenes": [
+                  {
+                            "heading": "序幕｜The War Within：女皇想要 Tenno 的身體",
+                            "paragraphs": [
+                                      "Lotus 發現 Teshin 行蹤異常。追查途中，Operator 被捲入 Grineer Queens 的計畫。年老女皇想以 Continuity 奪取 Tenno 年輕、充滿虛空力量的身體；Teshin 身為 Dax，則被 Kuva 與古老誓約強迫服從。"
+                            ]
+                  },
+                  {
+                            "heading": "第一幕｜局勢開始改變",
+                            "paragraphs": [
+                                      "Operator 與 Warframe 的連結被切斷，只能在山道與幻境中面對 Zariman 記憶。玩家重新學會 Void Sling、隱形、能量衝擊與 Transference。這些能力不是突然獲得，而是長期被 Margulis、Lotus 與夢境壓抑的本能。"
+                            ]
+                  },
+                  {
+                            "heading": "第二幕｜真相與選擇",
+                            "paragraphs": [
+                                      "回到 Kuva 要塞後，Operator 以自己的身體與力量破壞女皇的 Continuity。玩家可選擇如何處理 Kuva，形成太陽、月亮與中立傾向；這不是簡單善惡值，而是角色對力量、控制與自我認知的態度。"
+                            ]
+                  },
+                  {
+                            "heading": "高潮｜命運交會",
+                            "paragraphs": [
+                                      "任務結束時，Tenno 首次證明自己不必躲在 Warframe 後面。醒來的孩子不再只是需要 Lotus 保護的對象，也能反過來打破 Orokin 留下的誓約。"
+                            ]
+                  },
+                  {
+                            "heading": "尾聲｜故事繼續",
+                            "paragraphs": [
+                                      "這一章的危機暫時落幕，但留下的人物關係、技術與未解問題仍會在後續主線再次出現。它不是孤立事件，而是 Tenno 下一次選擇的前因。"
+                            ]
+                  }
+        ],
         "characters": [
           "Operator",
           "Teshin",
@@ -644,6 +1060,38 @@ export const storyChapters = [
         "prerequisites": ["The War Within／內戰","完成 Void 的 Mot 節點"],
         "rewards": ["Harrow Blueprint","Rell 與 Red Veil 背景","牆中人主線伏筆"],
         "timeline": ["Tenno 尋找 Palladino 並接觸 Rell 的故事。","情緒化身與異常現象逐步指向虛空威脅。","Tenno 以 Transference 解開 Rell 的束縛。","Rell 的長期守望結束，新的存在開始更直接地靠近 Tenno。"],
+        "scenes": [
+                  {
+                            "heading": "序幕｜Chains of Harrow：Rell 獨自守住門外之物",
+                            "paragraphs": [
+                                      "Palladino 請求 Tenno 尋找 Red Veil 的神聖存在 Rell。調查過程充滿重複聲音、情緒卡片與被 Harrow 鎖鏈束縛的幽靈。玩家逐漸理解 Rell 對情緒與社交的表達方式不同，也因此在 Zariman 上遭其他孩子排斥。"
+                            ]
+                  },
+                  {
+                            "heading": "第一幕｜局勢開始改變",
+                            "paragraphs": [
+                                      "Rell 比其他人更早察覺虛空中有某種存在。他把意識永久綁進 Harrow，靠痛苦與儀式阻止牆中人進入現實。當其他 Tenno 在 Lua 長眠，他一個人維持這場看不見的戰爭。"
+                            ]
+                  },
+                  {
+                            "heading": "第二幕｜真相與選擇",
+                            "paragraphs": [
+                                      "Operator 最終解除鎖鏈，讓 Rell 得以休息。代價是牆中人的注意力失去原本屏障，開始直接靠近玩家。從此 Orbiter 會出現與 Operator 相同面孔的訪客，以輕佻的「Hey, kiddo」提醒：門已經開了一條縫。"
+                            ]
+                  },
+                  {
+                            "heading": "高潮｜命運交會",
+                            "paragraphs": [
+                                      "Operator 最終解除鎖鏈，讓 Rell 得以休息。代價是牆中人的注意力失去原本屏障，開始直接靠近玩家。從此 Orbiter 會出現與 Operator 相同面孔的訪客，以輕佻的「Hey, kiddo」提醒：門已經開了一條縫。"
+                            ]
+                  },
+                  {
+                            "heading": "尾聲｜故事繼續",
+                            "paragraphs": [
+                                      "這一章的危機暫時落幕，但留下的人物關係、技術與未解問題仍會在後續主線再次出現。它不是孤立事件，而是 Tenno 下一次選擇的前因。"
+                            ]
+                  }
+        ],
         "characters": [
           "Rell",
           "Harrow",
@@ -670,6 +1118,38 @@ export const storyChapters = [
         "prerequisites": ["Chains of Harrow","建造並安裝 Personal Quarters Segment"],
         "rewards": ["Lotus／Ballas 劇情轉折","The Sacrifice 前置"],
         "timeline": ["Orbiter 私人房間出現異常能量。","Tenno 被引回 Lua 的 Reservoir。","Ballas 與 Lotus 的事件改變 Tenno 接下來的方向。"],
+        "scenes": [
+                  {
+                            "heading": "序幕｜Apostasy Prologue：Lotus 離開王座",
+                            "paragraphs": [
+                                      "完成 Chains of Harrow 並進入 Orbiter 私人房間後，Operator 追隨一團神祕能量回到 Lua。過去與現在交疊，Ballas 以 Margulis 的名字呼喚 Lotus。"
+                            ]
+                  },
+                  {
+                            "heading": "第一幕｜局勢開始改變",
+                            "paragraphs": [
+                                      "Lotus 摘下象徵身分的頭盔，顯露 Sentient 的形貌，隨 Ballas 離去。這一幕刻意不解釋她是自願、被喚醒，還是遭到控制。對 Tenno 而言，只剩任務通訊中的模擬聲音與被遺棄感。"
+                            ]
+                  },
+                  {
+                            "heading": "第二幕｜真相與選擇",
+                            "paragraphs": [
+                                      "Ballas 把 Margulis、Natah 與 Lotus 混為自己失去的所有物。他看似前來尋人，實際延續 Orokin 最典型的暴力：不允許對方擁有自己定義的名字。"
+                            ]
+                  },
+                  {
+                            "heading": "高潮｜命運交會",
+                            "paragraphs": [
+                                      "Ballas 把 Margulis、Natah 與 Lotus 混為自己失去的所有物。他看似前來尋人，實際延續 Orokin 最典型的暴力：不允許對方擁有自己定義的名字。"
+                            ]
+                  },
+                  {
+                            "heading": "尾聲｜故事繼續",
+                            "paragraphs": [
+                                      "這一章的危機暫時落幕，但留下的人物關係、技術與未解問題仍會在後續主線再次出現。它不是孤立事件，而是 Tenno 下一次選擇的前因。"
+                            ]
+                  }
+        ],
         "characters": [
           "Lotus",
           "Ballas",
@@ -697,6 +1177,38 @@ export const storyChapters = [
         "prerequisites": ["Apostasy Prologue"],
         "rewards": ["Excalibur Umbra","Skiajati","Umbra MOD 系列","Ballas／Umbra 真相"],
         "timeline": ["Tenno 追查地球上的 Warframe 痕跡。","Orokin 記憶密碼揭開 Umbra 的過去。","Tenno 製作並追尋 Excalibur Umbra。","Transference 讓 Tenno 進入 Umbra 的創傷記憶。","Tenno 與 Umbra 建立理解並面對 Ballas。"],
+        "scenes": [
+                  {
+                            "heading": "序幕｜The Sacrifice：與 Umbra 一起承受記憶",
+                            "paragraphs": [
+                                      "Operator 在地球找到 Warframe 殘骸，重建 Excalibur Umbra。與其他 Warframe 不同，Umbra 抗拒控制並自行逃走。玩家透過掃描與 Orokin 記憶密碼追蹤它，也逐步進入它最痛苦的回憶。"
+                            ]
+                  },
+                  {
+                            "heading": "第一幕｜局勢開始改變",
+                            "paragraphs": [
+                                      "Umbra 原是一名 Dax，發現 Ballas 向 Sentient 洩漏情報。Ballas 以 Helminth 感染他，並強迫他在轉化過程中殺死自己的兒子 Isaah。Umbra 被設計成保留那一刻，讓記憶成為永不停止的刑罰。"
+                            ]
+                  },
+                  {
+                            "heading": "第二幕｜真相與選擇",
+                            "paragraphs": [
+                                      "Operator 多次嘗試壓制 Umbra 都失敗，直到不再把它當作需要征服的武器。Tenno 進入記憶，和 Umbra 一起承受喪子之痛。這份共感讓兩者真正同步，並共同對抗 Ballas。"
+                            ]
+                  },
+                  {
+                            "heading": "高潮｜命運交會",
+                            "paragraphs": [
+                                      "Ballas 被 Umbra 刺傷後交出 Paracesis 藍圖，試圖把 Tenno 推向與 Sentient 的下一場戰爭。Lotus 的失蹤仍未解決，但 Tenno 此刻已知道：Orokin 能製造身體，卻無法理解連結為何能超越控制。"
+                            ]
+                  },
+                  {
+                            "heading": "尾聲｜故事繼續",
+                            "paragraphs": [
+                                      "這一章的危機暫時落幕，但留下的人物關係、技術與未解問題仍會在後續主線再次出現。它不是孤立事件，而是 Tenno 下一次選擇的前因。"
+                            ]
+                  }
+        ],
         "characters": [
           "Excalibur Umbra",
           "Operator",
@@ -765,6 +1277,38 @@ export const storyChapters = [
         "prerequisites": ["The Sacrifice／犧牲"],
         "rewards": ["Paracesis 藍圖","The New War 前置劇情"],
         "timeline": ["Ballas 在事件後以新的狀態再度出現。","Sentient 與 Tau 戰線逐漸逼近始源星系。","Chimera、Erra 與 The Maker 的事件共同構成戰爭前奏。"],
+        "scenes": [
+                  {
+                            "heading": "序幕｜Chimera、Erra、The Maker：戰爭前的三次欺騙",
+                            "paragraphs": [
+                                      "Chimera Prologue 中，受傷的 Ballas 看似成為 Sentient 囚徒，暗中把 Paracesis 交給 Tenno。Erra 章節則讓玩家看見 Old War 記憶：Natah 的兄長似乎曾被 Tenno 摧毀，卻又在現在重新出現。"
+                            ]
+                  },
+                  {
+                            "heading": "第一幕｜局勢開始改變",
+                            "paragraphs": [
+                                      "The Maker 顯示 Natah 被固定於裝置上，Erra 與 Ballas 討論即將到來的戰爭。當鏡頭遠離，Ballas 卻放下象徵奴役的鎖鏈，Erra反而服從地跟隨。他從一開始就不是單純囚徒。"
+                            ]
+                  },
+                  {
+                            "heading": "第二幕｜真相與選擇",
+                            "paragraphs": [
+                                      "三段短篇的作用，是讓所有陣營都失去可信表面。Natah 的記憶可能被修改，Erra 的復活疑點重重，Ballas 則一邊扮演受害者，一邊把每個人推向自己設計的舞台。"
+                            ]
+                  },
+                  {
+                            "heading": "高潮｜命運交會",
+                            "paragraphs": [
+                                      "三段短篇的作用，是讓所有陣營都失去可信表面。Natah 的記憶可能被修改，Erra 的復活疑點重重，Ballas 則一邊扮演受害者，一邊把每個人推向自己設計的舞台。"
+                            ]
+                  },
+                  {
+                            "heading": "尾聲｜故事繼續",
+                            "paragraphs": [
+                                      "這一章的危機暫時落幕，但留下的人物關係、技術與未解問題仍會在後續主線再次出現。它不是孤立事件，而是 Tenno 下一次選擇的前因。"
+                            ]
+                  }
+        ],
         "characters": [
           "Ballas",
           "Natah",
@@ -792,6 +1336,38 @@ export const storyChapters = [
         "prerequisites": ["Prelude to War／戰爭前奏","擁有 Railjack／銳捷號","擁有 Necramech／亡靈機甲"],
         "rewards": ["The New War 大型主線","Drifter 劇情正式展開"],
         "timeline": ["Sentient 對始源星系發動全面入侵。","Tenno、Grineer 與 Corpus 各自在戰線上抵抗。","Ballas 與 Narmer 改寫始源星系秩序。","Operator 的失敗把故事推向 Drifter 的時代。"],
+        "scenes": [
+                  {
+                            "heading": "序幕｜入侵日：Kahl、Veso 與 Teshin 的最後戰線",
+                            "paragraphs": [
+                                      "Grineer 士兵 Kahl-175 在地面迎戰 Sentient。沒有 Tenno 的速度與力量，他靠命令小隊、撿拾武器與引爆炸彈推進。當指揮官只關心戰況，他仍選擇救下身邊的兄弟。"
+                            ]
+                  },
+                  {
+                            "heading": "第一幕｜局勢開始改變",
+                            "paragraphs": [
+                                      "Corpus 工程師 Veso-R 對抗入侵艦隊與失控機械，最終違抗 Alad V 的投降決定，讓自己所在的戰艦撞向 Sentient 母艦。他未必自稱英雄，卻在最後一次操作中選擇不把生存交給懦弱的上司。"
+                            ]
+                  },
+                  {
+                            "heading": "第二幕｜真相與選擇",
+                            "paragraphs": [
+                                      "Teshin 潛入 Murex，擊敗 Sentient 並接近核心，卻被 Erra 攔截。這三段視角讓戰爭不再只是 Tenno 的神話：普通士兵也在同一刻作出犧牲，只是歷史未必會記住名字。"
+                            ]
+                  },
+                  {
+                            "heading": "高潮｜命運交會",
+                            "paragraphs": [
+                                      "Operator、Lotus 與 Necramech 最終突入戰場。Ballas 奪走勝利，刺傷 Lotus，將 Operator 與她一同投入虛空。Tenno 從現實消失，始源星系正式失守。"
+                            ]
+                  },
+                  {
+                            "heading": "尾聲｜故事繼續",
+                            "paragraphs": [
+                                      "這一章的危機暫時落幕，但留下的人物關係、技術與未解問題仍會在後續主線再次出現。它不是孤立事件，而是 Tenno 下一次選擇的前因。"
+                            ]
+                  }
+        ],
         "characters": [
           "Kahl-175",
           "Veso-R",
@@ -819,6 +1395,38 @@ export const storyChapters = [
         "prerequisites": ["The New War／新世戰紀進行中"],
         "rewards": ["Narmer 世界觀","Drifter 生存篇"],
         "timeline": ["Narmer 以面紗控制大量居民。","Drifter 在失去傳統 Tenno 優勢的情況下行動。","舊盟友與敵人的界線在占領下重新排列。"],
+        "scenes": [
+                  {
+                            "heading": "序幕｜Narmer 的和平：不准痛苦，也不准醒來",
+                            "paragraphs": [
+                                      "多年或某種被扭曲的時間之後，Drifter 在 Narmer 統治的星系活動。Veil 會把使用者困在最渴望的幻象裡，將恐懼與缺憾改寫成對 Ballas 的感恩。Grineer、Corpus 甚至舊有盟友都被納入同一信仰。"
+                            ]
+                  },
+                  {
+                            "heading": "第一幕｜局勢開始改變",
+                            "paragraphs": [
+                                      "Drifter 沒有 Operator 的完整虛空力量，也無法隨意使用 Warframe。他與 Ordis、Hunhow 合作，追獵 Archon 取得晶體，逐步修復奄奄一息的 Lotus。Hunhow 曾是敵人，此刻卻比 Ballas 更願意承認 Natah 是有選擇的人。"
+                            ]
+                  },
+                  {
+                            "heading": "第二幕｜真相與選擇",
+                            "paragraphs": [
+                                      "Narmer 的恐怖不只在精神控制，而在它提供真正誘人的安慰。面紗讓受傷的人看見理想家庭、肯定與安全；摘下它等於重新接受失去。自由因此不是舒服的狀態，而是願意承受真實。"
+                            ]
+                  },
+                  {
+                            "heading": "高潮｜命運交會",
+                            "paragraphs": [
+                                      "Narmer 的恐怖不只在精神控制，而在它提供真正誘人的安慰。面紗讓受傷的人看見理想家庭、肯定與安全；摘下它等於重新接受失去。自由因此不是舒服的狀態，而是願意承受真實。"
+                            ]
+                  },
+                  {
+                            "heading": "尾聲｜故事繼續",
+                            "paragraphs": [
+                                      "這一章的危機暫時落幕，但留下的人物關係、技術與未解問題仍會在後續主線再次出現。它不是孤立事件，而是 Tenno 下一次選擇的前因。"
+                            ]
+                  }
+        ],
         "characters": [
           "Drifter",
           "Hunhow",
@@ -846,6 +1454,38 @@ export const storyChapters = [
         "prerequisites": ["The New War／新世戰紀進行中"],
         "rewards": ["永恆論／Eternalism","Operator 與 Drifter 關係"],
         "timeline": ["Zariman 的選擇重新成為理解現況的關鍵。","Operator 與 Drifter 的不同可能性開始交會。","虛空讓互斥的答案同時成為故事的一部分。"],
+        "scenes": [
+                  {
+                            "heading": "序幕｜Operator 與 Drifter：同一個選擇的兩個答案",
+                            "paragraphs": [
+                                      "Zariman 課堂記憶以選擇題解釋 Eternalism：一個事件的不同結果，都可能在各自的現實中成立。Operator 接受牆中人的交易並被救出；Drifter 則留在那艘船與虛空裡，沒有被 Lotus 帶走。"
+                            ]
+                  },
+                  {
+                            "heading": "第一幕｜局勢開始改變",
+                            "paragraphs": [
+                                      "兩人在餐桌上相遇並決定由誰回到戰場。這不是兩個陌生人交換工作，而是同一個人第一次看見自己若走過另一條路會成為什麼樣子。Operator 保留孩子的外表與力量，Drifter 帶著在孤獨中長大的時間。"
+                            ]
+                  },
+                  {
+                            "heading": "第二幕｜真相與選擇",
+                            "paragraphs": [
+                                      "這場會面也解釋 Drifter 為何能拯救一個從未認識的 Lotus：即使記憶不同，彼此仍共享某種因果與情感。虛空把答案分開，也讓答案重新相遇。"
+                            ]
+                  },
+                  {
+                            "heading": "高潮｜命運交會",
+                            "paragraphs": [
+                                      "這場會面也解釋 Drifter 為何能拯救一個從未認識的 Lotus：即使記憶不同，彼此仍共享某種因果與情感。虛空把答案分開，也讓答案重新相遇。"
+                            ]
+                  },
+                  {
+                            "heading": "尾聲｜故事繼續",
+                            "paragraphs": [
+                                      "這一章的危機暫時落幕，但留下的人物關係、技術與未解問題仍會在後續主線再次出現。它不是孤立事件，而是 Tenno 下一次選擇的前因。"
+                            ]
+                  }
+        ],
         "characters": [
           "Operator",
           "Drifter",
@@ -873,6 +1513,38 @@ export const storyChapters = [
         "prerequisites": ["The New War／新世戰紀最終階段"],
         "rewards": ["Nataruk","Sirocco","Rumblejack","Drifter's Camp／漂泊者營地"],
         "timeline": ["Tenno 陣營重新向 Ballas 與 Narmer 發動反擊。","Lotus／Natah／Margulis 的身分衝突走向決斷。","Ballas 的計畫在最終戰中被阻止。","戰後的始源星系進入新的不穩定時代。"],
+        "scenes": [
+                  {
+                            "heading": "序幕｜太陽之下，Ballas 要所有人見證他的愛",
+                            "paragraphs": [
+                                      "Erra 終於看清 Ballas 只是利用 Sentient，選擇幫助 Tenno 推進並在崩塌中犧牲。Lotus 的力量逐漸恢復，卻仍在 Natah、Margulis 與 Lotus 的記憶之間撕裂。"
+                            ]
+                  },
+                  {
+                            "heading": "第一幕｜局勢開始改變",
+                            "paragraphs": [
+                                      "Ballas 將 Praghasa 對準太陽，準備吞噬能量並帶領剩餘勢力前往 Tau。他用 Veil 迫使眾人崇拜，也不斷指責 Lotus 不夠愛他。這場星系級危機的核心，竟是他無法接受任何人擺脫所有權。"
+                            ]
+                  },
+                  {
+                            "heading": "第二幕｜真相與選擇",
+                            "paragraphs": [
+                                      "Tenno 打碎鏡像與謊言，Lotus 最終靠近 Ballas，以自己的力量終結他。玩家可選擇她往後顯示為 Natah、Lotus 或 Margulis；選擇改變名字與外觀，卻不抹去她同時經歷過的所有身分。"
+                            ]
+                  },
+                  {
+                            "heading": "高潮｜命運交會",
+                            "paragraphs": [
+                                      "勝利後，巨大的牆中人形象從虛空出現。它伸出的手指缺少一截，與 Zariman 交易的記憶互相呼應。Sentient 戰爭結束了，真正的 Void War 才剛把臉貼到現實之外。"
+                            ]
+                  },
+                  {
+                            "heading": "尾聲｜故事繼續",
+                            "paragraphs": [
+                                      "這一章的危機暫時落幕，但留下的人物關係、技術與未解問題仍會在後續主線再次出現。它不是孤立事件，而是 Tenno 下一次選擇的前因。"
+                            ]
+                  }
+        ],
         "characters": [
           "Lotus",
           "Ballas",
@@ -900,6 +1572,38 @@ export const storyChapters = [
         "prerequisites": ["The New War／新世戰紀"],
         "rewards": ["Zariman 後續","Holdfasts 背景","虛空異常擴大"],
         "timeline": ["The New War 後，Zariman 再度成為始源星系與虛空的前線。","Tenno 返回曾經的災難現場。","船上的倖存痕跡與虛空現象讓舊創傷變成新的戰場。"],
+        "scenes": [
+                  {
+                            "heading": "序幕｜Angels of the Zariman：回到一切開始的地方",
+                            "paragraphs": [
+                                      "Tenno 回到 Zariman，認識 Quinn、Hombask、Cavalero 與 Archimedean Yonta。四人曾在災難中死亡或消失，如今依靠虛空能量與自我記憶維持形體，被稱為 Holdfasts。"
+                            ]
+                  },
+                  {
+                            "heading": "第一幕｜局勢開始改變",
+                            "paragraphs": [
+                                      "Void Angels 是被虛空吞噬的存在，會誘惑其他人放棄痛苦、投入無差別的歌聲。Holdfasts 必須一次次記住自己是誰，才不會成為下一個天使。"
+                            ]
+                  },
+                  {
+                            "heading": "第二幕｜真相與選擇",
+                            "paragraphs": [
+                                      "Zariman 現在像一枚楔子，卡住現實與虛空之間的裂口。Tenno 幫助 Holdfasts，不只是重返童年創傷，也是守住牆中人尚未完全跨過的門檻。"
+                            ]
+                  },
+                  {
+                            "heading": "高潮｜命運交會",
+                            "paragraphs": [
+                                      "Zariman 現在像一枚楔子，卡住現實與虛空之間的裂口。Tenno 幫助 Holdfasts，不只是重返童年創傷，也是守住牆中人尚未完全跨過的門檻。"
+                            ]
+                  },
+                  {
+                            "heading": "尾聲｜故事繼續",
+                            "paragraphs": [
+                                      "這一章的危機暫時落幕，但留下的人物關係、技術與未解問題仍會在後續主線再次出現。它不是孤立事件，而是 Tenno 下一次選擇的前因。"
+                            ]
+                  }
+        ],
         "characters": [
           "Quinn",
           "Yonta",
@@ -927,6 +1631,38 @@ export const storyChapters = [
         "prerequisites": ["The Duviri Paradox／雙衍悖論主線條件依目前遊戲路徑"],
         "rewards": ["Duviri","Drifter","The Circuit／迴廊","Duviri Incarnon 系統"],
         "timeline": ["Drifter 在 Duviri 的循環中反覆經歷失敗與重置。","Dominus Thrax 的世界以情緒與故事規則維持。","Drifter 逐步取回選擇與行動能力。","Duviri 與 The New War 的時間線在 Drifter 身上交會。"],
+        "scenes": [
+                  {
+                            "heading": "序幕｜The Duviri Paradox：Drifter 為自己造的牢籠",
+                            "paragraphs": [
+                                      "困在 Zariman 的 Drifter 以故事書《Tales of Duviri》與強烈情緒塑造出 Duviri。Dominus Thrax 控制每一天的情緒與循環，Drifter 則在反覆處刑中失去反抗意志。"
+                            ]
+                  },
+                  {
+                            "heading": "第一幕｜局勢開始改變",
+                            "paragraphs": [
+                                      "一隻來自現實的手與 Teshin 的引導打破循環。Drifter 學會戰鬥、騎乘 Kaithe、穿過 Undercroft，逐步理解 Thrax 並非單純外來暴君，而是自己恐懼與拒絕離開的投影。"
+                            ]
+                  },
+                  {
+                            "heading": "第二幕｜真相與選擇",
+                            "paragraphs": [
+                                      "Drifter 最終奪回控制，卻沒有摧毀 Duviri，而是選擇離開並保留這個世界。任務結尾的援手與 The New War 中對 Operator 的幫助互相形成因果：誰先救了誰，已無法用直線時間回答。"
+                            ]
+                  },
+                  {
+                            "heading": "高潮｜命運交會",
+                            "paragraphs": [
+                                      "Drifter 最終奪回控制，卻沒有摧毀 Duviri，而是選擇離開並保留這個世界。任務結尾的援手與 The New War 中對 Operator 的幫助互相形成因果：誰先救了誰，已無法用直線時間回答。"
+                            ]
+                  },
+                  {
+                            "heading": "尾聲｜故事繼續",
+                            "paragraphs": [
+                                      "這一章的危機暫時落幕，但留下的人物關係、技術與未解問題仍會在後續主線再次出現。它不是孤立事件，而是 Tenno 下一次選擇的前因。"
+                            ]
+                  }
+        ],
         "characters": [
           "Drifter",
           "Dominus Thrax",
@@ -953,6 +1689,38 @@ export const storyChapters = [
         "prerequisites": ["The New War／新世戰紀"],
         "rewards": ["Jade Shadows／翠玉遺影","Ascension 相關劇情"],
         "timeline": ["The New War 後的角色開始面對戰爭留下的私人代價。","Stalker 的故事被拉到舞台中央。","Jade 的真相改變玩家對過去敵人的理解。"],
+        "scenes": [
+                  {
+                            "heading": "序幕｜Veilbreaker 與 Jade Shadows：敵人也有必須守護的人",
+                            "paragraphs": [
+                                      "Kahl-175 從 Narmer 控制中逃脫，與 Daughter 建立營地。他不再只救 Grineer，而把 Corpus、Ostron 與任何被面紗奪走意志的人都稱作兄弟。Veilbreaker 讓戰爭開場的普通士兵真正擁有後續。"
+                            ]
+                  },
+                  {
+                            "heading": "第一幕｜局勢開始改變",
+                            "paragraphs": [
+                                      "Jade Shadows 把視角交給 Stalker。玩家得知他原名 Sorren，與 Jade 在 Orokin 時代相愛；兩人因禁忌關係受罰並被轉化。Jade 長久維持著腹中的生命，最終在 Tenno、Hunhow 與 Stalker 面前耗盡自己。"
+                            ]
+                  },
+                  {
+                            "heading": "第二幕｜真相與選擇",
+                            "paragraphs": [
+                                      "Stalker 帶著孩子逃離 Corpus 追捕。Corpus 艦長在看見嬰兒後選擇停火，短暫打破敵我規則。這不是讓 Stalker 的過去罪行消失，而是讓他從只剩仇恨的角色，重新成為能選擇守護的人。"
+                            ]
+                  },
+                  {
+                            "heading": "高潮｜命運交會",
+                            "paragraphs": [
+                                      "Stalker 帶著孩子逃離 Corpus 追捕。Corpus 艦長在看見嬰兒後選擇停火，短暫打破敵我規則。這不是讓 Stalker 的過去罪行消失，而是讓他從只剩仇恨的角色，重新成為能選擇守護的人。"
+                            ]
+                  },
+                  {
+                            "heading": "尾聲｜故事繼續",
+                            "paragraphs": [
+                                      "這一章的危機暫時落幕，但留下的人物關係、技術與未解問題仍會在後續主線再次出現。它不是孤立事件，而是 Tenno 下一次選擇的前因。"
+                            ]
+                  }
+        ],
         "characters": [
           "Kahl-175",
           "Daughter",
@@ -1028,6 +1796,38 @@ export const storyChapters = [
         "prerequisites": ["The New War／新世戰紀","Heart of Deimos／火衛二之心"],
         "rewards": ["Grimoire／魔典","Albrecht's Laboratories","Murmur／低語者","Sanctum Anatomica"],
         "timeline": ["Loid 呼喚 Tenno 返回 Deimos 調查異常。","Tenno 進入 Albrecht Entrati 的實驗室。","Murmur 與 Indifference 的威脅變得具體。","Tenno 尋找 Albrecht 並防衛 Sanctum Anatomica。"],
+        "scenes": [
+                  {
+                            "heading": "序幕｜Whispers in the Walls：Albrecht 留下的鐘開始轉動",
+                            "paragraphs": [
+                                      "The New War 後，Loid 喚醒地表之下的另一名 Loid——不是 Necraloid，而是曾陪伴 Albrecht Entrati 的真人。Sanctum Anatomica 保存著 Albrecht 對虛空、時間與牆中人的研究，也關著被留下的人所承受的漫長寂寞。"
+                            ]
+                  },
+                  {
+                            "heading": "第一幕｜局勢開始改變",
+                            "paragraphs": [
+                                      "Tenno 依照 Kalymos Sequence 啟動實驗室，取得 Grimoire，對抗從幾何、肢體與石塊中拼出的 Murmur。這些敵人不像 Sentient 有明確國度，它們更像「冷漠」伸入現實的手指。"
+                            ]
+                  },
+                  {
+                            "heading": "第二幕｜真相與選擇",
+                            "paragraphs": [
+                                      "Albrecht 已前往 1999，因為那是一個牆中人難以完整追蹤的時間節點。他留下巨大的 Vessels 與時間裝置，等待一名能以 Transference、虛空與情感連結的人完成後續。"
+                            ]
+                  },
+                  {
+                            "heading": "高潮｜命運交會",
+                            "paragraphs": [
+                                      "任務結尾，Loid 以一次跨越恐懼的吻表達對 Albrecht 的感情。牆中人的分身在旁觀看並退去，暗示它難以理解的不是武器，而是人為何願意在可能受傷時仍靠近彼此。"
+                            ]
+                  },
+                  {
+                            "heading": "尾聲｜故事繼續",
+                            "paragraphs": [
+                                      "這一章的危機暫時落幕，但留下的人物關係、技術與未解問題仍會在後續主線再次出現。它不是孤立事件，而是 Tenno 下一次選擇的前因。"
+                            ]
+                  }
+        ],
         "characters": [
           "Loid",
           "Albrecht Entrati",
@@ -1055,6 +1855,38 @@ export const storyChapters = [
         "prerequisites": ["Whispers in the Walls／牆中低語"],
         "rewards": ["Cavia／殞世械靈陣營背景","Sanctum Anatomica 後續"],
         "timeline": ["Whispers in the Walls 後，Sanctum Anatomica 成為對抗虛空威脅的前線。","Cavia 與 Loid 持續整理 Albrecht 留下的研究。","Tenno 對 Indifference 的理解逐步加深。"],
+        "scenes": [
+                  {
+                            "heading": "序幕｜Cavia：被送進虛空的實驗動物",
+                            "paragraphs": [
+                                      "Albrecht 將動物送入虛空，觀察接觸後的變化。倖存者成為 Cavia：自負卻恐懼的 Fibonacci、溫柔混亂的 Bird 3，以及一直為 Minn 哀悼的 Tagfer。"
+                            ]
+                  },
+                  {
+                            "heading": "第一幕｜局勢開始改變",
+                            "paragraphs": [
+                                      "他們不是 Albrecht 留下的可愛助手，而是實驗的受害者。獲得語言後，他們能說出憤怒、愛與被遺棄感，也能清楚質問 Loid 為何仍替 Albrecht辯護。"
+                            ]
+                  },
+                  {
+                            "heading": "第二幕｜真相與選擇",
+                            "paragraphs": [
+                                      "Tenno 與 Cavia 建立聲望的過程，延續 The Sacrifice 的主題：真正的修復不是要求受害者原諒，而是承認傷害、陪伴他們決定往後怎麼活。"
+                            ]
+                  },
+                  {
+                            "heading": "高潮｜命運交會",
+                            "paragraphs": [
+                                      "Tenno 與 Cavia 建立聲望的過程，延續 The Sacrifice 的主題：真正的修復不是要求受害者原諒，而是承認傷害、陪伴他們決定往後怎麼活。"
+                            ]
+                  },
+                  {
+                            "heading": "尾聲｜故事繼續",
+                            "paragraphs": [
+                                      "這一章的危機暫時落幕，但留下的人物關係、技術與未解問題仍會在後續主線再次出現。它不是孤立事件，而是 Tenno 下一次選擇的前因。"
+                            ]
+                  }
+        ],
         "characters": [
           "Fibonacci",
           "Bird 3",
@@ -1082,6 +1914,38 @@ export const storyChapters = [
         "prerequisites": ["Whispers in the Walls／牆中低語"],
         "rewards": ["The Hex／1999 前置","Lotus 與 Drifter 劇情銜接"],
         "timeline": ["Tenno 收到 Lotus 的呼喚。","Drifter 被引向下一個時間與世界節點。","事件把故事直接推向 1999 與 The Hex。"],
+        "scenes": [
+                  {
+                            "heading": "序幕｜The Lotus Eaters：海岸盡頭的聲音",
+                            "paragraphs": [
+                                      "Lotus 獨自站在海岸，彷彿被遠方聲音吸引。Operator／Drifter 前往她身邊，確認 Albrecht 與 1999 的呼喚已經穿過時間抵達現在。"
+                            ]
+                  },
+                  {
+                            "heading": "第一幕｜局勢開始改變",
+                            "paragraphs": [
+                                      "Lotus 無法親自踏入那段年代，任務因此落到 Drifter 身上。與 Operator 相比，Drifter 更熟悉被困在時間循環、依靠情感重寫結果的經驗。"
+                            ]
+                  },
+                  {
+                            "heading": "第二幕｜真相與選擇",
+                            "paragraphs": [
+                                      "The Lotus Eaters 像一次吸氣：沒有首領與獎勵堆疊，只讓玩家在進入 1999 前看見 Lotus 也會被虛空觸動。她不再只是發布任務的人，而是同樣站在未知邊緣的生命。"
+                            ]
+                  },
+                  {
+                            "heading": "高潮｜命運交會",
+                            "paragraphs": [
+                                      "The Lotus Eaters 像一次吸氣：沒有首領與獎勵堆疊，只讓玩家在進入 1999 前看見 Lotus 也會被虛空觸動。她不再只是發布任務的人，而是同樣站在未知邊緣的生命。"
+                            ]
+                  },
+                  {
+                            "heading": "尾聲｜故事繼續",
+                            "paragraphs": [
+                                      "這一章的危機暫時落幕，但留下的人物關係、技術與未解問題仍會在後續主線再次出現。它不是孤立事件，而是 Tenno 下一次選擇的前因。"
+                            ]
+                  }
+        ],
         "characters": [
           "Lotus",
           "Drifter",
@@ -1107,6 +1971,38 @@ export const storyChapters = [
         "prerequisites": ["The Lotus Eaters／食蓮者","The Duviri Paradox／雙衍悖論"],
         "rewards": ["Höllvania／霍爾瓦尼亞","The Hex","Protoframe／原型戰甲","Atomicycle"],
         "timeline": ["Drifter 穿越到 1999 年的 Höllvania。","The Hex 六名 Protoframe 成為故事核心。","Techrot 與 Scaldra 讓城市陷入多方衝突。","Drifter 追查 Albrecht Entrati 留下的行動與目的。"],
+        "scenes": [
+                  {
+                            "heading": "序幕｜The Hex：末日前夜的六名 Protoframe",
+                            "paragraphs": [
+                                      "Höllvania 同時遭受 Scaldra 軍事封鎖與 Techrot 感染。Albrecht 以 Entrati 的名字活動，把部分 Warframe 技術帶到這個年代，造就六名 Protoframe。Arthur 對應 Excalibur、Aoi 對應 Mag、Amir 對應 Volt、Lettie 對應 Trinity、Quincy 對應 Cyte-09、Eleanor 則對應 Nyx。"
+                            ]
+                  },
+                  {
+                            "heading": "第一幕｜局勢開始改變",
+                            "paragraphs": [
+                                      "Drifter 加入 Hex，駕駛 Atomicycle 穿過城市，輪流以各成員的視角作戰。這種切換讓玩家不只看見能力，也看見團隊內部的裂痕：Arthur 過度扛責、Quincy 不信任領袖、Lettie 用工作逃避恐懼，Eleanor 則因感染與心靈能力逐漸接近人類之外。"
+                            ]
+                  },
+                  {
+                            "heading": "第二幕｜真相與選擇",
+                            "paragraphs": [
+                                      "Albrecht 聲稱必須在關鍵時刻完成某件事，卻再次把答案藏在操控與試驗裡。Drifter 追逐他，也發現牆中人已能模仿熟悉面孔，把每一份懷疑放大成背叛。"
+                            ]
+                  },
+                  {
+                            "heading": "高潮｜命運交會",
+                            "paragraphs": [
+                                      "Albrecht 聲稱必須在關鍵時刻完成某件事，卻再次把答案藏在操控與試驗裡。Drifter 追逐他，也發現牆中人已能模仿熟悉面孔，把每一份懷疑放大成背叛。"
+                            ]
+                  },
+                  {
+                            "heading": "尾聲｜故事繼續",
+                            "paragraphs": [
+                                      "這一章的危機暫時落幕，但留下的人物關係、技術與未解問題仍會在後續主線再次出現。它不是孤立事件，而是 Tenno 下一次選擇的前因。"
+                            ]
+                  }
+        ],
         "characters": [
           "Arthur",
           "Aoi",
@@ -1142,6 +2038,38 @@ export const storyChapters = [
         "prerequisites": ["The Hex／六煞"],
         "rewards": ["1999 Finale","The Hex 關係與後續內容"],
         "timeline": ["Drifter 與 Hex 的關係逐漸改變原本的結局。","1999 的循環與失敗被重新面對。","Finale 為 Hex 的命運留下新的可能。"],
+        "scenes": [
+                  {
+                            "heading": "序幕｜第一次必敗，第二次以關係改寫結局",
+                            "paragraphs": [
+                                      "The Hex 的初次結局讓團隊在不同戰線逐一失敗。Drifter 被迫看著熟悉的人死亡，城市與時間重置。這種循環與 Duviri 相似：知道事件會重來，不代表失去就不會痛。"
+                            ]
+                  },
+                  {
+                            "heading": "第一幕｜局勢開始改變",
+                            "paragraphs": [
+                                      "任務後，玩家透過 KIM 對話、Syndicate 聲望與 Chemistry 理解每名成員。這些日常訊息不是附加戀愛系統，而是 Finale 的敘事機制。Drifter 必須知道他們如何害怕、如何逃避，才可能在關鍵時刻說出能改變選擇的話。"
+                            ]
+                  },
+                  {
+                            "heading": "第二幕｜真相與選擇",
+                            "paragraphs": [
+                                      "回到跨年夜時，Drifter 不再單純替所有人戰鬥，而是讓 Hex 彼此支援。Arthur 不必獨自當英雄，Quincy 願意相信團隊，其他成員也在自己的崩潰點獲得連結。循環因此產生新結果。"
+                            ]
+                  },
+                  {
+                            "heading": "高潮｜命運交會",
+                            "paragraphs": [
+                                      "這是對 Indifference 最直接的反擊：世界並非因 Drifter 更強而改寫，而是因六個人終於不再被自己的孤獨分隔。"
+                            ]
+                  },
+                  {
+                            "heading": "尾聲｜故事繼續",
+                            "paragraphs": [
+                                      "這一章的危機暫時落幕，但留下的人物關係、技術與未解問題仍會在後續主線再次出現。它不是孤立事件，而是 Tenno 下一次選擇的前因。"
+                            ]
+                  }
+        ],
         "characters": [
           "Drifter",
           "The Hex",
@@ -1168,6 +2096,38 @@ export const storyChapters = [
         "prerequisites": ["The Lotus Eaters／食蓮者"],
         "rewards": ["Uriel Blueprint","Dark Refractory","Descendia","Perita Rebellion","La Cathédrale","Devil's Triad"],
         "timeline": ["Tenno 使用 Albrecht 的 Dark Refractory 進入 Old War 記憶。","故事抵達 Tau 與 Orokin、Sentient 脆弱和平的年代。","Tenno 重歷 Perita 戰場與和平條約崩潰。","Adis Truth-bloom 協助 Tenno 追查被遺忘的歷史。","過去的真相為 2026 年後續 Tau 故事鋪路。"],
+        "scenes": [
+                  {
+                            "heading": "序幕｜The Old Peace：進入遠古和平崩解的現場",
+                            "paragraphs": [
+                                      "透過 Dark Refractory，玩家進入長久只存在於傳說與資料庫中的 Old War 記憶。Orokin 與 Sentient 不是從第一秒就只有殲滅；雙方曾出現一段充滿猜疑的和平，也有人真心希望停止戰爭。"
+                            ]
+                  },
+                  {
+                            "heading": "第一幕｜局勢開始改變",
+                            "paragraphs": [
+                                      "The Old Peace 讓 Tenno 看見自己在遠古事件中的位置，並認識 Sentient Adis。當條約崩解，個人選擇與帝國結構互相擠壓，再次證明 Orokin 無法接受造物擁有平等意志。"
+                            ]
+                  },
+                  {
+                            "heading": "第二幕｜真相與選擇",
+                            "paragraphs": [
+                                      "任務不只補歷史，而是替未來 Tau 篇章建立情感。Tau 不再只是 Sentient 的遙遠故鄉，而是一個承載被殖民恐懼、反抗記憶與尚未完成和解的地方。"
+                            ]
+                  },
+                  {
+                            "heading": "高潮｜命運交會",
+                            "paragraphs": [
+                                      "任務不只補歷史，而是替未來 Tau 篇章建立情感。Tau 不再只是 Sentient 的遙遠故鄉，而是一個承載被殖民恐懼、反抗記憶與尚未完成和解的地方。"
+                            ]
+                  },
+                  {
+                            "heading": "尾聲｜故事繼續",
+                            "paragraphs": [
+                                      "這一章的危機暫時落幕，但留下的人物關係、技術與未解問題仍會在後續主線再次出現。它不是孤立事件，而是 Tenno 下一次選擇的前因。"
+                            ]
+                  }
+        ],
         "characters": [
           "Adis",
           "Orokin",
@@ -1195,6 +2155,38 @@ export const storyChapters = [
         "prerequisites": ["The Hex／六煞","The Old Peace／舊日和平"],
         "rewards": ["1999 與 Tau 後續故事接口","KETHER 未來主線擴充節點"],
         "timeline": ["1999 與 Tau 的故事線開始同時影響現在。","Albrecht 留下的跨時間布局仍未完全揭露。","後續主線將沿官方更新持續接入此節點。"],
+        "scenes": [
+                  {
+                            "heading": "序幕｜Shadowgrapher 與 Constellations：被主線遺漏的人",
+                            "paragraphs": [
+                                      "The Shadowgrapher 在完成 The War Within 後即可展開，從影像與記憶追索 Vesper Relay 相關事件。它讓早期限時活動造成的歷史斷層重新被看見：中繼站的毀滅不是背景裝飾，而是某些人一生無法離開的現場。"
+                            ]
+                  },
+                  {
+                            "heading": "第一幕｜局勢開始改變",
+                            "paragraphs": [
+                                      "Jade Shadows: Constellations 緊接 Jade Shadows，繼續 Stalker、孩子與 Jade 留下的選擇。任務把焦點放在失去之後如何成為父親，也讓玩家先前在 Jade Shadows 的決定產生後續回聲。"
+                            ]
+                  },
+                  {
+                            "heading": "第二幕｜真相與選擇",
+                            "paragraphs": [
+                                      "兩條故事都說明現階段 Warframe 不只向前衝往 Tau，也在回收多年更新中被忽略的情感債。當宇宙級戰爭退到遠景，個人的記憶終於有位置被完整說完。"
+                            ]
+                  },
+                  {
+                            "heading": "高潮｜命運交會",
+                            "paragraphs": [
+                                      "兩條故事都說明現階段 Warframe 不只向前衝往 Tau，也在回收多年更新中被忽略的情感債。當宇宙級戰爭退到遠景，個人的記憶終於有位置被完整說完。"
+                            ]
+                  },
+                  {
+                            "heading": "尾聲｜故事繼續",
+                            "paragraphs": [
+                                      "這一章的危機暫時落幕，但留下的人物關係、技術與未解問題仍會在後續主線再次出現。它不是孤立事件，而是 Tenno 下一次選擇的前因。"
+                            ]
+                  }
+        ],
         "characters": [
           "The Shadowgrapher",
           "Stalker",
@@ -1221,6 +2213,38 @@ export const storyChapters = [
         "prerequisites": ["目前已發布的電影式主線"],
         "rewards": ["主線追蹤終點","未來更新接口"],
         "timeline": ["Tenno 已跨越 Orokin 遺產、New War、Void War、1999 與 Tau 記憶。","Indifference、Albrecht 與 Tau 仍留下未解問題。","KETHER 將以官方新主線發布內容繼續向後延伸。"],
+        "scenes": [
+                  {
+                            "heading": "序幕｜Fables & Frontiers，以及尚未抵達的 Tau",
+                            "paragraphs": [
+                                      "完成 The Hex、Hex Finale，將 Hex Syndicate 提升至 Rank 5，並與 Amir 達到 Chemistry Rank 5 後，可開啟 Fables & Frontiers: Running Late。Amir 擔任 Fablemaster，讓 Hex 成員在 KIM 中扮演幻想角色。"
+                            ]
+                  },
+                  {
+                            "heading": "第一幕｜局勢開始改變",
+                            "paragraphs": [
+                                      "這段六天文字冒險永久保留，每日解鎖一段。它沒有把團隊再次丟進星系末日，而是讓一群曾注定死亡的人浪費時間、爭論規則、一起玩遊戲。對經歷循環的角色而言，能擁有「不重要的一天」本身就是勝利。"
+                            ]
+                  },
+                  {
+                            "heading": "第二幕｜真相與選擇",
+                            "paragraphs": [
+                                      "截至 2026 年 8 月，Tau 仍是即將到來的未來篇章，不能當成已完成故事。The Old Peace 已把道路打開，牆中人的陰影也未消失。下一卷尚未命名，但棋盤上的兩條線——Tau 與 Void——正逐漸交會。"
+                            ]
+                  },
+                  {
+                            "heading": "高潮｜命運交會",
+                            "paragraphs": [
+                                      "截至 2026 年 8 月，Tau 仍是即將到來的未來篇章，不能當成已完成故事。The Old Peace 已把道路打開，牆中人的陰影也未消失。下一卷尚未命名，但棋盤上的兩條線——Tau 與 Void——正逐漸交會。"
+                            ]
+                  },
+                  {
+                            "heading": "尾聲｜故事繼續",
+                            "paragraphs": [
+                                      "這一章的危機暫時落幕，但留下的人物關係、技術與未解問題仍會在後續主線再次出現。它不是孤立事件，而是 Tenno 下一次選擇的前因。"
+                            ]
+                  }
+        ],
         "characters": [
           "Amir",
           "The Hex",
