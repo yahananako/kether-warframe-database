@@ -1,4 +1,4 @@
-export const KETHER_APP_VERSION_NUMBER = "2.2.35";
+export const KETHER_APP_VERSION_NUMBER = "2.2.36";
 export const KETHER_BOT_VERSION_NUMBER = "3.5.8";
 
 export const KETHER_APP_VERSION = `V${KETHER_APP_VERSION_NUMBER}`;
