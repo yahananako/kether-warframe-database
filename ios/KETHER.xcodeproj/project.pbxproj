@@ -68,7 +68,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A90000000000000000000002 /* Build configuration list for PBXNativeTarget "KETHER" */;
 			buildPhases = (
-				A80000000000000000000002 /* Generate KETHER Artwork */,
 				A60000000000000000000001 /* Sources */,
 				A30000000000000000000001 /* Frameworks */,
 				A70000000000000000000001 /* Resources */,
@@ -130,31 +129,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		A80000000000000000000002 /* Generate KETHER Artwork */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"$(SRCROOT)/../public/kether-clan-logo.png",
-				"$(SRCROOT)/scripts/generate-artwork.swift",
-			);
-			name = "Generate KETHER Artwork";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(SRCROOT)/KETHER/Assets.xcassets/AppIcon.appiconset/AppIcon.png",
-				"$(SRCROOT)/KETHER/Assets.xcassets/KetherLogo.imageset/KetherLogo.png",
-				"$(SRCROOT)/KETHER/Assets.xcassets/KetherLogo.imageset/KetherLogo@2x.png",
-				"$(SRCROOT)/KETHER/Assets.xcassets/KetherLogo.imageset/KetherLogo@3x.png",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/bash;
-			shellScript = "env -u SDKROOT -u IPHONEOS_DEPLOYMENT_TARGET -u TVOS_DEPLOYMENT_TARGET -u WATCHOS_DEPLOYMENT_TARGET xcrun --sdk macosx swift \"$SRCROOT/scripts/generate-artwork.swift\" \"$SRCROOT/../public/kether-clan-logo.png\" \"$SRCROOT/KETHER/Assets.xcassets\"\n";
-		};
 		A80000000000000000000001 /* Copy KETHER Web Assets */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;

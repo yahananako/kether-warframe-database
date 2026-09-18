@@ -8,5 +8,3 @@ ios/DerivedData/
 ios/build/
 *.xcarchive
 *.ipa
-ios/KETHER/Assets.xcassets/AppIcon.appiconset/AppIcon.png
-ios/KETHER/Assets.xcassets/KetherLogo.imageset/KetherLogo*.png

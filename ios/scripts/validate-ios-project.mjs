@@ -18,8 +18,11 @@ const requiredFiles = [
   "ios/KETHER/Info.plist",
   "ios/KETHER/PrivacyInfo.xcprivacy",
   "ios/KETHER/Assets.xcassets/AppIcon.appiconset/Contents.json",
+  "ios/KETHER/Assets.xcassets/AppIcon.appiconset/AppIcon.png",
   "ios/KETHER/Assets.xcassets/KetherLogo.imageset/Contents.json",
-  "ios/scripts/generate-artwork.swift",
+  "ios/KETHER/Assets.xcassets/KetherLogo.imageset/KetherLogo.png",
+  "ios/KETHER/Assets.xcassets/KetherLogo.imageset/KetherLogo@2x.png",
+  "ios/KETHER/Assets.xcassets/KetherLogo.imageset/KetherLogo@3x.png",
   "ios/release-request.json"
 ];
 
@@ -37,7 +40,7 @@ assert.match(swift, /KETHER_NATIVE_PLATFORM = 'ios'/);
 assert.doesNotMatch(swift, /_removeAllItems|allowsArbitraryLoads/i, "不可使用私有 API 或任意 HTTP 放行");
 
 const project = read("ios/KETHER.xcodeproj/project.pbxproj");
-for (const value of ["KetherViewController.swift", "PrivacyInfo.xcprivacy", "Generate KETHER Artwork", "Copy KETHER Web Assets", "tw.kether.app.ios"]) {
+for (const value of ["KetherViewController.swift", "PrivacyInfo.xcprivacy", "Copy KETHER Web Assets", "tw.kether.app.ios"]) {
   assert.ok(project.includes(value), `Xcode 專案缺少 ${value}`);
 }
 
@@ -53,10 +56,6 @@ assert.match(privacy, /CA92\.1/);
 const release = JSON.parse(read("ios/release-request.json"));
 assert.match(release.versionName, /^\d+\.\d+\.\d+$/);
 assert.ok(Number.isInteger(release.buildNumber) && release.buildNumber > 0);
-
-const artworkGenerator = read("ios/scripts/generate-artwork.swift");
-assert.match(artworkGenerator, /canvasSize:\s*1024/);
-assert.match(artworkGenerator, /samplesPerPixel:\s*hasAlpha \? 4 : 3/);
 
 const temporaryRoot = mkdtempSync(join(tmpdir(), "kether-ios-assets-"));
 try {
