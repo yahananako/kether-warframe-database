@@ -522,6 +522,9 @@ export const storyChapters = [
           "Lotus 原名 Natah，被派往 Orokin 內部控制 Tenno。她完成了摧毀帝國的前半任務，卻沒有在最後殺死孩子。Hunhow 認為她遭 Orokin 改寫，Lotus 則堅稱自己做出了選擇。",
           "任務沒有給出一個能永久定案的答案。Natah、Lotus 與 Margulis 是不同身分，也是不斷被他人投射的角色。往後 Ballas、Erra、Hunhow 與 Tenno 都會嘗試告訴她「真正是誰」。"
         ],
+        "prerequisites": ["完成 Uranus／天王星相關前期進度"],
+        "rewards": ["人物：Natah／Lotus","Sentient 主線正式展開"],
+        "timeline": ["Tenno 在 Uranus 接觸到異常訊號。","Hunhow 的存在與 Sentient 威脅重新浮現。","Lotus 的 Natah 身分開始被揭開。"],
         "characters": [
           "Lotus",
           "Natah",
@@ -546,6 +549,9 @@ export const storyChapters = [
           "Stalker 最終沒有對孩子下手，Hunhow 的 War 劍卻刺入 Warframe。即使與 Operator 的連結一度中斷，Warframe 仍自行折斷劍刃救下主人。那一刻究竟是殘留意志、Operator 的本能，還是兩者之間更深的共鳴，遊戲刻意沒有完全說死。",
           "Operator 被帶回 Orbiter，玩家選擇 Focus School，第一次以真正身體醒來。這不是故事解答，而是身分問題的開始：如果戰場上的英雄一直是夢中的投影，醒來後還剩下什麼？"
         ],
+        "prerequisites": ["Natah","Neptune Junction／海王星接合點"],
+        "rewards": ["Broken War","Focus 系統","Lua 節點","Operator 身分揭露"],
+        "timeline": ["Tenno 追查 Stalker 與 Hunhow 的行動。","Lua 從虛空中重新出現。","Reservoir 的真相曝光。","Tenno 與自己的 Operator 身分相遇。"],
         "characters": [
           "Operator",
           "Lotus",
@@ -569,6 +575,9 @@ export const storyChapters = [
           "修復過程逐步揭露 Cy 曾在 Old War 指揮一艘船。他判斷任務不可完成，卻仍服從命令，最終失去全體船員。新的 Railjack 不是單純裝備，也讓 Cy 得到再次保護船員、重新定義忠誠的機會。",
           "敘事上，Rising Tide 是 The New War 的備戰章。Sentient 不再只是藏在海底或訊號中的敵人，Tenno 必須擁有能直接進入它們艦隊的船。"
         ],
+        "prerequisites": ["The Second Dream／第二場夢"],
+        "rewards": ["Railjack／銳捷號建造線","Cephalon Cy"],
+        "timeline": ["Tenno 接觸 Cephalon Cy。","逐步尋回並修復 Railjack 零件。","Railjack 成為後續大型戰爭所需的航行兵器。"],
         "characters": [
           "Cephalon Cy",
           "Tenno",
@@ -592,6 +601,9 @@ export const storyChapters = [
           "回到 Kuva 要塞後，Operator 以自己的身體與力量破壞女皇的 Continuity。玩家可選擇如何處理 Kuva，形成太陽、月亮與中立傾向；這不是簡單善惡值，而是角色對力量、控制與自我認知的態度。",
           "任務結束時，Tenno 首次證明自己不必躲在 Warframe 後面。醒來的孩子不再只是需要 Lotus 保護的對象，也能反過來打破 Orokin 留下的誓約。"
         ],
+        "prerequisites": ["The Second Dream／第二場夢","抵達 Sedna／賽德娜"],
+        "rewards": ["Operator 新能力","Personal Quarters Segment Blueprint","Broken Scepter","Orvius Blueprint","Rifle Riven Mod"],
+        "timeline": ["Lotus 將 Tenno 引向 Lua 的新異常。","Grineer Queens 試圖利用 Tenno 與 Continuity。","Operator 被迫脫離熟悉的 Warframe 保護。","Tenno 掌握新的虛空能力並正面反抗 Queens。"],
         "characters": [
           "Operator",
           "Teshin",
@@ -621,6 +633,9 @@ export const storyChapters = [
           "Rell 比其他人更早察覺虛空中有某種存在。他把意識永久綁進 Harrow，靠痛苦與儀式阻止牆中人進入現實。當其他 Tenno 在 Lua 長眠，他一個人維持這場看不見的戰爭。",
           "Operator 最終解除鎖鏈，讓 Rell 得以休息。代價是牆中人的注意力失去原本屏障，開始直接靠近玩家。從此 Orbiter 會出現與 Operator 相同面孔的訪客，以輕佻的「Hey, kiddo」提醒：門已經開了一條縫。"
         ],
+        "prerequisites": ["The War Within／內戰","完成 Void 的 Mot 節點"],
+        "rewards": ["Harrow Blueprint","Rell 與 Red Veil 背景","牆中人主線伏筆"],
+        "timeline": ["Tenno 尋找 Palladino 並接觸 Rell 的故事。","情緒化身與異常現象逐步指向虛空威脅。","Tenno 以 Transference 解開 Rell 的束縛。","Rell 的長期守望結束，新的存在開始更直接地靠近 Tenno。"],
         "characters": [
           "Rell",
           "Harrow",
@@ -644,6 +659,9 @@ export const storyChapters = [
           "Lotus 摘下象徵身分的頭盔，顯露 Sentient 的形貌，隨 Ballas 離去。這一幕刻意不解釋她是自願、被喚醒，還是遭到控制。對 Tenno 而言，只剩任務通訊中的模擬聲音與被遺棄感。",
           "Ballas 把 Margulis、Natah 與 Lotus 混為自己失去的所有物。他看似前來尋人，實際延續 Orokin 最典型的暴力：不允許對方擁有自己定義的名字。"
         ],
+        "prerequisites": ["Chains of Harrow","建造並安裝 Personal Quarters Segment"],
+        "rewards": ["Lotus／Ballas 劇情轉折","The Sacrifice 前置"],
+        "timeline": ["Orbiter 私人房間出現異常能量。","Tenno 被引回 Lua 的 Reservoir。","Ballas 與 Lotus 的事件改變 Tenno 接下來的方向。"],
         "characters": [
           "Lotus",
           "Ballas",
@@ -668,6 +686,9 @@ export const storyChapters = [
           "Operator 多次嘗試壓制 Umbra 都失敗，直到不再把它當作需要征服的武器。Tenno 進入記憶，和 Umbra 一起承受喪子之痛。這份共感讓兩者真正同步，並共同對抗 Ballas。",
           "Ballas 被 Umbra 刺傷後交出 Paracesis 藍圖，試圖把 Tenno 推向與 Sentient 的下一場戰爭。Lotus 的失蹤仍未解決，但 Tenno 此刻已知道：Orokin 能製造身體，卻無法理解連結為何能超越控制。"
         ],
+        "prerequisites": ["Apostasy Prologue"],
+        "rewards": ["Excalibur Umbra","Skiajati","Umbra MOD 系列","Ballas／Umbra 真相"],
+        "timeline": ["Tenno 追查地球上的 Warframe 痕跡。","Orokin 記憶密碼揭開 Umbra 的過去。","Tenno 製作並追尋 Excalibur Umbra。","Transference 讓 Tenno 進入 Umbra 的創傷記憶。","Tenno 與 Umbra 建立理解並面對 Ballas。"],
         "characters": [
           "Excalibur Umbra",
           "Operator",
