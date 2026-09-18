@@ -754,6 +754,9 @@ export const storyChapters = [
           "The Maker 顯示 Natah 被固定於裝置上，Erra 與 Ballas 討論即將到來的戰爭。當鏡頭遠離，Ballas 卻放下象徵奴役的鎖鏈，Erra反而服從地跟隨。他從一開始就不是單純囚徒。",
           "三段短篇的作用，是讓所有陣營都失去可信表面。Natah 的記憶可能被修改，Erra 的復活疑點重重，Ballas 則一邊扮演受害者，一邊把每個人推向自己設計的舞台。"
         ],
+        "prerequisites": ["The Sacrifice／犧牲"],
+        "rewards": ["Paracesis 藍圖","The New War 前置劇情"],
+        "timeline": ["Ballas 在事件後以新的狀態再度出現。","Sentient 與 Tau 戰線逐漸逼近始源星系。","Chimera、Erra 與 The Maker 的事件共同構成戰爭前奏。"],
         "characters": [
           "Ballas",
           "Natah",
@@ -778,6 +781,9 @@ export const storyChapters = [
           "Teshin 潛入 Murex，擊敗 Sentient 並接近核心，卻被 Erra 攔截。這三段視角讓戰爭不再只是 Tenno 的神話：普通士兵也在同一刻作出犧牲，只是歷史未必會記住名字。",
           "Operator、Lotus 與 Necramech 最終突入戰場。Ballas 奪走勝利，刺傷 Lotus，將 Operator 與她一同投入虛空。Tenno 從現實消失，始源星系正式失守。"
         ],
+        "prerequisites": ["Prelude to War／戰爭前奏","擁有 Railjack／銳捷號","擁有 Necramech／亡靈機甲"],
+        "rewards": ["The New War 大型主線","Drifter 劇情正式展開"],
+        "timeline": ["Sentient 對始源星系發動全面入侵。","Tenno、Grineer 與 Corpus 各自在戰線上抵抗。","Ballas 與 Narmer 改寫始源星系秩序。","Operator 的失敗把故事推向 Drifter 的時代。"],
         "characters": [
           "Kahl-175",
           "Veso-R",
@@ -802,6 +808,9 @@ export const storyChapters = [
           "Drifter 沒有 Operator 的完整虛空力量，也無法隨意使用 Warframe。他與 Ordis、Hunhow 合作，追獵 Archon 取得晶體，逐步修復奄奄一息的 Lotus。Hunhow 曾是敵人，此刻卻比 Ballas 更願意承認 Natah 是有選擇的人。",
           "Narmer 的恐怖不只在精神控制，而在它提供真正誘人的安慰。面紗讓受傷的人看見理想家庭、肯定與安全；摘下它等於重新接受失去。自由因此不是舒服的狀態，而是願意承受真實。"
         ],
+        "prerequisites": ["The New War／新世戰紀進行中"],
+        "rewards": ["Narmer 世界觀","Drifter 生存篇"],
+        "timeline": ["Narmer 以面紗控制大量居民。","Drifter 在失去傳統 Tenno 優勢的情況下行動。","舊盟友與敵人的界線在占領下重新排列。"],
         "characters": [
           "Drifter",
           "Hunhow",
@@ -826,6 +835,9 @@ export const storyChapters = [
           "兩人在餐桌上相遇並決定由誰回到戰場。這不是兩個陌生人交換工作，而是同一個人第一次看見自己若走過另一條路會成為什麼樣子。Operator 保留孩子的外表與力量，Drifter 帶著在孤獨中長大的時間。",
           "這場會面也解釋 Drifter 為何能拯救一個從未認識的 Lotus：即使記憶不同，彼此仍共享某種因果與情感。虛空把答案分開，也讓答案重新相遇。"
         ],
+        "prerequisites": ["The New War／新世戰紀進行中"],
+        "rewards": ["永恆論／Eternalism","Operator 與 Drifter 關係"],
+        "timeline": ["Zariman 的選擇重新成為理解現況的關鍵。","Operator 與 Drifter 的不同可能性開始交會。","虛空讓互斥的答案同時成為故事的一部分。"],
         "characters": [
           "Operator",
           "Drifter",
@@ -850,6 +862,9 @@ export const storyChapters = [
           "Tenno 打碎鏡像與謊言，Lotus 最終靠近 Ballas，以自己的力量終結他。玩家可選擇她往後顯示為 Natah、Lotus 或 Margulis；選擇改變名字與外觀，卻不抹去她同時經歷過的所有身分。",
           "勝利後，巨大的牆中人形象從虛空出現。它伸出的手指缺少一截，與 Zariman 交易的記憶互相呼應。Sentient 戰爭結束了，真正的 Void War 才剛把臉貼到現實之外。"
         ],
+        "prerequisites": ["The New War／新世戰紀最終階段"],
+        "rewards": ["Nataruk","Sirocco","Rumblejack","Drifter's Camp／漂泊者營地"],
+        "timeline": ["Tenno 陣營重新向 Ballas 與 Narmer 發動反擊。","Lotus／Natah／Margulis 的身分衝突走向決斷。","Ballas 的計畫在最終戰中被阻止。","戰後的始源星系進入新的不穩定時代。"],
         "characters": [
           "Lotus",
           "Ballas",
@@ -874,6 +889,9 @@ export const storyChapters = [
           "Void Angels 是被虛空吞噬的存在，會誘惑其他人放棄痛苦、投入無差別的歌聲。Holdfasts 必須一次次記住自己是誰，才不會成為下一個天使。",
           "Zariman 現在像一枚楔子，卡住現實與虛空之間的裂口。Tenno 幫助 Holdfasts，不只是重返童年創傷，也是守住牆中人尚未完全跨過的門檻。"
         ],
+        "prerequisites": ["The New War／新世戰紀"],
+        "rewards": ["Zariman 後續","Holdfasts 背景","虛空異常擴大"],
+        "timeline": ["The New War 後，Zariman 再度成為始源星系與虛空的前線。","Tenno 返回曾經的災難現場。","船上的倖存痕跡與虛空現象讓舊創傷變成新的戰場。"],
         "characters": [
           "Quinn",
           "Yonta",
@@ -898,6 +916,9 @@ export const storyChapters = [
           "一隻來自現實的手與 Teshin 的引導打破循環。Drifter 學會戰鬥、騎乘 Kaithe、穿過 Undercroft，逐步理解 Thrax 並非單純外來暴君，而是自己恐懼與拒絕離開的投影。",
           "Drifter 最終奪回控制，卻沒有摧毀 Duviri，而是選擇離開並保留這個世界。任務結尾的援手與 The New War 中對 Operator 的幫助互相形成因果：誰先救了誰，已無法用直線時間回答。"
         ],
+        "prerequisites": ["The Duviri Paradox／雙衍悖論主線條件依目前遊戲路徑"],
+        "rewards": ["Duviri","Drifter","The Circuit／迴廊","Duviri Incarnon 系統"],
+        "timeline": ["Drifter 在 Duviri 的循環中反覆經歷失敗與重置。","Dominus Thrax 的世界以情緒與故事規則維持。","Drifter 逐步取回選擇與行動能力。","Duviri 與 The New War 的時間線在 Drifter 身上交會。"],
         "characters": [
           "Drifter",
           "Dominus Thrax",
@@ -921,6 +942,9 @@ export const storyChapters = [
           "Jade Shadows 把視角交給 Stalker。玩家得知他原名 Sorren，與 Jade 在 Orokin 時代相愛；兩人因禁忌關係受罰並被轉化。Jade 長久維持著腹中的生命，最終在 Tenno、Hunhow 與 Stalker 面前耗盡自己。",
           "Stalker 帶著孩子逃離 Corpus 追捕。Corpus 艦長在看見嬰兒後選擇停火，短暫打破敵我規則。這不是讓 Stalker 的過去罪行消失，而是讓他從只剩仇恨的角色，重新成為能選擇守護的人。"
         ],
+        "prerequisites": ["The New War／新世戰紀"],
+        "rewards": ["Jade Shadows／翠玉遺影","Ascension 相關劇情"],
+        "timeline": ["The New War 後的角色開始面對戰爭留下的私人代價。","Stalker 的故事被拉到舞台中央。","Jade 的真相改變玩家對過去敵人的理解。"],
         "characters": [
           "Kahl-175",
           "Daughter",
