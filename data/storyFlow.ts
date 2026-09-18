@@ -287,6 +287,9 @@ export const storyChapters = [
           "Captain Vor 想把這件 Orokin 遺物變成 Grineer 的戰利品。他將 Ascaris 控制裝置植入 Warframe，企圖遠端癱瘓甚至奪取它。Tenno 在逃亡時取回槍械與近戰武器，第一次體會自身機動性與殺傷力，也第一次看到 Grineer 如何把整個星系視為可征服的領土。",
           "這時的 Tenno 認為自己就是 Warframe。故事故意不解釋沉睡、Lotus 與身體的真相；玩家與角色共享同一片空白，只能先相信那道聲音。"
         ],
+        "prerequisites": ["Tenno 長眠"],
+        "rewards": ["現代始源星系開端","Lotus 再次呼喚 Tenno"],
+        "timeline": ["沉睡中的 Warframe 被喚醒。","Lotus 引導 Tenno 逃離 Grineer 搜索。","Tenno 開始重新建立與始源星系的連結。"],
         "characters": [
           "Lotus",
           "Captain Vor",
@@ -310,6 +313,9 @@ export const storyChapters = [
           "Corpus 商人 Darvo 因拒絕配合 Vor 而遭囚禁。救出他後，Tenno 得知解除 Ascaris 的方法，並在 Grineer 設施中蒐集材料製造破解器。Vor 試圖以裝置直接摧毀 Warframe，卻被 Tenno 反過來擊敗。",
           "Vor 沒有真正放棄 Orokin 與虛空。他的身體後來被 Janus Key 的力量改變，在 Void 中成為一個不斷重複信仰宣言的存在。初見時只是新手敵人的將軍，最終也成了 Orokin 遺產腐蝕眾生的例子。"
         ],
+        "prerequisites": ["Awakening／甦醒"],
+        "rewards": ["Orbiter 基礎系統","星圖航行","Captain Vor 劇情"],
+        "timeline": ["Vor 對甦醒的 Tenno 植入控制裝置。","Tenno 逃離並逐步修復 Orbiter。","Tenno 反擊 Vor，重新取得行動自由。"],
         "characters": [
           "Captain Vor",
           "Darvo",
@@ -333,6 +339,9 @@ export const storyChapters = [
           "Onkko 並沒有被單純殺害。他透過 Quills 所見的多重可能性，發現若繼續留在 Saya 身邊，某些更糟的未來將無法避免。他選擇讓愛人相信自己已死，自己則躲在密室裡成為 Quill Onkko，守護 Unum 與未來的因果。",
           "Saya 得到的不是團圓，而是一個能讓等待停止的答案。這條支線把 Warframe 的宏大時間觀落到普通人的傷口：看見未來不代表能保留所有幸福，有時只能選擇哪一種失去。"
         ],
+        "prerequisites": ["Vor's Prize／Vor 的戰利品"],
+        "rewards": ["Cetus／希圖斯","夜靈平野背景","Saya 與 Onkko"],
+        "timeline": ["Tenno 抵達 Cetus 並認識 Ostron。","Konzu 請求 Tenno 協助 Saya。","調查揭開 Onkko 失蹤與 Eidolon 研究的線索。"],
         "characters": [
           "Saya",
           "Onkko",
@@ -356,6 +365,9 @@ export const storyChapters = [
           "當 Nef 的行動再次威脅工人，Eudico 被迫重拾 Vox Solaris 的身分。Tenno 破壞 Corpus 設施、奪回資源，讓 Fortuna 重新燃起反抗。這不是徹底勝利，卻證明 Nef 的帳本並非宇宙法則。",
           "Solaris 的身體改造與 Orokin 的 Continuity 形成殘酷對照：上層把更換身體視為永生，底層則被迫拆解自己還債。Vox Solaris 因此不只是開放世界序章，也是 Corpus 社會最清楚的控訴。"
         ],
+        "prerequisites": ["Saya's Vigil／Saya 的守夜"],
+        "rewards": ["Fortuna／福爾圖娜","Solaris United","Eudico 與 Nef Anyo"],
+        "timeline": ["Tenno 抵達 Fortuna。","Solaris 的債務與 Corpus 控制浮上檯面。","Eudico 再次面對 Vox Solaris 的反抗身分。"],
         "characters": [
           "Eudico",
           "Nef Anyo",
@@ -379,6 +391,9 @@ export const storyChapters = [
           "Dr. Tengus 等 Grineer 研究者以為能把感染者投向敵人，卻低估了它改寫宿主與環境的速度。Tenno 一邊防守資料、一邊阻止病原擴散，最後只能用火力封鎖失控區域。",
           "這段任務第一次讓玩家理解 Infested 不是野獸種族，而是一套會吞噬、記錄並重組生命的系統。它與 Helminth 及 Warframe 的關係尚未公開，但早已在背景中埋下。"
         ],
+        "prerequisites": ["前期星圖推進"],
+        "rewards": ["Infested／感染者背景","Grineer 生化研究"],
+        "timeline": ["Grineer 研究喚醒沉睡的 Infestation。","Tenno 追查感染擴散。","Infested 成為始源星系持續存在的威脅。"],
         "characters": [
           "Lotus",
           "Dr. Tengus",
@@ -402,6 +417,9 @@ export const storyChapters = [
           "Heart of Deimos 是始源星系許多虛空技術的關鍵。當它受損，Warframe 的 Transference 也受到影響。Tenno 穿過 Cambion Drift，使用借來的 Necramech 對抗失控機體，最後修復 Heart，避免整個系統斷裂。",
           "任務表面解決的是設備危機，真正被修復的卻是家族連結。Grandmother 讓成員以新的稱呼重新認識彼此；他們沒有突然變成完美家人，但終於願意承認彼此仍在同一座家中。"
         ],
+        "prerequisites": ["完成地球至火星的前期進度"],
+        "rewards": ["Deimos／火衛二","Entrati 家族","Necramech 背景"],
+        "timeline": ["Tenno 回應 Deimos 的求援。","Entrati 家族與 Heart 的危機曝光。","Tenno 協助維持 Heart 並重新連結家族成員。"],
         "characters": [
           "Mother",
           "Father",
@@ -432,6 +450,9 @@ export const storyChapters = [
           "Archwing 讓 Tenno 的戰場從走廊與行星表面延伸到宇宙。它也是日後 Railjack、Fomorian 戰役、海底任務與 Necramech 深空部署的技術基礎。",
           "完成這一段時，Tenno 已不再只是被 Lotus 救出的甦醒者。地球、Fortuna、Cetus 與 Deimos 的居民開始把這名戰士視為可以求援的力量；而更深的身分真相，也即將在天王星浮出水面。"
         ],
+        "prerequisites": ["前期星圖與必要節點"],
+        "rewards": ["Archwing 系統","太空戰鬥"],
+        "timeline": ["Corpus 威脅迫使 Tenno 尋找 Archwing 技術。","Tenno 蒐集並製作 Archwing。","Tenno 獲得在開放太空作戰的能力。"],
         "characters": [
           "Lotus",
           "Tenno",
