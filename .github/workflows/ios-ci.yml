@@ -76,3 +76,59 @@ jobs:
           path: ${{ runner.temp }}/KETHER-iOS-Simulator.zip
           retention-days: 14
           if-no-files-found: error
+
+      - name: 建置 iPhone arm64 側載版
+        run: |
+          xcodebuild \
+            -project ios/KETHER.xcodeproj \
+            -scheme KETHER \
+            -configuration Release \
+            -sdk iphoneos \
+            -destination "generic/platform=iOS" \
+            -derivedDataPath "$RUNNER_TEMP/DeviceDerivedData" \
+            ARCHS=arm64 \
+            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGNING_REQUIRED=NO \
+            "CODE_SIGN_IDENTITY=" \
+            clean build
+
+      - name: 封裝 Windows 側載用 IPA
+        id: package_unsigned_ipa
+        run: |
+          APP_PATH="$RUNNER_TEMP/DeviceDerivedData/Build/Products/Release-iphoneos/KETHER.app"
+          APP_BINARY="$APP_PATH/KETHER"
+          PACKAGE_ROOT="$RUNNER_TEMP/KETHER-Unsigned-Package"
+          PAYLOAD_PATH="$PACKAGE_ROOT/Payload"
+          VERSION_NAME="$(jq -r '.versionName' ios/release-request.json)"
+          IPA_PATH="$RUNNER_TEMP/KETHER-iOS-v${VERSION_NAME}-unsigned.ipa"
+
+          test -d "$APP_PATH"
+          test -f "$APP_BINARY"
+          lipo -verify_arch arm64 "$APP_BINARY"
+          mkdir -p "$PAYLOAD_PATH"
+          ditto "$APP_PATH" "$PAYLOAD_PATH/KETHER.app"
+          (
+            cd "$PACKAGE_ROOT"
+            /usr/bin/zip -qry "$IPA_PATH" Payload
+          )
+          unzip -tq "$IPA_PATH"
+
+          echo "version_name=$VERSION_NAME" >> "$GITHUB_OUTPUT"
+          echo "ipa_path=$IPA_PATH" >> "$GITHUB_OUTPUT"
+
+      - name: 保存 Windows 側載用 IPA
+        uses: actions/upload-artifact@v4
+        with:
+          name: KETHER-iOS-v${{ steps.package_unsigned_ipa.outputs.version_name }}-Windows-Sideload
+          path: ${{ steps.package_unsigned_ipa.outputs.ipa_path }}
+          retention-days: 14
+          if-no-files-found: error
+
+      - name: 寫入側載說明
+        run: |
+          {
+            echo "## Windows 側載測試版"
+            echo ""
+            echo "下載 KETHER-iOS-v${{ steps.package_unsigned_ipa.outputs.version_name }}-Windows-Sideload，解壓縮後可取得未簽署 IPA。"
+            echo "請使用 Sideloadly、AltStore 等工具，以自己的 Apple ID 重新簽署後安裝到 iPhone。"
+          } >> "$GITHUB_STEP_SUMMARY"

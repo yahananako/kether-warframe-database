@@ -9,13 +9,18 @@ KETHER iOS 是 Android App 的原生 iPhone／iPad 版本。兩個平台共用 `
 - Discord OAuth 登入、登入 Cookie 共用、頭像同步與登出。
 - iPhone 安全區、iPad 旋轉、下拉重新整理、外部交易連結。
 - 無網路時仍可開啟已打包的本機介面與資料。
-- Apple Privacy Manifest；Xcode 建置時會由氏族 Logo 生成無透明色的 1024 × 1024 App Icon 與啟動畫面圖像。
+- Apple Privacy Manifest；App 內含由氏族 Logo 製作、無透明色的 1024 × 1024 App Icon 與啟動畫面圖像。
 
 ## 本機建置
 
 需要 macOS 與 Xcode 26 或更新版本。開啟 `ios/KETHER.xcodeproj`，選擇 `KETHER` Scheme 與模擬器後執行即可。Xcode 建置階段會呼叫 `ios/scripts/copy-web-assets.sh`，把共用行動版資產放進 App Bundle。
 
-沒有 Mac 也可以由 GitHub Actions 的「驗證 KETHER iOS」產生 iOS Simulator `.app` 測試成品。
+沒有 Mac 也可以由 GitHub Actions 的「驗證 KETHER iOS」產生兩種測試成品：
+
+- `KETHER-iOS-Simulator`：供 Mac 的 Xcode Simulator 使用。
+- `KETHER-iOS-v版本-Windows-Sideload`：內含 iPhone arm64 未簽署 `.ipa`，可在 Windows 使用 Sideloadly、AltStore 等工具，以自己的 Apple ID 重新簽署並安裝。
+
+未簽署 IPA 不能直接在 iPhone 點擊安裝；側載簽章的有效期與限制由使用的 Apple ID 與側載工具決定。
 
 ## TestFlight／App Store 發布
 
