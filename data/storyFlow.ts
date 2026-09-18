@@ -167,6 +167,9 @@ export const storyChapters = [
           "Sentient 回到始源星系發動 Old War。虛空會傷害它們，卻無法抹去它們對 Orokin 的憎恨。Hunhow、Erra 與其他領袖把戰線一路推回帝國核心，Orokin 的傳統軍隊、Dax 與科技紛紛失效。",
           "Natah 被塑造成最後的滲透者。她要進入 Lua、找到 Tenno，並在戰爭結束後消滅這些最危險的武器。然而，當她真正接觸孩子們，任務、記憶與渴望開始彼此衝突。日後的 Lotus，便誕生在這道裂縫裡。"
         ],
+        "prerequisites": ["Zariman Ten Zero：孩子們的第一場夢"],
+        "rewards": ["世界觀：Sentient","人物：Hunhow／Erra／Natah","Old War 背景"],
+        "timeline": ["Orokin 創造可適應 Tau 環境的 Sentient。","Sentient 在 Tau 建立文明並反抗 Orokin。","Old War 戰線回到始源星系。","Natah 被派往 Lua 接近並消滅 Tenno。"],
         "characters": [
           "Hunhow",
           "Erra",
@@ -190,6 +193,9 @@ export const storyChapters = [
           "Zariman 孩子的 Transference 改變了一切。Tenno 能進入 Warframe 的感知，承受它們無法表達的創傷，讓狂亂的身體得到平靜。Orokin 將這份共感包裝成完美武器：孩子被藏在 Lua 的 Reservoir 中沉睡，意識則透過 Warframe 投射到戰場。",
           "The Sacrifice 透過 Excalibur Umbra 證明，至少部分 Warframe 仍保留人格碎片。Operator 能駕馭它們，不是因為意志更強，而是因為 Tenno 知道被奪走身體與選擇是什麼感覺。那句沒有說出口的理解，正是 Orokin 永遠學不會的力量。"
         ],
+        "prerequisites": ["Sentient：被命令開拓 Tau 的造物"],
+        "rewards": ["世界觀：Warframe 計畫","Helminth 背景","Transference 與 Tenno 的關係"],
+        "timeline": ["Orokin 以 Helminth 菌株改造人類。","早期 Warframe 難以穩定控制。","Zariman 孩子的 Transference 與 Warframe 建立連結。","Tenno 與 Warframe 成為 Old War 的關鍵兵器。"],
         "characters": [
           "Ballas",
           "Helminth",
@@ -213,6 +219,9 @@ export const storyChapters = [
           "Natah 沒有按照原定計畫殺死 Tenno。她成為 Lotus，把 Lua 與 Reservoir 藏進虛空，再讓 Warframe 與孩子進入低溫長眠。她究竟是出於母性、被改寫的記憶，還是自己做出的選擇，日後會被不同勢力反覆爭奪定義。",
           "失去 Orokin 後，Grineer 複製人大軍與 Corpus 商業帝國瓜分廢墟。Infestation 在無人控制的設施裡蔓延，倖存的 Dax、Cephalon 與殖民地各自求生。多年之後，Grineer 將軍 Vor 開始挖掘沉睡的 Warframe——現代故事於是從一具甦醒的身體重新開始。"
         ],
+        "prerequisites": ["Warframe 計畫：把痛苦鑄造成盔甲"],
+        "rewards": ["世界觀：Orokin 帝國覆滅","Lotus／Natah 背景","Tenno 長眠"],
+        "timeline": ["Tenno 在 Old War 後返回 Orokin 勝利儀式。","Orokin 統治核心遭 Tenno 摧毀。","Natah 沒有執行消滅 Tenno 的最終任務。","Lua 與 Reservoir 被隱藏，Tenno 進入長眠。","Grineer 與 Corpus 在帝國廢墟上崛起。"],
         "characters": [
           "Lotus",
           "Natah",
