@@ -1535,3 +1535,13 @@
     transition-duration: 0.01ms !important;
   }
 }
+
+
+/* Story / data dual reading mode */
+.modeSwitcher{position:sticky;top:10px;z-index:8;display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:24px 0;padding:7px;border:1px solid var(--book-line);border-radius:18px;background:rgba(9,13,18,.88);backdrop-filter:blur(18px)}
+.modeSwitcher button{display:flex;align-items:center;justify-content:center;gap:8px;min-height:58px;padding:8px 12px;border:1px solid transparent;border-radius:13px;color:var(--book-muted);background:transparent;font:inherit;font-weight:800;cursor:pointer}
+.modeSwitcher button svg{width:17px}.modeSwitcher button small{display:none;font-size:9px;font-weight:600}.modeSwitcher .modeActive{border-color:color-mix(in srgb,var(--chapter-accent) 55%,transparent);color:#fff;background:color-mix(in srgb,var(--chapter-accent) 14%,#111821)}
+.storyModePanel,.dataModePanel{animation:storyModeIn .24s ease}.dataGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:22px 0}.dataGrid article{display:grid;grid-template-columns:24px 1fr;gap:4px 10px;padding:17px;border:1px solid var(--book-line);border-radius:16px;background:rgba(255,255,255,.035)}.dataGrid svg{grid-row:1/3;width:18px;color:var(--chapter-accent)}.dataGrid span{color:var(--book-muted);font-size:10px}.dataGrid strong{font-size:13px;line-height:1.55}.timelineCard{margin:24px 0;padding:22px;border:1px solid var(--book-line);border-radius:20px;background:var(--book-panel)}.timelineCard h2{margin:0 0 18px;font-family:Georgia,"Noto Serif TC",serif}.timelineCard ol{display:grid;gap:13px;margin:0;padding:0;list-style:none}.timelineCard li{display:grid;grid-template-columns:38px 1fr;gap:12px}.timelineCard li>span{display:grid;place-items:center;width:34px;height:34px;border:1px solid var(--chapter-accent);border-radius:50%;color:var(--chapter-accent);font:11px Georgia,serif}.timelineCard p{margin:0;color:var(--book-muted);font-size:12px;line-height:1.8}.inlineGalleryHint{display:flex;gap:10px;align-items:center;margin:20px 0;padding:13px 15px;border:1px dashed var(--book-line);border-radius:14px;color:var(--book-muted);font-size:10px}.inlineGalleryHint svg{width:17px;color:var(--chapter-accent)}
+@keyframes storyModeIn{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+@media(min-width:720px){.modeSwitcher button small{display:inline}.modeSwitcher{width:min(620px,100%);margin-left:auto;margin-right:auto}}
+@media(max-width:620px){.dataGrid{grid-template-columns:1fr}.modeSwitcher{top:6px}}
