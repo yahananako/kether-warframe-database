@@ -153,7 +153,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/bash;
-			shellScript = "xcrun swift \"$SRCROOT/scripts/generate-artwork.swift\" \"$SRCROOT/../public/kether-clan-logo.png\" \"$SRCROOT/KETHER/Assets.xcassets\"\n";
+			shellScript = "env -u SDKROOT -u IPHONEOS_DEPLOYMENT_TARGET -u TVOS_DEPLOYMENT_TARGET -u WATCHOS_DEPLOYMENT_TARGET xcrun --sdk macosx swift \"$SRCROOT/scripts/generate-artwork.swift\" \"$SRCROOT/../public/kether-clan-logo.png\" \"$SRCROOT/KETHER/Assets.xcassets\"\n";
 		};
 		A80000000000000000000001 /* Copy KETHER Web Assets */ = {
 			isa = PBXShellScriptBuildPhase;
