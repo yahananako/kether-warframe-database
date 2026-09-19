@@ -369,7 +369,7 @@
     const footer = document.createElement("details");
     footer.className = "k5-app-footer v34-footer";
     footer.innerHTML =
-      '<summary><span><strong>KETHER OF PARADISO</strong><small>快速航標・點擊展開</small></span><b>⌃</b></summary><div><nav><button data-v34-go="warframes">一般戰甲</button><button data-v34-storytab="series">系列任務</button><a href="https://kether-warframe-database.vercel.app/live">電波局</a><a href="https://discord.gg/TNGYQb5mBN">Discord</a></nav><p>網站・小希 BOT・Android App 共用資料航線</p><span>設計者 ヤハ奈々子</span><small>APP 3.0.11・WEB 2.6.4</small></div>';
+      '<summary><span><strong>KETHER OF PARADISO</strong><small>快速航標・點擊展開</small></span><b>⌃</b></summary><div><nav><button data-v34-go="warframes">一般戰甲</button><button data-v34-storytab="series">系列任務</button><a href="https://kether-warframe-database.vercel.app/live">電波局</a><a href="https://discord.gg/TNGYQb5mBN">Discord</a></nav><p>網站・小希 BOT・Android／iOS App 共用資料航線</p><span>設計者 ヤハ奈々子</span><small>APP 3.0.11・WEB 2.6.4</small></div>';
     oldFooter.replaceWith(footer);
   }
 

@@ -1,0 +1,224 @@
+name: 發布 KETHER iOS 至 TestFlight
+
+on:
+  workflow_dispatch:
+    inputs:
+      version_name:
+        description: "顯示版本；留空則使用 ios/release-request.json"
+        required: false
+        type: string
+      build_number:
+        description: "遞增建置號；留空則使用 ios/release-request.json"
+        required: false
+        type: string
+      release_notes:
+        description: "TestFlight 更新內容；留空則使用 ios/release-request.json"
+        required: false
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: kether-ios-testflight
+  cancel-in-progress: false
+
+jobs:
+  release:
+    name: 簽署並上傳 TestFlight
+    runs-on: macos-latest
+    timeout-minutes: 45
+    env:
+      BUNDLE_ID: ${{ vars.IOS_BUNDLE_ID || 'tw.kether.app.ios' }}
+      APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
+      IOS_DISTRIBUTION_CERTIFICATE_BASE64: ${{ secrets.IOS_DISTRIBUTION_CERTIFICATE_BASE64 }}
+      IOS_CERTIFICATE_PASSWORD: ${{ secrets.IOS_CERTIFICATE_PASSWORD }}
+      IOS_PROVISIONING_PROFILE_BASE64: ${{ secrets.IOS_PROVISIONING_PROFILE_BASE64 }}
+      APP_STORE_CONNECT_API_KEY_ID: ${{ secrets.APP_STORE_CONNECT_API_KEY_ID }}
+      APP_STORE_CONNECT_ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_ISSUER_ID }}
+      APP_STORE_CONNECT_API_KEY_P8_BASE64: ${{ secrets.APP_STORE_CONNECT_API_KEY_P8_BASE64 }}
+    steps:
+      - name: 取得專案
+        uses: actions/checkout@v4
+
+      - name: 解析發布版本
+        id: release
+        env:
+          INPUT_VERSION_NAME: ${{ inputs.version_name }}
+          INPUT_BUILD_NUMBER: ${{ inputs.build_number }}
+          INPUT_RELEASE_NOTES: ${{ inputs.release_notes }}
+        run: |
+          VERSION_NAME="${INPUT_VERSION_NAME:-$(jq -r '.versionName' ios/release-request.json)}"
+          BUILD_NUMBER="${INPUT_BUILD_NUMBER:-$(jq -r '.buildNumber' ios/release-request.json)}"
+          RELEASE_NOTES="${INPUT_RELEASE_NOTES:-$(jq -r '.releaseNotes' ios/release-request.json)}"
+          [[ "$VERSION_NAME" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]
+          [[ "$BUILD_NUMBER" =~ ^[1-9][0-9]*$ ]]
+          echo "version_name=$VERSION_NAME" >> "$GITHUB_OUTPUT"
+          echo "build_number=$BUILD_NUMBER" >> "$GITHUB_OUTPUT"
+          {
+            echo "release_notes<<KETHER_NOTES"
+            echo "$RELEASE_NOTES"
+            echo "KETHER_NOTES"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: 驗證設定與 Xcode
+        run: |
+          test -n "$BUNDLE_ID"
+          test -n "$APPLE_TEAM_ID"
+          test -n "$IOS_DISTRIBUTION_CERTIFICATE_BASE64"
+          test -n "$IOS_CERTIFICATE_PASSWORD"
+          test -n "$IOS_PROVISIONING_PROFILE_BASE64"
+          test -n "$APP_STORE_CONNECT_API_KEY_ID"
+          test -n "$APP_STORE_CONNECT_ISSUER_ID"
+          test -n "$APP_STORE_CONNECT_API_KEY_P8_BASE64"
+          XCODE_MAJOR="$(xcodebuild -version | awk '/Xcode/{split($2,v,\".\"); print v[1]}')"
+          test "$XCODE_MAJOR" -ge 26
+          chmod +x ios/scripts/copy-web-assets.sh
+          npm run test:ios
+
+      - name: 匯入 Apple 簽章
+        run: |
+          KEYCHAIN_PATH="$RUNNER_TEMP/kether-signing.keychain-db"
+          KEYCHAIN_PASSWORD="$(uuidgen)"
+          CERTIFICATE_PATH="$RUNNER_TEMP/kether-distribution.p12"
+          PROFILE_PATH="$RUNNER_TEMP/kether.mobileprovision"
+          PROFILE_PLIST="$RUNNER_TEMP/kether-profile.plist"
+
+          printf '%s' "$IOS_DISTRIBUTION_CERTIFICATE_BASE64" | base64 --decode > "$CERTIFICATE_PATH"
+          printf '%s' "$IOS_PROVISIONING_PROFILE_BASE64" | base64 --decode > "$PROFILE_PATH"
+
+          security create-keychain -p "$KEYCHAIN_PASSWORD" "$KEYCHAIN_PATH"
+          security set-keychain-settings -lut 21600 "$KEYCHAIN_PATH"
+          security unlock-keychain -p "$KEYCHAIN_PASSWORD" "$KEYCHAIN_PATH"
+          security import "$CERTIFICATE_PATH" \
+            -k "$KEYCHAIN_PATH" \
+            -P "$IOS_CERTIFICATE_PASSWORD" \
+            -A \
+            -t cert \
+            -f pkcs12
+          security set-key-partition-list \
+            -S apple-tool:,apple: \
+            -s \
+            -k "$KEYCHAIN_PASSWORD" \
+            "$KEYCHAIN_PATH"
+          security list-keychains -d user -s "$KEYCHAIN_PATH"
+
+          security cms -D -i "$PROFILE_PATH" > "$PROFILE_PLIST"
+          PROFILE_UUID="$(/usr/libexec/PlistBuddy -c 'Print :UUID' "$PROFILE_PLIST")"
+          PROFILE_NAME="$(/usr/libexec/PlistBuddy -c 'Print :Name' "$PROFILE_PLIST")"
+          PROFILE_APP_ID="$(/usr/libexec/PlistBuddy -c 'Print :Entitlements:application-identifier' "$PROFILE_PLIST")"
+          PROFILE_BUNDLE_ID="${PROFILE_APP_ID#*.}"
+          test "$PROFILE_BUNDLE_ID" = "$BUNDLE_ID"
+
+          mkdir -p "$HOME/Library/MobileDevice/Provisioning Profiles"
+          cp "$PROFILE_PATH" "$HOME/Library/MobileDevice/Provisioning Profiles/$PROFILE_UUID.mobileprovision"
+
+          echo "KEYCHAIN_PATH=$KEYCHAIN_PATH" >> "$GITHUB_ENV"
+          echo "PROFILE_UUID=$PROFILE_UUID" >> "$GITHUB_ENV"
+          echo "PROFILE_NAME=$PROFILE_NAME" >> "$GITHUB_ENV"
+
+      - name: 安裝 App Store Connect API Key
+        run: |
+          API_KEY_DIRECTORY="$HOME/.appstoreconnect/private_keys"
+          mkdir -p "$API_KEY_DIRECTORY"
+          printf '%s' "$APP_STORE_CONNECT_API_KEY_P8_BASE64" | base64 --decode \
+            > "$API_KEY_DIRECTORY/AuthKey_$APP_STORE_CONNECT_API_KEY_ID.p8"
+          chmod 600 "$API_KEY_DIRECTORY/AuthKey_$APP_STORE_CONNECT_API_KEY_ID.p8"
+
+      - name: 封存 KETHER iOS
+        run: |
+          xcodebuild \
+            -project ios/KETHER.xcodeproj \
+            -scheme KETHER \
+            -configuration Release \
+            -destination "generic/platform=iOS" \
+            -archivePath "$RUNNER_TEMP/KETHER.xcarchive" \
+            MARKETING_VERSION="${{ steps.release.outputs.version_name }}" \
+            CURRENT_PROJECT_VERSION="${{ steps.release.outputs.build_number }}" \
+            PRODUCT_BUNDLE_IDENTIFIER="$BUNDLE_ID" \
+            DEVELOPMENT_TEAM="$APPLE_TEAM_ID" \
+            CODE_SIGN_STYLE=Manual \
+            CODE_SIGN_IDENTITY="Apple Distribution" \
+            PROVISIONING_PROFILE_SPECIFIER="$PROFILE_UUID" \
+            OTHER_CODE_SIGN_FLAGS="--keychain $KEYCHAIN_PATH" \
+            clean archive
+
+      - name: 匯出 IPA
+        run: |
+          EXPORT_OPTIONS="$RUNNER_TEMP/ExportOptions.plist"
+          cat > "$EXPORT_OPTIONS" <<EOF
+          <?xml version="1.0" encoding="UTF-8"?>
+          <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+          <plist version="1.0">
+          <dict>
+            <key>method</key>
+            <string>app-store-connect</string>
+            <key>destination</key>
+            <string>export</string>
+            <key>signingStyle</key>
+            <string>manual</string>
+            <key>teamID</key>
+            <string>$APPLE_TEAM_ID</string>
+            <key>provisioningProfiles</key>
+            <dict>
+              <key>$BUNDLE_ID</key>
+              <string>$PROFILE_NAME</string>
+            </dict>
+            <key>stripSwiftSymbols</key>
+            <true/>
+            <key>uploadSymbols</key>
+            <true/>
+          </dict>
+          </plist>
+          EOF
+
+          xcodebuild \
+            -exportArchive \
+            -archivePath "$RUNNER_TEMP/KETHER.xcarchive" \
+            -exportPath "$RUNNER_TEMP/export" \
+            -exportOptionsPlist "$EXPORT_OPTIONS"
+
+          IPA_PATH="$(find "$RUNNER_TEMP/export" -maxdepth 1 -name '*.ipa' -print -quit)"
+          test -n "$IPA_PATH"
+          echo "IPA_PATH=$IPA_PATH" >> "$GITHUB_ENV"
+
+      - name: 驗證並上傳 TestFlight
+        run: |
+          xcrun altool \
+            --validate-app \
+            --file "$IPA_PATH" \
+            --type ios \
+            --apiKey "$APP_STORE_CONNECT_API_KEY_ID" \
+            --apiIssuer "$APP_STORE_CONNECT_ISSUER_ID"
+          xcrun altool \
+            --upload-app \
+            --file "$IPA_PATH" \
+            --type ios \
+            --apiKey "$APP_STORE_CONNECT_API_KEY_ID" \
+            --apiIssuer "$APP_STORE_CONNECT_ISSUER_ID"
+
+      - name: 保存已簽署 IPA
+        uses: actions/upload-artifact@v4
+        with:
+          name: KETHER-iOS-${{ steps.release.outputs.version_name }}-${{ steps.release.outputs.build_number }}
+          path: ${{ env.IPA_PATH }}
+          retention-days: 30
+          if-no-files-found: error
+
+      - name: 寫入發布摘要
+        run: |
+          {
+            echo "## KETHER iOS 已上傳"
+            echo ""
+            echo "- 版本：${{ steps.release.outputs.version_name }}"
+            echo "- Build：${{ steps.release.outputs.build_number }}"
+            echo "- Bundle ID：$BUNDLE_ID"
+            echo ""
+            echo "App Store Connect 完成處理後，即可加入 TestFlight 測試群組。"
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: 清理暫存簽章
+        if: always()
+        run: |
+          security delete-keychain "$KEYCHAIN_PATH" 2>/dev/null || true
+          rm -f "$HOME/.appstoreconnect/private_keys/AuthKey_$APP_STORE_CONNECT_API_KEY_ID.p8"

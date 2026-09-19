@@ -21,3 +21,7 @@ GitHub Actions 工作流位於 `.github/workflows/release-android.yml`。
 4. 輸入新版本名稱、遞增的 versionCode 與更新說明。
 
 工作流會自動編譯、簽章、驗證 APK、建立 Release、上傳 APK、更新 `public/app-update.json`，再由 Vercel 部署更新清單。
+
+## 與 iOS 共用資產
+
+`android/assets` 是 KETHER 行動版的共用介面來源。iOS 工程會在建置時由 `ios/scripts/copy-web-assets.sh` 打包同一份 HTML、JavaScript 與資料檔；調整共用畫面後請同時執行 `npm run test:android-search` 與 `npm run test:ios`。
