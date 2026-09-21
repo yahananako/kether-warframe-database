@@ -60,7 +60,7 @@ const searchItems = [
     source: "資料庫",
     type: "資料分類",
     description: "查看 MOD 系列、用途、價格與備註。",
-    keywords: "mod 模組 資料庫 primed galvanized archon",
+    keywords: "mod 模組 資料庫 primed galvanized archon amalgam 並合 合併 合成 融合",
   },
   {
     label: "/price",

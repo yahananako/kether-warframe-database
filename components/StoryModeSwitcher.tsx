@@ -37,7 +37,7 @@ export default function StoryModeSwitcher(props: Props) {
     </div>
     {mode === "story" ? <section className={styles.storyModePanel}>
       <figure className={styles.storyFigure}><img src={props.illustration.src} alt={props.illustration.alt} /><figcaption>{props.illustration.caption}</figcaption></figure>
-      {props.scenes?.length ? <div className={styles.storyScenes}>{props.scenes.map((scene, i) => <section className={styles.storyScene} key={i}>{scene.heading && <h2>{scene.heading}</h2>}<div className={styles.prose}>{scene.paragraphs.map((p, j) => <p key={j}>{p}</p>)}</div>{scene.image && <figure className={styles.storyFigure}><img src={scene.image.src} alt={scene.image.alt} /><figcaption>{scene.image.caption}</figcaption></figure>}</section>)}</div> : <div className={styles.prose}>{props.paragraphs.map((p, i) => <p key={i}>{p}</p>)}</div>
+      {props.scenes?.length ? <div className={styles.storyScenes}>{props.scenes.map((scene, i) => <section className={styles.storyScene} key={i}>{scene.heading && <h2>{scene.heading}</h2>}<div className={styles.prose}>{scene.paragraphs.map((p, j) => <p key={j}>{p}</p>)}</div>{scene.image && <figure className={styles.storyFigure}><img src={scene.image.src} alt={scene.image.alt} /><figcaption>{scene.image.caption}</figcaption></figure>}</section>)}</div> : <div className={styles.prose}>{props.paragraphs.map((p, i) => <p key={i}>{p}</p>)}</div>}
       <div className={styles.inlineGalleryHint}><ImageIcon /><span>本模式支援多張章節插畫，後續可在段落之間持續加入場景、角色與戰鬥圖片。</span></div>
     </section> : <section className={styles.dataModePanel}>
       <div className={styles.dataGrid}>

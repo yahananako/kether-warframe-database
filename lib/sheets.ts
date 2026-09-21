@@ -144,6 +144,10 @@ function toMarketSlug(name: string, category: string): string {
   return base;
 }
 
+function isUntradeable(price: string, tradeText: string): boolean {
+  return `${price} ${tradeText}`.includes("不可交易");
+}
+
 function isMetaText(value: string): boolean {
   const blockedKeywords = [
     "製作者",
@@ -311,6 +315,8 @@ function normalizeRow(row: string[], category: string, section: string): SheetRo
   if (!chineseName && !englishName) return null;
 
   const slug = toMarketSlug(englishName, category);
+  const price = String(row[4] || "").trim();
+  const tradeText = String(row[5] || "").trim() || "開啟交易";
 
   const item: SheetRow = {
     section: section || "未分類",
@@ -318,12 +324,12 @@ function normalizeRow(row: string[], category: string, section: string): SheetRo
     englishName,
     description: String(row[2] || "").trim(),
     priority: String(row[3] || "").trim(),
-    price: String(row[4] || "").trim(),
-    tradeText: String(row[5] || "").trim() || "開啟交易",
+    price,
+    tradeText,
     owned: String(row[6] || "").trim() || "未購買",
     source: String(row[7] || "").trim(),
     note: String(row[8] || "").trim(),
-    marketUrl: slug ? `https://warframe.market/items/${slug}` : ""
+    marketUrl: slug && !isUntradeable(price, tradeText) ? `https://warframe.market/items/${slug}` : ""
   };
 
   if (isHeaderOrFooterRow(item)) return null;
@@ -413,7 +419,9 @@ export async function fetchSheetRows(category: string): Promise<{
     const slug = toMarketSlug(row.englishName, "mods");
     return {
       ...row,
-      marketUrl: slug ? `https://warframe.market/items/${slug}` : ""
+      marketUrl: slug && !isUntradeable(row.price, row.tradeText)
+        ? `https://warframe.market/items/${slug}`
+        : ""
     };
   });
 
