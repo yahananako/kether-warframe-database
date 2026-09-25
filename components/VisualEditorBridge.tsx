@@ -136,6 +136,22 @@ function canEditText(element: HTMLElement) {
   );
 }
 
+function readMediaSource(element: HTMLElement) {
+  if (element instanceof HTMLImageElement) {
+    return element.currentSrc || element.src || "";
+  }
+
+  if (element instanceof HTMLVideoElement) {
+    return element.currentSrc || element.src || "";
+  }
+
+  if (element instanceof HTMLSourceElement) {
+    return element.src || "";
+  }
+
+  return undefined;
+}
+
 function readElement(element: HTMLElement) {
   const computed = window.getComputedStyle(element);
   const styles = Object.fromEntries(
@@ -150,12 +166,7 @@ function readElement(element: HTMLElement) {
     tag: element.tagName.toLowerCase(),
     editable: {
       text: canEditText(element) ? element.textContent || "" : undefined,
-      src:
-        element instanceof HTMLImageElement ||
-        element instanceof HTMLSourceElement ||
-        element instanceof HTMLVideoElement
-          ? element.currentSrc || element.src || ""
-          : undefined,
+      src: readMediaSource(element),
     },
     computedStyles: styles,
   };
