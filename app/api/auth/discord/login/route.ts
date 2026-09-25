@@ -51,6 +51,7 @@ export async function GET(request: NextRequest) {
     "identify guilds guilds.members.read",
   );
   authorizeUrl.searchParams.set("state", state);
+  authorizeUrl.searchParams.set("prompt", "consent");
 
   const response = NextResponse.redirect(authorizeUrl);
   const cookieOptions = {
