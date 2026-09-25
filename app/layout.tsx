@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import MiniMusicPlayer from "../components/MiniMusicPlayer";
+import VisualEditorBridge from "../components/VisualEditorBridge";
 
 const siteUrl = "https://kether-warframe-database.vercel.app";
 
@@ -64,6 +65,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="zh-Hant">
       <body>
         {children}
+        <VisualEditorBridge />
         <MiniMusicPlayer />
       </body>
     </html>

@@ -61,8 +61,20 @@ type DiscordGuildMemberResponse = {
   message?: string;
 };
 
+const OAUTH_STATE_COOKIE = "kether_discord_oauth_state";
+const OAUTH_NEXT_COOKIE = "kether_discord_oauth_next";
+
+function sanitizeNext(value: string | undefined) {
+  if (!value || !value.startsWith("/") || value.startsWith("//")) {
+    return "/profile";
+  }
+
+  return value.slice(0, 500);
+}
+
 function clearOauthState(response: NextResponse) {
-  response.cookies.delete("kether_discord_oauth_state");
+  response.cookies.delete(OAUTH_STATE_COOKIE);
+  response.cookies.delete(OAUTH_NEXT_COOKIE);
   return response;
 }
 
@@ -70,7 +82,10 @@ export async function GET(request: NextRequest) {
   const url = new URL(request.url);
   const code = url.searchParams.get("code");
   const state = url.searchParams.get("state");
-  const savedState = request.cookies.get("kether_discord_oauth_state")?.value;
+  const savedState = request.cookies.get(OAUTH_STATE_COOKIE)?.value;
+  const savedNext = sanitizeNext(
+    request.cookies.get(OAUTH_NEXT_COOKIE)?.value,
+  );
 
   const clientId = process.env.DISCORD_CLIENT_ID;
   const clientSecret = process.env.DISCORD_CLIENT_SECRET;
@@ -216,7 +231,9 @@ export async function GET(request: NextRequest) {
     ? memberData.roles.filter((roleId) => allowedRoleIds.includes(roleId))
     : [];
 
-  const hasAllowedRole = !roleCheckEnabled || matchedRoleIds.length > 0;  if (!hasAllowedRole) {
+  const hasAllowedRole = !roleCheckEnabled || matchedRoleIds.length > 0;
+
+  if (!hasAllowedRole) {
     return clearOauthState(
       NextResponse.redirect(new URL("/", request.url))
     );
@@ -242,9 +259,10 @@ export async function GET(request: NextRequest) {
 
   const sessionCookieValue = createDiscordSessionCookieValue(sessionPayload, sessionSecret);
 
-  const response = NextResponse.redirect(new URL("/profile", request.url));
+  const response = NextResponse.redirect(new URL(savedNext, request.url));
 
-  response.cookies.delete("kether_discord_oauth_state");
+  response.cookies.delete(OAUTH_STATE_COOKIE);
+  response.cookies.delete(OAUTH_NEXT_COOKIE);
   response.cookies.set(DISCORD_SESSION_COOKIE_NAME, sessionCookieValue, {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
