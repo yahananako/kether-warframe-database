@@ -41,6 +41,7 @@ export default function HomeNewInlineMenu() {
   const buttonRef = useRef<HTMLButtonElement>(null);
   const [mounted, setMounted] = useState(false);
   const [open, setOpen] = useState(false);
+  const [adminLevel, setAdminLevel] = useState<"super_admin" | "admin" | null>(null);
   const [position, setPosition] = useState<MenuPosition>({ top: 72, left: 12 });
 
   const updatePosition = useCallback(() => {
@@ -68,6 +69,36 @@ export default function HomeNewInlineMenu() {
 
   useEffect(() => {
     setMounted(true);
+
+    let cancelled = false;
+
+    async function checkAdminAccess() {
+      try {
+        const response = await fetch("/api/admin/access", {
+          cache: "no-store",
+          credentials: "include",
+        });
+
+        if (!response.ok || cancelled) return;
+
+        const payload = (await response.json()) as {
+          authorized?: boolean;
+          level?: "super_admin" | "admin";
+        };
+
+        if (payload.authorized && payload.level) {
+          setAdminLevel(payload.level);
+        }
+      } catch {
+        // 公開選單不應因管理權限檢查失敗而受影響。
+      }
+    }
+
+    void checkAdminAccess();
+
+    return () => {
+      cancelled = true;
+    };
   }, []);
 
   useLayoutEffect(() => {
@@ -160,6 +191,17 @@ export default function HomeNewInlineMenu() {
                         {item.label}
                       </Link>
                     ))}
+
+                    {adminLevel && (
+                      <Link
+                        href="/admin/editor"
+                        className="home-new-menu-link"
+                        role="menuitem"
+                      >
+                        ⚙ 管理後台
+                        {adminLevel === "super_admin" ? " · Super Admin" : ""}
+                      </Link>
+                    )}
 
                     <a
                       href="https://discord.gg/TNGYQb5mBN"
