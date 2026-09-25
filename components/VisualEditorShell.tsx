@@ -357,7 +357,7 @@ export default function VisualEditorShell() {
           <div className={styles.brand}>KETHER CONTROL</div>
           <h1>管理權限尚未通過</h1>
           <p>{status}</p>
-          <a href="/login" className={styles.primaryButton}>
+          <a href="/login?next=/admin/editor" className={styles.primaryButton}>
             Discord 登入
           </a>
         </div>
