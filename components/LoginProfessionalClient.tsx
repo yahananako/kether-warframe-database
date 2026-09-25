@@ -11,6 +11,7 @@ import {
   ShieldCheck,
 } from "lucide-react";
 import { MouseEvent, useEffect, useMemo, useRef, useState } from "react";
+import { useSearchParams } from "next/navigation";
 
 import HomeNewInlineMenu from "./HomeNewInlineMenu";
 import HomeNewInlineNotifications from "./HomeNewInlineNotifications";
@@ -31,6 +32,14 @@ const POLICY_SECTIONS = [
 type PolicySection = (typeof POLICY_SECTIONS)[number];
 
 export default function LoginProfessionalClient() {
+  const searchParams = useSearchParams();
+  const requestedNext = searchParams.get("next");
+  const nextPath =
+    requestedNext && requestedNext.startsWith("/") && !requestedNext.startsWith("//")
+      ? requestedNext
+      : "/profile";
+  const discordLoginHref = `/api/auth/discord/login?next=${encodeURIComponent(nextPath)}`;
+
   const [accepted, setAccepted] = useState(false);
   const [checkingSession, setCheckingSession] = useState(true);
   const [notice, setNotice] = useState<string | null>(null);
@@ -61,7 +70,7 @@ export default function LoginProfessionalClient() {
         if (!active) return;
 
         if (response.ok && data?.ok && data?.authenticated) {
-          window.location.replace("/profile");
+          window.location.replace(nextPath);
           return;
         }
       } catch {
@@ -76,7 +85,7 @@ export default function LoginProfessionalClient() {
     return () => {
       active = false;
     };
-  }, []);
+  }, [nextPath]);
 
   function markSectionRead(section: PolicySection, open: boolean) {
     if (!open) return;
@@ -127,7 +136,7 @@ export default function LoginProfessionalClient() {
               <HomeNewInlineNotifications />
 
               <a
-                href="/api/auth/discord/login"
+                href={discordLoginHref}
                 className={`${styles.topLogin} home-new-discord-action`}
                 aria-disabled={!loginEnabled}
                 onClick={startDiscordLogin}
@@ -153,7 +162,7 @@ export default function LoginProfessionalClient() {
 
             <p className={styles.authSummary}>
               使用 Discord OAuth 驗證 KETHER OF PARADISO 成員資格與身分組。
-              授權完成後將自動前往個人頁面。
+              授權完成後將自動回到原本要前往的 KETHER 頁面。
             </p>
 
             <div className={styles.authFacts}>
@@ -210,7 +219,7 @@ export default function LoginProfessionalClient() {
             )}
 
             <a
-              href="/api/auth/discord/login"
+              href={discordLoginHref}
               className={`${styles.loginButton} ${
                 loginEnabled ? "" : styles.loginButtonDisabled
               }`}
@@ -222,7 +231,7 @@ export default function LoginProfessionalClient() {
             </a>
 
             <p className={styles.redirectHint}>
-              Discord 授權成功後自動轉入 <strong>個人頁面</strong>。
+              Discord 授權成功後自動前往 <strong>{nextPath}</strong>。
             </p>
           </article>
 
