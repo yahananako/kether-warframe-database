@@ -6,6 +6,8 @@ import {
 } from "./auth/discordSession";
 import { getNeonSql } from "./neonServer";
 
+export type KetherAdminLevel = "super_admin" | "admin";
+
 export class VisualAdminAccessError extends Error {
   status: number;
 
@@ -49,12 +51,24 @@ export async function requireVisualAdmin(request: NextRequest) {
     throw new VisualAdminAccessError("Discord 群組身分不符合 KETHER。", 403);
   }
 
-  const explicitUserIds = parseIdList(process.env.KETHER_ADMIN_USER_IDS);
-  const explicitRoleIds = parseIdList(process.env.KETHER_ADMIN_ROLE_IDS);
+  const superAdminUserIds = parseIdList(
+    process.env.KETHER_SUPER_ADMIN_USER_IDS ||
+      process.env.KETHER_ADMIN_USER_IDS,
+  );
 
-  let allowed =
-    explicitUserIds.includes(session.sub) ||
-    session.roleIds.some((roleId) => explicitRoleIds.includes(roleId));
+  if (superAdminUserIds.includes(session.sub)) {
+    return {
+      sql: getNeonSql(),
+      session,
+      level: "super_admin" as const,
+      isSuperAdmin: true,
+    };
+  }
+
+  const explicitRoleIds = parseIdList(process.env.KETHER_ADMIN_ROLE_IDS);
+  let allowed = session.roleIds.some((roleId) =>
+    explicitRoleIds.includes(roleId),
+  );
 
   const sql = getNeonSql();
 
@@ -79,5 +93,7 @@ export async function requireVisualAdmin(request: NextRequest) {
   return {
     sql,
     session,
+    level: "admin" as const,
+    isSuperAdmin: false,
   };
 }
