@@ -170,6 +170,16 @@ export default function HomeNewInlineMenu() {
                     >
                       Discord
                     </a>
+
+                    {adminVisible ? (
+                      <Link
+                        href="/admin/editor"
+                        className="home-new-menu-link"
+                        role="menuitem"
+                      >
+                        ⚙ 管理後台
+                      </Link>
+                    ) : null}
                   </div>
                 </div>
 
