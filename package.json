@@ -14,6 +14,7 @@
     "test:kuva": "node scripts/test-kuva-sync.mjs",
     "test:warframes": "node scripts/test-warframe-details.mjs",
     "test:android-search": "node android/scripts/test-smart-search.mjs",
+    "test:ios": "node ios/scripts/validate-ios-project.mjs",
     "test:discord-bot": "node --import tsx scripts/test-discord-bot.ts",
     "discord:validate": "node scripts/register-warframe-card-command.mjs --dry-run",
     "discord:register-card": "node scripts/register-warframe-card-command.mjs"

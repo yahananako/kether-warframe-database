@@ -1,6 +1,6 @@
 # KETHER Warframe Database 專案狀態
 
-更新日期：2026/07/07
+更新日期：2026/09/18
 
 ## 版本線規則
 
@@ -9,6 +9,7 @@
 | 試算表 | v1.x.x |
 | 網站 | v2.x.x |
 | Discord BOT | v3.x.x |
+| 行動 APP（Android／iOS） | v3.0.x |
 
 ## 目前狀態
 
@@ -44,6 +45,14 @@
   - 曲翼
   - MOD 資料庫
 
+### 行動 APP v3.0
+
+- Android 正式版：v3.0.11，維持 GitHub Release APK 與 App 內更新清單。
+- iOS 工程：v3.0.11（build 1），支援 iPhone 與 iPad。
+- Android 與 iOS 共用本機介面、故事、搜尋資料與圖片；網站、Google Sheets、小希 BOT 與兩個行動平台沿用同一套資料航線。
+- iOS 以 TestFlight／App Store 更新，不使用 APK 式自動安裝。
+- GitHub Actions 已提供 iOS Simulator 編譯驗證與 TestFlight 簽署上傳流程；正式上傳仍需 Apple Developer／App Store Connect 憑證。
+
 ## 下一階段優先順序
 
 1. 整理環境變數總表，不重新設定，只確認用途。
@@ -56,6 +65,8 @@
 - 功能未確認完成前，不更新版本號。
 - 每次更新後需檢查：
   - npm run build
+  - npm run test:android-search
+  - npm run test:ios
   - git status --short
   - GitHub main
   - Vercel 公開網站
