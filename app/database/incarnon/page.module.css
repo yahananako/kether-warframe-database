@@ -1,0 +1,56 @@
+.intro {
+  overflow: hidden;
+}
+
+.introStats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.introStats div {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 7px;
+  min-height: 56px;
+  padding: 10px;
+  border: 1px solid rgba(124, 58, 237, 0.12);
+  border-radius: 17px;
+  background: rgba(255, 255, 255, 0.48);
+}
+
+.introStats strong {
+  color: #724eb8;
+  font-size: 22px;
+}
+
+.introStats span {
+  color: #667085;
+  font-size: 12px;
+  font-weight: 850;
+}
+
+@media (max-width: 540px) {
+  .introStats {
+    gap: 6px;
+  }
+
+  .introStats div {
+    min-height: 48px;
+    display: grid;
+    place-items: center;
+    gap: 0;
+    padding: 7px 3px;
+    border-radius: 13px;
+  }
+
+  .introStats strong {
+    font-size: 18px;
+  }
+
+  .introStats span {
+    font-size: 10px;
+  }
+}

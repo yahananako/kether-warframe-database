@@ -96,6 +96,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "hourly",
       priority: 0.85,
     },
+    {
+      url: `${siteUrl}/database/incarnon`,
+      lastModified: now,
+      changeFrequency: "weekly",
+      priority: 0.86,
+    },
     ...livePages,
     ...storyPages,
   ];

@@ -1,0 +1,743 @@
+.archive {
+  --ink: #202a42;
+  --muted: #68738c;
+  --violet: #7652c8;
+  --cyan: #2a95aa;
+  display: grid;
+  gap: 34px;
+}
+
+.screenReaderOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.controls {
+  position: sticky;
+  top: 12px;
+  z-index: 12;
+  display: grid;
+  gap: 14px;
+  padding: 18px;
+  border: 1px solid rgba(255, 255, 255, 0.82);
+  border-radius: 28px;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.88), rgba(238, 241, 255, 0.7)),
+    rgba(255, 255, 255, 0.72);
+  box-shadow: 0 20px 52px rgba(50, 46, 92, 0.14);
+  backdrop-filter: blur(28px) saturate(1.45);
+  -webkit-backdrop-filter: blur(28px) saturate(1.45);
+}
+
+.searchBox {
+  min-height: 50px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 16px;
+  border: 1px solid rgba(118, 82, 200, 0.16);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.76);
+  color: var(--violet);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+.searchBox:focus-within {
+  border-color: rgba(118, 82, 200, 0.52);
+  box-shadow: 0 0 0 4px rgba(118, 82, 200, 0.1);
+}
+
+.searchBox input {
+  width: 100%;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--ink);
+  font: inherit;
+  font-size: 15px;
+}
+
+.searchBox input::placeholder {
+  color: #8e96a8;
+}
+
+.categoryTabs {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.categoryTabs button {
+  min-height: 44px;
+  padding: 9px 12px;
+  border: 1px solid rgba(118, 82, 200, 0.14);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.54);
+  color: #4b5570;
+  font: inherit;
+  font-weight: 850;
+  cursor: pointer;
+  transition: transform 150ms ease, border-color 150ms ease, background 150ms ease;
+}
+
+.categoryTabs button:hover {
+  transform: translateY(-1px);
+  border-color: rgba(118, 82, 200, 0.42);
+}
+
+.categoryTabs button small {
+  display: none;
+}
+
+.categoryTabs .activeTab {
+  border-color: rgba(118, 82, 200, 0.56);
+  background: linear-gradient(135deg, #8362ce, #5f8dcf);
+  color: #fff;
+  box-shadow: 0 10px 24px rgba(100, 80, 184, 0.22);
+}
+
+.selectRow {
+  display: grid;
+  grid-template-columns: minmax(150px, 0.7fr) minmax(180px, 0.9fr) auto;
+  align-items: end;
+  gap: 10px;
+}
+
+.selectRow label {
+  display: grid;
+  gap: 6px;
+}
+
+.selectRow label > span {
+  padding-left: 3px;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 850;
+  letter-spacing: 0.08em;
+}
+
+.selectRow select {
+  width: 100%;
+  min-height: 43px;
+  padding: 0 36px 0 12px;
+  border: 1px solid rgba(118, 82, 200, 0.14);
+  border-radius: 14px;
+  outline: none;
+  background: rgba(255, 255, 255, 0.7);
+  color: var(--ink);
+  font: inherit;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.selectRow p {
+  min-height: 43px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  margin: 0;
+  padding: 0 16px;
+  border-radius: 14px;
+  background: rgba(118, 82, 200, 0.08);
+  color: var(--muted);
+  white-space: nowrap;
+  font-size: 13px;
+}
+
+.selectRow p strong {
+  color: var(--violet);
+  font-size: 16px;
+}
+
+.categorySection {
+  display: grid;
+  gap: 16px;
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 0 6px;
+}
+
+.sectionHeader p,
+.sectionHeader h2,
+.sectionHeader span {
+  margin: 0;
+}
+
+.sectionHeader p {
+  color: var(--violet);
+  font-size: 11px;
+  font-weight: 950;
+  letter-spacing: 0.18em;
+}
+
+.sectionHeader h2 {
+  margin-top: 4px;
+  color: var(--ink);
+  font-size: clamp(25px, 4vw, 36px);
+  letter-spacing: -0.035em;
+}
+
+.sectionHeader span {
+  display: block;
+  margin-top: 5px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.sectionHeader > strong {
+  min-width: 54px;
+  height: 54px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(118, 82, 200, 0.18);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.58);
+  color: var(--violet);
+  font-size: 20px;
+  box-shadow: 0 12px 30px rgba(66, 54, 114, 0.1);
+}
+
+.weaponGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.weaponCard {
+  min-width: 0;
+  content-visibility: auto;
+  contain-intrinsic-size: auto 270px;
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  border-radius: 28px;
+  background:
+    radial-gradient(circle at 18% 4%, rgba(180, 220, 255, 0.32), transparent 33%),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.78), rgba(236, 239, 252, 0.54));
+  box-shadow:
+    0 18px 44px rgba(42, 50, 86, 0.11),
+    inset 0 1px 0 rgba(255, 255, 255, 0.95);
+  overflow: hidden;
+}
+
+.weaponCard[data-kind="natural"] {
+  background:
+    radial-gradient(circle at 18% 4%, rgba(148, 235, 216, 0.32), transparent 34%),
+    linear-gradient(145deg, rgba(255, 255, 255, 0.8), rgba(232, 247, 245, 0.55));
+}
+
+.weaponDetails > summary {
+  list-style: none;
+}
+
+.weaponDetails > summary::-webkit-details-marker,
+.subDetails > summary::-webkit-details-marker {
+  display: none;
+}
+
+.weaponSummary {
+  position: relative;
+  min-height: 270px;
+  display: grid;
+  grid-template-columns: minmax(150px, 38%) minmax(0, 1fr);
+  align-items: stretch;
+  cursor: pointer;
+}
+
+.imageStage {
+  position: relative;
+  min-height: 270px;
+  display: grid;
+  place-items: center;
+  padding: 22px 8px;
+  overflow: hidden;
+}
+
+.imageStage::before {
+  content: "";
+  position: absolute;
+  width: 160px;
+  aspect-ratio: 1;
+  border: 1px solid rgba(118, 82, 200, 0.2);
+  border-radius: 999px;
+  box-shadow: 0 0 44px rgba(91, 104, 197, 0.2);
+}
+
+.imageStage img {
+  position: relative;
+  z-index: 2;
+  width: min(100%, 210px);
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 18px 22px rgba(32, 39, 71, 0.28));
+  transition: transform 220ms ease;
+}
+
+.weaponSummary:hover .imageStage img {
+  transform: scale(1.035) translateY(-2px);
+}
+
+.imageGlow {
+  position: absolute;
+  inset: auto 15% 12% 15%;
+  height: 24px;
+  border-radius: 50%;
+  background: rgba(104, 101, 190, 0.24);
+  filter: blur(18px);
+}
+
+.weaponIntro {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 24px 22px 20px 8px;
+}
+
+.badgeRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.kindBadge,
+.rotationBadge {
+  display: inline-flex;
+  align-items: center;
+  min-height: 25px;
+  padding: 0 9px;
+  border-radius: 999px;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+}
+
+.kindBadge {
+  background: rgba(118, 82, 200, 0.12);
+  color: #6844bb;
+}
+
+.rotationBadge {
+  background: rgba(42, 149, 170, 0.1);
+  color: #277d8d;
+}
+
+.weaponName {
+  display: grid;
+  margin-top: 12px;
+}
+
+.weaponName strong {
+  color: var(--ink);
+  font-size: clamp(23px, 3vw, 31px);
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+}
+
+.weaponName small {
+  margin-top: 4px;
+  color: #7d688e;
+  font-size: 12px;
+  font-weight: 850;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.effectBlock {
+  min-width: 0;
+  display: grid;
+  gap: 5px;
+  margin-top: 16px;
+}
+
+.effectBlock > span {
+  color: var(--cyan);
+  font-size: 10px;
+  font-weight: 950;
+  letter-spacing: 0.12em;
+}
+
+.effectBlock b,
+.effectBlock small {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+}
+
+.effectBlock b {
+  color: #3d475f;
+  font-size: 13px;
+  line-height: 1.65;
+  font-weight: 700;
+  -webkit-line-clamp: 3;
+}
+
+.effectBlock small {
+  color: #7e879a;
+  font-size: 11px;
+  line-height: 1.45;
+  -webkit-line-clamp: 2;
+}
+
+.expandHint {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: auto;
+  padding-top: 15px;
+  color: var(--violet);
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.evolutionBody {
+  padding: 0 18px 18px;
+  border-top: 1px solid rgba(118, 82, 200, 0.12);
+}
+
+.evolutionList {
+  display: grid;
+  gap: 12px;
+  padding-top: 16px;
+}
+
+.evolutionCard {
+  min-width: 0;
+  padding: 15px;
+  border: 1px solid rgba(118, 82, 200, 0.12);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.58);
+}
+
+.evolutionHeading {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.evolutionHeading span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 27px;
+  padding: 0 9px;
+  border-radius: 9px;
+  background: linear-gradient(135deg, #7250c0, #438ea9);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 950;
+  letter-spacing: 0.08em;
+}
+
+.evolutionHeading strong {
+  color: var(--ink);
+  font-size: 15px;
+}
+
+.unlockBox {
+  display: grid;
+  gap: 4px;
+  margin-top: 12px;
+  padding: 12px;
+  border-left: 3px solid #61a5b6;
+  border-radius: 4px 12px 12px 4px;
+  background: rgba(71, 157, 174, 0.08);
+}
+
+.unlockBox span {
+  color: #347f8d;
+  font-size: 10px;
+  font-weight: 950;
+  letter-spacing: 0.1em;
+}
+
+.unlockBox strong {
+  color: #34415b;
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.unlockBox small {
+  color: #748096;
+  font-size: 10px;
+  line-height: 1.5;
+}
+
+.abilityList {
+  display: grid;
+  gap: 8px;
+  margin-top: 11px;
+}
+
+.abilityItem {
+  min-width: 0;
+  padding: 12px;
+  border: 1px solid rgba(78, 89, 126, 0.1);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.68);
+}
+
+.abilityItem strong {
+  color: #563d91;
+  font-size: 13px;
+}
+
+.abilityItem p {
+  margin: 5px 0 0;
+  color: #4f596e;
+  font-size: 12px;
+  line-height: 1.62;
+  white-space: pre-line;
+}
+
+.subDetails {
+  margin-top: 9px;
+  border-top: 1px dashed rgba(118, 82, 200, 0.16);
+}
+
+.subDetails summary {
+  padding-top: 8px;
+  list-style: none;
+  color: #76649f;
+  cursor: pointer;
+  font-size: 11px;
+  font-weight: 850;
+}
+
+.subDetails dl {
+  display: grid;
+  gap: 6px;
+  margin: 8px 0 0;
+}
+
+.subDetails dl div {
+  display: grid;
+  grid-template-columns: minmax(70px, auto) 1fr;
+  gap: 8px;
+  padding: 7px 9px;
+  border-radius: 9px;
+  background: rgba(118, 82, 200, 0.06);
+}
+
+.subDetails dt,
+.subDetails dd {
+  margin: 0;
+  font-size: 10px;
+  line-height: 1.45;
+  white-space: pre-line;
+}
+
+.subDetails dt {
+  color: #6a4dad;
+  font-weight: 900;
+}
+
+.subDetails dd {
+  color: #596377;
+}
+
+.sourceLink {
+  width: fit-content;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 14px;
+  color: #6950a6;
+  font-size: 11px;
+  font-weight: 850;
+  text-decoration: none;
+}
+
+.sourceLink:hover {
+  text-decoration: underline;
+}
+
+.emptyState {
+  display: grid;
+  place-items: center;
+  min-height: 280px;
+  padding: 36px 20px;
+  border: 1px dashed rgba(118, 82, 200, 0.3);
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.48);
+  color: var(--muted);
+  text-align: center;
+}
+
+.emptyState h2 {
+  margin: 10px 0 0;
+  color: var(--ink);
+}
+
+.emptyState p {
+  margin: 8px 0 0;
+  font-size: 13px;
+}
+
+.emptyState button {
+  margin-top: 16px;
+  padding: 10px 15px;
+  border: 0;
+  border-radius: 12px;
+  background: #7250c0;
+  color: #fff;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 850;
+  cursor: pointer;
+}
+
+@media (max-width: 900px) {
+  .weaponGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .weaponSummary {
+    grid-template-columns: minmax(145px, 35%) minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 620px) {
+  .archive {
+    gap: 27px;
+  }
+
+  .controls {
+    top: 6px;
+    gap: 10px;
+    padding: 11px;
+    border-radius: 21px;
+  }
+
+  .searchBox {
+    min-height: 45px;
+    border-radius: 14px;
+  }
+
+  .categoryTabs {
+    gap: 6px;
+  }
+
+  .categoryTabs button {
+    min-height: 40px;
+    padding: 7px 4px;
+    border-radius: 11px;
+    font-size: 12px;
+  }
+
+  .categoryTabs button span {
+    display: none;
+  }
+
+  .categoryTabs button small {
+    display: inline;
+    font-size: 12px;
+    font-weight: 900;
+  }
+
+  .selectRow {
+    grid-template-columns: 1fr 1fr;
+    gap: 7px;
+  }
+
+  .selectRow p {
+    grid-column: 1 / -1;
+    min-height: 34px;
+  }
+
+  .selectRow select {
+    min-height: 40px;
+    padding-left: 9px;
+    font-size: 12px;
+  }
+
+  .sectionHeader {
+    align-items: center;
+  }
+
+  .sectionHeader span {
+    max-width: 260px;
+    font-size: 11px;
+    line-height: 1.5;
+  }
+
+  .sectionHeader > strong {
+    min-width: 44px;
+    height: 44px;
+    border-radius: 15px;
+    font-size: 17px;
+  }
+
+  .weaponCard {
+    border-radius: 23px;
+  }
+
+  .weaponSummary {
+    min-height: 235px;
+    grid-template-columns: 39% minmax(0, 1fr);
+  }
+
+  .imageStage {
+    min-height: 235px;
+    padding: 18px 2px;
+  }
+
+  .imageStage::before {
+    width: 115px;
+  }
+
+  .imageStage img {
+    width: min(110%, 170px);
+  }
+
+  .weaponIntro {
+    padding: 18px 13px 16px 4px;
+  }
+
+  .weaponName strong {
+    font-size: 22px;
+  }
+
+  .effectBlock {
+    margin-top: 11px;
+  }
+
+  .effectBlock b {
+    font-size: 11px;
+    line-height: 1.55;
+    -webkit-line-clamp: 4;
+  }
+
+  .effectBlock small {
+    display: none;
+  }
+
+  .expandHint {
+    font-size: 10px;
+  }
+
+  .evolutionBody {
+    padding: 0 10px 12px;
+  }
+
+  .evolutionCard {
+    padding: 12px;
+    border-radius: 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .categoryTabs button,
+  .imageStage img {
+    transition: none;
+  }
+}

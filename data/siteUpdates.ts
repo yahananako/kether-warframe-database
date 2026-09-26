@@ -1,6 +1,7 @@
 import { KETHER_VERSION_LABEL } from "./siteVersion";
 
 export const ketherDynamicMessages = [
+  "靈化武器檔案館已上線：53 把武器依主要、次要、近戰分類，收錄圖片、靈化特效、解鎖條件與完整進化能力。",
   "Android APP 3.0.11 改用系統下載器，通知列與更新視窗會顯示實際進度。",
   "APP 更新下載失敗時，可一鍵切換瀏覽器下載；完成後仍會驗證 SHA256。",
   "電波局 12 座情報站已各自成頁，可從每個區塊直接進入完整情報。",
@@ -18,8 +19,8 @@ export const ketherDynamicMessages = [
 
 export const homepageRemarks = [
   `目前版本：${KETHER_VERSION_LABEL}。`,
-  "更新日期：2026/9/16。",
-  "資料庫狀態：電波局 12 座情報站、五大裝備分類、赤毒武器 21 把、一般戰甲 65 位與 Discord 個人進度持續連線中。",
+  "更新日期：2026/9/26。",
+  "資料庫狀態：電波局 12 座情報站、靈化武器 53 把、五大裝備分類、赤毒武器 21 把、一般戰甲 65 位與 Discord 個人進度持續連線中。",
   "價格更新節奏：每日 4:00。",
   "Discord 個人化：登入、權限、個人進度已啟用。",
   "更新備忘錄：Android APP 3.0.11 已修正下載卡住；小希 BOT 已加入氏族驗證、抽獎與交易網站按鈕，並修復戰甲名片回應。",

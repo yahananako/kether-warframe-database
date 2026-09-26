@@ -11,6 +11,7 @@ const links = [
   ["主要武器", "/database/primary", "主要武器清單"],
   ["次要武器", "/database/secondary", "次要武器清單"],
   ["近戰武器", "/database/melee", "近戰武器清單"],
+  ["靈化武器", "/database/incarnon", "圖片、靈化特效與完整進化能力"],
   ["同伴", "/database/companions", "同伴與寵物資料"],
   ["曲翼", "/database/archwing", "曲翼與相關裝備"],
   ["MOD 資料庫", "/database/mods", "MOD 系列與追價資料"],
