@@ -8,6 +8,7 @@
     "postbuild": "node scripts/register-warframe-card-command.mjs --if-configured",
     "start": "next start",
     "data:kuva": "node scripts/generate-kuva-catalog.mjs",
+    "data:incarnon": "node scripts/generate-incarnon-catalog.mjs",
     "data:warframes": "node scripts/generate-warframe-details.mjs",
     "data:android": "node android/scripts/build-v3-data.mjs && node android/scripts/build-search-data.mjs",
     "sheet:kuva": "node scripts/prepare-kuva-sheet-update.mjs",

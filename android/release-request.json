@@ -1,5 +1,5 @@
 {
-  "versionName": "3.0.11",
-  "versionCode": 41,
-  "releaseNotes": "修正 APP 更新下載卡住：改用 Android 系統下載器並顯示真實進度；下載完成自動驗證 SHA256 並開啟安裝器；若系統下載失敗，可一鍵改用瀏覽器下載。"
+  "versionName": "3.0.12",
+  "versionCode": 42,
+  "releaseNotes": "新增靈化武器原生頁面：收錄 53 把主要、次要與近戰武器，提供圖片、靈化特效、進化解鎖條件、完整進化能力、分類與搜尋。"
 }

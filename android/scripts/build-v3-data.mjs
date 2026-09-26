@@ -55,6 +55,20 @@ const questSeriesData = JSON.parse(
 const warframeDetailData = JSON.parse(
   fs.readFileSync(path.join(site, "warframeDetails.generated.json"), "utf8"),
 );
+const incarnonCatalogData = JSON.parse(
+  fs.readFileSync(path.join(site, "incarnonWeapons.generated.json"), "utf8"),
+);
+const incarnonCatalog = {
+  ...incarnonCatalogData,
+  weapons: incarnonCatalogData.weapons.map((weapon) => {
+    const fileName = `incarnon-${weapon.id}.png`;
+    fs.copyFileSync(
+      path.join(siteRoot, "public", weapon.image.replace(/^\//, "")),
+      path.join(assets, fileName),
+    );
+    return { ...weapon, image: fileName };
+  }),
+};
 
 const output = {
   chapters,
@@ -64,6 +78,7 @@ const output = {
   regularWarframes,
   warframeDetails: warframeDetailData.warframes,
   warframeDetailsUpdatedAt: warframeDetailData.updatedAt,
+  incarnonCatalog,
   roleMap,
 };
 fs.writeFileSync(
@@ -71,5 +86,5 @@ fs.writeFileSync(
   `window.KETHER_V3_DATA=${JSON.stringify(output)};\n`,
 );
 console.log(
-  `v3 data: ${chapters.length} chapters, ${sideEras.length} side eras, ${questSeriesData.series.length} quest series, ${regularWarframes.length} warframes`,
+  `v3 data: ${chapters.length} chapters, ${sideEras.length} side eras, ${questSeriesData.series.length} quest series, ${regularWarframes.length} warframes, ${incarnonCatalog.weapons.length} incarnon weapons`,
 );

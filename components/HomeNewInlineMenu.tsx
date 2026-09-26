@@ -22,6 +22,7 @@ const databaseLinks = [
   { label: "主要武器", href: "/database/primary" },
   { label: "次要武器", href: "/database/secondary" },
   { label: "近戰武器", href: "/database/melee" },
+  { label: "靈化武器", href: "/database/incarnon" },
   { label: "同伴", href: "/database/companions" },
   { label: "曲翼", href: "/database/archwing" },
   { label: "MOD", href: "/database/mods" },
@@ -41,6 +42,7 @@ export default function HomeNewInlineMenu() {
   const buttonRef = useRef<HTMLButtonElement>(null);
   const [mounted, setMounted] = useState(false);
   const [open, setOpen] = useState(false);
+  const [adminVisible, setAdminVisible] = useState(false);
   const [position, setPosition] = useState<MenuPosition>({ top: 72, left: 12 });
 
   const updatePosition = useCallback(() => {
@@ -68,6 +70,23 @@ export default function HomeNewInlineMenu() {
 
   useEffect(() => {
     setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    let active = true;
+
+    fetch("/api/admin/access", { cache: "no-store" })
+      .then((response) => (response.ok ? response.json() : null))
+      .then((payload) => {
+        if (active) setAdminVisible(payload?.authorized === true);
+      })
+      .catch(() => {
+        if (active) setAdminVisible(false);
+      });
+
+    return () => {
+      active = false;
+    };
   }, []);
 
   useLayoutEffect(() => {

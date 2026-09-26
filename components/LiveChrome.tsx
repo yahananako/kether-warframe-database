@@ -20,6 +20,7 @@ const navItems = [
   { label: "主要武器", href: "/database/primary", image: "/icon-primary.png", activeImage: "/icon-primary-2.png" },
   { label: "次要武器", href: "/database/secondary", image: "/icon-secondary.png", activeImage: "/icon-secondary-2.png" },
   { label: "近戰武器", href: "/database/melee", image: "/icon-melee.png", activeImage: "/icon-melee-2.png" },
+  { label: "靈化武器", href: "/database/incarnon", image: "/incarnon-weapons/braton.png", activeImage: "/incarnon-weapons/braton.png" },
   { label: "同伴", href: "/database/companions", image: "/icon-companion.png", activeImage: "/icon-companion-2.png" },
   { label: "曲翼", href: "/database/archwing", image: "/icon-archwing.png", activeImage: "/icon-archwing-2.png" },
   { label: "MOD", href: "/database/mods", image: "/icon-mod.png", activeImage: "/icon-mod-2.png" },

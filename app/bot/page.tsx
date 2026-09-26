@@ -56,6 +56,12 @@ const navItems = [
     activeImage: "/icon-melee-2.png",
   },
   {
+    label: "靈化武器",
+    href: "/database/incarnon",
+    image: "/incarnon-weapons/braton.png",
+    activeImage: "/incarnon-weapons/braton.png",
+  },
+  {
     label: "同伴",
     href: "/database/companions",
     image: "/icon-companion.png",
