@@ -1,8 +1,8 @@
 {
-  "versionCode": 42,
-  "versionName": "3.0.12",
-  "apkUrl": "https://github.com/yahananako/kether-warframe-database/releases/download/app-v3.0.12/KETHER-Warframe-v3.0.12.apk",
-  "sha256": "71bb8fd5e0be7404def3e5f9ed4e43923313020912ddc36f6b40b80fa03aad7f",
+  "versionCode": 43,
+  "versionName": "3.0.13",
+  "apkUrl": "https://github.com/yahananako/kether-warframe-database/releases/download/app-v3.0.13/KETHER-Warframe-v3.0.13.apk",
+  "sha256": "3a986442de9144eb648d9687d1c28e1204dbb6b57d7a78388521f489d1939757",
   "required": false,
-  "notes": "新增靈化武器原生頁面：收錄 53 把主要、次要與近戰武器，提供圖片、靈化特效、進化解鎖條件、完整進化能力、分類與搜尋。"
+  "notes": "靈化武器 509 項能力全面繁體中文化；同步主要、次要、近戰武器的版本分支數值，並修正重複百分比與未替換變數。"
 }
