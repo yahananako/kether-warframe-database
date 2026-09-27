@@ -120,7 +120,6 @@ function WeaponCard({ weapon, eager }: { weapon: IncarnonWeapon; eager: boolean 
             <span className={styles.effectBlock}>
               <span>靈化特效</span>
               <b>{weapon.effect.zh}</b>
-              <small>{weapon.effect.en}</small>
             </span>
 
             <span className={styles.expandHint}>
@@ -135,7 +134,7 @@ function WeaponCard({ weapon, eager }: { weapon: IncarnonWeapon; eager: boolean 
             {weapon.evolutions.map((evolution) => (
               <section key={evolution.tier} className={styles.evolutionCard}>
                 <div className={styles.evolutionHeading}>
-                  <span>EVO {evolution.tier}</span>
+                  <span>進化 {evolution.tier}</span>
                   <strong>{evolution.tier === 1 ? "靈化形態" : "進化能力"}</strong>
                 </div>
 
@@ -144,9 +143,6 @@ function WeaponCard({ weapon, eager }: { weapon: IncarnonWeapon; eager: boolean 
                   <strong>
                     {evolution.unlockCondition.zh || evolution.unlockCondition.en}
                   </strong>
-                  {evolution.unlockCondition.zh ? (
-                    <small>{evolution.unlockCondition.en}</small>
-                  ) : null}
                 </div>
 
                 <div className={styles.abilityList}>
