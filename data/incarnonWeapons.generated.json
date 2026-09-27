@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-27T06:03:35.964Z",
+  "generatedAt": "2026-09-27T23:29:25.476Z",
   "source": {
     "name": "Warframe Wiki / Warframe Public Export",
     "wiki": "https://wiki.warframe.com/w/Incarnon",
@@ -32,7 +32,8 @@
           "abilities": [
             {
               "name": "應感形態",
-              "description": "爆頭為應感轉變充能，次要射擊進行轉變。切換回原始模式將消耗剩餘的充能。\n應感形態發射三束能自動鎖定準星 10° 範圍內敵人的火焰射線，每根射線還能鏈接攻擊 9 公尺內的 2 名敵人，鏈接傷害為之前的 80%。"
+              "description": "爆頭為應感轉變充能，次要射擊進行轉變。切換回原始模式將消耗剩餘的充能。\n應感形態發射三束能自動鎖定準星 10° 範圍內敵人的火焰射線，每根射線還能鏈接攻擊 9 公尺內的 2 名敵人，鏈接傷害為之前的 80%。",
+              "notes": "Incarnon Form becomes a continuous beam weapon that can fire up to 3 beams that automatically target enemies within 10° of the reticle, with each beam chaining up to 2 nearby enemies within 10 meters of the initial target and subsequent targets struck by punch through, with each chain doing 80% of the previous one's damage. Beams remain locked on enemies while they are within 50° of the reticle. While in Incarnon Form, it inflicts pure Heat damage with increased Critical Chance, Critical Multiplier, and Fire Rate. However, it has reduced damage and Zoom, and the main beam has a maximum range of 20 meters.\nWhile Sinister Reach cannot be equipped on Boar or its variants, Galvanized Acceleration can be used to increase the maximum range of the main beams."
             }
           ],
           "unlockCondition": {
@@ -45,7 +46,8 @@
           "abilities": [
             {
               "name": "具象剋星",
-              "description": "基礎傷害增加 +10。\n空彈匣裝填時：基礎傷害增加 +10。"
+              "description": "基礎傷害增加 +10。\n空彈匣裝填完成後：基礎傷害額外增加 +14。",
+              "notes": "空彈匣裝填完成後的加成會持續到尚未打空彈匣時手動裝填；以其他方式補充彈匣不會移除加成。遊戲內顯示的 +10 有誤，實際為 +14。"
             },
             {
               "name": "要塞齊射",
@@ -62,7 +64,8 @@
           "abilities": [
             {
               "name": "待命報復",
-              "description": "空彈匣裝填時：+100% 裝填速度。"
+              "description": "空彈匣裝填時：+100% 裝填速度。",
+              "notes": "As the reload speed bonus is only applied at the end of the first reload from empty, the bonus will not apply to the first reload, only subsequent ones.\nBonus stacks additively with reload speed mods such as Tactical Pump."
             },
             {
               "name": "傭兵槍膛",
@@ -120,7 +123,8 @@
           "abilities": [
             {
               "name": "應感形態",
-              "description": "爆頭為應感轉變充能，次要射擊進行轉變。切換回原始模式將消耗剩餘的充能。\n應感形態下武器相較普通模式具有3基礎多重射擊，提升了射速以及暴擊機率和倍率，傷害組成為10%衝擊30%穿刺60%切割，但降低了精準度以及單個投射物的基礎傷害。\n需要20次爆頭才能完成充能。多重射擊造成的爆頭也會被計入充能中。\n每個投射物造成的爆頭能為應感形態提供8發彈藥，最高至160。充能耗盡後武器會自動轉變為普通模式。"
+              "description": "爆頭為應感轉變充能，次要射擊進行轉變。切換回原始模式將消耗剩餘的充能。\n應感形態下武器相較普通模式具有3基礎多重射擊，提升了射速以及暴擊機率和倍率，傷害組成為10%衝擊30%穿刺60%切割，但降低了精準度以及單個投射物的基礎傷害。\n需要20次爆頭才能完成充能。多重射擊造成的爆頭也會被計入充能中。\n每個投射物造成的爆頭能為應感形態提供8發彈藥，最高至160。充能耗盡後武器會自動轉變為普通模式。",
+              "notes": "Incarnon Form turns the weapon in a rapid-fire pseudo-shotgun with 3 base multishot, increased overall damage stats, added Slash damage, and slightly faster fire rate, but with lower accuracy resulting in a shotgun-like spread pattern."
             }
           ],
           "unlockCondition": {
@@ -142,11 +146,11 @@
             },
             {
               "name": "猩紅序曲",
-              "description": "擊殺時：基礎傷害增加+12和+20% 彈藥效率，持續5秒。 最多疊加到3 倍。",
+              "description": "基礎傷害增加 +12。擊殺時：基礎傷害額外增加 +2、彈藥效率增加 +20%，持續 5 秒，最多疊加 4 層。",
               "variantValues": {
-                "螺釘步槍": "擊殺時：基礎傷害增加+12和+20% 彈藥效率，持續5秒。 最多疊加到3 倍。",
-                "終極": "擊殺時：基礎傷害增加+2和+20% 彈藥效率，持續5秒。 最多疊加到3 倍。",
-                "Prime": "擊殺時：基礎傷害增加+2和+20% 彈藥效率，持續5秒。 最多疊加到3 倍。"
+                "螺釘步槍": "基礎傷害增加 +12。擊殺時：基礎傷害額外增加 +2、彈藥效率增加 +20%，持續 5 秒，最多疊加 4 層。",
+                "終極": "初始基礎傷害不增加。擊殺時：基礎傷害額外增加 +2、彈藥效率增加 +20%，持續 5 秒，最多疊加 3 層。",
+                "Prime": "初始基礎傷害不增加。擊殺時：基礎傷害額外增加 +2、彈藥效率增加 +20%，持續 5 秒，最多疊加 3 層。"
               }
             }
           ],
@@ -233,7 +237,8 @@
           "abilities": [
             {
               "name": "應感形態",
-              "description": "爆頭為應感轉變充能，次要射擊進行轉變。切換回原始模式將消耗剩餘的充能。\n應感形態額外造成3 公尺的範圍傷害，擁有更高的基礎傷害，暴擊機率，暴擊倍率和觸發機率，但射速顯著降低。"
+              "description": "爆頭為應感轉變充能，次要射擊進行轉變。切換回原始模式將消耗剩餘的充能。\n應感形態額外造成3 公尺的範圍傷害，擁有更高的基礎傷害，暴擊機率，暴擊倍率和觸發機率，但射速顯著降低。",
+              "notes": "Incarnon Form has a 3 meter area of effect that deals pure Heat damage, with much higher Critical Chance, Critical Multiplier, and Status Chance. However, the Fire Rate is reduced, and the explosion possesses Damage Falloff from 100% to 90% from central impact.\nWhen modded for Punch Through, the Incarnon Form's radial effect occurs at the first object struck, and only the main bullet punches through."
             }
           ],
           "unlockCondition": {
@@ -252,7 +257,8 @@
                 "MK1": "基礎傷害增加+28 持續消耗型技能啟用時：基礎傷害增加+22，+50% 彈藥效率",
                 "破壞者": "基礎傷害增加+12 持續消耗型技能啟用時：基礎傷害增加+34，+50% 彈藥效率",
                 "Prime": "基礎傷害增加+4 持續消耗型技能啟用時：基礎傷害增加+38，+50% 彈藥效率"
-              }
+              },
+              "notes": "Channeled Abilities must be draining energy to be considered active. Abilities that do not drain energy over time such as Nekros's Desecrate, Hildryn's Haven, or Sevagoth's Gloom (with no enemies nearby) do not count."
             },
             {
               "name": "實彈膽魄",
@@ -262,7 +268,8 @@
                 "MK1": "基礎傷害增加+20 多重射擊直接消耗彈匣中的彈藥並將傷害提升+48%，+20% 多重射擊（非應感形態下消耗備彈增加傷害）",
                 "破壞者": "基礎傷害增加+8 多重射擊直接消耗彈匣中的彈藥並將傷害提升+58%，+20% 多重射擊（非應感形態下消耗備彈增加傷害）",
                 "Prime": "基礎傷害增加+2 多重射擊直接消耗彈匣中的彈藥並將傷害提升+54%，+20% 多重射擊（非應感形態下消耗備彈增加傷害）"
-              }
+              },
+              "notes": "Affects both modes. In the case of Incarnon Form, it pulls directly from its magazine.\nDamage bonus is a unique modifier that is multiplicative to other damage buffs.\nDamage bonus only applies to shots generated by multishot.\nThe multishot bonus stacks additively with multishot mods such as Split Chamber."
             }
           ],
           "unlockCondition": {
@@ -281,7 +288,8 @@
                 "MK1": "彈藥上限提升至600",
                 "破壞者": "彈藥上限提升至755",
                 "Prime": "彈藥上限提升至1125"
-              }
+              },
+              "notes": "The bonus does not apply to the Incarnon form."
             },
             {
               "name": "虛空指引",
@@ -289,7 +297,8 @@
             },
             {
               "name": "硝煙拾起",
-              "description": "穿透命中時：20%機率回覆10%彈藥"
+              "description": "穿透命中時：20%機率回覆10%彈藥",
+              "notes": "The bonus does not apply to the Incarnon form.\nA second target does not need to be hit, the bullet just has to have some amount of punch-through."
             }
           ],
           "unlockCondition": {
@@ -318,7 +327,8 @@
                 "MK1": "暴擊機率低於50%時：基礎暴擊傷害增加+3.3 倍",
                 "破壞者": "暴擊機率低於50%時：基礎暴擊傷害增加+3",
                 "Prime": "暴擊機率低於50%時：基礎暴擊傷害增加+3 倍"
-              }
+              },
+              "notes": "The critical damage increase is added as base critical damage and will be affected by mods.\nCondition is affected by the critical chance increase effect of Puncture status."
             },
             {
               "name": "生還佔優",
@@ -357,7 +367,8 @@
           "abilities": [
             {
               "name": "應感形態",
-              "description": "命中弱點為應感轉變充能，次要射擊進行轉變。切換回原始模式將消耗剩餘的充能。\n變為全自動射擊模式，並造成範圍火焰傷害。"
+              "description": "命中弱點為應感轉變充能，次要射擊進行轉變。切換回原始模式將消耗剩餘的充能。\n變為全自動射擊模式，並造成範圍火焰傷害。",
+              "notes": "Incarnon Form becomes fully automatic dealing pure Heat damage with shots exploding in a 2 meter area of effect, with much higher Critical Chance, Critical Multiplier, and Fire Rate. However, it deals much less base damage, the explosion possesses Damage Falloff from 100% to 0% from central impact, and reduced Zoom.\nThe Radial Attack does not benefit from Multishot bonuses and has a Headshot multiplier of 1x.\nOn Punch Through Radial Attack will hit only first enemy or be stopped if fired through an obstacle."
             }
           ],
           "unlockCondition": {
@@ -370,7 +381,8 @@
           "abilities": [
             {
               "name": "強制終結",
-              "description": "基礎傷害增加 +42。\n每個彈匣最後一輪射擊的每一發獲得 +5 多重射擊。"
+              "description": "基礎傷害增加 +42。\n每個彈匣最後一輪射擊的每一發獲得 +5 多重射擊。",
+              "notes": "Multishot bonus is added before mods, and is thus multiplied by multishot bonuses.\nMultishot bonus does not affect the Incarnon form."
             },
             {
               "name": "要塞齊射",
@@ -408,7 +420,8 @@
           "abilities": [
             {
               "name": "掠奪者的狂喜",
-              "description": "多發點射全部命中時：+20% 傷害，重新裝填後重置。"
+              "description": "多發點射全部命中時：+20% 傷害，重新裝填後重置。",
+              "notes": "Caps at 5x for +100% damage, additive with base damage mods such as Serration.\nBurst condition is not affected by multishot or punch through, but counts object hits such as nullifier bubbles, and activates even if the first hit of a burst kills the target.\nResets when activating incarnon, and cannot be stacked in Incarnon form."
             },
             {
               "name": "絕對勇氣",
@@ -445,7 +458,8 @@
           "abilities": [
             {
               "name": "應感形態",
-              "description": "爆頭為應感轉變充能，次要射擊進行轉變。切換回原始模式將消耗剩餘的充能。"
+              "description": "爆頭為應感轉變充能，次要射擊進行轉變。切換回原始模式將消耗剩餘的充能。",
+              "notes": "Fires lasers that inflict Magnetic damage. Gains 3 Punch Through and Damage, Critical Chance, and Critical Multiplier are increased, but Status Chance and Fire Rate are lowered.\nDespite the Incarnon form description saying it fires beams, it is not a Beam Weapon."
             }
           ],
           "unlockCondition": {
@@ -470,7 +484,8 @@
               "variantValues": {
                 "德拉": "基礎傷害增加+6 觸發異常狀態時：+5%射速，持續5秒。最多疊加到6層。",
                 "德拉 破壞者": "基礎傷害增加+4 觸發異常狀態時：+5%射速，持續5秒。最多疊加到6層。"
-              }
+              },
+              "notes": "Fire Rate bonus stacks additively with other fire rate bonuses such as Speed Trigger."
             }
           ],
           "unlockCondition": {
@@ -483,15 +498,16 @@
           "abilities": [
             {
               "name": "迅速判決",
-              "description": "基礎彈匣容量增加+22"
+              "description": "投射物速度增加 +50%。"
             },
             {
               "name": "擴充齊發",
-              "description": "+50%投射物速度",
+              "description": "基礎彈匣容量增加 +22。",
               "variantValues": {
-                "德拉": "+50%投射物速度",
-                "德拉 破壞者": "+50%投射物速度"
-              }
+                "德拉": "基礎彈匣容量增加 +22。",
+                "德拉 破壞者": "基礎彈匣容量增加 +30。"
+              },
+              "notes": "增加的基礎彈匣容量不影響應感形態。"
             },
             {
               "name": "進化自填器",
@@ -516,7 +532,8 @@
             },
             {
               "name": "高地優勢",
-              "description": "將當前觸發機率的25%增加到基礎暴擊機率，最高可達35%"
+              "description": "將當前觸發機率的25%增加到基礎暴擊機率，最高可達35%",
+              "notes": "For Non-Incarnon Dera Vandal, +366.7% Status Chance is needed to max out the Critical Chance bonus.\nFor Incarnon Dera Vandal and Non-Incarnon Dera, +536.4% Status Chance is needed to max out the Critical Chance bonus."
             },
             {
               "name": "元素平衡",
@@ -553,7 +570,8 @@
           "abilities": [
             {
               "name": "應感形態",
-              "description": "爆頭為應感轉變充能，次要射擊進行轉變。切換回原始模式將消耗剩餘的充能。"
+              "description": "爆頭為應感轉變充能，次要射擊進行轉變。切換回原始模式將消耗剩餘的充能。",
+              "notes": "Incarnon Form fires a wide projectile that deals Heat damage, with increased base damage, Critical Multiplier, and Status Chance, and infinite body Punch Through. However, it no longer deals Puncture damage, has a headshot multiplier of 1x, has slightly slower charge time, can no longer be fired from a partial charge, and is no longer silent."
             }
           ],
           "unlockCondition": {
@@ -566,11 +584,13 @@
           "abilities": [
             {
               "name": "殺意乘勢",
-              "description": "基礎傷害增加+70 若敵人生命值低於一半，傷害增加+100%"
+              "description": "基礎傷害增加+70 若敵人生命值低於一半，傷害增加+100%",
+              "notes": "The conditional damage bonus ignores the base damage increase from the same perk, the 2x damage from the charged shot (Primary Fire only) and Galvanized Aptitude's damage bonus."
             },
             {
               "name": "追獵者 怨恨",
-              "description": "基礎傷害增加+50 裝備絕望和憎恨後命中時：基礎傷害增加+10，射速+10%，最高疊加至5層。未命中時重置。"
+              "description": "基礎傷害增加+50 裝備絕望和憎恨後命中時：基礎傷害增加+10，射速+10%，最高疊加至5層。未命中時重置。",
+              "notes": "Affects both regular and Incarnon forms."
             }
           ],
           "unlockCondition": {
@@ -591,7 +611,8 @@
             },
             {
               "name": "殺意貯藏",
-              "description": "彈藥上限提升至144"
+              "description": "彈藥上限提升至144",
+              "notes": "Does not affect the Incarnon form."
             }
           ],
           "unlockCondition": {
@@ -641,7 +662,8 @@
           "abilities": [
             {
               "name": "應感形態",
-              "description": "爆頭為應感轉變充能，次要射擊進行轉變。切換回原始模式將消耗剩餘的充能。"
+              "description": "爆頭為應感轉變充能，次要射擊進行轉變。切換回原始模式將消耗剩餘的充能。",
+              "notes": "Incarnon Form changes the weapon to semi-automatic and fires large energy projectiles with higher accuracy and critical multiplier, 0.5 meter punch through, and its status chance per projectile is increased to 20%. However, its shots inflict Radiation and Impact damage instead of Puncture and Slash, it loses shotgun multishot mechanics and has a base multishot of 1, and its fire rate and total damage are reduced.\nDespite the explosive visual effect, there is no radial damage.\nAs the per-shell reload makes the Felarx be able to interrupt it's reload while firing, the switching can also be interrupted."
             }
           ],
           "unlockCondition": {
@@ -658,11 +680,13 @@
             },
             {
               "name": "動能隔檔",
-              "description": "武器後座力 -50%"
+              "description": "武器後座力 -50%",
+              "notes": "Only applies while aiming."
             },
             {
               "name": "順滑飛行",
-              "description": "投射物速度 +50%"
+              "description": "投射物速度 +50%",
+              "notes": "Only applies while aiming."
             }
           ],
           "unlockCondition": {
@@ -675,7 +699,8 @@
           "abilities": [
             {
               "name": "雙型膛室",
-              "description": "裝填時使武器在100%投射物速度和4 公尺穿透效果之間切換。"
+              "description": "裝填時使武器在100%投射物速度和4 公尺穿透效果之間切換。",
+              "notes": "Toggles for every shell loaded. For example, reloading all 6 shells will toggle 6 times, leaving it on the mode it started on.\n\"Reload when holstered\" effects do toggle Dual-Mode Chamber.\nReloading via Garuda 's Blood Forge or Cyte-09 's Resupply does not switch chamber mode.\nAffects Incarnon Form."
             },
             {
               "name": "進化自填器",
@@ -683,7 +708,8 @@
             },
             {
               "name": "裝載動能",
-              "description": "重新裝填的每發彈藥可使射速提高+10%。再一次使用裝填按鍵時重置。"
+              "description": "重新裝填的每發彈藥可使射速提高+10%。再一次使用裝填按鍵時重置。",
+              "notes": "Increasing Magazine size increases the potential bonus, but also the reload time as shells are loaded individually.\nStacks up to 99x (+990% Fire Rate).\nAffects Incarnon Form.\nActivating Incarnon Form will add one stack to the counter. Deactivating Incarnon Form will reload the normal form's magazine while retaining stacks; this allows stacks to be sustained and built for as long as Incarnon charge can be built without reloading.\nDeactivating Incarnon Form will also add stacks to the counter for each remaining unit of ammo missing from the magazine when Incarnon Form was activated. For example, if Incarnon Form is activated with 4 shells spent from the magazine and 10 stacks, deactivating Incarnon Form results in a total of 14 stacks.; Holstering will reset stacks.\n\"Reload when holstered\" effects such as Lock and Load will build stacks after resetting.; Reloading via Garuda 's Blood Forge does not reset nor build stacks. Reloading via Cyte-09 's Resupply however will build 1 stack."
             }
           ],
           "unlockCondition": {
@@ -696,15 +722,18 @@
           "abilities": [
             {
               "name": "殘暴鋒緣",
-              "description": "+10%暴擊機率 +10%觸發機率"
+              "description": "+10%暴擊機率 +10%觸發機率",
+              "notes": "Bonuses are added after mods as a flat value.\nStatus Chance bonus is divided by the base multishot of 4, for only +2.5% Status Chance per pellet."
             },
             {
               "name": "應感觸媒",
-              "description": "爆頭增加50%應感轉變充能"
+              "description": "爆頭增加50%應感轉變充能",
+              "notes": "Reduces the number of headshots required to fully charge Transmutation to 20.\nEach headshotting-bullet generates 3 charge, up from 2."
             },
             {
               "name": "毀滅之怒",
-              "description": "+20%觸發機率 -10%暴擊機率"
+              "description": "+20%觸發機率 -10%暴擊機率",
+              "notes": "Bonuses are added after mods as a flat value.\nStatus Chance bonus is divided by the base multishot of 4, for only +5% Status Chance per pellet."
             }
           ],
           "unlockCondition": {
@@ -717,7 +746,8 @@
           "abilities": [
             {
               "name": "毀滅損耗",
-              "description": "有50%的機率在非暴擊時造成+2000%傷害"
+              "description": "有50%的機率在非暴擊時造成+2000%傷害",
+              "notes": "Affects both forms.\nDamage bonus is multiplicative to base damage bonuses such as Serration."
             },
             {
               "name": "破裂滿盈",
@@ -754,7 +784,8 @@
           "abilities": [
             {
               "name": "應感形態",
-              "description": "爆頭為應感轉變充能，次要射擊進行轉變。切換回原始模式將消耗剩餘的充能。"
+              "description": "爆頭為應感轉變充能，次要射擊進行轉變。切換回原始模式將消耗剩餘的充能。",
+              "notes": "Incarnon Form shoots a time-delayed explosive projectile, dealing a spread of Impact, Puncture, and Slash damage upon impact. After a short delay, it detonates with an explosion radius of 5 meters, dealing Heat damage with guaranteed Heat status, but has linear Damage Falloff from 100% to 90% from central impact."
             }
           ],
           "unlockCondition": {
@@ -772,7 +803,8 @@
                 "蛇髮女妖": "基礎傷害增加+10 持續消耗型技能啟用時：+3穿透，+40%精準度",
                 "亡魂": "基礎傷害增加+5 持續消耗型技能啟用時：+3穿透，+40%精準度",
                 "棱晶": "基礎傷害增加+5 持續消耗型技能啟用時：+3穿透，+40%精準度"
-              }
+              },
+              "notes": "Channeled Abilities must be draining energy to be considered active. Abilities that do not drain energy over time such as Nekros's Desecrate, Hildryn's Haven, or Sevagoth's Gloom (with no enemies nearby) do not count."
             },
             {
               "name": "重兵聖德",
@@ -781,7 +813,8 @@
                 "蛇髮女妖": "基礎傷害增加+10 護盾被打破時：基礎傷害增加+13，持續8 秒。",
                 "亡魂": "基礎傷害增加+5 護盾被打破時：基礎傷害增加+8，持續8 秒。",
                 "棱晶": "基礎傷害增加+5 護盾被打破時：基礎傷害增加+8，持續8 秒。"
-              }
+              },
+              "notes": "This is on personal shield break, not breaking enemy shields."
             }
           ],
           "unlockCondition": {
@@ -867,7 +900,8 @@
           "abilities": [
             {
               "name": "應感形態",
-              "description": "爆頭為應感轉變充能，次要射擊進行轉變。切換回原始模式將消耗剩餘的充能。\n應感形態下武器發射能夠在命中後彈跳的投射物，至多彈跳6次並在彈跳時造成4 公尺範圍傷害。\n每次彈跳都會使投射物飛行速度降低。\n需要8次爆頭才能完成充能。多重射擊造成的爆頭也會被計入充能中。\n每個投射物造成的爆頭能為應感形態提供5發彈藥，最高至40。充能耗盡後武器會自動轉變為普通模式。"
+              "description": "爆頭為應感轉變充能，次要射擊進行轉變。切換回原始模式將消耗剩餘的充能。\n應感形態下武器發射能夠在命中後彈跳的投射物，至多彈跳6次並在彈跳時造成4 公尺範圍傷害。\n每次彈跳都會使投射物飛行速度降低。\n需要8次爆頭才能完成充能。多重射擊造成的爆頭也會被計入充能中。\n每個投射物造成的爆頭能為應感形態提供5發彈藥，最高至40。充能耗盡後武器會自動轉變為普通模式。",
+              "notes": "Incarnon Form changes the weapon's fire mode from hitscan to a traveling projectile that can ricochet off enemies and terrain, exploding up to 6 times with a 4 meter radius, dealing damage once for any collision on enemies, and again for the explosion.\nCollision deals Impact damage and have a guaranteed Impact proc.\nExplosion deals Puncture and Heat damage, and can benefit from Firestorm ( Primed ).\nEach ricochet will cause the projectile to slow down.\nBullet attraction bubbles such as Magnetize or Void status will cause the projectile to orbit within until exploding at the end of its life, and seem to require multiple enemies to ricochet repeatedly.; Incarnon Form has no Recoil, higher total damage, Critical Chance, Critical Multiplier, and Status Chance. However its Slash damage is removed, the Fire Rate is reduced, and the explosion possesses Damage Falloff from 100% to 80% from central impact.\nPunch Through does not affect the incarnon projectile.\nDouble Tap affects Incarnon Form."
             }
           ],
           "unlockCondition": {
@@ -885,7 +919,8 @@
                 "拉特昂": "基礎傷害增加+48 觸發穿刺異常時：+25%多重射擊，持續8秒，最高疊加至4層",
                 "亡魂": "基礎傷害增加+12 觸發穿刺異常時：+25%多重射擊，持續8秒，最高疊加至4層",
                 "Prime": "基礎傷害增加+6 觸發穿刺異常時：+25%多重射擊，持續8秒，最高疊加至4層"
-              }
+              },
+              "notes": "The multishot bonus stacks additively with mods such as Split Chamber."
             },
             {
               "name": "迅捷懲罰",
@@ -894,7 +929,8 @@
                 "拉特昂": "基礎傷害增加+48 衝刺速度不低於1.2時：對每個受到的異常狀態增加+30%直接傷害",
                 "亡魂": "基礎傷害增加+12 衝刺速度不低於1.2時：對每個受到的異常狀態增加+30%直接傷害",
                 "Prime": "基礎傷害增加+6 衝刺速度不低於1.2時：對每個受到的異常狀態增加+30%直接傷害"
-              }
+              },
+              "notes": "Despite the description, the effect only requires 1.1 or higher sprint speed.\nEquipping Amalgam Serration will allow any Warframe to reach the threshold without needing to mod for sprint speed on the Warframe itself."
             }
           ],
           "unlockCondition": {
@@ -928,11 +964,13 @@
           "abilities": [
             {
               "name": "剝膚利釘",
-              "description": "每層穿刺異常移除20%敵人護甲"
+              "description": "每層穿刺異常移除20%敵人護甲",
+              "notes": "Has no effect on enemies immune to armor removal, such as Exploiter Orb or Archons.\nCan fully strip Acolytes ' armor, though they cannot have more than four Puncture status stacks at once."
             },
             {
               "name": "死亡頭顱",
-              "description": "+100%爆頭倍率"
+              "description": "+100%爆頭倍率",
+              "notes": "The bonus stacks additively with other headshot multiplier bonuses such as the passive from Primary Deadhead."
             },
             {
               "name": "臨界平行",
@@ -970,7 +1008,8 @@
           "abilities": [
             {
               "name": "應感形態",
-              "description": "爆頭為應感轉變充能，次要射擊進行轉變。切換回原始模式將消耗剩餘的充能。"
+              "description": "爆頭為應感轉變充能，次要射擊進行轉變。切換回原始模式將消耗剩餘的充能。",
+              "notes": "Incarnon Form becomes fully automatic and its projectiles have gained slight homing properties and explode twice in a 3 meter area of effect dealing Heat damage, with significantly higher Critical Chance, Critical Multiplier, Status Chance, and Fire Rate. Projectiles that hit enemies will rebound and home into other nearby enemies, albeit with reduced flight speed.\nThe projectile speed after rebound is not affected by mods or Swift Deliverance."
             }
           ],
           "unlockCondition": {
@@ -987,7 +1026,8 @@
             },
             {
               "name": "豐饒混亂",
-              "description": "基礎傷害增加+57 多重射擊直接消耗彈匣中的彈藥並將傷害增加+20%"
+              "description": "基礎傷害增加 +57。多重射擊會額外消耗彈藥，並使該多重射擊投射物的傷害固定增加 +20。",
+              "notes": "兩種形態皆有效；一般形態從彈藥容量扣除，應感形態從形態彈匣扣除。額外傷害僅適用於多重射擊產生的投射物，且不受基礎傷害 MOD 加成。"
             }
           ],
           "unlockCondition": {
@@ -1008,7 +1048,8 @@
             },
             {
               "name": "傭兵槍膛",
-              "description": "彈藥容量提升至160"
+              "description": "彈藥容量提升至160",
+              "notes": "Does not affect the Incarnon form"
             }
           ],
           "unlockCondition": {
@@ -1021,7 +1062,8 @@
           "abilities": [
             {
               "name": "鋸刃風暴",
-              "description": "蓄力1秒以提升爆炸範圍"
+              "description": "蓄力1秒以提升爆炸範圍",
+              "notes": "Does not affect the Incarnon form.\nEach bounce will cause an explosion dealing 1400 Blast in a 5 meter AoE, with critical and status stats equal to the normal charged shot.\nAoE has no damage falloff and does not require line of sight, damaging enemies through obstacles.; Can benefit from ( Primed ) Firestorm.\nInflicts self-stagger.\nThe 1s delay is not affected by mods.\nProjectiles continue to ricochet as normal after the explosion.\nIf the weapon is given punch-through, the explosion only occurs on the first impact."
             },
             {
               "name": "准將沐福",
@@ -1058,7 +1100,8 @@
           "abilities": [
             {
               "name": "應感形態",
-              "description": "爆頭為應感轉變充能，次要射擊進行轉變。切換回原始模式將消耗剩餘的充能。"
+              "description": "爆頭為應感轉變充能，次要射擊進行轉變。切換回原始模式將消耗剩餘的充能。",
+              "notes": "Incarnon Form fires a wide projectile that deals Heat damage, with significantly increased base damage, Critical Chance, and Critical Multiplier, and infinite body Punch Through. However, it no longer deals Puncture or Slash damage, has a headshot multiplier of 1x, and has slightly slower charge time."
             }
           ],
           "unlockCondition": {
@@ -1076,7 +1119,8 @@
                 "帕里斯": "基礎傷害增加+40 擁有1.2或更高衝刺速度時： +80% 射速",
                 "MK1-帕里斯": "基礎傷害增加+50 擁有1.2或更高衝刺速度時： +80% 射速",
                 "帕里斯 Prime": "基礎傷害增加+20 擁有1.2或更高衝刺速度時： +80% 射速"
-              }
+              },
+              "notes": "The fire rate bonus stacks additively with fire rate mods such as Speed Trigger but does not apply twice.\nDespite the description, the effect only requires 1.1 or higher sprint speed.\nEquipping Amalgam Serration will allow any Warframe to reach the threshold without needing to mod for sprint speed on the Warframe itself."
             },
             {
               "name": "守護者之力",
@@ -1098,7 +1142,8 @@
           "abilities": [
             {
               "name": "熾熱先機",
-              "description": "穿透命中時：+40%射速，持續6 秒"
+              "description": "穿透命中時：+40%射速，持續6 秒",
+              "notes": "The fire rate bonus stacks additively with fire rate mods such as Speed Trigger but does not apply twice.\nThe bonus applies when hitting multiple enemies with either the normal or the Incarnon form as well as when hitting enemies through obstacles by adding punch through with mods such as Metal Auger."
             },
             {
               "name": "善射之焦",
@@ -1119,7 +1164,8 @@
           "abilities": [
             {
               "name": "惡毒之諾",
-              "description": "對未受傷害的敵人增加+40%基礎暴擊機率，+2 倍基礎暴擊傷害"
+              "description": "對未受傷害的敵人增加+40%基礎暴擊機率，+2 倍基礎暴擊傷害",
+              "notes": "Enemies are undamaged as long as their health and shield have not been damaged.\nDamaging Overguard is not taken into account."
             },
             {
               "name": "元素平衡",
@@ -1127,7 +1173,8 @@
             },
             {
               "name": "連續猛攻",
-              "description": "命中後：基礎傷害增加+15，持續3 秒，最多疊加至4層"
+              "description": "命中後：基礎傷害增加+15，持續3 秒，最多疊加至4層",
+              "notes": "When the buff times out, one stack is lost and the buff duration resets."
             }
           ],
           "unlockCondition": {
@@ -1156,7 +1203,8 @@
           "abilities": [
             {
               "name": "應感形態",
-              "description": "爆頭為應感轉變充能，次要射擊進行轉變。切換回原始模式將消耗剩餘的充能。"
+              "description": "爆頭為應感轉變充能，次要射擊進行轉變。切換回原始模式將消耗剩餘的充能。",
+              "notes": "Incarnon Form changes the weapon from a semi-auto to full-auto with increased fire rate, 3 meter punch through, and its shots inflict Radiation and Slash damage but no longer inflicts Puncture damage.\nIncarnon Form uses Archgun animations. Contrary to its appearance, the Phenmor is still considered a Primary weapon and will not impair Aim Glide time.\nIncarnon Form's fire rates spools down from 100% to 60% over 51 shots as the trigger is held. Spool resets once the player stops firing, encouraging brief bursts of fire rather than sustained fire."
             }
           ],
           "unlockCondition": {
@@ -1190,15 +1238,18 @@
           "abilities": [
             {
               "name": "報應之舟",
-              "description": "+50%彈匣容量"
+              "description": "+50%彈匣容量",
+              "notes": "Does not affect Incarnon Form."
             },
             {
               "name": "待命報復",
-              "description": "空彈匣裝填完後：+100%裝填速度，持續6秒"
+              "description": "空彈匣裝填完後：+100%裝填速度，持續6秒",
+              "notes": "Affects untransformed Phenmor. Can affect transition into Incarnon form with a well-timed manual reload. Does not affect transition from Incarnon back to base form."
             },
             {
               "name": "行刑者財富",
-              "description": "爆頭擊殺時：20%機率立即重新裝填"
+              "description": "爆頭擊殺時：20%機率立即重新裝填",
+              "notes": "Does not affect Incarnon Form"
             }
           ],
           "unlockCondition": {
@@ -1211,15 +1262,18 @@
           "abilities": [
             {
               "name": "生還佔優",
-              "description": "+10%暴擊機率\n+10%觸發機率"
+              "description": "+10%暴擊機率\n+10%觸發機率",
+              "notes": "Bonuses are added after mods as a flat value."
             },
             {
               "name": "應感效率",
-              "description": "爆頭增加50%應感轉變充能"
+              "description": "爆頭增加50%應感轉變充能",
+              "notes": "Reduces the number of weakpoint hits required to fully charge Transmutation to 8.\nEach weakpoint hit generates 51 charge, up from 34."
             },
             {
               "name": "元素超量",
-              "description": "+20%觸發機率\n-10%暴擊機率"
+              "description": "+20%觸發機率\n-10%暴擊機率",
+              "notes": "Bonuses are added after mods as a flat value."
             }
           ],
           "unlockCondition": {
@@ -1232,15 +1286,18 @@
           "abilities": [
             {
               "name": "壓制損耗",
-              "description": "有50%的機率在非暴擊時造成+2000%傷害"
+              "description": "有50%的機率在非暴擊時造成+2000%傷害",
+              "notes": "Affects both forms.\nDamage bonus is multiplicative to base damage bonuses such as Serration."
             },
             {
               "name": "怨之褻瀆",
-              "description": "身上受到少於3個異常狀態的敵人將遭受：+100%暴擊傷害"
+              "description": "身上受到少於3個異常狀態的敵人將遭受：+100%暴擊傷害",
+              "notes": "Bonus is added after mods as a flat value.\nMultiple instances of the same status effect are not counted separately, e.g. having 5 corrosive and 5 radiation status effects on a target will not disable this buff."
             },
             {
               "name": "恆久審判",
-              "description": "在2秒內爆頭擊殺兩次：+50%爆頭傷害，持續8秒"
+              "description": "2 秒內命中 2 次爆頭：爆頭傷害增加 +50%，持續 8 秒。",
+              "notes": "爆頭傷害加成與主要武器死首的爆頭傷害加成相加。"
             }
           ],
           "unlockCondition": {
@@ -1269,7 +1326,8 @@
           "abilities": [
             {
               "name": "應感形態",
-              "description": "爆頭為應感轉變充能，次要射擊進行轉變。切換回原始模式將消耗剩餘的充能。"
+              "description": "爆頭為應感轉變充能，次要射擊進行轉變。切換回原始模式將消耗剩餘的充能。",
+              "notes": "Incarnon Form transforms into a full-auto shotgun with tight spread weighted slightly more towards Slash damage, 8 base Multishot, and increased base damage, Critical Multiplier, and overall Status Chance. However, it has reduced Critical Chance and Fire Rate and a very low Status Chance per pellet (2.5% for base, 3% for prime).\nIncarnon Form can trigger Hata-Satya.\nSwitching to and from Incarnon Form resets Hata-Satya 's bonus."
             }
           ],
           "unlockCondition": {
@@ -1282,11 +1340,13 @@
           "abilities": [
             {
               "name": "要塞齊射",
-              "description": "基礎傷害增加+12，護甲超過450時：+4穿透"
+              "description": "基礎傷害增加+12，護甲超過450時：+4穿透",
+              "notes": "Damage increase is applied per pellet, giving Incarnon Form a total base damage increase of +96."
             },
             {
               "name": "固盾血光",
-              "description": "基礎傷害增加+10，觸發切割異常擊殺時：+100過載護盾"
+              "description": "基礎傷害增加+10，觸發切割異常擊殺時：+100過載護盾",
+              "notes": "Damage increase is applied per pellet, giving Incarnon Form a total base damage increase of +80.\nSlash status kill grants shields, which can be overshields."
             }
           ],
           "unlockCondition": {
@@ -1320,7 +1380,8 @@
           "abilities": [
             {
               "name": "新生浩劫",
-              "description": "空彈匣裝填時：基礎傷害增加+6。最多疊加到2層。"
+              "description": "空彈匣裝填時：基礎傷害增加+6。最多疊加到2層。",
+              "notes": "Buff lasts permanently throughout the mission but is lost on death.\nSwitching to Incarnon Form from empty will also trigger the buff.\nDamage increase is applied per pellet, giving Incarnon Form a total maximum base damage increase of +96."
             },
             {
               "name": "致命苦痛",
@@ -1357,7 +1418,8 @@
           "abilities": [
             {
               "name": "應感形態",
-              "description": "爆頭為應感轉變充能，次要射擊進行轉變。切換回原始模式將消耗剩餘的充能。"
+              "description": "爆頭為應感轉變充能，次要射擊進行轉變。切換回原始模式將消耗剩餘的充能。",
+              "notes": "Incarnon Form fires explosive shots with a 4 meter area of effect that deals primarily Blast damage, with much higher Critical Chance, Critical Multiplier, and Status Chance. However, it loses shotgun multishot mechanics and has a base multishot of 1, the Fire Rate is reduced, has much lower base damage, and the explosion possesses Damage Falloff from 100% to 80% from central impact."
             }
           ],
           "unlockCondition": {
@@ -1376,7 +1438,8 @@
                 "MK1": "基礎傷害增加+68 持續消耗型技能啟用時：+4穿透",
                 "亡魂": "基礎傷害增加+24 持續消耗型技能啟用時：+4穿透",
                 "Prime": "基礎傷害增加+2 持續消耗型技能啟用時：+4穿透"
-              }
+              },
+              "notes": "Damage increase is per pellet."
             },
             {
               "name": "熾熱槍管",
@@ -1386,7 +1449,8 @@
                 "MK1": "基礎傷害增加+68 開火時：+5%多重射擊，最多疊加至5層",
                 "亡魂": "基礎傷害增加+24 開火時：+5%多重射擊，最多疊加至5層",
                 "Prime": "基礎傷害增加+2 開火時：+5%多重射擊，最多疊加至5層"
-              }
+              },
+              "notes": "Damage increase is per pellet.\nThe in-game description of +5 Multishot is incorrect.\nThe Multishot bonus adds 0.25 pellets to the base Multishot of both forms when fully stacked.\nThe Multishot bonus is lost upon reloading.\nThis can be bypassed by using Blood Forge, but not effects that reload the weapon while holstered such as Lock and Load.\nEntering Incarnon Form counts as reloading but exiting does not."
             }
           ],
           "unlockCondition": {
@@ -1399,11 +1463,13 @@
           "abilities": [
             {
               "name": "急速強化",
-              "description": "+60%裝填速度"
+              "description": "+60%裝填速度",
+              "notes": "The bonus stacks additively with mods such as Tactical Pump."
             },
             {
               "name": "電流重載",
-              "description": "命中受電擊異常影響的目標時，有40%從彈藥中恢復一發子彈至彈匣"
+              "description": "命中受電擊異常影響的目標時，有40%從彈藥中恢復一發子彈至彈匣",
+              "notes": "The status effect may originate from any source.\nThe bonus can only apply once per enemy hit.\nThe bonus does not affect the Incarnon form."
             },
             {
               "name": "迅速判決",
@@ -1420,12 +1486,12 @@
           "abilities": [
             {
               "name": "元素平衡",
-              "description": "基礎觸發機率增加+11%；",
+              "description": "基礎觸發機率增加 +11%；應感形態的基礎觸發機率增加 +132%。",
               "variantValues": {
-                "斯特朗": "基礎觸發機率增加+11%；",
-                "MK1": "基礎觸發機率增加+11%；",
-                "亡魂": "基礎觸發機率增加+10%；",
-                "Prime": "基礎觸發機率增加+11.3%；"
+                "斯特朗": "基礎觸發機率增加 +11%；應感形態的基礎觸發機率增加 +132%。",
+                "MK1": "基礎觸發機率增加 +11%；應感形態的基礎觸發機率增加 +110%。",
+                "亡魂": "基礎觸發機率增加 +10%；應感形態的基礎觸發機率增加 +100%。",
+                "Prime": "基礎觸發機率增加 +11.3%；應感形態的基礎觸發機率增加 +136%。"
               }
             },
             {
@@ -1475,7 +1541,8 @@
           "abilities": [
             {
               "name": "應感形態",
-              "description": "命中弱點時為應感充能，按下次要射擊鍵來啟用。切換回原始模式將消耗剩餘的充能。"
+              "description": "命中弱點時為應感充能，按下次要射擊鍵來啟用。切換回原始模式將消耗剩餘的充能。\n應感形態以每次 4 發的點射射擊，並保證觸發爆炸異常狀態。",
+              "notes": "Burst count is increased to 4 and shots have guaranteed Blast proc. Damage, Critical Multiplier, and Status Chance are increased, but Critical Chance is reduced."
             }
           ],
           "unlockCondition": {
@@ -1493,7 +1560,8 @@
                 "席芭莉絲": "基礎傷害增加+20 連續擊中弱點時：基礎傷害增加+5。最多增加到3層。",
                 "Dex 席芭莉絲": "基礎傷害增加+15 連續擊中弱點時：基礎傷害增加+5。最多增加到3層。",
                 "席芭莉絲 Prime": "基礎傷害增加+15 連續擊中弱點時：基礎傷害增加+5。最多增加到3層。"
-              }
+              },
+              "notes": "Resets after reloading, which can be bypassed by using Blood Forge, but not effects that reload the weapon while holstered such as Lock and Load.\nAlso resets after hitting a bodyshot and after Blast status proc detonation, even if the shot that inflicted this proc was a weakpoint hit."
             },
             {
               "name": "熾熱槍管",
@@ -1502,7 +1570,8 @@
                 "席芭莉絲": "基礎傷害增加+20 開火時：+5%多重射擊。最多增加到10層。",
                 "Dex 席芭莉絲": "基礎傷害增加+15 開火時：+5%多重射擊。最多增加到10層。",
                 "席芭莉絲 Prime": "基礎傷害增加+15 開火時：+5%多重射擊。最多增加到10層。"
-              }
+              },
+              "notes": "Does not require the shots to hit enemies to stack.\nBonus is additive to other sources of multishot such as Split Chamber.\nResets after reloading, which can be bypassed by using Blood Forge, but not effects that reload the weapon while holstered such as Lock and Load."
             }
           ],
           "unlockCondition": {
@@ -1546,11 +1615,13 @@
                 "席芭莉絲": "基礎觸發機率增加+15% 應感形態下翻倍",
                 "Dex 席芭莉絲": "基礎觸發機率增加+15% 應感形態下翻倍",
                 "席芭莉絲 Prime": "基礎觸發機率增加+8% 應感形態下翻倍"
-              }
+              },
+              "notes": "Sybaris Prime gains +23% Status Chance in Incarnon form, rather than the expected +16%."
             },
             {
               "name": "掠奪者的狂喜",
-              "description": "多發點射全部命中時：+20%傷害，重新裝填後重置"
+              "description": "多發點射全部命中時：+20%傷害，重新裝填後重置",
+              "notes": "Stacks up to 4x.\nBonus is additive with other sources of base damage such as Serration.\nReset can be bypassed by using Blood Forge, but not effects that reload the weapon while holstered such as Lock and Load."
             },
             {
               "name": "生還佔優",
@@ -1588,7 +1659,8 @@
           "abilities": [
             {
               "name": "應感形態",
-              "description": "直接命中為應感轉變充能，次要射擊進行轉變。切換回原始模式將消耗剩餘的充能。"
+              "description": "直接命中為應感轉變充能，次要射擊進行轉變。切換回原始模式將消耗剩餘的充能。",
+              "notes": "Incarnon Form becomes a continuous beam weapon with a 37 meter range, and a 2.3 meter damage radius from the point of impact against a surface. The beam is then capable of chaining to up to 5 nearby enemies within 7 meters of each other, with each chain doing 75% of the previous chain's damage. The base damage, Critical Chance, Critical Multiplier, and Status Chance are also increased. However, the Zoom is reduced.\nPunch Through mods have no effect on the behavior of the beam.\nThe 2.3 meter damage radius from the point of impact CAN be benefit from Firestorm ( Primed ).\nMods such as Sinister Reach or Combustion Beam are not available for use, as the base Torid is not a beam weapon.\nAs a continuous weapon, the spherical damage radius does not benefit from Multishot; only targets directly hit by the beam benefit.\nThe beam will chain independently to 5 additional enemies starting from each target hit by the initial damage radius. Each chain chooses targets independently, and an enemy can be struck by multiple chains. However, due to the damage radius not benefiting from multishot, beams chaining from targets that were in the damage radius but not directly struck by the initial beam itself will also not benefit from multishot.\nThe damage radius is not a separate damage instance from the beam, so a target that is directly struck by the beam is still only hit once."
             }
           ],
           "unlockCondition": {
@@ -1605,7 +1677,8 @@
             },
             {
               "name": "豐饒混亂",
-              "description": "基礎傷害增加 +31。\n多重射擊直接消耗彈匣中的彈藥，並將其傷害提升 +60%。"
+              "description": "基礎傷害增加 +31。\n多重射擊直接消耗彈匣中的彈藥，並將其傷害提升 +60%。",
+              "notes": "Damage bonus from multishot consuming ammo is multiplicative to base damage bonuses like Serration.\nAffects both modes. In the case of Incarnon Form, it pools directly from its magazine.\nDamage bonus from multishot consuming ammo on applies to projectiles generated by multishot.\nIn the Incarnon form, instead of increasing the damage of additional projectiles created by multishot, all multishot bonuses are increased by 60%."
             }
           ],
           "unlockCondition": {
@@ -1626,7 +1699,8 @@
             },
             {
               "name": "擴充齊發",
-              "description": "基礎彈匣容量增加 +9。"
+              "description": "基礎彈匣容量增加 +9。",
+              "notes": "Does not apply to Incarnon Form's Magazine."
             }
           ],
           "unlockCondition": {
@@ -1676,7 +1750,8 @@
           "abilities": [
             {
               "name": "應感形態",
-              "description": "命中弱點為應感轉變充能，次要射擊進行轉變。切換回原始模式將消耗剩餘的充能。"
+              "description": "命中弱點為應感轉變充能，次要射擊進行轉變。切換回原始模式將消耗剩餘的充能。",
+              "notes": "Incarnon Form has higher Critical Chance, but with reduced Fire Rate and can no longer Punch Through.\nFires projectiles which deal 150 Cold direct hit damage, then embed an orb which instantly deals an additional 25 Cold AoE damage in a ~0.5m radius with a guaranteed Cold proc. On body shots, the orb remains embedded for 2.5s, dealing another 2 ticks of 25 AoE damage before disappearing. On headshots, the orb instead explodes after a 0.4s delay, dealing 2 simultaneous hits of 150 Cold damage in a 6.7m AoE, each with a guaranteed Cold proc.\nDirect hit, orb embed, and orb AoE explosion damage are all affected by EVO2's base damage increase.\nAlso affected as expected by all modded bonuses, such as multishot, base damage, elemental damage, critical / status stats, etc.; Forced Cold procs cannot be changed with elemental mods.\nOrb embed and explosion damage do not increase sniper combo, but are affected by the sniper combo damage multiplier.\nProjectiles have a flight speed of 300m/s.\nAs the weapon is normally hitscan, it is unable to equip Terminal Velocity.; Headshot AoE has 70% damage falloff, dealing 30% damage at the edge of its range.\nDespite being AoE damage, the headshot AoE can sometimes benefit from Vectis's bonus headshot damage on the initial target. This includes its scope bonus, EVO4 Deadhead, Target Acquired, etc. but not an enemy's innate headshot multiplier ( 3x for most units). Potentially a bug."
             }
           ],
           "unlockCondition": {
@@ -1693,7 +1768,8 @@
               "variantValues": {
                 "守望者": "基礎傷害增加+100 導引技能啟用時：+2穿透",
                 "守望者 Prime": "基礎傷害增加+200 導引技能啟用時：+2穿透"
-              }
+              },
+              "notes": "Punch Through is locked to 0 in Incarnon Form, meaning the Channeled Ability bonus from this evolution applies only in the base form."
             },
             {
               "name": "孤膽執法者",
@@ -1701,7 +1777,8 @@
               "variantValues": {
                 "守望者": "基礎傷害增加+75 如果附近5 公尺內沒有敵人，+25%多重射擊",
                 "守望者 Prime": "基礎傷害增加150 如果附近5 公尺內沒有敵人，+25%多重射擊"
-              }
+              },
+              "notes": "Multishot bonus is additive with Split Chamber and similar bonuses."
             }
           ],
           "unlockCondition": {
@@ -1735,7 +1812,8 @@
           "abilities": [
             {
               "name": "死亡頭顱",
-              "description": "+25%爆頭傷害"
+              "description": "+25%爆頭傷害",
+              "notes": "Bonus is additive with Vectis's Scope bonus, Target Acquired, Primary Deadhead, and similar bonuses."
             },
             {
               "name": "臨界平行",
@@ -1747,7 +1825,8 @@
             },
             {
               "name": "智者慧眼",
-              "description": "將當前暴擊機率的30%增加到基礎觸發機率，最高可達40%"
+              "description": "將當前暴擊機率的30%增加到基礎觸發機率，最高可達40%",
+              "notes": "Maximum Base Status Chance increase is gained at 134% Critical Chance, requiring +345% critical chance to reach.\nCritical chance from Primary Acuity does not work, however Galvanized Scope does."
             }
           ],
           "unlockCondition": {
@@ -1776,7 +1855,8 @@
           "abilities": [
             {
               "name": "應感形態",
-              "description": "直接命中為應感轉變充能，次要射擊進行轉變。切換回原始模式將消耗剩餘的充能。"
+              "description": "直接命中為應感轉變充能，次要射擊進行轉變。切換回原始模式將消耗剩餘的充能。",
+              "notes": "Incarnon Form becomes fully automatic and shoots small fireballs that deal pure Heat damage. Upon hitting an enemy, the projectile will ricochet toward 1 enemy within 20 meters of the initial target. This ricochet has no homing capability and can miss. Projectiles that hit a surface can bounce up to 2 times before dissipating on the third impact, but these ricochets do not automatically aim towards enemies."
             }
           ],
           "unlockCondition": {
@@ -1806,15 +1886,18 @@
           "abilities": [
             {
               "name": "迅速判決",
-              "description": "+30%投射物速度"
+              "description": "+30%投射物速度",
+              "notes": "Bonus stacks additively with Terminal Velocity."
             },
             {
               "name": "急速強化",
-              "description": "+50%裝填速度"
+              "description": "+50%裝填速度",
+              "notes": "Bonus stacks additively with reload speed mods such as Fast Hands."
             },
             {
               "name": "殺意貯藏",
-              "description": "增加+9彈藥上限"
+              "description": "增加+9彈藥上限",
+              "notes": "This bonus does not apply to the Incarnon form."
             }
           ],
           "unlockCondition": {
@@ -1872,7 +1955,8 @@
           "abilities": [
             {
               "name": "應感形態",
-              "description": "爆頭為應感轉變充能，次要射擊進行轉變。切換回原始模式將消耗剩餘的充能。"
+              "description": "爆頭為應感轉變充能，次要射擊進行轉變。切換回原始模式將消耗剩餘的充能。",
+              "notes": "Incarnon Form becomes a semi-automatic grenade launcher whose projectiles explode in a 7.9 meter radius dealing Impact damage on direct hits and Blast damage on the explosion, with significantly higher base damage, Critical Chance, Critical Multiplier, and Status Chance. However it has significantly slower Fire Rate, the explosion possesses linear Damage Falloff from 100% to 20% from central impact, and the projectile has travel time with arcing affected by Projectile Speed."
             }
           ],
           "unlockCondition": {
@@ -1889,7 +1973,8 @@
             },
             {
               "name": "重兵聖德",
-              "description": "基礎傷害增加+24 打破護盾時：基礎傷害增加+30，持續8 秒"
+              "description": "基礎傷害增加+24 打破護盾時：基礎傷害增加+30，持續8 秒",
+              "notes": "This is on personal shield break, not breaking enemy shields."
             }
           ],
           "unlockCondition": {
@@ -1902,11 +1987,13 @@
           "abilities": [
             {
               "name": "皎月速升",
-              "description": "+7攻擊範圍"
+              "description": "+7攻擊範圍",
+              "notes": "Bonus stacks additively to Ruinous Extension\nThis bonus has no effect on Incarnon Form"
             },
             {
               "name": "傭兵槍膛",
-              "description": "彈藥容量提升至560"
+              "description": "彈藥容量提升至560",
+              "notes": "This bonus not affect Incarnon form"
             },
             {
               "name": "共鳴恢復",
@@ -1960,7 +2047,8 @@
           "abilities": [
             {
               "name": "應感形態",
-              "description": "命中弱點為應感轉變充能，次要射擊進行轉變。切換回原始模式將消耗剩餘的充能。"
+              "description": "命中弱點為應感轉變充能，次要射擊進行轉變。切換回原始模式將消耗剩餘的充能。",
+              "notes": "Fires a single X-shaped projectile. Deals much higher pure Slash damage, with increased Critical Chance, Critical Multiplier, Status Chance, Projectile Speed, and Charge Time, with charging being automatic."
             }
           ],
           "unlockCondition": {
@@ -1978,7 +2066,8 @@
                 "布里斯提卡": "基礎傷害增加+30 造成爆頭後：+7.5%射速，持續4秒。最多疊加到10層。",
                 "拉托": "基礎傷害增加+10 造成爆頭後：+7.5%射速，持續4秒。最多疊加到10層。",
                 "Prime": "基礎傷害增加+3 造成爆頭後：+7.5%射速，持續4秒。最多疊加到10層。"
-              }
+              },
+              "notes": "On headshot effect has a 50% chance of activating.\nFire Rate bonus is additive to other sources of Fire Rate such as Gunslinger."
             },
             {
               "name": "連環貫穿",
@@ -1987,7 +2076,8 @@
                 "布里斯提卡": "基礎傷害增加+30 穿透命中時：+10%暴擊機率，持續3秒。最多疊加到8層。",
                 "拉托": "基礎傷害增加+10 穿透命中時：+10%暴擊機率，持續3秒。最多疊加到8層。",
                 "Prime": "基礎傷害增加+3 穿透命中時：+10%暴擊機率，持續3秒。最多疊加到8層。"
-              }
+              },
+              "notes": "Critical Chance bonus is additive to other sources of Critical Chance such as Pistol Gambit."
             }
           ],
           "unlockCondition": {
@@ -2073,7 +2163,8 @@
           "abilities": [
             {
               "name": "應感形態",
-              "description": "爆頭為應感轉變充能，次要射擊進行轉變。切換回原始模式將消耗剩餘的充能。"
+              "description": "爆頭為應感轉變充能，次要射擊進行轉變。切換回原始模式將消耗剩餘的充能。",
+              "notes": "Incarnon Form has much higher Critical Chance, Critical Multiplier, and Status Chance, and longer Damage Falloff ranges, at the expense of reduced base damage and Fire Rate.\nIndividual pellets now ricochet once to nearby enemies within 6 meters ( 8 meters for the prime) of the main target.\nBronco only has a 50% chance to Ricochet.\nModding for Punch Through and hitting multiple targets will create successive ricochets.\nVoid Status Effect prevents ricochets from occurring."
             }
           ],
           "unlockCondition": {
@@ -2090,7 +2181,8 @@
               "variantValues": {
                 "野馬": "基礎傷害增加 +36。衝刺速度在1.2或更高時: +60%投射物速度",
                 "Prime": "基礎傷害增加 +30。衝刺速度在1.2或更高時: +60%投射物速度"
-              }
+              },
+              "notes": "The projectile speed bonus stacks additively with projectile speed mods such as Lethal Momentum."
             },
             {
               "name": "注能射擊",
@@ -2169,7 +2261,8 @@
           "abilities": [
             {
               "name": "應感形態",
-              "description": "命中弱點時為應感充能，按下次要射擊鍵來啟用。切換回原始模式將消耗剩餘的充能。"
+              "description": "命中弱點時為應感充能，按下次要射擊鍵來啟用。切換回原始模式將消耗剩餘的充能。",
+              "notes": "Shots gain an increasing Critical Chance bonus while the trigger is held, up to +200%. Damage, Critical Chance, Critical Multiplier, and Status Chance are increased, but Fire Rate is lowered.\nCritical chance bonus is additive to Pistol Gambit and similar bonuses."
             }
           ],
           "unlockCondition": {
@@ -2182,7 +2275,8 @@
           "abilities": [
             {
               "name": "堅定不移",
-              "description": "基礎傷害增加+10 護盾/超宏防護破裂時：3 倍暴擊傷害，持續6秒"
+              "description": "基礎傷害增加+10 護盾/超宏防護破裂時：3 倍暴擊傷害，持續6秒",
+              "notes": "This is on personal shield break, not breaking enemy shields."
             },
             {
               "name": "要塞齊射",
@@ -2257,7 +2351,8 @@
           "abilities": [
             {
               "name": "應感形態",
-              "description": "爆頭為應感轉變充能，次要射擊進行轉變。切換回原始模式將消耗剩餘的充能。"
+              "description": "爆頭為應感轉變充能，次要射擊進行轉變。切換回原始模式將消耗剩餘的充能。",
+              "notes": "Incarnon Form now explodes in a 4.9 meter radius after a 0.5 second embed delay, dealing 150 Heat damage. It also has increased base damage, Critical Chance, Critical Multiplier, and Status Chance, but slightly lower Fire Rate and significantly lower Accuracy.\nIncarnon explosions are affected by explosion radius mods (such as Fulmination )"
             }
           ],
           "unlockCondition": {
@@ -2274,7 +2369,8 @@
             },
             {
               "name": "追獵者 仇殺",
-              "description": "基礎傷害增加+60 裝備和時：多重射擊將直接消耗彈藥並使傷害增加+100%，+30%多重射擊（非應感姿態下消耗備彈增加傷害）"
+              "description": "基礎傷害增加+60 裝備和時：多重射擊將直接消耗彈藥並使傷害增加+100%，+30%多重射擊（非應感姿態下消耗備彈增加傷害）",
+              "notes": "Damage bonus is a unique modifier that is multiplicative to other damage buffs.\nDamage bonus only applies to shots generated by multishot.\nThe multishot bonus stacks additively with multishot mods such as Barrel Diffusion."
             }
           ],
           "unlockCondition": {
@@ -2345,7 +2441,8 @@
           "abilities": [
             {
               "name": "應感形態",
-              "description": "爆頭為應感轉變充能，次要射擊進行轉變。切換回原始模式將消耗剩餘的充能。"
+              "description": "爆頭為應感轉變充能，次要射擊進行轉變。切換回原始模式將消耗剩餘的充能。",
+              "notes": "Incarnon Form becomes fully automatic with higher Critical Chance, Critical Multiplier, Status Chance, Fire Rate, significantly less Recoil, and shots now ricochet to 1 nearby enemy per shot within 5 meters of the main target.\nThe ricochet is capable of headshotting and triggering Dual Toxocyst's Frenzy buff.\nAdditional pellets generated via Multishot can ricochet into different targets.\nRicochet rounds are affected by Galvanized Shot and the base damage values of both Evolution II perks.\nBy using Punch Through every enemy hit with the main shot along the punch through line creates ricochet rounds.\nEnemies in a Ragdoll state cannot be hit by ricochet rounds so any grouping tool that isn't Magus Anomaly or Ensnare will prevent ricochet shots from hitting any of the other grouped targets."
             }
           ],
           "unlockCondition": {
@@ -2358,11 +2455,13 @@
           "abilities": [
             {
               "name": "屠殺統治",
-              "description": "基礎傷害增加 +60。\n目標身上的每種異常狀態可增加 +33% 直接傷害。"
+              "description": "基礎傷害增加 +60。\n目標身上的每種異常狀態可增加 +33% 直接傷害。",
+              "notes": "Damage per Status Type bonus has an unlisted requirement of \"With Energy Max ≥ 200.\""
             },
             {
               "name": "狂熱亂暴",
-              "description": "基礎傷害增加 +50。\n使用技能後：+5% 多重射擊。最多疊加到 20 層。"
+              "description": "基礎傷害增加 +50。\n使用技能後：+5% 多重射擊。最多疊加到 20 層。",
+              "notes": "The multishot bonus stacks additively with multishot mods such as Barrel Diffusion.\nThis effect remains active until the end of the mission."
             }
           ],
           "unlockCondition": {
@@ -2375,7 +2474,8 @@
           "abilities": [
             {
               "name": "待命報復",
-              "description": "空彈匣裝填時：+100% 裝填速度。"
+              "description": "空彈匣裝填時：+100% 裝填速度。",
+              "notes": "Currently does not work."
             },
             {
               "name": "進化自填器",
@@ -2400,7 +2500,8 @@
             },
             {
               "name": "神經毒素",
-              "description": "造成爆頭後：+70% 毒素傷害，持續 3 秒。"
+              "description": "造成爆頭後：+70% 毒素傷害，持續 3 秒。",
+              "notes": "Currently does not work."
             },
             {
               "name": "撕裂彈頭",
@@ -2433,7 +2534,8 @@
           "abilities": [
             {
               "name": "應感形態",
-              "description": "爆頭為應感轉變充能，次要射擊進行轉變。切換回原始模式將消耗剩餘的充能。\n發射短射程粗光束，造成火焰傷害。"
+              "description": "爆頭為應感轉變充能，次要射擊進行轉變。切換回原始模式將消耗剩餘的充能。\n發射短射程粗光束，造成火焰傷害。",
+              "notes": "Incarnon Form fires a short-ranged, wide Klamora Prism -like beam that deals pure Heat damage and has significantly increased base damage, Critical Chance, Critical Multiplier, Status Chance, and Fire Rate, but has linear Damage Falloff from 100% to 80% from 10m to 16m target distance and has a maximum range of 16 meters.\nDue to not being able to be equipped with Ruinous Extension, its damage falloff is affected by Projectile Speed, but the beam length isn't. Thus, it is possible to completely negate falloff with sufficient Projectile Speed.\nThe beam has no innate punch-through effect."
             }
           ],
           "unlockCondition": {
@@ -2475,7 +2577,8 @@
             },
             {
               "name": "擴充齊發",
-              "description": "提升 +25 彈匣容量。"
+              "description": "提升 +25 彈匣容量。",
+              "notes": "The bonus does not apply to the Incarnon form."
             },
             {
               "name": "行刑者財富",
@@ -2492,11 +2595,13 @@
           "abilities": [
             {
               "name": "碎顱破腦",
-              "description": "爆頭時：+5% 射速，持續 2 秒。最多疊加到 10 層。"
+              "description": "爆頭時：+5% 射速，持續 2 秒。最多疊加到 10 層。",
+              "notes": "This effect has a 50% chance of activating."
             },
             {
               "name": "力量前奏",
-              "description": "暴擊機率低於 40% 時，基礎暴擊傷害增加 +3 倍。"
+              "description": "暴擊機率低於 40% 時，基礎暴擊傷害增加 +3 倍。",
+              "notes": "Condition is affected by the critical chance increase effect of Puncture status."
             },
             {
               "name": "元素平衡",
@@ -2533,7 +2638,8 @@
           "abilities": [
             {
               "name": "應感形態",
-              "description": "爆頭為應感轉變充能，次要射擊進行轉變。切換回原始模式將消耗剩餘的充能。"
+              "description": "爆頭為應感轉變充能，次要射擊進行轉變。切換回原始模式將消耗剩餘的充能。",
+              "notes": "Incarnon Form shoots semi-automatic projectiles that deal guaranteed Impact proc on direct impacts, then pulls and staggers enemies within 5 meters for 1.2 seconds before exploding, inflicting pure 760 Cold damage with a guaranteed Cold proc on the explosion. However it has significantly slower Fire Rate and the explosion possesses Damage Falloff from 100% to 70% from central impact."
             }
           ],
           "unlockCondition": {
@@ -2550,7 +2656,8 @@
             },
             {
               "name": "注能射擊",
-              "description": "基礎傷害增加+6 每消耗50能量：基礎傷害增加+5，持續10 秒，至多疊加至4 倍"
+              "description": "基礎傷害增加+6 每消耗50能量：基礎傷害增加+5，持續10 秒，至多疊加至4 倍",
+              "notes": "All stacks are removed after the most recent one expires. Gaining a stack will refresh the duration of all stacks."
             }
           ],
           "unlockCondition": {
@@ -2633,7 +2740,8 @@
           "abilities": [
             {
               "name": "應感形態",
-              "description": "爆頭為應感轉變充能，次要射擊進行轉變。切換回原始模式將消耗剩餘的充能。"
+              "description": "爆頭為應感轉變充能，次要射擊進行轉變。切換回原始模式將消耗剩餘的充能。",
+              "notes": "Incarnon Form grants its projectiles head-homing properties, with increased base damage weighted towards Slash, Critical Chance, and Critical Multiplier, and 2 base Multishot.\nPunch Through is ignored in Incarnon Form and will not cause projectiles to home in on additional targets.\nConcealed Explosives is disabled in Incarnon Form."
             }
           ],
           "unlockCondition": {
@@ -2650,7 +2758,8 @@
               "variantValues": {
                 "苦無": "基礎傷害增加+70 對生命值低於一半的敵人增加+200%傷害",
                 "MK1-苦無": "基礎傷害增加+80 對生命值低於一半的敵人增加+200%傷害"
-              }
+              },
+              "notes": "Damage bonus if enemy has less than half health is additive with Hornet Strike in basic Kunai form, and multiplicative in Incarnon form. It is also additive with Galvanized Shot in both forms."
             },
             {
               "name": "賢者的決心",
@@ -2679,7 +2788,8 @@
             },
             {
               "name": "急速強化",
-              "description": "+50%裝填速度"
+              "description": "+50%裝填速度",
+              "notes": "Bonus stacks additively with reload speed mods such as Quickdraw."
             }
           ],
           "unlockCondition": {
@@ -2696,15 +2806,18 @@
               "variantValues": {
                 "苦無": "從主要武器切換後：基礎暴擊機率增加+40%，基礎暴擊傷害增加+1.4 倍 持續4秒。",
                 "MK1-苦無": "從主要武器切換後：基礎暴擊機率增加+42%，基礎暴擊傷害增加+1 倍 持續4秒。"
-              }
+              },
+              "notes": "Bug: These are displayed as permanent bonuses in the Arsenal but only actually apply while the 4 second Deathtrap Trigger buff is active."
             },
             {
               "name": "加速齊發",
-              "description": "開火時：+20%射速，持續0.5 秒 最高疊加至5層"
+              "description": "開火時：+20%射速，持續0.5 秒 最高疊加至5層",
+              "notes": "Bonus stacks additively with fire rate mods such as Gunslinger."
             },
             {
               "name": "生還佔優",
-              "description": "基礎暴擊機率增加+12%，基礎觸發機率增加+12%"
+              "description": "基礎暴擊機率增加+12%，基礎觸發機率增加+12%",
+              "notes": "Base Status Chance increase is divided among the 2 projectiles in Incarnon mode, resulting in +6% Status Chance per projectile."
             }
           ],
           "unlockCondition": {
@@ -2733,7 +2846,8 @@
           "abilities": [
             {
               "name": "應感形態",
-              "description": "爆頭為應感轉變充能，次要射擊進行轉變。切換回原始模式將消耗剩餘的充能。"
+              "description": "爆頭為應感轉變充能，次要射擊進行轉變。切換回原始模式將消耗剩餘的充能。",
+              "notes": "Incarnon Form changes the weapon from a semi-auto to full-auto with increased fire rate, reduced recoil, direct shots have increased Impact damage but no longer deal Slash damage, and its shots explode in a 2 meter radius inflicting Radiation damage."
             }
           ],
           "unlockCondition": {
@@ -2767,15 +2881,18 @@
           "abilities": [
             {
               "name": "致命重裝",
-              "description": "造成爆頭後：+30% 裝填速度，持續 12 秒。最多疊加到 3 層。"
+              "description": "造成爆頭後：+30% 裝填速度，持續 12 秒。最多疊加到 3 層。",
+              "notes": "Affects untransformed Laetum and Incarnon Form mode switching.\nStacks decay incrementally; when the buff times out, one stack is lost and the buff duration resets."
             },
             {
               "name": "覺醒備戰",
-              "description": "收起武器時彈匣每秒自動裝填 +30%。"
+              "description": "收起武器時彈匣每秒自動裝填 +30%。",
+              "notes": "Only affects untransformed Laetum."
             },
             {
               "name": "正義之羽",
-              "description": "飛身瞄準和滑行時獲得 60% 彈藥效率。"
+              "description": "飛身瞄準和滑行時獲得 60% 彈藥效率。",
+              "notes": "Does not affect Incarnon Form"
             }
           ],
           "unlockCondition": {
@@ -2788,15 +2905,18 @@
           "abilities": [
             {
               "name": "死亡首級",
-              "description": "+50% 爆頭傷害。"
+              "description": "+50% 爆頭傷害。",
+              "notes": "Affects both modes."
             },
             {
               "name": "應感效率",
-              "description": "爆頭增加 50% 應感轉變充能。"
+              "description": "爆頭增加 50% 應感轉變充能。",
+              "notes": "Reduces the number of weakpoint hits required to fully charge Transmutation to 8.\nEach weakpoint hit generates 27 charge, up from 18."
             },
             {
               "name": "元素超量",
-              "description": "+20% 觸發機率，-10% 暴擊機率。"
+              "description": "+20% 觸發機率，-10% 暴擊機率。",
+              "notes": "Bonuses are added after mods as a flat value."
             }
           ],
           "unlockCondition": {
@@ -2809,15 +2929,18 @@
           "abilities": [
             {
               "name": "壓制損耗",
-              "description": "有 50% 的機率在非暴擊時造成 +2000% 傷害。"
+              "description": "有 50% 的機率在非暴擊時造成 +2000% 傷害。",
+              "notes": "Affects both forms.\nDamage bonus is multiplicative to base damage bonuses such as Hornet Strike."
             },
             {
               "name": "死神之裕",
-              "description": "造成爆頭後：+40% 彈藥效率，持續 6 秒。"
+              "description": "造成爆頭後：+40% 彈藥效率，持續 6 秒。",
+              "notes": "Does not affect Incarnon Form"
             },
             {
               "name": "強襲損耗",
-              "description": "非暴擊且非觸發異常狀態命中時：+400% 傷害，持續 10 秒。最多疊加到 3 層。"
+              "description": "非暴擊且非觸發異常狀態命中時：+400% 傷害，持續 10 秒。最多疊加到 3 層。",
+              "notes": "Damage bonus is additive to base damage bonuses such as Hornet Strike.\nWhen the buff times out, one stack is lost and the buff duration resets."
             }
           ],
           "unlockCondition": {
@@ -2846,7 +2969,8 @@
           "abilities": [
             {
               "name": "應感形態",
-              "description": "爆頭為應感轉變充能，次要射擊進行轉變。切換回原始模式將消耗剩餘的充能。"
+              "description": "爆頭為應感轉變充能，次要射擊進行轉變。切換回原始模式將消耗剩餘的充能。",
+              "notes": "Incarnon Form gains increased base damage, Critical Chance, Critical Multiplier, and overall Status Chance. It also gains an innate Multishot of 2 (similar to shotguns) and 0.8 meter Punch Through. Shots also ricochet to 1 nearby enemy within 10 meters ( 12 meters for the prime) of the main target, plus any subsequent targets struck via punch through. However, it has slower Fire Rate and significantly higher Recoil.\nModding for Punch Through and hitting multiple targets will create successive ricochets.\nVoid Status Effect prevents ricochets from occurring."
             }
           ],
           "unlockCondition": {
@@ -2873,7 +2997,8 @@
                 "拉托": "基礎傷害增加+30 空彈匣裝填時：基礎傷害增加+30",
                 "破壞者": "基礎傷害增加+12 空彈匣裝填時：基礎傷害增加+30",
                 "Prime": "基礎傷害增加+2 空彈匣裝填時：基礎傷害增加+24"
-              }
+              },
+              "notes": "Once the damage bonus has been earned, the ONLY way to lose it is to manually reload with a non-empty magazine.\nThe bonus will be retained through Incarnon transformations, regardless of magazine status when transformed."
             }
           ],
           "unlockCondition": {
@@ -2890,11 +3015,13 @@
             },
             {
               "name": "善射之獲",
-              "description": "爆頭命中時：20%機率獲得+50%彈藥效率，持續6 秒"
+              "description": "爆頭命中時：20%機率獲得+50%彈藥效率，持續6 秒",
+              "notes": "The bonus can be refreshed on subsequent headshots.\nThe bonus does not affect the Incarnon form."
             },
             {
               "name": "精確懺悔",
-              "description": "擊殺時：50%機率立即裝填"
+              "description": "擊殺時：50%機率立即裝填",
+              "notes": "Kills from status effects can also trigger the effect.\nThe bonus does not affect the Incarnon form."
             }
           ],
           "unlockCondition": {
@@ -2954,7 +3081,8 @@
           "abilities": [
             {
               "name": "應感形態",
-              "description": "爆頭為應感轉變充能，次要射擊進行轉變。切換回原始模式將消耗剩餘的充能。"
+              "description": "爆頭為應感轉變充能，次要射擊進行轉變。切換回原始模式將消耗剩餘的充能。",
+              "notes": "Incarnon Form fires a wide projectile that deals Radiation damage and guarantees Impact procs, with significantly increased base damage, Critical Chance, Critical Multiplier, and Status Chance, and 1.4 meter Punch Through. However, it no longer deals Puncture or Slash damage, has a headshot multiplier of 1x, has drastically slower Fire Rate, has linear damage falloff from 100% to 66.67% from 10m to 18m target distance (affected by Projectile Speed ), has projectile travel time, and a limited range of 28 meters (affected by Projectile Speed)."
             }
           ],
           "unlockCondition": {
@@ -3058,7 +3186,8 @@
           "abilities": [
             {
               "name": "應感形態",
-              "description": "爆頭為應感轉變充能，次要射擊進行轉變。切換回原始模式將消耗剩餘的充能。"
+              "description": "爆頭為應感轉變充能，次要射擊進行轉變。切換回原始模式將消耗剩餘的充能。",
+              "notes": "Incarnon Form changes the weapon from an automatic hand cannon to charging Arm-Cannon. Holding down the trigger releases a wide beam that inflicts Radiation damage. The beam narrows and increases in damage the longer the charge is held. Once fully charged, the Arm Cannon releases a powerful Heat shot with guaranteed status, 5 meter Punch Through, and explodes in a 3 meter radius.\nBeam damage scales linearly up to 2.5x damage. Resets after releasing the trigger or firing a charged shot.\nOnos consumes 1 round per tick of damage, then 50 rounds upon releasing the Heat beam. The charged beam will deal full damage even if there iss less than 50 charges remaining.; Incarnon Form uses Arm-Cannon animations. Contrary to its appearance, the Onos is still considered a Secondary weapon."
             }
           ],
           "unlockCondition": {
@@ -3092,15 +3221,18 @@
           "abilities": [
             {
               "name": "擴充齊發",
-              "description": "+10彈匣容量"
+              "description": "+10彈匣容量",
+              "notes": "*Only affects untransformed Onos."
             },
             {
               "name": "急速強化",
-              "description": "+30% 裝填速度"
+              "description": "+30% 裝填速度",
+              "notes": "Affects untransformed Onos and transformation into Incarnon mode."
             },
             {
               "name": "獵人重裝",
-              "description": "擊殺時：10%回覆10彈藥"
+              "description": "擊殺時：10%回覆10彈藥",
+              "notes": "Only affects untransformed Onos.\nAmmo is replenished to the reserve pool, not to the magazine."
             }
           ],
           "unlockCondition": {
@@ -3113,15 +3245,18 @@
           "abilities": [
             {
               "name": "致命穿刺",
-              "description": "擊殺時： +2.5 穿透，持續20 秒"
+              "description": "擊殺時： +2.5 穿透，持續20 秒",
+              "notes": "Affects both modes."
             },
             {
               "name": "應感效率",
-              "description": "爆頭增加50%應感轉變充能"
+              "description": "爆頭增加50%應感轉變充能",
+              "notes": "Reduces the number of weakpoint hits required to fully charge Transmutation to 8.\nEach weakpoint hit generates 75 charge, up from 50."
             },
             {
               "name": "元素超量",
-              "description": "+20% 觸發機率 -10% 暴擊機率"
+              "description": "+20% 觸發機率 -10% 暴擊機率",
+              "notes": "Bonuses are added after mods as a flat value."
             }
           ],
           "unlockCondition": {
@@ -3138,11 +3273,13 @@
             },
             {
               "name": "穿刺者的兇猛",
-              "description": "穿透命中時：+200%傷害，持續10 秒。"
+              "description": "穿透命中時：+200%傷害，持續10 秒。",
+              "notes": "Damage bonus is additive to other base damage mods like Hornet Strike."
             },
             {
               "name": "毀滅連鎖",
-              "description": "以應感形態命中敵人會使完全充能爆炸的暴擊機率和暴擊傷害提升+5%。最多疊加至50 倍"
+              "description": "以應感形態命中敵人會使完全充能爆炸的暴擊機率和暴擊傷害提升+5%。最多疊加至50 倍",
+              "notes": "Bonuses are additive to mods.\nAlso triggers on DoT Status Effects applied by the charge-up beam, including damage caused to enemies caught in Gas clouds."
             }
           ],
           "unlockCondition": {
@@ -3171,7 +3308,8 @@
           "abilities": [
             {
               "name": "應感形態",
-              "description": "命中弱點時為應感充能，按下次要射擊鍵來啟用。 切換回原始模式將消耗剩餘的充能。"
+              "description": "命中弱點時為應感充能，按下次要射擊鍵來啟用。 切換回原始模式將消耗剩餘的充能。",
+              "notes": "Base damage, base Critical Chance, and base Critical Multiplier are increased. Sicarus also gains increased base Status Chance.\nShots ricochet to 1 nearby enemy within 6 meters of the main target and any subsequent targets struck by punch through.\nRicochets can hit weakpoints, but not reliably."
             }
           ],
           "unlockCondition": {
@@ -3188,7 +3326,8 @@
               "variantValues": {
                 "暗殺者": "基礎傷害增加+50 對生命值低於一半的敵人造成+40%傷害",
                 "Prime": "基礎傷害增加+40 對生命值低於一半的敵人造成+40%傷害"
-              }
+              },
+              "notes": "Bonus damage is additive with mods such as Hornet Strike but does not take into account the Base Damage increase from this perk."
             },
             {
               "name": "帝王棋局",
@@ -3196,7 +3335,8 @@
               "variantValues": {
                 "暗殺者": "基礎傷害增加+50 0 倍 擊身暴擊機率，+150%命中弱點暴擊機率",
                 "Prime": "基礎傷害增加+40 0 倍 擊身暴擊機率，+150%命中弱點暴擊機率"
-              }
+              },
+              "notes": "Bodyshot modifier is multiplicative with all sources of Critical Chance, effectively making non-headshot critical hits impossible.\nCitrine 's Crystallize is an exception to this.; Weakpoint modifier is additive with mods such as Pistol Gambit"
             }
           ],
           "unlockCondition": {
@@ -3250,7 +3390,8 @@
             },
             {
               "name": "智者慧眼",
-              "description": "將當前暴擊機率的30%增加到基礎觸發機率，最高可達40%"
+              "description": "將當前暴擊機率的30%增加到基礎觸發機率，最高可達40%",
+              "notes": "Maximum Base Status Chance increase is gained at 134% Critical Chance, achievable with +734% (Sicarus) / +434% (Prime) modded Critical Chance, or +567% (Sicarus) / +345% (Prime) in Incarnon Form.\nIncarnon Form Status Chance is displayed in the Arsenal screen as if using the normal form's Critical Chance, but will properly use its' own Critical chance while in-mission.\nIn addition to regular Critical Chance mods, it is also affected by both parts of Galvanized Crosshairs while aiming, Secondary Outburst, Cascadia Overcharge, Arcane Avenger, Secondary Enervate, Yareli 's Passive, Zephyr 's Passive, Covenant 's baseline Critical Chance bonus but not the 4x multiplier on headshots, and Cat's Eye.\nNot affected by the King's Gambit Evolution II perk, Cascadia Accuracy, Crystallize, or Shadow Haze."
             }
           ],
           "unlockCondition": {
@@ -3279,7 +3420,8 @@
           "abilities": [
             {
               "name": "應感形態",
-              "description": "直接命中為應感轉變充能，次要射擊進行轉變。切換回原始模式將消耗剩餘的充能。"
+              "description": "直接命中為應感轉變充能，次要射擊進行轉變。切換回原始模式將消耗剩餘的充能。",
+              "notes": "Incarnon form fires embedding Corrosive shots that explode after 1.5 seconds or reaching max stacks. The explosion releases secondary projectiles that bounce up to 3 times, and explode in a 1.5 meter radius on each bounce.\nIncarnon form shots can stack up to 5 times before exploding, increasing their damage and explosion range.\nNumber of secondary projectiles scales with how stacked the initial shot was. A 1 / 2 / 3 / 4 / 5 stack shot will release 2 / 2 / 3 / 4 / 5 secondary projectiles."
             }
           ],
           "unlockCondition": {
@@ -3292,11 +3434,13 @@
           "abilities": [
             {
               "name": "熾熱槍管",
-              "description": "基礎傷害增加+175 開火時：+5%多重射擊，裝填時充值。最多疊加到10層"
+              "description": "基礎傷害增加+175 開火時：+5%多重射擊，裝填時充值。最多疊加到10層",
+              "notes": "Base Damage bonus of +175 is only applied once to the embed DoT and explosion, regardless of the number of stacks.\nBase form embed DoT is increased from 4 - 36 to 179 - 211, and explosion damage is increased from 75 - 750 to 250 - 925.\nIncarnon form embed DoT is increased from 50 - 200 to 225 - 375, and explosion damage is increased from 200 to 375.; Does not require the shots to hit enemies to stack.\nBonus is additive to other sources of multishot such as Split Chamber.\nResets after reloading, which can be bypassed by using Blood Forge, but not effects that reload the weapon while holstered such as Lock and Load."
             },
             {
               "name": "過載爆炸",
-              "description": "基礎傷害增加+300 能量最大值超過700時：+50%爆炸範圍"
+              "description": "基礎傷害增加+300 能量最大值超過700時：+50%爆炸範圍",
+              "notes": "Base Damage bonus of +300 is only applied once to the embed DoT and explosion, regardless of the number of stacks.\nBase form embed DoT is increased from 4 - 36 to 304 - 336, and explosion damage is increased from 75 - 750 to 375 - 1075.\nIncarnon form embed DoT is increased from 50 - 200 to 350 - 500, and explosion damage is increased from 200 to 500.; Blast Radius increase is additive with other sources, such as ( Primed ) Fulmination."
             }
           ],
           "unlockCondition": {
@@ -3313,7 +3457,8 @@
             },
             {
               "name": "迅速判決",
-              "description": "+50%投射物速度"
+              "description": "+50%投射物速度",
+              "notes": "Projectile speed increase does not apply to bouncing blobs, only the initial shot."
             },
             {
               "name": "共鳴恢復",
@@ -3367,7 +3512,8 @@
           "abilities": [
             {
               "name": "應感形態",
-              "description": "爆頭為應感轉變充能，次要射擊進行轉變。切換回原始模式將消耗剩餘的充能。"
+              "description": "爆頭為應感轉變充能，次要射擊進行轉變。切換回原始模式將消耗剩餘的充能。",
+              "notes": "Incarnon Form transforms into a 6-round burst with 6 base multishot along with increased Critical Chance and Critical Multiplier. However, it has reduced base damage and Status Chance per bullet, has significantly higher Recoil, and cannot Zoom."
             }
           ],
           "unlockCondition": {
@@ -3384,7 +3530,8 @@
               "variantValues": {
                 "瓦斯托": "基礎傷害增加+66，沒有裝備主要武器時：基礎傷害增加+40，提升+14彈匣容量",
                 "Prime": "基礎傷害增加+24，沒有裝備主要武器時：基礎傷害增加+40，提升+14彈匣容量"
-              }
+              },
+              "notes": "Increased Base Magazine Capacity does not affect Incarnon Form.\nBase Damage increase is applied per pellet in Incarnon Form."
             },
             {
               "name": "死陷觸發",
@@ -3392,7 +3539,8 @@
               "variantValues": {
                 "瓦斯托": "基礎傷害增加+66，從主要武器切換時：基礎暴擊機率增加+30%，基礎暴擊傷害增加+2.2 倍，持續3秒",
                 "Prime": "基礎傷害增加+24，從主要武器切換時：基礎暴擊機率增加+30%，基礎暴擊傷害增加+0.8 倍，持續3秒"
-              }
+              },
+              "notes": "Base Damage increase is applied per pellet in Incarnon Form."
             }
           ],
           "unlockCondition": {
@@ -3405,7 +3553,8 @@
           "abilities": [
             {
               "name": "擴充齊發",
-              "description": "提升+6彈匣容量"
+              "description": "提升+6彈匣容量",
+              "notes": "Increased Base Magazine Capacity does not affect Incarnon Form."
             },
             {
               "name": "善射之手",
@@ -3413,7 +3562,8 @@
             },
             {
               "name": "覺醒備戰",
-              "description": "收起武器時彈匣每秒自動裝填+20%"
+              "description": "收起武器時彈匣每秒自動裝填+20%",
+              "notes": "Does not apply to Incarnon Form's Magazine."
             }
           ],
           "unlockCondition": {
@@ -3434,11 +3584,13 @@
             },
             {
               "name": "生還佔優",
-              "description": "基礎暴擊機率增加+10%，基礎觸發機率增加+10%"
+              "description": "基礎暴擊機率增加+10%，基礎觸發機率增加+10%",
+              "notes": "Status Chance increase for Incarnon Form is divided by the innate multishot."
             },
             {
               "name": "死神之裕",
-              "description": "造成爆頭後：+100%彈藥效率，持續2秒"
+              "description": "造成爆頭後：+100%彈藥效率，持續2秒",
+              "notes": "Does not apply to Incarnon Form."
             }
           ],
           "unlockCondition": {
@@ -3467,7 +3619,8 @@
           "abilities": [
             {
               "name": "應感形態",
-              "description": "爆頭為應感轉變充能，次要射擊進行轉變。切換回原始模式將消耗剩餘的充能。"
+              "description": "爆頭為應感轉變充能，次要射擊進行轉變。切換回原始模式將消耗剩餘的充能。",
+              "notes": "Incarnon Form shoots charged explosive lasers with a 0.6 second charge time, inflicts pure Heat damage on the explosion, and explodes in a 6 meter radius, with increased base damage, Critical Chance, and Status Chance. However direct hits no longer deals Slash damage, it has significantly slower Fire Rate, and the explosion possesses linear Damage Falloff from 100% to 60% from central impact.\nIncarnon Form trigger must be fully charged to fire."
             }
           ],
           "unlockCondition": {
@@ -3484,7 +3637,8 @@
               "variantValues": {
                 "席爾火槍": "基礎傷害增加+76 多發點射爆頭時: 基礎傷害增加+20。最多疊加到3層。",
                 "Prime": "基礎傷害增加+30 多發點射爆頭時: 基礎傷害增加+20。最多疊加到3層。"
-              }
+              },
+              "notes": "Stacks are generated if both shots from holding and releasing Zylok's trigger are headshots.\nStacks are shown as a buff, which are lost on reload or switching to Incarnon Form.\nIncarnon Form cannot trigger burst headshots, as it has a Charge trigger instead of Duplex."
             },
             {
               "name": "擊手的彈匣",
@@ -3492,7 +3646,8 @@
               "variantValues": {
                 "席爾火槍": "基礎傷害增加+76 空彈匣裝填時: 基礎暴擊傷害增加+1 倍。最多疊加到2層。",
                 "Prime": "基礎傷害增加+30 空彈匣裝填時: 基礎暴擊傷害增加+1 倍。最多疊加到2層。"
-              }
+              },
+              "notes": "Stacks are shown as a buff, which are lost when reloading from a partial magazine or on death."
             }
           ],
           "unlockCondition": {
@@ -3509,7 +3664,8 @@
               "variantValues": {
                 "席爾火槍": "+12 彈匣容量",
                 "Prime": "+18 彈匣容量"
-              }
+              },
+              "notes": "Increased Base Magazine Capacity does not affect Incarnon Form."
             },
             {
               "name": "急速強化",
@@ -3575,7 +3731,8 @@
           "abilities": [
             {
               "name": "應感形態",
-              "description": "連擊倍率達到 6 倍後施放重擊，啟用應感形態。\n滯空與滑行攻擊會發射幽靈戰斧。\n近戰傷害 +100%\n衝刺速度 +20%\n跑酷速度 +20%"
+              "description": "連擊倍率達到 6 倍後施放重擊，啟用應感形態。\n滯空與滑行攻擊會發射幽靈戰斧。\n近戰傷害 +100%\n衝刺速度 +20%\n跑酷速度 +20%",
+              "notes": "Spectral axes deal 149 damage on contact, then explode dealing 303 Heat damage with a forced Impact status effect in a 5m radius. Axes launched by aerial attacks have 2x damage.\nHeat damage on explosions will combine with modded elements. For example, when modded for Electricity, axes will deal Electricity on direct hit and Radiation on explosion.\nSpectral axe hits do not add to the melee combo counter.\nDirect hits of spectral axes and explosions are affected by faction damage mods, elemental mods, status chance and status damage mods, critical hit mods and Universal damage bonuses.\nDirect hits of spectral axes are affected by Condition Overload, while the explosions are not.; Direct hits of spectral axes and explosions are not affected by the stance mod, combo multiplier, damage increase on Evolution II perks or melee damage bonuses like Incarnon form's innate +100% melee damage, Pressure Point, and Arcane Fury.; Lateral slam attack is replaced by the axe throw, reducing mobility. Slam attacks can only be performed directly downwards while Incarnon is active."
             }
           ],
           "unlockCondition": {
@@ -3626,7 +3783,8 @@
           "abilities": [
             {
               "name": "遊俠備戰",
-              "description": "擊殺時：有 50% 機率立即裝填主要與次要武器"
+              "description": "擊殺時：有 50% 機率立即裝填主要與次要武器",
+              "notes": "The kill has to be by the Ack & Brunt.\nThis evolution does not generate ammo, i.e., reloaded ammo is taken from the weapons' ammo reserves."
             },
             {
               "name": "絕對英勇",
@@ -3663,7 +3821,8 @@
           "abilities": [
             {
               "name": "應感形態",
-              "description": "連擊倍率達到 6 倍後施放重擊，啟用應感形態。\n成功施放滑行攻擊後，應感形態會暫時提升範圍，且所有攻擊必定觸發切割狀態。\n近戰傷害 +100%\n衝刺速度 +20%\n旋身飛躍 +20%"
+              "description": "連擊倍率達到 6 倍後施放重擊，啟用應感形態。\n成功施放滑行攻擊後，應感形態會暫時提升範圍，且所有攻擊必定觸發切割狀態。\n近戰傷害 +100%\n衝刺速度 +20%\n旋身飛躍 +20%",
+              "notes": "Successful slide attacks grant +3 Range and forced Slash Status for all attacks for 6s."
             }
           ],
           "unlockCondition": {
@@ -3676,7 +3835,8 @@
           "abilities": [
             {
               "name": "正義鋒刃",
-              "description": "基礎傷害 +50\n裝備近戰武器時：攻擊速度 +40%"
+              "description": "基礎傷害 +50\n裝備近戰武器時：攻擊速度 +40%",
+              "notes": "Attack Speed bonus requires manually equipping the melee, either by holding the weapon swap key (default F  ) or going into a mission with only the melee weapon equipped.\nAttack Speed bonus does not affect quickswap melee attacks."
             },
             {
               "name": "守護者之諾",
@@ -3697,7 +3857,8 @@
             },
             {
               "name": "劍士迅捷",
-              "description": "移動速度 +20%"
+              "description": "移動速度 +20%",
+              "notes": "Movement Speed bonus applies at all times."
             },
             {
               "name": "迅捷破勢",
@@ -3778,7 +3939,8 @@
                 "玻之武杖": "基礎傷害 +100\n裝備近戰武器時：連擊數獲取機率 +100%",
                 "MK1-玻之武杖": "基礎傷害 +85\n裝備近戰武器時：連擊數獲取機率 +100%",
                 "玻之武杖 Prime": "基礎傷害 +30\n裝備近戰武器時：連擊數獲取機率 +100%"
-              }
+              },
+              "notes": "Combo Count Chance bonus requires manually equipping the melee, either by holding the weapon swap key (default F  ) or going into a mission with only the melee weapon equipped.\nCombo Count Chance bonus does not affect quickswap melee attacks."
             }
           ],
           "unlockCondition": {
@@ -3799,7 +3961,8 @@
             },
             {
               "name": "劍士迅捷",
-              "description": "移動速度 +20%"
+              "description": "移動速度 +20%",
+              "notes": "Movement Speed bonus applies at all times."
             }
           ],
           "unlockCondition": {
@@ -3812,7 +3975,8 @@
           "abilities": [
             {
               "name": "閃擊放血",
-              "description": "觸發衝擊狀態效果時，有 40% 機率額外觸發切割狀態"
+              "description": "觸發衝擊狀態效果時，有 40% 機率額外觸發切割狀態",
+              "notes": "On enemies that are knocked down, Impact effects will not apply but the bleed still will."
             },
             {
               "name": "精微之力",
@@ -3859,7 +4023,8 @@
           "abilities": [
             {
               "name": "應感形態",
-              "description": "連擊倍率達到 6 倍後施放重擊，啟用應感形態。\n重擊會發射幽靈匕首。\n近戰傷害 +100%\n衝刺速度 +25%\n跑酷速度 +25%"
+              "description": "連擊倍率達到 6 倍後施放重擊，啟用應感形態。\n重擊會發射幽靈匕首。\n近戰傷害 +100%\n衝刺速度 +25%\n跑酷速度 +25%",
+              "notes": "Heavy Attack in Incarnon Form will fire a flurry of 2 spectral daggers towards the crosshair that explode on impact, dealing Heat damage with a forced Impact status effect.\nDirect hits can headshot.\nProjectiles and explosions are silent.\nDirect hits of spectral daggers and explosions are affected by universal base damage sources like Vigorous Swap, Holster Amp, Arcane Arachne, Vex Armor and Amp.\nDirect hit damage is affected by Condition Overload, but not the explosions.; Damage is not affected by the melee damage increase on Evolution 2, Incarnon form's innate +100% melee damage, or melee damage bonuses like Pressure Point."
             }
           ],
           "unlockCondition": {
@@ -3872,7 +4037,8 @@
           "abilities": [
             {
               "name": "槍與刃",
-              "description": "基礎傷害 +100\n使用主要武器擊殺時：初始連擊 +1，最多疊加 100 層"
+              "description": "基礎傷害 +100\n使用主要武器擊殺時：初始連擊 +1，最多疊加 100 層",
+              "notes": "Initial Combo Increase stacks shows as a buff, which lasts permanently throughout the mission but are lost on death.\nMaximum stacks allows Ceramic Dagger to activate Incarnon Form without building any additional combo."
             },
             {
               "name": "破盾良機",
@@ -3910,7 +4076,8 @@
           "abilities": [
             {
               "name": "血色右手",
-              "description": "裝備主要武器後首次攻擊時：基礎暴擊倍率 +2 倍"
+              "description": "裝備主要武器後首次攻擊時：基礎暴擊倍率 +2 倍",
+              "notes": "Applies to the first attack from quickswap melee."
             },
             {
               "name": "絕對支配",
@@ -3964,7 +4131,8 @@
               "variantValues": {
                 "技巧之劍": "基礎傷害 +50\n以重擊擊殺時：重擊蓄力速度 +100%，持續 8 秒",
                 "技巧之劍 Prime": "基礎傷害 +40\n以重擊擊殺時：重擊蓄力速度 +100%，持續 8 秒"
-              }
+              },
+              "notes": "Heavy Attack Wind Up Speed bonus is additive to other sources of Heavy Attack Wind Up Speed such as Killing Blow.\nBonus base damage is not applied to spectral rapiers."
             },
             {
               "name": "穿刺架式",
@@ -3972,7 +4140,8 @@
               "variantValues": {
                 "技巧之劍": "基礎傷害 +50\n觸發穿刺狀態時：觸發機率 +20%，持續 6 秒，最多疊加 5 層",
                 "技巧之劍 Prime": "基礎傷害 +40\n觸發穿刺狀態時：觸發機率 +20%，持續 6 秒，最多疊加 5 層"
-              }
+              },
+              "notes": "Status Chance bonus is additive to other sources of Status Chance such as Melee Prowess and Weeping Wounds.\nStacks have independent timers, and the oldest one is replaced when a Puncture proc occurs while at 5 stacks.\nBonus base damage is not applied to spectral rapiers."
             }
           ],
           "unlockCondition": {
@@ -4022,7 +4191,8 @@
             },
             {
               "name": "決勝架式",
-              "description": "基礎暴擊機率提升目前觸發機率的 25%，最高提升 35%"
+              "description": "基礎暴擊機率提升目前觸發機率的 25%，最高提升 35%",
+              "notes": "The maximum effect is reached when weapon status chance is at 140%.\nDestreza requires +900% status chance to hit max, for a base crit chance of 63%.\nDestreza Prime requires +600% status chance to hit max, for a base crit chance of 67%."
             }
           ],
           "unlockCondition": {
@@ -4051,7 +4221,8 @@
           "abilities": [
             {
               "name": "應感形態",
-              "description": "連擊倍率達到 6 倍後施放重擊，啟用應感形態。\n擊殺會產生毒素傷害區域。\n近戰傷害 +100%\n衝刺速度 +20%\n旋身飛躍 +20%"
+              "description": "連擊倍率達到 6 倍後施放重擊，啟用應感形態。\n擊殺會產生毒素傷害區域。\n近戰傷害 +100%\n衝刺速度 +20%\n旋身飛躍 +20%",
+              "notes": "Fields do 350 Toxin damage (increased to 440 by EVO2) and last for 7 seconds.\nFields will be created by any kills made Dual Ichor's attacks or status damage, both from the weapon itself and from other fields that have been created. This allows for fields to create other fields in a loop so long as they continue getting kills before disappearing.\nFields have 0% Critical Chance, 1x Critical Damage, 4m range and 50% Status Chance.\nCritical Chance cannot be increased, even with flat buffs like Arcane Avenger, Cat's Eye, or Wrathful Advance, or enemy debuffs like Shadow Haze.\nRange is not affected by melee range mods like Reach.\nStatus Chance is not affected by mods (including Proton Snap ) or the Absolute Valor evolution.\nStatus Duration can be increased, such as by Lasting Sting.; Damage is affected by melee damage buffs such as Pressure Point and Incarnon form's innate +100% Melee Damage.\nFields are not affected by Condition Overload.; Damage is affected by all elemental damage buffs such as Fever Strike and Molten Impact, increasing its damage and changing its damage type as expected.\nDamage is affected by faction damage bonuses such as Smite Grineer, and will correctly double dip on status procs made by the fields.\nStatuses inflicted by fields are affected by status damage buffs such as Melee Elementalist.\nDamage is affected by Stealth Damage Bonus (+700%).\nStatuses inflicted by fields will not be spread by Melee Influence."
             }
           ],
           "unlockCondition": {
@@ -4064,7 +4235,8 @@
           "abilities": [
             {
               "name": "煉金術士之怒",
-              "description": "基礎傷害 +90\n攻擊受毒素狀態影響的目標時，連擊數額外 +5"
+              "description": "基礎傷害 +90\n攻擊受毒素狀態影響的目標時，連擊數額外 +5",
+              "notes": "Toxin fields will award the 5 bonus combo when they damage enemies affected by Toxin.\nToxic Lash and Xata's Whisper also work, and can award bonus combo independently for a total of 15 bonus combo when both are active."
             },
             {
               "name": "浪人突進",
@@ -4139,7 +4311,8 @@
           "abilities": [
             {
               "name": "應感形態",
-              "description": "連擊倍率達到 6 倍後施放重擊，啟用應感形態。\n應感形態提升重型震地攻擊效率，且重型震地攻擊會留下火焰傷害區域。\n近戰傷害 +100%\n衝刺速度 +25%\n旋身飛躍 +25%"
+              "description": "連擊倍率達到 6 倍後施放重擊，啟用應感形態。\n應感形態提升重型震地攻擊效率，且重型震地攻擊會留下火焰傷害區域。\n近戰傷害 +100%\n衝刺速度 +25%\n旋身飛躍 +25%",
+              "notes": "Heavy Slams receive 90% Heavy Attack Efficiency.\nField does 50 Heat damage every second for 7 seconds.\nField has 0% Critical Chance, 1x Critical Damage, 5m range and 50% Status Chance.\nStatus Chance is not affected by the Absolute Dominion evolution or mods.\nField damage is increased by melee damage mods and and faction mods, but not Heavy Attack damage mods.\nField damage is increased by elemental damage mods.\nField's innate Heat element will combine with elemental mods. Elemental mods will influence the Damage Distribution of the field's status procs.; Field damage is not affected by combo multiplier.\nField's radius is not affected by range mods such as Reach or the Moonrise Velocity evolution.\nField's duration is not affected by status duration mods such as Lasting Sting.\nField can trigger and benefit from Melee Influence."
             }
           ],
           "unlockCondition": {
@@ -4157,7 +4330,8 @@
                 "弗拉克斯": "基礎傷害 +110\n裝備近戰武器時：連擊數獲取機率 +100%",
                 "MK1-弗拉克斯": "基礎傷害 +100\n裝備近戰武器時：連擊數獲取機率 +100%",
                 "弗拉克斯 亡魂": "基礎傷害 +65\n裝備近戰武器時：連擊數獲取機率 +100%"
-              }
+              },
+              "notes": "Combo Count Chance bonus requires manually equipping the melee, either by holding the weapon swap key (default F  ) or going into a mission with only the melee weapon equipped.\nCombo Count Chance bonus does not affect quickswap melee attacks."
             },
             {
               "name": "殺戮之樂",
@@ -4242,7 +4416,8 @@
           "abilities": [
             {
               "name": "應感形態",
-              "description": "連擊倍率達到 6 倍後施放重擊，啟用應感形態。\n前進與中立連段會植入爆炸刀刃。\n近戰傷害 +100%\n衝刺速度 +20%\n跑酷速度 +20%"
+              "description": "連擊倍率達到 6 倍後施放重擊，啟用應感形態。\n前進與中立連段會植入爆炸刀刃。\n近戰傷害 +100%\n衝刺速度 +20%\n跑酷速度 +20%",
+              "notes": "Forward and Neutral Combos in Incarnon Form will launch 1 spectral blade towards the crosshair that explode 0.4 seconds after impact, dealing Heat damage in a 3 meter radius.\nAll hits are affected by the stance multiplier of the attack that launched the blade.\nDirect hits can headshot.\nProjectiles and explosions are silent.\nExplosions do not self stagger.\nDirect hits of spectral blades and explosions are affected by universal base damage sources like Vigorous Swap, Holster Amp, Arcane Arachne, Vex Armor and Amp.\nDirect hit damage is affected by Condition Overload, but not the explosions.; Damage is not affected by the damage increase on Evolution 2, Incarnon form's innate +100% melee damage, or melee damage bonuses like Pressure Point."
             }
           ],
           "unlockCondition": {
@@ -4255,7 +4430,8 @@
           "abilities": [
             {
               "name": "劍士華舞",
-              "description": "基礎傷害 +30\n裝備近戰武器時：連擊數獲取機率 +100%"
+              "description": "基礎傷害 +30\n裝備近戰武器時：連擊數獲取機率 +100%",
+              "notes": "Combo Count Chance bonus requires manually equipping the melee, either by holding the weapon swap key (default F  ) or going into a mission with only the melee weapon equipped.\nCombo Count Chance bonus does not affect quickswap melee attacks."
             },
             {
               "name": "追獵者遺產",
@@ -4330,7 +4506,8 @@
           "abilities": [
             {
               "name": "應感形態",
-              "description": "連擊倍率達到 5 倍後施放重擊，啟用應感形態。\n瞄準滑翔時的滯空攻擊會發射輻射傷害投射物，處決則會提高傷害減免。\n範圍 +3\n攻擊速度 +40%"
+              "description": "連擊倍率達到 5 倍後施放重擊，啟用應感形態。\n瞄準滑翔時的滯空攻擊會發射輻射傷害投射物，處決則會提高傷害減免。\n範圍 +3\n攻擊速度 +40%",
+              "notes": "Aim glide melee attacks launch projectiles which deal 360 Radiation damage.\nProjectile has infinite Punch Through.\nProjectile has a range of 21 meters.\nProjectiles do not contribute to but benefit from Melee Combo Counter.; Finishers grant Incarnon Resilience, increasing Damage Reduction by 10% up to four stacks. These stacks are multiplicative to each other and last for the duration of Incarnon Form.\nMercy finishers with a Parazon do not apply a stack of Incarnon Resilience."
             }
           ],
           "unlockCondition": {
@@ -4364,11 +4541,13 @@
           "abilities": [
             {
               "name": "鷹隼動能",
-              "description": "每連續滑行 10 公尺，連擊數 +5"
+              "description": "每連續滑行 10 公尺，連擊數 +5",
+              "notes": "Only counts slide distance while grounded.\nWeapon must be in hand for perk to apply."
             },
             {
               "name": "凌空獵手",
-              "description": "滯空近戰攻擊範圍 +0.5 公尺"
+              "description": "滯空近戰攻擊範圍 +0.5 公尺",
+              "notes": "Incarnon Form projectile and Slash, Heat, and Toxin Status Effect kills while airborne count towards generating stacks."
             },
             {
               "name": "刀刃旋風",
@@ -4389,7 +4568,8 @@
             },
             {
               "name": "飛撲突刺",
-              "description": "以滯空近戰攻擊擊殺時：近戰傷害 +50%，持續 10 秒，最多疊加 3 層"
+              "description": "以滯空近戰攻擊擊殺時：近戰傷害 +50%，持續 10 秒，最多疊加 3 層",
+              "notes": "Stacks additively with Pressure Point and similar bonuses."
             },
             {
               "name": "延長處決",
@@ -4573,7 +4753,8 @@
           "abilities": [
             {
               "name": "孤刃",
-              "description": "裝備近戰武器時：基礎穿透係數 +60%"
+              "description": "裝備近戰武器時：基礎穿透係數 +60%",
+              "notes": "Follow Through bonus requires manually equipping the melee, either by holding the weapon swap key (default F  ) or going into a mission with only the melee weapon equipped.\nFollow Through bonus does not affect quickswap melee attacks."
             },
             {
               "name": "迅捷破勢",
@@ -4631,7 +4812,8 @@
           "abilities": [
             {
               "name": "應感形態",
-              "description": "連擊倍率達到 6 倍後施放重擊，啟用應感形態。\n每次處決命中都會發動大範圍攻擊。\n近戰傷害 +100%\n衝刺速度 +20%\n跑酷速度 +20%"
+              "description": "連擊倍率達到 6 倍後施放重擊，啟用應感形態。\n每次處決命中都會發動大範圍攻擊。\n近戰傷害 +100%\n衝刺速度 +20%\n跑酷速度 +20%",
+              "notes": "Finishers in Incarnon form will deal their damage in a 12 meter radius, with no falloff."
             }
           ],
           "unlockCondition": {
@@ -4656,7 +4838,8 @@
               "variantValues": {
                 "奧比克斯": "基礎傷害 +50\n護甲高於 450 時：處決傷害 +80%",
                 "棱晶 奧比克斯": "基礎傷害 +10\n護甲高於 450 時：處決傷害 +80%"
-              }
+              },
+              "notes": "Finisher Damage bonus is additive to other sources of Finisher Damage such as Finishing Touch."
             }
           ],
           "unlockCondition": {
@@ -4669,7 +4852,8 @@
           "abilities": [
             {
               "name": "迅捷終結",
-              "description": "以處決擊殺時：跑酷速度 +2.5%，最多疊加 16 層"
+              "description": "以處決擊殺時：跑酷速度 +2.5%，最多疊加 16 層",
+              "notes": "Bonus lasts until death."
             },
             {
               "name": "奧羅金延伸",
@@ -4735,7 +4919,8 @@
           "abilities": [
             {
               "name": "應感形態",
-              "description": "連擊倍率達到 6 倍後施放重擊，啟用應感形態。\n擊殺會生成追蹤敵人的幽靈匕首，並施加最大層數的冰凍狀態。\n近戰傷害 +100%\n衝刺速度 +20%\n跑酷速度 +20%"
+              "description": "連擊倍率達到 6 倍後施放重擊，啟用應感形態。\n擊殺會生成追蹤敵人的幽靈匕首，並施加最大層數的冰凍狀態。\n近戰傷害 +100%\n衝刺速度 +20%\n跑酷速度 +20%",
+              "notes": "Kills create a spectral dagger that orbits the player, then seeks an enemy within 15 meters. Daggers deal damage and apply 10 forced Cold stacks to the target, then explode in a 4m radius, dealing AoE damage and applying 1 forced Cold stack to enemies hit.\nUp to 6 daggers can be active at once.\nDagger hits do not add to the melee combo counter.\nKills from the daggers will not generate new daggers, but kills from status procs created by daggers will.\nDagger direct hits and explosions are not affected by melee damage bonuses, such as Incarnon form's innate +100% melee damage, Pressure Point, or Arcane Fury.\nHowever, direct hits and explosions are affected by universal base damage sources, such as Arcane Arachne and Vex Armor.\nDirect hits of daggers are affected by Condition Overload, while the explosions are not.\nCondition Overload effects are multiplicative to sources of universal base damage.; Dagger seek range and AoE radius are not affected by melee range mods such as Reach.\nDagger direct hit and AoE damage are affected by faction damage, elemental damage, critical stats, status stats, and most other effects.\nDagger damage type can be changed with elemental mods.\nModded elements will not change the element type of the forced cold procs, which are applied separately from natural status procs from the daggers.; Dagger direct hits and AoEs can activate Melee Influence 's buff, but only statuses procced from the dagger AoE will be spread by the effect.\nForced cold procs will not be spread.; Daggers can benefit from Melee Careen 's damage multiplier against frozen enemies."
             }
           ],
           "unlockCondition": {
@@ -4781,7 +4966,8 @@
             },
             {
               "name": "劍士迅捷",
-              "description": "移動速度 +30%"
+              "description": "移動速度 +30%",
+              "notes": "Movement Speed bonus applies at all times."
             }
           ],
           "unlockCondition": {
@@ -4956,7 +5142,8 @@
           "abilities": [
             {
               "name": "應感形態",
-              "description": "連擊倍率達到 6 倍後施放重擊，啟用應感形態。\n重型震地攻擊會以虛空尖刺刺穿附近敵人。\n範圍 +3\n最大近戰攻擊速度 -35%\n100% 衝擊傷害轉換為穿刺傷害"
+              "description": "連擊倍率達到 6 倍後施放重擊，啟用應感形態。\n重型震地攻擊會以虛空尖刺刺穿附近敵人。\n範圍 +3\n最大近戰攻擊速度 -35%\n100% 衝擊傷害轉換為穿刺傷害",
+              "notes": "Heavy Slam attacks impale enemies within 8 meters on Void spikes for 1.5s + 1.0s * (combo multiplier - 1), for a maximum total duration of 12.5 seconds.\nThe height from which the slam is performed does not affect the impale radius.; Melee Attack Speed curse is multiplicative to all other attack speed buffs."
             }
           ],
           "unlockCondition": {
@@ -4994,7 +5181,8 @@
             },
             {
               "name": "震地猛擊",
-              "description": "震地攻擊範圍 +60%"
+              "description": "震地攻擊範圍 +60%",
+              "notes": "Does not affect the impale radius from Heavy Slam attacks."
             },
             {
               "name": "熟練反射",
@@ -5036,7 +5224,8 @@
             },
             {
               "name": "弱點血清",
-              "description": "被刺穿的敵人受到狀態效果的機率 +35%"
+              "description": "被刺穿的敵人受到狀態效果的機率 +35%",
+              "notes": "The status chance boost is a flat 35%, allowing damage sources with 0% status chance to inflict status procs.\nAny source of damage can benefit from status chance vulnerability, not just Ruvox. This includes abilities.\nAoE Status Effects from other enemies such as Electricity can trigger new status effects on vulnerable enemies, allowing exponential damage growth with prolonged chaining."
             },
             {
               "name": "永久穿孔",
@@ -5069,7 +5258,8 @@
           "abilities": [
             {
               "name": "應感形態",
-              "description": "連擊倍率達到 6 倍後施放重擊，啟用應感形態。\n重型震地攻擊會產生冰凍爆炸範圍。\n近戰傷害 +100%\n重擊蓄力速度 +50%\n衝刺速度 +10%\n跑酷速度 +10%"
+              "description": "連擊倍率達到 6 倍後施放重擊，啟用應感形態。\n重型震地攻擊會產生冰凍爆炸範圍。\n近戰傷害 +100%\n重擊蓄力速度 +50%\n衝刺速度 +10%\n跑酷速度 +10%",
+              "notes": "Heavy slams create a slowing field over the radius of the slam for 4 seconds."
             }
           ],
           "unlockCondition": {
@@ -5128,7 +5318,8 @@
             },
             {
               "name": "血色右手",
-              "description": "裝備主要武器後首次攻擊時：基礎暴擊倍率 +2 倍"
+              "description": "裝備主要武器後首次攻擊時：基礎暴擊倍率 +2 倍",
+              "notes": "First attack from quickswap melee deals bonus critical damage."
             }
           ],
           "unlockCondition": {
@@ -5157,7 +5348,8 @@
           "abilities": [
             {
               "name": "應感形態",
-              "description": "連擊倍率達到 6 倍後施放重擊，啟用應感形態。\n進入應感形態及完成處決攻擊後，會震懾附近敵人。\n近戰傷害 +100%\n衝刺速度 +20%\n跑酷速度 +20%"
+              "description": "連擊倍率達到 6 倍後施放重擊，啟用應感形態。\n進入應感形態及完成處決攻擊後，會震懾附近敵人。\n近戰傷害 +100%\n衝刺速度 +20%\n跑酷速度 +20%",
+              "notes": "Incarnon form stuns enemies within 10 meters when activated and after performing a Finisher.\n+100% damage is additive with other bonus damage sources like Pressure Point."
             }
           ],
           "unlockCondition": {
@@ -5184,7 +5376,8 @@
                 "空刃": "基礎傷害 +90\n攻擊未受傷的敵人時，連擊數 +9",
                 "棱晶 空刃": "基礎傷害 +90\n攻擊未受傷的敵人時，連擊數 +9",
                 "空刃 Prime": "基礎傷害 +10\n攻擊未受傷的敵人時，連擊數 +9"
-              }
+              },
+              "notes": "Enemies are undamaged as long as their health and shield have not been damaged.\nDamaging Overguard is not taken into account."
             }
           ],
           "unlockCondition": {
@@ -5270,7 +5463,8 @@
           "abilities": [
             {
               "name": "應感形態",
-              "description": "連擊倍率達到 6 倍後施放重擊，啟用應感形態。\n攻擊會在敵人體內植入傷害碎片；每次產生新碎片時，既有碎片會對宿主造成相當於武器傷害 75% 的傷害。\n範圍 +3\n攻擊速度 +40%"
+              "description": "連擊倍率達到 6 倍後施放重擊，啟用應感形態。\n攻擊會在敵人體內植入傷害碎片；每次產生新碎片時，既有碎片會對宿主造成相當於武器傷害 75% 的傷害。\n範圍 +3\n攻擊速度 +40%",
+              "notes": "Light attacks (not slam attacks or heavy attacks) embed a shard in enemies which lasts for 15 seconds. Each enemy can only be embedded with one shard at a time.\nEmbedding a shard deals no damage to the main target, but triggers all shards embedded in other enemies, dealing damage to their host.\nShards can be triggered regardless of the distance between the newly embedded enemy and any previously embedded enemies.\nTriggering a shard does not remove it from its host and it can still be triggered by new shards.\nShard trigger damage is 75% of Thalys's base damage, for a total of 157.5 Slash Damage and 67.5 Puncture Damage.\nIf the triggering attack has a damage multiplier from a melee stance combo, it will also multiply the shard damage.\nIs affected by base damage bonuses such as Pressure Point and Vex Armor, but not Condition Overload.\nIs not affected by IPS, elemental, or faction damage bonuses. Does not trigger forced procs from Valence Formation or Toxic Lash.\n0% status chance, can be increased with flat bonuses like Proton Snap and Shroud of Dynar.\nStatus duration is not affected by Lasting Sting.; 0% critical chance, can be increased with flat bonuses like Arcane Avenger and Wrathful Advance.\n1.0x critical multiplier, affected by mods like Organ Shatter and Melee Doughty.\nMelee Doughty 's bonus scales with Thalys's normal melee stats, not the shard stats, allowing the shards to gain a significant critical multiplier.; Cannot trigger Melee Duplicate even when the shards themselves crit.; Shard damage is considered an instance of Unattributed Damage."
             }
           ],
           "unlockCondition": {
@@ -5346,15 +5540,18 @@
           "abilities": [
             {
               "name": "爆裂生長",
-              "description": "產生新碎片時，既有碎片會成長，最多 3 次。完全成長的碎片會從宿主體內爆發，造成 2 倍傷害並將其釘在原地。"
+              "description": "產生新碎片時，既有碎片會成長，最多 3 次。完全成長的碎片會從宿主體內爆發，造成 2 倍傷害並將其釘在原地。",
+              "notes": "New shards still trigger existing shards to deal damage, in addition to the growth effect.\nShard growth is limited to 1 stage per melee swing, regardless of how many new enemies are embedded with a shard. However, a shard can be embedded and grow by 1 stage in the same melee swing.\nImpaled enemies are stunned for 5 seconds while suspended in the air. After the impale ends, the enemy will fall to ground before taking a second to stand back up.\nImpaling an enemy removes the shard on them. They cannot be embedded with a new shard until the impale is over.; Impale damage is 2x the normal shard trigger damage, but otherwise has the same stats and is affected by the same mods.\nCondition Overload is an exception, as it affects the impale damage but not the shard damage (likely a bug).; Impale effect does not trigger Melee Afflictions despite being somewhat similar to Lifted."
             },
             {
               "name": "連鎖爆裂",
-              "description": "重擊會引爆碎片；爆炸範圍內的其他碎片也會連鎖引爆。"
+              "description": "重擊會引爆碎片；爆炸範圍內的其他碎片也會連鎖引爆。",
+              "notes": "Heavy slams will also detonate shards.\nDetonated shards deal 200% of Thalys's base damage (420 Slash and 180 Puncture) to their host.\nHas a damaging radius of only about ~ 1m with ?% falloff.\nThe detonation will also trigger other shards within ~ 5m to detonate, which can cause a chain reaction.\nCombo multiplier will only multiply the detonation damage to the shard's host and enemies in the 1m damaging radius. Other shards detonated by the explosion will not benefit from the combo multiplier.; Is affected by base damage bonuses (including Condition Overload ), as well as IPS and elemental bonuses (unlike the shard trigger damage).\nIs not affected by faction damage bonuses.\nHas 24% status chance, 0% crit chance, and a 1x critical multiplier.\nDoes not trigger forced procs from Valence Formation or Toxic Lash.\nCan trigger Melee Influence.\nCannot trigger Melee Duplicate.\nEnemies that have been detonated are still able to have a new shard embedded in them by further melee attacks, allowing them to be detonated again."
             },
             {
               "name": "虛空尖屑",
-              "description": "碎片持續時間延長至 30 秒。碎片會成為弱點，受擊時暴擊機率 +100%，但碎片傷害 -50%。"
+              "description": "碎片持續時間延長至 30 秒。碎片會成為弱點，受擊時暴擊機率 +100%，但碎片傷害 -50%。",
+              "notes": "Critical Chance bonus is additive to mods such as Point Strike, Pistol Gambit and True Steel."
             }
           ],
           "unlockCondition": {
