@@ -1,8 +1,13 @@
-import { mkdir, writeFile } from "node:fs/promises";
+import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 
 const ROOT = process.cwd();
 const OUTPUT_FILE = path.join(ROOT, "data", "incarnonWeapons.generated.json");
+const ABILITY_LOCALIZATION_FILE = path.join(
+  ROOT,
+  "data",
+  "incarnonAbilities.zh-Hant.json",
+);
 const IMAGE_DIR = path.join(ROOT, "public", "incarnon-weapons");
 const USER_AGENT = "KETHER-Warframe-Database/2.2 (https://kether-warframe-database.vercel.app)";
 const WIKI_API = "https://wiki.warframe.com/api.php";
@@ -332,19 +337,49 @@ function translateChallenge(value, weaponNameEn, weaponNameZh) {
 
 function parseVariables(value) {
   const variables = {};
-  for (const match of value.matchAll(/\b([A-Z])\s*=\s*([^\n;]+)/g)) {
-    variables[match[1]] = match[2].trim();
+  for (const match of value.matchAll(/\b([A-Za-z])\s*=\s*([^\n;]+)/g)) {
+    variables[match[1].toUpperCase()] = match[2].trim();
   }
   return variables;
 }
 
+function normalizeAbilityText(value) {
+  return String(value ?? "")
+    .replace(/%%+/g, "%")
+    .replace(/\s+([.,;:])/g, "$1")
+    .replace(/;\s*\n/g, "\n")
+    .replace(/[ \t]+/g, " ")
+    .trim();
+}
+
 function applyVariables(description, value) {
   const variables = parseVariables(value);
-  return Object.entries(variables).reduce(
+  return normalizeAbilityText(Object.entries(variables).reduce(
     (result, [key, replacement]) =>
-      result.replace(new RegExp(`\\b${key}\\b`, "g"), replacement),
+      result.replace(new RegExp(`\\b${key}\\b`, "gi"), replacement),
     description,
-  );
+  ));
+}
+
+function localizeEvolutions(evolutions, definition, localization) {
+  const weaponId = slugify(definition.name);
+  return evolutions.map((evolution) => ({
+    ...evolution,
+    abilities: evolution.abilities.map((ability) => {
+      const key = `${weaponId}::${ability.name}`;
+      const translated = localization.abilities?.[key];
+      if (!translated?.name || !translated?.description) {
+        throw new Error(`${definition.name} 的能力缺少繁中翻譯：${ability.name}`);
+      }
+      return {
+        name: translated.name,
+        description: translated.description,
+        ...(translated.variantValues
+          ? { variantValues: translated.variantValues }
+          : {}),
+      };
+    }),
+  }));
 }
 
 function parseEvolutionTable(pageHtml, definition) {
@@ -403,14 +438,14 @@ function parseEvolutionTable(pageHtml, definition) {
     }
     const notes = cells.at(-1) && cells.at(-1) !== "-" ? cells.at(-1) : "";
     const baseVariantValue = variantValues[variantHeaders[0]] ?? "";
-    const description = baseVariantValue
+    const description = normalizeAbilityText(baseVariantValue
       ? applyVariables(rawDescription, baseVariantValue)
-      : rawDescription;
+      : rawDescription);
     const ability = {
       name,
       description,
       ...(Object.keys(variantValues).length ? { variantValues } : {}),
-      ...(notes ? { notes: notes.slice(0, 900) } : {}),
+      ...(notes ? { notes: normalizeAbilityText(notes) } : {}),
     };
     const evolution = evolutions.get(currentTier) ?? { tier: currentTier, abilities: [] };
     evolution.abilities.push(ability);
@@ -507,6 +542,9 @@ async function mapWithConcurrency(values, limit, mapper) {
 
 async function main() {
   console.log(`同步 ${definitions.length} 把應感武器…`);
+  const abilityLocalization = JSON.parse(
+    await readFile(ABILITY_LOCALIZATION_FILE, "utf8"),
+  );
   const dictionary = await fetchJson(TC_DICTIONARY_URL);
   const imageSources = await fetchPageImages(definitions.map((item) => item.name));
   await mkdir(IMAGE_DIR, { recursive: true });
@@ -525,8 +563,13 @@ async function main() {
         : localizedText(dictionary[definition.locDescription]);
     const hydratedDefinition = { ...definition, nameZh };
     const { page, html } = await fetchWikiPage(hydratedDefinition);
-    const evolutions = parseEvolutionTable(html, hydratedDefinition);
-    const formAbility = evolutions[0]?.abilities?.[0];
+    const rawEvolutions = parseEvolutionTable(html, hydratedDefinition);
+    const formAbility = rawEvolutions[0]?.abilities?.[0];
+    const evolutions = localizeEvolutions(
+      rawEvolutions,
+      hydratedDefinition,
+      abilityLocalization,
+    );
     const imageSource = imageSources.get(definition.name);
     const slug = slugify(definition.name);
 

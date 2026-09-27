@@ -224,7 +224,7 @@ public class MainActivity extends Activity {
             request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
             request.setAllowedOverMetered(true);
             request.setAllowedOverRoaming(true);
-            request.addRequestHeader("User-Agent", "KETHER-Android/3.0.11");
+            request.addRequestHeader("User-Agent", "KETHER-Android/3.0.13");
             request.setDestinationInExternalFilesDir(this, Environment.DIRECTORY_DOWNLOADS, fileName);
 
             pendingDownloadInfo = info;

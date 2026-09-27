@@ -63,13 +63,11 @@
       })
       .join("");
     const unlockZh = evolution.unlockCondition?.zh || evolution.unlockCondition?.en;
-    const unlockEn = evolution.unlockCondition?.zh ? evolution.unlockCondition?.en : "";
-
-    return `<section class="v35-evo"><header><b>EVO ${evolution.tier}</b><strong>${
+    return `<section class="v35-evo"><header><b>進化 ${evolution.tier}</b><strong>${
       evolution.tier === 1 ? "靈化形態" : "進化能力"
     }</strong></header><div class="v35-unlock"><small>進化解鎖條件</small><strong>${escapeHtml(
       unlockZh,
-    )}</strong>${unlockEn ? `<span>${escapeHtml(unlockEn)}</span>` : ""}</div><div class="v35-abilities">${abilities}</div></section>`;
+    )}</strong></div><div class="v35-abilities">${abilities}</div></section>`;
   }
 
   function weaponCard(weapon) {

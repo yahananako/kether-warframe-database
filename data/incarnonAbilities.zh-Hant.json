@@ -1,0 +1,2533 @@
+{
+  "generatedAt": "2026-09-27T06:03:12.517Z",
+  "locale": "zh-Hant-TW",
+  "source": {
+    "gameLocalization": "https://raw.githubusercontent.com/magenie33/wfsim/45fe13c260b9b012e9c34beeb11a2441378b7224/data/i18n/zh/evolutions.yaml",
+    "supplementalTranslation": "KETHER"
+  },
+  "abilities": {
+    "boar::Incarnon Form": {
+      "name": "應感形態",
+      "description": "爆頭為應感轉變充能，次要射擊進行轉變。切換回原始模式將消耗剩餘的充能。\n應感形態發射三束能自動鎖定準星 10° 範圍內敵人的火焰射線，每根射線還能鏈接攻擊 9 公尺內的 2 名敵人，鏈接傷害為之前的 80%。"
+    },
+    "boar::Reified Bane": {
+      "name": "具象剋星",
+      "description": "基礎傷害增加 +10。\n空彈匣裝填時：基礎傷害增加 +10。"
+    },
+    "boar::Fortress Salvo": {
+      "name": "要塞齊射",
+      "description": "基礎傷害增加 +16。\n護甲大於 450 時：+4 穿透。"
+    },
+    "boar::Ready Retaliation": {
+      "name": "待命報復",
+      "description": "空彈匣裝填時：+100% 裝填速度。"
+    },
+    "boar::Mercenary Chamber": {
+      "name": "傭兵槍膛",
+      "description": "提升彈藥上限至 195。"
+    },
+    "boar::Practiced Grip": {
+      "name": "熟練之握",
+      "description": "精準度提升 +50%。"
+    },
+    "boar::Elemental Balance": {
+      "name": "元素平衡",
+      "description": "基礎觸發機率增加 +12%。\n應感形態的基礎觸發機率增加 +96%。"
+    },
+    "boar::Critical Parallel": {
+      "name": "臨界平行",
+      "description": "基礎暴擊機率增加 +20%。\n基礎暴擊傷害增加 +0.5 倍。"
+    },
+    "boar::Survivor's Edge": {
+      "name": "生還佔優",
+      "description": "基礎暴擊機率增加 +10%。\n每個投射物的基礎觸發機率增加 +6%。\n應感形態的基礎觸發機率增加 +48%。"
+    },
+    "boltor::Incarnon Form": {
+      "name": "應感形態",
+      "description": "爆頭為應感轉變充能，次要射擊進行轉變。切換回原始模式將消耗剩餘的充能。\n應感形態下武器相較普通模式具有3基礎多重射擊，提升了射速以及暴擊機率和倍率，傷害組成為10%衝擊30%穿刺60%切割，但降低了精準度以及單個投射物的基礎傷害。\n需要20次爆頭才能完成充能。多重射擊造成的爆頭也會被計入充能中。\n每個投射物造成的爆頭能為應感形態提供8發彈藥，最高至160。充能耗盡後武器會自動轉變為普通模式。"
+    },
+    "boltor::Hunter's Mantra": {
+      "name": "獵者密咒",
+      "description": "基礎傷害增加+18。 持續消耗能量類技能啟用時：+4穿透 +40% 精準度。",
+      "variantValues": {
+        "螺釘步槍": "基礎傷害增加+18。 持續消耗能量類技能啟用時：+4穿透 +40% 精準度。",
+        "終極": "基礎傷害增加+4。 持續消耗能量類技能啟用時：+4穿透 +40% 精準度。",
+        "Prime": "基礎傷害增加+4。 持續消耗能量類技能啟用時：+4穿透 +40% 精準度。"
+      }
+    },
+    "boltor::Crimson Overture": {
+      "name": "猩紅序曲",
+      "description": "擊殺時：基礎傷害增加+12和+20% 彈藥效率，持續5秒。 最多疊加到3 倍。",
+      "variantValues": {
+        "螺釘步槍": "擊殺時：基礎傷害增加+12和+20% 彈藥效率，持續5秒。 最多疊加到3 倍。",
+        "終極": "擊殺時：基礎傷害增加+2和+20% 彈藥效率，持續5秒。 最多疊加到3 倍。",
+        "Prime": "擊殺時：基礎傷害增加+2和+20% 彈藥效率，持續5秒。 最多疊加到3 倍。"
+      }
+    },
+    "boltor::Swift Deliverance": {
+      "name": "迅速判決",
+      "description": "+60%投射物速度。"
+    },
+    "boltor::Extended Volley": {
+      "name": "擴充齊發",
+      "description": "+20彈匣容量。"
+    },
+    "boltor::Rapid Reinforcement": {
+      "name": "急速強化",
+      "description": "+60%裝填速度。"
+    },
+    "boltor::Elemental Balance": {
+      "name": "元素平衡",
+      "description": "基礎觸發機率增加+20%。",
+      "variantValues": {
+        "螺釘步槍": "基礎觸發機率增加+20%。",
+        "終極": "基礎觸發機率增加+20%。",
+        "Prime": "基礎觸發機率增加+18%。"
+      }
+    },
+    "boltor::Survivor's Edge": {
+      "name": "生還佔優",
+      "description": "基礎暴擊機率增加+8%，基礎觸發機率增加+8%。",
+      "variantValues": {
+        "螺釘步槍": "基礎暴擊機率增加+8%，基礎觸發機率增加+8%。",
+        "終極": "基礎暴擊機率增加+4%，基礎觸發機率增加+4%。",
+        "Prime": "基礎暴擊機率增加+10%，基礎觸發機率增加+10%。"
+      }
+    },
+    "boltor::Commodore's Fortune": {
+      "name": "准將沐福",
+      "description": "基礎暴擊機率增加+12%。",
+      "variantValues": {
+        "螺釘步槍": "基礎暴擊機率增加+12%。",
+        "終極": "基礎暴擊機率增加+6%。",
+        "Prime": "基礎暴擊機率增加+14%。"
+      }
+    },
+    "braton::Incarnon Form": {
+      "name": "應感形態",
+      "description": "爆頭為應感轉變充能，次要射擊進行轉變。切換回原始模式將消耗剩餘的充能。\n應感形態額外造成3 公尺的範圍傷害，擁有更高的基礎傷害，暴擊機率，暴擊倍率和觸發機率，但射速顯著降低。"
+    },
+    "braton::Daring Reverie": {
+      "name": "勇敢夢想",
+      "description": "基礎傷害增加+24 持續消耗型技能啟用時：基礎傷害增加+30，+50% 彈藥效率",
+      "variantValues": {
+        "布萊頓": "基礎傷害增加+24 持續消耗型技能啟用時：基礎傷害增加+30，+50% 彈藥效率",
+        "MK1": "基礎傷害增加+28 持續消耗型技能啟用時：基礎傷害增加+22，+50% 彈藥效率",
+        "破壞者": "基礎傷害增加+12 持續消耗型技能啟用時：基礎傷害增加+34，+50% 彈藥效率",
+        "Prime": "基礎傷害增加+4 持續消耗型技能啟用時：基礎傷害增加+38，+50% 彈藥效率"
+      }
+    },
+    "braton::Munitions Grit": {
+      "name": "實彈膽魄",
+      "description": "基礎傷害增加+14 多重射擊直接消耗彈匣中的彈藥並將傷害提升+60%，+20% 多重射擊（非應感形態下消耗備彈增加傷害）",
+      "variantValues": {
+        "布萊頓": "基礎傷害增加+14 多重射擊直接消耗彈匣中的彈藥並將傷害提升+60%，+20% 多重射擊（非應感形態下消耗備彈增加傷害）",
+        "MK1": "基礎傷害增加+20 多重射擊直接消耗彈匣中的彈藥並將傷害提升+48%，+20% 多重射擊（非應感形態下消耗備彈增加傷害）",
+        "破壞者": "基礎傷害增加+8 多重射擊直接消耗彈匣中的彈藥並將傷害提升+58%，+20% 多重射擊（非應感形態下消耗備彈增加傷害）",
+        "Prime": "基礎傷害增加+2 多重射擊直接消耗彈匣中的彈藥並將傷害提升+54%，+20% 多重射擊（非應感形態下消耗備彈增加傷害）"
+      }
+    },
+    "braton::Mercenary Chamber": {
+      "name": "傭兵槍膛",
+      "description": "彈藥上限提升至675",
+      "variantValues": {
+        "布萊頓": "彈藥上限提升至675",
+        "MK1": "彈藥上限提升至600",
+        "破壞者": "彈藥上限提升至755",
+        "Prime": "彈藥上限提升至1125"
+      }
+    },
+    "braton::Void's Guidance": {
+      "name": "虛空指引",
+      "description": "提升精準度並減少60%武器後坐力"
+    },
+    "braton::Gunsmoke Pick Up": {
+      "name": "硝煙拾起",
+      "description": "穿透命中時：20%機率回覆10%彈藥"
+    },
+    "braton::Critical Parallel": {
+      "name": "臨界平行",
+      "description": "基礎暴擊機率增加+16%，基礎暴擊傷害增加+0.4 倍",
+      "variantValues": {
+        "布萊頓": "基礎暴擊機率增加+16%，基礎暴擊傷害增加+0.4 倍",
+        "MK1": "基礎暴擊機率增加+18%，基礎暴擊傷害增加+0.5 倍",
+        "破壞者": "基礎暴擊機率增加+16%，基礎暴擊傷害增加+0.4 倍",
+        "Prime": "基礎暴擊機率增加+18%，基礎暴擊傷害增加+0.2 倍"
+      }
+    },
+    "braton::Prelude of Might": {
+      "name": "力量前奏",
+      "description": "暴擊機率低於50%時：基礎暴擊傷害增加+3.4 倍",
+      "variantValues": {
+        "布萊頓": "暴擊機率低於50%時：基礎暴擊傷害增加+3.4 倍",
+        "MK1": "暴擊機率低於50%時：基礎暴擊傷害增加+3.3 倍",
+        "破壞者": "暴擊機率低於50%時：基礎暴擊傷害增加+3",
+        "Prime": "暴擊機率低於50%時：基礎暴擊傷害增加+3 倍"
+      }
+    },
+    "braton::Survivor's Edge": {
+      "name": "生還佔優",
+      "description": "基礎暴擊機率增加+12%，基礎觸發機率增加+12%",
+      "variantValues": {
+        "布萊頓": "基礎暴擊機率增加+12%，基礎觸發機率增加+12%",
+        "MK1": "基礎暴擊機率增加+10%，基礎觸發機率增加+12%",
+        "破壞者": "基礎暴擊機率增加+10%，基礎觸發機率增加+12%",
+        "Prime": "基礎暴擊機率增加+10%，基礎觸發機率增加+14%"
+      }
+    },
+    "burston::Incarnon Form": {
+      "name": "應感形態",
+      "description": "命中弱點為應感轉變充能，次要射擊進行轉變。切換回原始模式將消耗剩餘的充能。\n變為全自動射擊模式，並造成範圍火焰傷害。"
+    },
+    "burston::Forceful Finality": {
+      "name": "強制終結",
+      "description": "基礎傷害增加 +42。\n每個彈匣最後一輪射擊的每一發獲得 +5 多重射擊。"
+    },
+    "burston::Fortress Salvo": {
+      "name": "要塞齊射",
+      "description": "基礎傷害增加 +42。\n護甲超過 450 時：+2 穿透。"
+    },
+    "burston::Extended Volley": {
+      "name": "擴充齊發",
+      "description": "提升 +21 彈匣容量。"
+    },
+    "burston::Ready Retaliation": {
+      "name": "待命報復",
+      "description": "空彈匣裝填時：+100% 裝填速度。"
+    },
+    "burston::Kinetic Battle": {
+      "name": "動能戰鬥",
+      "description": "-50% 武器後坐力。"
+    },
+    "burston::Reaver's Rapture": {
+      "name": "掠奪者的狂喜",
+      "description": "多發點射全部命中時：+20% 傷害，重新裝填後重置。"
+    },
+    "burston::Absolute Valor": {
+      "name": "絕對勇氣",
+      "description": "基礎暴擊機率增加 +22%。"
+    },
+    "burston::Fatal Affliction": {
+      "name": "致命苦痛",
+      "description": "目標身上的每種異常狀態可增加 +40% 直接傷害。"
+    },
+    "dera::Incarnon Form": {
+      "name": "應感形態",
+      "description": "爆頭為應感轉變充能，次要射擊進行轉變。切換回原始模式將消耗剩餘的充能。"
+    },
+    "dera::Crimson Overture": {
+      "name": "猩紅序曲",
+      "description": "基礎傷害增加+8 擊殺時：+20%彈藥效率，持續5秒。最多疊加到4層。",
+      "variantValues": {
+        "德拉": "基礎傷害增加+8 擊殺時：+20%彈藥效率，持續5秒。最多疊加到4層。",
+        "德拉 破壞者": "基礎傷害增加+6 擊殺時：+20%彈藥效率，持續5秒。最多疊加到4層。"
+      }
+    },
+    "dera::Paragon Essence": {
+      "name": "英豪本源",
+      "description": "基礎傷害增加+6 觸發異常狀態時：+5%射速，持續5秒。最多疊加到6層。",
+      "variantValues": {
+        "德拉": "基礎傷害增加+6 觸發異常狀態時：+5%射速，持續5秒。最多疊加到6層。",
+        "德拉 破壞者": "基礎傷害增加+4 觸發異常狀態時：+5%射速，持續5秒。最多疊加到6層。"
+      }
+    },
+    "dera::Swift Deliverance": {
+      "name": "迅速判決",
+      "description": "基礎彈匣容量增加+22"
+    },
+    "dera::Extended Volley": {
+      "name": "擴充齊發",
+      "description": "+50%投射物速度",
+      "variantValues": {
+        "德拉": "+50%投射物速度",
+        "德拉 破壞者": "+50%投射物速度"
+      }
+    },
+    "dera::Evolved Autoloader": {
+      "name": "進化自填器",
+      "description": "收起武器時彈匣每秒自動裝填+50%"
+    },
+    "dera::Deathtrap Trigger": {
+      "name": "死險觸發",
+      "description": "基礎暴擊機率增加+14% 基礎暴擊傷害倍率增加+0.6 倍",
+      "variantValues": {
+        "德拉": "基礎暴擊機率增加+14% 基礎暴擊傷害倍率增加+0.6 倍",
+        "德拉 破壞者": "基礎暴擊機率增加+14% 基礎暴擊傷害倍率增加+0.4 倍"
+      }
+    },
+    "dera::High Ground": {
+      "name": "高地優勢",
+      "description": "將當前觸發機率的25%增加到基礎暴擊機率，最高可達35%"
+    },
+    "dera::Elemental Balance": {
+      "name": "元素平衡",
+      "description": "基礎觸發機率增加 +18%",
+      "variantValues": {
+        "德拉": "基礎觸發機率增加 +18%",
+        "德拉 破壞者": "基礎觸發機率增加 +14%"
+      }
+    },
+    "dread::Incarnon Form": {
+      "name": "應感形態",
+      "description": "爆頭為應感轉變充能，次要射擊進行轉變。切換回原始模式將消耗剩餘的充能。"
+    },
+    "dread::Hitman's Opportunity": {
+      "name": "殺意乘勢",
+      "description": "基礎傷害增加+70 若敵人生命值低於一半，傷害增加+100%"
+    },
+    "dread::Stalker's Resentment": {
+      "name": "追獵者 怨恨",
+      "description": "基礎傷害增加+50 裝備絕望和憎恨後命中時：基礎傷害增加+10，射速+10%，最高疊加至5層。未命中時重置。"
+    },
+    "dread::Swift Deliverance": {
+      "name": "迅速判決",
+      "description": "+30%投射物速度"
+    },
+    "dread::Marksman's Focus": {
+      "name": "善射之焦",
+      "description": "-30%變焦"
+    },
+    "dread::Hitman's Hoard": {
+      "name": "殺意貯藏",
+      "description": "彈藥上限提升至144"
+    },
+    "dread::Survivor's Edge": {
+      "name": "生還佔優",
+      "description": "基礎暴擊機率增加+10%，基礎觸發機率增加+10%"
+    },
+    "dread::Elemental Balance": {
+      "name": "元素平衡",
+      "description": "基礎觸發機率增加+24%"
+    },
+    "dread::Zeroed In": {
+      "name": "歸零",
+      "description": "基礎暴擊傷害增加+1 倍"
+    },
+    "felarx::Incarnon Form": {
+      "name": "應感形態",
+      "description": "爆頭為應感轉變充能，次要射擊進行轉變。切換回原始模式將消耗剩餘的充能。"
+    },
+    "felarx::Attuned Accuracy": {
+      "name": "調和精準",
+      "description": "瞄準時+40%精準度"
+    },
+    "felarx::Kinetic Baffle": {
+      "name": "動能隔檔",
+      "description": "武器後座力 -50%"
+    },
+    "felarx::Frictionless Flight": {
+      "name": "順滑飛行",
+      "description": "投射物速度 +50%"
+    },
+    "felarx::Dual-Mode Chamber": {
+      "name": "雙型膛室",
+      "description": "裝填時使武器在100%投射物速度和4 公尺穿透效果之間切換。"
+    },
+    "felarx::Evolved Autoloader": {
+      "name": "進化自填器",
+      "description": "收起武器時彈匣每秒自動裝填+50%"
+    },
+    "felarx::Mounting Momentum": {
+      "name": "裝載動能",
+      "description": "重新裝填的每發彈藥可使射速提高+10%。再一次使用裝填按鍵時重置。"
+    },
+    "felarx::Brutal Edge": {
+      "name": "殘暴鋒緣",
+      "description": "+10%暴擊機率 +10%觸發機率"
+    },
+    "felarx::Incarnon Catalyst": {
+      "name": "應感觸媒",
+      "description": "爆頭增加50%應感轉變充能"
+    },
+    "felarx::Racking Wrath": {
+      "name": "毀滅之怒",
+      "description": "+20%觸發機率 -10%暴擊機率"
+    },
+    "felarx::Devastating Attrition": {
+      "name": "毀滅損耗",
+      "description": "有50%的機率在非暴擊時造成+2000%傷害"
+    },
+    "felarx::Ruptured Plentitude": {
+      "name": "破裂滿盈",
+      "description": "開火穿透3名敵人時:+70%彈藥效率，持續20秒"
+    },
+    "felarx::Agile Executor": {
+      "name": "矯捷行刑者",
+      "description": "飛身瞄準和滑行時獲得50%彈藥效率"
+    },
+    "gorgon::Incarnon Form": {
+      "name": "應感形態",
+      "description": "爆頭為應感轉變充能，次要射擊進行轉變。切換回原始模式將消耗剩餘的充能。"
+    },
+    "gorgon::Hunter's Mantra": {
+      "name": "獵者密咒",
+      "description": "基礎傷害增加+10 持續消耗型技能啟用時：+3穿透，+40%精準度",
+      "variantValues": {
+        "蛇髮女妖": "基礎傷害增加+10 持續消耗型技能啟用時：+3穿透，+40%精準度",
+        "亡魂": "基礎傷害增加+5 持續消耗型技能啟用時：+3穿透，+40%精準度",
+        "棱晶": "基礎傷害增加+5 持續消耗型技能啟用時：+3穿透，+40%精準度"
+      }
+    },
+    "gorgon::Hoplite Virtue": {
+      "name": "重兵聖德",
+      "description": "基礎傷害增加+10 護盾被打破時：基礎傷害增加+13，持續8 秒。",
+      "variantValues": {
+        "蛇髮女妖": "基礎傷害增加+10 護盾被打破時：基礎傷害增加+13，持續8 秒。",
+        "亡魂": "基礎傷害增加+5 護盾被打破時：基礎傷害增加+8，持續8 秒。",
+        "棱晶": "基礎傷害增加+5 護盾被打破時：基礎傷害增加+8，持續8 秒。"
+      }
+    },
+    "gorgon::Resonant Restore": {
+      "name": "共鳴恢復",
+      "description": "空彈匣裝填時，彈匣容量增加+15，至多疊加至3 倍。"
+    },
+    "gorgon::Rapid Reinforcement": {
+      "name": "急速強化",
+      "description": "+50%裝填速度"
+    },
+    "gorgon::Void's Guidance": {
+      "name": "虛空指引",
+      "description": "-50%後坐力"
+    },
+    "gorgon::Survivor's Edge": {
+      "name": "生還佔優",
+      "description": "基礎暴擊機率增加+8% 基礎觸發機率增加+9%",
+      "variantValues": {
+        "蛇髮女妖": "基礎暴擊機率增加+8% 基礎觸發機率增加+9%",
+        "亡魂": "基礎暴擊機率增加+8% 基礎觸發機率增加+6%",
+        "棱晶": "基礎暴擊機率增加+2% 基礎觸發機率增加+6%"
+      }
+    },
+    "gorgon::Elemental Balance": {
+      "name": "元素平衡",
+      "description": "基礎觸發機率增加+16%",
+      "variantValues": {
+        "蛇髮女妖": "基礎觸發機率增加+16%",
+        "亡魂": "基礎觸發機率增加+14%",
+        "棱晶": "基礎觸發機率增加+12%"
+      }
+    },
+    "gorgon::Absolute Valor": {
+      "name": "絕對勇氣",
+      "description": "基礎暴擊機率增加+14%",
+      "variantValues": {
+        "蛇髮女妖": "基礎暴擊機率增加+14%",
+        "亡魂": "基礎暴擊機率增加+14%",
+        "棱晶": "基礎暴擊機率增加+6%"
+      }
+    },
+    "latron::Incarnon Form": {
+      "name": "應感形態",
+      "description": "爆頭為應感轉變充能，次要射擊進行轉變。切換回原始模式將消耗剩餘的充能。\n應感形態下武器發射能夠在命中後彈跳的投射物，至多彈跳6次並在彈跳時造成4 公尺範圍傷害。\n每次彈跳都會使投射物飛行速度降低。\n需要8次爆頭才能完成充能。多重射擊造成的爆頭也會被計入充能中。\n每個投射物造成的爆頭能為應感形態提供5發彈藥，最高至40。充能耗盡後武器會自動轉變為普通模式。"
+    },
+    "latron::Riddled Target": {
+      "name": "百孔千瘡",
+      "description": "基礎傷害增加+48 觸發穿刺異常時：+25%多重射擊，持續8秒，最高疊加至4層",
+      "variantValues": {
+        "拉特昂": "基礎傷害增加+48 觸發穿刺異常時：+25%多重射擊，持續8秒，最高疊加至4層",
+        "亡魂": "基礎傷害增加+12 觸發穿刺異常時：+25%多重射擊，持續8秒，最高疊加至4層",
+        "Prime": "基礎傷害增加+6 觸發穿刺異常時：+25%多重射擊，持續8秒，最高疊加至4層"
+      }
+    },
+    "latron::Swift Punishment": {
+      "name": "迅捷懲罰",
+      "description": "基礎傷害增加+48 衝刺速度不低於1.2時：對每個受到的異常狀態增加+30%直接傷害",
+      "variantValues": {
+        "拉特昂": "基礎傷害增加+48 衝刺速度不低於1.2時：對每個受到的異常狀態增加+30%直接傷害",
+        "亡魂": "基礎傷害增加+12 衝刺速度不低於1.2時：對每個受到的異常狀態增加+30%直接傷害",
+        "Prime": "基礎傷害增加+6 衝刺速度不低於1.2時：對每個受到的異常狀態增加+30%直接傷害"
+      }
+    },
+    "latron::Marksman's Hand": {
+      "name": "善射之手",
+      "description": "-60%武器後坐力"
+    },
+    "latron::Extended Volley": {
+      "name": "擴充齊發",
+      "description": "彈匣容量增加+15"
+    },
+    "latron::Marksman's Focus": {
+      "name": "善射之焦",
+      "description": "-30%變焦"
+    },
+    "latron::Flensing Spikes": {
+      "name": "剝膚利釘",
+      "description": "每層穿刺異常移除20%敵人護甲"
+    },
+    "latron::Deadhead": {
+      "name": "死亡頭顱",
+      "description": "+100%爆頭倍率"
+    },
+    "latron::Critical Parallel": {
+      "name": "臨界平行",
+      "description": "基礎暴擊機率增加+30%，基礎暴擊傷害增加+0.6 倍",
+      "variantValues": {
+        "拉特昂": "基礎暴擊機率增加+30%，基礎暴擊傷害增加+0.6 倍",
+        "亡魂": "基礎暴擊機率增加+24%，基礎暴擊傷害增加+0.2 倍",
+        "Prime": "基礎暴擊機率增加+24%，基礎暴擊傷害增加+0.2 倍"
+      }
+    },
+    "miter::Incarnon Form": {
+      "name": "應感形態",
+      "description": "爆頭為應感轉變充能，次要射擊進行轉變。切換回原始模式將消耗剩餘的充能。"
+    },
+    "miter::Swift Sawblades": {
+      "name": "迅捷鋸片",
+      "description": "基礎傷害增加+77 持續消耗型技能啟用時：+70%射速"
+    },
+    "miter::Plentiful Mayhem": {
+      "name": "豐饒混亂",
+      "description": "基礎傷害增加+57 多重射擊直接消耗彈匣中的彈藥並將傷害增加+20%"
+    },
+    "miter::Swift Deliverance": {
+      "name": "迅速判決",
+      "description": "+50%投射物速度"
+    },
+    "miter::Ready Retaliation": {
+      "name": "待命報復",
+      "description": "空彈匣裝填時：+100%裝填速度"
+    },
+    "miter::Mercenary Chamber": {
+      "name": "傭兵槍膛",
+      "description": "彈藥容量提升至160"
+    },
+    "miter::Sawblade Storm": {
+      "name": "鋸刃風暴",
+      "description": "蓄力1秒以提升爆炸範圍"
+    },
+    "miter::Commodore's Fortune": {
+      "name": "准將沐福",
+      "description": "基礎暴擊機率增加+22%"
+    },
+    "miter::Critical Parallel": {
+      "name": "臨界平行",
+      "description": "基礎暴擊機率增加+12%，基礎觸發機率增加+12%"
+    },
+    "paris::Incarnon Form": {
+      "name": "應感形態",
+      "description": "爆頭為應感轉變充能，次要射擊進行轉變。切換回原始模式將消耗剩餘的充能。"
+    },
+    "paris::Deadly Pace": {
+      "name": "致命步伐",
+      "description": "基礎傷害增加+40 擁有1.2或更高衝刺速度時： +80% 射速",
+      "variantValues": {
+        "帕里斯": "基礎傷害增加+40 擁有1.2或更高衝刺速度時： +80% 射速",
+        "MK1-帕里斯": "基礎傷害增加+50 擁有1.2或更高衝刺速度時： +80% 射速",
+        "帕里斯 Prime": "基礎傷害增加+20 擁有1.2或更高衝刺速度時： +80% 射速"
+      }
+    },
+    "paris::Guardian's Might": {
+      "name": "守護者之力",
+      "description": "基礎傷害增加+40 擁有過載護盾時：基礎傷害增加+52",
+      "variantValues": {
+        "帕里斯": "基礎傷害增加+40 擁有過載護盾時：基礎傷害增加+52",
+        "MK1-帕里斯": "基礎傷害增加+50 擁有過載護盾時：基礎傷害增加+40",
+        "帕里斯 Prime": "基礎傷害增加+20 擁有過載護盾時：基礎傷害增加+74"
+      }
+    },
+    "paris::Ardent Trigger": {
+      "name": "熾熱先機",
+      "description": "穿透命中時：+40%射速，持續6 秒"
+    },
+    "paris::Markman's Focus": {
+      "name": "善射之焦",
+      "description": "-30%變焦"
+    },
+    "paris::Swift Deliverance": {
+      "name": "迅速判決",
+      "description": "+60%投射物速度"
+    },
+    "paris::Vicious Promise": {
+      "name": "惡毒之諾",
+      "description": "對未受傷害的敵人增加+40%基礎暴擊機率，+2 倍基礎暴擊傷害"
+    },
+    "paris::Elemental Balance": {
+      "name": "元素平衡",
+      "description": "基礎觸發機率增加+60%"
+    },
+    "paris::Striking Succession": {
+      "name": "連續猛攻",
+      "description": "命中後：基礎傷害增加+15，持續3 秒，最多疊加至4層"
+    },
+    "phenmor::Incarnon Form": {
+      "name": "應感形態",
+      "description": "爆頭為應感轉變充能，次要射擊進行轉變。切換回原始模式將消耗剩餘的充能。"
+    },
+    "phenmor::Void's Guidance": {
+      "name": "虛空指引",
+      "description": "+50%精準度和在瞄準時武器後坐力減少+50%"
+    },
+    "phenmor::Rapid Wrath": {
+      "name": "極速之怒",
+      "description": "+20%射速"
+    },
+    "phenmor::Swift Deliverance": {
+      "name": "迅速判決",
+      "description": "+80%投射物速度"
+    },
+    "phenmor::Retribution's Vessel": {
+      "name": "報應之舟",
+      "description": "+50%彈匣容量"
+    },
+    "phenmor::Ready Retaliation": {
+      "name": "待命報復",
+      "description": "空彈匣裝填完後：+100%裝填速度，持續6秒"
+    },
+    "phenmor::Executioner's Fortune": {
+      "name": "行刑者財富",
+      "description": "爆頭擊殺時：20%機率立即重新裝填"
+    },
+    "phenmor::Survivor's Edge": {
+      "name": "生還佔優",
+      "description": "+10%暴擊機率\n+10%觸發機率"
+    },
+    "phenmor::Incarnon Efficiency": {
+      "name": "應感效率",
+      "description": "爆頭增加50%應感轉變充能"
+    },
+    "phenmor::Elemental Excess": {
+      "name": "元素超量",
+      "description": "+20%觸發機率\n-10%暴擊機率"
+    },
+    "phenmor::Devouring Attrition": {
+      "name": "壓制損耗",
+      "description": "有50%的機率在非暴擊時造成+2000%傷害"
+    },
+    "phenmor::Spiteful Defilement": {
+      "name": "怨之褻瀆",
+      "description": "身上受到少於3個異常狀態的敵人將遭受：+100%暴擊傷害"
+    },
+    "phenmor::Lingering Judgement": {
+      "name": "恆久審判",
+      "description": "在2秒內爆頭擊殺兩次：+50%爆頭傷害，持續8秒"
+    },
+    "soma::Incarnon Form": {
+      "name": "應感形態",
+      "description": "爆頭為應感轉變充能，次要射擊進行轉變。切換回原始模式將消耗剩餘的充能。"
+    },
+    "soma::Fortress Salvo": {
+      "name": "要塞齊射",
+      "description": "基礎傷害增加+12，護甲超過450時：+4穿透"
+    },
+    "soma::Fortifying Bloodshed": {
+      "name": "固盾血光",
+      "description": "基礎傷害增加+10，觸發切割異常擊殺時：+100過載護盾"
+    },
+    "soma::Kinetic Battle": {
+      "name": "動能戰鬥",
+      "description": "-50%武器後坐力"
+    },
+    "soma::Practiced Grip": {
+      "name": "熟練之握",
+      "description": "精準度提高+50%"
+    },
+    "soma::Rapid Reinforcement": {
+      "name": "急速強化",
+      "description": "+50%裝填速度"
+    },
+    "soma::Fresh Havoc": {
+      "name": "新生浩劫",
+      "description": "空彈匣裝填時：基礎傷害增加+6。最多疊加到2層。"
+    },
+    "soma::Fatal Affliction": {
+      "name": "致命苦痛",
+      "description": "目標身上的每種異常狀態可增加+40%的直接傷害"
+    },
+    "soma::Zeroed In": {
+      "name": "歸零",
+      "description": "基礎暴擊傷害增加+0.6 倍"
+    },
+    "strun::Incarnon Form": {
+      "name": "應感形態",
+      "description": "爆頭為應感轉變充能，次要射擊進行轉變。切換回原始模式將消耗剩餘的充能。"
+    },
+    "strun::Tenno Targeting": {
+      "name": "天諾瞄準",
+      "description": "基礎傷害增加+54 持續消耗型技能啟用時：+4穿透",
+      "variantValues": {
+        "斯特朗": "基礎傷害增加+54 持續消耗型技能啟用時：+4穿透",
+        "MK1": "基礎傷害增加+68 持續消耗型技能啟用時：+4穿透",
+        "亡魂": "基礎傷害增加+24 持續消耗型技能啟用時：+4穿透",
+        "Prime": "基礎傷害增加+2 持續消耗型技能啟用時：+4穿透"
+      }
+    },
+    "strun::Blazing Barrel": {
+      "name": "熾熱槍管",
+      "description": "基礎傷害增加+54 開火時：+5%多重射擊，最多疊加至5層",
+      "variantValues": {
+        "斯特朗": "基礎傷害增加+54 開火時：+5%多重射擊，最多疊加至5層",
+        "MK1": "基礎傷害增加+68 開火時：+5%多重射擊，最多疊加至5層",
+        "亡魂": "基礎傷害增加+24 開火時：+5%多重射擊，最多疊加至5層",
+        "Prime": "基礎傷害增加+2 開火時：+5%多重射擊，最多疊加至5層"
+      }
+    },
+    "strun::Rapid Reinforcement": {
+      "name": "急速強化",
+      "description": "+60%裝填速度"
+    },
+    "strun::Galvanic Reload": {
+      "name": "電流重載",
+      "description": "命中受電擊異常影響的目標時，有40%從彈藥中恢復一發子彈至彈匣"
+    },
+    "strun::Swift Deliverance": {
+      "name": "迅速判決",
+      "description": "+30%投射物速度"
+    },
+    "strun::Elemental Balance": {
+      "name": "元素平衡",
+      "description": "基礎觸發機率增加+11%；",
+      "variantValues": {
+        "斯特朗": "基礎觸發機率增加+11%；",
+        "MK1": "基礎觸發機率增加+11%；",
+        "亡魂": "基礎觸發機率增加+10%；",
+        "Prime": "基礎觸發機率增加+11.3%；"
+      }
+    },
+    "strun::Commodore's Fortune": {
+      "name": "准將沐福",
+      "description": "基礎暴擊機率增加+16%",
+      "variantValues": {
+        "斯特朗": "基礎暴擊機率增加+16%",
+        "MK1": "基礎暴擊機率增加+10%",
+        "亡魂": "基礎暴擊機率增加+12%",
+        "Prime": "基礎暴擊機率增加+12%"
+      }
+    },
+    "strun::Brutal Edge": {
+      "name": "殘暴鋒緣",
+      "description": "基礎暴擊機率增加+4%，基礎觸發機率增加+4%",
+      "variantValues": {
+        "斯特朗": "基礎暴擊機率增加+4%，基礎觸發機率增加+4%",
+        "MK1": "基礎暴擊機率增加+2%，基礎觸發機率增加+2%",
+        "亡魂": "基礎暴擊機率增加+4，基礎觸發機率增加+4.8%",
+        "Prime": "基礎暴擊機率增加+4%，基礎觸發機率增加+4%"
+      }
+    },
+    "sybaris::Incarnon Form": {
+      "name": "應感形態",
+      "description": "命中弱點時為應感充能，按下次要射擊鍵來啟用。切換回原始模式將消耗剩餘的充能。"
+    },
+    "sybaris::Well Rehearsed": {
+      "name": "久經錘鍊",
+      "description": "基礎傷害增加+20 連續擊中弱點時：基礎傷害增加+5。最多增加到3層。",
+      "variantValues": {
+        "席芭莉絲": "基礎傷害增加+20 連續擊中弱點時：基礎傷害增加+5。最多增加到3層。",
+        "Dex 席芭莉絲": "基礎傷害增加+15 連續擊中弱點時：基礎傷害增加+5。最多增加到3層。",
+        "席芭莉絲 Prime": "基礎傷害增加+15 連續擊中弱點時：基礎傷害增加+5。最多增加到3層。"
+      }
+    },
+    "sybaris::Blazing Barrel": {
+      "name": "熾熱槍管",
+      "description": "基礎傷害增加+20 開火時：+5%多重射擊。最多增加到10層。",
+      "variantValues": {
+        "席芭莉絲": "基礎傷害增加+20 開火時：+5%多重射擊。最多增加到10層。",
+        "Dex 席芭莉絲": "基礎傷害增加+15 開火時：+5%多重射擊。最多增加到10層。",
+        "席芭莉絲 Prime": "基礎傷害增加+15 開火時：+5%多重射擊。最多增加到10層。"
+      }
+    },
+    "sybaris::Extended Volley": {
+      "name": "擴充齊發",
+      "description": "基礎彈匣增加+8",
+      "variantValues": {
+        "席芭莉絲": "基礎彈匣增加+8",
+        "Dex 席芭莉絲": "基礎彈匣增加+10",
+        "席芭莉絲 Prime": "基礎彈匣增加+12"
+      }
+    },
+    "sybaris::Ready Retaliation": {
+      "name": "待命報復",
+      "description": "空彈匣裝填時：+60%裝填速度"
+    },
+    "sybaris::Marksman's Hand": {
+      "name": "善射之手",
+      "description": "-60%武器後坐力"
+    },
+    "sybaris::Elemental Dominance": {
+      "name": "元素主宰",
+      "description": "基礎觸發機率增加+15% 應感形態下翻倍",
+      "variantValues": {
+        "席芭莉絲": "基礎觸發機率增加+15% 應感形態下翻倍",
+        "Dex 席芭莉絲": "基礎觸發機率增加+15% 應感形態下翻倍",
+        "席芭莉絲 Prime": "基礎觸發機率增加+8% 應感形態下翻倍"
+      }
+    },
+    "sybaris::Reaver's Rapture": {
+      "name": "掠奪者的狂喜",
+      "description": "多發點射全部命中時：+20%傷害，重新裝填後重置"
+    },
+    "sybaris::Survivor's Edge": {
+      "name": "生還佔優",
+      "description": "基礎暴擊機率增加+5% 基礎觸發機率增加+10%",
+      "variantValues": {
+        "席芭莉絲": "基礎暴擊機率增加+5% 基礎觸發機率增加+10%",
+        "Dex 席芭莉絲": "基礎暴擊機率增加+5% 基礎觸發機率增加+10%",
+        "席芭莉絲 Prime": "基礎暴擊機率增加+5% 基礎觸發機率增加+10%"
+      }
+    },
+    "torid::Incarnon Form": {
+      "name": "應感形態",
+      "description": "直接命中為應感轉變充能，次要射擊進行轉變。切換回原始模式將消耗剩餘的充能。"
+    },
+    "torid::Final Fusillade": {
+      "name": "終結齊發",
+      "description": "基礎傷害增加 +51。\n彈匣中的最後一發子彈 +3 多重射擊。"
+    },
+    "torid::Plentiful Mayhem": {
+      "name": "豐饒混亂",
+      "description": "基礎傷害增加 +31。\n多重射擊直接消耗彈匣中的彈藥，並將其傷害提升 +60%。"
+    },
+    "torid::Swift Deliverance": {
+      "name": "迅速判決",
+      "description": "+50% 投射物速度。"
+    },
+    "torid::Renewed Horror": {
+      "name": "再續恐懼",
+      "description": "空彈匣裝填時：在首次射擊後，殘留傷害區域的持續時間翻倍。"
+    },
+    "torid::Extended Volley": {
+      "name": "擴充齊發",
+      "description": "基礎彈匣容量增加 +9。"
+    },
+    "torid::Commodore's Fortune": {
+      "name": "准將沐福",
+      "description": "基礎暴擊機率增加 +20%。"
+    },
+    "torid::Survivor's Edge": {
+      "name": "生還佔優",
+      "description": "基礎暴擊機率增加 +15%。\n基礎觸發機率增加 +15%。"
+    },
+    "torid::Elemental Balance": {
+      "name": "元素平衡",
+      "description": "基礎觸發機率增加 +34%。"
+    },
+    "vectis::Incarnon Form": {
+      "name": "應感形態",
+      "description": "命中弱點為應感轉變充能，次要射擊進行轉變。切換回原始模式將消耗剩餘的充能。"
+    },
+    "vectis::Inciting Incident": {
+      "name": "導火索",
+      "description": "基礎傷害增加+100 導引技能啟用時：+2穿透",
+      "variantValues": {
+        "守望者": "基礎傷害增加+100 導引技能啟用時：+2穿透",
+        "守望者 Prime": "基礎傷害增加+200 導引技能啟用時：+2穿透"
+      }
+    },
+    "vectis::Lone Enforcer": {
+      "name": "孤膽執法者",
+      "description": "基礎傷害增加+75 如果附近5 公尺內沒有敵人，+25%多重射擊",
+      "variantValues": {
+        "守望者": "基礎傷害增加+75 如果附近5 公尺內沒有敵人，+25%多重射擊",
+        "守望者 Prime": "基礎傷害增加150 如果附近5 公尺內沒有敵人，+25%多重射擊"
+      }
+    },
+    "vectis::Rapid Reinforcement": {
+      "name": "急速強化",
+      "description": "+60%裝填速度"
+    },
+    "vectis::Marksman's Hand": {
+      "name": "善射之手",
+      "description": "-60%武器後坐力"
+    },
+    "vectis::Silent Running": {
+      "name": "靜步無聲",
+      "description": "降低100%敵人聽見槍聲的機率"
+    },
+    "vectis::Deadhead": {
+      "name": "死亡頭顱",
+      "description": "+25%爆頭傷害"
+    },
+    "vectis::Critical Parallel": {
+      "name": "臨界平行",
+      "description": "基礎暴擊機率增加+10% 基礎暴擊傷害倍率增加+0.5 倍",
+      "variantValues": {
+        "守望者": "基礎暴擊機率增加+10% 基礎暴擊傷害倍率增加+0.5 倍",
+        "守望者 Prime": "基礎暴擊機率增加+8% 基礎暴擊傷害倍率增加+0.5 倍"
+      }
+    },
+    "vectis::Survivor's Edge": {
+      "name": "智者慧眼",
+      "description": "將當前暴擊機率的30%增加到基礎觸發機率，最高可達40%"
+    },
+    "angstrum::Incarnon Form": {
+      "name": "應感形態",
+      "description": "直接命中為應感轉變充能，次要射擊進行轉變。切換回原始模式將消耗剩餘的充能。"
+    },
+    "angstrum::Haven Foray": {
+      "name": "安逸冒險",
+      "description": "基礎傷害增加+50 擁有過載護盾時：基礎傷害增加+50"
+    },
+    "angstrum::Paladin Virtue": {
+      "name": "騎士聖德",
+      "description": "基礎傷害增加+75 最大能量值大於700時：基礎暴擊倍率增加+0.5 倍"
+    },
+    "angstrum::Swift Deliverance": {
+      "name": "迅速判決",
+      "description": "+30%投射物速度"
+    },
+    "angstrum::Rapid Reinforcement": {
+      "name": "急速強化",
+      "description": "+50%裝填速度"
+    },
+    "angstrum::Hitman's Hoard": {
+      "name": "殺意貯藏",
+      "description": "增加+9彈藥上限"
+    },
+    "angstrum::Critical Parallel": {
+      "name": "臨界平行",
+      "description": "基礎暴擊機率增加+14% 基礎暴擊倍率增加+0.2 倍",
+      "variantValues": {
+        "安格斯壯": "基礎暴擊機率增加+14% 基礎暴擊倍率增加+0.2 倍",
+        "棱晶 安格斯壯": "基礎暴擊機率增加+10% 基礎暴擊倍率增加+0.2 倍"
+      }
+    },
+    "angstrum::Survivor's Edge": {
+      "name": "生還佔優",
+      "description": "基礎暴擊機率增加+9% 基礎觸發機率增加+9%",
+      "variantValues": {
+        "安格斯壯": "基礎暴擊機率增加+9% 基礎觸發機率增加+9%",
+        "棱晶 安格斯壯": "基礎暴擊機率增加+6% 基礎觸發機率增加+6%"
+      }
+    },
+    "angstrum::Fatal Affliction": {
+      "name": "致命苦痛",
+      "description": "目標身上的每種異常狀態可增加+40%的直接傷害"
+    },
+    "atomos::Incarnon Form": {
+      "name": "應感形態",
+      "description": "爆頭為應感轉變充能，次要射擊進行轉變。切換回原始模式將消耗剩餘的充能。"
+    },
+    "atomos::Paladin Virtue": {
+      "name": "騎士聖德",
+      "description": "基礎傷害增加+24 能量最大值達到700以上：基礎暴擊傷害增加+1 倍"
+    },
+    "atomos::Hoplite Virtue": {
+      "name": "重兵聖德",
+      "description": "基礎傷害增加+24 打破護盾時：基礎傷害增加+30，持續8 秒"
+    },
+    "atomos::Moonrise Velocity": {
+      "name": "皎月速升",
+      "description": "+7攻擊範圍"
+    },
+    "atomos::Mercenary Chamber": {
+      "name": "傭兵槍膛",
+      "description": "彈藥容量提升至560"
+    },
+    "atomos::Resonant Restore": {
+      "name": "共鳴恢復",
+      "description": "空彈匣裝填時：彈匣容量增加+5 最高疊加至7層"
+    },
+    "atomos::Elemental Balance": {
+      "name": "元素平衡",
+      "description": "基礎觸發機率增加+20%"
+    },
+    "atomos::Commodore's Fortune": {
+      "name": "准將沐福",
+      "description": "基礎暴擊機率增加+19%"
+    },
+    "atomos::Survivor's Edge": {
+      "name": "生還佔優",
+      "description": "基礎暴擊機率增加+10% 觸發機率增加+10%"
+    },
+    "ballistica::Incarnon Form": {
+      "name": "應感形態",
+      "description": "命中弱點為應感轉變充能，次要射擊進行轉變。切換回原始模式將消耗剩餘的充能。"
+    },
+    "ballistica::Headcracker": {
+      "name": "碎顱破腦",
+      "description": "基礎傷害增加+30 造成爆頭後：+7.5%射速，持續4秒。最多疊加到10層。",
+      "variantValues": {
+        "布里斯提卡": "基礎傷害增加+30 造成爆頭後：+7.5%射速，持續4秒。最多疊加到10層。",
+        "拉托": "基礎傷害增加+10 造成爆頭後：+7.5%射速，持續4秒。最多疊加到10層。",
+        "Prime": "基礎傷害增加+3 造成爆頭後：+7.5%射速，持續4秒。最多疊加到10層。"
+      }
+    },
+    "ballistica::Prolific Perforation": {
+      "name": "連環貫穿",
+      "description": "基礎傷害增加+30 穿透命中時：+10%暴擊機率，持續3秒。最多疊加到8層。",
+      "variantValues": {
+        "布里斯提卡": "基礎傷害增加+30 穿透命中時：+10%暴擊機率，持續3秒。最多疊加到8層。",
+        "拉托": "基礎傷害增加+10 穿透命中時：+10%暴擊機率，持續3秒。最多疊加到8層。",
+        "Prime": "基礎傷害增加+3 穿透命中時：+10%暴擊機率，持續3秒。最多疊加到8層。"
+      }
+    },
+    "ballistica::Rapid Reinforcement": {
+      "name": "急速強化",
+      "description": "+50%裝填速度"
+    },
+    "ballistica::Swift Deliverance": {
+      "name": "迅速判決",
+      "description": "+50%投射物速度"
+    },
+    "ballistica::Void's Guidance": {
+      "name": "虛空指引",
+      "description": "+40%精確度 -40%武器後坐力"
+    },
+    "ballistica::Elemental Balance": {
+      "name": "元素平衡",
+      "description": "每個投射物的基礎觸發機率增加+20% 應感形態的基礎觸發機率增加+20%",
+      "variantValues": {
+        "布里斯提卡": "每個投射物的基礎觸發機率增加+20% 應感形態的基礎觸發機率增加+20%",
+        "拉托": "每個投射物的基礎觸發機率增加+20% 應感形態的基礎觸發機率增加+20%",
+        "Prime": "每個投射物的基礎觸發機率增加+18% 應感形態的基礎觸發機率增加+72%"
+      }
+    },
+    "ballistica::Survivor's Edge": {
+      "name": "生還佔優",
+      "description": "基礎暴擊機率增加+10% 每個投射物的基礎觸發機率增加+10% 應感形態的基礎觸發機率增加+10%",
+      "variantValues": {
+        "布里斯提卡": "基礎暴擊機率增加+10% 每個投射物的基礎觸發機率增加+10% 應感形態的基礎觸發機率增加+10%",
+        "拉托": "基礎暴擊機率增加+8% 每個投射物的基礎觸發機率增加+8% 應感形態的基礎觸發機率增加+8%",
+        "Prime": "基礎暴擊機率增加+7% 每個投射物的基礎觸發機率增加+7% 應感形態的基礎觸發機率增加+28%"
+      }
+    },
+    "ballistica::Critical Parallel": {
+      "name": "臨界平行",
+      "description": "基礎暴擊機率增加+15% 基礎暴擊傷害倍率增加+1.0",
+      "variantValues": {
+        "布里斯提卡": "基礎暴擊機率增加+15% 基礎暴擊傷害倍率增加+1.0",
+        "拉托": "基礎暴擊機率增加+14% 基礎暴擊傷害倍率增加+1.0",
+        "Prime": "基礎暴擊機率增加+12% 基礎暴擊傷害倍率增加+1.0"
+      }
+    },
+    "bronco::Incarnon Form": {
+      "name": "應感形態",
+      "description": "爆頭為應感轉變充能，次要射擊進行轉變。切換回原始模式將消耗剩餘的充能。"
+    },
+    "bronco::Speeding Bullet": {
+      "name": "超速子彈",
+      "description": "基礎傷害增加 +36。衝刺速度在1.2或更高時: +60%投射物速度",
+      "variantValues": {
+        "野馬": "基礎傷害增加 +36。衝刺速度在1.2或更高時: +60%投射物速度",
+        "Prime": "基礎傷害增加 +30。衝刺速度在1.2或更高時: +60%投射物速度"
+      }
+    },
+    "bronco::Infused Shots": {
+      "name": "注能射擊",
+      "description": "基礎傷害增加 +20。每消耗50能量: 基礎傷害增加 +10，持續10秒，最高可疊加至4 倍",
+      "variantValues": {
+        "野馬": "基礎傷害增加 +20。每消耗50能量: 基礎傷害增加 +10，持續10秒，最高可疊加至4 倍",
+        "Prime": "基礎傷害增加 +16。每消耗50能量: 基礎傷害增加 +9，持續10秒，最高可疊加至4 倍"
+      }
+    },
+    "bronco::Kinetic Battle": {
+      "name": "動能戰鬥",
+      "description": "-50%後坐力"
+    },
+    "bronco::Practised Grip": {
+      "name": "熟練之握",
+      "description": "+30%精準度"
+    },
+    "bronco::Extended Volley": {
+      "name": "擴容齊發",
+      "description": "+2彈匣容量"
+    },
+    "bronco::Enough for Everyone": {
+      "name": "人人有份",
+      "description": "6 公尺內至少有6名敵人時+80%彈藥效率。"
+    },
+    "bronco::Commodore's Fortune": {
+      "name": "准將沐福",
+      "description": "+20%基礎暴擊機率"
+    },
+    "bronco::Rain of Lead": {
+      "name": "鉛雨紛飛",
+      "description": "+2基礎多重射擊"
+    },
+    "cestra::Incarnon Form": {
+      "name": "應感形態",
+      "description": "命中弱點時為應感充能，按下次要射擊鍵來啟用。切換回原始模式將消耗剩餘的充能。"
+    },
+    "cestra::Steadfast Grit": {
+      "name": "堅定不移",
+      "description": "基礎傷害增加+10 護盾/超宏防護破裂時：3 倍暴擊傷害，持續6秒"
+    },
+    "cestra::Fortress Salvo": {
+      "name": "要塞齊射",
+      "description": "基礎傷害增加+10 護甲超過450時：+80%多重射擊"
+    },
+    "cestra::Rapid Reinforcement": {
+      "name": "急速強化",
+      "description": "+50%裝填速度"
+    },
+    "cestra::Slayer's Nerve": {
+      "name": "殺手的膽識",
+      "description": "擊中後：+6%精準度 和 -6%武器後坐力持續6秒。最多疊加到10層。"
+    },
+    "cestra::Swift Deliverance": {
+      "name": "迅速判決",
+      "description": "+50%投射物速度"
+    },
+    "cestra::Survivor's Edge": {
+      "name": "生還佔優",
+      "description": "基礎暴擊機率增加+18%"
+    },
+    "cestra::Deathtrap Trigger": {
+      "name": "死險觸發",
+      "description": "基礎暴擊傷害倍率增加+2 倍"
+    },
+    "cestra::Wiseman's Regard": {
+      "name": "智者慧眼",
+      "description": "將當前暴擊機率的30%增加到基礎觸發機率，最高可達40%"
+    },
+    "despair::Incarnon Form": {
+      "name": "應感形態",
+      "description": "爆頭為應感轉變充能，次要射擊進行轉變。切換回原始模式將消耗剩餘的充能。"
+    },
+    "despair::Fatal Affliction": {
+      "name": "致命苦痛",
+      "description": "基礎傷害增加+50 目標身上的每種異常狀態增加+40%直接傷害"
+    },
+    "despair::Stalker's Vendetta": {
+      "name": "追獵者 仇殺",
+      "description": "基礎傷害增加+60 裝備和時：多重射擊將直接消耗彈藥並使傷害增加+100%，+30%多重射擊（非應感姿態下消耗備彈增加傷害）"
+    },
+    "despair::Marksman's Focus": {
+      "name": "善射之焦",
+      "description": "-30%變焦"
+    },
+    "despair::Swift Deliverance": {
+      "name": "迅速判決",
+      "description": "+50%投射物速度"
+    },
+    "despair::Rapid Reinforcement": {
+      "name": "急速強化",
+      "description": "+100%裝填速度"
+    },
+    "despair::Elemental Balance": {
+      "name": "元素平衡",
+      "description": "基礎觸發機率增加+24%"
+    },
+    "despair::Survivor's Edge": {
+      "name": "生還佔優",
+      "description": "基礎暴擊機率增加+12%，基礎觸發機率增加+12%"
+    },
+    "despair::Critical Parallel": {
+      "name": "臨界平行",
+      "description": "基礎暴擊機率增加+18%，基礎暴擊倍率增加+0.4 倍"
+    },
+    "dual-toxocyst::Incarnon Form": {
+      "name": "應感形態",
+      "description": "爆頭為應感轉變充能，次要射擊進行轉變。切換回原始模式將消耗剩餘的充能。"
+    },
+    "dual-toxocyst::Carnage Reign": {
+      "name": "屠殺統治",
+      "description": "基礎傷害增加 +60。\n目標身上的每種異常狀態可增加 +33% 直接傷害。"
+    },
+    "dual-toxocyst::Fevered Frenzy": {
+      "name": "狂熱亂暴",
+      "description": "基礎傷害增加 +50。\n使用技能後：+5% 多重射擊。最多疊加到 20 層。"
+    },
+    "dual-toxocyst::Ready Retaliation": {
+      "name": "待命報復",
+      "description": "空彈匣裝填時：+100% 裝填速度。"
+    },
+    "dual-toxocyst::Evolved Autoloader": {
+      "name": "進化自填器",
+      "description": "收起武器時彈匣每秒自動裝填 +50%。"
+    },
+    "dual-toxocyst::Marksman's Hand": {
+      "name": "善射之手",
+      "description": "-50% 武器後坐力。"
+    },
+    "dual-toxocyst::Commodore's Fortune": {
+      "name": "准將沐福",
+      "description": "基礎暴擊機率增加 +20%。"
+    },
+    "dual-toxocyst::Neurotoxin": {
+      "name": "神經毒素",
+      "description": "造成爆頭後：+70% 毒素傷害，持續 3 秒。"
+    },
+    "dual-toxocyst::Ripper Rounds": {
+      "name": "撕裂彈頭",
+      "description": "擊殺時：+3 穿透，持續 7 秒。"
+    },
+    "furis::Incarnon Form": {
+      "name": "應感形態",
+      "description": "爆頭為應感轉變充能，次要射擊進行轉變。切換回原始模式將消耗剩餘的充能。\n發射短射程粗光束，造成火焰傷害。"
+    },
+    "furis::Haven Foray": {
+      "name": "安逸冒險",
+      "description": "基礎傷害增加 +28。\n過載護盾啟用時：基礎傷害增加 +30。",
+      "variantValues": {
+        "盜賊": "基礎傷害增加 +28。\n過載護盾啟用時：基礎傷害增加 +30。",
+        "MK1-盜賊": "基礎傷害增加 +34。\n過載護盾啟用時：基礎傷害增加 +30。"
+      }
+    },
+    "furis::Stormburst": {
+      "name": "風雷驟起",
+      "description": "基礎傷害增加 +28。\n命中受電擊異常影響的目標時：+40% 多重射擊，持續 2 秒。最多疊加到 3 層。",
+      "variantValues": {
+        "盜賊": "基礎傷害增加 +28。\n命中受電擊異常影響的目標時：+40% 多重射擊，持續 2 秒。最多疊加到 3 層。",
+        "MK1-盜賊": "基礎傷害增加 +34。\n命中受電擊異常影響的目標時：+40% 多重射擊，持續 2 秒。最多疊加到 3 層。"
+      }
+    },
+    "furis::Practiced Grip": {
+      "name": "熟練之握",
+      "description": "精準度提升 +50%。"
+    },
+    "furis::Extended Volley": {
+      "name": "擴充齊發",
+      "description": "提升 +25 彈匣容量。"
+    },
+    "furis::Executioner's Fortune": {
+      "name": "行刑者財富",
+      "description": "爆頭時：10% 機率立即裝填。"
+    },
+    "furis::Headcracker": {
+      "name": "碎顱破腦",
+      "description": "爆頭時：+5% 射速，持續 2 秒。最多疊加到 10 層。"
+    },
+    "furis::Prelude of Might": {
+      "name": "力量前奏",
+      "description": "暴擊機率低於 40% 時，基礎暴擊傷害增加 +3 倍。"
+    },
+    "furis::Elemental Balance": {
+      "name": "元素平衡",
+      "description": "基礎觸發機率增加 +28%。",
+      "variantValues": {
+        "盜賊": "基礎觸發機率增加 +28%。",
+        "MK1-盜賊": "基礎觸發機率增加 +39%。"
+      }
+    },
+    "gammacor::Incarnon Form": {
+      "name": "應感形態",
+      "description": "爆頭為應感轉變充能，次要射擊進行轉變。切換回原始模式將消耗剩餘的充能。"
+    },
+    "gammacor::Sage's Resolve": {
+      "name": "賢者的決心",
+      "description": "基礎傷害增加+10 持續消耗型技能啟用時：+25%多重射擊"
+    },
+    "gammacor::Infused Shots": {
+      "name": "注能射擊",
+      "description": "基礎傷害增加+6 每消耗50能量：基礎傷害增加+5，持續10 秒，至多疊加至4 倍"
+    },
+    "gammacor::Evolved Autoloader": {
+      "name": "進化自填器",
+      "description": "收起武器時彈匣每秒自動裝填+50%"
+    },
+    "gammacor::Moonrise Velocity": {
+      "name": "皎月速升",
+      "description": "+8射程"
+    },
+    "gammacor::Extended Volley": {
+      "name": "擴充齊發",
+      "description": "彈匣容量增加+40"
+    },
+    "gammacor::Critical Parallel": {
+      "name": "臨界平行",
+      "description": "基礎暴擊機率增加+20% 基礎暴擊倍率增加+0.2 倍",
+      "variantValues": {
+        "伽馬腕甲槍": "基礎暴擊機率增加+20% 基礎暴擊倍率增加+0.2 倍",
+        "樞議": "基礎暴擊機率增加+10% 基礎暴擊倍率增加+0.2 倍"
+      }
+    },
+    "gammacor::Survivor's Edge": {
+      "name": "生還佔優",
+      "description": "基礎暴擊機率增加+12% 基礎觸發機率增加+10%",
+      "variantValues": {
+        "伽馬腕甲槍": "基礎暴擊機率增加+12% 基礎觸發機率增加+10%",
+        "樞議": "基礎暴擊機率增加+6% 基礎觸發機率增加+6%"
+      }
+    },
+    "gammacor::Elemental Balance": {
+      "name": "元素平衡",
+      "description": "基礎觸發機率增加+20%",
+      "variantValues": {
+        "伽馬腕甲槍": "基礎觸發機率增加+20%",
+        "樞議": "基礎觸發機率增加+10%"
+      }
+    },
+    "kunai::Incarnon Form": {
+      "name": "應感形態",
+      "description": "爆頭為應感轉變充能，次要射擊進行轉變。切換回原始模式將消耗剩餘的充能。"
+    },
+    "kunai::Swift Conclusion": {
+      "name": "迅速結果",
+      "description": "基礎傷害增加+70 對生命值低於一半的敵人增加+200%傷害",
+      "variantValues": {
+        "苦無": "基礎傷害增加+70 對生命值低於一半的敵人增加+200%傷害",
+        "MK1-苦無": "基礎傷害增加+80 對生命值低於一半的敵人增加+200%傷害"
+      }
+    },
+    "kunai::Sage's Resolve": {
+      "name": "賢者的決心",
+      "description": "基礎傷害增加+80 持續消耗型技能啟用時：+100%多重射擊",
+      "variantValues": {
+        "苦無": "基礎傷害增加+80 持續消耗型技能啟用時：+100%多重射擊",
+        "MK1-苦無": "基礎傷害增加+70 持續消耗型技能啟用時：+100%多重射擊"
+      }
+    },
+    "kunai::Swift Deliverance": {
+      "name": "迅速判決",
+      "description": "+50%投射物速度"
+    },
+    "kunai::Extended Volley": {
+      "name": "擴充齊發",
+      "description": "彈匣容量增加+10"
+    },
+    "kunai::Rapid Reinforcement": {
+      "name": "急速強化",
+      "description": "+50%裝填速度"
+    },
+    "kunai::Deathtrap Trigger": {
+      "name": "死陷觸發",
+      "description": "從主要武器切換後：基礎暴擊機率增加+40%，基礎暴擊傷害增加+1.4 倍 持續4秒。",
+      "variantValues": {
+        "苦無": "從主要武器切換後：基礎暴擊機率增加+40%，基礎暴擊傷害增加+1.4 倍 持續4秒。",
+        "MK1-苦無": "從主要武器切換後：基礎暴擊機率增加+42%，基礎暴擊傷害增加+1 倍 持續4秒。"
+      }
+    },
+    "kunai::Accelerating Volley": {
+      "name": "加速齊發",
+      "description": "開火時：+20%射速，持續0.5 秒 最高疊加至5層"
+    },
+    "kunai::Survivor's Edge": {
+      "name": "生還佔優",
+      "description": "基礎暴擊機率增加+12%，基礎觸發機率增加+12%"
+    },
+    "laetum::Incarnon Form": {
+      "name": "應感形態",
+      "description": "爆頭為應感轉變充能，次要射擊進行轉變。切換回原始模式將消耗剩餘的充能。"
+    },
+    "laetum::Marksman's Hand": {
+      "name": "善射之手",
+      "description": "-40% 武器後坐力。"
+    },
+    "laetum::Rapid Wrath": {
+      "name": "極速之怒",
+      "description": "+20% 射速。"
+    },
+    "laetum::Raptor's Chase": {
+      "name": "猛禽追逐",
+      "description": "瞄準時增加 50% 移動速度。"
+    },
+    "laetum::Lethal Rearmament": {
+      "name": "致命重裝",
+      "description": "造成爆頭後：+30% 裝填速度，持續 12 秒。最多疊加到 3 層。"
+    },
+    "laetum::Awakened Readiness": {
+      "name": "覺醒備戰",
+      "description": "收起武器時彈匣每秒自動裝填 +30%。"
+    },
+    "laetum::Feather of Justice": {
+      "name": "正義之羽",
+      "description": "飛身瞄準和滑行時獲得 60% 彈藥效率。"
+    },
+    "laetum::Caput Mortuum": {
+      "name": "死亡首級",
+      "description": "+50% 爆頭傷害。"
+    },
+    "laetum::Incarnon Efficiency": {
+      "name": "應感效率",
+      "description": "爆頭增加 50% 應感轉變充能。"
+    },
+    "laetum::Elemental Excess": {
+      "name": "元素超量",
+      "description": "+20% 觸發機率，-10% 暴擊機率。"
+    },
+    "laetum::Devouring Attrition": {
+      "name": "壓制損耗",
+      "description": "有 50% 的機率在非暴擊時造成 +2000% 傷害。"
+    },
+    "laetum::Reaper's Plenty": {
+      "name": "死神之裕",
+      "description": "造成爆頭後：+40% 彈藥效率，持續 6 秒。"
+    },
+    "laetum::Overwhelming Attrition": {
+      "name": "強襲損耗",
+      "description": "非暴擊且非觸發異常狀態命中時：+400% 傷害，持續 10 秒。最多疊加到 3 層。"
+    },
+    "lato::Incarnon Form": {
+      "name": "應感形態",
+      "description": "爆頭為應感轉變充能，次要射擊進行轉變。切換回原始模式將消耗剩餘的充能。"
+    },
+    "lato::Haven Foray": {
+      "name": "安逸冒險",
+      "description": "基礎傷害增加+40 擁有過載護盾時：基礎傷害增加+40",
+      "variantValues": {
+        "拉托": "基礎傷害增加+40 擁有過載護盾時：基礎傷害增加+40",
+        "破壞者": "基礎傷害增加+22 擁有過載護盾時：基礎傷害增加+40",
+        "Prime": "基礎傷害增加+2 擁有過載護盾時：基礎傷害增加+34"
+      }
+    },
+    "lato::Reified Bane": {
+      "name": "具象剋星",
+      "description": "基礎傷害增加+30 空彈匣裝填時：基礎傷害增加+30",
+      "variantValues": {
+        "拉托": "基礎傷害增加+30 空彈匣裝填時：基礎傷害增加+30",
+        "破壞者": "基礎傷害增加+12 空彈匣裝填時：基礎傷害增加+30",
+        "Prime": "基礎傷害增加+2 空彈匣裝填時：基礎傷害增加+24"
+      }
+    },
+    "lato::Void's Guidance": {
+      "name": "虛空指引",
+      "description": "提升精準度並-50%武器後坐力"
+    },
+    "lato::Marksman's Gain": {
+      "name": "善射之獲",
+      "description": "爆頭命中時：20%機率獲得+50%彈藥效率，持續6 秒"
+    },
+    "lato::Exact Penance": {
+      "name": "精確懺悔",
+      "description": "擊殺時：50%機率立即裝填"
+    },
+    "lato::Survivor's Edge": {
+      "name": "生還佔優",
+      "description": "基礎暴擊機率增加+20%，基礎觸發機率增加+12%",
+      "variantValues": {
+        "拉托": "基礎暴擊機率增加+20%，基礎觸發機率增加+12%",
+        "破壞者": "基礎暴擊機率增加+6%，基礎觸發機率增加+12%",
+        "Prime": "基礎暴擊機率增加+4%，基礎觸發機率增加+10%"
+      }
+    },
+    "lato::Deathtrap Trigger": {
+      "name": "死陷觸發",
+      "description": "從主要武器切換後：基礎暴擊機率增加+50%，基礎暴擊傷害增加+3.2 倍，持續4 秒",
+      "variantValues": {
+        "拉托": "從主要武器切換後：基礎暴擊機率增加+50%，基礎暴擊傷害增加+3.2 倍，持續4 秒",
+        "破壞者": "從主要武器切換後：基礎暴擊機率增加+38%，基礎暴擊傷害增加+2.6 倍，持續4 秒",
+        "Prime": "從主要武器切換後：基礎暴擊機率增加+30%，基礎暴擊傷害增加+2.3 倍，持續4 秒"
+      }
+    },
+    "lato::Carnage Reign": {
+      "name": "屠殺統治",
+      "description": "對每個受到的異常狀態增加+40%直接傷害"
+    },
+    "lex::Incarnon Form": {
+      "name": "應感形態",
+      "description": "爆頭為應感轉變充能，次要射擊進行轉變。切換回原始模式將消耗剩餘的充能。"
+    },
+    "lex::Hoplite Virtue": {
+      "name": "重兵聖德",
+      "description": "基礎傷害增加+80 戰甲護盾被耗盡時，基礎傷害增加+80，持續8秒。",
+      "variantValues": {
+        "雷克斯": "基礎傷害增加+80 戰甲護盾被耗盡時，基礎傷害增加+80，持續8秒。",
+        "雷克斯 Prime": "基礎傷害增加+20 戰甲護盾被耗盡時，基礎傷害增加+80，持續8秒。"
+      }
+    },
+    "lex::Trusty Sidearm": {
+      "name": "可信賴的副武",
+      "description": "基礎傷害增加+80持續能量消耗類技能啟用時+60%彈藥效率。",
+      "variantValues": {
+        "雷克斯": "基礎傷害增加+80持續能量消耗類技能啟用時+60%彈藥效率。",
+        "雷克斯 Prime": "基礎傷害增加+20持續能量消耗類技能啟用時+60%彈藥效率。"
+      }
+    },
+    "lex::Lex Talionis": {
+      "name": "以牙還牙",
+      "description": "造成爆頭後：-20%後坐力和+20%精準度，持續4秒。最多可疊加至4 倍。"
+    },
+    "lex::Extended Volley": {
+      "name": "擴充齊發",
+      "description": "+10彈匣容量。"
+    },
+    "lex::Ready Retaliation": {
+      "name": "待命報復",
+      "description": "空彈匣裝填時：+100%裝填速度。"
+    },
+    "lex::Executioner's Dawn": {
+      "name": "行刑者黎明",
+      "description": "裝備時：+100%爆頭傷害，持續4秒。"
+    },
+    "lex::Elemental Balance": {
+      "name": "元素平衡",
+      "description": "基礎觸發機率+40%。",
+      "variantValues": {
+        "雷克斯": "基礎觸發機率+40%。",
+        "雷克斯 Prime": "基礎觸發機率+30%。"
+      }
+    },
+    "lex::Critical Parallel": {
+      "name": "臨界平行",
+      "description": "基礎暴擊機率+20%，基礎暴擊傷害+0.4 倍。",
+      "variantValues": {
+        "雷克斯": "基礎暴擊機率+20%，基礎暴擊傷害+0.4 倍。",
+        "雷克斯 Prime": "基礎暴擊機率+19%，基礎暴擊傷害+0.4 倍。"
+      }
+    },
+    "onos::Incarnon Form": {
+      "name": "應感形態",
+      "description": "爆頭為應感轉變充能，次要射擊進行轉變。切換回原始模式將消耗剩餘的充能。"
+    },
+    "onos::Marksman's Hand": {
+      "name": "善射之手",
+      "description": "-30% 後坐力"
+    },
+    "onos::Rapid Wrath": {
+      "name": "疾速之怒",
+      "description": "+25% 射速"
+    },
+    "onos::Swift Deliverance": {
+      "name": "迅速判決",
+      "description": "+50% 投射物速度"
+    },
+    "onos::Extended Volley": {
+      "name": "擴充齊發",
+      "description": "+10彈匣容量"
+    },
+    "onos::Rapid Reinforcement": {
+      "name": "急速強化",
+      "description": "+30% 裝填速度"
+    },
+    "onos::Hunter's Rearmament": {
+      "name": "獵人重裝",
+      "description": "擊殺時：10%回覆10彈藥"
+    },
+    "onos::Lethal Lance": {
+      "name": "致命穿刺",
+      "description": "擊殺時： +2.5 穿透，持續20 秒"
+    },
+    "onos::Incarnon Efficiency": {
+      "name": "應感效率",
+      "description": "爆頭增加50%應感轉變充能"
+    },
+    "onos::Elemental Excess": {
+      "name": "元素超量",
+      "description": "+20% 觸發機率 -10% 暴擊機率"
+    },
+    "onos::Sequential Skullbuster": {
+      "name": "連續爆顱",
+      "description": "連續爆頭時：+30%爆頭傷害。最多疊加至4 倍"
+    },
+    "onos::Impaler's Ferocity": {
+      "name": "穿刺者的兇猛",
+      "description": "穿透命中時：+200%傷害，持續10 秒。"
+    },
+    "onos::Devastation Cascade": {
+      "name": "毀滅連鎖",
+      "description": "以應感形態命中敵人會使完全充能爆炸的暴擊機率和暴擊傷害提升+5%。最多疊加至50 倍"
+    },
+    "sicarus::Incarnon Form": {
+      "name": "應感形態",
+      "description": "命中弱點時為應感充能，按下次要射擊鍵來啟用。 切換回原始模式將消耗剩餘的充能。"
+    },
+    "sicarus::Feigned Retreat": {
+      "name": "假意撤退",
+      "description": "基礎傷害增加+50 對生命值低於一半的敵人造成+40%傷害",
+      "variantValues": {
+        "暗殺者": "基礎傷害增加+50 對生命值低於一半的敵人造成+40%傷害",
+        "Prime": "基礎傷害增加+40 對生命值低於一半的敵人造成+40%傷害"
+      }
+    },
+    "sicarus::King's Gambit": {
+      "name": "帝王棋局",
+      "description": "基礎傷害增加+50 0 倍 擊身暴擊機率，+150%命中弱點暴擊機率",
+      "variantValues": {
+        "暗殺者": "基礎傷害增加+50 0 倍 擊身暴擊機率，+150%命中弱點暴擊機率",
+        "Prime": "基礎傷害增加+40 0 倍 擊身暴擊機率，+150%命中弱點暴擊機率"
+      }
+    },
+    "sicarus::Void's Guidance": {
+      "name": "虛空指引",
+      "description": "+40%精準度 -40%武器後坐力"
+    },
+    "sicarus::Rapid Reinforcement": {
+      "name": "急速強化",
+      "description": "+50%裝填速度"
+    },
+    "sicarus::Extended Volley": {
+      "name": "擴充齊發",
+      "description": "基礎彈匣容量增加+9",
+      "variantValues": {
+        "暗殺者": "基礎彈匣容量增加+9",
+        "Prime": "基礎彈匣容量增加+12"
+      }
+    },
+    "sicarus::Commodore's Fortune": {
+      "name": "准將沐福",
+      "description": "基礎暴擊機率增加+18%",
+      "variantValues": {
+        "暗殺者": "基礎暴擊機率增加+18%",
+        "Prime": "基礎暴擊機率增加14%"
+      }
+    },
+    "sicarus::Survivor's Edge": {
+      "name": "生還佔優",
+      "description": "基礎暴擊機率增加12% 基礎觸發機率增加至12%",
+      "variantValues": {
+        "暗殺者": "基礎暴擊機率增加12% 基礎觸發機率增加至12%",
+        "Prime": "基礎暴擊機率增加+9% 基礎觸發機率增加至+9%"
+      }
+    },
+    "sicarus::Wiseman's Regard": {
+      "name": "智者慧眼",
+      "description": "將當前暴擊機率的30%增加到基礎觸發機率，最高可達40%"
+    },
+    "stug::Incarnon Form": {
+      "name": "應感形態",
+      "description": "直接命中為應感轉變充能，次要射擊進行轉變。切換回原始模式將消耗剩餘的充能。"
+    },
+    "stug::Blazing Barrel": {
+      "name": "熾熱槍管",
+      "description": "基礎傷害增加+175 開火時：+5%多重射擊，裝填時充值。最多疊加到10層"
+    },
+    "stug::Overcharge Blast": {
+      "name": "過載爆炸",
+      "description": "基礎傷害增加+300 能量最大值超過700時：+50%爆炸範圍"
+    },
+    "stug::Rapid Reinforcement": {
+      "name": "急速強化",
+      "description": "+50%裝填速度"
+    },
+    "stug::Swift Deliverance": {
+      "name": "迅速判決",
+      "description": "+50%投射物速度"
+    },
+    "stug::Resonant Restore": {
+      "name": "共鳴恢復",
+      "description": "空彈匣裝填時：基礎彈匣容量+10。最多疊加到3層"
+    },
+    "stug::Survivor's Edge": {
+      "name": "生還佔優",
+      "description": "基礎暴擊機率增加+15% 基礎觸發機率增加至+15%"
+    },
+    "stug::Deathtrap Trigger": {
+      "name": "死陷觸發",
+      "description": "基礎暴擊機率增加+25% 基礎暴擊傷害倍率增加+1.5 倍"
+    },
+    "stug::Elemental Dominance": {
+      "name": "元素主宰",
+      "description": "基礎觸發機率增加+20% 應感形態下效果加倍"
+    },
+    "vasto::Incarnon Form": {
+      "name": "應感形態",
+      "description": "爆頭為應感轉變充能，次要射擊進行轉變。切換回原始模式將消耗剩餘的充能。"
+    },
+    "vasto::Lone Gun": {
+      "name": "孤槍",
+      "description": "基礎傷害增加+66，沒有裝備主要武器時：基礎傷害增加+40，提升+14彈匣容量",
+      "variantValues": {
+        "瓦斯托": "基礎傷害增加+66，沒有裝備主要武器時：基礎傷害增加+40，提升+14彈匣容量",
+        "Prime": "基礎傷害增加+24，沒有裝備主要武器時：基礎傷害增加+40，提升+14彈匣容量"
+      }
+    },
+    "vasto::Deathtrap Trigger": {
+      "name": "死陷觸發",
+      "description": "基礎傷害增加+66，從主要武器切換時：基礎暴擊機率增加+30%，基礎暴擊傷害增加+2.2 倍，持續3秒",
+      "variantValues": {
+        "瓦斯托": "基礎傷害增加+66，從主要武器切換時：基礎暴擊機率增加+30%，基礎暴擊傷害增加+2.2 倍，持續3秒",
+        "Prime": "基礎傷害增加+24，從主要武器切換時：基礎暴擊機率增加+30%，基礎暴擊傷害增加+0.8 倍，持續3秒"
+      }
+    },
+    "vasto::Extended Volley": {
+      "name": "擴充齊發",
+      "description": "提升+6彈匣容量"
+    },
+    "vasto::Marksman's Hand": {
+      "name": "善射之手",
+      "description": "-50%武器後坐力"
+    },
+    "vasto::Awakened Readiness": {
+      "name": "覺醒備戰",
+      "description": "收起武器時彈匣每秒自動裝填+20%"
+    },
+    "vasto::Commodore's Fortune": {
+      "name": "准將沐福",
+      "description": "基礎暴擊機率增加+16%",
+      "variantValues": {
+        "瓦斯托": "基礎暴擊機率增加+16%",
+        "Prime": "基礎暴擊機率增加+18%"
+      }
+    },
+    "vasto::Survivor's Edge": {
+      "name": "生還佔優",
+      "description": "基礎暴擊機率增加+10%，基礎觸發機率增加+10%"
+    },
+    "vasto::Reaper's Plenty": {
+      "name": "死神之裕",
+      "description": "造成爆頭後：+100%彈藥效率，持續2秒"
+    },
+    "zylok::Incarnon Form": {
+      "name": "應感形態",
+      "description": "爆頭為應感轉變充能，次要射擊進行轉變。切換回原始模式將消耗剩餘的充能。"
+    },
+    "zylok::Precision's Payoff": {
+      "name": "精準回報",
+      "description": "基礎傷害增加+76 多發點射爆頭時: 基礎傷害增加+20。最多疊加到3層。",
+      "variantValues": {
+        "席爾火槍": "基礎傷害增加+76 多發點射爆頭時: 基礎傷害增加+20。最多疊加到3層。",
+        "Prime": "基礎傷害增加+30 多發點射爆頭時: 基礎傷害增加+20。最多疊加到3層。"
+      }
+    },
+    "zylok::Mauler's Magazine": {
+      "name": "擊手的彈匣",
+      "description": "基礎傷害增加+76 空彈匣裝填時: 基礎暴擊傷害增加+1 倍。最多疊加到2層。",
+      "variantValues": {
+        "席爾火槍": "基礎傷害增加+76 空彈匣裝填時: 基礎暴擊傷害增加+1 倍。最多疊加到2層。",
+        "Prime": "基礎傷害增加+30 空彈匣裝填時: 基礎暴擊傷害增加+1 倍。最多疊加到2層。"
+      }
+    },
+    "zylok::Extended Volley": {
+      "name": "擴充齊發",
+      "description": "+12 彈匣容量",
+      "variantValues": {
+        "席爾火槍": "+12 彈匣容量",
+        "Prime": "+18 彈匣容量"
+      }
+    },
+    "zylok::Rapid Reinforcement": {
+      "name": "急速強化",
+      "description": "+50%裝填速度"
+    },
+    "zylok::Void's Guidance": {
+      "name": "虛空指引",
+      "description": "+60%精準度以及後座降低"
+    },
+    "zylok::Survivor's Edge": {
+      "name": "生還佔優",
+      "description": "基礎暴擊機率和觸發機率增加+20%",
+      "variantValues": {
+        "席爾火槍": "基礎暴擊機率和觸發機率增加+20%",
+        "Prime": "基礎暴擊機率增加+22%，基礎觸發機率增加+16%"
+      }
+    },
+    "zylok::Commodore's Fortune": {
+      "name": "准將沐福",
+      "description": "基礎暴擊機率增加+32%",
+      "variantValues": {
+        "席爾火槍": "基礎暴擊機率增加+32%",
+        "Prime": "基礎暴擊機率增加+30%"
+      }
+    },
+    "zylok::Fatal Affliction": {
+      "name": "致命苦痛",
+      "description": "目標每種不同的異常狀態增加+40% 直接傷害"
+    },
+    "ack-and-brunt::Incarnon Form": {
+      "name": "應感形態",
+      "description": "連擊倍率達到 6 倍後施放重擊，啟用應感形態。\n滯空與滑行攻擊會發射幽靈戰斧。\n近戰傷害 +100%\n衝刺速度 +20%\n跑酷速度 +20%"
+    },
+    "ack-and-brunt::Templar's Wrath": {
+      "name": "聖殿騎士之怒",
+      "description": "基礎傷害 +150\n護甲高於 450 時：重擊效率 +70%"
+    },
+    "ack-and-brunt::Shieldmaiden's Rush": {
+      "name": "盾女突進",
+      "description": "基礎傷害 +150\n護盾破裂時：格擋期間連擊數獲取機率 +300%，持續 11 秒"
+    },
+    "ack-and-brunt::Orokin Reach": {
+      "name": "奧羅金延伸",
+      "description": "範圍 +0.7"
+    },
+    "ack-and-brunt::Abiding Hold": {
+      "name": "恆久固守",
+      "description": "收起武器時，連擊計時暫停"
+    },
+    "ack-and-brunt::Swift Break": {
+      "name": "迅捷破勢",
+      "description": "重擊蓄力速度 +70%"
+    },
+    "ack-and-brunt::Rogue Readiness": {
+      "name": "遊俠備戰",
+      "description": "擊殺時：有 50% 機率立即裝填主要與次要武器"
+    },
+    "ack-and-brunt::Absolute Valor": {
+      "name": "絕對英勇",
+      "description": "基礎暴擊機率 +17%"
+    },
+    "ack-and-brunt::Versatile Creed": {
+      "name": "多能信條",
+      "description": "基礎暴擊機率 +9%\n基礎觸發機率 +9%"
+    },
+    "anku::Incarnon Form": {
+      "name": "應感形態",
+      "description": "連擊倍率達到 6 倍後施放重擊，啟用應感形態。\n成功施放滑行攻擊後，應感形態會暫時提升範圍，且所有攻擊必定觸發切割狀態。\n近戰傷害 +100%\n衝刺速度 +20%\n旋身飛躍 +20%"
+    },
+    "anku::Edge of Justice": {
+      "name": "正義鋒刃",
+      "description": "基礎傷害 +50\n裝備近戰武器時：攻擊速度 +40%"
+    },
+    "anku::Guardian's Promise": {
+      "name": "守護者之諾",
+      "description": "基礎傷害 +50\n擁有過載護盾時：重擊效率 +80%"
+    },
+    "anku::Standoff": {
+      "name": "對峙",
+      "description": "收起武器時，連擊計時暫停"
+    },
+    "anku::Swordsman's Celerity": {
+      "name": "劍士迅捷",
+      "description": "移動速度 +20%"
+    },
+    "anku::Swift Break": {
+      "name": "迅捷破勢",
+      "description": "重擊蓄力速度 +60%"
+    },
+    "anku::Absolute Dominion": {
+      "name": "絕對支配",
+      "description": "基礎觸發機率 +20%"
+    },
+    "anku::Subtle Force": {
+      "name": "精微之力",
+      "description": "基礎暴擊機率 +6%\n基礎觸發機率 +14%"
+    },
+    "anku::Absolute Valor": {
+      "name": "絕對英勇",
+      "description": "基礎暴擊機率 +12%"
+    },
+    "bo::Incarnon Form": {
+      "name": "應感形態",
+      "description": "連擊倍率達到 6 倍後施放重擊，啟用應感形態。\n應感形態提升攻擊範圍與重擊效率。\n近戰傷害 +100%\n範圍 +4\n重擊效率 +50%\n衝刺速度 +20%\n旋身飛躍 +20%"
+    },
+    "bo::Stalwart Oak": {
+      "name": "堅毅橡木",
+      "description": "基礎傷害 +110\n護甲高於 450 時：\n格擋角度 +30°\n格擋期間連擊數獲取機率 +300%",
+      "variantValues": {
+        "玻之武杖": "基礎傷害 +110\n護甲高於 450 時：\n格擋角度 +30°\n格擋期間連擊數獲取機率 +300%",
+        "MK1-玻之武杖": "基礎傷害 +90\n護甲高於 450 時：\n格擋角度 +30°\n格擋期間連擊數獲取機率 +300%",
+        "玻之武杖 Prime": "基礎傷害 +34\n護甲高於 450 時：\n格擋角度 +30°\n格擋期間連擊數獲取機率 +300%"
+      }
+    },
+    "bo::Swordsman's Flourish": {
+      "name": "劍士華舞",
+      "description": "基礎傷害 +100\n裝備近戰武器時：連擊數獲取機率 +100%",
+      "variantValues": {
+        "玻之武杖": "基礎傷害 +100\n裝備近戰武器時：連擊數獲取機率 +100%",
+        "MK1-玻之武杖": "基礎傷害 +85\n裝備近戰武器時：連擊數獲取機率 +100%",
+        "玻之武杖 Prime": "基礎傷害 +30\n裝備近戰武器時：連擊數獲取機率 +100%"
+      }
+    },
+    "bo::Orokin Reach": {
+      "name": "奧羅金延伸",
+      "description": "範圍 +0.5"
+    },
+    "bo::Overhand": {
+      "name": "高位揮擊",
+      "description": "基礎重擊效率設為 20%"
+    },
+    "bo::Swordsman's Celerity": {
+      "name": "劍士迅捷",
+      "description": "移動速度 +20%"
+    },
+    "bo::Flashing Bleed": {
+      "name": "閃擊放血",
+      "description": "觸發衝擊狀態效果時，有 40% 機率額外觸發切割狀態"
+    },
+    "bo::Subtle Force": {
+      "name": "精微之力",
+      "description": "基礎暴擊機率 +12%\n基礎觸發機率 +12%",
+      "variantValues": {
+        "玻之武杖": "基礎暴擊機率 +12%\n基礎觸發機率 +12%",
+        "MK1-玻之武杖": "基礎暴擊機率 +15%\n基礎觸發機率 +15%",
+        "玻之武杖 Prime": "基礎暴擊機率 +6%\n基礎觸發機率 +6%"
+      }
+    },
+    "bo::Absolute Dominion": {
+      "name": "絕對支配",
+      "description": "基礎觸發機率 +34%",
+      "variantValues": {
+        "玻之武杖": "基礎觸發機率 +34%",
+        "MK1-玻之武杖": "基礎觸發機率 +38%",
+        "玻之武杖 Prime": "基礎觸發機率 +30%"
+      }
+    },
+    "ceramic-dagger::Incarnon Form": {
+      "name": "應感形態",
+      "description": "連擊倍率達到 6 倍後施放重擊，啟用應感形態。\n重擊會發射幽靈匕首。\n近戰傷害 +100%\n衝刺速度 +25%\n跑酷速度 +25%"
+    },
+    "ceramic-dagger::Gun and Blade": {
+      "name": "槍與刃",
+      "description": "基礎傷害 +100\n使用主要武器擊殺時：初始連擊 +1，最多疊加 100 層"
+    },
+    "ceramic-dagger::Breacher's Opportunity": {
+      "name": "破盾良機",
+      "description": "基礎傷害 +120\n護盾破裂時：基礎傷害 +80，持續 8 秒"
+    },
+    "ceramic-dagger::Orokin Reach": {
+      "name": "奧羅金延伸",
+      "description": "範圍 +1"
+    },
+    "ceramic-dagger::Adept Reflexes": {
+      "name": "熟練反射",
+      "description": "初始連擊 +20"
+    },
+    "ceramic-dagger::Rogue Readiness": {
+      "name": "遊俠備戰",
+      "description": "擊殺時：有 40% 機率立即裝填主要與次要武器"
+    },
+    "ceramic-dagger::Red Right Hand": {
+      "name": "血色右手",
+      "description": "裝備主要武器後首次攻擊時：基礎暴擊倍率 +2 倍"
+    },
+    "ceramic-dagger::Absolute Dominion": {
+      "name": "絕對支配",
+      "description": "基礎觸發機率 +30%"
+    },
+    "ceramic-dagger::Absolute Valor": {
+      "name": "絕對英勇",
+      "description": "基礎暴擊機率 +30%"
+    },
+    "destreza::Incarnon Form": {
+      "name": "應感形態",
+      "description": "連擊倍率達到 6 倍後施放重擊，啟用應感形態。\n重擊會生成 5 把幽靈刺劍。\n近戰傷害 +100%\n衝刺速度 +20%\n跑酷速度 +20%\n應感形態期間，每次以重擊擊殺可使穿刺傷害 +10%，最高 +300%"
+    },
+    "destreza::Weighted Impetus": {
+      "name": "沉重推力",
+      "description": "基礎傷害 +50\n以重擊擊殺時：重擊蓄力速度 +100%，持續 8 秒",
+      "variantValues": {
+        "技巧之劍": "基礎傷害 +50\n以重擊擊殺時：重擊蓄力速度 +100%，持續 8 秒",
+        "技巧之劍 Prime": "基礎傷害 +40\n以重擊擊殺時：重擊蓄力速度 +100%，持續 8 秒"
+      }
+    },
+    "destreza::Piercing Stature": {
+      "name": "穿刺架式",
+      "description": "基礎傷害 +50\n觸發穿刺狀態時：觸發機率 +20%，持續 6 秒，最多疊加 5 層",
+      "variantValues": {
+        "技巧之劍": "基礎傷害 +50\n觸發穿刺狀態時：觸發機率 +20%，持續 6 秒，最多疊加 5 層",
+        "技巧之劍 Prime": "基礎傷害 +40\n觸發穿刺狀態時：觸發機率 +20%，持續 6 秒，最多疊加 5 層"
+      }
+    },
+    "destreza::Orokin Reach": {
+      "name": "奧羅金延伸",
+      "description": "範圍 +1"
+    },
+    "destreza::Overhand": {
+      "name": "高位揮擊",
+      "description": "基礎重擊效率設為 30%"
+    },
+    "destreza::Adept Reflexes": {
+      "name": "熟練反射",
+      "description": "初始連擊 +20"
+    },
+    "destreza::Absolute Dominion": {
+      "name": "絕對支配",
+      "description": "基礎觸發機率 +20%",
+      "variantValues": {
+        "技巧之劍": "基礎觸發機率 +20%",
+        "技巧之劍 Prime": "基礎觸發機率 +16%"
+      }
+    },
+    "destreza::Critical Forte": {
+      "name": "暴擊強音",
+      "description": "基礎暴擊倍率 +1.2 倍",
+      "variantValues": {
+        "技巧之劍": "基礎暴擊倍率 +1.2 倍",
+        "技巧之劍 Prime": "基礎暴擊倍率 +0.6 倍"
+      }
+    },
+    "destreza::Decisive Stature": {
+      "name": "決勝架式",
+      "description": "基礎暴擊機率提升目前觸發機率的 25%，最高提升 35%"
+    },
+    "dual-ichor::Incarnon Form": {
+      "name": "應感形態",
+      "description": "連擊倍率達到 6 倍後施放重擊，啟用應感形態。\n擊殺會產生毒素傷害區域。\n近戰傷害 +100%\n衝刺速度 +20%\n旋身飛躍 +20%"
+    },
+    "dual-ichor::Alchemist's Wrath": {
+      "name": "煉金術士之怒",
+      "description": "基礎傷害 +90\n攻擊受毒素狀態影響的目標時，連擊數額外 +5"
+    },
+    "dual-ichor::Ronin's Rush": {
+      "name": "浪人突進",
+      "description": "基礎傷害 +90\n中立連段最後一擊命中目標時：攻擊速度 +30%，持續 33 秒"
+    },
+    "dual-ichor::Orokin Reach": {
+      "name": "奧羅金延伸",
+      "description": "範圍 +0.6"
+    },
+    "dual-ichor::Resolute Force": {
+      "name": "堅毅之力",
+      "description": "連擊持續時間 +7 秒"
+    },
+    "dual-ichor::Swift Break": {
+      "name": "迅捷破勢",
+      "description": "重擊蓄力速度 +100%"
+    },
+    "dual-ichor::Absolute Valor": {
+      "name": "絕對英勇",
+      "description": "基礎觸發機率 +34%"
+    },
+    "dual-ichor::Poison Parasite": {
+      "name": "劇毒寄生",
+      "description": "擊殺帶有至少 3 層毒素狀態的敵人時：每秒恢復 33 生命值，持續 9 秒"
+    },
+    "dual-ichor::Universal Readiness": {
+      "name": "全面備戰",
+      "description": "拾取彈藥時：近戰連擊數 +5"
+    },
+    "furax::Incarnon Form": {
+      "name": "應感形態",
+      "description": "連擊倍率達到 6 倍後施放重擊，啟用應感形態。\n應感形態提升重型震地攻擊效率，且重型震地攻擊會留下火焰傷害區域。\n近戰傷害 +100%\n衝刺速度 +25%\n旋身飛躍 +25%"
+    },
+    "furax::Swordsman's Flourish": {
+      "name": "劍士華舞",
+      "description": "基礎傷害 +110\n裝備近戰武器時：連擊數獲取機率 +100%",
+      "variantValues": {
+        "弗拉克斯": "基礎傷害 +110\n裝備近戰武器時：連擊數獲取機率 +100%",
+        "MK1-弗拉克斯": "基礎傷害 +100\n裝備近戰武器時：連擊數獲取機率 +100%",
+        "弗拉克斯 亡魂": "基礎傷害 +65\n裝備近戰武器時：連擊數獲取機率 +100%"
+      }
+    },
+    "furax::Kill Joy": {
+      "name": "殺戮之樂",
+      "description": "基礎傷害 +90\n6 公尺內每名敵人使攻擊速度 +10%，最多疊加 5 層",
+      "variantValues": {
+        "弗拉克斯": "基礎傷害 +90\n6 公尺內每名敵人使攻擊速度 +10%，最多疊加 5 層",
+        "MK1-弗拉克斯": "基礎傷害 +80\n6 公尺內每名敵人使攻擊速度 +10%，最多疊加 5 層",
+        "弗拉克斯 亡魂": "基礎傷害 +55\n6 公尺內每名敵人使攻擊速度 +10%，最多疊加 5 層"
+      }
+    },
+    "furax::Moonrise Velocity": {
+      "name": "月升迅勢",
+      "description": "範圍 +1"
+    },
+    "furax::Overhand": {
+      "name": "高位揮擊",
+      "description": "基礎重擊效率設為 20%"
+    },
+    "furax::Standoff": {
+      "name": "對峙",
+      "description": "收起武器時，連擊計時暫停"
+    },
+    "furax::Flashing Bleed": {
+      "name": "閃擊放血",
+      "description": "觸發衝擊狀態效果時，有 40% 機率額外觸發切割狀態"
+    },
+    "furax::Kinetic Killer": {
+      "name": "動能殺手",
+      "description": "滑行攻擊的基礎暴擊倍率提升至 4 倍"
+    },
+    "furax::Absolute Dominion": {
+      "name": "絕對支配",
+      "description": "基礎觸發機率 +24%",
+      "variantValues": {
+        "弗拉克斯": "基礎觸發機率 +24%",
+        "MK1-弗拉克斯": "基礎觸發機率 +22%",
+        "弗拉克斯 亡魂": "基礎觸發機率 +14%"
+      }
+    },
+    "hate::Incarnon Form": {
+      "name": "應感形態",
+      "description": "連擊倍率達到 6 倍後施放重擊，啟用應感形態。\n前進與中立連段會植入爆炸刀刃。\n近戰傷害 +100%\n衝刺速度 +20%\n跑酷速度 +20%"
+    },
+    "hate::Swordsman's Flourish": {
+      "name": "劍士華舞",
+      "description": "基礎傷害 +30\n裝備近戰武器時：連擊數獲取機率 +100%"
+    },
+    "hate::Stalker's Legacy": {
+      "name": "追獵者遺產",
+      "description": "基礎傷害 +30\n同時裝備恐懼與絕望時：初始連擊 +30"
+    },
+    "hate::Orokin Reach": {
+      "name": "奧羅金延伸",
+      "description": "範圍 +0.8"
+    },
+    "hate::Swift Break": {
+      "name": "迅捷破勢",
+      "description": "重擊蓄力速度 +60%"
+    },
+    "hate::Resolute Force": {
+      "name": "堅毅之力",
+      "description": "連擊持續時間 +10 秒"
+    },
+    "hate::Absolute Valor": {
+      "name": "絕對英勇",
+      "description": "基礎暴擊機率 +10%"
+    },
+    "hate::Absolute Dominion": {
+      "name": "絕對支配",
+      "description": "基礎觸發機率 +20%"
+    },
+    "hate::Subtle Force": {
+      "name": "精微之力",
+      "description": "基礎暴擊機率 +6%\n基礎觸發機率 +10%"
+    },
+    "innodem::Incarnon Form": {
+      "name": "應感形態",
+      "description": "連擊倍率達到 5 倍後施放重擊，啟用應感形態。\n瞄準滑翔時的滯空攻擊會發射輻射傷害投射物，處決則會提高傷害減免。\n範圍 +3\n攻擊速度 +40%"
+    },
+    "innodem::Orokin Reach": {
+      "name": "奧羅金延伸",
+      "description": "範圍 +0.5"
+    },
+    "innodem::Bladed Harmony": {
+      "name": "刃舞和鳴",
+      "description": "攻擊速度 +20%"
+    },
+    "innodem::Striking Swiftness": {
+      "name": "出擊迅捷",
+      "description": "衝刺速度 +30%"
+    },
+    "innodem::Hawk Momentum": {
+      "name": "鷹隼動能",
+      "description": "每連續滑行 10 公尺，連擊數 +5"
+    },
+    "innodem::Skyborne Hunter": {
+      "name": "凌空獵手",
+      "description": "滯空近戰攻擊範圍 +0.5 公尺"
+    },
+    "innodem::Blade Twister": {
+      "name": "刀刃旋風",
+      "description": "處決傷害 +60%"
+    },
+    "innodem::Incarnon Imago": {
+      "name": "應感意象",
+      "description": "連擊倍率達到 3 倍後施放重擊，啟用應感形態"
+    },
+    "innodem::Swooping Lunge": {
+      "name": "飛撲突刺",
+      "description": "以滯空近戰攻擊擊殺時：近戰傷害 +50%，持續 10 秒，最多疊加 3 層"
+    },
+    "innodem::Protracted Execution": {
+      "name": "延長處決",
+      "description": "施放處決時：連擊數 +20"
+    },
+    "innodem::Blood Anointed": {
+      "name": "鮮血祝聖",
+      "description": "施放處決時：重擊效率 +40%，持續 40 秒"
+    },
+    "innodem::Stunning Brutality": {
+      "name": "震懾猛擊",
+      "description": "施放處決時：震懾 10 公尺範圍內已警覺的敵人"
+    },
+    "innodem::Armed Inspiration": {
+      "name": "武裝啟發",
+      "description": "拾取彈藥時：近戰連擊數 +5"
+    },
+    "magistar::Incarnon Form": {
+      "name": "應感形態",
+      "description": "連擊倍率達到 6 倍後施放重擊，啟用應感形態。\n應感形態提升初始連擊與重擊蓄力速度。\n近戰傷害 +100%\n初始連擊 +30\n重擊蓄力速度 +50%\n衝刺速度 +10%\n旋身飛躍 +10%"
+    },
+    "magistar::Crushing Verdict": {
+      "name": "粉碎裁決",
+      "description": "基礎傷害 +100\n引導型技能啟用時：穿透係數 +40%",
+      "variantValues": {
+        "執法者": "基礎傷害 +100\n引導型技能啟用時：穿透係數 +40%",
+        "聖潔 執法者": "基礎傷害 +20\n引導型技能啟用時：穿透係數 +40%"
+      }
+    },
+    "magistar::Edge Of Justice": {
+      "name": "正義鋒刃",
+      "description": "基礎傷害 +100\n裝備近戰武器時：攻擊速度 +40%",
+      "variantValues": {
+        "執法者": "基礎傷害 +100\n裝備近戰武器時：攻擊速度 +40%",
+        "聖潔 執法者": "基礎傷害 +20\n裝備近戰武器時：攻擊速度 +40%"
+      }
+    },
+    "magistar::Seismic Slam": {
+      "name": "震地猛擊",
+      "description": "震地攻擊範圍 +100%"
+    },
+    "magistar::Orokin Reach": {
+      "name": "奧羅金延伸",
+      "description": "範圍 +1.4"
+    },
+    "magistar::Swift Break": {
+      "name": "迅捷破勢",
+      "description": "重擊蓄力速度 +30%"
+    },
+    "magistar::Flashing Bleed": {
+      "name": "閃擊放血",
+      "description": "觸發衝擊狀態效果時，有 50% 機率額外觸發切割狀態"
+    },
+    "magistar::Subtle Force": {
+      "name": "精微之力",
+      "description": "基礎暴擊機率 +8%\n基礎觸發機率 +8%"
+    },
+    "magistar::Critical Parallel": {
+      "name": "臨界平行",
+      "description": "基礎暴擊機率 +16%\n基礎暴擊倍率 +1 倍",
+      "variantValues": {
+        "執法者": "基礎暴擊機率 +16%\n基礎暴擊倍率 +1 倍",
+        "聖潔 執法者": "基礎暴擊機率 +12%\n基礎暴擊倍率 +0.2 倍"
+      }
+    },
+    "nami-solo::Incarnon Form": {
+      "name": "應感形態",
+      "description": "連擊倍率達到 6 倍後施放重擊，啟用應感形態。\n大幅提升攻擊範圍。\n範圍 +3\n近戰傷害 +100%\n衝刺速度 +20%\n跑酷速度 +20%"
+    },
+    "nami-solo::Brigand's Frenzy": {
+      "name": "強盜狂熱",
+      "description": "基礎傷害 +80\n切換至此武器時：攻擊速度 +30%，持續 4 秒"
+    },
+    "nami-solo::Master's Flourish": {
+      "name": "大師華彩",
+      "description": "基礎傷害 +80\n以處決擊殺時：每秒恢復 40 生命值，持續 10 秒"
+    },
+    "nami-solo::Lone Blade": {
+      "name": "孤刃",
+      "description": "裝備近戰武器時：基礎穿透係數 +60%"
+    },
+    "nami-solo::Swift Break": {
+      "name": "迅捷破勢",
+      "description": "重擊蓄力速度 +50%"
+    },
+    "nami-solo::Resolute Force": {
+      "name": "堅毅之力",
+      "description": "連擊持續時間 +6 秒"
+    },
+    "nami-solo::Absolute Valor": {
+      "name": "絕對英勇",
+      "description": "基礎暴擊機率 +21%"
+    },
+    "nami-solo::Versatile Creed": {
+      "name": "多能信條",
+      "description": "基礎暴擊機率 +14%\n基礎觸發機率 +14%"
+    },
+    "nami-solo::Absolute Dominion": {
+      "name": "絕對支配",
+      "description": "基礎觸發機率 +30%"
+    },
+    "obex::Incarnon Form": {
+      "name": "應感形態",
+      "description": "連擊倍率達到 6 倍後施放重擊，啟用應感形態。\n每次處決命中都會發動大範圍攻擊。\n近戰傷害 +100%\n衝刺速度 +20%\n跑酷速度 +20%"
+    },
+    "obex::Balanced Stagger": {
+      "name": "均衡踉蹌",
+      "description": "基礎傷害 +50\n中立連段命中時，有 20% 機率震懾敵人並使其可被處決",
+      "variantValues": {
+        "奧比克斯": "基礎傷害 +50\n中立連段命中時，有 20% 機率震懾敵人並使其可被處決",
+        "棱晶 奧比克斯": "基礎傷害 +10\n中立連段命中時，有 20% 機率震懾敵人並使其可被處決"
+      }
+    },
+    "obex::Armored Finisher": {
+      "name": "裝甲處決",
+      "description": "基礎傷害 +50\n護甲高於 450 時：處決傷害 +80%",
+      "variantValues": {
+        "奧比克斯": "基礎傷害 +50\n護甲高於 450 時：處決傷害 +80%",
+        "棱晶 奧比克斯": "基礎傷害 +10\n護甲高於 450 時：處決傷害 +80%"
+      }
+    },
+    "obex::Rapid Conclusion": {
+      "name": "迅捷終結",
+      "description": "以處決擊殺時：跑酷速度 +2.5%，最多疊加 16 層"
+    },
+    "obex::Orokin Reach": {
+      "name": "奧羅金延伸",
+      "description": "範圍 +1.2"
+    },
+    "obex::Standoff": {
+      "name": "對峙",
+      "description": "收起武器時，連擊計時暫停"
+    },
+    "obex::Subtle Force": {
+      "name": "精微之力",
+      "description": "基礎暴擊機率 +10%\n基礎觸發機率 +18%",
+      "variantValues": {
+        "奧比克斯": "基礎暴擊機率 +10%\n基礎觸發機率 +18%",
+        "棱晶 奧比克斯": "基礎暴擊機率 +10%\n基礎觸發機率 +12%"
+      }
+    },
+    "obex::Absolute Dominion": {
+      "name": "絕對支配",
+      "description": "基礎觸發機率 +28%",
+      "variantValues": {
+        "奧比克斯": "基礎觸發機率 +28%",
+        "棱晶 奧比克斯": "基礎觸發機率 +20%"
+      }
+    },
+    "obex::Critical Coefficient": {
+      "name": "暴擊係數",
+      "description": "基礎暴擊倍率 +0.6 倍，應感形態下效果加倍"
+    },
+    "okina::Incarnon Form": {
+      "name": "應感形態",
+      "description": "連擊倍率達到 6 倍後施放重擊，啟用應感形態。\n擊殺會生成追蹤敵人的幽靈匕首，並施加最大層數的冰凍狀態。\n近戰傷害 +100%\n衝刺速度 +20%\n跑酷速度 +20%"
+    },
+    "okina::Seeing Red": {
+      "name": "殺紅眼",
+      "description": "基礎傷害 +60\n攻擊受切割狀態影響的目標時，連擊數額外 +5",
+      "variantValues": {
+        "翁": "基礎傷害 +60\n攻擊受切割狀態影響的目標時，連擊數額外 +5",
+        "翁 Prime": "基礎傷害 +20\n攻擊受切割狀態影響的目標時，連擊數額外 +5"
+      }
+    },
+    "okina::Synergist Surety": {
+      "name": "協同保障",
+      "description": "基礎傷害 +60\n暴擊時：狀態效果傷害 +8%，持續 10 秒，最多疊加 5 層",
+      "variantValues": {
+        "翁": "基礎傷害 +60\n暴擊時：狀態效果傷害 +8%，持續 10 秒，最多疊加 5 層",
+        "翁 Prime": "基礎傷害 +20\n暴擊時：狀態效果傷害 +6%，持續 10 秒，最多疊加 5 層"
+      }
+    },
+    "okina::Orokin Reach": {
+      "name": "奧羅金延伸",
+      "description": "範圍 +1"
+    },
+    "okina::Standoff": {
+      "name": "對峙",
+      "description": "收起武器時，連擊計時暫停"
+    },
+    "okina::Swordsman's Celerity": {
+      "name": "劍士迅捷",
+      "description": "移動速度 +30%"
+    },
+    "okina::Commodore's Fortune": {
+      "name": "准將沐福",
+      "description": "基礎暴擊機率 +12%",
+      "variantValues": {
+        "翁": "基礎暴擊機率 +12%",
+        "翁 Prime": "基礎暴擊機率 +6%"
+      }
+    },
+    "okina::Alchemy of War": {
+      "name": "戰爭鍊金",
+      "description": "基礎觸發機率 +16%\n狀態效果持續時間 +25%",
+      "variantValues": {
+        "翁": "基礎觸發機率 +16%\n狀態效果持續時間 +25%",
+        "翁 Prime": "基礎觸發機率 +12%\n狀態效果持續時間 +25%"
+      }
+    },
+    "okina::Survivor's Edge": {
+      "name": "生還占優",
+      "description": "基礎暴擊機率 +6%\n基礎觸發機率 +10%",
+      "variantValues": {
+        "翁": "基礎暴擊機率 +6%\n基礎觸發機率 +10%",
+        "翁 Prime": "基礎暴擊機率 +2%\n基礎觸發機率 +8%"
+      }
+    },
+    "praedos::Incarnon Form": {
+      "name": "應感形態",
+      "description": "連擊倍率達到 5 倍後施放重擊，啟用應感形態。\n範圍 +3\n攻擊速度 +40%"
+    },
+    "praedos::Seismic Slam": {
+      "name": "震地猛擊",
+      "description": "震地攻擊範圍 +50%"
+    },
+    "praedos::Whirling Flurry": {
+      "name": "迴旋疾風",
+      "description": "攻擊速度 +20%"
+    },
+    "praedos::Drifting Grace": {
+      "name": "漂移之姿",
+      "description": "衝刺速度 +20%\n滑行距離 +20%"
+    },
+    "praedos::Shockwave Synergy": {
+      "name": "震波協同",
+      "description": "震地攻擊每命中一名敵人，連擊數 +4"
+    },
+    "praedos::Reaching Lunge": {
+      "name": "延伸突刺",
+      "description": "滑行攻擊範圍 +1.5 公尺"
+    },
+    "praedos::Adept Reflexes": {
+      "name": "熟練反射",
+      "description": "初始連擊 +20"
+    },
+    "praedos::Swift Transmute": {
+      "name": "迅速轉換",
+      "description": "連擊倍率達到 3 倍後施放重擊，啟用應感形態"
+    },
+    "praedos::Evolved Ascension": {
+      "name": "進化躍升",
+      "description": "跑酷速度 +30%"
+    },
+    "praedos::Vaulting Leap": {
+      "name": "飛空跳躍",
+      "description": "二段跳高度 +100%"
+    },
+    "praedos::Transfigured Momentum": {
+      "name": "變形動能",
+      "description": "以滑行攻擊擊殺時：重擊效率 +50%，持續 30 秒"
+    },
+    "praedos::Kinetic Harmony": {
+      "name": "動能協調",
+      "description": "重擊蓄力速度 +100%"
+    },
+    "praedos::Universal Readiness": {
+      "name": "全面備戰",
+      "description": "拾取彈藥時：近戰連擊數 +5"
+    },
+    "ruvox::Incarnon Form": {
+      "name": "應感形態",
+      "description": "連擊倍率達到 6 倍後施放重擊，啟用應感形態。\n重型震地攻擊會以虛空尖刺刺穿附近敵人。\n範圍 +3\n最大近戰攻擊速度 -35%\n100% 衝擊傷害轉換為穿刺傷害"
+    },
+    "ruvox::Orokin Reach": {
+      "name": "奧羅金延伸",
+      "description": "範圍 +1"
+    },
+    "ruvox::Lethal Impetus": {
+      "name": "致命推進",
+      "description": "擊殺時：攻擊速度 +15%，持續 15 秒，最多疊加 3 層"
+    },
+    "ruvox::Gathering Momentum": {
+      "name": "蓄勢動能",
+      "description": "每 1 倍近戰連擊倍率使移動速度 +5%"
+    },
+    "ruvox::Shockwave Synergy": {
+      "name": "震波協同",
+      "description": "震地攻擊每命中一名敵人，連擊數 +4"
+    },
+    "ruvox::Seismic Slam": {
+      "name": "震地猛擊",
+      "description": "震地攻擊範圍 +60%"
+    },
+    "ruvox::Adept Reflexes": {
+      "name": "熟練反射",
+      "description": "初始連擊 +20"
+    },
+    "ruvox::Swift Transmute": {
+      "name": "迅速轉換",
+      "description": "連擊倍率達到 3 倍後施放重擊，啟用應感形態"
+    },
+    "ruvox::Ternary Vault": {
+      "name": "三段騰躍",
+      "description": "滯空跳躍次數 +1"
+    },
+    "ruvox::Inspiring Execution": {
+      "name": "激勵處決",
+      "description": "施放處決時：連擊數獲取機率 +30%，持續 20 秒"
+    },
+    "ruvox::Brutal Efficiency": {
+      "name": "殘暴效率",
+      "description": "同時刺穿至少 5 名敵人時：重擊效率 +40%，持續 20 秒"
+    },
+    "ruvox::Vulnerability Serum": {
+      "name": "弱點血清",
+      "description": "被刺穿的敵人受到狀態效果的機率 +35%"
+    },
+    "ruvox::Permanent Perforation": {
+      "name": "永久穿孔",
+      "description": "敵人被刺穿期間承受 5 層穿刺狀態"
+    },
+    "sibear::Incarnon Form": {
+      "name": "應感形態",
+      "description": "連擊倍率達到 6 倍後施放重擊，啟用應感形態。\n重型震地攻擊會產生冰凍爆炸範圍。\n近戰傷害 +100%\n重擊蓄力速度 +50%\n衝刺速度 +10%\n跑酷速度 +10%"
+    },
+    "sibear::Master's Shatter": {
+      "name": "大師碎擊",
+      "description": "基礎傷害 +20\n攻擊受冰凍狀態影響的目標時，連擊數額外 +10"
+    },
+    "sibear::Thane's Wrath": {
+      "name": "領主之怒",
+      "description": "基礎傷害 +20\n護甲高於 450 時：基礎傷害 +40"
+    },
+    "sibear::Orokin Reach": {
+      "name": "奧羅金延伸",
+      "description": "範圍 +1"
+    },
+    "sibear::Kinetic Harmony": {
+      "name": "動能協調",
+      "description": "重擊蓄力速度 +60%"
+    },
+    "sibear::Resolute Force": {
+      "name": "堅毅之力",
+      "description": "連擊持續時間 +6 秒"
+    },
+    "sibear::Mounting Avalanche": {
+      "name": "雪崩累積",
+      "description": "擊殺帶有至少 3 層冰凍狀態的敵人時：初始連擊 +15，持續 10 秒，最多疊加 4 層"
+    },
+    "sibear::Absolute Valor": {
+      "name": "絕對英勇",
+      "description": "基礎暴擊機率 +25%"
+    },
+    "sibear::Red Right Hand": {
+      "name": "血色右手",
+      "description": "裝備主要武器後首次攻擊時：基礎暴擊倍率 +2 倍"
+    },
+    "skana::Incarnon Form": {
+      "name": "應感形態",
+      "description": "連擊倍率達到 6 倍後施放重擊，啟用應感形態。\n進入應感形態及完成處決攻擊後，會震懾附近敵人。\n近戰傷害 +100%\n衝刺速度 +20%\n跑酷速度 +20%"
+    },
+    "skana::Guardian's Promise": {
+      "name": "守護者之諾",
+      "description": "基礎傷害 +100\n擁有過載護盾時：重擊效率 +80%",
+      "variantValues": {
+        "空刃": "基礎傷害 +100\n擁有過載護盾時：重擊效率 +80%",
+        "棱晶 空刃": "基礎傷害 +100\n擁有過載護盾時：重擊效率 +80%",
+        "空刃 Prime": "基礎傷害 +10\n擁有過載護盾時：重擊效率 +80%"
+      }
+    },
+    "skana::Wartime Nerve": {
+      "name": "戰時膽識",
+      "description": "基礎傷害 +90\n攻擊未受傷的敵人時，連擊數 +9",
+      "variantValues": {
+        "空刃": "基礎傷害 +90\n攻擊未受傷的敵人時，連擊數 +9",
+        "棱晶 空刃": "基礎傷害 +90\n攻擊未受傷的敵人時，連擊數 +9",
+        "空刃 Prime": "基礎傷害 +10\n攻擊未受傷的敵人時，連擊數 +9"
+      }
+    },
+    "skana::Orokin Reach": {
+      "name": "奧羅金延伸",
+      "description": "範圍 +0.4"
+    },
+    "skana::Resolute Force": {
+      "name": "堅毅之力",
+      "description": "連擊持續時間 +6 秒"
+    },
+    "skana::Swift Break": {
+      "name": "迅捷破勢",
+      "description": "重擊蓄力速度 +50%"
+    },
+    "skana::Survivor's Edge": {
+      "name": "生還占優",
+      "description": "基礎暴擊機率 +12%\n基礎觸發機率 +10%",
+      "variantValues": {
+        "空刃": "基礎暴擊機率 +12%\n基礎觸發機率 +10%",
+        "棱晶 空刃": "基礎暴擊機率 +12%\n基礎觸發機率 +10%",
+        "空刃 Prime": "基礎暴擊機率 +2%\n基礎觸發機率 +4%"
+      }
+    },
+    "skana::Elemental Excess": {
+      "name": "元素盈溢",
+      "description": "基礎觸發機率 +20%",
+      "variantValues": {
+        "空刃": "基礎觸發機率 +20%",
+        "棱晶 空刃": "基礎觸發機率 +20%",
+        "空刃 Prime": "基礎觸發機率 +10%"
+      }
+    },
+    "skana::Absolute Valor": {
+      "name": "絕對英勇",
+      "description": "基礎暴擊機率 +25%",
+      "variantValues": {
+        "空刃": "基礎暴擊機率 +25%",
+        "棱晶 空刃": "基礎暴擊機率 +25%",
+        "空刃 Prime": "基礎暴擊機率 +4%"
+      }
+    },
+    "thalys::Incarnon Form": {
+      "name": "應感形態",
+      "description": "連擊倍率達到 6 倍後施放重擊，啟用應感形態。\n攻擊會在敵人體內植入傷害碎片；每次產生新碎片時，既有碎片會對宿主造成相當於武器傷害 75% 的傷害。\n範圍 +3\n攻擊速度 +40%"
+    },
+    "thalys::Dreadful Reach": {
+      "name": "至死觸及",
+      "description": "武器觸發狀態效果時：範圍 +0.1，持續 8 秒，最多疊加 20 層。"
+    },
+    "thalys::Whirling Flurry": {
+      "name": "迴旋疾風",
+      "description": "攻擊速度 +20%"
+    },
+    "thalys::Raging Drift": {
+      "name": "猛烈漂移",
+      "description": "滑行時攻擊速度 +80%\n滑行距離 +20%"
+    },
+    "thalys::Nimble Scythe": {
+      "name": "靈機鐮刀",
+      "description": "滑行攻擊每命中一名敵人，連擊數 +5。"
+    },
+    "thalys::Echoes of Rage": {
+      "name": "狂怒迴響",
+      "description": "碎片造成傷害時，連擊數 +1。"
+    },
+    "thalys::Adept Reflexes": {
+      "name": "熟練反射",
+      "description": "初始連擊 +20"
+    },
+    "thalys::Swift Transmute": {
+      "name": "迅速轉換",
+      "description": "連擊倍率達到 3 倍後施放重擊，啟用應感形態。"
+    },
+    "thalys::Vaulting Leap": {
+      "name": "飛空跳躍",
+      "description": "跳躍與二段跳高度 +100%"
+    },
+    "thalys::Devastating Mercy": {
+      "name": "縱橫慈悲",
+      "description": "地面處決會擊倒 6 公尺範圍內的敵人。"
+    },
+    "thalys::Explosive Growth": {
+      "name": "爆裂生長",
+      "description": "產生新碎片時，既有碎片會成長，最多 3 次。完全成長的碎片會從宿主體內爆發，造成 2 倍傷害並將其釘在原地。"
+    },
+    "thalys::Chain Shatter": {
+      "name": "連鎖爆裂",
+      "description": "重擊會引爆碎片；爆炸範圍內的其他碎片也會連鎖引爆。"
+    },
+    "thalys::Void Splinters": {
+      "name": "虛空尖屑",
+      "description": "碎片持續時間延長至 30 秒。碎片會成為弱點，受擊時暴擊機率 +100%，但碎片傷害 -50%。"
+    }
+  }
+}
