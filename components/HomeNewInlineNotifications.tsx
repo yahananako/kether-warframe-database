@@ -1,5 +1,6 @@
 "use client";
 
+import { homeNotices, HOME_NOTICE_VERSION } from "../data/homeNotices";
 import { Bell, X } from "lucide-react";
 import { useEffect, useState } from "react";
 
@@ -11,60 +12,9 @@ const NOTICE_STORAGE_KEY = "kether-home-new-notice-read-version";
  * 使用者讀過目前版本後，紅點會消失。
  * 下次公告內容更新，版本改掉，紅點才會重新出現。
  */
-const NOTICES_VERSION = "android-downloader-v2.6.4-2026-09-15";
+const NOTICES_VERSION = HOME_NOTICE_VERSION;
 
-const notices = [
-  {
-    tag: "版本",
-    title: "KETHER V2.6.4 已上線",
-    body: "Android APP 3.0.11 改用系統下載器，加入進度顯示、續接下載與瀏覽器備援。",
-  },
-  {
-    tag: "電波局",
-    title: "12 座情報站各自成頁",
-    body: "循環、虛空商人、裂縫、入侵、突擊、執政官、警報與新聞都能從區塊直接進入完整頁面。",
-  },
-  {
-    tag: "分類",
-    title: "五大裝備頁重新分類",
-    body: "主要、次要、近戰、同伴與曲翼加入清楚的系列篩選與分類標籤。",
-  },
-  {
-    tag: "補齊",
-    title: "同伴與亡骸機甲資料補齊",
-    body: "新增擬狐獸、孤生獸分類，曲翼頁明確列出骨寡婦與虛空魂。",
-  },
-  {
-    tag: "赤毒",
-    title: "21 把赤毒武器補齊",
-    body: "包含 12 把主要、5 把次要、2 把近戰與 2 把曲翼槍，並收錄最新赤毒屍鬼輪鋸。",
-  },
-  {
-    tag: "交易",
-    title: "玄骸拍賣價與連結",
-    body: "查詢會顯示已轉化玄骸的最低線上拍賣價，並直達對應 Warframe Market 拍賣頁。",
-  },
-  {
-    tag: "戰甲",
-    title: "一般戰甲檔案館開放",
-    body: "已收錄 65 位一般戰甲，包含獨立技能、來源、Prime 行情與配裝頁。",
-  },
-  {
-    tag: "Prime",
-    title: "Prime 戰甲獨立成頁",
-    body: "Prime 戰甲已與一般版本分離，保留白金價格、交易網站與個人持有資料。",
-  },
-  {
-    tag: "故事",
-    title: "系列任務故事書",
-    body: "新增六條連續任務航路，可依因果順序讀完覺醒、夢與真相、新世戰爭、扎日曼與虛空前線。",
-  },
-  {
-    tag: "同步",
-    title: "首頁跑馬燈同步更新",
-    body: "首頁動態資訊已更新為戰甲雙版本、故事封面與目前資料庫狀態。",
-  },
-]
+const notices = homeNotices;
 
 export default function HomeNewInlineNotifications() {
   const [open, setOpen] = useState(false);
