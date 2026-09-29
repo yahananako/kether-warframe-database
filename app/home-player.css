@@ -1,4 +1,4 @@
-.kether-mini-player-home {
+body .kether-mini-player.kether-mini-player-home {
   right: 12px !important;
   left: auto !important;
   bottom: 82px !important;
@@ -6,7 +6,11 @@
   max-width: 320px !important;
   transform: none !important;
 }
-.kether-mini-player-home.is-collapsed {
+body .kether-mini-player.kether-mini-player-home.is-collapsed {
+  left: auto !important;
+  right: 0 !important;
+  bottom: 82px !important;
+  transform: none !important;
   width: auto !important;
   max-width: none !important;
   padding: 0 !important;
@@ -27,6 +31,6 @@
   transform: translateX(-3px);
 }
 @media (max-width: 720px) {
-  .kether-mini-player-home { right: 0 !important; left: auto !important; bottom: 106px !important; width: min(320px,calc(100vw - 16px)) !important; transform: none !important; }
-  .kether-mini-player-home.is-collapsed { width: auto !important; }
+  body .kether-mini-player.kether-mini-player-home { right: 0 !important; left: auto !important; bottom: 106px !important; width: min(320px,calc(100vw - 16px)) !important; transform: none !important; }
+  body .kether-mini-player.kether-mini-player-home.is-collapsed { width: auto !important; }
 }
