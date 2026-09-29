@@ -63,9 +63,9 @@ export default function HomeImmersive() {
   const [adminVisible, setAdminVisible] = useState(false);
   const [unread, setUnread] = useState(false);
   const closeRef = useRef<HTMLButtonElement>(null);
-  const triggerRef = useRef<HTMLButtonElement | null>(null);
+  const triggerRef = useRef<HTMLElement | null>(null);
 
-  function open(next: Exclude<Panel, null>, trigger: HTMLButtonElement) {
+  function open(next: Exclude<Panel, null>, trigger: HTMLElement) {
     triggerRef.current = trigger;
     if (next === "notice") {
       try { window.localStorage.setItem(NOTICE_KEY, HOME_NOTICE_VERSION); } catch {}
@@ -118,6 +118,20 @@ export default function HomeImmersive() {
     return () => document.removeEventListener("keydown", onKey);
   }, [panel]);
 
+  useEffect(() => {
+    function dismissMenus(event: PointerEvent) {
+      document.querySelectorAll<HTMLDetailsElement>("[data-home-menu][open]").forEach((menu) => {
+        if (!menu.contains(event.target as Node)) menu.open = false;
+      });
+    }
+    function dismissOnEscape(event: KeyboardEvent) {
+      if (event.key === "Escape") document.querySelectorAll<HTMLDetailsElement>("[data-home-menu][open]").forEach((menu) => { menu.open = false; });
+    }
+    document.addEventListener("pointerdown", dismissMenus);
+    document.addEventListener("keydown", dismissOnEscape);
+    return () => { document.removeEventListener("pointerdown", dismissMenus); document.removeEventListener("keydown", dismissOnEscape); };
+  }, []);
+
   const cards = panel === "catalog" ? categories : panel === "explore" ? explore : panel === "menu" ? [
     ["/", "首頁", "KETHER 入口"],
     ["/search", "資料搜尋", "檢索資料"],
@@ -130,6 +144,7 @@ export default function HomeImmersive() {
     <div className={styles.stage}>
       <svg width="0" height="0" aria-hidden="true" style={{position:'absolute',pointerEvents:'none'}}><defs>{[['home-remove-white','.68',' .91',' .91'],['home-remove-white-active','1','.84','.55']].map(([id,r,g,b])=><filter key={id} id={id} colorInterpolationFilters="sRGB"><feColorMatrix type="matrix" values={`0 0 0 0 ${r} 0 0 0 0 ${g} 0 0 0 0 ${b} -.3333 -.3333 -.3333 0 1`}/><feComposite in2="SourceAlpha" operator="in"/></filter>)}</defs></svg>
       <div className={styles.background} aria-hidden="true">
+        <video autoPlay muted loop playsInline preload="metadata" poster="/home-hero-banner.png"><source src="/kether-home-motion.mp4" type="video/mp4" /></video>
         <HomeCinema />
         <div className={styles.aurora}/><div className={styles.lightShafts}/>
         <div className={styles.grid} />
@@ -145,7 +160,7 @@ export default function HomeImmersive() {
           </Link>
           <div className={styles.topActions}>
             <button type="button" className={`${styles.control} ${styles.icon}`} onClick={(e) => open("menu", e.currentTarget)} aria-label="開啟選單">☰</button>
-            <button type="button" className={`${styles.control} ${styles.icon}`} onClick={(e) => open("notice", e.currentTarget)} aria-label="開啟通知"><Bell size={23}/>{unread && <span className={styles.unread} aria-hidden="true" />}</button>
+            <a href="/notifications" className={`${styles.control} ${styles.icon}`} onClick={(e) => { e.preventDefault(); open("notice", e.currentTarget); }} aria-label="開啟通知"><Bell size={23}/>{unread && <span className={styles.unread} aria-hidden="true" />}</a>
             <div className={styles.auth}><HomeAuthMini /></div>
           </div>
         </header>
@@ -168,7 +183,7 @@ export default function HomeImmersive() {
               ))}
             </div>
             <div className={styles.actions}>
-              {([['catalog','資料庫分類',categories],['explore','故事與氏族',explore],['intel','電波情報',intel]] as const).map(([key,label,items])=><div key={key} className={styles.actionWrap} onMouseEnter={(event)=>{const menu=event.currentTarget.querySelector<HTMLElement>('nav');const rect=event.currentTarget.getBoundingClientRect();if(menu){menu.style.left=`${Math.max(14,Math.min(rect.left,window.innerWidth-Math.min(520,window.innerWidth-28)-14))}px`;menu.style.bottom=`${window.innerHeight-rect.top+8}px`;}}}><button type="button" className={styles.control} aria-haspopup="dialog" onClick={(e)=>open(key,e.currentTarget)}>{label}</button><nav className={styles.actionMenu} aria-label={label+'選單'}><div className={styles.actionMenuInner} style={key==='catalog'?undefined:{gridTemplateColumns:`repeat(${items.length},minmax(0,1fr))`}}>{items.map(item=><NavCard key={item[0]} item={item}/>)}</div></nav></div>)}
+              {([['catalog','資料庫分類',categories],['explore','故事與氏族',explore],['intel','電波情報',intel]] as const).map(([key,label,items])=><details key={key} data-home-menu className={styles.actionWrap} onMouseEnter={(e)=>{if(window.matchMedia('(hover: hover) and (pointer: fine)').matches)e.currentTarget.open=true;}} onMouseLeave={(e)=>{if(window.matchMedia('(hover: hover) and (pointer: fine)').matches)e.currentTarget.open=false;}}><summary className={styles.control} onClick={(e)=>{if(window.matchMedia('(hover: hover) and (pointer: fine)').matches){e.preventDefault();(e.currentTarget.parentElement as HTMLDetailsElement).open=true;}}}>{label}</summary><nav className={styles.actionMenu} aria-label={label+'選單'}><div className={styles.actionMenuInner} style={key==='catalog'?undefined:{gridTemplateColumns:`repeat(${items.length},minmax(0,1fr))`}}>{items.map(item=><NavCard key={item[0]} item={item}/>)}</div></nav></details>)}
             </div>
           </section>
 
@@ -187,7 +202,8 @@ export default function HomeImmersive() {
         </main>
 
         <footer className={styles.footer}>
-          <span><b>ヤハ奈々子、羊咩、凱洛</b> · KETHER OF PARADISO</span>
+          <span className={styles.credit}><b>ヤハ奈々子、羊咩、凱洛</b> · 共同開發</span>
+          <a className={styles.siteUrl} href="https://kether-warframe-database.vercel.app/">kether-warframe-database.vercel.app</a>
           <button type="button" onClick={(e) => open("about", e.currentTarget)}>版本與資料來源</button>
         </footer>
       </div>

@@ -1,0 +1,32 @@
+.kether-mini-player-home {
+  right: 12px !important;
+  left: auto !important;
+  bottom: 82px !important;
+  width: min(320px, calc(100vw - 28px)) !important;
+  max-width: 320px !important;
+  transform: none !important;
+}
+.kether-mini-player-home.is-collapsed {
+  width: auto !important;
+  max-width: none !important;
+  padding: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+}
+.kether-mini-player-home .kether-mini-bubble {
+  width: 46px;
+  height: 46px;
+  border-radius: 14px 0 0 14px;
+  box-shadow: 0 0 20px rgba(156,231,229,.55);
+}
+.kether-mini-player-home .kether-mini-bubble:hover,
+.kether-mini-player-home .kether-mini-bubble:focus-visible {
+  box-shadow: 0 0 29px rgba(156,231,229,.85);
+  transform: translateX(-3px);
+}
+@media (max-width: 720px) {
+  .kether-mini-player-home { right: 0 !important; left: auto !important; bottom: 106px !important; width: min(320px,calc(100vw - 16px)) !important; transform: none !important; }
+  .kether-mini-player-home.is-collapsed { width: auto !important; }
+}
