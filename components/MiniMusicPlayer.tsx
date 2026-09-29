@@ -377,7 +377,7 @@ export default function MiniMusicPlayer() {
   if (!mounted) return null;
 
   return createPortal(
-    <aside className={`kether-mini-player ${collapsed ? "is-collapsed" : ""}`}>
+    <aside className={`kether-mini-player ${pathname === "/" ? "kether-mini-player-home" : ""} ${collapsed ? "is-collapsed" : ""}`} aria-label="小希電台播放器">
       {collapsed ? (
         <div className="kether-mini-collapsed-row">
           {resumeNeeded ? (

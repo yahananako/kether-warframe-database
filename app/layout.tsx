@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import "./home-player.css";
 import MiniMusicPlayer from "../components/MiniMusicPlayer";
 import VisualEditorBridge from "../components/VisualEditorBridge";
 
