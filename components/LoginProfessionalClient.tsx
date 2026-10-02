@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import {
   BadgeCheck,
   Check,
@@ -16,6 +17,8 @@ import { useSearchParams } from "next/navigation";
 import HomeNewInlineMenu from "./HomeNewInlineMenu";
 import HomeNewInlineNotifications from "./HomeNewInlineNotifications";
 import HomeNewInlineSearch from "./HomeNewInlineSearch";
+import HomeCinema from "./HomeCinema";
+import HomeTicker from "./HomeTicker";
 import styles from "./LoginProfessionalClient.module.css";
 
 const POLICY_URL =
@@ -43,6 +46,7 @@ export default function LoginProfessionalClient() {
   const [accepted, setAccepted] = useState(false);
   const [checkingSession, setCheckingSession] = useState(true);
   const [notice, setNotice] = useState<string | null>(null);
+  const [mobileView, setMobileView] = useState<"policy" | "auth">("policy");
   const [readSections, setReadSections] = useState<Set<PolicySection>>(
     () => new Set(),
   );
@@ -55,6 +59,10 @@ export default function LoginProfessionalClient() {
     () => `已閱讀 ${readSections.size} / ${POLICY_SECTIONS.length}`,
     [readSections.size],
   );
+
+  useEffect(() => {
+    if (allRead) setMobileView("auth");
+  }, [allRead]);
 
   useEffect(() => {
     let active = true;
@@ -111,10 +119,8 @@ export default function LoginProfessionalClient() {
 
     if (!allRead) {
       setNotice("請先逐一展開並閱讀右側全部 5 項登入前資料告知。");
-      policyCardRef.current?.scrollIntoView({
-        behavior: "smooth",
-        block: "center",
-      });
+      setMobileView("policy");
+      policyCardRef.current?.querySelector("summary")?.focus();
       return;
     }
 
@@ -122,16 +128,27 @@ export default function LoginProfessionalClient() {
   }
 
   return (
-    <main className="home-new-page">
-      <div className="home-new-shell">
+    <main className={styles.stage}>
+      <div className={styles.background} aria-hidden="true">
+        <video autoPlay muted loop playsInline preload="metadata" poster="/home-hero-banner.png">
+          <source src="/kether-home-motion.mp4" type="video/mp4" />
+        </video>
+        <HomeCinema />
+        <div className={styles.aurora} />
+        <div className={styles.lightShafts} />
+        <div className={styles.grid} />
+        <div className={styles.beam} />
+      </div>
+      <div className={styles.frame}>
         <section className={styles.topShell} aria-label="KETHER 登入頁導覽列">
           <div className="home-new-topbar">
             <div className="home-new-brand">
-              <HomeNewInlineMenu />
-              <Link href="/">KETHER</Link>
+              <Image src="/kether-clan-logo.png" width={46} height={46} alt="" className={styles.crest} />
+              <Link href="/" className={styles.brand}>KETHER<small>OF PARADISO · WARFRAME DATABASE</small></Link>
             </div>
 
             <div className="home-new-hero-actions" aria-label="登入頁快捷入口">
+              <HomeNewInlineMenu />
               <HomeNewInlineSearch />
               <HomeNewInlineNotifications />
 
@@ -147,8 +164,18 @@ export default function LoginProfessionalClient() {
             </div>
           </div>
         </section>
+        <HomeTicker onNotice={() => {
+          const bell = document.querySelector<HTMLButtonElement>(".home-new-bell-button");
+          if (bell?.getAttribute("aria-expanded") === "false") bell.click();
+          bell?.focus();
+        }} />
 
-        <section className={styles.loginStage}>
+        <div className={styles.mobileTabs} role="group" aria-label="登入步驟">
+          <button type="button" aria-pressed={mobileView === "policy"} onClick={() => setMobileView("policy")}>① 閱讀資料告知 <span>{progressText}</span></button>
+          <button type="button" aria-pressed={mobileView === "auth"} onClick={() => setMobileView("auth")}>② Discord 登入</button>
+        </div>
+
+        <section className={styles.loginStage} data-view={mobileView}>
           <article className={styles.authCard}>
             <div className={styles.authHeader}>
               <div className={styles.authIcon}>
@@ -384,16 +411,14 @@ export default function LoginProfessionalClient() {
               查看完整《免責聲明、資料使用範圍暨隱私權政策》
               <ExternalLink size={15} />
             </a>
+            <button type="button" className={styles.toLogin} onClick={() => setMobileView("auth")}>前往登入 →</button>
           </article>
         </section>
 
-        <footer className="home-new-footer">
-          <span className="home-new-footer-url">
-            https://kether-warframe-database.vercel.app
-          </span>
-          <span className="home-new-footer-credit">
-            builder by ヤハ奈々子、羊咩、凱洛
-          </span>
+        <footer className={styles.footer}>
+          <span><b>ヤハ奈々子、羊咩、凱洛</b> · 共同開發</span>
+          <a href="https://kether-warframe-database.vercel.app/">kether-warframe-database.vercel.app</a>
+          <span>MEMBER AUTHORIZATION</span>
         </footer>
       </div>
     </main>
