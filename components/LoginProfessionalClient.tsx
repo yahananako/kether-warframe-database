@@ -130,8 +130,8 @@ export default function LoginProfessionalClient() {
   return (
     <main className={styles.stage}>
       <div className={styles.background} aria-hidden="true">
-        <video autoPlay muted loop playsInline preload="metadata" poster="/home-hero-banner.png">
-          <source src="/kether-home-motion.mp4" type="video/mp4" />
+        <video autoPlay muted loop playsInline preload="metadata" poster="/kether-cinema-iceblade-v1.webp">
+          <source src="/kether-cinema-iceblade-v1.mp4" type="video/mp4" />
         </video>
         <HomeCinema />
         <div className={styles.aurora} />

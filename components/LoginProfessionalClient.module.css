@@ -2,7 +2,7 @@
 .stage *{box-sizing:border-box}
 .stage button,.stage summary{cursor:pointer}
 .stage button:focus-visible,.stage a:focus-visible,.stage input:focus-visible,.stage summary:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}
-.background{position:absolute;z-index:0;inset:0;overflow:hidden;pointer-events:none;background:#0b1620 url('/home-hero-banner.png') 33% center/cover no-repeat}
+.background{position:absolute;z-index:0;inset:0;overflow:hidden;pointer-events:none;background:#0b1620 url('/kether-cinema-iceblade-v1.webp') 33% center/cover no-repeat}
 .background video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:33% center;filter:contrast(1.15) saturate(.65)}
 .background:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#06111dc4,#06111d9c 55%,#081421a6),linear-gradient(0deg,#050b1580,transparent 40%,#050b1566)}
 .aurora{position:absolute;z-index:2;inset:-20%;filter:blur(28px);opacity:.8;background:radial-gradient(ellipse at 76% 35%,#30dfcf66,transparent 45%),conic-gradient(from 30deg at 67% 40%,transparent 0deg,#75f4f53f 20deg,transparent 55deg,#b9a2ff40 90deg,transparent 125deg);animation:aurora 12s ease-in-out infinite alternate;mix-blend-mode:screen}
@@ -70,3 +70,5 @@
 @media(max-width:620px){.frame{padding:9px 13px}.topShell :global(.home-new-topbar){height:52px;gap:5px}.crest{width:34px;height:34px}.brand{font-size:18px;letter-spacing:.11em}.brand small{max-width:120px;overflow:hidden;white-space:nowrap;font-size:7px;letter-spacing:.06em}.topShell :global(.home-new-hero-actions){gap:4px}.topShell :global(.home-new-menu-button),.topShell :global(.home-new-icon-action),.topLogin{min-width:35px;width:35px;height:36px;min-height:36px;padding:4px}.topLogin span{display:none}.footer{height:52px;grid-template-columns:1fr;grid-template-rows:auto auto;align-items:center;gap:0;font-size:10px}.footer a{grid-row:2;text-align:center}.footer>span:last-child{display:none}.authFacts{grid-template-columns:1fr}.authCard{gap:9px}.scopeBox{padding:9px}.authHeader h1{font-size:25px}}
 @media(max-height:650px){.frame{padding-top:6px;padding-bottom:6px}.topShell :global(.home-new-topbar){height:43px;padding-bottom:4px}.crest{width:29px;height:29px}.brand{font-size:18px}.brand small{font-size:7px}.loginStage{padding:7px 0}.authCard,.policyCard{padding:13px}.footer{height:26px}}
 @media(prefers-reduced-motion:reduce){.background video{display:none}.aurora,.lightShafts,.beam{animation:none}.stage *{scroll-behavior:auto}}
+
+@media(max-width:600px){.background{background-position:70% center}.background video{object-position:70% center}}
