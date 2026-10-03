@@ -188,10 +188,8 @@ export default function HomeImmersive() {
           </section>
 
           <aside className={styles.side}>
-            <div className={styles.sigil}>
-              <Image src="/kether-clan-logo.png" width={110} height={110} alt="" />
-              <span>THE KETHER ARCHIVE</span>
-              <strong>KETHER OF PARADISO</strong>
+            <div className={styles.banner}>
+              <Image src="/home-hero-banner.png" width={1536} height={864} sizes="(max-width: 800px) 0px, 32vw" alt="KETHER OF PARADISO · WARFRAME DATABASE" />
             </div>
             <div className={styles.status}>
               <b>檔案更新</b>
