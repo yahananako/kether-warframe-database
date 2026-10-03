@@ -1,3 +1,4 @@
+import { safeNextPath } from "../../../../../lib/auth/navigation";
 import { randomUUID } from "crypto";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -5,31 +6,23 @@ const DISCORD_AUTHORIZE_URL = "https://discord.com/oauth2/authorize";
 const OAUTH_STATE_COOKIE = "kether_discord_oauth_state";
 const OAUTH_NEXT_COOKIE = "kether_discord_oauth_next";
 
-function sanitizeNext(value: string | null) {
-  if (!value || !value.startsWith("/") || value.startsWith("//")) {
-    return "/profile";
-  }
-
-  return value.slice(0, 500);
-}
-
 export async function GET(request: NextRequest) {
   const clientId = process.env.DISCORD_CLIENT_ID;
   const redirectUri = process.env.DISCORD_REDIRECT_URI;
 
-  if (!clientId || !redirectUri) {
-    return NextResponse.json(
-      {
-        ok: false,
-        error: "Discord OAuth environment variables are not configured.",
-        required: ["DISCORD_CLIENT_ID", "DISCORD_REDIRECT_URI"],
-      },
-      { status: 500 },
-    );
+  const nextPath = safeNextPath(request.nextUrl.searchParams.get("next"));
+  function unavailable() {
+    const target = new URL("/login", request.url);
+    target.searchParams.set("error", "configuration");
+    target.searchParams.set("next", nextPath);
+    return NextResponse.redirect(target);
   }
-
-  const nextPath = sanitizeNext(request.nextUrl.searchParams.get("next"));
-  const configuredCallback = new URL(redirectUri);
+  if (!clientId || !redirectUri) return unavailable();
+  let configuredCallback: URL;
+  try {
+    configuredCallback = new URL(redirectUri);
+    if (!["http:", "https:"].includes(configuredCallback.protocol)) return unavailable();
+  } catch { return unavailable(); }
 
   if (request.nextUrl.origin !== configuredCallback.origin) {
     const canonicalLogin = new URL(

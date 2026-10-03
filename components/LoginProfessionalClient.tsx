@@ -19,6 +19,7 @@ import HomeNewInlineNotifications from "./HomeNewInlineNotifications";
 import HomeNewInlineSearch from "./HomeNewInlineSearch";
 import HomeCinema from "./HomeCinema";
 import HomeTicker from "./HomeTicker";
+import { AUTH_MESSAGES, safeNextPath } from "../lib/auth/navigation";
 import styles from "./LoginProfessionalClient.module.css";
 
 const POLICY_URL =
@@ -37,10 +38,9 @@ type PolicySection = (typeof POLICY_SECTIONS)[number];
 export default function LoginProfessionalClient() {
   const searchParams = useSearchParams();
   const requestedNext = searchParams.get("next");
-  const nextPath =
-    requestedNext && requestedNext.startsWith("/") && !requestedNext.startsWith("//")
-      ? requestedNext
-      : "/profile";
+  const nextPath = safeNextPath(requestedNext);
+  const authError = searchParams.get("error");
+  const authMessage = authError ? AUTH_MESSAGES[authError] ?? "登入未完成，請重新登入。" : null;
   const discordLoginHref = `/api/auth/discord/login?next=${encodeURIComponent(nextPath)}`;
 
   const [accepted, setAccepted] = useState(false);
@@ -66,23 +66,28 @@ export default function LoginProfessionalClient() {
 
   useEffect(() => {
     let active = true;
+    const controller = new AbortController();
+    const timeout = window.setTimeout(() => controller.abort(), 8000);
 
     async function checkSession() {
       try {
         const response = await fetch("/api/auth/session", {
           credentials: "include",
           cache: "no-store",
+          signal: controller.signal,
         });
         const data = await response.json().catch(() => ({}));
 
         if (!active) return;
 
-        if (response.ok && data?.ok && data?.authenticated) {
+        if (!authError && response.ok && data?.ok && data?.authenticated) {
           window.location.replace(nextPath);
           return;
         }
       } catch {
-        // 登入頁仍可正常使用，Discord 登入時會重新驗證。
+        if (active) setNotice("暫時無法確認登入狀態，你仍可閱讀資料告知後重新登入。");
+      } finally {
+        window.clearTimeout(timeout);
       }
 
       if (active) setCheckingSession(false);
@@ -92,8 +97,10 @@ export default function LoginProfessionalClient() {
 
     return () => {
       active = false;
+      window.clearTimeout(timeout);
+      controller.abort();
     };
-  }, [nextPath]);
+  }, [nextPath, authError]);
 
   function markSectionRead(section: PolicySection, open: boolean) {
     if (!open) return;
@@ -118,7 +125,7 @@ export default function LoginProfessionalClient() {
     }
 
     if (!allRead) {
-      setNotice("請先逐一展開並閱讀右側全部 5 項登入前資料告知。");
+      setNotice("請先逐一展開並閱讀全部 5 項登入前資料告知。");
       setMobileView("policy");
       policyCardRef.current?.querySelector("summary")?.focus();
       return;
@@ -238,6 +245,8 @@ export default function LoginProfessionalClient() {
                 我已閱讀並同意資料使用說明、隱私權政策與免責聲明。
               </span>
             </label>
+
+            {authMessage && <div className={styles.notice} role="alert">{authMessage}</div>}
 
             {notice && (
               <div className={styles.notice} role="alert">

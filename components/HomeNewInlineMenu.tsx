@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Menu } from "lucide-react";
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
@@ -39,6 +40,7 @@ type MenuPanelStyle = CSSProperties & {
 };
 
 export default function HomeNewInlineMenu() {
+  const pathname = usePathname();
   const buttonRef = useRef<HTMLButtonElement>(null);
   const [mounted, setMounted] = useState(false);
   const [open, setOpen] = useState(false);
@@ -173,6 +175,8 @@ export default function HomeNewInlineMenu() {
                       <Link
                         key={item.href}
                         href={item.href}
+                        aria-current={pathname === item.href ? "page" : undefined}
+                        style={pathname === item.href ? { outline: "1px solid currentColor", outlineOffset: -2, fontWeight: 800 } : undefined}
                         className="home-new-menu-link"
                         role="menuitem"
                       >
@@ -210,6 +214,8 @@ export default function HomeNewInlineMenu() {
                       <Link
                         key={item.href}
                         href={item.href}
+                        aria-current={pathname === item.href ? "page" : undefined}
+                        style={pathname === item.href ? { outline: "1px solid currentColor", outlineOffset: -2, fontWeight: 800 } : undefined}
                         className="home-new-menu-link"
                         role="menuitem"
                       >
