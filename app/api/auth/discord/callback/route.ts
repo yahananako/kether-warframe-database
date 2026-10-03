@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { getDiscordAccessPolicy } from "../../../../../lib/auth/discordAccess";
 import {
   DISCORD_SESSION_COOKIE_NAME,
   DISCORD_SESSION_MAX_AGE_SECONDS,
@@ -92,10 +93,6 @@ export async function GET(request: NextRequest) {
   const redirectUri = process.env.DISCORD_REDIRECT_URI;
   const guildId = process.env.DISCORD_GUILD_ID;
   const sessionSecret = process.env.SESSION_SECRET;
-  const allowedRoleIds = (process.env.DISCORD_ALLOWED_ROLE_IDS ?? "")
-    .split(",")
-    .map((roleId) => roleId.trim())
-    .filter(Boolean);
 
   if (!clientId || !clientSecret || !redirectUri) {
     return NextResponse.json(
@@ -187,7 +184,7 @@ export async function GET(request: NextRequest) {
     );
   }
 
-  const roleCheckEnabled = allowedRoleIds.length > 0;
+  const { allowedRoleIds, roleCheckEnabled } = await getDiscordAccessPolicy(guildId);
   const guildMemberUrl = `https://discord.com/api/v10/users/@me/guilds/${guildId}/member`;
 
   const memberResponse = await fetch(guildMemberUrl, {

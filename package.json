@@ -16,6 +16,7 @@
     "test:warframes": "node scripts/test-warframe-details.mjs",
     "test:android-search": "node android/scripts/test-smart-search.mjs",
     "test:discord-bot": "node --import tsx scripts/test-discord-bot.ts",
+    "test:discord-access": "node --import tsx scripts/test-discord-access.ts",
     "discord:validate": "node scripts/register-warframe-card-command.mjs --dry-run",
     "discord:register-card": "node scripts/register-warframe-card-command.mjs"
   },

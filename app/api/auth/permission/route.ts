@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { getDiscordAccessPolicy } from "../../../../lib/auth/discordAccess";
 import {
   DISCORD_SESSION_COOKIE_NAME,
   verifyDiscordSessionCookieValue
@@ -9,12 +10,8 @@ export const runtime = "nodejs";
 export async function GET(request: NextRequest) {
   const guildId = process.env.DISCORD_GUILD_ID || "";
   const sessionSecret = process.env.SESSION_SECRET || "";
-  const allowedRoleIds = (process.env.DISCORD_ALLOWED_ROLE_IDS || "")
-    .split(",")
-    .map((roleId) => roleId.trim())
-    .filter(Boolean);
-
-  const roleCheckEnabled = allowedRoleIds.length > 0;
+  const { allowedRoleIds, roleCheckEnabled, allianceRoleName, allianceRoleResolved } = await getDiscordAccessPolicy(guildId);
+  const allianceAccess = { allianceRoleName, allianceRoleResolved };
 
   if (!guildId || !sessionSecret) {
     return NextResponse.json({
@@ -23,6 +20,7 @@ export async function GET(request: NextRequest) {
       authorized: false,
       message: "Discord 權限驗證環境變數尚未完整設定。",
       configured: {
+        ...allianceAccess,
         guildIdConfigured: Boolean(guildId),
         sessionSecretConfigured: Boolean(sessionSecret),
         roleCheckEnabled,
@@ -42,6 +40,7 @@ export async function GET(request: NextRequest) {
       authorized: false,
       message: "尚未登入 Discord。",
       configured: {
+        ...allianceAccess,
         guildIdConfigured: true,
         sessionSecretConfigured: true,
         roleCheckEnabled,
@@ -60,6 +59,7 @@ export async function GET(request: NextRequest) {
       authorized: false,
       message: "Discord session 已失效，請重新登入。",
       configured: {
+        ...allianceAccess,
         guildIdConfigured: true,
         sessionSecretConfigured: true,
         roleCheckEnabled,
@@ -83,6 +83,7 @@ export async function GET(request: NextRequest) {
     authorized,
     message: authorized ? "Discord 權限驗證已通過。" : "Discord 權限驗證未通過。",
     configured: {
+      ...allianceAccess,
       guildIdConfigured: true,
       sessionSecretConfigured: true,
       roleCheckEnabled,
