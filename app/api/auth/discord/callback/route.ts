@@ -1,3 +1,4 @@
+import { safeNextPath } from "../../../../../lib/auth/navigation";
 import { NextRequest, NextResponse } from "next/server";
 import { getDiscordAccessPolicy } from "../../../../../lib/auth/discordAccess";
 import {
@@ -65,14 +66,6 @@ type DiscordGuildMemberResponse = {
 const OAUTH_STATE_COOKIE = "kether_discord_oauth_state";
 const OAUTH_NEXT_COOKIE = "kether_discord_oauth_next";
 
-function sanitizeNext(value: string | undefined) {
-  if (!value || !value.startsWith("/") || value.startsWith("//")) {
-    return "/profile";
-  }
-
-  return value.slice(0, 500);
-}
-
 function clearOauthState(response: NextResponse) {
   response.cookies.delete(OAUTH_STATE_COOKIE);
   response.cookies.delete(OAUTH_NEXT_COOKIE);
@@ -84,7 +77,7 @@ export async function GET(request: NextRequest) {
   const code = url.searchParams.get("code");
   const state = url.searchParams.get("state");
   const savedState = request.cookies.get(OAUTH_STATE_COOKIE)?.value;
-  const savedNext = sanitizeNext(
+  const savedNext = safeNextPath(
     request.cookies.get(OAUTH_NEXT_COOKIE)?.value,
   );
 
@@ -94,179 +87,110 @@ export async function GET(request: NextRequest) {
   const guildId = process.env.DISCORD_GUILD_ID;
   const sessionSecret = process.env.SESSION_SECRET;
 
-  if (!clientId || !clientSecret || !redirectUri) {
-    return NextResponse.json(
-      {
-        ok: false,
-        error: "Discord OAuth environment variables are not configured.",
-        required: ["DISCORD_CLIENT_ID", "DISCORD_CLIENT_SECRET", "DISCORD_REDIRECT_URI"]
+  function fail(reason: string) {
+    const target = new URL("/login", request.url);
+    target.searchParams.set("error", reason);
+    target.searchParams.set("next", savedNext);
+    return clearOauthState(NextResponse.redirect(target));
+  }
+
+  if (!state || !savedState || state !== savedState) return fail("expired");
+  if (url.searchParams.get("error")) return fail("cancelled");
+  if (!code) return fail("expired");
+  if (!clientId || !clientSecret || !redirectUri || !guildId || !sessionSecret) return fail("configuration");
+
+  try {
+    // One deadline bounds the full token/profile/membership exchange.
+    const signal = AbortSignal.timeout(15000);
+    const tokenBody = new URLSearchParams({
+      client_id: clientId,
+      client_secret: clientSecret,
+      grant_type: "authorization_code",
+      code,
+      redirect_uri: redirectUri
+    });
+
+    const tokenResponse = await fetch(DISCORD_TOKEN_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: tokenBody,
+      cache: "no-store",
+      signal
+    });
+
+    const tokenData = (await tokenResponse.json()) as DiscordTokenResponse;
+
+    if (!tokenResponse.ok || !tokenData.access_token) return fail("token");
+
+    const tokenType = tokenData.token_type ?? "Bearer";
+
+    const userResponse = await fetch(DISCORD_USER_URL, {
+      method: "GET",
+      headers: { Authorization: `${tokenType} ${tokenData.access_token}` },
+      cache: "no-store",
+      signal
+    });
+
+    const userData = (await userResponse.json()) as DiscordUserResponse;
+
+    if (!userResponse.ok || !userData.id) return fail("profile");
+
+    const { allowedRoleIds, roleCheckEnabled } = await getDiscordAccessPolicy(guildId);
+    const guildMemberUrl = `https://discord.com/api/v10/users/@me/guilds/${guildId}/member`;
+
+    const memberResponse = await fetch(guildMemberUrl, {
+      method: "GET",
+      headers: { Authorization: `${tokenType} ${tokenData.access_token}` },
+      cache: "no-store",
+      signal
+    });
+
+    const memberData = (await memberResponse.json()) as DiscordGuildMemberResponse;
+
+    if (!memberResponse.ok || !Array.isArray(memberData.roles)) return fail("membership");
+
+    const matchedRoleIds = roleCheckEnabled
+      ? memberData.roles.filter((roleId) => allowedRoleIds.includes(roleId))
+      : [];
+
+    const hasAllowedRole = !roleCheckEnabled || matchedRoleIds.length > 0;
+
+    if (!hasAllowedRole) return fail("role");
+
+    const sessionRoleIds = memberData.roles;
+
+    const sessionPayload = buildDiscordSessionPayload({
+      discordUser: {
+        id: userData.id,
+        username: userData.username ?? null,
+        globalName: userData.global_name ?? null,
+        avatar: userData.avatar ?? null,
+        banner: userData.banner ?? null,
+        accentColor: userData.accent_color ?? null,
+        avatarDecorationAsset: userData.avatar_decoration_data?.asset ?? null,
+        nameplatePalette: userData.collectibles?.nameplate?.palette ?? null
       },
-      { status: 500 }
-    );
+      guildId,
+      guildNickname: memberData.nick ?? null,
+      roleIds: sessionRoleIds
+    });
+
+    const sessionCookieValue = createDiscordSessionCookieValue(sessionPayload, sessionSecret);
+
+    const response = NextResponse.redirect(new URL(savedNext, request.url));
+
+    response.cookies.delete(OAUTH_STATE_COOKIE);
+    response.cookies.delete(OAUTH_NEXT_COOKIE);
+    response.cookies.set(DISCORD_SESSION_COOKIE_NAME, sessionCookieValue, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "lax",
+      path: "/",
+      maxAge: DISCORD_SESSION_MAX_AGE_SECONDS
+    });
+
+    return response;
+  } catch {
+    return fail("unavailable");
   }
-
-  if (!guildId || !sessionSecret) {
-    return NextResponse.json(
-      {
-        ok: false,
-        error: "Discord guild access or session environment variables are not configured.",
-        required: ["DISCORD_GUILD_ID", "SESSION_SECRET"],
-        optional: ["DISCORD_ALLOWED_ROLE_IDS"]
-      },
-      { status: 500 }
-    );
-  }
-
-  if (!code) {
-    return NextResponse.json(
-      { ok: false, error: "Missing Discord authorization code." },
-      { status: 400 }
-    );
-  }
-
-  if (!state || !savedState || state !== savedState) {
-    return NextResponse.json(
-      { ok: false, error: "Invalid Discord OAuth state." },
-      { status: 400 }
-    );
-  }
-
-  const tokenBody = new URLSearchParams({
-    client_id: clientId,
-    client_secret: clientSecret,
-    grant_type: "authorization_code",
-    code,
-    redirect_uri: redirectUri
-  });
-
-  const tokenResponse = await fetch(DISCORD_TOKEN_URL, {
-    method: "POST",
-    headers: { "Content-Type": "application/x-www-form-urlencoded" },
-    body: tokenBody,
-    cache: "no-store"
-  });
-
-  const tokenData = (await tokenResponse.json()) as DiscordTokenResponse;
-
-  if (!tokenResponse.ok || !tokenData.access_token) {
-    return NextResponse.json(
-      {
-        ok: false,
-        error: "Discord access token exchange failed.",
-        discordError: tokenData.error ?? null,
-        discordErrorDescription: tokenData.error_description ?? null
-      },
-      { status: tokenResponse.status || 500 }
-    );
-  }
-
-  const tokenType = tokenData.token_type ?? "Bearer";
-
-  const userResponse = await fetch(DISCORD_USER_URL, {
-    method: "GET",
-    headers: { Authorization: `${tokenType} ${tokenData.access_token}` },
-    cache: "no-store"
-  });
-
-  const userData = (await userResponse.json()) as DiscordUserResponse;
-
-  if (!userResponse.ok || !userData.id) {
-    return clearOauthState(
-      NextResponse.json(
-        {
-          ok: false,
-          error: "Discord user profile fetch failed.",
-          discordError: userData.error ?? null,
-          discordMessage: userData.message ?? null
-        },
-        { status: userResponse.status || 500 }
-      )
-    );
-  }
-
-  const { allowedRoleIds, roleCheckEnabled } = await getDiscordAccessPolicy(guildId);
-  const guildMemberUrl = `https://discord.com/api/v10/users/@me/guilds/${guildId}/member`;
-
-  const memberResponse = await fetch(guildMemberUrl, {
-    method: "GET",
-    headers: { Authorization: `${tokenType} ${tokenData.access_token}` },
-    cache: "no-store"
-  });
-
-  const memberData = (await memberResponse.json()) as DiscordGuildMemberResponse;
-
-  if (!memberResponse.ok || !Array.isArray(memberData.roles)) {
-    return clearOauthState(
-      NextResponse.json(
-        {
-          ok: false,
-          error: "Discord guild membership check failed.",
-          discordError: memberData.error ?? null,
-          discordMessage: memberData.message ?? null,
-          discordUser: {
-            id: userData.id,
-            username: userData.username ?? null,
-            globalName: userData.global_name ?? null,
-            avatar: userData.avatar ?? null,
-            banner: userData.banner ?? null,
-            accentColor: userData.accent_color ?? null
-          },
-          guildAccess: {
-            guildId,
-            isMember: false,
-            roleCheckEnabled,
-            hasAllowedRole: false,
-            authorized: false
-          }
-        },
-        { status: memberResponse.status || 403 }
-      )
-    );
-  }
-
-  const matchedRoleIds = roleCheckEnabled
-    ? memberData.roles.filter((roleId) => allowedRoleIds.includes(roleId))
-    : [];
-
-  const hasAllowedRole = !roleCheckEnabled || matchedRoleIds.length > 0;
-
-  if (!hasAllowedRole) {
-    return clearOauthState(
-      NextResponse.redirect(new URL("/", request.url))
-    );
-  }
-
-  const sessionRoleIds = memberData.roles;
-
-  const sessionPayload = buildDiscordSessionPayload({
-    discordUser: {
-      id: userData.id,
-      username: userData.username ?? null,
-      globalName: userData.global_name ?? null,
-      avatar: userData.avatar ?? null,
-      banner: userData.banner ?? null,
-      accentColor: userData.accent_color ?? null,
-      avatarDecorationAsset: userData.avatar_decoration_data?.asset ?? null,
-      nameplatePalette: userData.collectibles?.nameplate?.palette ?? null
-    },
-    guildId,
-    guildNickname: memberData.nick ?? null,
-    roleIds: sessionRoleIds
-  });
-
-  const sessionCookieValue = createDiscordSessionCookieValue(sessionPayload, sessionSecret);
-
-  const response = NextResponse.redirect(new URL(savedNext, request.url));
-
-  response.cookies.delete(OAUTH_STATE_COOKIE);
-  response.cookies.delete(OAUTH_NEXT_COOKIE);
-  response.cookies.set(DISCORD_SESSION_COOKIE_NAME, sessionCookieValue, {
-    httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
-    sameSite: "lax",
-    path: "/",
-    maxAge: DISCORD_SESSION_MAX_AGE_SECONDS
-  });
-
-  return response;
 }

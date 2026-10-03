@@ -18,7 +18,8 @@
     "test:discord-bot": "node --import tsx scripts/test-discord-bot.ts",
     "test:discord-access": "node --import tsx scripts/test-discord-access.ts",
     "discord:validate": "node scripts/register-warframe-card-command.mjs --dry-run",
-    "discord:register-card": "node scripts/register-warframe-card-command.mjs"
+    "discord:register-card": "node scripts/register-warframe-card-command.mjs",
+    "test:auth-recovery": "node --import tsx scripts/test-auth-recovery.ts"
   },
   "dependencies": {
     "@neondatabase/serverless": "^1.1.0",
