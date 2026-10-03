@@ -56,6 +56,28 @@ function NavCard({item}: {item: readonly [string,string,string]}) {
  return <Link href={href} className={src?`${styles.imageLink} ${icon?styles.originalIcon:''}`:undefined} aria-label={label}>{src?<><span className={styles.imagePair}><img src={src} alt=""/><img className={styles.imageActive} src={active!} alt=""/></span><span className={styles.imageLabel}>{label}</span></>:<><b>{label}</b><small>{description}</small></>}</Link>;
 }
 
+function positionMenu(details: HTMLDetailsElement) {
+  if (!details.open) return;
+  const trigger = details.querySelector("summary");
+  const menu = details.querySelector<HTMLElement>("nav");
+  const inner = menu?.firstElementChild as HTMLElement | null;
+  if (!trigger || !menu || !inner) return;
+  const edge = 14;
+  const gap = 8;
+  const rect = trigger.getBoundingClientRect();
+  const width = Math.min(Number(details.dataset.menuWidth), window.innerWidth - edge * 2);
+  const above = Math.max(0, rect.top - gap - edge);
+  const below = Math.max(0, window.innerHeight - rect.bottom - gap - edge);
+  const placeAbove = above >= below;
+  const available = placeAbove ? above : below;
+  menu.style.width = `${width}px`;
+  inner.style.maxHeight = `${Math.max(0, available - 22)}px`;
+  menu.style.left = `${Math.max(edge, Math.min(rect.left, window.innerWidth - width - edge))}px`;
+  const height = menu.getBoundingClientRect().height;
+  menu.style.top = `${Math.max(edge, Math.min(placeAbove ? rect.top - gap - height : rect.bottom + gap, window.innerHeight - height - edge))}px`;
+  menu.dataset.placement = placeAbove ? "above" : "below";
+}
+
 export default function HomeImmersive() {
   const [panel, setPanel] = useState<Panel>(null);
   const [query, setQuery] = useState("");
@@ -119,6 +141,9 @@ export default function HomeImmersive() {
   }, [panel]);
 
   useEffect(() => {
+    function repositionMenus() {
+      document.querySelectorAll<HTMLDetailsElement>("[data-home-menu][open]").forEach(positionMenu);
+    }
     function dismissMenus(event: PointerEvent) {
       document.querySelectorAll<HTMLDetailsElement>("[data-home-menu][open]").forEach((menu) => {
         if (!menu.contains(event.target as Node)) menu.open = false;
@@ -127,9 +152,10 @@ export default function HomeImmersive() {
     function dismissOnEscape(event: KeyboardEvent) {
       if (event.key === "Escape") document.querySelectorAll<HTMLDetailsElement>("[data-home-menu][open]").forEach((menu) => { menu.open = false; });
     }
+    window.addEventListener("resize", repositionMenus);
     document.addEventListener("pointerdown", dismissMenus);
     document.addEventListener("keydown", dismissOnEscape);
-    return () => { document.removeEventListener("pointerdown", dismissMenus); document.removeEventListener("keydown", dismissOnEscape); };
+    return () => { window.removeEventListener("resize", repositionMenus); document.removeEventListener("pointerdown", dismissMenus); document.removeEventListener("keydown", dismissOnEscape); };
   }, []);
 
   const cards = panel === "catalog" ? categories : panel === "explore" ? explore : panel === "menu" ? [
@@ -170,7 +196,7 @@ export default function HomeImmersive() {
           <section className={styles.content}>
             <div className={styles.eyebrow}>TENNO ARCHIVE / 資料檢索</div>
             <h1>從虛空中<br /><em>找到答案。</em></h1>
-            <p className={styles.lead}>搜尋戰甲、武器、MOD、靈化能力與取得方式。你的下一步，從這裡開始。</p>
+            <p className={styles.lead}>搜尋採用KETHER氏族BOT功能</p>
             <form action="/search" method="get" className={styles.search}>
               <label className={styles.sr} htmlFor="home-query">搜尋 KETHER 資料庫</label>
               <input id="home-query" name="q" type="search" placeholder="輸入中文或英文名稱…" required value={query} onChange={(event) => setQuery(event.target.value)} />
@@ -183,7 +209,32 @@ export default function HomeImmersive() {
               ))}
             </div>
             <div className={styles.actions}>
-              {([['catalog','資料庫分類',categories],['explore','故事與氏族',explore],['intel','電波情報',intel]] as const).map(([key,label,items])=><details key={key} data-home-menu className={styles.actionWrap} onMouseEnter={(e)=>{if(window.matchMedia('(hover: hover) and (pointer: fine)').matches)e.currentTarget.open=true;}} onMouseLeave={(e)=>{if(window.matchMedia('(hover: hover) and (pointer: fine)').matches)e.currentTarget.open=false;}}><summary className={styles.control} onClick={(e)=>{if(window.matchMedia('(hover: hover) and (pointer: fine)').matches){e.preventDefault();(e.currentTarget.parentElement as HTMLDetailsElement).open=true;}}}>{label}</summary><nav className={styles.actionMenu} aria-label={label+'選單'}><div className={styles.actionMenuInner} style={key==='catalog'?undefined:{gridTemplateColumns:`repeat(${items.length},minmax(0,1fr))`}}>{items.map(item=><NavCard key={item[0]} item={item}/>)}</div></nav></details>)}
+              {([['catalog','資料庫分類',categories],['explore','故事與氏族',explore],['intel','電波情報',intel]] as const).map(([key,label,items]) => (
+                <details key={key} data-home-menu data-menu-width={key === 'catalog' ? 520 : key === 'explore' ? 390 : 280} className={styles.actionWrap}
+                  onToggle={(e) => {
+                    const details = e.currentTarget;
+                    if (details.open) {
+                      document.querySelectorAll<HTMLDetailsElement>("[data-home-menu][open]").forEach((other) => { if (other !== details) other.open = false; });
+                      positionMenu(details);
+                    }
+                  }}
+                  onMouseEnter={(e) => { if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) { e.currentTarget.open = true; positionMenu(e.currentTarget); } }}
+                  onMouseLeave={(e) => { if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) e.currentTarget.open = false; }}>
+                  <summary className={styles.control} onClick={(e) => {
+                    if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+                      e.preventDefault();
+                      const details = e.currentTarget.parentElement as HTMLDetailsElement;
+                      details.open = true;
+                      positionMenu(details);
+                    }
+                  }}>{label}</summary>
+                  <nav className={styles.actionMenu} aria-label={label+'選單'}>
+                    <div className={styles.actionMenuInner} style={key === 'catalog' ? undefined : {gridTemplateColumns: `repeat(${items.length},minmax(0,1fr))`}}>
+                      {items.map(item => <NavCard key={item[0]} item={item}/>)}
+                    </div>
+                  </nav>
+                </details>
+              ))}
             </div>
           </section>
 
