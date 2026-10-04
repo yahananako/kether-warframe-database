@@ -398,7 +398,7 @@ export async function fetchSheetRows(category: string): Promise<{
     return {
       config: result.config,
       rows,
-      error: rows.length > 0 ? undefined : result.error,
+      error: result.error,
     };
   }
 
@@ -425,8 +425,18 @@ export async function fetchSheetRows(category: string): Promise<{
     };
   });
 
+  const failedSources = results
+    .map((result, index) =>
+      result.error ? sourceCategories[index] : null,
+    )
+    .filter((item): item is string => Boolean(item));
+
   return {
     config: SHEET_GIDS.mods,
-    rows: uniqueRows
+    rows: uniqueRows,
+    error:
+      failedSources.length > 0
+        ? `部分 MOD 來源讀取失敗：${failedSources.join("、")}`
+        : undefined,
   };
 }
