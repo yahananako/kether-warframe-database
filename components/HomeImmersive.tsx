@@ -170,7 +170,7 @@ export default function HomeImmersive() {
     <div className={styles.stage}>
       <svg width="0" height="0" aria-hidden="true" style={{position:'absolute',pointerEvents:'none'}}><defs>{[['home-remove-white','.68',' .91',' .91'],['home-remove-white-active','1','.84','.55']].map(([id,r,g,b])=><filter key={id} id={id} colorInterpolationFilters="sRGB"><feColorMatrix type="matrix" values={`0 0 0 0 ${r} 0 0 0 0 ${g} 0 0 0 0 ${b} -.3333 -.3333 -.3333 0 1`}/><feComposite in2="SourceAlpha" operator="in"/></filter>)}</defs></svg>
       <div className={styles.background} aria-hidden="true">
-        <video autoPlay muted loop playsInline preload="metadata" poster="/home-hero-banner.png"><source src="/kether-home-motion.mp4" type="video/mp4" /></video>
+        <video autoPlay muted loop playsInline preload="metadata" poster="/kether-cinema-iceblade-v1.webp"><source src="/kether-cinema-iceblade-v1.mp4" type="video/mp4" /></video>
         <HomeCinema />
         <div className={styles.aurora}/><div className={styles.lightShafts}/>
         <div className={styles.grid} />
