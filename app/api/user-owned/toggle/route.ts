@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { evaluateDiscordAccess } from "../../../../lib/auth/discordAccess";
 import {
   DISCORD_SESSION_COOKIE_NAME,
   verifyDiscordSessionCookieValue
@@ -17,10 +18,11 @@ export async function POST(request: Request) {
   }
 
   const sessionSecret = process.env.SESSION_SECRET;
+  const guildId = process.env.DISCORD_GUILD_ID || "";
 
-  if (!sessionSecret) {
+  if (!sessionSecret || !guildId) {
     return NextResponse.json(
-      { ok: false, message: "缺少 SESSION_SECRET。" },
+      { ok: false, message: "Discord 權限驗證環境變數尚未完整設定。" },
       { status: 500 }
     );
   }
@@ -56,6 +58,24 @@ export async function POST(request: Request) {
     );
   }
 
+  const access = await evaluateDiscordAccess(
+    guildId,
+    session.guildId,
+    session.roleIds,
+  );
+
+  if (!access.authorized) {
+    return NextResponse.json(
+      {
+        ok: false,
+        authenticated: true,
+        authorized: false,
+        message: "目前 Discord 身分組沒有個人進度寫入權限。"
+      },
+      { status: 403 }
+    );
+  }
+
   try {
     const body = await request.json();
 
@@ -75,7 +95,7 @@ export async function POST(request: Request) {
       discordUserId: session.sub,
       discordUsername: session.globalName || session.username || session.sub,
       avatarUrl: session.avatar,
-      guildDiscordId: session.guildId,
+      guildDiscordId: guildId,
       itemKey,
       category,
       section,
