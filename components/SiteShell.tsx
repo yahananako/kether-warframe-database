@@ -156,9 +156,9 @@ export default function SiteShell({ children }: { children: ReactNode }) {
           loop
           playsInline
           preload="metadata"
-          poster="/home-hero-banner.png"
+          poster="/kether-cinema-iceblade-v1.webp"
         >
-          <source src="/kether-home-motion.mp4" type="video/mp4" />
+          <source src="/kether-cinema-iceblade-v1.mp4" type="video/mp4" />
         </video>
         <HomeCinema />
         <div className="site-aurora" />
