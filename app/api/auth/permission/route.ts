@@ -1,5 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getDiscordAccessPolicy } from "../../../../lib/auth/discordAccess";
+import {
+  evaluateDiscordAccess,
+  getDiscordAccessPolicy
+} from "../../../../lib/auth/discordAccess";
 import {
   DISCORD_SESSION_COOKIE_NAME,
   verifyDiscordSessionCookieValue
@@ -10,8 +13,13 @@ export const runtime = "nodejs";
 export async function GET(request: NextRequest) {
   const guildId = process.env.DISCORD_GUILD_ID || "";
   const sessionSecret = process.env.SESSION_SECRET || "";
-  const { allowedRoleIds, roleCheckEnabled, allianceRoleName, allianceRoleResolved } = await getDiscordAccessPolicy(guildId);
-  const allianceAccess = { allianceRoleName, allianceRoleResolved };
+  const policy = await getDiscordAccessPolicy(guildId);
+  const allianceAccess = {
+    allianceRoleName: policy.allianceRoleName,
+    allianceRoleResolved: policy.allianceRoleResolved,
+    allianceRoleSource: policy.allianceRoleSource,
+    allianceRoleCheckRequested: policy.allianceRoleCheckRequested,
+  };
 
   if (!guildId || !sessionSecret) {
     return NextResponse.json({
@@ -23,11 +31,11 @@ export async function GET(request: NextRequest) {
         ...allianceAccess,
         guildIdConfigured: Boolean(guildId),
         sessionSecretConfigured: Boolean(sessionSecret),
-        roleCheckEnabled,
-        allowedRoleCount: allowedRoleIds.length
+        roleCheckEnabled: policy.roleCheckEnabled,
+        allowedRoleCount: policy.allowedRoleIds.length
       },
       required: ["DISCORD_GUILD_ID", "SESSION_SECRET"],
-      optional: ["DISCORD_ALLOWED_ROLE_IDS"]
+      optional: ["DISCORD_ALLOWED_ROLE_IDS", "DISCORD_ALLIANCE_ROLE_IDS"]
     });
   }
 
@@ -43,8 +51,8 @@ export async function GET(request: NextRequest) {
         ...allianceAccess,
         guildIdConfigured: true,
         sessionSecretConfigured: true,
-        roleCheckEnabled,
-        allowedRoleCount: allowedRoleIds.length
+        roleCheckEnabled: policy.roleCheckEnabled,
+        allowedRoleCount: policy.allowedRoleIds.length
       },
       guildAccess: null
     });
@@ -62,32 +70,35 @@ export async function GET(request: NextRequest) {
         ...allianceAccess,
         guildIdConfigured: true,
         sessionSecretConfigured: true,
-        roleCheckEnabled,
-        allowedRoleCount: allowedRoleIds.length
+        roleCheckEnabled: policy.roleCheckEnabled,
+        allowedRoleCount: policy.allowedRoleIds.length
       },
       guildAccess: null
     });
   }
 
-  const guildIdMatches = session.guildId === guildId;
-  const matchedRoleIds = roleCheckEnabled
-    ? session.roleIds.filter((roleId) => allowedRoleIds.includes(roleId))
-    : [];
-
-  const hasAllowedRole = !roleCheckEnabled || matchedRoleIds.length > 0;
-  const authorized = guildIdMatches && hasAllowedRole;
+  const access = await evaluateDiscordAccess(
+    guildId,
+    session.guildId,
+    session.roleIds,
+  );
 
   return NextResponse.json({
     ok: true,
     authenticated: true,
-    authorized,
-    message: authorized ? "Discord 權限驗證已通過。" : "Discord 權限驗證未通過。",
+    authorized: access.authorized,
+    message: access.authorized
+      ? "Discord 權限驗證已通過。"
+      : "Discord 權限驗證未通過，請重新登入或檢查聯盟成員身分組。",
     configured: {
-      ...allianceAccess,
+      allianceRoleName: access.allianceRoleName,
+      allianceRoleResolved: access.allianceRoleResolved,
+      allianceRoleSource: access.allianceRoleSource,
+      allianceRoleCheckRequested: access.allianceRoleCheckRequested,
       guildIdConfigured: true,
       sessionSecretConfigured: true,
-      roleCheckEnabled,
-      allowedRoleCount: allowedRoleIds.length
+      roleCheckEnabled: access.roleCheckEnabled,
+      allowedRoleCount: access.allowedRoleIds.length
     },
     discordUser: {
       id: session.sub,
@@ -97,12 +108,12 @@ export async function GET(request: NextRequest) {
     guildAccess: {
       expectedGuildId: guildId,
       sessionGuildId: session.guildId,
-      guildIdMatches,
-      roleCheckEnabled,
-      hasAllowedRole,
-      authorized,
+      guildIdMatches: access.guildIdMatches,
+      roleCheckEnabled: access.roleCheckEnabled,
+      hasAllowedRole: access.hasAllowedRole,
+      authorized: access.authorized,
       roleCount: session.roleIds.length,
-      matchedRoleCount: matchedRoleIds.length
+      matchedRoleCount: access.matchedRoleIds.length
     }
   });
 }
