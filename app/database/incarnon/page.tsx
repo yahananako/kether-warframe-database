@@ -17,9 +17,10 @@ export const metadata: Metadata = {
 export default async function IncarnonDatabasePage({
   searchParams,
 }: {
-  searchParams: Promise<{ q?: string }>;
+  searchParams: Promise<{ q?: string | string[] }>;
 }) {
-  const { q = "" } = await searchParams;
+  const params = await searchParams;
+  const q = Array.isArray(params.q) ? params.q[0] || "" : params.q || "";
   return (
     <main className="home-new-page">
       <div className="home-new-shell">
