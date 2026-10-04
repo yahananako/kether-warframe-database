@@ -1,8 +1,7 @@
 .archive {
-  --ink: #202a42;
-  --muted: #68738c;
-  --violet: #7652c8;
-  --cyan: #2a95aa;
+  --ink: var(--text);
+  --violet: var(--accent);
+  --cyan: var(--accent);
   display: grid;
   gap: 34px;
 }
@@ -21,17 +20,16 @@
 
 .controls {
   position: sticky;
-  top: 12px;
+  top: 100px;
   z-index: 12;
   display: grid;
   gap: 14px;
   padding: 18px;
-  border: 1px solid rgba(255, 255, 255, 0.82);
-  border-radius: 28px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
   background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.88), rgba(238, 241, 255, 0.7)),
-    rgba(255, 255, 255, 0.72);
-  box-shadow: 0 20px 52px rgba(50, 46, 92, 0.14);
+    var(--surface);
+  box-shadow: var(--shadow);
   backdrop-filter: blur(28px) saturate(1.45);
   -webkit-backdrop-filter: blur(28px) saturate(1.45);
 }
@@ -42,16 +40,16 @@
   align-items: center;
   gap: 10px;
   padding: 0 16px;
-  border: 1px solid rgba(118, 82, 200, 0.16);
-  border-radius: 18px;
-  background: rgba(255, 255, 255, 0.76);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
   color: var(--violet);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9);
 }
 
 .searchBox:focus-within {
-  border-color: rgba(118, 82, 200, 0.52);
-  box-shadow: 0 0 0 4px rgba(118, 82, 200, 0.1);
+  border-color: var(--line);
+  box-shadow: var(--shadow);
 }
 
 .searchBox input {
@@ -65,7 +63,7 @@
 }
 
 .searchBox input::placeholder {
-  color: #8e96a8;
+  color: var(--text);
 }
 
 .categoryTabs {
@@ -77,10 +75,10 @@
 .categoryTabs button {
   min-height: 44px;
   padding: 9px 12px;
-  border: 1px solid rgba(118, 82, 200, 0.14);
-  border-radius: 14px;
-  background: rgba(255, 255, 255, 0.54);
-  color: #4b5570;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--text);
   font: inherit;
   font-weight: 850;
   cursor: pointer;
@@ -89,7 +87,7 @@
 
 .categoryTabs button:hover {
   transform: translateY(-1px);
-  border-color: rgba(118, 82, 200, 0.42);
+  border-color: var(--accent);
 }
 
 .categoryTabs button small {
@@ -97,10 +95,10 @@
 }
 
 .categoryTabs .activeTab {
-  border-color: rgba(118, 82, 200, 0.56);
-  background: linear-gradient(135deg, #8362ce, #5f8dcf);
-  color: #fff;
-  box-shadow: 0 10px 24px rgba(100, 80, 184, 0.22);
+  border-color: var(--accent);
+  background: var(--surface-soft);
+  color: var(--text);
+  box-shadow: var(--shadow);
 }
 
 .selectRow {
@@ -118,7 +116,7 @@
 .selectRow label > span {
   padding-left: 3px;
   color: var(--muted);
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 850;
   letter-spacing: 0.08em;
 }
@@ -127,10 +125,10 @@
   width: 100%;
   min-height: 43px;
   padding: 0 36px 0 12px;
-  border: 1px solid rgba(118, 82, 200, 0.14);
-  border-radius: 14px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
   outline: none;
-  background: rgba(255, 255, 255, 0.7);
+  background: var(--surface);
   color: var(--ink);
   font: inherit;
   font-size: 14px;
@@ -145,8 +143,8 @@
   gap: 4px;
   margin: 0;
   padding: 0 16px;
-  border-radius: 14px;
-  background: rgba(118, 82, 200, 0.08);
+  border-radius: var(--radius);
+  background: var(--surface);
   color: var(--muted);
   white-space: nowrap;
   font-size: 13px;
@@ -178,7 +176,7 @@
 
 .sectionHeader p {
   color: var(--violet);
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 950;
   letter-spacing: 0.18em;
 }
@@ -202,12 +200,12 @@
   height: 54px;
   display: grid;
   place-items: center;
-  border: 1px solid rgba(118, 82, 200, 0.18);
-  border-radius: 18px;
-  background: rgba(255, 255, 255, 0.58);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
   color: var(--violet);
   font-size: 20px;
-  box-shadow: 0 12px 30px rgba(66, 54, 114, 0.1);
+  box-shadow: var(--shadow);
 }
 
 .weaponGrid {
@@ -220,11 +218,10 @@
   min-width: 0;
   content-visibility: auto;
   contain-intrinsic-size: auto 270px;
-  border: 1px solid rgba(255, 255, 255, 0.9);
-  border-radius: 28px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
   background:
-    radial-gradient(circle at 18% 4%, rgba(180, 220, 255, 0.32), transparent 33%),
-    linear-gradient(145deg, rgba(255, 255, 255, 0.78), rgba(236, 239, 252, 0.54));
+    var(--surface);
   box-shadow:
     0 18px 44px rgba(42, 50, 86, 0.11),
     inset 0 1px 0 rgba(255, 255, 255, 0.95);
@@ -233,8 +230,7 @@
 
 .weaponCard[data-kind="natural"] {
   background:
-    radial-gradient(circle at 18% 4%, rgba(148, 235, 216, 0.32), transparent 34%),
-    linear-gradient(145deg, rgba(255, 255, 255, 0.8), rgba(232, 247, 245, 0.55));
+    var(--surface);
 }
 
 .weaponDetails > summary {
@@ -269,9 +265,9 @@
   position: absolute;
   width: 160px;
   aspect-ratio: 1;
-  border: 1px solid rgba(118, 82, 200, 0.2);
+  border: 1px solid var(--line);
   border-radius: 999px;
-  box-shadow: 0 0 44px rgba(91, 104, 197, 0.2);
+  box-shadow: var(--shadow);
 }
 
 .imageStage img {
@@ -293,7 +289,7 @@
   inset: auto 15% 12% 15%;
   height: 24px;
   border-radius: 50%;
-  background: rgba(104, 101, 190, 0.24);
+  background: var(--surface);
   filter: blur(18px);
 }
 
@@ -317,19 +313,19 @@
   min-height: 25px;
   padding: 0 9px;
   border-radius: 999px;
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 900;
   letter-spacing: 0.04em;
 }
 
 .kindBadge {
-  background: rgba(118, 82, 200, 0.12);
-  color: #6844bb;
+  background: var(--surface);
+  color: var(--text);
 }
 
 .rotationBadge {
-  background: rgba(42, 149, 170, 0.1);
-  color: #277d8d;
+  background: var(--surface);
+  color: var(--text);
 }
 
 .weaponName {
@@ -346,7 +342,7 @@
 
 .weaponName small {
   margin-top: 4px;
-  color: #7d688e;
+  color: var(--muted);
   font-size: 12px;
   font-weight: 850;
   letter-spacing: 0.1em;
@@ -362,7 +358,7 @@
 
 .effectBlock > span {
   color: var(--cyan);
-  font-size: 10px;
+  font-size: 12px;
   font-weight: 950;
   letter-spacing: 0.12em;
 }
@@ -375,7 +371,7 @@
 }
 
 .effectBlock b {
-  color: #3d475f;
+  color: var(--text);
   font-size: 13px;
   line-height: 1.65;
   font-weight: 700;
@@ -383,8 +379,8 @@
 }
 
 .effectBlock small {
-  color: #7e879a;
-  font-size: 11px;
+  color: var(--muted);
+  font-size: 12px;
   line-height: 1.45;
   -webkit-line-clamp: 2;
 }
@@ -402,7 +398,7 @@
 
 .evolutionBody {
   padding: 0 18px 18px;
-  border-top: 1px solid rgba(118, 82, 200, 0.12);
+  border-top: 1px solid var(--line);
 }
 
 .evolutionList {
@@ -414,9 +410,9 @@
 .evolutionCard {
   min-width: 0;
   padding: 15px;
-  border: 1px solid rgba(118, 82, 200, 0.12);
-  border-radius: 20px;
-  background: rgba(255, 255, 255, 0.58);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
 }
 
 .evolutionHeading {
@@ -430,10 +426,10 @@
   align-items: center;
   min-height: 27px;
   padding: 0 9px;
-  border-radius: 9px;
-  background: linear-gradient(135deg, #7250c0, #438ea9);
-  color: #fff;
-  font-size: 11px;
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--text);
+  font-size: 12px;
   font-weight: 950;
   letter-spacing: 0.08em;
 }
@@ -448,27 +444,27 @@
   gap: 4px;
   margin-top: 12px;
   padding: 12px;
-  border-left: 3px solid #61a5b6;
-  border-radius: 4px 12px 12px 4px;
-  background: rgba(71, 157, 174, 0.08);
+  border-left: 3px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
 }
 
 .unlockBox span {
-  color: #347f8d;
-  font-size: 10px;
+  color: var(--text);
+  font-size: 12px;
   font-weight: 950;
   letter-spacing: 0.1em;
 }
 
 .unlockBox strong {
-  color: #34415b;
+  color: var(--text);
   font-size: 13px;
   line-height: 1.55;
 }
 
 .unlockBox small {
-  color: #748096;
-  font-size: 10px;
+  color: var(--muted);
+  font-size: 12px;
   line-height: 1.5;
 }
 
@@ -481,19 +477,19 @@
 .abilityItem {
   min-width: 0;
   padding: 12px;
-  border: 1px solid rgba(78, 89, 126, 0.1);
-  border-radius: 14px;
-  background: rgba(255, 255, 255, 0.68);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
 }
 
 .abilityItem strong {
-  color: #563d91;
+  color: var(--text);
   font-size: 13px;
 }
 
 .abilityItem p {
   margin: 5px 0 0;
-  color: #4f596e;
+  color: var(--text);
   font-size: 12px;
   line-height: 1.62;
   white-space: pre-line;
@@ -507,9 +503,9 @@
 .subDetails summary {
   padding-top: 8px;
   list-style: none;
-  color: #76649f;
+  color: var(--text);
   cursor: pointer;
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 850;
 }
 
@@ -524,25 +520,25 @@
   grid-template-columns: minmax(70px, auto) 1fr;
   gap: 8px;
   padding: 7px 9px;
-  border-radius: 9px;
-  background: rgba(118, 82, 200, 0.06);
+  border-radius: var(--radius);
+  background: var(--surface);
 }
 
 .subDetails dt,
 .subDetails dd {
   margin: 0;
-  font-size: 10px;
+  font-size: 12px;
   line-height: 1.45;
   white-space: pre-line;
 }
 
 .subDetails dt {
-  color: #6a4dad;
+  color: var(--text);
   font-weight: 900;
 }
 
 .subDetails dd {
-  color: #596377;
+  color: var(--text);
 }
 
 .sourceLink {
@@ -551,8 +547,8 @@
   align-items: center;
   gap: 6px;
   margin-top: 14px;
-  color: #6950a6;
-  font-size: 11px;
+  color: var(--text);
+  font-size: 12px;
   font-weight: 850;
   text-decoration: none;
 }
@@ -567,8 +563,8 @@
   min-height: 280px;
   padding: 36px 20px;
   border: 1px dashed rgba(118, 82, 200, 0.3);
-  border-radius: 28px;
-  background: rgba(255, 255, 255, 0.48);
+  border-radius: var(--radius);
+  background: var(--surface);
   color: var(--muted);
   text-align: center;
 }
@@ -587,9 +583,9 @@
   margin-top: 16px;
   padding: 10px 15px;
   border: 0;
-  border-radius: 12px;
-  background: #7250c0;
-  color: #fff;
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--text);
   font: inherit;
   font-size: 13px;
   font-weight: 850;
@@ -612,15 +608,15 @@
   }
 
   .controls {
-    top: 6px;
+    top: 100px;
     gap: 10px;
     padding: 11px;
-    border-radius: 21px;
+    border-radius: var(--radius);
   }
 
   .searchBox {
     min-height: 45px;
-    border-radius: 14px;
+    border-radius: var(--radius);
   }
 
   .categoryTabs {
@@ -630,7 +626,7 @@
   .categoryTabs button {
     min-height: 40px;
     padding: 7px 4px;
-    border-radius: 11px;
+    border-radius: var(--radius);
     font-size: 12px;
   }
 
@@ -666,19 +662,19 @@
 
   .sectionHeader span {
     max-width: 260px;
-    font-size: 11px;
+    font-size: 12px;
     line-height: 1.5;
   }
 
   .sectionHeader > strong {
     min-width: 44px;
     height: 44px;
-    border-radius: 15px;
+    border-radius: var(--radius);
     font-size: 17px;
   }
 
   .weaponCard {
-    border-radius: 23px;
+    border-radius: var(--radius);
   }
 
   .weaponSummary {
@@ -712,7 +708,7 @@
   }
 
   .effectBlock b {
-    font-size: 11px;
+    font-size: 12px;
     line-height: 1.55;
     -webkit-line-clamp: 4;
   }
@@ -722,7 +718,7 @@
   }
 
   .expandHint {
-    font-size: 10px;
+    font-size: 12px;
   }
 
   .evolutionBody {
@@ -731,7 +727,7 @@
 
   .evolutionCard {
     padding: 12px;
-    border-radius: 16px;
+    border-radius: var(--radius);
   }
 }
 

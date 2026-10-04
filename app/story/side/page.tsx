@@ -10,7 +10,7 @@ export const metadata = { title: "Warframe 支線故事書｜KETHER", descriptio
 export default function SideStoryDirectory() {
   const total = sideStoryEras.reduce((sum, era) => sum + era.stories.length, 0);
   return <main className={styles.bookPage}>
-    <header className={styles.siteHeader}><Link className={styles.brand} href="/"><span className={styles.brandMark}>K</span><span><strong>KETHER</strong><small>SIDE STORY ARCHIVE</small></span></Link><HomeNewInlineMenu /></header>
+    
     <div className={styles.pageShell}>
       <section className={styles.directoryHero}>
         <div className={styles.directoryHeroCopy}><p className={styles.eyebrow}><Sparkles />SIDE STORY CHRONICLE</p><h1>支線<br />故事書</h1><p>主線之外，每一個被帝國遺忘的人仍有自己的戰爭。依故事年代翻閱完整支線，不必在星圖與更新紀錄之間迷路。</p><dl className={styles.directoryStats}><div><dt>年代篇章</dt><dd>{sideStoryEras.length} 卷</dd></div><div><dt>完整故事</dt><dd>{total} 章</dd></div></dl><Link className={styles.startReading} href={`/story/side/${sideStoryEras[0].slug}`}>從最早支線開始<ArrowRight /></Link></div>

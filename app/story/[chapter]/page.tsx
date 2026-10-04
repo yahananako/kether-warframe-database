@@ -31,10 +31,7 @@ export default async function StoryVolumePage({ params }: Props) {
 
   return (
     <main className={styles.bookPage} style={{ "--chapter-accent": chapter.accent } as CSSProperties}>
-      <header className={styles.siteHeader}>
-        <Link className={styles.brand} href="/"><span className={styles.brandMark}>K</span><span><strong>KETHER</strong><small>STORY ARCHIVE</small></span></Link>
-        <HomeNewInlineMenu />
-      </header>
+      
       <div className={styles.pageShell}>
         <nav className={styles.breadcrumb} aria-label="麵包屑"><Link href="/">首頁</Link><ChevronRight /><Link href="/story">故事全書</Link><ChevronRight /><span>{chapter.title}</span></nav>
         <article>

@@ -16,18 +16,18 @@
   gap: 7px;
   min-height: 56px;
   padding: 10px;
-  border: 1px solid rgba(124, 58, 237, 0.12);
-  border-radius: 17px;
-  background: rgba(255, 255, 255, 0.48);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
 }
 
 .introStats strong {
-  color: #724eb8;
+  color: var(--text);
   font-size: 22px;
 }
 
 .introStats span {
-  color: #667085;
+  color: var(--text);
   font-size: 12px;
   font-weight: 850;
 }
@@ -43,7 +43,7 @@
     place-items: center;
     gap: 0;
     padding: 7px 3px;
-    border-radius: 13px;
+    border-radius: var(--radius);
   }
 
   .introStats strong {
@@ -51,6 +51,6 @@
   }
 
   .introStats span {
-    font-size: 10px;
+    font-size: 12px;
   }
 }

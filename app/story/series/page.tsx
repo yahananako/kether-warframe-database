@@ -29,16 +29,7 @@ export default function QuestSeriesDirectory() {
 
   return (
     <main className={styles.bookPage}>
-      <header className={styles.siteHeader}>
-        <Link className={styles.brand} href="/">
-          <span className={styles.brandMark}>K</span>
-          <span>
-            <strong>KETHER</strong>
-            <small>QUEST SERIES ARCHIVE</small>
-          </span>
-        </Link>
-        <HomeNewInlineMenu />
-      </header>
+      
 
       <div className={styles.pageShell}>
         <section className={styles.directoryHero}>

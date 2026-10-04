@@ -11,10 +11,10 @@
   gap: 16px;
   flex-wrap: wrap;
   padding: 20px;
-  border: 1px solid rgba(176, 122, 255, 0.28);
-  border-radius: 18px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
   background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.78), rgba(241, 232, 255, 0.66));
+    var(--surface);
 }
 
 .title {
@@ -30,7 +30,7 @@
 
 .title p {
   margin-top: 5px;
-  color: #5f6878;
+  color: var(--text);
   overflow-wrap: anywhere;
 }
 
@@ -39,17 +39,17 @@
   align-items: center;
   gap: 7px;
   padding: 8px 12px;
-  border: 1px solid rgba(91, 177, 126, 0.28);
+  border: 1px solid var(--line);
   border-radius: 999px;
-  background: rgba(221, 250, 231, 0.8);
-  color: #24623d;
+  background: var(--surface);
+  color: var(--text);
   font-weight: 900;
 }
 
 .badge[data-state="off"] {
-  border-color: rgba(216, 91, 118, 0.28);
-  background: rgba(255, 231, 236, 0.82);
-  color: #8f2f47;
+  border-color: var(--line);
+  background: var(--surface);
+  color: var(--text);
 }
 
 .grid {
@@ -61,14 +61,14 @@
 .card {
   min-width: 0;
   padding: 17px;
-  border: 1px solid rgba(174, 126, 243, 0.22);
-  border-radius: 16px;
-  background: rgba(255, 255, 255, 0.62);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
 }
 
 .card span {
   display: block;
-  color: #6b7280;
+  color: var(--text);
   font-size: 12px;
   font-weight: 800;
   letter-spacing: 0.05em;
@@ -77,26 +77,26 @@
 .card strong {
   display: block;
   margin-top: 7px;
-  color: #252b37;
+  color: var(--text);
   font-size: 17px;
   overflow-wrap: anywhere;
 }
 
 .note {
   padding: 14px 16px;
-  border: 1px solid rgba(178, 125, 246, 0.2);
-  border-radius: 14px;
-  background: rgba(255, 255, 255, 0.48);
-  color: #5c6472;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--muted);
 }
 
 .refresh {
   justify-self: end;
-  border: 1px solid rgba(163, 113, 232, 0.3);
-  border-radius: 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
   padding: 10px 14px;
-  background: rgba(255, 255, 255, 0.72);
-  color: #303747;
+  background: var(--surface);
+  color: var(--text);
   font: inherit;
   font-weight: 800;
   cursor: pointer;

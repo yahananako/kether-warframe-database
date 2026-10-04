@@ -28,16 +28,7 @@ export default function StoryDirectoryPage() {
 
   return (
     <main className={styles.bookPage}>
-      <header className={styles.siteHeader}>
-        <Link className={styles.brand} href="/" aria-label="回到 KETHER 首頁">
-          <span className={styles.brandMark}>K</span>
-          <span>
-            <strong>KETHER</strong>
-            <small>STORY ARCHIVE</small>
-          </span>
-        </Link>
-        <HomeNewInlineMenu />
-      </header>
+      
 
       <div className={styles.pageShell}>
         <section className={styles.directoryHero}>

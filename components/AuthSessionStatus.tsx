@@ -130,9 +130,9 @@ export default function AuthSessionStatus() {
           margin: "0 auto",
           borderRadius: 34,
           overflow: "hidden",
-          border: "1px solid rgba(15, 23, 42, 0.12)",
+          border: "1px solid var(--line)",
           boxShadow: `0 26px 70px ${accentHex}66, 0 18px 48px rgba(15, 23, 42, 0.12)`,
-          background: "rgba(255,255,255,0.92)"
+          background: "var(--surface)"
         }}
       >
         <div
@@ -140,7 +140,7 @@ export default function AuthSessionStatus() {
             height: 170,
             background: bannerUrl
               ? `linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.28)), url(${bannerUrl}) center / cover`
-              : `linear-gradient(135deg, ${accentHex}, #ffffff)`,
+              : `linear-gradient(135deg, ${accentHex}, var(--surface))`,
             position: "relative"
           }}
         />
@@ -148,7 +148,7 @@ export default function AuthSessionStatus() {
         <div
           style={{
             padding: "0 28px 30px",
-            background: `linear-gradient(180deg, ${accentHex}cc 0%, ${accentHex}88 42%, rgba(255,255,255,0.96) 100%)`
+            background: `linear-gradient(180deg, ${accentHex}cc 0%, ${accentHex}88 42%, var(--surface) 100%)`
           }}
         >
           <div
@@ -179,7 +179,7 @@ export default function AuthSessionStatus() {
                   overflow: "hidden",
                   display: "grid",
                   placeItems: "center",
-                  background: "rgba(255,255,255,0.8)",
+                  background: "var(--surface)",
                   border: "6px solid rgba(255,255,255,0.94)",
                   boxShadow: "0 18px 36px rgba(15, 23, 42, 0.18)"
                 }}
@@ -207,7 +207,7 @@ export default function AuthSessionStatus() {
                   style={{
                     margin: "0 0 8px",
                     letterSpacing: "0.14em",
-                    color: "#64748b",
+                    color: "var(--muted)",
                     fontSize: 12,
                     fontWeight: 900
                   }}
@@ -219,13 +219,13 @@ export default function AuthSessionStatus() {
                     margin: "14px 0 0",
                     fontSize: 24,
                     fontWeight: 950,
-                    color: "#111827"
+                    color: "var(--muted)"
                   }}
                 >
                   {displayName}
                 </p>
 
-                <p style={{ margin: "4px 0 0", color: "#475569", fontWeight: 850 }}>
+                <p style={{ margin: "4px 0 0", color: "var(--muted)", fontWeight: 850 }}>
                   @{username}
                 </p>
               </div>
@@ -239,8 +239,8 @@ export default function AuthSessionStatus() {
                 marginTop: 80,
                 padding: 22,
                 borderRadius: 28,
-                background: "rgba(255,255,255,0.72)",
-                color: "#475569",
+                background: "var(--surface)",
+                color: "var(--muted)",
                 textAlign: "left",
                 boxShadow: "inset 0 1px 0 rgba(255,255,255,0.78)"
               }}

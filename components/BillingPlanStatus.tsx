@@ -71,7 +71,7 @@ export default function BillingPlanStatus() {
           : status?.message || "付費方案功能目前為預留狀態。"}
       </p>
 
-      <div style={{ display: "grid", gap: 8, marginTop: 16, color: "#5d6875" }}>
+      <div style={{ display: "grid", gap: 8, marginTop: 16, color: "var(--muted)" }}>
         <span>
           目前方案：
           <b>{planLabel}</b>
@@ -108,10 +108,10 @@ export default function BillingPlanStatus() {
         onClick={loadBillingStatus}
         style={{
           marginTop: 18,
-          border: "1px solid rgba(15, 23, 42, 0.16)",
+          border: "1px solid var(--line)",
           borderRadius: 999,
           padding: "10px 16px",
-          background: "rgba(255,255,255,0.72)",
+          background: "var(--surface)",
           fontWeight: 800,
           cursor: "pointer"
         }}

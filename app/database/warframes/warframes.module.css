@@ -1,13 +1,12 @@
 .page {
-  min-height: 100vh;
+  min-height: 0;
   background:
-    radial-gradient(circle at 80% 0, rgba(56, 183, 219, 0.18), transparent 30%),
-    linear-gradient(145deg, #07131c, #0d2230 48%, #08151f);
-  color: #edf8ff;
-  padding: 20px;
+    transparent;
+  color: var(--text);
+  padding: 0;
 }
 .shell {
-  width: min(1240px, 100%);
+  width: 100%;
   margin: auto;
 }
 .top {
@@ -20,7 +19,7 @@
   display: flex;
   gap: 12px;
   align-items: center;
-  color: #fff;
+  color: var(--text);
   text-decoration: none;
 }
 .brandMark {
@@ -28,7 +27,7 @@
   height: 42px;
   display: grid;
   place-items: center;
-  border: 1px solid #7fdfff;
+  border: 1px solid var(--line);
   transform: rotate(45deg);
   font-weight: 900;
 }
@@ -40,13 +39,13 @@
   letter-spacing: 0.18em;
 }
 .brand small {
-  color: #7eacbf;
-  font-size: 10px;
+  color: var(--muted);
+  font-size: 12px;
 }
 .back {
-  color: #ccefff;
+  color: var(--text);
   text-decoration: none;
-  border: 1px solid rgba(138, 218, 246, 0.3);
+  border: 1px solid var(--line);
   border-radius: 999px;
   padding: 10px 16px;
 }
@@ -60,20 +59,20 @@
   display: grid;
   gap: 3px;
   padding: 14px 18px;
-  border: 1px solid rgba(138, 218, 246, 0.22);
-  border-radius: 16px;
-  color: #b9d4df;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  color: var(--text);
   text-decoration: none;
-  background: rgba(7, 24, 35, 0.72);
+  background: var(--surface);
 }
 .editionTabs small {
-  font-size: 11px;
-  color: #7295a4;
+  font-size: 12px;
+  color: var(--muted);
 }
 .editionTabs .activeEdition {
-  border-color: #70dcff;
-  color: #fff;
-  background: linear-gradient(145deg, #12394b, #0e2937);
+  border-color: var(--accent);
+  color: var(--text);
+  background: var(--surface-soft);
   box-shadow: inset 0 0 24px rgba(48, 198, 245, 0.12);
 }
 .hero {
@@ -82,7 +81,7 @@
 .hero p,
 .rolePanel header span,
 .archiveHead span {
-  color: #71d8ff;
+  color: var(--text);
   letter-spacing: 0.22em;
   font-size: 12px;
   font-weight: 800;
@@ -95,15 +94,15 @@
 .hero > span {
   display: block;
   max-width: 720px;
-  color: #a9c4d1;
+  color: var(--text);
   line-height: 1.8;
 }
 .rolePanel,
 .archive {
-  border: 1px solid rgba(130, 213, 244, 0.2);
-  background: rgba(7, 24, 35, 0.78);
-  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.25);
-  border-radius: 24px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  border-radius: var(--radius);
   padding: 26px;
   margin-bottom: 24px;
 }
@@ -114,7 +113,7 @@
 }
 .rolePanel header p,
 .archiveHead p {
-  color: #94b4c2;
+  color: var(--text);
   margin: 0;
 }
 .roleTabs {
@@ -130,34 +129,34 @@
   gap: 10px;
   min-height: 78px;
   padding: 14px;
-  border: 1px solid rgba(137, 206, 231, 0.2);
-  border-radius: 16px;
-  background: #0d2533;
-  color: #dff7ff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--text);
   text-align: left;
 }
 .roleTabs button svg {
   width: 26px;
-  color: #6fdcff;
+  color: var(--text);
 }
 .roleTabs button span {
   display: grid;
   gap: 3px;
 }
 .roleTabs button small {
-  font-size: 9px;
-  color: #769aaa;
+  font-size: 12px;
+  color: var(--muted);
 }
 .roleTabs button em {
   position: absolute;
   right: 10px;
   top: 8px;
   font-style: normal;
-  color: #5c8190;
+  color: var(--text);
 }
 .roleTabs .activeRole {
-  border-color: #70dcff;
-  background: linear-gradient(145deg, #12394b, #0e2937);
+  border-color: var(--accent);
+  background: var(--surface-soft);
   box-shadow: inset 0 0 24px rgba(48, 198, 245, 0.12);
 }
 .roleDescription {
@@ -166,15 +165,15 @@
   align-items: center;
   margin-top: 14px;
   padding: 14px;
-  border-radius: 14px;
-  background: rgba(74, 193, 230, 0.08);
+  border-radius: var(--radius);
+  background: var(--surface);
 }
 .roleDescription svg {
-  color: #70dcff;
+  color: var(--muted);
 }
 .roleDescription p {
   margin: 4px 0 0;
-  color: #9ab7c4;
+  color: var(--muted);
 }
 .archiveHead {
   display: flex;
@@ -186,10 +185,10 @@
 .archiveHead input {
   width: min(360px, 100%);
   padding: 13px 17px;
-  border: 1px solid rgba(126, 211, 241, 0.25);
+  border: 1px solid var(--line);
   border-radius: 999px;
-  background: #071923;
-  color: #fff;
+  background: var(--surface);
+  color: var(--text);
 }
 .frameGrid {
   display: grid;
@@ -198,16 +197,16 @@
 }
 .frameCard {
   overflow: hidden;
-  border: 1px solid rgba(130, 211, 240, 0.16);
-  border-radius: 18px;
-  background: #0c202c;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
 }
 .frameVisual {
   position: relative;
   height: 190px;
   display: grid;
   place-items: center;
-  background: radial-gradient(circle, rgba(87, 200, 237, 0.2), transparent 66%);
+  background: var(--surface);
 }
 .frameVisual img {
   max-width: 78%;
@@ -219,17 +218,17 @@
   position: absolute;
   left: 12px;
   top: 12px;
-  border: 1px solid rgba(113, 219, 255, 0.4);
+  border: 1px solid var(--line);
   border-radius: 999px;
   padding: 5px 10px;
-  color: #87e2ff;
-  font-size: 11px;
+  color: var(--text);
+  font-size: 12px;
 }
 .frameBody {
   padding: 18px;
 }
 .frameBody > p {
-  color: #76bfd7;
+  color: var(--muted);
   margin: 0;
   font-size: 12px;
 }
@@ -239,7 +238,7 @@
 }
 .frameBody > small {
   display: block;
-  color: #a2bdc8;
+  color: var(--muted);
   line-height: 1.55;
   min-height: 48px;
 }
@@ -250,43 +249,43 @@
   margin-top: 14px;
 }
 .frameMeta b {
-  color: #f2d78c;
+  color: var(--gold);
 }
 .frameMeta a,
 .lore a {
-  color: #7bdeff;
+  color: var(--text);
 }
 .acquisition {
   display: flex;
   gap: 10px;
   margin-top: 14px;
   padding: 12px;
-  border-radius: 12px;
-  background: rgba(77, 189, 222, 0.08);
-  border: 1px solid rgba(126, 211, 241, 0.14);
+  border-radius: var(--radius);
+  background: var(--surface);
+  border: 1px solid var(--line);
 }
 .acquisition svg {
   width: 19px;
   flex: 0 0 19px;
-  color: #7bdeff;
+  color: var(--text);
 }
 .acquisition b {
-  color: #f2d78c;
+  color: var(--gold);
 }
 .acquisition p {
   margin: 5px 0 0;
-  color: #a9c4d1;
+  color: var(--text);
   line-height: 1.55;
   font-size: 13px;
 }
 .lore {
   margin-top: 16px;
-  border-top: 1px solid rgba(127, 203, 231, 0.15);
+  border-top: 1px solid var(--line);
   padding-top: 12px;
 }
 .lore summary {
   cursor: pointer;
-  color: #8ee5ff;
+  color: var(--text);
   font-weight: 800;
 }
 .lore strong {
@@ -294,7 +293,7 @@
   margin-top: 14px;
 }
 .lore p {
-  color: #afc8d2;
+  color: var(--text);
   line-height: 1.75;
 }
 .lore footer {
@@ -303,8 +302,8 @@
   align-items: center;
   gap: 10px;
   letter-spacing: 0;
-  color: #7898a5;
-  font-size: 11px;
+  color: var(--text);
+  font-size: 12px;
 }
 .lore footer span {
   width: auto;
@@ -314,14 +313,14 @@
 .noLore {
   margin-top: 16px;
   padding-top: 12px;
-  border-top: 1px solid rgba(127, 203, 231, 0.15);
-  color: #657f8a;
+  border-top: 1px solid var(--line);
+  color: var(--text);
   font-size: 12px;
 }
 .empty {
   text-align: center;
   padding: 50px;
-  color: #7896a3;
+  color: var(--text);
 }
 
 .detailLink {
@@ -330,17 +329,17 @@
   align-items: center;
   margin-top: 14px;
   padding: 11px 13px;
-  border: 1px solid rgba(113, 219, 255, 0.22);
-  border-radius: 12px;
-  color: #dff8ff;
-  background: rgba(64, 182, 219, 0.08);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  color: var(--text);
+  background: var(--surface);
   text-decoration: none;
   font-size: 12px;
   font-weight: 800;
 }
 
 .detailLink span {
-  color: #70dcff;
+  color: var(--text);
   font-size: 18px;
 }
 @media (max-width: 900px) {
@@ -353,7 +352,7 @@
 }
 @media (max-width: 620px) {
   .page {
-    padding: 14px;
+    padding: 0;
   }
   .top {
     align-items: flex-start;
@@ -373,7 +372,7 @@
   .rolePanel,
   .archive {
     padding: 16px;
-    border-radius: 18px;
+    border-radius: var(--radius);
   }
   .roleTabs {
     display: flex;

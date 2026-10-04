@@ -311,12 +311,10 @@ export default function BotKetherSearchPanel() {
         .kether-bot-search-panel {
           margin-top: 16px;
           padding: clamp(18px, 4vw, 28px);
-          border-radius: 30px;
-          border: 1px solid rgba(255, 255, 255, 0.72);
+          border-radius: var(--radius);
+          border: 1px solid var(--line);
           background:
-            linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(239, 246, 255, 0.76)),
-            radial-gradient(circle at 8% 10%, rgba(236, 72, 153, 0.13), transparent 32%),
-            radial-gradient(circle at 92% 0%, rgba(124, 58, 237, 0.16), transparent 32%);
+            var(--surface);
           box-shadow:
             0 22px 48px rgba(15, 23, 42, 0.12),
             inset 0 1px 0 rgba(255, 255, 255, 0.82);
@@ -337,7 +335,7 @@ export default function BotKetherSearchPanel() {
           display: inline-flex;
           align-items: center;
           gap: 7px;
-          color: #7c3aed;
+          color: var(--text);
           font-size: 12px;
           font-weight: 950;
           letter-spacing: 0.12em;
@@ -345,7 +343,7 @@ export default function BotKetherSearchPanel() {
 
         .kether-bot-search-head h2 {
           margin: 0;
-          color: #172033;
+          color: var(--text);
           font-size: clamp(22px, 3vw, 30px);
           letter-spacing: -0.03em;
         }
@@ -354,9 +352,9 @@ export default function BotKetherSearchPanel() {
           flex: 0 0 auto;
           padding: 7px 10px;
           border-radius: 999px;
-          color: #6d28d9;
-          background: rgba(124, 58, 237, 0.1);
-          font-size: 11px;
+          color: var(--text);
+          background: var(--surface);
+          font-size: 12px;
           font-weight: 900;
         }
 
@@ -376,17 +374,17 @@ export default function BotKetherSearchPanel() {
           border: 0;
           border-radius: 999px;
           cursor: pointer;
-          color: #334155;
-          background: rgba(255, 255, 255, 0.72);
+          color: var(--text);
+          background: var(--surface);
           box-shadow: inset 0 0 0 1px rgba(148, 163, 184, 0.18);
           font-size: 13px;
           font-weight: 900;
         }
 
         .kether-bot-search-tabs button.is-active {
-          color: #ffffff;
-          background: linear-gradient(135deg, #7c3aed, #ec4899);
-          box-shadow: 0 12px 24px rgba(124, 58, 237, 0.2);
+          color: var(--text);
+          background: var(--surface-soft);
+          box-shadow: var(--shadow);
         }
 
         .kether-bot-search-form {
@@ -401,10 +399,10 @@ export default function BotKetherSearchPanel() {
           align-items: center;
           gap: 9px;
           padding: 0 14px;
-          border-radius: 18px;
-          background: rgba(255, 255, 255, 0.78);
-          border: 1px solid rgba(148, 163, 184, 0.18);
-          color: #64748b;
+          border-radius: var(--radius);
+          background: var(--surface);
+          border: 1px solid var(--line);
+          color: var(--text);
         }
 
         .kether-bot-search-input input {
@@ -412,7 +410,7 @@ export default function BotKetherSearchPanel() {
           border: 0;
           outline: 0;
           background: transparent;
-          color: #172033;
+          color: var(--text);
           font-size: 14px;
           font-weight: 800;
         }
@@ -431,10 +429,10 @@ export default function BotKetherSearchPanel() {
           justify-content: center;
           gap: 8px;
           padding: 0 16px;
-          border-radius: 18px;
-          color: #ffffff;
-          background: linear-gradient(135deg, #7c3aed, #ec4899);
-          box-shadow: 0 14px 28px rgba(124, 58, 237, 0.22);
+          border-radius: var(--radius);
+          color: var(--text);
+          background: var(--surface);
+          box-shadow: var(--shadow);
         }
 
         .kether-bot-search-form > button:disabled {
@@ -462,8 +460,8 @@ export default function BotKetherSearchPanel() {
         .kether-bot-quick-searches button {
           padding: 7px 10px;
           border-radius: 999px;
-          color: #334155;
-          background: rgba(255, 255, 255, 0.72);
+          color: var(--text);
+          background: var(--surface);
           box-shadow: inset 0 0 0 1px rgba(148, 163, 184, 0.18);
           font-size: 12px;
         }
@@ -472,20 +470,20 @@ export default function BotKetherSearchPanel() {
         .kether-bot-search-empty {
           margin: 14px 0 0;
           padding: 12px 14px;
-          border-radius: 18px;
+          border-radius: var(--radius);
           font-size: 14px;
           font-weight: 850;
           line-height: 1.65;
         }
 
         .kether-bot-search-error {
-          color: #9f1239;
-          background: rgba(255, 228, 230, 0.78);
+          color: var(--text);
+          background: var(--surface);
         }
 
         .kether-bot-search-empty {
-          color: #475569;
-          background: rgba(255, 255, 255, 0.68);
+          color: var(--text);
+          background: var(--surface);
         }
 
         .kether-bot-search-results {
@@ -497,9 +495,9 @@ export default function BotKetherSearchPanel() {
 
         .kether-bot-search-results article {
           padding: 15px;
-          border-radius: 22px;
-          background: rgba(255, 255, 255, 0.74);
-          border: 1px solid rgba(148, 163, 184, 0.16);
+          border-radius: var(--radius);
+          background: var(--surface);
+          border: 1px solid var(--line);
           box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.72);
         }
 
@@ -511,7 +509,7 @@ export default function BotKetherSearchPanel() {
         }
 
         .kether-bot-search-result-top strong {
-          color: #172033;
+          color: var(--text);
           font-size: 17px;
           letter-spacing: -0.02em;
         }
@@ -520,15 +518,15 @@ export default function BotKetherSearchPanel() {
           flex: 0 0 auto;
           padding: 5px 8px;
           border-radius: 999px;
-          color: #6d28d9;
-          background: rgba(124, 58, 237, 0.1);
-          font-size: 11px;
+          color: var(--text);
+          background: var(--surface);
+          font-size: 12px;
           font-weight: 900;
         }
 
         .kether-bot-search-series {
           margin: 6px 0 11px;
-          color: #7c3aed;
+          color: var(--text);
           font-size: 12px;
           font-weight: 950;
           letter-spacing: 0.06em;
@@ -541,17 +539,17 @@ export default function BotKetherSearchPanel() {
 
         .kether-bot-search-detail-list div {
           padding-top: 8px;
-          border-top: 1px solid rgba(148, 163, 184, 0.16);
+          border-top: 1px solid var(--line);
         }
 
         .kether-bot-search-detail-list b {
-          color: #172033;
+          color: var(--text);
           font-size: 12px;
         }
 
         .kether-bot-search-detail-list p {
           margin: 4px 0 0;
-          color: #475569;
+          color: var(--text);
           font-size: 13px;
           font-weight: 750;
           line-height: 1.65;
@@ -563,28 +561,28 @@ export default function BotKetherSearchPanel() {
           gap: 8px;
           margin-top: 12px;
           padding-top: 12px;
-          border-top: 1px solid rgba(124, 58, 237, 0.16);
+          border-top: 1px solid var(--line);
         }
 
         .kether-bot-search-market b {
-          color: #7c3aed;
+          color: var(--text);
           font-size: 13px;
         }
 
         .kether-bot-search-market a {
           width: fit-content;
           padding: 8px 11px;
-          border-radius: 12px;
-          color: #ffffff;
-          background: linear-gradient(135deg, #7c3aed, #ec4899);
+          border-radius: var(--radius);
+          color: var(--text);
+          background: var(--surface);
           font-size: 12px;
           font-weight: 900;
           text-decoration: none;
         }
 
         .kether-bot-search-market small {
-          color: #64748b;
-          font-size: 11px;
+          color: var(--muted);
+          font-size: 12px;
           font-weight: 700;
           line-height: 1.55;
         }
@@ -606,7 +604,7 @@ export default function BotKetherSearchPanel() {
 
         @media (max-width: 560px) {
           .kether-bot-search-panel {
-            border-radius: 24px;
+            border-radius: var(--radius);
             padding: 16px;
           }
 

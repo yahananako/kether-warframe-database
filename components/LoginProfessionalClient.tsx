@@ -129,46 +129,10 @@ export default function LoginProfessionalClient() {
 
   return (
     <main className={styles.stage}>
-      <div className={styles.background} aria-hidden="true">
-        <video autoPlay muted loop playsInline preload="metadata" poster="/kether-cinema-iceblade-v1.webp">
-          <source src="/kether-cinema-iceblade-v1.mp4" type="video/mp4" />
-        </video>
-        <HomeCinema />
-        <div className={styles.aurora} />
-        <div className={styles.lightShafts} />
-        <div className={styles.grid} />
-        <div className={styles.beam} />
-      </div>
+      
       <div className={styles.frame}>
-        <section className={styles.topShell} aria-label="KETHER 登入頁導覽列">
-          <div className="home-new-topbar">
-            <div className="home-new-brand">
-              <Image src="/kether-clan-logo.png" width={46} height={46} alt="" className={styles.crest} />
-              <Link href="/" className={styles.brand}>KETHER<small>OF PARADISO · WARFRAME DATABASE</small></Link>
-            </div>
-
-            <div className="home-new-hero-actions" aria-label="登入頁快捷入口">
-              <HomeNewInlineMenu />
-              <HomeNewInlineSearch />
-              <HomeNewInlineNotifications />
-
-              <a
-                href={discordLoginHref}
-                className={`${styles.topLogin} home-new-discord-action`}
-                aria-disabled={!loginEnabled}
-                onClick={startDiscordLogin}
-              >
-                <MessageCircle size={18} />
-                <span>登入 Discord</span>
-              </a>
-            </div>
-          </div>
-        </section>
-        <HomeTicker onNotice={() => {
-          const bell = document.querySelector<HTMLButtonElement>(".home-new-bell-button");
-          if (bell?.getAttribute("aria-expanded") === "false") bell.click();
-          bell?.focus();
-        }} />
+        
+        
 
         <div className={styles.mobileTabs} role="group" aria-label="登入步驟">
           <button type="button" aria-pressed={mobileView === "policy"} onClick={() => setMobileView("policy")}>① 閱讀資料告知 <span>{progressText}</span></button>
@@ -415,11 +379,7 @@ export default function LoginProfessionalClient() {
           </article>
         </section>
 
-        <footer className={styles.footer}>
-          <span><b>ヤハ奈々子、羊咩、凱洛</b> · 共同開發</span>
-          <a href="https://kether-warframe-database.vercel.app/">kether-warframe-database.vercel.app</a>
-          <span>MEMBER AUTHORIZATION</span>
-        </footer>
+        
       </div>
     </main>
   );

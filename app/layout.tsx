@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import "./home-player.css";
+import SiteShell from "../components/SiteShell";
 import MiniMusicPlayer from "../components/MiniMusicPlayer";
 import VisualEditorBridge from "../components/VisualEditorBridge";
 
@@ -65,7 +65,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="zh-Hant">
       <body>
-        {children}
+        <SiteShell>{children}</SiteShell>
         <VisualEditorBridge />
         <MiniMusicPlayer />
       </body>

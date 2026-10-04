@@ -9,15 +9,15 @@
   align-items: flex-start;
   gap: 12px;
   padding: 16px;
-  border: 1px solid rgba(141, 101, 214, 0.2);
-  border-radius: 16px;
-  background: rgba(255, 255, 255, 0.52);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
 }
 
 .intro svg {
   flex: 0 0 auto;
   margin-top: 2px;
-  color: #8f56c7;
+  color: var(--text);
 }
 
 .intro h3 {
@@ -28,7 +28,7 @@
 .intro p {
   margin: 7px 0 0;
   line-height: 1.7;
-  color: rgba(39, 43, 55, 0.74);
+  color: var(--text);
 }
 
 .sections {
@@ -38,9 +38,9 @@
 
 .item {
   overflow: hidden;
-  border: 1px solid rgba(141, 101, 214, 0.18);
-  border-radius: 14px;
-  background: rgba(255, 255, 255, 0.42);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
 }
 
 .item > summary {
@@ -60,12 +60,12 @@
 }
 
 .item > summary svg {
-  color: #995ccf;
+  color: var(--text);
 }
 
 .item > summary b {
   transition: transform 180ms ease;
-  color: #ad62cd;
+  color: var(--text);
 }
 
 .item[open] > summary b {
@@ -76,7 +76,7 @@
   display: grid;
   gap: 10px;
   padding: 0 16px 16px 44px;
-  color: rgba(39, 43, 55, 0.76);
+  color: var(--text);
   line-height: 1.72;
 }
 
@@ -98,20 +98,16 @@
   gap: 8px;
   min-height: 46px;
   padding: 0 16px;
-  border: 1px solid rgba(153, 83, 205, 0.28);
-  border-radius: 14px;
-  background: linear-gradient(
-    135deg,
-    rgba(151, 91, 218, 0.12),
-    rgba(226, 98, 190, 0.1)
-  );
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
   color: inherit;
   font-weight: 750;
   text-decoration: none;
 }
 
 .policyLink:hover {
-  border-color: rgba(153, 83, 205, 0.48);
+  border-color: var(--accent);
 }
 
 @media (max-width: 720px) {
