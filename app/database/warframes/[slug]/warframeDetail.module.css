@@ -1,18 +1,12 @@
 .page {
-  min-height: 100vh;
-  padding: 18px;
-  color: #edf8ff;
-  background:
-    radial-gradient(
-      circle at 85% 3%,
-      rgba(67, 197, 234, 0.2),
-      transparent 30rem
-    ),
-    linear-gradient(145deg, #061019, #0c2230 48%, #07131c);
+  min-height: 0;
+  padding: 0;
+  color: var(--text);
+  background: transparent;
 }
 
 .shell {
-  width: min(1180px, 100%);
+  width: 100%;
   margin: auto;
 }
 
@@ -22,22 +16,22 @@
   align-items: center;
   gap: 18px;
   padding: 12px 0 24px;
-  border-bottom: 1px solid rgba(126, 211, 241, 0.17);
+  border-bottom: 1px solid var(--line);
 }
 
 .topbar a {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  color: #dff7ff;
+  color: var(--text);
   text-decoration: none;
 }
 .topbar a svg {
   width: 17px;
 }
 .topbar span {
-  color: #7196a6;
-  font-size: 11px;
+  color: var(--text);
+  font-size: 12px;
   letter-spacing: 0.09em;
 }
 
@@ -46,7 +40,7 @@
   grid-template-columns: 1.05fr 0.95fr;
   gap: 32px;
   align-items: center;
-  min-height: 590px;
+  min-height: 420px;
   padding: 48px 0;
 }
 
@@ -55,8 +49,8 @@
 .buildCta p,
 .buildHero p {
   margin: 0;
-  color: #72dcff;
-  font-size: 11px;
+  color: var(--muted);
+  font-size: 12px;
   font-weight: 900;
   letter-spacing: 0.19em;
 }
@@ -70,17 +64,17 @@
 .roleBadge {
   display: inline-flex;
   padding: 7px 11px;
-  border: 1px solid rgba(112, 220, 255, 0.35);
+  border: 1px solid var(--line);
   border-radius: 999px;
-  color: #9ceaff;
-  background: rgba(52, 179, 218, 0.08);
+  color: var(--text);
+  background: var(--surface);
   font-size: 12px;
   font-weight: 800;
 }
 .description {
   max-width: 680px;
   margin: 20px 0 0;
-  color: #aec6d1;
+  color: var(--muted);
   font-size: 16px;
   line-height: 1.85;
 }
@@ -98,10 +92,10 @@
   gap: 8px;
   min-height: 46px;
   padding: 0 17px;
-  border: 1px solid rgba(116, 220, 255, 0.28);
-  border-radius: 14px;
-  color: #eafbff;
-  background: #0e2c3a;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  color: var(--text);
+  background: var(--surface);
   text-decoration: none;
   font-size: 12px;
   font-weight: 900;
@@ -109,8 +103,8 @@
 .heroActions a:first-child,
 .buildCta a {
   border: 0;
-  color: #07141b;
-  background: linear-gradient(135deg, #65dff5, #f0cf7e);
+  color: var(--text);
+  background: var(--surface);
 }
 .heroActions svg,
 .buildCta svg {
@@ -124,23 +118,17 @@
   min-height: 510px;
   margin: 0;
   overflow: hidden;
-  border: 1px solid rgba(129, 217, 247, 0.18);
-  border-radius: 34px 10px 34px 10px;
-  background: radial-gradient(
-    circle,
-    rgba(97, 204, 239, 0.22),
-    transparent 62%
-  );
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
 }
 .heroArt > div {
   position: absolute;
   width: 70%;
   aspect-ratio: 1;
-  border: 1px solid rgba(112, 220, 255, 0.18);
+  border: 1px solid var(--line);
   border-radius: 50%;
-  box-shadow:
-    0 0 0 45px rgba(112, 220, 255, 0.025),
-    0 0 0 90px rgba(112, 220, 255, 0.018);
+  box-shadow: var(--shadow);
 }
 .heroArt img {
   position: relative;
@@ -157,10 +145,10 @@
   bottom: 16px;
   left: 16px;
   padding: 11px 14px;
-  border-radius: 12px;
-  color: #a7c1cc;
-  background: rgba(4, 13, 19, 0.82);
-  font-size: 11px;
+  border-radius: var(--radius);
+  color: var(--muted);
+  background: var(--surface);
+  font-size: 12px;
   line-height: 1.55;
   backdrop-filter: blur(8px);
 }
@@ -177,18 +165,18 @@
   gap: 3px 9px;
   align-items: center;
   padding: 15px;
-  border: 1px solid rgba(124, 211, 242, 0.15);
-  border-radius: 16px;
-  background: rgba(8, 27, 38, 0.76);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
 }
 .statGrid svg {
   grid-row: 1 / 3;
   width: 20px;
-  color: #68d7f8;
+  color: var(--text);
 }
 .statGrid span {
-  color: #789caa;
-  font-size: 10px;
+  color: var(--text);
+  font-size: 12px;
 }
 .statGrid strong {
   font-size: 19px;
@@ -197,10 +185,10 @@
 .section {
   margin-bottom: 22px;
   padding: 26px;
-  border: 1px solid rgba(124, 211, 242, 0.17);
-  border-radius: 24px;
-  background: rgba(7, 24, 35, 0.76);
-  box-shadow: 0 20px 55px rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: var(--shadow);
 }
 .sectionHead {
   display: flex;
@@ -214,8 +202,8 @@
   font-size: 30px;
 }
 .sectionHead > span {
-  color: #7899a7;
-  font-size: 11px;
+  color: var(--text);
+  font-size: 12px;
 }
 .abilityGrid {
   display: grid;
@@ -224,9 +212,9 @@
 }
 .abilityGrid details {
   overflow: hidden;
-  border: 1px solid rgba(122, 211, 242, 0.16);
-  border-radius: 16px;
-  background: #0a202d;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
 }
 .abilityGrid summary {
   display: grid;
@@ -242,9 +230,9 @@
   display: none;
 }
 .abilityGrid summary > span {
-  color: #68d7f8;
+  color: var(--text);
   font-family: Georgia, serif;
-  font-size: 11px;
+  font-size: 12px;
 }
 .abilityGrid summary img {
   width: 38px;
@@ -255,7 +243,7 @@
   font-size: 16px;
 }
 .abilityGrid summary i {
-  color: #68d7f8;
+  color: var(--text);
   font-size: 18px;
   font-style: normal;
 }
@@ -265,7 +253,7 @@
 .abilityGrid details > p {
   margin: 0;
   padding: 0 16px 17px;
-  color: #abc3ce;
+  color: var(--muted);
   font-size: 13px;
   line-height: 1.75;
 }
@@ -275,23 +263,23 @@
   gap: 12px;
   margin-top: 12px;
   padding: 15px;
-  border: 1px solid rgba(238, 207, 126, 0.18);
-  border-radius: 15px;
-  background: rgba(238, 207, 126, 0.055);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
 }
 .passive svg,
 .acquisition svg {
   width: 20px;
   flex: 0 0 20px;
-  color: #f0cf7e;
+  color: var(--text);
 }
 .passive strong {
-  color: #f0cf7e;
+  color: var(--text);
 }
 .passive p,
 .acquisition p {
   margin: 4px 0 0;
-  color: #afc7d1;
+  color: var(--text);
   line-height: 1.7;
 }
 
@@ -310,13 +298,13 @@
 }
 .componentList article {
   padding: 14px;
-  border: 1px solid rgba(123, 210, 240, 0.13);
-  border-radius: 14px;
-  background: #0a202d;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
 }
 .componentList h3 {
   margin: 0 0 10px;
-  color: #e8cf8c;
+  color: var(--text);
   font-size: 15px;
 }
 .componentList ul {
@@ -330,18 +318,18 @@
   display: flex;
   justify-content: space-between;
   gap: 12px;
-  color: #9ebac6;
-  font-size: 11px;
+  color: var(--text);
+  font-size: 12px;
 }
 .componentList li b {
   flex: 0 0 auto;
-  color: #72dcff;
+  color: var(--text);
 }
 .componentList article > p,
 .muted {
   margin: 0;
-  color: #7696a3;
-  font-size: 11px;
+  color: var(--muted);
+  font-size: 12px;
 }
 
 .market :global(.warframe-market-card) {
@@ -350,18 +338,14 @@
   gap: 10px;
   min-height: 100%;
   padding: 26px;
-  border: 1px solid rgba(238, 207, 126, 0.22);
-  border-radius: 24px;
-  background: linear-gradient(
-    145deg,
-    rgba(41, 36, 27, 0.82),
-    rgba(7, 24, 35, 0.88)
-  );
-  box-shadow: 0 20px 55px rgba(0, 0, 0, 0.2);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: var(--shadow);
 }
 .market :global(.warframe-market-card) > span {
-  color: #f0cf7e;
-  font-size: 10px;
+  color: var(--text);
+  font-size: 12px;
   font-weight: 900;
   letter-spacing: 0.14em;
 }
@@ -370,20 +354,20 @@
   font-size: 25px;
 }
 .market :global(.warframe-market-card) strong {
-  color: #fff;
+  color: var(--text);
   font-size: 32px;
 }
 .market :global(.warframe-market-card) p {
-  color: #a8bdc5;
+  color: var(--text);
   line-height: 1.7;
 }
 .market :global(.warframe-market-card) a {
   display: inline-flex;
   justify-content: center;
   padding: 12px;
-  border-radius: 12px;
-  color: #07141b;
-  background: #f0cf7e;
+  border-radius: var(--radius);
+  color: var(--text);
+  background: var(--surface);
   text-decoration: none;
   font-size: 12px;
   font-weight: 900;
@@ -395,15 +379,15 @@
   grid-template-columns: 34px 1fr;
   gap: 15px;
   padding: 18px;
-  border-left: 3px solid var(--lore-accent);
-  background: rgba(255, 255, 255, 0.025);
+  border-left: 3px solid var(--line);
+  background: var(--surface);
 }
 .lore > svg {
   color: var(--lore-accent);
 }
 .lore span {
   color: var(--lore-accent);
-  font-size: 10px;
+  font-size: 12px;
   letter-spacing: 0.1em;
 }
 .lore h3 {
@@ -411,26 +395,26 @@
   font-size: 25px;
 }
 .lore strong {
-  color: #dceaf0;
+  color: var(--text);
   line-height: 1.7;
 }
 .lore p {
-  color: #a9c0ca;
+  color: var(--text);
   line-height: 1.8;
 }
 .lore a {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  color: #72dcff;
+  color: var(--text);
 }
 .lore a svg {
   width: 14px;
 }
 .emptyLore {
   padding: 20px;
-  color: #789aa8;
-  background: #0a202d;
+  color: var(--text);
+  background: var(--surface);
 }
 
 .buildCta {
@@ -440,20 +424,16 @@
   gap: 25px;
   margin: 35px 0 60px;
   padding: 28px;
-  border: 1px solid rgba(122, 213, 244, 0.2);
-  border-radius: 26px;
-  background: linear-gradient(
-    135deg,
-    rgba(31, 105, 129, 0.25),
-    rgba(115, 86, 33, 0.15)
-  );
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
 }
 .buildCta h2 {
   margin: 8px 0;
   font-size: 28px;
 }
 .buildCta span {
-  color: #9db8c4;
+  color: var(--text);
   line-height: 1.7;
 }
 .buildCta a {
@@ -473,25 +453,25 @@
   filter: drop-shadow(0 20px 25px rgba(0, 0, 0, 0.5));
 }
 .buildHero > div > span {
-  color: #94b7c5;
+  color: var(--text);
 }
 .buildNotice {
   display: flex;
   gap: 12px;
   margin-bottom: 18px;
   padding: 14px 17px;
-  border: 1px solid rgba(241, 207, 125, 0.2);
-  border-radius: 15px;
-  background: rgba(241, 207, 125, 0.06);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
 }
 .buildNotice svg {
   width: 20px;
   flex: 0 0 20px;
-  color: #f0cf7e;
+  color: var(--text);
 }
 .buildNotice p {
   margin: 0;
-  color: #a9c0ca;
+  color: var(--text);
   line-height: 1.6;
 }
 
@@ -519,7 +499,7 @@
 
 @media (max-width: 600px) {
   .page {
-    padding: 13px;
+    padding: 0;
   }
   .topbar {
     align-items: flex-start;
@@ -529,7 +509,7 @@
   }
   .hero {
     gap: 16px;
-    min-height: 0;
+    min-height: 420px;
   }
   .heroArt {
     min-height: 360px;

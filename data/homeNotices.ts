@@ -1,5 +1,10 @@
-export const HOME_NOTICE_VERSION = "android-downloader-v2.6.4-2026-09-15";
+export const HOME_NOTICE_VERSION = "unified-interface-v2.2.53-2026-10-04";
 export const homeNotices = [
+  {
+    tag: "全站重製",
+    title: "KETHER 全站統一介面",
+    body: "首頁、搜尋、資料庫、故事與成員服務採用共同導覽。搜尋新增分類筆數、分頁與一般戰甲／靈化資料檢索。",
+  },
   {
     tag: "版本",
     title: "KETHER V2.6.4 已上線",

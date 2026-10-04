@@ -34,7 +34,7 @@ export default function PermissionVerificationStatus() {
       const response = await fetch("/api/auth/permission", {
         method: "GET",
         credentials: "include",
-        cache: "no-store"
+        cache: "no-store",
       });
 
       const payload = (await response.json()) as PermissionStatus;
@@ -44,7 +44,7 @@ export default function PermissionVerificationStatus() {
         ok: false,
         authenticated: false,
         authorized: false,
-        message: "權限驗證狀態讀取失敗。"
+        message: "權限驗證狀態讀取失敗。",
       });
     } finally {
       setLoading(false);
@@ -72,7 +72,14 @@ export default function PermissionVerificationStatus() {
           : status?.message || "尚無權限驗證資料。"}
       </p>
 
-      <div style={{ display: "grid", gap: 8, marginTop: 16, color: "#5d6875" }}>
+      <div
+        style={{
+          display: "grid",
+          gap: 8,
+          marginTop: 16,
+          color: "var(--muted)",
+        }}
+      >
         <span>
           Guild ID：
           <b>{configured?.guildIdConfigured ? "已設定" : "未設定"}</b>
@@ -122,12 +129,12 @@ export default function PermissionVerificationStatus() {
         onClick={loadStatus}
         style={{
           marginTop: 18,
-          border: "1px solid rgba(15, 23, 42, 0.16)",
+          border: "1px solid var(--line)",
           borderRadius: 999,
           padding: "10px 16px",
-          background: "rgba(255,255,255,0.72)",
+          background: "var(--surface)",
           fontWeight: 800,
-          cursor: "pointer"
+          cursor: "pointer",
         }}
       >
         重新檢查權限

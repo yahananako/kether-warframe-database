@@ -42,7 +42,7 @@ function getDiscordBannerUrl(user?: SessionResponse["discordUser"]) {
 }
 
 function getAccentHex(accentColor?: number | null) {
-  if (typeof accentColor !== "number") return "#f5d0d9";
+  if (typeof accentColor !== "number") return "#9ce7e5";
   return `#${accentColor.toString(16).padStart(6, "0")}`;
 }
 
@@ -58,10 +58,12 @@ export default function AuthSessionStatus() {
         const response = await fetch("/api/auth/session", {
           method: "GET",
           credentials: "include",
-          cache: "no-store"
+          cache: "no-store",
         });
 
-        const data = (await response.json().catch(() => ({}))) as SessionResponse;
+        const data = (await response
+          .json()
+          .catch(() => ({}))) as SessionResponse;
 
         if (!active) return;
 
@@ -73,7 +75,7 @@ export default function AuthSessionStatus() {
         setSession({
           ok: false,
           authenticated: false,
-          error: "Discord session 狀態讀取失敗。"
+          error: "Discord session 狀態讀取失敗。",
         });
         setLoading(false);
       }
@@ -99,7 +101,9 @@ export default function AuthSessionStatus() {
     return (
       <section className="auth-hero-card">
         <h2>Discord 名片</h2>
-        <p>{session?.error || "目前尚未登入 Discord，個人進度會保持唯讀狀態。"}</p>
+        <p>
+          {session?.error || "目前尚未登入 Discord，個人進度會保持唯讀狀態。"}
+        </p>
 
         <div className="auth-actions">
           <a className="auth-primary" href="/api/auth/discord/login">
@@ -128,11 +132,11 @@ export default function AuthSessionStatus() {
         style={{
           width: "min(100%, 680px)",
           margin: "0 auto",
-          borderRadius: 34,
+          borderRadius: "var(--radius)",
           overflow: "hidden",
-          border: "1px solid rgba(15, 23, 42, 0.12)",
-          boxShadow: `0 26px 70px ${accentHex}66, 0 18px 48px rgba(15, 23, 42, 0.12)`,
-          background: "rgba(255,255,255,0.92)"
+          border: "1px solid var(--line)",
+          boxShadow: "var(--shadow)",
+          background: "var(--surface)",
         }}
       >
         <div
@@ -140,15 +144,15 @@ export default function AuthSessionStatus() {
             height: 170,
             background: bannerUrl
               ? `linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.28)), url(${bannerUrl}) center / cover`
-              : `linear-gradient(135deg, ${accentHex}, #ffffff)`,
-            position: "relative"
+              : `linear-gradient(135deg, ${accentHex}, var(--surface))`,
+            position: "relative",
           }}
         />
 
         <div
           style={{
             padding: "0 28px 30px",
-            background: `linear-gradient(180deg, ${accentHex}cc 0%, ${accentHex}88 42%, rgba(255,255,255,0.96) 100%)`
+            background: "var(--surface)",
           }}
         >
           <div
@@ -156,7 +160,7 @@ export default function AuthSessionStatus() {
               display: "grid",
               gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
               gap: 22,
-              alignItems: "start"
+              alignItems: "start",
             }}
           >
             <div
@@ -168,7 +172,7 @@ export default function AuthSessionStatus() {
                 textAlign: "center",
                 padding: "0 10px",
                 transform: "translateY(-46px)",
-                marginBottom: -28
+                marginBottom: -28,
               }}
             >
               <div
@@ -179,9 +183,9 @@ export default function AuthSessionStatus() {
                   overflow: "hidden",
                   display: "grid",
                   placeItems: "center",
-                  background: "rgba(255,255,255,0.8)",
+                  background: "var(--surface)",
                   border: "6px solid rgba(255,255,255,0.94)",
-                  boxShadow: "0 18px 36px rgba(15, 23, 42, 0.18)"
+                  boxShadow: "0 18px 36px rgba(15, 23, 42, 0.18)",
                 }}
               >
                 {avatarUrl ? (
@@ -192,7 +196,7 @@ export default function AuthSessionStatus() {
                       width: "100%",
                       height: "100%",
                       objectFit: "cover",
-                      display: "block"
+                      display: "block",
                     }}
                   />
                 ) : (
@@ -207,25 +211,31 @@ export default function AuthSessionStatus() {
                   style={{
                     margin: "0 0 8px",
                     letterSpacing: "0.14em",
-                    color: "#64748b",
+                    color: "var(--muted)",
                     fontSize: 12,
-                    fontWeight: 900
+                    fontWeight: 900,
                   }}
                 >
                   DISCORD PROFILE CARD
                 </p>
-<p
+                <p
                   style={{
                     margin: "14px 0 0",
                     fontSize: 24,
                     fontWeight: 950,
-                    color: "#111827"
+                    color: "var(--muted)",
                   }}
                 >
                   {displayName}
                 </p>
 
-                <p style={{ margin: "4px 0 0", color: "#475569", fontWeight: 850 }}>
+                <p
+                  style={{
+                    margin: "4px 0 0",
+                    color: "var(--muted)",
+                    fontWeight: 850,
+                  }}
+                >
                   @{username}
                 </p>
               </div>
@@ -239,10 +249,10 @@ export default function AuthSessionStatus() {
                 marginTop: 80,
                 padding: 22,
                 borderRadius: 28,
-                background: "rgba(255,255,255,0.72)",
-                color: "#475569",
+                background: "var(--surface)",
+                color: "var(--muted)",
                 textAlign: "left",
-                boxShadow: "inset 0 1px 0 rgba(255,255,255,0.78)"
+                boxShadow: "inset 0 1px 0 rgba(255,255,255,0.78)",
               }}
             >
               <span>
@@ -259,17 +269,20 @@ export default function AuthSessionStatus() {
             </div>
           </div>
 
-          <div className="auth-actions profile-card-actions" style={{ marginTop: 22 }}>
-          <a className="profile-home-button" href="/">
-            回首頁
-          </a>
-          <a
-            className="profile-discord-logout-button"
-            href="/api/auth/logout"
+          <div
+            className="auth-actions profile-card-actions"
+            style={{ marginTop: 22 }}
           >
-            登出 Discord
-          </a>
-        </div>
+            <a className="profile-home-button" href="/">
+              回首頁
+            </a>
+            <a
+              className="profile-discord-logout-button"
+              href="/api/auth/logout"
+            >
+              登出 Discord
+            </a>
+          </div>
         </div>
       </div>
     </section>

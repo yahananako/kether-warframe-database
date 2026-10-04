@@ -1,54 +1,68 @@
-import Link from "next/link";
 import { Bell, Database, ShieldCheck, Sparkles } from "lucide-react";
+import Link from "next/link";
 import { KETHER_APP_VERSION, KETHER_BOT_VERSION } from "../../data/siteVersion";
 
 const updates = [
   {
+    version: KETHER_APP_VERSION,
+    title: "全站統一介面重製",
+    content:
+      "全頁面共用導覽、通知、播放器與介面規格。搜尋加入分類筆數及分頁，一般戰甲預設顯示全部定位。",
+  },
+  {
     version: KETHER_BOT_VERSION,
     title: "小希 BOT 氏族工具更新",
-    content: "新增氏族截圖自動驗證與按鈕抽獎，查價結果加入 Warframe Market 交易網站按鈕，並修復戰甲名片無回應。",
+    content:
+      "新增氏族截圖自動驗證與按鈕抽獎，查價結果加入 Warframe Market 交易網站按鈕，並修復戰甲名片無回應。",
   },
   {
     version: KETHER_APP_VERSION,
     title: "系列任務故事書上線",
-    content: "主線與支線之外新增六條連續任務航路，網站與 Android APP 共用相同節點與閱讀順序。",
+    content:
+      "主線與支線之外新增六條連續任務航路，網站與 Android APP 共用相同節點與閱讀順序。",
   },
   {
     version: KETHER_APP_VERSION,
     title: "電波局與五大裝備分類改版",
-    content: "12 座即時情報站皆有獨立美化頁面；主要、次要、近戰、同伴與曲翼加入分類導覽，並補齊擬狐獸、孤生獸、骨寡婦與虛空魂。",
+    content:
+      "12 座即時情報站皆有獨立美化頁面；主要、次要、近戰、同伴與曲翼加入分類導覽，並補齊擬狐獸、孤生獸、骨寡婦與虛空魂。",
   },
   {
     version: KETHER_APP_VERSION,
     title: "赤毒武器系列同步完成",
-    content: "21 把赤毒武器已同步到 Google Sheets、網站、小希 BOT 與 Android APP，並加入已轉化玄骸即時拍賣價及交易頁。",
+    content:
+      "21 把赤毒武器已同步到 Google Sheets、網站、小希 BOT 與 Android APP，並加入已轉化玄骸即時拍賣價及交易頁。",
   },
   {
     version: KETHER_APP_VERSION,
     title: "一般戰甲檔案館上線",
-    content: "收錄 65 位一般戰甲，並新增每位戰甲的技能、來源、Prime 行情與獨立配裝頁。",
+    content:
+      "收錄 65 位一般戰甲，並新增每位戰甲的技能、來源、Prime 行情與獨立配裝頁。",
   },
   {
     version: KETHER_APP_VERSION,
     title: "Prime 戰甲獨立分頁",
-    content: "Prime 戰甲已與一般版本分離，獨立保留白金價格、Warframe Market 交易連結與個人持有資料。",
+    content:
+      "Prime 戰甲已與一般版本分離，獨立保留白金價格、Warframe Market 交易連結與個人持有資料。",
   },
   {
     version: KETHER_APP_VERSION,
     title: "故事書專屬封面更新",
-    content: "主線與支線故事各自使用任務專屬封面，修復失效圖片並停止共用主要圖片或戰甲圖片。",
+    content:
+      "主線與支線故事各自使用任務專屬封面，修復失效圖片並停止共用主要圖片或戰甲圖片。",
   },
   {
     version: KETHER_APP_VERSION,
     title: "首頁資訊全面同步",
-    content: "首頁導覽、漢堡選單、搜尋、鈴鐺與動態跑馬燈皆已更新為最新資料庫結構。",
+    content:
+      "首頁導覽、漢堡選單、搜尋、鈴鐺與動態跑馬燈皆已更新為最新資料庫結構。",
   },
   {
     version: KETHER_APP_VERSION,
     title: "同步系統維持運作",
     content: `Google Sheets、Discord 個人進度與每日 04:00 價格同步維持運作，BOT 版本為 ${KETHER_BOT_VERSION}。`,
   },
-]
+];
 
 export default function NotificationsPage() {
   return (
@@ -103,7 +117,10 @@ export default function NotificationsPage() {
 
         <div style={{ display: "grid", gap: 14 }}>
           {updates.map((item) => (
-            <article key={`${item.version}-${item.title}`} className="info-card">
+            <article
+              key={`${item.version}-${item.title}`}
+              className="info-card"
+            >
               <strong>{item.version}</strong>
               <h2>
                 <Sparkles size={18} /> {item.title}

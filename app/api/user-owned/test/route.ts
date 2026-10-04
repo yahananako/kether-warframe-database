@@ -6,7 +6,7 @@ export async function GET() {
     return NextResponse.json(
       {
         ok: false,
-        message: "缺少 SUPABASE_SERVICE_ROLE_KEY。請到 Vercel Environment Variables 新增後重新部署。"
+        message: "個人進度服務暫時無法使用，請稍後再試。"
       },
       { status: 500 }
     );

@@ -1,5 +1,4 @@
-import type { CSSProperties } from "react";
-import Link from "next/link";
+import StoryArtwork from "../../../components/StoryArtwork";
 import {
   ArrowLeft,
   ArrowRight,
@@ -8,8 +7,9 @@ import {
   GitBranch,
   Sparkles,
 } from "lucide-react";
+import Link from "next/link";
+import type { CSSProperties } from "react";
 
-import HomeNewInlineMenu from "../../../components/HomeNewInlineMenu";
 import {
   QUEST_SERIES_UPDATED_AT,
   questSeries,
@@ -29,17 +29,6 @@ export default function QuestSeriesDirectory() {
 
   return (
     <main className={styles.bookPage}>
-      <header className={styles.siteHeader}>
-        <Link className={styles.brand} href="/">
-          <span className={styles.brandMark}>K</span>
-          <span>
-            <strong>KETHER</strong>
-            <small>QUEST SERIES ARCHIVE</small>
-          </span>
-        </Link>
-        <HomeNewInlineMenu />
-      </header>
-
       <div className={styles.pageShell}>
         <section className={styles.directoryHero}>
           <div className={styles.directoryHeroCopy}>
@@ -81,7 +70,10 @@ export default function QuestSeriesDirectory() {
             {[questSeries[2], questSeries[3], questSeries[5]].map(
               (series, index) => (
                 <figure key={series.slug} data-layer={index}>
-                  <img src={series.heroImage} alt={`${series.title}系列封面`} />
+                  <StoryArtwork
+                    src={series.heroImage}
+                    alt={`${series.title}系列封面`}
+                  />
                   <figcaption>
                     <span>{series.number}</span>
                     {series.title}
@@ -114,7 +106,10 @@ export default function QuestSeriesDirectory() {
                 style={{ "--card-accent": series.accent } as CSSProperties}
               >
                 <div className={styles.chapterCardImage}>
-                  <img src={series.heroImage} alt={`${series.title}系列封面`} />
+                  <StoryArtwork
+                    src={series.heroImage}
+                    alt={`${series.title}系列封面`}
+                  />
                   <span>{series.number.replace("S-", "")}</span>
                 </div>
                 <div className={styles.chapterCardBody}>

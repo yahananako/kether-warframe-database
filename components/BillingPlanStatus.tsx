@@ -33,7 +33,7 @@ export default function BillingPlanStatus() {
       const response = await fetch("/api/billing/status", {
         method: "GET",
         credentials: "include",
-        cache: "no-store"
+        cache: "no-store",
       });
 
       const payload = (await response.json()) as BillingStatus;
@@ -43,7 +43,7 @@ export default function BillingPlanStatus() {
         ok: false,
         authenticated: false,
         billingEnabled: false,
-        message: "付費方案狀態讀取失敗。"
+        message: "付費方案狀態讀取失敗。",
       });
     } finally {
       setLoading(false);
@@ -54,16 +54,15 @@ export default function BillingPlanStatus() {
     loadBillingStatus();
   }, []);
 
-  const planLabel = status?.plan?.tier === "free" ? "免費版" : status?.plan?.tier || "預留中";
+  const planLabel =
+    status?.plan?.tier === "free" ? "免費版" : status?.plan?.tier || "預留中";
   const paidEnabled = Boolean(status?.features?.paidSubscription);
 
   return (
     <article className="profile-card">
       <h3>付費方案</h3>
 
-      <strong>
-        {loading ? "讀取中" : paidEnabled ? "已啟用" : "預留中"}
-      </strong>
+      <strong>{loading ? "讀取中" : paidEnabled ? "已啟用" : "預留中"}</strong>
 
       <p>
         {loading
@@ -71,7 +70,14 @@ export default function BillingPlanStatus() {
           : status?.message || "付費方案功能目前為預留狀態。"}
       </p>
 
-      <div style={{ display: "grid", gap: 8, marginTop: 16, color: "#5d6875" }}>
+      <div
+        style={{
+          display: "grid",
+          gap: 8,
+          marginTop: 16,
+          color: "var(--muted)",
+        }}
+      >
         <span>
           目前方案：
           <b>{planLabel}</b>
@@ -94,12 +100,18 @@ export default function BillingPlanStatus() {
 
         <span>
           Role Gate：
-          <b>{status?.features?.roleGate ? "已啟用" : "未啟用，全群成員可用"}</b>
+          <b>
+            {status?.features?.roleGate ? "已啟用" : "未啟用，全群成員可用"}
+          </b>
         </span>
 
         <span>
           到期日：
-          <b>{status?.plan?.subscriptionEndsAt || status?.plan?.trialEndsAt || "尚未設定"}</b>
+          <b>
+            {status?.plan?.subscriptionEndsAt ||
+              status?.plan?.trialEndsAt ||
+              "尚未設定"}
+          </b>
         </span>
       </div>
 
@@ -108,12 +120,12 @@ export default function BillingPlanStatus() {
         onClick={loadBillingStatus}
         style={{
           marginTop: 18,
-          border: "1px solid rgba(15, 23, 42, 0.16)",
+          border: "1px solid var(--line)",
           borderRadius: 999,
           padding: "10px 16px",
-          background: "rgba(255,255,255,0.72)",
+          background: "var(--surface)",
           fontWeight: 800,
-          cursor: "pointer"
+          cursor: "pointer",
         }}
       >
         重新檢查方案

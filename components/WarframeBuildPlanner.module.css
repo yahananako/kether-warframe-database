@@ -8,21 +8,21 @@
   justify-content: space-between;
   gap: 20px;
   padding: 22px;
-  border: 1px solid rgba(124, 222, 255, 0.2);
-  border-radius: 22px;
-  background: rgba(6, 25, 36, 0.76);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
 }
 .heading span,
 .group header span {
-  color: #70dcff;
-  font-size: 10px;
+  color: var(--text);
+  font-size: 12px;
   font-weight: 900;
   letter-spacing: 0.18em;
 }
 .heading h2,
 .group h3 {
   margin: 7px 0;
-  color: #f2d78c;
+  color: var(--gold);
 }
 .heading h2 {
   font-size: 28px;
@@ -30,16 +30,16 @@
 .heading p {
   max-width: 720px;
   margin: 0;
-  color: #9ebac6;
+  color: var(--text);
   line-height: 1.75;
 }
 .heading button {
   min-height: 42px;
   padding: 0 15px;
-  border: 1px solid rgba(112, 220, 255, 0.35);
+  border: 1px solid var(--line);
   border-radius: 999px;
-  color: #dff8ff;
-  background: #0b2635;
+  color: var(--text);
+  background: var(--surface);
   font-weight: 800;
 }
 .priorityRow {
@@ -50,8 +50,8 @@
 .priorityRow span {
   padding: 8px 12px;
   border-radius: 999px;
-  color: #dff8ff;
-  background: rgba(85, 196, 232, 0.11);
+  color: var(--text);
+  background: var(--surface);
   font-size: 12px;
 }
 .specialSlots,
@@ -62,9 +62,9 @@
 }
 .group {
   padding: 20px;
-  border: 1px solid rgba(124, 222, 255, 0.17);
-  border-radius: 22px;
-  background: rgba(6, 22, 32, 0.68);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
 }
 .group header {
   margin-bottom: 14px;
@@ -87,13 +87,13 @@
   gap: 7px;
   min-width: 0;
   padding: 12px;
-  border: 1px solid rgba(121, 205, 234, 0.17);
-  border-radius: 15px;
-  background: #0b2330;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
 }
 .slot > span {
-  color: #78b9d0;
-  font-size: 10px;
+  color: var(--text);
+  font-size: 12px;
   font-weight: 800;
   letter-spacing: 0.08em;
 }
@@ -101,16 +101,16 @@
   min-width: 0;
   width: 100%;
   padding: 10px 9px;
-  border: 1px solid rgba(120, 212, 244, 0.2);
-  border-radius: 10px;
-  color: #eefbff;
-  background: #071923;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  color: var(--text);
+  background: var(--surface);
   font-size: 12px;
 }
 .savedNote {
   margin: 0;
-  color: #7799a7;
-  font-size: 11px;
+  color: var(--text);
+  font-size: 12px;
   line-height: 1.7;
 }
 @media (max-width: 900px) {

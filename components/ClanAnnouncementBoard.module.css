@@ -26,10 +26,10 @@
   align-items: center;
   justify-content: center;
   gap: 7px;
-  border: 1px solid rgba(180, 125, 255, 0.38);
-  border-radius: 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
   padding: 10px 13px;
-  background: rgba(110, 61, 164, 0.18);
+  background: var(--surface);
   color: inherit;
   font: inherit;
   cursor: pointer;
@@ -37,18 +37,18 @@
 
 .button {
   font-weight: 700;
-  color: #fff;
-  background: linear-gradient(135deg, #7541c8, #c94fae);
-  box-shadow: 0 10px 24px rgba(94, 46, 153, 0.2);
+  color: var(--text);
+  background: var(--surface);
+  box-shadow: var(--shadow);
 }
 
 .soft {
-  background: rgba(255, 255, 255, 0.38);
+  background: var(--surface);
 }
 
 .danger {
-  border-color: rgba(221, 77, 111, 0.38);
-  background: rgba(221, 77, 111, 0.12);
+  border-color: var(--line);
+  background: var(--surface);
 }
 
 .button:disabled,
@@ -62,18 +62,18 @@
 .empty,
 .login,
 .card {
-  border: 1px solid rgba(181, 129, 255, 0.24);
-  border-radius: 16px;
-  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
   padding: 16px;
 }
 
 .notice[data-kind="error"] {
-  border-color: rgba(255, 112, 138, 0.38);
+  border-color: var(--line);
 }
 
 .notice[data-kind="success"] {
-  border-color: rgba(112, 226, 177, 0.36);
+  border-color: var(--line);
 }
 
 .empty,
@@ -84,24 +84,22 @@
 .editor {
   display: grid;
   gap: 15px;
-  border: 1px solid rgba(185, 135, 239, 0.44);
-  border-radius: 20px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
   padding: 19px;
-  color: #342440;
-  background:
-    radial-gradient(circle at top right, rgba(255, 255, 255, 0.9), transparent 42%),
-    linear-gradient(145deg, rgba(245, 235, 255, 0.96), rgba(255, 242, 250, 0.93));
-  box-shadow: 0 18px 40px rgba(69, 39, 95, 0.16);
+  color: var(--text);
+  background: var(--surface);
+  box-shadow: var(--shadow);
 }
 
 .editor h3 {
   margin: 4px 0 0;
-  color: #3b284a;
+  color: var(--text);
 }
 
 .editorEyebrow {
-  color: #8753ab;
-  font-size: 11px;
+  color: var(--text);
+  font-size: 12px;
   font-weight: 800;
   letter-spacing: 0.14em;
 }
@@ -122,7 +120,7 @@
 }
 
 .field label {
-  color: #4a3358;
+  color: var(--text);
   font-size: 13px;
   font-weight: 800;
 }
@@ -132,11 +130,11 @@
 .field textarea {
   width: 100%;
   box-sizing: border-box;
-  border: 1px solid rgba(135, 83, 171, 0.28);
-  border-radius: 13px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
   padding: 11px 12px;
-  background: rgba(255, 255, 255, 0.88);
-  color: #2f2238;
+  background: var(--surface);
+  color: var(--text);
   font: inherit;
   outline: none;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9);
@@ -145,8 +143,8 @@
 .field input:focus,
 .field select:focus,
 .field textarea:focus {
-  border-color: rgba(126, 65, 171, 0.62);
-  box-shadow: 0 0 0 3px rgba(126, 65, 171, 0.12);
+  border-color: var(--line);
+  box-shadow: var(--shadow);
 }
 
 .field textarea {
@@ -159,7 +157,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  color: #4a3358;
+  color: var(--text);
   font-weight: 700;
 }
 
@@ -171,13 +169,13 @@
 }
 
 .imagePicker span {
-  color: #765e80;
+  color: var(--text);
   font-size: 12px;
 }
 
 .imageButton {
-  color: #4a315b;
-  background: rgba(255, 255, 255, 0.82);
+  color: var(--text);
+  background: var(--surface);
 }
 
 .imageButton input {
@@ -191,8 +189,8 @@
   margin-top: 4px;
   padding: 12px;
   border: 1px dashed rgba(126, 65, 171, 0.34);
-  border-radius: 15px;
-  background: rgba(255, 255, 255, 0.52);
+  border-radius: var(--radius);
+  background: var(--surface);
 }
 
 .previewBox img,
@@ -200,16 +198,16 @@
   display: block;
   width: 100%;
   max-height: 480px;
-  border-radius: 14px;
+  border-radius: var(--radius);
   object-fit: contain;
-  background: rgba(15, 9, 21, 0.08);
+  background: var(--surface);
 }
 
 .memberOnlyNote {
-  border-radius: 12px;
+  border-radius: var(--radius);
   padding: 10px 12px;
-  color: #674a72;
-  background: rgba(120, 78, 154, 0.09);
+  color: var(--text);
+  background: var(--surface);
   font-size: 12px;
 }
 
@@ -219,8 +217,8 @@
 }
 
 .card.pinned {
-  border-color: rgba(238, 163, 255, 0.5);
-  box-shadow: 0 0 22px rgba(191, 86, 255, 0.1);
+  border-color: var(--line);
+  box-shadow: var(--shadow);
 }
 
 .card h3 {
@@ -231,10 +229,10 @@
   display: inline-flex;
   align-items: center;
   gap: 5px;
-  border: 1px solid rgba(181, 131, 255, 0.25);
+  border: 1px solid var(--line);
   border-radius: 999px;
   padding: 4px 8px;
-  font-size: 11px;
+  font-size: 12px;
 }
 
 .content {
@@ -253,7 +251,7 @@
   justify-content: flex-end;
   margin-top: 14px;
   padding-top: 12px;
-  border-top: 1px solid rgba(255, 255, 255, 0.07);
+  border-top: 1px solid var(--line);
 }
 
 .spin {

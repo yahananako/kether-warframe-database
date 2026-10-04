@@ -1,7 +1,5 @@
 "use client";
 
-import { useMemo, useState } from "react";
-import Link from "next/link";
 import {
   Crosshair,
   EyeOff,
@@ -11,8 +9,12 @@ import {
   Sparkles,
   Wind,
 } from "lucide-react";
-import type { SheetRow } from "../lib/sheets";
+import Link from "next/link";
+import { useMemo, useState } from "react";
+import styles from "../app/database/warframes/warframes.module.css";
 import type { RegularWarframe } from "../data/regularWarframes";
+import { warframeCanonProfileMap } from "../data/warframeCanonProfiles";
+import { getWarframeDetail, toWarframeSlug } from "../data/warframeDetails";
 import {
   getWarframeRole,
   isWarframeName,
@@ -21,9 +23,7 @@ import {
   type WarframeRole,
 } from "../data/warframeRoles";
 import { warframeStories } from "../data/warframeStories";
-import { warframeCanonProfileMap } from "../data/warframeCanonProfiles";
-import { getWarframeDetail, toWarframeSlug } from "../data/warframeDetails";
-import styles from "../app/database/warframes/warframes.module.css";
+import type { SheetRow } from "../lib/sheets";
 
 type ArchiveProps =
   | { mode: "regular"; regularFrames: RegularWarframe[]; rows?: never }
@@ -52,7 +52,7 @@ const warframeImageUrl = (name: string) =>
   `https://cdn.warframestat.us/img/${imageNameOverrides[name] ?? `${name.replace(/[^A-Za-z0-9]/g, "")}.png`}`;
 
 export default function WarframeRoleArchive(props: ArchiveProps) {
-  const [role, setRole] = useState<WarframeRole>("damage");
+  const [role, setRole] = useState<WarframeRole | "all">("all");
   const [query, setQuery] = useState("");
   const storyMap = useMemo(
     () =>
@@ -117,7 +117,7 @@ export default function WarframeRoleArchive(props: ArchiveProps) {
   );
   const visible = classified.filter(
     ({ entry, role: itemRole }) =>
-      itemRole === role &&
+      (role === "all" || itemRole === role) &&
       [entry.name, entry.chineseName, entry.description, entry.acquisition]
         .join(" ")
         .toLowerCase()
@@ -133,6 +133,18 @@ export default function WarframeRoleArchive(props: ArchiveProps) {
           <p>先選戰場職責，再尋找適合這次任務的戰甲。</p>
         </header>
         <div className={styles.roleTabs}>
+          <button
+            onClick={() => setRole("all")}
+            aria-pressed={role === "all"}
+            className={role === "all" ? styles.activeRole : ""}
+          >
+            <Sparkles aria-hidden="true" />
+            <span>
+              <b>全部戰甲</b>
+              <small>ALL WARFRAMES</small>
+            </span>
+            <em>{classified.length}</em>
+          </button>
           {roleOrder.map((item) => {
             const Icon = roleIcons[item];
             const info = WARFRAME_ROLES[item];
@@ -140,6 +152,7 @@ export default function WarframeRoleArchive(props: ArchiveProps) {
               <button
                 key={item}
                 onClick={() => setRole(item)}
+                aria-pressed={role === item}
                 className={role === item ? styles.activeRole : ""}
               >
                 <Icon aria-hidden="true" />
@@ -155,28 +168,40 @@ export default function WarframeRoleArchive(props: ArchiveProps) {
         <div className={styles.roleDescription}>
           <Sparkles />
           <div>
-            <strong>{WARFRAME_ROLES[role].label}型戰甲</strong>
-            <p>{WARFRAME_ROLES[role].description}</p>
+            <strong>
+              {role === "all"
+                ? "全部戰甲"
+                : `${WARFRAME_ROLES[role].label}型戰甲`}
+            </strong>
+            <p>
+              {role === "all"
+                ? "完整瀏覽已收錄戰甲，或選擇定位縮小範圍。"
+                : WARFRAME_ROLES[role].description}
+            </p>
           </div>
         </div>
       </section>
       <section className={styles.archive}>
         <div className={styles.archiveHead}>
           <div>
-            <span>{WARFRAME_ROLES[role].english} WARFRAMES</span>
-            <h2>{WARFRAME_ROLES[role].label}戰甲</h2>
+            <span>
+              {role === "all" ? "ALL" : WARFRAME_ROLES[role].english} WARFRAMES
+            </span>
+            <h2>{role === "all" ? "全部" : WARFRAME_ROLES[role].label}戰甲</h2>
             <p>
-              目前顯示 {visible.length} / {counts[role]} 位
+              目前顯示 {visible.length} /{" "}
+              {role === "all" ? classified.length : counts[role]} 位
             </p>
           </div>
           <input
             value={query}
             onChange={(event) => setQuery(event.target.value)}
+            aria-label="搜尋戰甲名稱或用途"
             placeholder="搜尋戰甲名稱或用途…"
           />
         </div>
         <div className={styles.frameGrid}>
-          {visible.map(({ entry, story, profile }) => {
+          {visible.map(({ entry, story, profile, role: entryRole }) => {
             const detail = getWarframeDetail(entry.name);
             const detailSlug = detail?.slug ?? toWarframeSlug(entry.name);
             return (
@@ -185,12 +210,13 @@ export default function WarframeRoleArchive(props: ArchiveProps) {
                   <img
                     src={detail?.imageUrl || warframeImageUrl(entry.name)}
                     alt={`${entry.name} 戰甲圖片`}
+                    loading="lazy"
                     onError={(event) => {
                       event.currentTarget.onerror = null;
                       event.currentTarget.src = "/icon-warframe-2.png";
                     }}
                   />
-                  <span>{WARFRAME_ROLES[role].label}</span>
+                  <span>{WARFRAME_ROLES[entryRole].label}</span>
                 </div>
                 <div className={styles.frameBody}>
                   <p>
@@ -199,7 +225,7 @@ export default function WarframeRoleArchive(props: ArchiveProps) {
                   </p>
                   <h3>{entry.name}</h3>
                   <small>
-                    {entry.description || WARFRAME_ROLES[role].description}
+                    {entry.description || WARFRAME_ROLES[entryRole].description}
                   </small>
                   {props.mode === "regular" ? (
                     <div className={styles.acquisition}>

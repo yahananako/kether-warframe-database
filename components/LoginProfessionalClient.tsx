@@ -1,7 +1,5 @@
 "use client";
 
-import Link from "next/link";
-import Image from "next/image";
 import {
   BadgeCheck,
   Check,
@@ -11,14 +9,9 @@ import {
   MessageCircle,
   ShieldCheck,
 } from "lucide-react";
-import { MouseEvent, useEffect, useMemo, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
+import { MouseEvent, useEffect, useMemo, useRef, useState } from "react";
 
-import HomeNewInlineMenu from "./HomeNewInlineMenu";
-import HomeNewInlineNotifications from "./HomeNewInlineNotifications";
-import HomeNewInlineSearch from "./HomeNewInlineSearch";
-import HomeCinema from "./HomeCinema";
-import HomeTicker from "./HomeTicker";
 import styles from "./LoginProfessionalClient.module.css";
 
 const POLICY_URL =
@@ -38,7 +31,9 @@ export default function LoginProfessionalClient() {
   const searchParams = useSearchParams();
   const requestedNext = searchParams.get("next");
   const nextPath =
-    requestedNext && requestedNext.startsWith("/") && !requestedNext.startsWith("//")
+    requestedNext &&
+    requestedNext.startsWith("/") &&
+    !requestedNext.startsWith("//")
       ? requestedNext
       : "/profile";
   const discordLoginHref = `/api/auth/discord/login?next=${encodeURIComponent(nextPath)}`;
@@ -72,6 +67,7 @@ export default function LoginProfessionalClient() {
         const response = await fetch("/api/auth/session", {
           credentials: "include",
           cache: "no-store",
+          signal: AbortSignal.timeout(8000),
         });
         const data = await response.json().catch(() => ({}));
 
@@ -129,50 +125,22 @@ export default function LoginProfessionalClient() {
 
   return (
     <main className={styles.stage}>
-      <div className={styles.background} aria-hidden="true">
-        <video autoPlay muted loop playsInline preload="metadata" poster="/kether-cinema-iceblade-v1.webp">
-          <source src="/kether-cinema-iceblade-v1.mp4" type="video/mp4" />
-        </video>
-        <HomeCinema />
-        <div className={styles.aurora} />
-        <div className={styles.lightShafts} />
-        <div className={styles.grid} />
-        <div className={styles.beam} />
-      </div>
       <div className={styles.frame}>
-        <section className={styles.topShell} aria-label="KETHER 登入頁導覽列">
-          <div className="home-new-topbar">
-            <div className="home-new-brand">
-              <Image src="/kether-clan-logo.png" width={46} height={46} alt="" className={styles.crest} />
-              <Link href="/" className={styles.brand}>KETHER<small>OF PARADISO · WARFRAME DATABASE</small></Link>
-            </div>
-
-            <div className="home-new-hero-actions" aria-label="登入頁快捷入口">
-              <HomeNewInlineMenu />
-              <HomeNewInlineSearch />
-              <HomeNewInlineNotifications />
-
-              <a
-                href={discordLoginHref}
-                className={`${styles.topLogin} home-new-discord-action`}
-                aria-disabled={!loginEnabled}
-                onClick={startDiscordLogin}
-              >
-                <MessageCircle size={18} />
-                <span>登入 Discord</span>
-              </a>
-            </div>
-          </div>
-        </section>
-        <HomeTicker onNotice={() => {
-          const bell = document.querySelector<HTMLButtonElement>(".home-new-bell-button");
-          if (bell?.getAttribute("aria-expanded") === "false") bell.click();
-          bell?.focus();
-        }} />
-
         <div className={styles.mobileTabs} role="group" aria-label="登入步驟">
-          <button type="button" aria-pressed={mobileView === "policy"} onClick={() => setMobileView("policy")}>① 閱讀資料告知 <span>{progressText}</span></button>
-          <button type="button" aria-pressed={mobileView === "auth"} onClick={() => setMobileView("auth")}>② Discord 登入</button>
+          <button
+            type="button"
+            aria-pressed={mobileView === "policy"}
+            onClick={() => setMobileView("policy")}
+          >
+            ① 閱讀資料告知 <span>{progressText}</span>
+          </button>
+          <button
+            type="button"
+            aria-pressed={mobileView === "auth"}
+            onClick={() => setMobileView("auth")}
+          >
+            ② Discord 登入
+          </button>
         </div>
 
         <section className={styles.loginStage} data-view={mobileView}>
@@ -215,7 +183,11 @@ export default function LoginProfessionalClient() {
             <div className={styles.readRequirement} data-complete={allRead}>
               {allRead ? <Check size={18} /> : <FileText size={18} />}
               <div>
-                <strong>{allRead ? "登入前資料告知已閱讀完成" : "必須先閱讀登入前資料告知"}</strong>
+                <strong>
+                  {allRead
+                    ? "登入前資料告知已閱讀完成"
+                    : "必須先閱讀登入前資料告知"}
+                </strong>
                 <span>{progressText}</span>
               </div>
             </div>
@@ -234,9 +206,7 @@ export default function LoginProfessionalClient() {
                   setNotice(null);
                 }}
               />
-              <span>
-                我已閱讀並同意資料使用說明、隱私權政策與免責聲明。
-              </span>
+              <span>我已閱讀並同意資料使用說明、隱私權政策與免責聲明。</span>
             </label>
 
             {notice && (
@@ -278,7 +248,8 @@ export default function LoginProfessionalClient() {
             </div>
 
             <p className={styles.policyIntro}>
-              請逐一展開並閱讀以下 5 項內容。全部閱讀完成後，左側同意勾選與 Discord 登入才會開放。
+              請逐一展開並閱讀以下 5 項內容。全部閱讀完成後，左側同意勾選與
+              Discord 登入才會開放。
             </p>
 
             <div className={styles.policyList}>
@@ -369,11 +340,13 @@ export default function LoginProfessionalClient() {
                 <div>
                   <p>
                     KETHER 為玩家自行建立的非官方 Warframe 資料平台，與 Digital
-                    Extremes、Discord、Warframe Market 及其他第三方服務沒有官方隸屬關係。
+                    Extremes、Discord、Warframe Market
+                    及其他第三方服務沒有官方隸屬關係。
                   </p>
                   <p>
-                    網站部分功能依賴 Discord、Vercel、Neon、Supabase、GitHub、Google
-                    與 YouTube。第三方服務中斷、資料延遲或政策變更，可能影響網站功能。
+                    網站部分功能依賴
+                    Discord、Vercel、Neon、Supabase、GitHub、Google 與
+                    YouTube。第三方服務中斷、資料延遲或政策變更，可能影響網站功能。
                   </p>
                 </div>
               </details>
@@ -395,7 +368,8 @@ export default function LoginProfessionalClient() {
                     使用者可依法提出查詢、閱覽、補充、更正、停止蒐集、停止利用或刪除資料的申請。
                   </p>
                   <p>
-                    不同意提供登入必要資料時，將無法使用 Discord 登入、氏族身分組驗證、
+                    不同意提供登入必要資料時，將無法使用 Discord
+                    登入、氏族身分組驗證、
                     個人資料中心與其他限制功能，但不影響公開頁面的瀏覽。
                   </p>
                 </div>
@@ -411,15 +385,15 @@ export default function LoginProfessionalClient() {
               查看完整《免責聲明、資料使用範圍暨隱私權政策》
               <ExternalLink size={15} />
             </a>
-            <button type="button" className={styles.toLogin} onClick={() => setMobileView("auth")}>前往登入 →</button>
+            <button
+              type="button"
+              className={styles.toLogin}
+              onClick={() => setMobileView("auth")}
+            >
+              前往登入 →
+            </button>
           </article>
         </section>
-
-        <footer className={styles.footer}>
-          <span><b>ヤハ奈々子、羊咩、凱洛</b> · 共同開發</span>
-          <a href="https://kether-warframe-database.vercel.app/">kether-warframe-database.vercel.app</a>
-          <span>MEMBER AUTHORIZATION</span>
-        </footer>
       </div>
     </main>
   );
