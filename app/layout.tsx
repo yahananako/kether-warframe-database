@@ -3,6 +3,7 @@ import MiniMusicPlayer from "../components/MiniMusicPlayer";
 import SiteShell from "../components/SiteShell";
 import VisualEditorBridge from "../components/VisualEditorBridge";
 import "./globals.css";
+import "./home-player.css";
 
 const siteUrl = "https://kether-warframe-database.vercel.app";
 
