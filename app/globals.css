@@ -152,7 +152,7 @@ svg {
   inset: 0;
   z-index: -2;
   pointer-events: none;
-  background: var(--bg) url("/kether-cinema-iceblade-v1.webp") center/cover;
+  background: var(--bg) url("/home-hero-banner.png") center/cover;
 }
 .site-cinema video {
   width: 100%;
@@ -1577,7 +1577,7 @@ body.kether-viewport-lock {
   z-index: -3;
   overflow: hidden;
   pointer-events: none;
-  background: #0b1620 url("/kether-cinema-iceblade-v1.webp") 33% center/cover no-repeat;
+  background: #0b1620 url("/home-hero-banner.png") 33% center/cover no-repeat;
 }
 
 .site-interior .site-cinema video {
