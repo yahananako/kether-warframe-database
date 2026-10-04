@@ -12,6 +12,10 @@ type PermissionStatus = {
     sessionSecretConfigured: boolean;
     roleCheckEnabled: boolean;
     allowedRoleCount: number;
+    allianceRoleName?: string;
+    allianceRoleResolved?: boolean;
+    allianceRoleSource?: "configured" | "discord" | "stale" | "unavailable";
+    allianceRoleCheckRequested?: boolean;
   };
   guildAccess?: {
     guildIdMatches: boolean;
@@ -91,6 +95,21 @@ export default function PermissionVerificationStatus() {
             {configured?.roleCheckEnabled
               ? `已啟用，允許 ${configured.allowedRoleCount} 組`
               : "未啟用，全群成員可用"}
+          </b>
+        </span>
+
+        <span>
+          聯盟成員辨識：
+          <b>
+            {configured?.allianceRoleResolved
+              ? configured.allianceRoleSource === "stale"
+                ? "已辨識，暫用最近成功快取"
+                : configured.allianceRoleSource === "configured"
+                  ? "已辨識，使用固定 Role ID"
+                  : "已辨識，Discord 即時同步"
+              : configured?.allianceRoleCheckRequested
+                ? "未辨識，請檢查 Bot 權限或固定 Role ID"
+                : "未啟用"}
           </b>
         </span>
 
