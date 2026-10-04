@@ -1,6 +1,7 @@
 import AuthSessionStatus from "../../components/AuthSessionStatus";
 import BillingPlanStatus from "../../components/BillingPlanStatus";
 import ProfileOwnedSummary from "../../components/ProfileOwnedSummary";
+import PermissionVerificationStatus from "../../components/PermissionVerificationStatus";
 import ProfilePrivacyDisclaimer from "../../components/ProfilePrivacyDisclaimer";
 
 export default function ProfilePage() {
@@ -17,6 +18,20 @@ export default function ProfilePage() {
         </section>
 
         <AuthSessionStatus />
+
+        <details className="home-new-fold-card">
+          <summary className="home-new-fold-head">
+            <span>
+              <em>DISCORD ACCESS DIAGNOSTICS</em>
+              <strong>權限驗證狀態</strong>
+            </span>
+            <b className="home-new-fold-icon" aria-hidden="true" />
+          </summary>
+
+          <section style={{ padding: 18 }}>
+            <PermissionVerificationStatus />
+          </section>
+        </details>
 
         <details className="home-new-fold-card">
           <summary className="home-new-fold-head">

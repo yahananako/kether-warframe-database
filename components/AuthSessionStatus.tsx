@@ -276,6 +276,14 @@ export default function AuthSessionStatus() {
             <a className="profile-home-button" href="/">
               回首頁
             </a>
+            {!isAuthorized && (
+              <a
+                className="auth-primary"
+                href="/api/auth/discord/login?next=/profile"
+              >
+                重新驗證 Discord
+              </a>
+            )}
             <a
               className="profile-discord-logout-button"
               href="/api/auth/logout"

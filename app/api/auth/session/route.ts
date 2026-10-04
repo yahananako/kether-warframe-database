@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { evaluateDiscordAccess } from "../../../../lib/auth/discordAccess";
 import {
   DISCORD_SESSION_COOKIE_NAME,
   verifyDiscordSessionCookieValue
@@ -8,10 +9,15 @@ export const runtime = "nodejs";
 
 export async function GET(request: NextRequest) {
   const sessionSecret = process.env.SESSION_SECRET;
+  const guildId = process.env.DISCORD_GUILD_ID || "";
 
-  if (!sessionSecret) {
+  if (!sessionSecret || !guildId) {
     return NextResponse.json(
-      { ok: false, error: "SESSION_SECRET is not configured." },
+      {
+        ok: false,
+        authenticated: false,
+        error: "Discord guild access or session environment variables are not configured."
+      },
       { status: 500 }
     );
   }
@@ -34,6 +40,12 @@ export async function GET(request: NextRequest) {
     );
   }
 
+  const access = await evaluateDiscordAccess(
+    guildId,
+    session.guildId,
+    session.roleIds,
+  );
+
   return NextResponse.json({
     ok: true,
     authenticated: true,
@@ -50,7 +62,12 @@ export async function GET(request: NextRequest) {
     },
     guildAccess: {
       guildId: session.guildId,
-      authorized: true,
+      expectedGuildId: guildId,
+      guildIdMatches: access.guildIdMatches,
+      authorized: access.authorized,
+      roleCheckEnabled: access.roleCheckEnabled,
+      hasAllowedRole: access.hasAllowedRole,
+      matchedRoleCount: access.matchedRoleIds.length,
       roleIds: session.roleIds
     },
     session: {

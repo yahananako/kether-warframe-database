@@ -38,6 +38,8 @@ async function main() {
     const policy = await getDiscordAccessPolicy("test-guild");
     assert.deepEqual(policy.allowedRoleIds, ["angel", "existing", "alliance"]);
     assert.equal(policy.allianceRoleResolved, true);
+    assert.equal(policy.allianceRoleSource, "discord");
+    assert.equal(policy.roleCheckEnabled, true);
     await Promise.all([getDiscordAccessPolicy("test-guild"), getDiscordAccessPolicy("test-guild")]);
     assert.equal(roleFetches, 1, "role lookup should be cached");
 
@@ -54,6 +56,7 @@ async function main() {
     }
     for (const roles of [[], ["outsider"]]) {
       assert.equal((await (await permission(request("/api/auth/permission", roles))).json()).authorized, false);
+      assert.equal((await (await sessionApi(request("/api/auth/session", roles))).json()).guildAccess.authorized, false);
       assert.equal(new URL((await proxy(request("/profile", roles))).headers.get("location")!).pathname, "/unauthorized");
     }
     assert.equal((await (await permission(request("/api/auth/permission", ["alliance"], "other-guild"))).json()).authorized, false);
@@ -91,10 +94,16 @@ async function main() {
     assert.equal(failedPolicy.roleCheckEnabled, true);
     assert.equal(failedPolicy.allianceRoleResolved, false);
     process.env.DISCORD_ALLIANCE_ROLE_IDS = "alliance-id";
-    assert.deepEqual((await getDiscordAccessPolicy("test-guild")).allowedRoleIds, ["angel", "existing", "alliance-id"]);
+    const configuredAlliancePolicy = await getDiscordAccessPolicy("test-guild");
+    assert.deepEqual(configuredAlliancePolicy.allowedRoleIds, ["angel", "existing", "alliance-id"]);
+    assert.equal(configuredAlliancePolicy.allianceRoleSource, "configured");
     process.env.DISCORD_ALLOWED_ROLE_IDS = "";
-    assert.equal((await getDiscordAccessPolicy("test-guild")).roleCheckEnabled, false, "preserve optional role checking");
-    console.log("Discord access passed: alliance OAuth, website/APP gates, signed BOT command, existing members, rejected outsiders/wrong guild/invalid sessions, cached lookup and Discord outage.");
+    assert.equal(
+      (await getDiscordAccessPolicy("test-guild")).roleCheckEnabled,
+      true,
+      "resolved alliance access must keep role checking enabled",
+    );
+    console.log("Discord access passed: alliance OAuth, website/APP/API gates, session revalidation, signed BOT command, existing members, rejected outsiders/wrong guild/invalid sessions, cached lookup and Discord outage.");
   } finally {
     globalThis.fetch = originalFetch;
   }
