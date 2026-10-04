@@ -27,8 +27,7 @@
   padding: 18px;
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  background:
-    var(--surface);
+  background: var(--surface);
   box-shadow: var(--shadow);
   backdrop-filter: blur(28px) saturate(1.45);
   -webkit-backdrop-filter: blur(28px) saturate(1.45);
@@ -82,7 +81,10 @@
   font: inherit;
   font-weight: 850;
   cursor: pointer;
-  transition: transform 150ms ease, border-color 150ms ease, background 150ms ease;
+  transition:
+    transform 150ms ease,
+    border-color 150ms ease,
+    background 150ms ease;
 }
 
 .categoryTabs button:hover {
@@ -220,8 +222,7 @@
   contain-intrinsic-size: auto 270px;
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  background:
-    var(--surface);
+  background: var(--surface);
   box-shadow:
     0 18px 44px rgba(42, 50, 86, 0.11),
     inset 0 1px 0 rgba(255, 255, 255, 0.95);
@@ -229,8 +230,7 @@
 }
 
 .weaponCard[data-kind="natural"] {
-  background:
-    var(--surface);
+  background: var(--surface);
 }
 
 .weaponDetails > summary {

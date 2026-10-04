@@ -10,8 +10,7 @@
   --chapter-accent: #42c5dc;
   min-height: 0;
   color: var(--book-ink);
-  background:
-    transparent;
+  background: transparent;
 }
 
 .bookPage,
@@ -1514,14 +1513,182 @@
   }
 }
 
-
 /* Story / data dual reading mode */
-.modeSwitcher{position:sticky;top:100px;z-index:8;display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:24px 0;padding:7px;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);backdrop-filter:blur(18px)}
-.modeSwitcher button{display:flex;align-items:center;justify-content:center;gap:8px;min-height:58px;padding:8px 12px;border:1px solid var(--line);border-radius:var(--radius);color:var(--book-muted);background:transparent;font:inherit;font-weight:800;cursor:pointer}
-.modeSwitcher button svg{width:17px}.modeSwitcher button small{display:none;font-size:12px;font-weight:600}.modeSwitcher .modeActive{border-color:var(--accent);color:var(--text);background:var(--surface-soft)}
-.storyModePanel,.dataModePanel{animation:storyModeIn .24s ease}.dataGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:22px 0}.dataGrid article{display:grid;grid-template-columns:24px 1fr;gap:4px 10px;padding:17px;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface)}.dataGrid svg{grid-row:1/3;width:18px;color:var(--chapter-accent)}.dataGrid span{color:var(--book-muted);font-size:12px}.dataGrid strong{font-size:13px;line-height:1.55}.timelineCard{margin:24px 0;padding:22px;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface)}.timelineCard h2{margin:0 0 18px;font-family:Georgia,"Noto Serif TC",serif}.timelineCard ol{display:grid;gap:13px;margin:0;padding:0;list-style:none}.timelineCard li{display:grid;grid-template-columns:38px 1fr;gap:12px}.timelineCard li>span{display:grid;place-items:center;width:34px;height:34px;border:1px solid var(--line);border-radius:50%;color:var(--chapter-accent);font:11px Georgia,serif}.timelineCard p{margin:0;color:var(--book-muted);font-size:12px;line-height:1.8}.inlineGalleryHint{display:flex;gap:10px;align-items:center;margin:20px 0;padding:13px 15px;border:1px dashed var(--book-line);border-radius:var(--radius);color:var(--book-muted);font-size:12px}.inlineGalleryHint svg{width:17px;color:var(--chapter-accent)}
-@keyframes storyModeIn{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
-@media(min-width:720px){.modeSwitcher button small{display:inline}.modeSwitcher{width:min(620px,100%);margin-left:auto;margin-right:auto}}
-@media(max-width:620px){.dataGrid{grid-template-columns:1fr}.modeSwitcher{top:100px}}
+.modeSwitcher {
+  position: sticky;
+  top: 100px;
+  z-index: 8;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin: 24px 0;
+  padding: 7px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  backdrop-filter: blur(18px);
+}
+.modeSwitcher button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 58px;
+  padding: 8px 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  color: var(--book-muted);
+  background: transparent;
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+}
+.modeSwitcher button svg {
+  width: 17px;
+}
+.modeSwitcher button small {
+  display: none;
+  font-size: 12px;
+  font-weight: 600;
+}
+.modeSwitcher .modeActive {
+  border-color: var(--accent);
+  color: var(--text);
+  background: var(--surface-soft);
+}
+.storyModePanel,
+.dataModePanel {
+  animation: storyModeIn 0.24s ease;
+}
+.dataGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin: 22px 0;
+}
+.dataGrid article {
+  display: grid;
+  grid-template-columns: 24px 1fr;
+  gap: 4px 10px;
+  padding: 17px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+.dataGrid svg {
+  grid-row: 1/3;
+  width: 18px;
+  color: var(--chapter-accent);
+}
+.dataGrid span {
+  color: var(--book-muted);
+  font-size: 12px;
+}
+.dataGrid strong {
+  font-size: 13px;
+  line-height: 1.55;
+}
+.timelineCard {
+  margin: 24px 0;
+  padding: 22px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+.timelineCard h2 {
+  margin: 0 0 18px;
+  font-family: Georgia, "Noto Serif TC", serif;
+}
+.timelineCard ol {
+  display: grid;
+  gap: 13px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.timelineCard li {
+  display: grid;
+  grid-template-columns: 38px 1fr;
+  gap: 12px;
+}
+.timelineCard li > span {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  color: var(--chapter-accent);
+  font:
+    11px Georgia,
+    serif;
+}
+.timelineCard p {
+  margin: 0;
+  color: var(--book-muted);
+  font-size: 12px;
+  line-height: 1.8;
+}
+.inlineGalleryHint {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin: 20px 0;
+  padding: 13px 15px;
+  border: 1px dashed var(--book-line);
+  border-radius: var(--radius);
+  color: var(--book-muted);
+  font-size: 12px;
+}
+.inlineGalleryHint svg {
+  width: 17px;
+  color: var(--chapter-accent);
+}
+@keyframes storyModeIn {
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@media (min-width: 720px) {
+  .modeSwitcher button small {
+    display: inline;
+  }
+  .modeSwitcher {
+    width: min(620px, 100%);
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+@media (max-width: 620px) {
+  .dataGrid {
+    grid-template-columns: 1fr;
+  }
+  .modeSwitcher {
+    top: 100px;
+  }
+}
 
-.storyScenes{display:grid;gap:34px;margin:26px 0}.storyScene{display:grid;gap:16px}.storyScene h2{margin:8px 0 0;font-family:Georgia,"Noto Serif TC",serif;font-size:clamp(25px,5vw,38px);font-weight:500;letter-spacing:-.025em}.storyScene .storyFigure{margin-top:8px}
+.storyScenes {
+  display: grid;
+  gap: 34px;
+  margin: 26px 0;
+}
+.storyScene {
+  display: grid;
+  gap: 16px;
+}
+.storyScene h2 {
+  margin: 8px 0 0;
+  font-family: Georgia, "Noto Serif TC", serif;
+  font-size: clamp(25px, 5vw, 38px);
+  font-weight: 500;
+  letter-spacing: -0.025em;
+}
+.storyScene .storyFigure {
+  margin-top: 8px;
+}

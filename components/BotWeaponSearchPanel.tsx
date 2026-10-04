@@ -1,7 +1,7 @@
 "use client";
 
-import { FormEvent, useState } from "react";
 import { Loader2, Search, Sparkles } from "lucide-react";
+import { FormEvent, useState } from "react";
 
 type SearchResult = {
   name: string;
@@ -43,9 +43,12 @@ export default function BotWeaponSearchPanel() {
     setSearched(value);
 
     try {
-      const response = await fetch(`/api/bot-search/weapon?q=${encodeURIComponent(value)}`, {
-        method: "GET",
-      });
+      const response = await fetch(
+        `/api/bot-search/weapon?q=${encodeURIComponent(value)}`,
+        {
+          method: "GET",
+        },
+      );
 
       if (!response.ok) {
         throw new Error("search failed");
@@ -97,14 +100,22 @@ export default function BotWeaponSearchPanel() {
         </div>
 
         <button type="submit" disabled={loading}>
-          {loading ? <Loader2 size={18} className="kether-bot-search-spin" /> : <Search size={18} />}
+          {loading ? (
+            <Loader2 size={18} className="kether-bot-search-spin" />
+          ) : (
+            <Search size={18} />
+          )}
           查詢
         </button>
       </form>
 
       <div className="kether-bot-quick-searches">
         {quickSearches.map((item) => (
-          <button key={item} type="button" onClick={() => handleQuickSearch(item)}>
+          <button
+            key={item}
+            type="button"
+            onClick={() => handleQuickSearch(item)}
+          >
             {item}
           </button>
         ))}
@@ -121,7 +132,9 @@ export default function BotWeaponSearchPanel() {
       {results.length > 0 ? (
         <div className="kether-bot-search-results">
           {results.map((result) => (
-            <article key={`${result.name}-${result.weaponType}-${result.series}`}>
+            <article
+              key={`${result.name}-${result.weaponType}-${result.series}`}
+            >
               <div className="kether-bot-search-result-top">
                 <strong>{result.name}</strong>
                 <span>{result.weaponType}</span>

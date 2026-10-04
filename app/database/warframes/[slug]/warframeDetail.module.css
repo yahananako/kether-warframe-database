@@ -2,8 +2,7 @@
   min-height: 0;
   padding: 0;
   color: var(--text);
-  background:
-    transparent;
+  background: transparent;
 }
 
 .shell {
@@ -129,8 +128,7 @@
   aspect-ratio: 1;
   border: 1px solid var(--line);
   border-radius: 50%;
-  box-shadow:
-    var(--shadow);
+  box-shadow: var(--shadow);
 }
 .heroArt img {
   position: relative;

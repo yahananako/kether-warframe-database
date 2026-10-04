@@ -4,8 +4,7 @@
   overflow: hidden;
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  background:
-    var(--surface);
+  background: var(--surface);
   box-shadow:
     0 0 0 1px rgba(208, 198, 225, 0.3),
     0 16px 36px rgba(59, 45, 82, 0.09),
@@ -25,8 +24,7 @@
   min-width: 0;
   padding: 16px 12px;
   text-align: center;
-  background:
-    var(--surface);
+  background: var(--surface);
 }
 
 .metric span {
@@ -59,8 +57,16 @@
 }
 
 @media (max-width: 520px) {
-  .summaryCard { border-radius: var(--radius); }
-  .metric { padding: 13px 7px; }
-  .metric span { font-size: 12px; }
-  .metric strong { font-size: 14px; }
+  .summaryCard {
+    border-radius: var(--radius);
+  }
+  .metric {
+    padding: 13px 7px;
+  }
+  .metric span {
+    font-size: 12px;
+  }
+  .metric strong {
+    font-size: 14px;
+  }
 }

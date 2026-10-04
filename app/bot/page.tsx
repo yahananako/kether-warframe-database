@@ -1,25 +1,13 @@
-import Link from "next/link";
 import {
-  BarChart3,
-  Bot,
   CircleHelp,
   Database,
-  MessageCircle,
   Search,
   ShieldCheck,
   Swords,
-  UserRound,
 } from "lucide-react";
+import Link from "next/link";
 
 import BotKetherSearchPanel from "../../components/BotKetherSearchPanel";
-import KetherDynamicInfo from "../../components/KetherDynamicInfo";
-import HomeNewInlineMenu from "../../components/HomeNewInlineMenu";
-import HomeNewInlineSearch from "../../components/HomeNewInlineSearch";
-import HomeNewInlineNotifications from "../../components/HomeNewInlineNotifications";
-
-
-
-
 
 const botCommands = [
   {
@@ -80,7 +68,8 @@ const botCommands = [
     name: "/氏族驗證",
     alias: "Clan Verification",
     status: "自動驗證",
-    description: "核對個人簡介截圖的玩家 ID、氏族名稱與徽章，通過後自動授予天使。",
+    description:
+      "核對個人簡介截圖的玩家 ID、氏族名稱與徽章，通過後自動授予天使。",
   },
   {
     name: "/抽獎",
@@ -118,10 +107,6 @@ export default function BotPage() {
   return (
     <main className="home-new-page">
       <div className="home-new-shell">
-        
-
-        
-
         <section className="kether-overview-intro-card kether-bot-intro-card">
           <div className="kether-bot-intro-topline">
             <p>KETHER DISCORD BOT</p>
@@ -153,7 +138,8 @@ export default function BotPage() {
 
           <h1>小希 Bot 指令中樞</h1>
           <span>
-            小希 BOT 是 KETHER Warframe 資料庫的 Discord 查詢助手，負責把常用資料、
+            小希 BOT 是 KETHER Warframe 資料庫的 Discord
+            查詢助手，負責把常用資料、
             取得方式與網站入口整理成聊天頻道內可以快速呼叫的指令。
           </span>
         </section>
@@ -170,7 +156,10 @@ export default function BotPage() {
               <b className="home-new-fold-icon" aria-hidden="true" />
             </summary>
 
-            <section className="kether-bot-focus-grid kether-bot-fold-body" aria-label="小希 BOT 主要用途">
+            <section
+              className="kether-bot-focus-grid kether-bot-fold-body"
+              aria-label="小希 BOT 主要用途"
+            >
               {focusCards.map((card) => {
                 const Icon = card.icon;
 
@@ -208,7 +197,10 @@ export default function BotPage() {
 
               <div className="kether-bot-command-grid">
                 {botCommands.map((command) => (
-                  <article key={command.name} className="kether-bot-command-card">
+                  <article
+                    key={command.name}
+                    className="kether-bot-command-card"
+                  >
                     <div className="kether-bot-command-top">
                       <strong>{command.name}</strong>
                       <span>{command.status}</span>
@@ -259,8 +251,6 @@ export default function BotPage() {
             </section>
           </details>
         </section>
-
-        
 
         <style>{`
           .kether-bot-content-shell {

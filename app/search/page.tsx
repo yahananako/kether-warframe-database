@@ -1,183 +1,271 @@
-import Link from "next/link";
 import { Search } from "lucide-react";
+import Link from "next/link";
+import { incarnonCatalog } from "../../data/incarnonWeapons";
+import { regularWarframes } from "../../data/regularWarframes";
+import { warframeDetails } from "../../data/warframeDetails";
 import { fetchSheetRows } from "../../lib/sheets";
-import type { SheetRow } from "../../lib/sheets";
-
+export const metadata = { title: "資料庫搜尋" };
 const categories = [
   { key: "warframes", label: "戰甲" },
   { key: "primary", label: "主要武器" },
   { key: "secondary", label: "次要武器" },
   { key: "melee", label: "近戰武器" },
+  { key: "incarnon", label: "靈化武器" },
   { key: "companions", label: "同伴" },
-  { key: "archwing", label: "曲翼" },
-  { key: "mods", label: "MOD資料庫" }
+  { key: "archwing", label: "曲翼與機甲" },
+  { key: "mods", label: "MOD" },
 ];
-
-type SearchResult = SheetRow & {
-  categoryKey: string;
-  categoryLabel: string;
+type Result = {
+  id: string;
+  category: string;
+  name: string;
+  english: string;
+  description: string;
+  text: string;
+  href: string;
+  price?: string;
+  marketUrl?: string;
 };
-
-function normalize(value: string): string {
-  return String(value || "").toLowerCase().trim();
+const aliases: Record<string, string> = {
+  瓦喵: "valkyr",
+  核妹: "nova",
+  蝶妹: "titania",
+  水妹: "yareli",
+};
+function price(value?: string) {
+  if (!value) return "";
+  if (/不可交易|浮動|拍賣/.test(value)) return value;
+  const n = Number(value.replace(/[^\d.]/g, ""));
+  return n > 0 ? `${n} 白金` : "價格待更新";
 }
-
-function matchRow(row: SheetRow, query: string): boolean {
-  const text = [
-    row.section,
-    row.chineseName,
-    row.englishName,
-    row.description,
-    row.priority,
-    row.price,
-    row.tradeText,
-    row.owned,
-    row.source,
-    row.note,
-    ...(row.aliases || [])
-  ]
-    .join(" ")
-    .toLowerCase();
-
-  return text.includes(query);
-}
-
-function displayPrice(value: string): string {
-  const text = String(value || "").trim();
-  if (text.includes("不可交易")) return "不可交易";
-  if (text.includes("拍賣") || text.includes("浮動")) return text;
-
-  const number = Number(text.replace(/[^\d.]/g, ""));
-  if (!Number.isFinite(number) || number <= 0) return "待更新";
-  return `${number} 白金`;
-}
-
 export default async function SearchPage({
-  searchParams
+  searchParams,
 }: {
   searchParams?: Promise<Record<string, string | string[] | undefined>>;
 }) {
   const params = searchParams ? await searchParams : {};
-  const rawQuery = params.q;
-  const query = normalize(Array.isArray(rawQuery) ? rawQuery[0] || "" : rawQuery || "");
-
-  const fetched = await Promise.all(
-    categories.map(async (category) => {
-      const result = await fetchSheetRows(category.key);
-      return result.rows.map((row) => ({
-        ...row,
-        categoryKey: category.key,
-        categoryLabel: category.label
-      }));
-    })
+  const single = (key: string) =>
+    Array.isArray(params[key]) ? params[key][0] || "" : params[key] || "";
+  const query = single("q").trim().slice(0, 200);
+  const normalized = aliases[query.toLowerCase()] || query.toLowerCase();
+  const category = categories.some((c) => c.key === single("category"))
+    ? single("category")
+    : "all";
+  const failures: string[] = [];
+  const rows: Result[] = [];
+  if (query) {
+    const fetched = await Promise.all(
+      categories
+        .filter((c) => c.key !== "incarnon")
+        .map(async (c) => {
+          try {
+            const result = await fetchSheetRows(c.key);
+            if (result.error) failures.push(c.label);
+            return result.rows.map((row, index): Result => ({
+              id: `${c.key}-${index}`,
+              category: c.key,
+              name: row.chineseName || row.englishName,
+              english: row.englishName,
+              description: row.description || row.note || row.source,
+              text: [
+                row.section,
+                row.chineseName,
+                row.englishName,
+                row.description,
+                row.note,
+                row.source,
+                row.price,
+                ...(row.aliases || []),
+              ]
+                .join(" ")
+                .toLowerCase(),
+              href:
+                c.key === "warframes"
+                  ? "/database/warframes/prime"
+                  : `/database/${c.key}`,
+              price: row.price,
+              marketUrl: row.marketUrl,
+            }));
+          } catch {
+            failures.push(c.label);
+            return [];
+          }
+        }),
+    );
+    rows.push(...fetched.flat());
+    rows.push(
+      ...warframeDetails.map((frame) => ({
+        id: `frame-${frame.slug}`,
+        category: "warframes",
+        name: frame.name,
+        english: "一般戰甲",
+        description: frame.description,
+        text: [
+          frame.name,
+          frame.description,
+          regularWarframes.find((r) => r.name === frame.name)?.acquisition,
+        ]
+          .join(" ")
+          .toLowerCase(),
+        href: `/database/warframes/${frame.slug}`,
+      })),
+    );
+    rows.push(
+      ...incarnonCatalog.weapons.map((weapon) => ({
+        id: `incarnon-${weapon.id}`,
+        category: "incarnon",
+        name: weapon.nameZh || weapon.name,
+        english: weapon.name,
+        description: weapon.effect.zh,
+        text: [
+          weapon.name,
+          weapon.nameZh,
+          "靈化 應感",
+          weapon.effect.zh,
+          ...weapon.evolutions.flatMap((e) =>
+            e.abilities.map((a) => a.description),
+          ),
+        ]
+          .join(" ")
+          .toLowerCase(),
+        href: `/database/incarnon?q=${encodeURIComponent(weapon.name)}`,
+      })),
+    );
+  }
+  const matched = rows.filter((row) => row.text.includes(normalized));
+  const filtered =
+    category === "all"
+      ? matched
+      : matched.filter((row) => row.category === category);
+  const perPage = 24;
+  const pages = Math.max(1, Math.ceil(filtered.length / perPage));
+  const requestedPage = Number(single("page"));
+  const page = Math.min(
+    pages,
+    Math.max(1, Number.isFinite(requestedPage) ? Math.floor(requestedPage) : 1),
   );
-
-  const allRows: SearchResult[] = fetched.flat();
-  const results = query
-    ? allRows.filter((row) => matchRow(row, query)).slice(0, 80)
-    : [];
-
+  const results = filtered.slice((page - 1) * perPage, page * perPage);
+  const href = (cat: string, p = 1) =>
+    `/search?${new URLSearchParams({ q: query, category: cat, page: String(p) })}`;
   return (
-    <main className="min-h-screen px-5 py-6">
-      <section className="mx-auto max-w-5xl rounded-[28px] border border-slate-200/70 bg-white/75 p-5 shadow-sm backdrop-blur">
-        <div className="mb-5 flex items-center justify-between gap-3">
-          <div>
-            <p className="text-sm tracking-[0.4em] text-slate-400">KETHER SEARCH</p>
-            <h1 className="mt-2 text-2xl font-bold text-slate-800">資料庫搜尋</h1>
-            <p className="mt-2 text-sm text-slate-500">
-              搜尋中文名、英文名、用途、來源、備註與價格資料。
-            </p>
-          </div>
-
+    <main className="search-page">
+      <header className="search-heading">
+        <div>
+          <span className="site-eyebrow">TENNO ARCHIVE / SEARCH</span>
+          <h1>資料庫搜尋</h1>
+          <p>搜尋戰甲、武器、MOD、取得來源與靈化能力。</p>
+        </div>
+        <Link href="/database/overview">瀏覽資料總覽</Link>
+      </header>
+      <form action="/search" className="site-search">
+        <Search aria-hidden="true" />
+        <label className="sr-only" htmlFor="database-query">
+          搜尋關鍵字
+        </label>
+        <input
+          id="database-query"
+          name="q"
+          type="search"
+          defaultValue={query}
+          placeholder="輸入中文、英文或戰甲暱稱…"
+          maxLength={200}
+          required
+        />
+        <input type="hidden" name="category" value={category} />
+        <button type="submit">搜尋</button>
+      </form>
+      {failures.length > 0 && (
+        <div className="search-error" role="status">
+          部分來源暫時無法同步：{failures.join("、")}
+          。目前顯示可取得的資料，稍後可重新搜尋。
+        </div>
+      )}
+      <div className="search-layout">
+        <nav className="search-filters" aria-label="搜尋分類">
           <Link
-            href="/"
-            className="rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-semibold text-slate-600 shadow-sm"
+            href={href("all")}
+            aria-current={category === "all" ? "page" : undefined}
           >
-            回首頁
+            全部<span>{query ? matched.length : ""}</span>
           </Link>
-        </div>
-
-        <form action="/search" className="flex gap-2">
-          <div className="flex flex-1 items-center gap-2 rounded-2xl border border-slate-200 bg-white px-4 py-3 shadow-sm">
-            <Search size={20} className="text-slate-400" />
-            <input
-              name="q"
-              defaultValue={query}
-              placeholder="輸入 MOD、戰甲、武器、中文或英文名稱..."
-              className="w-full bg-transparent text-base outline-none"
-            />
+          {categories.map((c) => (
+            <Link
+              key={c.key}
+              href={href(c.key)}
+              aria-current={category === c.key ? "page" : undefined}
+            >
+              {c.label}
+              <span>
+                {query
+                  ? matched.filter((r) => r.category === c.key).length
+                  : ""}
+              </span>
+            </Link>
+          ))}
+        </nav>
+        <section aria-label="搜尋結果">
+          <p role="status">
+            {query
+              ? `「${query}」找到 ${filtered.length} 筆${filtered.length ? `，顯示 ${(page - 1) * perPage + 1}–${Math.min(page * perPage, filtered.length)}` : ""}`
+              : "從一個名字，開始探索。"}
+          </p>
+          <div className="search-results">
+            {results.map((row) => (
+              <article className="search-result" key={row.id}>
+                <div>
+                  <span className="site-eyebrow">
+                    {categories.find((c) => c.key === row.category)?.label}
+                  </span>
+                  <h2>
+                    <Link href={row.href}>{row.name}</Link>
+                  </h2>
+                  <small>{row.english}</small>
+                </div>
+                <strong className="result-price">{price(row.price)}</strong>
+                <p>{row.description || "開啟資料庫查看詳細資訊。"}</p>
+                <div className="search-result-actions">
+                  <Link href={row.href}>開啟資料</Link>
+                  {row.marketUrl && (
+                    <a href={row.marketUrl} target="_blank" rel="noreferrer">
+                      交易市場
+                    </a>
+                  )}
+                </div>
+              </article>
+            ))}
           </div>
-
-          <button className="rounded-2xl bg-slate-800 px-5 py-3 font-bold text-white shadow-sm">
-            搜尋
-          </button>
-        </form>
-
-        <div className="mt-5 text-sm text-slate-500">
-          {query ? (
-            <span>
-              搜尋「{query}」找到 {results.length} 筆資料
-            </span>
-          ) : (
-            <span>請輸入關鍵字，放大鏡魔法陣才會啟動喵。</span>
-          )}
-        </div>
-      </section>
-
-      <section className="mx-auto mt-5 grid max-w-5xl gap-3">
-        {results.map((row, index) => (
-          <article
-            key={`${row.categoryKey}-${row.englishName}-${row.chineseName}-${index}`}
-            className="rounded-[24px] border border-slate-200/70 bg-white/75 p-5 shadow-sm backdrop-blur"
-          >
-            <div className="flex flex-wrap items-start justify-between gap-3">
-              <div>
-                <p className="text-xs font-bold tracking-[0.25em] text-slate-400">
-                  {row.categoryLabel} / {row.section || "未分類"}
-                </p>
-                <h2 className="mt-2 text-xl font-bold text-slate-800">
-                  {row.chineseName || "未命名"}
-                </h2>
-                <p className="text-sm text-slate-500">{row.englishName || "—"}</p>
-              </div>
-
-              <div className="rounded-full bg-slate-100 px-3 py-1 text-sm font-bold text-slate-700">
-                {displayPrice(row.price)}
-              </div>
-            </div>
-
-            <p className="mt-3 text-sm leading-7 text-slate-600">
-              {row.description || row.note || "目前沒有說明。"}
-            </p>
-
-            <div className="mt-4 flex flex-wrap gap-2">
-              <Link
-                href={`/database/${row.categoryKey}`}
-                className="rounded-full border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-600"
-              >
-                前往分類
+          {!results.length && (
+            <div className="search-empty">
+              <h2>{query ? "尚未找到符合的資料" : "想找哪一位戰甲？"}</h2>
+              <p>
+                {query
+                  ? "試試英文名稱、較短的關鍵字，或切換其他分類。"
+                  : "可以輸入 Valkyr、Nova、水妹或靈化，也能直接瀏覽資料庫。"}
+              </p>
+              <Link href={query ? href("all") : "/database/overview"}>
+                {query ? "搜尋全部分類" : "瀏覽資料庫"}
               </Link>
-
-              {row.marketUrl && (
-                <a
-                  href={row.marketUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="rounded-full border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-600"
-                >
-                  開啟交易
-                </a>
-              )}
             </div>
-          </article>
-        ))}
-
-        {query && results.length === 0 && (
-          <div className="rounded-[24px] border border-slate-200/70 bg-white/75 p-6 text-center text-slate-500 shadow-sm">
-            沒有找到資料，換個關鍵字再召喚一次喵。
-          </div>
-        )}
-      </section>
+          )}
+          {pages > 1 && (
+            <nav className="search-pagination" aria-label="搜尋結果分頁">
+              {page > 1 && (
+                <Link className="site-button" href={href(category, page - 1)}>
+                  上一頁
+                </Link>
+              )}
+              <span>
+                {page} / {pages}
+              </span>
+              {page < pages && (
+                <Link className="site-button" href={href(category, page + 1)}>
+                  下一頁
+                </Link>
+              )}
+            </nav>
+          )}
+        </section>
+      </div>
     </main>
   );
 }

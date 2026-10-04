@@ -1,7 +1,6 @@
 .shell {
   min-height: 0;
-  background:
-    transparent;
+  background: transparent;
   color: var(--text);
   font-family:
     Inter,
@@ -15,7 +14,7 @@
 
 .topbar {
   position: sticky;
-  top: 0;
+  top: 84px;
   z-index: 30;
   min-height: 66px;
   display: grid;
@@ -268,8 +267,7 @@
   min-width: 0;
   display: grid;
   grid-template-rows: 36px minmax(0, 1fr);
-  background:
-    var(--surface);
+  background: var(--surface);
   background-size: 24px 24px;
 }
 
@@ -313,8 +311,7 @@
   border: 1px solid var(--line);
   border-radius: var(--radius);
   background: var(--surface);
-  box-shadow:
-    var(--shadow);
+  box-shadow: var(--shadow);
   transition: width 0.22s ease;
 }
 
@@ -468,13 +465,12 @@
 }
 
 .denied {
-  min-height: 100vh;
+  min-height: 60vh;
   display: grid;
   place-items: center;
   padding: 24px;
   color: var(--text);
-  background:
-    var(--surface);
+  background: var(--surface);
 }
 
 .deniedCard {

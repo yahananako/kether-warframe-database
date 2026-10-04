@@ -1,17 +1,8 @@
 import Link from "next/link";
-import { MessageCircle, UserRound } from "lucide-react";
-import { fetchSheetRows } from "../../../lib/sheets";
-import KetherDynamicInfo from "../../../components/KetherDynamicInfo";
-import HomeNewInlineMenu from "../../../components/HomeNewInlineMenu";
-import HomeNewInlineSearch from "../../../components/HomeNewInlineSearch";
-import HomeNewInlineNotifications from "../../../components/HomeNewInlineNotifications";
 import DatabaseOverviewPage, {
   type OverviewCategoryStat,
 } from "../../../components/DatabaseOverviewPage";
-
-
-
-
+import { fetchSheetRows } from "../../../lib/sheets";
 
 const categoryTargets = [
   { key: "warframes", label: "戰甲" },
@@ -43,7 +34,7 @@ export default async function OverviewPage() {
       const ownedRows = rows.filter((row) => isOwned(row.owned));
       const totalValue = pricedRows.reduce(
         (sum, row) => sum + priceNumber(row.price),
-        0
+        0,
       );
 
       return {
@@ -55,16 +46,12 @@ export default async function OverviewPage() {
         value: totalValue,
         error: data.error ?? null,
       } satisfies OverviewCategoryStat;
-    })
+    }),
   );
 
   return (
     <main className="home-new-page">
       <div className="home-new-shell">
-        
-
-        
-
         <div className="kether-database-overview-wrap">
           <Link
             href="/"
@@ -98,8 +85,6 @@ export default async function OverviewPage() {
             categoryStats={categoryResults}
           />
         </div>
-
-        
       </div>
     </main>
   );

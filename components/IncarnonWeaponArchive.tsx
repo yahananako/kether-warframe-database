@@ -1,15 +1,15 @@
 "use client";
 
-import Image from "next/image";
 import { ExternalLink, Search, Sparkles } from "lucide-react";
+import Image from "next/image";
 import { useDeferredValue, useMemo, useState } from "react";
 
-import { incarnonCatalog } from "../data/incarnonWeapons";
 import type {
   IncarnonCategory,
   IncarnonKind,
   IncarnonWeapon,
 } from "../data/incarnonWeapons";
+import { incarnonCatalog } from "../data/incarnonWeapons";
 import styles from "./IncarnonWeaponArchive.module.css";
 
 type CategoryFilter = IncarnonCategory | "all";
@@ -85,7 +85,13 @@ function searchableText(weapon: IncarnonWeapon) {
   return text;
 }
 
-function WeaponCard({ weapon, eager }: { weapon: IncarnonWeapon; eager: boolean }) {
+function WeaponCard({
+  weapon,
+  eager,
+}: {
+  weapon: IncarnonWeapon;
+  eager: boolean;
+}) {
   const kindLabel = weapon.kind === "genesis" ? "應感創件" : "原生應感";
 
   return (
@@ -108,7 +114,9 @@ function WeaponCard({ weapon, eager }: { weapon: IncarnonWeapon; eager: boolean 
             <span className={styles.badgeRow}>
               <span className={styles.kindBadge}>{kindLabel}</span>
               {weapon.rotation ? (
-                <span className={styles.rotationBadge}>輪替 {weapon.rotation}</span>
+                <span className={styles.rotationBadge}>
+                  輪替 {weapon.rotation}
+                </span>
               ) : null}
             </span>
 
@@ -135,19 +143,25 @@ function WeaponCard({ weapon, eager }: { weapon: IncarnonWeapon; eager: boolean 
               <section key={evolution.tier} className={styles.evolutionCard}>
                 <div className={styles.evolutionHeading}>
                   <span>進化 {evolution.tier}</span>
-                  <strong>{evolution.tier === 1 ? "靈化形態" : "進化能力"}</strong>
+                  <strong>
+                    {evolution.tier === 1 ? "靈化形態" : "進化能力"}
+                  </strong>
                 </div>
 
                 <div className={styles.unlockBox}>
                   <span>進化解鎖條件</span>
                   <strong>
-                    {evolution.unlockCondition.zh || evolution.unlockCondition.en}
+                    {evolution.unlockCondition.zh ||
+                      evolution.unlockCondition.en}
                   </strong>
                 </div>
 
                 <div className={styles.abilityList}>
                   {evolution.abilities.map((ability) => (
-                    <div key={`${evolution.tier}-${ability.name}`} className={styles.abilityItem}>
+                    <div
+                      key={`${evolution.tier}-${ability.name}`}
+                      className={styles.abilityItem}
+                    >
                       <div>
                         <strong>{ability.name}</strong>
                         <p>{ability.description}</p>
@@ -157,12 +171,14 @@ function WeaponCard({ weapon, eager }: { weapon: IncarnonWeapon; eager: boolean 
                         <details className={styles.subDetails}>
                           <summary>查看各版本數值</summary>
                           <dl>
-                            {Object.entries(ability.variantValues).map(([variant, value]) => (
-                              <div key={variant}>
-                                <dt>{variant}</dt>
-                                <dd>{value}</dd>
-                              </div>
-                            ))}
+                            {Object.entries(ability.variantValues).map(
+                              ([variant, value]) => (
+                                <div key={variant}>
+                                  <dt>{variant}</dt>
+                                  <dd>{value}</dd>
+                                </div>
+                              ),
+                            )}
                           </dl>
                         </details>
                       ) : null}
@@ -195,9 +211,13 @@ function WeaponCard({ weapon, eager }: { weapon: IncarnonWeapon; eager: boolean 
   );
 }
 
-export default function IncarnonWeaponArchive() {
+export default function IncarnonWeaponArchive({
+  initialQuery = "",
+}: {
+  initialQuery?: string;
+}) {
   const weapons = incarnonCatalog.weapons;
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useState(initialQuery);
   const deferredQuery = useDeferredValue(query);
   const [category, setCategory] = useState<CategoryFilter>("all");
   const [kind, setKind] = useState<KindFilter>("all");
@@ -208,8 +228,11 @@ export default function IncarnonWeaponArchive() {
     return weapons.filter((weapon) => {
       if (category !== "all" && weapon.category !== category) return false;
       if (kind !== "all" && weapon.kind !== kind) return false;
-      if (rotation !== "all" && weapon.rotation !== Number(rotation)) return false;
-      return !normalizedQuery || searchableText(weapon).includes(normalizedQuery);
+      if (rotation !== "all" && weapon.rotation !== Number(rotation))
+        return false;
+      return (
+        !normalizedQuery || searchableText(weapon).includes(normalizedQuery)
+      );
     });
   }, [category, deferredQuery, kind, rotation, weapons]);
 
@@ -236,7 +259,9 @@ export default function IncarnonWeaponArchive() {
             <button
               key={option.value}
               type="button"
-              className={category === option.value ? styles.activeTab : undefined}
+              className={
+                category === option.value ? styles.activeTab : undefined
+              }
               aria-pressed={category === option.value}
               onClick={() => setCategory(option.value)}
             >
@@ -249,7 +274,10 @@ export default function IncarnonWeaponArchive() {
         <div className={styles.selectRow}>
           <label>
             <span>靈化類型</span>
-            <select value={kind} onChange={(event) => setKind(event.target.value as KindFilter)}>
+            <select
+              value={kind}
+              onChange={(event) => setKind(event.target.value as KindFilter)}
+            >
               {kindOptions.map((option) => (
                 <option key={option.value} value={option.value}>
                   {option.label}
@@ -260,13 +288,18 @@ export default function IncarnonWeaponArchive() {
 
           <label>
             <span>鋼韌巡迴輪替</span>
-            <select value={rotation} onChange={(event) => setRotation(event.target.value)}>
+            <select
+              value={rotation}
+              onChange={(event) => setRotation(event.target.value)}
+            >
               <option value="all">全部輪替</option>
-              {Array.from({ length: 9 }, (_, index) => index + 1).map((week) => (
-                <option key={week} value={week}>
-                  第 {week} 組
-                </option>
-              ))}
+              {Array.from({ length: 9 }, (_, index) => index + 1).map(
+                (week) => (
+                  <option key={week} value={week}>
+                    第 {week} 組
+                  </option>
+                ),
+              )}
             </select>
           </label>
 
@@ -296,7 +329,11 @@ export default function IncarnonWeaponArchive() {
 
               <div className={styles.weaponGrid}>
                 {sectionWeapons.map((weapon, index) => (
-                  <WeaponCard key={weapon.id} weapon={weapon} eager={index === 0} />
+                  <WeaponCard
+                    key={weapon.id}
+                    weapon={weapon}
+                    eager={index === 0}
+                  />
                 ))}
               </div>
             </section>

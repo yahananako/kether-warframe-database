@@ -1,6 +1,4 @@
-import type { Metadata } from "next";
-import type { CSSProperties } from "react";
-import Link from "next/link";
+import StoryArtwork from "../../components/StoryArtwork";
 import {
   ArrowRight,
   BookOpenText,
@@ -9,8 +7,10 @@ import {
   ShieldAlert,
   Sparkles,
 } from "lucide-react";
+import type { Metadata } from "next";
+import Link from "next/link";
+import type { CSSProperties } from "react";
 
-import HomeNewInlineMenu from "../../components/HomeNewInlineMenu";
 import { STORY_BOOK_UPDATED_AT, storyChapters } from "../../data/storyFlow";
 import styles from "./story.module.css";
 
@@ -28,8 +28,6 @@ export default function StoryDirectoryPage() {
 
   return (
     <main className={styles.bookPage}>
-      
-
       <div className={styles.pageShell}>
         <section className={styles.directoryHero}>
           <div className={styles.directoryHeroCopy}>
@@ -73,7 +71,7 @@ export default function StoryDirectoryPage() {
             {[storyChapters[3], storyChapters[2], storyChapters[4]].map(
               (chapter, index) => (
                 <figure key={chapter.slug} data-layer={index}>
-                  <img src={chapter.heroImage} alt={chapter.heroAlt} />
+                  <StoryArtwork src={chapter.heroImage} alt={chapter.heroAlt} />
                   <figcaption>
                     <span>{chapter.number}</span>
                     {chapter.title}
@@ -151,7 +149,7 @@ export default function StoryDirectoryPage() {
                 style={{ "--card-accent": chapter.accent } as CSSProperties}
               >
                 <div className={styles.chapterCardImage}>
-                  <img src={chapter.heroImage} alt="" />
+                  <StoryArtwork src={chapter.heroImage} alt="" />
                   <span>{chapter.number}</span>
                 </div>
                 <div className={styles.chapterCardBody}>

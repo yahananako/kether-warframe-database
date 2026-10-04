@@ -1,13 +1,7 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
-import { MessageCircle, UserRound } from "lucide-react";
 
-import HomeNewInlineMenu from "../../../components/HomeNewInlineMenu";
-import HomeNewInlineNotifications from "../../../components/HomeNewInlineNotifications";
-import HomeNewInlineSearch from "../../../components/HomeNewInlineSearch";
 import IncarnonWeaponArchive from "../../../components/IncarnonWeaponArchive";
-import KetherDynamicInfo from "../../../components/KetherDynamicInfo";
 import { incarnonCatalog } from "../../../data/incarnonWeapons";
 import styles from "./page.module.css";
 
@@ -20,22 +14,23 @@ export const metadata: Metadata = {
   },
 };
 
-
-
-
-
-export default function IncarnonDatabasePage() {
+export default async function IncarnonDatabasePage({
+  searchParams,
+}: {
+  searchParams: Promise<{ q?: string }>;
+}) {
+  const { q = "" } = await searchParams;
   return (
     <main className="home-new-page">
       <div className="home-new-shell">
-        
-
-        
-
         <section className={`kether-overview-intro-card ${styles.intro}`}>
           <div className="kether-database-intro-topline">
             <p>KETHER INCARNON ARMORY</p>
-            <Link href="/" className="kether-database-home-link" aria-label="回首頁">
+            <Link
+              href="/"
+              className="kether-database-home-link"
+              aria-label="回首頁"
+            >
               <svg
                 viewBox="0 0 24 24"
                 width="18"
@@ -61,18 +56,28 @@ export default function IncarnonDatabasePage() {
           </span>
 
           <div className={styles.introStats} aria-label="靈化武器分類數量">
-            <div><strong>{incarnonCatalog.totals.primary}</strong><span>主要</span></div>
-            <div><strong>{incarnonCatalog.totals.secondary}</strong><span>次要</span></div>
-            <div><strong>{incarnonCatalog.totals.melee}</strong><span>近戰</span></div>
-            <div><strong>{incarnonCatalog.totals.all}</strong><span>全部</span></div>
+            <div>
+              <strong>{incarnonCatalog.totals.primary}</strong>
+              <span>主要</span>
+            </div>
+            <div>
+              <strong>{incarnonCatalog.totals.secondary}</strong>
+              <span>次要</span>
+            </div>
+            <div>
+              <strong>{incarnonCatalog.totals.melee}</strong>
+              <span>近戰</span>
+            </div>
+            <div>
+              <strong>{incarnonCatalog.totals.all}</strong>
+              <span>全部</span>
+            </div>
           </div>
         </section>
 
         <section className="kether-category-content-shell">
-          <IncarnonWeaponArchive />
+          <IncarnonWeaponArchive key={q} initialQuery={q} />
         </section>
-
-        
       </div>
     </main>
   );

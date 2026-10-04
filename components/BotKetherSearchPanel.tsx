@@ -1,7 +1,15 @@
 "use client";
 
+import {
+  Leaf,
+  Loader2,
+  PawPrint,
+  Search,
+  ShieldCheck,
+  Sparkles,
+  Swords,
+} from "lucide-react";
 import { FormEvent, useState } from "react";
-import { Leaf, Loader2, PawPrint, Search, ShieldCheck, Sparkles, Swords } from "lucide-react";
 
 type SearchMode = "weapon" | "warframe" | "companion" | "material" | "relic";
 
@@ -58,7 +66,13 @@ const modeConfig: Record<
     badge: "武器",
     icon: Swords,
     placeholder: "輸入武器名稱，例如：托里德、Ocucor、Glaive Prime",
-    quickSearches: ["赤毒努寇", "Kuva Ghoulsaw", "Glaive Prime", "凶惡", "靈化"],
+    quickSearches: [
+      "赤毒努寇",
+      "Kuva Ghoulsaw",
+      "Glaive Prime",
+      "凶惡",
+      "靈化",
+    ],
     apiPath: "/api/bot-search/weapon",
     emptyText: "找不到武器取得資料喵，試試英文名、中文名或系列關鍵字。",
   },
@@ -97,10 +111,12 @@ const modeConfig: Record<
     title: "網站版遺物取得查詢",
     badge: "遺物",
     icon: Sparkles,
-    placeholder: "輸入遺物或 Prime 物品，例如：Lith、Axi、Requiem、Glaive Prime",
+    placeholder:
+      "輸入遺物或 Prime 物品，例如：Lith、Axi、Requiem、Glaive Prime",
     quickSearches: ["Lith", "Meso", "Neo", "Axi", "Requiem"],
     apiPath: "/api/bot-search/relic",
-    emptyText: "找不到遺物取得資料喵，試試核桃世代、精準核桃或 Prime 物品名稱。",
+    emptyText:
+      "找不到遺物取得資料喵，試試核桃世代、精準核桃或 Prime 物品名稱。",
   },
 };
 
@@ -131,9 +147,12 @@ export default function BotKetherSearchPanel() {
     setSearched(value);
 
     try {
-      const response = await fetch(`${nextConfig.apiPath}?q=${encodeURIComponent(value)}`, {
-        method: "GET",
-      });
+      const response = await fetch(
+        `${nextConfig.apiPath}?q=${encodeURIComponent(value)}`,
+        {
+          method: "GET",
+        },
+      );
 
       if (!response.ok) throw new Error("search failed");
 
@@ -160,17 +179,21 @@ export default function BotKetherSearchPanel() {
                   ? "不可交易"
                   : weapon.price || "價格待更新";
 
-          nextResults = nextResults.map((result, index) => index === 0
-            ? {
-              ...result,
-              marketUrl: market.marketUrl || result.marketUrl,
-              livePriceLabel,
-            }
-            : result);
+          nextResults = nextResults.map((result, index) =>
+            index === 0
+              ? {
+                  ...result,
+                  marketUrl: market.marketUrl || result.marketUrl,
+                  livePriceLabel,
+                }
+              : result,
+          );
         } catch {
-          nextResults = nextResults.map((result, index) => index === 0
-            ? { ...result, livePriceLabel: "即時價格暫時無法取得" }
-            : result);
+          nextResults = nextResults.map((result, index) =>
+            index === 0
+              ? { ...result, livePriceLabel: "即時價格暫時無法取得" }
+              : result,
+          );
         }
       }
 
@@ -246,14 +269,22 @@ export default function BotKetherSearchPanel() {
         </div>
 
         <button type="submit" disabled={loading}>
-          {loading ? <Loader2 size={18} className="kether-bot-search-spin" /> : <Search size={18} />}
+          {loading ? (
+            <Loader2 size={18} className="kether-bot-search-spin" />
+          ) : (
+            <Search size={18} />
+          )}
           查詢
         </button>
       </form>
 
       <div className="kether-bot-quick-searches">
         {config.quickSearches.map((item) => (
-          <button key={item} type="button" onClick={() => handleQuickSearch(item)}>
+          <button
+            key={item}
+            type="button"
+            onClick={() => handleQuickSearch(item)}
+          >
             {item}
           </button>
         ))}
@@ -273,13 +304,17 @@ export default function BotKetherSearchPanel() {
             const tag = result.weaponType ?? result.category ?? config.badge;
 
             return (
-              <article key={`${mode}-${result.name}-${tag}-${result.series ?? ""}`}>
+              <article
+                key={`${mode}-${result.name}-${tag}-${result.series ?? ""}`}
+              >
                 <div className="kether-bot-search-result-top">
                   <strong>{result.name}</strong>
                   <span>{tag}</span>
                 </div>
 
-                {result.series ? <p className="kether-bot-search-series">{result.series}</p> : null}
+                {result.series ? (
+                  <p className="kether-bot-search-series">{result.series}</p>
+                ) : null}
 
                 <div className="kether-bot-search-detail-list">
                   {result.details.map((detail) => (
@@ -292,13 +327,23 @@ export default function BotKetherSearchPanel() {
 
                 {result.price || result.livePriceLabel || result.marketUrl ? (
                   <div className="kether-bot-search-market">
-                    <b>{result.livePriceLabel || `參考價格：${result.price}`}</b>
+                    <b>
+                      {result.livePriceLabel || `參考價格：${result.price}`}
+                    </b>
                     {result.marketUrl ? (
-                      <a href={result.marketUrl} target="_blank" rel="noreferrer">
-                        {result.marketKind === "lich" ? "開啟玄骸拍賣頁" : "開啟交易頁"}
+                      <a
+                        href={result.marketUrl}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        {result.marketKind === "lich"
+                          ? "開啟玄骸拍賣頁"
+                          : "開啟交易頁"}
                       </a>
                     ) : null}
-                    {result.tradeNote ? <small>{result.tradeNote}</small> : null}
+                    {result.tradeNote ? (
+                      <small>{result.tradeNote}</small>
+                    ) : null}
                   </div>
                 ) : null}
               </article>

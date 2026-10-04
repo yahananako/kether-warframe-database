@@ -1,2 +1,251 @@
-.stage{color:var(--text)}.frame{width:100%}.loginStage{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:24px;align-items:start}.authCard,.policyCard{border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);padding:28px;box-shadow:var(--shadow)}.authCard{display:flex;flex-direction:column;gap:18px}.authHeader{display:flex;gap:14px;align-items:center}.authIcon{display:grid;place-items:center;width:52px;height:52px;border:1px solid var(--line);border-radius:12px;color:var(--gold)}.authHeader p,.policyHeading p{font-size:12px;letter-spacing:.14em;color:var(--gold);margin:0}.authHeader h1,.policyHeading h2{font-size:30px;margin:6px 0}.authSummary,.redirectHint,.policyIntro{font-size:14px;line-height:1.8;margin:0;color:var(--muted)}.authFacts{display:grid;gap:10px}.authFacts>div{display:flex;align-items:center;gap:10px;padding:12px;border:1px solid var(--line);border-radius:8px;font-size:14px}.authFacts svg{color:var(--accent)}.scopeBox{padding:14px;background:var(--surface-strong);border-radius:8px}.scopeBox>span{font-size:14px;color:var(--muted)}.scopeBox>div{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.scopeBox code{font-size:12px;color:var(--accent)}.readRequirement{display:flex;align-items:center;gap:12px;padding:14px;border:1px solid var(--line);border-radius:8px;color:var(--gold)}.readRequirement>div{display:grid}.readRequirement span{font-size:14px;color:var(--muted)}.readRequirement[data-complete=true]{color:var(--accent)}.consentRow{display:flex;gap:12px;align-items:start;font-size:14px}.consentRow input{width:20px;height:20px;flex:none}.consentRowDisabled{opacity:.6}.notice{padding:14px;color:var(--gold);border:1px solid var(--gold);border-radius:8px;font-size:14px}.loginButton{display:flex;align-items:center;justify-content:center;gap:10px;padding:14px;background:var(--accent);color:var(--bg);text-decoration:none;border-radius:8px;font-weight:700}.loginButtonDisabled{opacity:.5}.redirectHint{overflow-wrap:anywhere}.policyHeading{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}.policyProgress{font-size:12px;color:var(--gold);white-space:nowrap}.policyIntro{margin-bottom:18px}.policyList{display:grid;gap:12px}.policyList details{border:1px solid var(--line);border-radius:8px;background:var(--surface-strong)}.policyList summary{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px;list-style:none;font-size:16px}.policyList summary::-webkit-details-marker{display:none}.summaryMeta{display:flex;align-items:center;gap:8px;color:var(--accent)}.summaryMeta em{font-size:12px;font-style:normal}.policyList details>div{padding:0 18px 16px;font-size:14px;color:var(--muted)}.policyList details[open]{border-color:var(--accent)}.policyLink{display:inline-flex;align-items:center;gap:8px;margin-top:20px;font-size:14px}.mobileTabs,.toLogin{display:none}
-@media(max-width:850px){.mobileTabs{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:18px}.mobileTabs span{display:block;font-size:12px}.loginStage{display:block}.loginStage[data-view=policy] .authCard,.loginStage[data-view=auth] .policyCard{display:none}.authCard,.policyCard{padding:20px}.toLogin{display:block;margin:20px 0 0 auto}.policyHeading{align-items:start}.authHeader h1,.policyHeading h2{font-size:26px}}
+.stage {
+  color: var(--text);
+}
+.frame {
+  width: 100%;
+}
+.loginStage {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  gap: 24px;
+  align-items: start;
+}
+.authCard,
+.policyCard {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  padding: 28px;
+  box-shadow: var(--shadow);
+}
+.authCard {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.authHeader {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+}
+.authIcon {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  color: var(--gold);
+}
+.authHeader p,
+.policyHeading p {
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  color: var(--gold);
+  margin: 0;
+}
+.authHeader h1,
+.policyHeading h2 {
+  font-size: 30px;
+  margin: 6px 0;
+}
+.authSummary,
+.redirectHint,
+.policyIntro {
+  font-size: 14px;
+  line-height: 1.8;
+  margin: 0;
+  color: var(--muted);
+}
+.authFacts {
+  display: grid;
+  gap: 10px;
+}
+.authFacts > div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  font-size: 14px;
+}
+.authFacts svg {
+  color: var(--accent);
+}
+.scopeBox {
+  padding: 14px;
+  background: var(--surface-strong);
+  border-radius: 8px;
+}
+.scopeBox > span {
+  font-size: 14px;
+  color: var(--muted);
+}
+.scopeBox > div {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+.scopeBox code {
+  font-size: 12px;
+  color: var(--accent);
+}
+.readRequirement {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  color: var(--gold);
+}
+.readRequirement > div {
+  display: grid;
+}
+.readRequirement span {
+  font-size: 14px;
+  color: var(--muted);
+}
+.readRequirement[data-complete="true"] {
+  color: var(--accent);
+}
+.consentRow {
+  display: flex;
+  gap: 12px;
+  align-items: start;
+  font-size: 14px;
+}
+.consentRow input {
+  width: 20px;
+  height: 20px;
+  flex: none;
+}
+.consentRowDisabled {
+  opacity: 0.6;
+}
+.notice {
+  padding: 14px;
+  color: var(--gold);
+  border: 1px solid var(--gold);
+  border-radius: 8px;
+  font-size: 14px;
+}
+.loginButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px;
+  background: var(--accent);
+  color: var(--bg);
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 700;
+}
+.loginButtonDisabled {
+  opacity: 0.5;
+}
+.redirectHint {
+  overflow-wrap: anywhere;
+}
+.policyHeading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+.policyProgress {
+  font-size: 12px;
+  color: var(--gold);
+  white-space: nowrap;
+}
+.policyIntro {
+  margin-bottom: 18px;
+}
+.policyList {
+  display: grid;
+  gap: 12px;
+}
+.policyList details {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface-strong);
+}
+.policyList summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px;
+  list-style: none;
+  font-size: 16px;
+}
+.policyList summary::-webkit-details-marker {
+  display: none;
+}
+.summaryMeta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--accent);
+}
+.summaryMeta em {
+  font-size: 12px;
+  font-style: normal;
+}
+.policyList details > div {
+  padding: 0 18px 16px;
+  font-size: 14px;
+  color: var(--muted);
+}
+.policyList details[open] {
+  border-color: var(--accent);
+}
+.policyLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 20px;
+  font-size: 14px;
+}
+.mobileTabs,
+.toLogin {
+  display: none;
+}
+@media (max-width: 850px) {
+  .mobileTabs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 18px;
+  }
+  .mobileTabs span {
+    display: block;
+    font-size: 12px;
+  }
+  .loginStage {
+    display: block;
+  }
+  .loginStage[data-view="policy"] .authCard,
+  .loginStage[data-view="auth"] .policyCard {
+    display: none;
+  }
+  .authCard,
+  .policyCard {
+    padding: 20px;
+  }
+  .toLogin {
+    display: block;
+    margin: 20px 0 0 auto;
+  }
+  .policyHeading {
+    align-items: start;
+  }
+  .authHeader h1,
+  .policyHeading h2 {
+    font-size: 26px;
+  }
+}

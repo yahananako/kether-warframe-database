@@ -13,8 +13,7 @@
   padding: 20px;
   border: 1px solid var(--line);
   border-radius: var(--radius);
-  background:
-    var(--surface);
+  background: var(--surface);
 }
 
 .title {

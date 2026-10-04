@@ -1,2 +1,49 @@
-.ticker{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--line);color:var(--muted);min-width:0;font-size:12px}.ticker b{color:var(--gold);white-space:nowrap;font-size:12px}.ticker button{border:0;background:transparent;padding:2px 7px;color:var(--accent);min-height:30px}.ticker .tickerText{text-align:left;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:14px;color:var(--text)}.ticker>span{white-space:nowrap}.ticker button:hover{color:var(--gold)}
-@media(max-width:760px){.ticker{gap:3px}.ticker b{display:none}.ticker .tickerText{font-size:12px}}
+.ticker {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--line);
+  color: var(--muted);
+  min-width: 0;
+  font-size: 12px;
+}
+.ticker b {
+  color: var(--gold);
+  white-space: nowrap;
+  font-size: 12px;
+}
+.ticker button {
+  border: 0;
+  background: transparent;
+  padding: 2px 7px;
+  color: var(--accent);
+  min-height: 30px;
+}
+.ticker .tickerText {
+  text-align: left;
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 14px;
+  color: var(--text);
+}
+.ticker > span {
+  white-space: nowrap;
+}
+.ticker button:hover {
+  color: var(--gold);
+}
+@media (max-width: 760px) {
+  .ticker {
+    gap: 3px;
+  }
+  .ticker b {
+    display: none;
+  }
+  .ticker .tickerText {
+    font-size: 12px;
+  }
+}

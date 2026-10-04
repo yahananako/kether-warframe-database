@@ -1,28 +1,18 @@
-import Link from "next/link";
 import {
   BadgeCheck,
-  KeyRound,
   Database,
+  KeyRound,
   MessageCircle,
   Shield,
   Sparkles,
   Users,
 } from "lucide-react";
+import Link from "next/link";
 
-import KetherDynamicInfo from "../../components/KetherDynamicInfo";
-import HomeNewInlineMenu from "../../components/HomeNewInlineMenu";
-import HomeNewInlineSearch from "../../components/HomeNewInlineSearch";
-import HomeNewInlineNotifications from "../../components/HomeNewInlineNotifications";
-import ClanDiscordAccessCard from "../../components/ClanDiscordAccessCard";
-import ClanAnnouncementBoard from "../../components/ClanAnnouncementBoard";
 import ClanAccessStatus from "../../components/ClanAccessStatus";
+import ClanAnnouncementBoard from "../../components/ClanAnnouncementBoard";
+import ClanDiscordAccessCard from "../../components/ClanDiscordAccessCard";
 import ClanPrivacyDisclaimer from "../../components/ClanPrivacyDisclaimer";
-import HomeAuthAction from "../../components/HomeAuthAction";
-
-
-
-
-
 
 const roadmapItems = [
   {
@@ -51,10 +41,6 @@ export default function ClanPage() {
   return (
     <main className="home-new-page">
       <div className="home-new-shell">
-        
-
-        
-
         <section className="kether-overview-intro-card kether-clan-intro-card">
           <div className="kether-clan-intro-topline">
             <p>KETHER CLAN PAGE</p>
@@ -86,7 +72,8 @@ export default function ClanPage() {
 
           <h1>KETHER OF PARADISO</h1>
           <span>
-            這裡是 KETHER OF PARADISO 的專屬氏族頁，集中顯示氏族公告、Discord 權限、資料庫授權與 KETHER 訂閱狀態。
+            這裡是 KETHER OF PARADISO 的專屬氏族頁，集中顯示氏族公告、Discord
+            權限、資料庫授權與 KETHER 訂閱狀態。
           </span>
         </section>
 
@@ -96,7 +83,10 @@ export default function ClanPage() {
 
         <ClanPrivacyDisclaimer />
 
-        <section className="kether-clan-quick-grid" aria-label="KETHER 氏族登入入口">
+        <section
+          className="kether-clan-quick-grid"
+          aria-label="KETHER 氏族登入入口"
+        >
           <ClanDiscordAccessCard />
         </section>
 
@@ -125,13 +115,19 @@ export default function ClanPage() {
             <article>
               <KeyRound size={24} />
               <h3>登入方式</h3>
-              <p>使用 Discord OAuth 登入，未來可依 Guild ID 與 Role ID 做權限判斷。</p>
+              <p>
+                使用 Discord OAuth 登入，未來可依 Guild ID 與 Role ID
+                做權限判斷。
+              </p>
             </article>
 
             <article>
               <Database size={24} />
               <h3>資料庫模式</h3>
-              <p>KETHER 目前使用自己的資料庫。其他付費群組未來會讀取自己的資料庫。</p>
+              <p>
+                KETHER
+                目前使用自己的資料庫。其他付費群組未來會讀取自己的資料庫。
+              </p>
             </article>
           </section>
         </details>
@@ -184,8 +180,6 @@ export default function ClanPage() {
             </p>
           </section>
         </details>
-
-        
       </div>
     </main>
   );

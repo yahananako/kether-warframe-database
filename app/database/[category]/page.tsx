@@ -1,17 +1,8 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { MessageCircle, UserRound } from "lucide-react";
 
-import { fetchSheetRows, SHEET_GIDS } from "../../../lib/sheets";
 import DataTable from "../../../components/DataTable";
-import KetherDynamicInfo from "../../../components/KetherDynamicInfo";
-import HomeNewInlineMenu from "../../../components/HomeNewInlineMenu";
-import HomeNewInlineSearch from "../../../components/HomeNewInlineSearch";
-import HomeNewInlineNotifications from "../../../components/HomeNewInlineNotifications";
-
-
-
-
+import { fetchSheetRows, SHEET_GIDS } from "../../../lib/sheets";
 
 const categoryNames: Record<string, string> = {
   warframes: "戰甲",
@@ -35,41 +26,36 @@ export default async function DatabaseCategoryPage({
   }
 
   const { config, rows, error } = await fetchSheetRows(category);
-  
 
   return (
     <main className="home-new-page">
       <div className="home-new-shell">
-        
-
-        
-
         <section className="kether-overview-intro-card">
           <div className="kether-database-intro-topline">
             <p>KETHER DATABASE CATEGORY</p>
             <Link
-            href="/"
-            className="kether-database-home-link"
-            aria-label="回首頁"
-            title="回首頁"
-          >
-            <svg
-              viewBox="0 0 24 24"
-              width="18"
-              height="18"
-              aria-hidden="true"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
+              href="/"
+              className="kether-database-home-link"
+              aria-label="回首頁"
+              title="回首頁"
             >
-              <path d="m3 10 9-7 9 7" />
-              <path d="M5 9v11h14V9" />
-              <path d="M9 20v-6h6v6" />
-            </svg>
-            <span>回首頁</span>
-          </Link>
+              <svg
+                viewBox="0 0 24 24"
+                width="18"
+                height="18"
+                aria-hidden="true"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="m3 10 9-7 9 7" />
+                <path d="M5 9v11h14V9" />
+                <path d="M9 20v-6h6v6" />
+              </svg>
+              <span>回首頁</span>
+            </Link>
           </div>
 
           <h1>{config.title}</h1>
@@ -90,8 +76,6 @@ export default async function DatabaseCategoryPage({
             <DataTable rows={rows} category={category} />
           </section>
         )}
-
-        
       </div>
     </main>
   );

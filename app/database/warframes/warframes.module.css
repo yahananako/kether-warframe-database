@@ -1,7 +1,6 @@
 .page {
   min-height: 0;
-  background:
-    transparent;
+  background: transparent;
   color: var(--text);
   padding: 0;
 }
@@ -87,8 +86,8 @@
   font-weight: 800;
 }
 .hero h1 {
-  font-size: clamp(42px, 8vw, 88px);
-  line-height: 0.95;
+  font-size: clamp(32px, 4vw, 54px);
+  line-height: 1.2;
   margin: 12px 0;
 }
 .hero > span {
@@ -118,7 +117,7 @@
 }
 .roleTabs {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 10px;
   margin-top: 22px;
 }

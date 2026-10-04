@@ -1,3 +1,4 @@
+import StoryArtwork from "../../../../components/StoryArtwork";
 import type { CSSProperties } from "react";
 import Link from "next/link";
 import { ArrowLeft, ArrowRight, ChevronRight, GitBranch } from "lucide-react";
@@ -55,7 +56,10 @@ export default async function QuestSeriesPage({
         </nav>
 
         <section className={styles.chapterHero}>
-          <img src={series.heroImage} alt={`${series.title}系列封面`} />
+          <StoryArtwork
+            src={series.heroImage}
+            alt={`${series.title}系列封面`}
+          />
           <div className={styles.chapterHeroShade} />
           <div className={styles.chapterHeroContent}>
             <p>

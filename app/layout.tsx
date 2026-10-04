@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import "./globals.css";
-import SiteShell from "../components/SiteShell";
 import MiniMusicPlayer from "../components/MiniMusicPlayer";
+import SiteShell from "../components/SiteShell";
 import VisualEditorBridge from "../components/VisualEditorBridge";
+import "./globals.css";
 
 const siteUrl = "https://kether-warframe-database.vercel.app";
 
@@ -61,7 +61,11 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="zh-Hant">
       <body>
