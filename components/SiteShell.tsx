@@ -168,10 +168,14 @@ export default function SiteShell({ children }: { children: ReactNode }) {
       localStorage.setItem(NOTICE_KEY, HOME_NOTICE_VERSION);
     } catch {}
   }
+  if (home) {
+    return <>{children}</>;
+  }
+
   return (
     <div
       ref={shell}
-      className={`site-shell ${home ? "site-home" : "site-interior"}`}
+      className="site-shell site-interior"
     >
       <svg
         width="0"
