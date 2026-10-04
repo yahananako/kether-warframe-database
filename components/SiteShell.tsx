@@ -1,236 +1,229 @@
 "use client";
-import { Bell, ChevronDown, Menu, Search } from "lucide-react";
+
+import { Bell, Menu } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState, type ReactNode } from "react";
+
 import { HOME_NOTICE_VERSION, homeNotices } from "../data/homeNotices";
 import { navigationGroups } from "../data/siteNavigation";
 import { KETHER_VERSION_LABEL } from "../data/siteVersion";
 import HomeAuthMini from "./HomeAuthMini";
+import HomeCinema from "./HomeCinema";
 import HomeTicker from "./HomeTicker";
+
 const NOTICE_KEY = "kether-home-new-notice-read-version";
-function positionNavigation(menu: HTMLDetailsElement) {
-  if (!menu.open) return;
-  const rect = menu.querySelector("summary")!.getBoundingClientRect();
-  const panel = menu.querySelector<HTMLElement>("nav")!;
-  const above = rect.top - 16,
-    below = innerHeight - rect.bottom - 16;
-  panel.style.width = `${Math.min(550, innerWidth - 32)}px`;
-  panel.style.maxHeight = `${Math.max(120, above > below ? above : below)}px`;
-  panel.style.left = `${Math.max(16, Math.min(rect.left, innerWidth - panel.offsetWidth - 16))}px`;
-  panel.style.top = `${above > below ? rect.top - panel.offsetHeight : rect.bottom}px`;
-}
-export function NavigationGroup({
-  group,
-}: {
-  group: (typeof navigationGroups)[number];
-}) {
-  const pathname = usePathname();
-  return (
-    <details
-      className="site-menu"
-      onToggle={(event) => positionNavigation(event.currentTarget)}
-      onMouseEnter={(event) => {
-        if (matchMedia("(hover: hover) and (pointer: fine)").matches) {
-          event.currentTarget.open = true;
-          positionNavigation(event.currentTarget);
-        }
-      }}
-      onMouseLeave={(event) => {
-        if (
-          matchMedia("(hover: hover) and (pointer: fine)").matches &&
-          !event.currentTarget.contains(document.activeElement)
-        )
-          event.currentTarget.open = false;
-      }}
-    >
-      <summary
-        onClick={(event) => {
-          if (
-            event.detail > 0 &&
-            matchMedia("(hover: hover) and (pointer: fine)").matches
-          ) {
-            event.preventDefault();
-            const menu = event.currentTarget
-              .parentElement as HTMLDetailsElement;
-            menu.open = true;
-            positionNavigation(menu);
-          }
-        }}
-      >
-        {group.label}
-        <ChevronDown size={15} />
-      </summary>
-      <nav className="site-menu-panel" aria-label={group.label}>
-        <span className="site-eyebrow">{group.english}</span>
-        <div className="site-menu-grid">
-          {group.items.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              aria-current={pathname === item.href ? "page" : undefined}
-              onClick={(event) =>
-                event.currentTarget.closest("details")?.removeAttribute("open")
-              }
-            >
-              <span className="site-nav-art">
-                <img src={item.image} alt="" />
-                <img src={item.activeImage} alt="" />
-              </span>
-              <strong>{item.label}</strong>
-              <small>{item.description}</small>
-            </Link>
-          ))}
-        </div>
-      </nav>
-    </details>
-  );
-}
+
 export default function SiteShell({ children }: { children: ReactNode }) {
   const pathname = usePathname();
   const home = pathname === "/" || pathname === "/home-new";
-  const [admin, setAdmin] = useState(false),
-    [unread, setUnread] = useState(false);
-  const shell = useRef<HTMLDivElement>(null),
-    notice = useRef<HTMLDetailsElement>(null),
-    video = useRef<HTMLVideoElement>(null);
+  const [admin, setAdmin] = useState(false);
+  const [unread, setUnread] = useState(false);
+  const shell = useRef<HTMLDivElement>(null);
+  const notice = useRef<HTMLDetailsElement>(null);
+  const video = useRef<HTMLVideoElement>(null);
+
   useEffect(() => {
+    if (home) {
+      document.documentElement.classList.remove("kether-viewport-lock");
+      document.body.classList.remove("kether-viewport-lock");
+      return;
+    }
+
+    document.documentElement.classList.add("kether-viewport-lock");
+    document.body.classList.add("kether-viewport-lock");
+
+    return () => {
+      document.documentElement.classList.remove("kether-viewport-lock");
+      document.body.classList.remove("kether-viewport-lock");
+    };
+  }, [home]);
+
+  useEffect(() => {
+    if (home) return;
+
     try {
       setUnread(localStorage.getItem(NOTICE_KEY) !== HOME_NOTICE_VERSION);
     } catch {
       setUnread(true);
     }
+
     const controller = new AbortController();
-    fetch("/api/admin/access", { cache: "no-store", signal: controller.signal })
-      .then((r) => (r.ok ? r.json() : null))
+
+    fetch("/api/admin/access", {
+      cache: "no-store",
+      signal: controller.signal,
+    })
+      .then((response) => (response.ok ? response.json() : null))
       .then((data) => setAdmin(data?.authorized === true))
       .catch(() => {});
+
     return () => controller.abort();
-  }, [pathname]);
+  }, [home, pathname]);
+
   useEffect(() => {
+    if (home) return;
+
     shell.current
-      ?.querySelectorAll<HTMLDetailsElement>(
-        ".site-menu[open], .site-utility[open]",
-      )
-      .forEach((el) => (el.open = false));
-  }, [pathname]);
+      ?.querySelectorAll<HTMLDetailsElement>(".site-utility[open]")
+      .forEach((element) => {
+        element.open = false;
+      });
+  }, [home, pathname]);
+
   useEffect(() => {
-    const openMenus = () =>
-      shell.current?.querySelectorAll<HTMLDetailsElement>(
-        ".site-menu[open], .site-utility[open]",
+    if (home) return;
+
+    function openMenus() {
+      return shell.current?.querySelectorAll<HTMLDetailsElement>(
+        ".site-utility[open]",
       );
+    }
+
     function outside(event: PointerEvent) {
-      openMenus()?.forEach((el) => {
-        if (!el.contains(event.target as Node)) el.open = false;
+      openMenus()?.forEach((element) => {
+        if (!element.contains(event.target as Node)) {
+          element.open = false;
+        }
       });
     }
+
     function escape(event: KeyboardEvent) {
-      if (event.key === "Escape")
-        openMenus()?.forEach((el) => {
-          el.open = false;
-          el.querySelector("summary")?.focus();
-        });
+      if (event.key !== "Escape") return;
+
+      openMenus()?.forEach((element) => {
+        element.open = false;
+        element.querySelector("summary")?.focus();
+      });
     }
-    function reposition() {
-      shell.current
-        ?.querySelectorAll<HTMLDetailsElement>(".site-menu[open]")
-        .forEach(positionNavigation);
-    }
+
     document.addEventListener("pointerdown", outside);
     document.addEventListener("keydown", escape);
-    window.addEventListener("resize", reposition);
-    window.addEventListener("scroll", reposition, true);
+
     return () => {
       document.removeEventListener("pointerdown", outside);
       document.removeEventListener("keydown", escape);
-      window.removeEventListener("resize", reposition);
-      window.removeEventListener("scroll", reposition, true);
     };
-  }, []);
+  }, [home]);
+
   useEffect(() => {
+    if (home) return;
+
     const reduced = matchMedia("(prefers-reduced-motion: reduce)");
-    function sync() {
-      if (document.hidden || reduced.matches) video.current?.pause();
-      else video.current?.play().catch(() => {});
+
+    function syncBackground() {
+      if (document.hidden || reduced.matches) {
+        video.current?.pause();
+      } else {
+        video.current?.play().catch(() => {});
+      }
     }
-    sync();
-    reduced.addEventListener("change", sync);
-    document.addEventListener("visibilitychange", sync);
+
+    syncBackground();
+    reduced.addEventListener("change", syncBackground);
+    document.addEventListener("visibilitychange", syncBackground);
+
     return () => {
-      reduced.removeEventListener("change", sync);
-      document.removeEventListener("visibilitychange", sync);
+      reduced.removeEventListener("change", syncBackground);
+      document.removeEventListener("visibilitychange", syncBackground);
     };
-  }, []);
+  }, [home]);
+
   function readNotice() {
     setUnread(false);
+
     try {
       localStorage.setItem(NOTICE_KEY, HOME_NOTICE_VERSION);
     } catch {}
   }
+
   if (home) {
     return <>{children}</>;
   }
 
   return (
-    <div
-      ref={shell}
-      className="site-shell site-interior"
-    >
-      <svg
-        width="0"
-        height="0"
-        aria-hidden="true"
-        style={{ position: "absolute", pointerEvents: "none" }}
-      >
-        <defs>
-          <filter id="site-icon-cutout" colorInterpolationFilters="sRGB">
-            <feColorMatrix
-              type="matrix"
-              values="0 0 0 0 .61 0 0 0 0 .91 0 0 0 0 .90 -.3333 -.3333 -.3333 0 1"
-            />
-            <feComposite in2="SourceAlpha" operator="in" />
-          </filter>
-        </defs>
-      </svg>
+    <div ref={shell} className="site-shell site-interior">
       <a href="#site-content" className="site-skip">
         跳至主要內容
       </a>
+
       <div className="site-cinema" aria-hidden="true">
         <video
           ref={video}
+          autoPlay
           muted
           loop
           playsInline
-          preload="none"
+          preload="metadata"
           poster="/kether-cinema-iceblade-v1.webp"
         >
           <source src="/kether-cinema-iceblade-v1.mp4" type="video/mp4" />
         </video>
+        <HomeCinema />
+        <div className="site-aurora" />
+        <div className="site-light-shafts" />
+        <div className="site-grid-effect" />
+        <div className="site-beam" />
       </div>
+
       <header className="site-header">
         <Link className="site-brand" href="/" aria-label="KETHER 首頁">
           <Image
             src="/kether-clan-logo.png"
-            width={42}
-            height={42}
+            width={46}
+            height={46}
             alt=""
             priority
           />
           <span>
             <strong>KETHER</strong>
-            <small>OF PARADISO</small>
+            <small>OF PARADISO · WARFRAME DATABASE</small>
           </span>
         </Link>
-        <div className="site-navigation">
-          {navigationGroups.map((group) => (
-            <NavigationGroup key={group.label} group={group} />
-          ))}
-        </div>
+
         <div className="site-tools">
-          <Link className="site-icon" href="/search" aria-label="搜尋資料庫">
-            <Search size={20} />
-          </Link>
+          <details className="site-utility site-all-menu">
+            <summary className="site-icon" aria-label="網站選單">
+              <Menu size={21} />
+            </summary>
+            <nav className="site-utility-panel site-navigation-panel" aria-label="全部頁面">
+              <div className="site-panel-heading">
+                <span className="site-eyebrow">KETHER NAVIGATION</span>
+                <h2>網站選單</h2>
+              </div>
+
+              <div className="site-navigation-groups">
+                {navigationGroups.map((group) => (
+                  <section key={group.label}>
+                    <small>{group.english}</small>
+                    <h3>{group.label}</h3>
+                    <div>
+                      {group.items.map((item) => (
+                        <Link
+                          key={item.href}
+                          href={item.href}
+                          aria-current={
+                            pathname === item.href ? "page" : undefined
+                          }
+                        >
+                          {item.label}
+                        </Link>
+                      ))}
+                    </div>
+                  </section>
+                ))}
+              </div>
+
+              <div className="site-navigation-utility">
+                <Link href="/search">資料搜尋</Link>
+                <Link href="/login">登入</Link>
+                <Link href="/db-status">資料庫狀態</Link>
+                {admin && <Link href="/admin/editor">管理後台</Link>}
+              </div>
+            </nav>
+          </details>
+
           <details
             ref={notice}
             className="site-utility"
@@ -239,77 +232,64 @@ export default function SiteShell({ children }: { children: ReactNode }) {
             }}
           >
             <summary className="site-icon" aria-label="通知中心">
-              <Bell size={20} />
+              <Bell size={21} />
               {unread && <i className="site-unread" />}
             </summary>
-            <section className="site-utility-panel">
-              <span className="site-eyebrow">KETHER UPDATE</span>
-              <h2>通知中心</h2>
-              {homeNotices.map((item) => (
+            <section className="site-utility-panel site-notice-panel">
+              <div className="site-panel-heading">
+                <span className="site-eyebrow">KETHER UPDATE</span>
+                <h2>通知中心</h2>
+              </div>
+
+              {homeNotices.slice(0, 4).map((item) => (
                 <article key={item.title}>
                   <small>{item.tag}</small>
                   <h3>{item.title}</h3>
                   <p>{item.body}</p>
                 </article>
               ))}
+
               <Link className="site-button" href="/notifications">
                 完整通知
               </Link>
             </section>
           </details>
+
           <div className="site-auth">
             <HomeAuthMini key={pathname} />
           </div>
-          <details className="site-utility site-all-menu">
-            <summary className="site-icon" aria-label="網站選單">
-              <Menu size={20} />
-            </summary>
-            <nav className="site-utility-panel" aria-label="全部頁面">
-              <Link href="/">首頁</Link>
-              <Link href="/search">資料庫搜尋</Link>
-              {navigationGroups.map((group) => (
-                <section key={group.label}>
-                  <h3>{group.label}</h3>
-                  {group.items.map((item) => (
-                    <Link
-                      key={item.href}
-                      href={item.href}
-                      aria-current={pathname === item.href ? "page" : undefined}
-                    >
-                      {item.label}
-                    </Link>
-                  ))}
-                </section>
-              ))}
-              <Link href="/login">登入</Link>
-              <Link href="/db-status">資料庫狀態</Link>
-              {admin && <Link href="/admin/editor">管理後台</Link>}
-            </nav>
-          </details>
         </div>
       </header>
+
       <div className="site-ticker">
         <HomeTicker
           onNotice={() => {
-            if (notice.current) notice.current.open = true;
+            if (notice.current) {
+              notice.current.open = true;
+            }
             readNotice();
             notice.current?.querySelector("summary")?.focus();
           }}
         />
       </div>
-      <div id="site-content" tabIndex={-1} className="site-content">
+
+      <main id="site-content" tabIndex={-1} className="site-content">
         {children}
-      </div>
+      </main>
+
       <footer className="site-footer">
         <span>
           <b>ヤハ奈々子、羊咩、凱洛</b> · 共同開發
         </span>
+
         <a href="https://kether-warframe-database.vercel.app">
           kether-warframe-database.vercel.app
         </a>
+
         <details className="site-utility">
           <summary>版本與資料來源</summary>
-          <section className="site-utility-panel">
+          <section className="site-utility-panel site-footer-panel">
+            <span className="site-eyebrow">KETHER SYSTEM</span>
             <h2>{KETHER_VERSION_LABEL}</h2>
             <p>Warframe 資料、Google Sheets 與即時星圖情報。</p>
             <Link href="/database/overview">資料總覽</Link>
