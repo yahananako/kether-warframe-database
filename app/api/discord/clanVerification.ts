@@ -13,7 +13,7 @@ import {
 } from "./discordApi";
 
 const DEFAULT_CLAN_NAME = "KETHER OF PARADISO";
-const DEFAULT_MORTAL_ROLE_NAME = "凡人";
+const DEFAULT_MORTAL_ROLE_NAME = "訪客";
 const DEFAULT_ANGEL_ROLE_NAME = "天使";
 const MAX_SCREENSHOT_BYTES = 8 * 1024 * 1024;
 const VISION_SCOPE = "https://www.googleapis.com/auth/cloud-platform";
@@ -572,7 +572,7 @@ export async function handleClanVerification(interaction: any) {
     }
 
     if (!memberRoles.includes(mortalRole.id)) {
-      return ephemeralMessage("你目前沒有「凡人」身分組，無法執行新人氏族驗證喵。");
+      return ephemeralMessage("你目前沒有「訪客」身分組，無法執行新人氏族驗證喵。");
     }
 
     const screenshot = await downloadScreenshot(attachment);
@@ -685,7 +685,7 @@ export async function handleClanVerification(interaction: any) {
         {
           title: "✅ KETHER 氏族驗證通過",
           description:
-            "凡人的封印已解除——「天使」身分組已自動授予喵。",
+            "完成認證，歡迎進入 KETHER OF PARADISO，祝你遊戲愉快 喵",
           color: 0xf6a6d8,
           fields: [
             { name: "玩家 ID", value: playerId, inline: true },
@@ -718,7 +718,7 @@ export async function handleClanVerification(interaction: any) {
     }
 
     return ephemeralMessage(
-      `氏族驗證暫時失敗喵。\n${reason}\n\n如果是權限問題，請把小希 BOT 的身分組移到「天使」與「凡人」上方。`,
+      `氏族驗證暫時失敗喵。\n${reason}\n\n如果是權限問題，請把小希 BOT 的身分組移到「天使」與「訪客」上方。`,
     );
   }
 }
