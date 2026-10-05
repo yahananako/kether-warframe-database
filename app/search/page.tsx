@@ -137,7 +137,7 @@ export default async function SearchPage({
     category === "all"
       ? matched
       : matched.filter((row) => row.category === category);
-  const perPage = 24;
+  const perPage = 4;
   const pages = Math.max(1, Math.ceil(filtered.length / perPage));
   const requestedPage = Number(single("page"));
   const page = Math.min(
@@ -148,16 +148,20 @@ export default async function SearchPage({
   const href = (cat: string, p = 1) =>
     `/search?${new URLSearchParams({ q: query, category: cat, page: String(p) })}`;
   return (
-    <main className="search-page">
-      <header className="search-heading">
+    <main className="search-command-page">
+      <header className="search-command-heading">
         <div>
-          <span className="site-eyebrow">TENNO ARCHIVE / SEARCH</span>
-          <h1>資料庫搜尋</h1>
-          <p>搜尋戰甲、武器、MOD、取得來源與靈化能力。</p>
+          <span className="site-eyebrow">TENNO ARCHIVE / SEARCH CONSOLE</span>
+          <h1>資料搜尋控制台</h1>
+          <p>戰甲、武器、MOD、取得來源與靈化能力，一個畫面完成檢索。</p>
         </div>
-        <Link href="/database/overview">瀏覽資料總覽</Link>
+
+        <Link className="search-command-overview" href="/database/overview">
+          資料總覽
+        </Link>
       </header>
-      <form action="/search" className="site-search">
+
+      <form action="/search" className="search-command-form">
         <Search aria-hidden="true" />
         <label className="sr-only" htmlFor="database-query">
           搜尋關鍵字
@@ -167,105 +171,116 @@ export default async function SearchPage({
           name="q"
           type="search"
           defaultValue={query}
-          placeholder="輸入中文、英文或戰甲暱稱…"
+          placeholder="輸入中文、英文、戰甲暱稱或能力關鍵字…"
           maxLength={200}
           required
         />
         <input type="hidden" name="category" value={category} />
-        <button type="submit">搜尋</button>
+        <button type="submit">開始查詢</button>
       </form>
-      {failures.length > 0 && (
-        <div className="search-error" role="status">
-          部分來源暫時無法同步：{failures.join("、")}
-          。目前顯示可取得的資料，稍後可重新搜尋。
-        </div>
-      )}
-      <div className="search-layout">
-        <nav className="search-filters" aria-label="搜尋分類">
+
+      <nav className="search-command-categories" aria-label="搜尋分類">
+        <Link
+          href={href("all")}
+          aria-current={category === "all" ? "page" : undefined}
+        >
+          <span>全部</span>
+          <b>{query ? matched.length : "—"}</b>
+        </Link>
+        {categories.map((item) => (
           <Link
-            href={href("all")}
-            aria-current={category === "all" ? "page" : undefined}
+            key={item.key}
+            href={href(item.key)}
+            aria-current={category === item.key ? "page" : undefined}
           >
-            全部<span>{query ? matched.length : ""}</span>
+            <span>{item.label}</span>
+            <b>
+              {query
+                ? matched.filter((row) => row.category === item.key).length
+                : "—"}
+            </b>
           </Link>
-          {categories.map((c) => (
-            <Link
-              key={c.key}
-              href={href(c.key)}
-              aria-current={category === c.key ? "page" : undefined}
-            >
-              {c.label}
+        ))}
+      </nav>
+
+      <section className="search-command-status" aria-live="polite">
+        <p>
+          {query
+            ? `「${query}」找到 ${filtered.length} 筆資料${filtered.length ? `，目前顯示第 ${page} / ${pages} 頁` : ""}`
+            : "輸入一個名字，開始從 KETHER 資料庫定位答案。"}
+        </p>
+
+        {failures.length > 0 && (
+          <span role="status">
+            部分來源暫時無法同步：{failures.join("、")}
+          </span>
+        )}
+      </section>
+
+      <section className="search-command-results" aria-label="搜尋結果">
+        {results.map((row) => (
+          <article className="search-command-card" key={row.id}>
+            <div className="search-command-card-top">
               <span>
-                {query
-                  ? matched.filter((r) => r.category === c.key).length
-                  : ""}
+                {categories.find((item) => item.key === row.category)?.label}
               </span>
-            </Link>
-          ))}
-        </nav>
-        <section aria-label="搜尋結果">
-          <p role="status">
-            {query
-              ? `「${query}」找到 ${filtered.length} 筆${filtered.length ? `，顯示 ${(page - 1) * perPage + 1}–${Math.min(page * perPage, filtered.length)}` : ""}`
-              : "從一個名字，開始探索。"}
-          </p>
-          <div className="search-results">
-            {results.map((row) => (
-              <article className="search-result" key={row.id}>
-                <div>
-                  <span className="site-eyebrow">
-                    {categories.find((c) => c.key === row.category)?.label}
-                  </span>
-                  <h2>
-                    <Link href={row.href}>{row.name}</Link>
-                  </h2>
-                  <small>{row.english}</small>
-                </div>
-                <strong className="result-price">{price(row.price)}</strong>
-                <p>{row.description || "開啟資料庫查看詳細資訊。"}</p>
-                <div className="search-result-actions">
-                  <Link href={row.href}>開啟資料</Link>
-                  {row.marketUrl && (
-                    <a href={row.marketUrl} target="_blank" rel="noreferrer">
-                      交易市場
-                    </a>
-                  )}
-                </div>
-              </article>
-            ))}
-          </div>
-          {!results.length && (
-            <div className="search-empty">
-              <h2>{query ? "尚未找到符合的資料" : "想找哪一位戰甲？"}</h2>
-              <p>
-                {query
-                  ? "試試英文名稱、較短的關鍵字，或切換其他分類。"
-                  : "可以輸入 Valkyr、Nova、水妹或靈化，也能直接瀏覽資料庫。"}
-              </p>
-              <Link href={query ? href("all") : "/database/overview"}>
-                {query ? "搜尋全部分類" : "瀏覽資料庫"}
-              </Link>
+              {price(row.price) && <b>{price(row.price)}</b>}
             </div>
-          )}
-          {pages > 1 && (
-            <nav className="search-pagination" aria-label="搜尋結果分頁">
-              {page > 1 && (
-                <Link className="site-button" href={href(category, page - 1)}>
-                  上一頁
-                </Link>
+
+            <h2>
+              <Link href={row.href}>{row.name}</Link>
+            </h2>
+            <small>{row.english}</small>
+            <p>{row.description || "開啟資料庫查看詳細資訊。"}</p>
+
+            <div className="search-command-actions">
+              <Link href={row.href}>開啟資料</Link>
+              {row.marketUrl && (
+                <a href={row.marketUrl} target="_blank" rel="noreferrer">
+                  交易市場
+                </a>
               )}
-              <span>
-                {page} / {pages}
-              </span>
-              {page < pages && (
-                <Link className="site-button" href={href(category, page + 1)}>
-                  下一頁
-                </Link>
-              )}
-            </nav>
+            </div>
+          </article>
+        ))}
+
+        {!results.length && (
+          <div className="search-command-empty">
+            <span className="site-eyebrow">NO SIGNAL FOUND</span>
+            <h2>{query ? "尚未找到符合的資料" : "等待搜尋指令"}</h2>
+            <p>
+              {query
+                ? "試試英文名稱、較短的關鍵字，或切換其他分類。"
+                : "例如 Valkyr、Nova、水妹、靈化、赤毒或 MOD。"}
+            </p>
+            <Link href={query ? href("all") : "/database/overview"}>
+              {query ? "切換全部分類" : "瀏覽資料總覽"}
+            </Link>
+          </div>
+        )}
+      </section>
+
+      <footer className="search-command-pagination" aria-label="搜尋結果分頁">
+        <span>
+          {filtered.length ? `${(page - 1) * perPage + 1}–${Math.min(page * perPage, filtered.length)} / ${filtered.length}` : "0 / 0"}
+        </span>
+
+        <div>
+          {page > 1 ? (
+            <Link href={href(category, page - 1)}>‹ 上一頁</Link>
+          ) : (
+            <span aria-disabled="true">‹ 上一頁</span>
           )}
-        </section>
-      </div>
+
+          <b>{page} / {pages}</b>
+
+          {page < pages ? (
+            <Link href={href(category, page + 1)}>下一頁 ›</Link>
+          ) : (
+            <span aria-disabled="true">下一頁 ›</span>
+          )}
+        </div>
+      </footer>
     </main>
   );
 }
