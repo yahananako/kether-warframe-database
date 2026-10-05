@@ -520,9 +520,9 @@ async function auditVerification(
   });
 }
 
-function rejectedMessage(reason: string) {
+function rejectedMessage() {
   return ephemeralMessage(
-    `氏族驗證沒有通過喵。\n原因：${reason}\n\n請重新截取遊戲內「個人簡介」完整畫面，讓玩家 ID、氏族名稱與氏族徽章同時清楚出現。`,
+    "審核失敗，請研讀審核規定，再提交審核 喵",
   );
 }
 
@@ -628,7 +628,7 @@ export async function handleClanVerification(interaction: any) {
         evidence,
       });
 
-      return rejectedMessage(reason);
+      return rejectedMessage();
     }
 
     const conflict = await findVerifiedIdentityConflict({
@@ -657,7 +657,7 @@ export async function handleClanVerification(interaction: any) {
         evidence,
       });
 
-      return rejectedMessage(reason);
+      return rejectedMessage();
     }
 
     await assignVerifiedRole(
