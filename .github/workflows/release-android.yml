@@ -89,6 +89,9 @@ jobs:
           test -n "$ANDROID_KEY_ALIAS"
           test -n "$ANDROID_KEY_PASSWORD"
 
+      - name: 同步 Android 離線資料
+        run: npm run data:android
+
       - name: 準備 APP 原始碼與網站圖片
         run: |
           mkdir -p build/assets/site-assets build/res/values build/res/drawable build/classes build/dex build/apk dist
