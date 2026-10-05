@@ -35,9 +35,9 @@
 | DISCORD_PUBLIC_KEY | Discord Interactions Public Key | 驗證 Discord Slash Command 請求 |
 | DISCORD_APP_ID | Discord Application ID | 註冊 Guild 指令使用；可與 Client ID 相同 |
 | DISCORD_VERIFICATION_CHANNEL_ID | 氏族驗證頻道 ID | 選填；設定後 `/氏族驗證` 只能在該頻道使用 |
-| DISCORD_MORTAL_ROLE_ID | 「凡人」身分組 ID | 建議設定；比依名稱尋找更穩定 |
+| DISCORD_MORTAL_ROLE_ID | 「訪客」身分組 ID | 建議設定；比依名稱尋找更穩定 |
 | DISCORD_ANGEL_ROLE_ID | 「天使」身分組 ID | 建議設定；比依名稱尋找更穩定 |
-| DISCORD_MORTAL_ROLE_NAME | 新人身分組名稱 | 選填；未設定時使用 `凡人` |
+| DISCORD_MORTAL_ROLE_NAME | 新人身分組名稱 | 選填；未設定時使用 `訪客` |
 | DISCORD_ANGEL_ROLE_NAME | 驗證後身分組名稱 | 選填；未設定時使用 `天使` |
 | DISCORD_GIVEAWAY_MANAGER_ROLE_IDS | 可操作抽獎的身分組 ID | 選填，多個用逗號分隔；管理員不需設定 |
 | KETHER_CLAN_NAME | 截圖中要核對的氏族名稱 | 未設定時使用 `KETHER OF PARADISO` |
@@ -47,7 +47,7 @@
 
 - 在 Google Cloud 專案啟用 Cloud Vision API。
 - 讓既有 Service Account 具備呼叫 Vision API 的權限。
-- 小希 BOT 具備「管理身分組」，且 BOT 身分組排列在「天使」與「凡人」上方。
+- 小希 BOT 具備「管理身分組」，且 BOT 身分組排列在「天使」與「訪客」上方。
 - 建議只允許新人頻道使用 `/氏族驗證`，並設定 `DISCORD_VERIFICATION_CHANNEL_ID`。
 
 抽獎功能需要小希 BOT 在抽獎頻道具備「查看頻道、傳送訊息、嵌入連結」權限。
