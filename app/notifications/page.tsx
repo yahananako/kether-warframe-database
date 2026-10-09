@@ -1,4 +1,5 @@
-import { Bell, Database, ShieldCheck, Sparkles } from "lucide-react";
+import { Bell, Database, ShieldCheck, Sparkles, ArrowUpRight, RadioTower, BookOpenText } from "lucide-react";
+import styles from "./notification-command.module.css";
 import Link from "next/link";
 import { KETHER_APP_VERSION, KETHER_BOT_VERSION } from "../../data/siteVersion";
 
@@ -64,72 +65,44 @@ const updates = [
   },
 ];
 
-export default function NotificationsPage() {
-  return (
-    <main className="page-shell">
-      <section className="hero-card">
-        <p className="eyebrow">KETHER NOTICE</p>
-        <h1>
-          <Bell size={30} /> 更新公告中心
-        </h1>
-        <p>
-          這裡整理網站版本更新、Discord 個人化資料庫、首頁總覽與後續開發公告。
-        </p>
-
-        <div className="auth-actions">
-          <Link className="auth-primary" href="/">
-            回首頁
-          </Link>
+export default function NotificationsPage(){
+  return <main className={styles.page}>
+    <header className={styles.header}>
+      <div><p><Bell size={15}/> KETHER / NETWORK TRANSMISSION ARCHIVE</p>
+        <h1>更新與<span>通知中心</span></h1>
+        <small>版本情報、網站更新與氏族 BOT 進度的統一收錄站。</small></div>
+      <div className={styles.headerStatus}><Sparkles size={17}/>
+        <strong>{updates.length} 則收錄資訊</strong><span>ARCHIVED MESSAGES</span></div>
+    </header>
+    <div className={styles.workspace}>
+      <aside className={styles.systemPane} aria-label="系統版本與快速連結">
+        <div className={styles.panelHeading}><p>01 / SYSTEM TELEMETRY</p><h2>目前系統版本</h2></div>
+        <div className={styles.systemCards}>
+          <article><Database size={19}/><span>網站版本</span><strong>{KETHER_APP_VERSION}</strong></article>
+          <article><RadioTower size={19}/><span>Discord BOT 版本</span><strong>{KETHER_BOT_VERSION}</strong></article>
+          <article><ShieldCheck size={19}/><span>個人化資料庫</span><strong>已提供登入入口</strong></article>
         </div>
+        <div className={styles.shortcutTitle}>KETHER / QUICK ACCESS</div>
+        <nav className={styles.shortcuts} aria-label="通知中心快速導覽">
+          <Link href="/database/overview"><Database size={16}/> 資料庫總覽 <ArrowUpRight size={16}/></Link>
+          <Link href="/story"><BookOpenText size={16}/> 故事書庫 <ArrowUpRight size={16}/></Link>
+          <Link href="/live"><RadioTower size={16}/> 電波情報 <ArrowUpRight size={16}/></Link>
+          <Link href="/clan"><ShieldCheck size={16}/> 氏族指揮中心 <ArrowUpRight size={16}/></Link>
+        </nav>
+        <p className={styles.notice}>以上版本為目前正式網站所記錄的標籤；PR 測試中的設計改版尚未正式發行，也未升級版本號。</p>
+      </aside>
+      <section className={styles.feedPane} aria-labelledby="notification-timeline-title">
+        <div className={styles.panelHeading}><p>02 / CHANGELOG CHANNEL</p><h2 id="notification-timeline-title">更新紀錄 <small>/ {updates.length.toString().padStart(2,"0")}</small></h2></div>
+        <div className={styles.feedScroll}>
+          {updates.map((item,index)=><article className={styles.update} key={item.version+"-"+item.title}>
+            <div className={styles.index}>{String(index+1).padStart(2,"0")}</div>
+            <div className={styles.updateBody}><div className={styles.updateHead}>
+              <span>{item.version}</span><small>{index===0?"LATEST RECORD":"ARCHIVED UPDATE"}</small></div>
+              <h3>{item.title}</h3><p>{item.content}</p></div>
+          </article>)}
+        </div>
+        <footer className={styles.feedFooter}>KETHER OF PARADISO · CHANGELOG TRANSMISSION</footer>
       </section>
-
-      <section className="summary-panel">
-        <div className="card-title">
-          <Database size={18} />
-          <span>目前狀態</span>
-        </div>
-
-        <div className="summary-table">
-          <div className="summary-row">
-            <span>網站版本</span>
-            <b>{KETHER_APP_VERSION}</b>
-          </div>
-          <div className="summary-row">
-            <span>Discord 個人化</span>
-            <b>已啟用</b>
-          </div>
-          <div className="summary-row">
-            <span>一般戰甲收錄</span>
-            <b>65 位</b>
-          </div>
-          <div className="summary-row">
-            <span>戰甲版本分頁</span>
-            <b>一般／Prime 已分離</b>
-          </div>
-        </div>
-      </section>
-
-      <section className="summary-panel">
-        <div className="card-title">
-          <ShieldCheck size={18} />
-          <span>更新紀錄</span>
-        </div>
-
-        <div style={{ display: "grid", gap: 14 }}>
-          {updates.map((item) => (
-            <article
-              key={`${item.version}-${item.title}`}
-              className="info-card"
-            >
-              <strong>{item.version}</strong>
-              <h2>
-                <Sparkles size={18} /> {item.title}
-              </h2>
-              <p>{item.content}</p>
-            </article>
-          ))}
-        </div>
-      </section>
-    </main>
-  );
+    </div>
+  </main>;
 }
