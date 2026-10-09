@@ -21,7 +21,7 @@ jobs:
   web-check:
     name: TypeScript and Next.js build
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 28
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -38,3 +38,31 @@ jobs:
         run: npx tsc --noEmit
       - name: Next.js production build
         run: npx next build
+      - name: Install Chromium smoke test tools
+        run: |
+          npm install --no-save --ignore-scripts playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - name: Start local preview
+        run: |
+          (npx next start -p 3000 > /tmp/kether-next.log 2>&1 &)
+          for i in $(seq 1 45); do
+            if curl -fsS http://127.0.0.1:3000/ > /dev/null; then
+              echo "Local preview ready"
+              exit 0
+            fi
+            sleep 2
+          done
+          cat /tmp/kether-next.log
+          exit 1
+      - name: Chromium responsive and interaction smoke tests
+        run: node scripts/test-redesign-browser.mjs
+      - name: Archive browser screenshots and report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: kether-browser-smoke-${{ github.sha }}
+          path: |
+            qa/screenshots/
+            qa/report.json
+          if-no-files-found: ignore
+          retention-days: 7

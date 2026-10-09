@@ -1,0 +1,93 @@
+#!/usr/bin/env node
+// Real Chromium smoke test; no authenticated or destructive actions.
+import assert from "node:assert/strict";
+import fs from "node:fs/promises";
+import {chromium} from "playwright";
+
+const base=process.env.KETHER_TEST_BASE_URL||"http://127.0.0.1:3000";
+await fs.mkdir("qa/screenshots",{recursive:true});
+const paths=["/","/story","/database/overview","/database/warframes",
+  "/database/incarnon","/live","/clan","/search?q=Valkyr",
+  "/notifications","/profile","/login","/db-status","/unauthorized"];
+const views=[
+  {name:"desktop-1440",width:1440,height:900,paths},
+  {name:"laptop-1280",width:1280,height:800,paths:paths.slice(0,8)},
+  {name:"mobile-390",width:390,height:844,paths},
+  {name:"mobile-360",width:360,height:740,paths:paths.slice(0,8)}
+];
+const report={startedAt:new Date().toISOString(),passed:[],failed:[],warnings:[]};
+const browser=await chromium.launch({headless:true,args:["--no-sandbox","--disable-dev-shm-usage"]});
+let shot=0;
+const safe=v=>v.replace(/[^a-z0-9]+/gi,"-").replace(/^-|-$/g,"").toLowerCase();
+const failure=(screen,path,error)=>report.failed.push({screen,path,error:String(error?.stack||error)});
+try{
+  for(const view of views){
+    const context=await browser.newContext({
+      viewport:{width:view.width,height:view.height},reducedMotion:"reduce"});
+    const page=await context.newPage();
+    page.setDefaultTimeout(10000);
+    for(const path of view.paths){
+      try{
+        const response=await page.goto(new URL(path,base).href,{waitUntil:"domcontentloaded",timeout:30000});
+        assert.ok(response&&response.status()<500,"HTTP "+response?.status());
+        const home=path==="/";
+        await page.waitForSelector(home?"[data-kether-home]":".site-viewport-content",{timeout:15000});
+        await page.waitForTimeout(250);
+        const dims=await page.evaluate(()=>{
+          const root=document.documentElement,body=document.body;
+          const quick=document.querySelector(".site-quicknav");
+          const content=document.querySelector(".site-viewport-content");
+          return {width:innerWidth,height:innerHeight,
+            docH:root.scrollHeight,bodyH:body.scrollHeight,
+            docW:root.scrollWidth,bodyW:body.scrollWidth,
+            quickH:quick?.getBoundingClientRect().height||0,
+            contentH:content?.getBoundingClientRect().height||0,
+            hasHome:!!document.querySelector("[data-kether-home]")};
+        });
+        assert.ok(Math.max(dims.docW,dims.bodyW)<=dims.width+3,"horizontal page overflow "+JSON.stringify(dims));
+        assert.ok(Math.max(dims.docH,dims.bodyH)<=dims.height+3,"vertical page overflow "+JSON.stringify(dims));
+        assert.equal(dims.hasHome,home,"homepage/internals mismatch");
+        if(!home){
+          assert.ok(dims.quickH>=24,"inner 3-category navigation is clipped "+JSON.stringify(dims));
+          assert.ok(dims.contentH>=40,"inner content clipped "+JSON.stringify(dims));
+        }
+        report.passed.push({screen:view.name,path,status:response.status()});
+        if(["/","/story","/database/warframes","/live","/clan","/login"].includes(path)){
+          const name=String(++shot).padStart(2,"0")+"-"+view.name+"-"+safe(path)+".png";
+          await page.screenshot({path:"qa/screenshots/"+name,animations:"disabled"});
+        }
+      }catch(error){
+        failure(view.name,path,error);
+        try{await page.screenshot({path:"qa/screenshots/error-"+view.name+"-"+safe(path)+".png",animations:"disabled"});}catch{}
+      }
+    }
+    await context.close();
+  }
+  const context=await browser.newContext({viewport:{width:1280,height:800}});
+  const page=await context.newPage();
+  page.setDefaultTimeout(10000);
+  try{
+    await page.goto(new URL("/story",base).href,{waitUntil:"domcontentloaded"});
+    await page.waitForSelector(".site-quicknav summary");
+    await page.locator(".site-effects-menu summary").click();
+    await page.locator(".site-effects-panel button").filter({hasText:"省電"}).click();
+    await page.waitForFunction(()=>document.documentElement.dataset.ketherEffects==="eco");
+    await page.goto(new URL("/notifications",base).href,{waitUntil:"domcontentloaded"});
+    await page.waitForFunction(()=>document.documentElement.dataset.ketherEffects==="eco");
+    report.passed.push({screen:"interaction",path:"performance-mode persistence"});
+    const quick=page.locator(".site-quicknav details").first();
+    await quick.locator("summary").click();
+    assert.equal(await quick.getAttribute("open"),"","3-category menu did not open");
+    await page.keyboard.press("Escape");
+    assert.equal(await quick.getAttribute("open"),null,"Escape did not close menu");
+    report.passed.push({screen:"interaction",path:"quick navigation menu and Escape"});
+  }catch(error){failure("interaction","effects and keyboard menus",error);}
+  await context.close();
+}finally{
+  await browser.close();
+  report.finishedAt=new Date().toISOString();
+  await fs.writeFile("qa/report.json",JSON.stringify(report,null,2));
+  console.log("KETHER browser smoke:",report.passed.length,"passed;",report.failed.length,"failed");
+  for(const issue of report.failed)console.error("FAIL",issue.screen,issue.path,issue.error);
+  if(report.failed.length)process.exitCode=1;
+}
