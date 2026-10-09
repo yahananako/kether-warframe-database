@@ -79,6 +79,7 @@ export default function DataTable({
   const [filter, setFilter] = useState<FilterMode>("all");
   const [sortMode, setSortMode] = useState<SortMode>("none");
   const [section, setSection] = useState("all");
+  const [filtersRestored,setFiltersRestored]=useState(false);
   const [ownedMap, setOwnedMap] = useState<Record<string, boolean>>({});
   const [loadingOwned, setLoadingOwned] = useState(true);
   const [savingKey, setSavingKey] = useState<string | null>(null);
@@ -177,6 +178,27 @@ export default function DataTable({
   }, [rowsWithOwned]);
 
   const sections = sectionStats.map((item) => item.section);
+  const filterKey="kether-equipment-filters-v1:"+category;
+  useEffect(()=>{
+    try {
+      const state=JSON.parse(sessionStorage.getItem(filterKey)||"null") as
+        {query?:string;filter?:FilterMode;sortMode?:SortMode;section?:string}|null;
+      if(state){
+        if(typeof state.query==="string")setQuery(state.query.slice(0,200));
+        if(["all","owned","missing","priced","unpriced"].includes(state.filter||""))
+          setFilter(state.filter as FilterMode);
+        if(["none","priceHigh","priceLow","name"].includes(state.sortMode||""))
+          setSortMode(state.sortMode as SortMode);
+        if(state.section==="all"||sections.includes(state.section||""))
+          setSection(state.section as string);
+      }
+    } catch {/* A blocked/corrupt session store must not affect filtering. */}
+    setFiltersRestored(true);
+  },[filterKey]);
+  useEffect(()=>{
+    if(!filtersRestored)return;
+    try {sessionStorage.setItem(filterKey,JSON.stringify({query,filter,sortMode,section}));}catch{}
+  },[filterKey,filtersRestored,query,filter,sortMode,section]);
 
   const filteredRows = useMemo(() => {
     let result = rowsWithOwned.filter((row) => {

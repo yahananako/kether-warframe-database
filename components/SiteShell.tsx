@@ -9,6 +9,8 @@ import { navigationGroups } from "../data/siteNavigation";
 import { KETHER_VERSION_LABEL } from "../data/siteVersion";
 import HomeAuthMini from "./HomeAuthMini";
 import HomeTicker from "./HomeTicker";
+import KetherEffectsMenu from "./KetherEffectsMenu";
+import { useKetherEffects } from "./KetherEffectsProvider";
 const NOTICE_KEY = "kether-home-new-notice-read-version";
 function positionNavigation(menu: HTMLDetailsElement) {
   if (!menu.open) return;
@@ -90,6 +92,7 @@ export function NavigationGroup({
 export default function SiteShell({ children }: { children: ReactNode }) {
   const pathname = usePathname();
   const home = pathname === "/" || pathname === "/home-new";
+  const {effectiveMode} = useKetherEffects();
   const [admin, setAdmin] = useState(false),
     [unread, setUnread] = useState(false);
   const shell = useRef<HTMLDivElement>(null),
@@ -151,7 +154,7 @@ export default function SiteShell({ children }: { children: ReactNode }) {
   useEffect(() => {
     const reduced = matchMedia("(prefers-reduced-motion: reduce)");
     function sync() {
-      if (document.hidden || reduced.matches) video.current?.pause();
+      if (document.hidden || reduced.matches || effectiveMode === "eco") video.current?.pause();
       else video.current?.play().catch(() => {});
     }
     sync();
@@ -161,7 +164,7 @@ export default function SiteShell({ children }: { children: ReactNode }) {
       reduced.removeEventListener("change", sync);
       document.removeEventListener("visibilitychange", sync);
     };
-  }, []);
+  }, [effectiveMode]);
   function readNotice() {
     setUnread(false);
     try {
@@ -228,6 +231,7 @@ export default function SiteShell({ children }: { children: ReactNode }) {
           ))}
         </div>
         <div className="site-tools">
+          <KetherEffectsMenu />
           <Link className="site-icon" href="/search" aria-label="搜尋資料庫">
             <Search size={20} />
           </Link>

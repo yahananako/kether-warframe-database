@@ -29,6 +29,27 @@ export default function WarframeRoleArchive(props:ArchiveProps){
   const [selectedName,setSelectedName]=useState<string|null>(null);
   const [inspect,setInspect]=useState(false);
   const [showTable,setShowTable]=useState(false);
+  const [filtersRestored,setFiltersRestored]=useState(false);
+  const filterKey="kether-warframe-filters-v1:"+props.mode;
+
+  useEffect(()=>{
+    try {
+      const parsed=JSON.parse(sessionStorage.getItem(filterKey)||"null") as
+        {role?:string;query?:string;selectedName?:string}|null;
+      if(parsed){
+        if(parsed.role==="all"||roles.some(item=>item===parsed.role))
+          setRole(parsed.role as WarframeRole|"all");
+        if(typeof parsed.query==="string")setQuery(parsed.query.slice(0,200));
+        if(typeof parsed.selectedName==="string")setSelectedName(parsed.selectedName.slice(0,100));
+      }
+    } catch {/* A corrupt or blocked session store must not hide the archive. */}
+    setFiltersRestored(true);
+  },[filterKey]);
+  useEffect(()=>{
+    if(!filtersRestored)return;
+    try {sessionStorage.setItem(filterKey,JSON.stringify({role,query,selectedName}));}catch{}
+  },[filterKey,filtersRestored,role,query,selectedName]);
+
   const stories=useMemo(()=>new Map(warframeStories.map(story=>[normalizeWarframeName(story.name),story])),[]);
   const entries=useMemo(()=>{
     const raw=props.mode==="regular"?

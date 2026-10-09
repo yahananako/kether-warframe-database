@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import MiniMusicPlayer from "../components/MiniMusicPlayer";
+import { KetherEffectsProvider } from "../components/KetherEffectsProvider";
 import SiteShell from "../components/SiteShell";
 import VisualEditorBridge from "../components/VisualEditorBridge";
 import "./globals.css";
@@ -71,9 +72,11 @@ export default function RootLayout({
   return (
     <html lang="zh-Hant">
       <body>
-        <SiteShell>{children}</SiteShell>
-        <VisualEditorBridge />
-        <MiniMusicPlayer />
+        <KetherEffectsProvider>
+          <SiteShell>{children}</SiteShell>
+          <VisualEditorBridge />
+          <MiniMusicPlayer />
+        </KetherEffectsProvider>
       </body>
     </html>
   );
