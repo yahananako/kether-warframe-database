@@ -42,6 +42,27 @@ try {
   page.setDefaultTimeout(9000);
   const url=path=>new URL(path,base).href;
 
+  await task(page,"homepage-performance-picker-shares-site-settings",async()=>{
+    await page.goto(url("/"),{waitUntil:"domcontentloaded"});
+    const menu=page.locator("[data-kether-home] .site-effects-menu");
+    const trigger=menu.locator("summary");
+    await trigger.waitFor({state:"visible"});
+    await trigger.click();
+    await menu.locator(".site-effects-panel button").filter({hasText:"華麗"}).click();
+    await page.waitForFunction(()=>
+      document.documentElement.dataset.ketherEffectsChoice==="full" &&
+      localStorage.getItem("kether-effects-mode-v1")==="full"
+    );
+    await page.goto(url("/story"),{waitUntil:"domcontentloaded"});
+    await page.waitForFunction(()=>document.documentElement.dataset.ketherEffectsChoice==="full");
+    await page.locator(".site-effects-menu:not([aria-hidden]) summary").first().click();
+    await page.locator(".site-effects-panel button").filter({hasText:"平衡"}).first().click();
+    await page.waitForFunction(()=>document.documentElement.dataset.ketherEffectsChoice==="balanced");
+    await page.goto(url("/"),{waitUntil:"domcontentloaded"});
+    await page.waitForFunction(()=>document.documentElement.dataset.ketherEffectsChoice==="balanced");
+    assert.match(await page.locator("[data-kether-home] .site-effects-menu summary").getAttribute("aria-label")||"",/平衡/);
+  });
+
   await task(page,"persistent-client-navigation",async()=>{
     await page.goto(url("/story"),{waitUntil:"domcontentloaded"});
     await page.waitForSelector(".site-navigation .site-menu summary");
@@ -123,6 +144,33 @@ try {
   await mobile.addCookies([{name:"kether_discord_session",value:signedSession(),url:base}]);
   const phone=await mobile.newPage();
   phone.setDefaultTimeout(9000);
+  await task(phone,"mobile-home-performance-picker-stays-onscreen",async()=>{
+    await phone.goto(url("/"),{waitUntil:"domcontentloaded"});
+    const menu=phone.locator("[data-kether-home] .site-effects-menu");
+    await menu.locator("summary").click();
+    const panel=menu.locator(".site-effects-panel");
+    await panel.waitFor({state:"visible"});
+    const bounds=await panel.boundingBox();
+    assert.ok(bounds,"No visible homepage performance panel");
+    assert.ok(bounds.x>=-1&&bounds.y>=-1&&
+      bounds.x+bounds.width<=391&&bounds.y+bounds.height<=845,
+      "Homepage performance menu clipped on 390px mobile: "+JSON.stringify(bounds));
+    await panel.getByRole("button",{name:/省電/}).click();
+    await phone.waitForFunction(()=>
+      document.documentElement.dataset.ketherEffectsChoice==="eco" &&
+      localStorage.getItem("kether-effects-mode-v1")==="eco"
+    );
+    assert.equal(await menu.getAttribute("open"),null,"Home mode menu should close after selection");
+    await phone.setViewportSize({width:360,height:740});
+    await menu.locator("summary").click();
+    const small=await menu.locator(".site-effects-panel").boundingBox();
+    assert.ok(small&&small.x>=-1&&small.y>=-1&&small.x+small.width<=361&&small.y+small.height<=741,
+      "Homepage mode menu clipped on 360px screen: "+JSON.stringify(small));
+    await phone.keyboard.press("Escape");
+    await phone.setViewportSize({width:390,height:844});
+    await phone.goto(url("/story"),{waitUntil:"domcontentloaded"});
+    await phone.waitForFunction(()=>document.documentElement.dataset.ketherEffectsChoice==="eco");
+  });
   await task(phone,"mobile-notification-opens-and-closes",async()=>{
     await phone.goto(url("/story"),{waitUntil:"domcontentloaded"});
     const popup=phone.locator(".site-notification");

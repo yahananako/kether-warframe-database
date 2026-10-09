@@ -2,12 +2,13 @@
 import {Gauge} from "lucide-react";
 import {KETHER_EFFECTS_MODES,useKetherEffects} from "./KetherEffectsProvider";
 
-export default function KetherEffectsMenu(){
+export default function KetherEffectsMenu({variant="default"}:{variant?:"default"|"home"}){
   const {mode,effectiveMode,reducedMotion,setMode}=useKetherEffects();
   const active=KETHER_EFFECTS_MODES.find(item=>item.id===mode)!;
   return <details className="site-utility site-effects-menu">
-    <summary className="site-icon" aria-label={"顯示效能模式：" + active.name} title={"顯示效能模式：" + active.name}>
+    <summary className={variant==="home"?"site-icon kether-home-effects-trigger":"site-icon"} aria-label={"顯示效能模式：" + active.name} title={"顯示效能模式：" + active.name}>
       <Gauge size={19} aria-hidden="true" />
+      {variant==="home"&&<span className="kether-home-effects-label">顯示效能</span>}
       <span className="site-effects-status" aria-hidden="true"/>
     </summary>
     <section className="site-utility-panel site-effects-panel" aria-label="顯示效能模式設定">
