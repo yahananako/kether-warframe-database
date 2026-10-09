@@ -89,3 +89,7 @@
 }
 @media(max-width:390px){.toolbar .updated{display:none;}.stage{grid-template-rows:minmax(117px,33%) minmax(0,1fr)}.showcaseText .description{display:none;}.showcaseText .eyebrow{font-size:8px;}.bottomActions a{font-size:8px;}}
 @media(prefers-reduced-motion:reduce){.dossier *{transition:none!important;animation:none!important;}}
+
+/* QA fix: display art cannot block interactive build controls. */
+.heroImage img, .heroImage .ring, .heroImage .visualCaption { pointer-events: none; }
+.bottomActions { position: relative; z-index: 5; }

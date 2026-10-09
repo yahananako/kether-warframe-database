@@ -122,3 +122,10 @@
 @media(prefers-reduced-motion:reduce){
 .deck *, .deck *::before,.deck *::after{animation:none!important;transition:none!important;}
 }
+
+/* QA fix: on narrow viewports the inspector must escape the deck stacking context
+   so the sticky site Header cannot steal taps from its Close button. */
+@media (max-width: 780px) {
+  .deck { isolation: auto; }
+  .focusOpen { z-index: 1000; }
+}

@@ -84,7 +84,13 @@ try {
       }catch{return false;}
     },key,{timeout:9000});
     await page.reload({waitUntil:"domcontentloaded"});
-    await page.getByLabel("MOD 1").waitFor({state:"visible"});
+    // Server output initially contains the default template. Wait for React to
+    // hydrate and restore localStorage before asserting the displayed selection.
+    await page.waitForFunction(()=>{
+      const label=[...document.querySelectorAll("label")]
+        .find(item=>item.textContent?.trim().startsWith("MOD 1"));
+      return label?.querySelector("select")?.value==="盲怒";
+    },undefined,{timeout:9000});
     assert.equal(await page.getByLabel("MOD 1").inputValue(),"盲怒");
     await page.getByRole("button",{name:"賦能 × 2"}).click();
     assert.equal(await page.getByLabel("賦能 1").inputValue(),"神盾賦能");
