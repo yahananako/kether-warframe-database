@@ -63,6 +63,8 @@ jobs:
         run: node scripts/test-redesign-browser.mjs
       - name: Real user journeys and persistence tests
         run: node scripts/test-redesign-journeys.mjs
+      - name: Mocked radio playback and safe auth UI regression tests
+        run: node scripts/test-player-auth-regressions.mjs
       - name: Archive browser screenshots and report
         if: always()
         uses: actions/upload-artifact@v4
@@ -72,5 +74,6 @@ jobs:
             qa/screenshots/
             qa/report.json
             qa/journeys.json
+            qa/player-auth-regressions.json
           if-no-files-found: ignore
           retention-days: 7
