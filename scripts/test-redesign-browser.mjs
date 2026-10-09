@@ -73,6 +73,12 @@ try{
         assert.ok(Math.max(dims.docW,dims.bodyW)<=dims.width+3,"horizontal page overflow "+JSON.stringify(dims));
         assert.ok(Math.max(dims.docH,dims.bodyH)<=dims.height+3,"vertical page overflow "+JSON.stringify(dims));
         assert.equal(dims.hasHome,home,"homepage/internals mismatch");
+        if(path==="/live"&&view.width<=740){
+          const navHeight=await target.locator('nav[aria-label="全部星圖電波監測節點"]').evaluate(
+            element=>element.parentElement?.getBoundingClientRect().height||0);
+          assert.ok(navHeight>=40&&navHeight<=78,
+            "mobile radar nav wastes vertical space: "+navHeight);
+        }
         if(!home){
           assert.ok(dims.quickH>=24,"inner 3-category navigation is clipped "+JSON.stringify(dims));
           assert.ok(dims.contentH>=40,"inner content clipped "+JSON.stringify(dims));

@@ -66,7 +66,7 @@
 .station{min-height:48px;padding:7px;gap:5px;}
 .radarVisual{height:clamp(130px,22vh,210px);}}
 @media(max-width:740px){.header{padding:7px 10px;min-height:62px;}.header h1{font-size:21px;}.header p:last-child{display:none;}.eyebrow{font-size:9px;}.online{min-width:125px;padding:5px;}.online small{font-size:9px;}
-.deck{grid-template-columns:1fr;grid-template-rows:minmax(95px,20%) minmax(0,1fr);gap:6px;}
+.deck{grid-template-columns:1fr;grid-template-rows:64px minmax(0,1fr);gap:6px;}
 .directory{display:grid;grid-template-columns:1fr;grid-template-rows:auto minmax(0,1fr);}
 .directory .panelHeading{display:none;}.stationScroll{display:flex;overflow-y:hidden;overflow-x:auto;scrollbar-width:thin;}
 .stationScroll section{display:flex;align-items:center;flex:0 0 auto;}.stationScroll section h3{display:none;}
