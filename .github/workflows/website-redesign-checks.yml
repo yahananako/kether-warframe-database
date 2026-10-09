@@ -44,6 +44,11 @@ jobs:
           npx playwright install --with-deps chromium
       - name: Start local preview
         run: |
+          export SESSION_SECRET="$(openssl rand -hex 32)"
+          echo "::add-mask::$SESSION_SECRET"
+          echo "KETHER_TEST_SESSION_SECRET=$SESSION_SECRET" >> "$GITHUB_ENV"
+          export DISCORD_GUILD_ID="kether-ci-guild"
+          export DISCORD_ALLOWED_ROLE_IDS="kether-ci-role"
           (npx next start -p 3000 > /tmp/kether-next.log 2>&1 &)
           for i in $(seq 1 45); do
             if curl -fsS http://127.0.0.1:3000/ > /dev/null; then

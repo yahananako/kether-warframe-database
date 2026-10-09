@@ -2,9 +2,28 @@
 // Real Chromium smoke test; no authenticated or destructive actions.
 import assert from "node:assert/strict";
 import fs from "node:fs/promises";
+import {createHmac} from "node:crypto";
 import {chromium} from "playwright";
 
 const base=process.env.KETHER_TEST_BASE_URL||"http://127.0.0.1:3000";
+const testSecret=process.env.KETHER_TEST_SESSION_SECRET;
+if(!testSecret)throw new Error("Authenticated browser smoke requires isolated CI test secret.");
+const testGuild="kether-ci-guild";
+const testRole="kether-ci-role";
+function session(roleIds){
+  const now=Math.floor(Date.now()/1000);
+  const payload={sub:"kether-ci-test-user",username:"kether-ci",
+    globalName:"KETHER QA",guildNickname:"測試成員",avatar:null,banner:null,accentColor:null,
+    avatarDecorationAsset:null,nameplatePalette:null,
+    guildId:testGuild,roleIds,iat:now,exp:now+3600};
+  const body=Buffer.from(JSON.stringify(payload)).toString("base64url");
+  const sig=createHmac("sha256",testSecret).update(body).digest("base64url");
+  return body+"."+sig;
+}
+const protectedPaths=new Set([
+  "/database/overview","/database/warframes","/database/incarnon",
+  "/live","/clan","/search","/notifications","/profile","/db-status"
+]);
 await fs.mkdir("qa/screenshots",{recursive:true});
 const paths=["/","/story","/database/overview","/database/warframes",
   "/database/incarnon","/live","/clan","/search?q=Valkyr",
@@ -24,16 +43,23 @@ try{
   for(const view of views){
     const context=await browser.newContext({
       viewport:{width:view.width,height:view.height},reducedMotion:"reduce"});
+    await context.addCookies([{name:"kether_discord_session",value:session([testRole]),url:base}]);
+    const publicContext=await browser.newContext({viewport:{width:view.width,height:view.height},reducedMotion:"reduce"});
     const page=await context.newPage();
+    const publicPage=await publicContext.newPage();
     page.setDefaultTimeout(10000);
     for(const path of view.paths){
       try{
-        const response=await page.goto(new URL(path,base).href,{waitUntil:"domcontentloaded",timeout:30000});
+        const target=(path==="/login"||path==="/unauthorized")?publicPage:page;
+        const response=await target.goto(new URL(path,base).href,{waitUntil:"domcontentloaded",timeout:30000});
         assert.ok(response&&response.status()<500,"HTTP "+response?.status());
+        const route=new URL(path,base).pathname;
+        assert.equal(new URL(target.url()).pathname,route,
+          "Page unexpectedly redirected. Authenticated content not verified.");
         const home=path==="/";
-        await page.waitForSelector(home?"[data-kether-home]":".site-viewport-content",{timeout:15000});
-        await page.waitForTimeout(250);
-        const dims=await page.evaluate(()=>{
+        await target.waitForSelector(home?"[data-kether-home]":".site-viewport-content",{timeout:15000});
+        await target.waitForTimeout(250);
+        const dims=await target.evaluate(()=>{
           const root=document.documentElement,body=document.body;
           const quick=document.querySelector(".site-quicknav");
           const content=document.querySelector(".site-viewport-content");
@@ -51,19 +77,32 @@ try{
           assert.ok(dims.quickH>=24,"inner 3-category navigation is clipped "+JSON.stringify(dims));
           assert.ok(dims.contentH>=40,"inner content clipped "+JSON.stringify(dims));
         }
-        report.passed.push({screen:view.name,path,status:response.status()});
+        const title=await target.locator("h1").first().textContent();
+        const expected={
+          "/database/warframes":"一般戰甲",
+          "/live":"星圖電波",
+          "/clan":"氏族",
+          "/notifications":"通知中心",
+          "/profile":"個人",
+          "/db-status":"資料連線",
+        };
+        if(expected[route])assert.ok(title?.includes(expected[route]),
+          "Expected real route content, not a shared login/denied page: "+String(title));
+        report.passed.push({screen:view.name,path,status:response.status(),realRoute:true});
         if(["/","/story","/database/warframes","/live","/clan","/login"].includes(path)){
           const name=String(++shot).padStart(2,"0")+"-"+view.name+"-"+safe(path)+".png";
-          await page.screenshot({path:"qa/screenshots/"+name,animations:"disabled"});
+          await target.screenshot({path:"qa/screenshots/"+name,animations:"disabled"});
         }
       }catch(error){
         failure(view.name,path,error);
         try{await page.screenshot({path:"qa/screenshots/error-"+view.name+"-"+safe(path)+".png",animations:"disabled"});}catch{}
       }
     }
+    await publicContext.close();
     await context.close();
   }
   const context=await browser.newContext({viewport:{width:1280,height:800}});
+  await context.addCookies([{name:"kether_discord_session",value:session([testRole]),url:base}]);
   const page=await context.newPage();
   page.setDefaultTimeout(10000);
   try{
@@ -83,6 +122,20 @@ try{
     report.passed.push({screen:"interaction",path:"quick navigation menu and Escape"});
   }catch(error){failure("interaction","effects and keyboard menus",error);}
   await context.close();
+  const denied=await browser.newContext();
+  const deniedPage=await denied.newPage();
+  try{
+    await deniedPage.goto(new URL("/database/warframes",base).href,{waitUntil:"domcontentloaded"});
+    assert.equal(new URL(deniedPage.url()).pathname,"/login",
+      "Unauthenticated database access was not redirected to login");
+    report.passed.push({screen:"security",path:"login required for private catalog"});
+    await denied.addCookies([{name:"kether_discord_session",value:session(["wrong-role"]),url:base}]);
+    await deniedPage.goto(new URL("/database/warframes",base).href,{waitUntil:"domcontentloaded"});
+    assert.equal(new URL(deniedPage.url()).pathname,"/unauthorized",
+      "Insufficient Discord role was not blocked");
+    report.passed.push({screen:"security",path:"wrong-role blocked"});
+  }catch(error){failure("security","role/guild access",error);}
+  await denied.close();
 }finally{
   await browser.close();
   report.finishedAt=new Date().toISOString();
