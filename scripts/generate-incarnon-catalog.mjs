@@ -377,6 +377,9 @@ function localizeEvolutions(evolutions, definition, localization) {
         ...(translated.variantValues
           ? { variantValues: translated.variantValues }
           : {}),
+        ...(translated.notes || ability.notes
+          ? { notes: translated.notes || ability.notes }
+          : {}),
       };
     }),
   }));
