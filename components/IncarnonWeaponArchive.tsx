@@ -2,7 +2,7 @@
 
 import { ExternalLink, Search, Sparkles } from "lucide-react";
 import Image from "next/image";
-import { useDeferredValue, useMemo, useState } from "react";
+import { useDeferredValue, useEffect, useMemo, useState } from "react";
 
 import type {
   IncarnonCategory,
@@ -222,6 +222,30 @@ export default function IncarnonWeaponArchive({
   const [category, setCategory] = useState<CategoryFilter>("all");
   const [kind, setKind] = useState<KindFilter>("all");
   const [rotation, setRotation] = useState("all");
+  const [filtersRestored, setFiltersRestored] = useState(false);
+
+  useEffect(() => {
+    try {
+      const saved=JSON.parse(sessionStorage.getItem("kether-incarnon-filters-v1")||"null") as
+        {query?:string;category?:CategoryFilter;kind?:KindFilter;rotation?:string}|null;
+      // Explicit deep links from search must not be overridden by old filters.
+      if(!initialQuery.trim()&&saved){
+        if(typeof saved.query==="string")setQuery(saved.query.slice(0,200));
+        if(categoryOptions.some(option=>option.value===saved.category))
+          setCategory(saved.category as CategoryFilter);
+        if(kindOptions.some(option=>option.value===saved.kind))
+          setKind(saved.kind as KindFilter);
+        if(saved.rotation==="all"||Array.from({length:9},(_,i)=>String(i+1)).includes(saved.rotation||""))
+          setRotation(saved.rotation as string);
+      }
+    } catch {/* Continue with defaults if session storage is unavailable. */}
+    setFiltersRestored(true);
+  },[initialQuery]);
+  useEffect(()=>{
+    if(!filtersRestored)return;
+    try {sessionStorage.setItem("kether-incarnon-filters-v1",
+      JSON.stringify({query,category,kind,rotation}));}catch{}
+  },[filtersRestored,query,category,kind,rotation]);
 
   const filteredWeapons = useMemo(() => {
     const normalizedQuery = deferredQuery.trim().toLocaleLowerCase("zh-Hant");
@@ -243,6 +267,7 @@ export default function IncarnonWeaponArchive({
   return (
     <div className={styles.archive}>
       <section className={styles.controls} aria-label="應感武器搜尋與篩選">
+        <div className={styles.stationLabel}><Sparkles size={15} aria-hidden="true" /> KETHER / INCARNON CONTROL</div>
         <label className={styles.searchBox}>
           <Search size={18} aria-hidden="true" />
           <span className={styles.screenReaderOnly}>搜尋應感武器</span>
@@ -309,6 +334,7 @@ export default function IncarnonWeaponArchive({
         </div>
       </section>
 
+      <div className={styles.results} aria-label="靈化武器檔案清單">
       {filteredWeapons.length ? (
         activeSections.map((section) => {
           const sectionWeapons = filteredWeapons.filter(
@@ -357,6 +383,7 @@ export default function IncarnonWeaponArchive({
           </button>
         </section>
       )}
+      </div>
     </div>
   );
 }

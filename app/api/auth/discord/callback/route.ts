@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { sanitizeKetherNextPath } from "../../../../../lib/auth/safeNextPath";
 import { getDiscordAccessPolicy } from "../../../../../lib/auth/discordAccess";
 import {
   DISCORD_SESSION_COOKIE_NAME,
@@ -65,14 +66,6 @@ type DiscordGuildMemberResponse = {
 const OAUTH_STATE_COOKIE = "kether_discord_oauth_state";
 const OAUTH_NEXT_COOKIE = "kether_discord_oauth_next";
 
-function sanitizeNext(value: string | undefined) {
-  if (!value || !value.startsWith("/") || value.startsWith("//")) {
-    return "/profile";
-  }
-
-  return value.slice(0, 500);
-}
-
 function clearOauthState(response: NextResponse) {
   response.cookies.delete(OAUTH_STATE_COOKIE);
   response.cookies.delete(OAUTH_NEXT_COOKIE);
@@ -84,7 +77,7 @@ export async function GET(request: NextRequest) {
   const code = url.searchParams.get("code");
   const state = url.searchParams.get("state");
   const savedState = request.cookies.get(OAUTH_STATE_COOKIE)?.value;
-  const savedNext = sanitizeNext(
+  const savedNext = sanitizeKetherNextPath(
     request.cookies.get(OAUTH_NEXT_COOKIE)?.value,
   );
 

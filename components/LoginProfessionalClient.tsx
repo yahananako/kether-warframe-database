@@ -13,6 +13,7 @@ import { useSearchParams } from "next/navigation";
 import { MouseEvent, useEffect, useMemo, useRef, useState } from "react";
 
 import styles from "./LoginProfessionalClient.module.css";
+import { sanitizeKetherNextPath } from "../lib/auth/safeNextPath";
 
 const POLICY_URL =
   "https://docs.google.com/document/d/13UZy4RiLPUrLqHx-NaWUxS7xhJNTKkKUldMWJmLenOg/edit?usp=drivesdk";
@@ -30,12 +31,7 @@ type PolicySection = (typeof POLICY_SECTIONS)[number];
 export default function LoginProfessionalClient() {
   const searchParams = useSearchParams();
   const requestedNext = searchParams.get("next");
-  const nextPath =
-    requestedNext &&
-    requestedNext.startsWith("/") &&
-    !requestedNext.startsWith("//")
-      ? requestedNext
-      : "/profile";
+  const nextPath = sanitizeKetherNextPath(requestedNext);
   const discordLoginHref = `/api/auth/discord/login?next=${encodeURIComponent(nextPath)}`;
 
   const [accepted, setAccepted] = useState(false);

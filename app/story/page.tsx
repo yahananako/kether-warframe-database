@@ -1,191 +1,94 @@
-import StoryArtwork from "../../components/StoryArtwork";
-import {
-  ArrowRight,
-  BookOpenText,
-  Clock3,
-  Layers3,
-  ShieldAlert,
-  Sparkles,
-} from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
-import type { CSSProperties } from "react";
-
+import {
+  ArrowRight, ArrowUpRight, BookOpenText, Clock3, Layers3,
+  ShieldAlert, Sparkles,
+} from "lucide-react";
+import StoryArtwork from "../../components/StoryArtwork";
 import { STORY_BOOK_UPDATED_AT, storyChapters } from "../../data/storyFlow";
-import styles from "./story.module.css";
+import styles from "./story-command.module.css";
 
 export const metadata: Metadata = {
   title: "Warframe 故事全書｜章節目錄｜KETHER",
-  description:
-    "Warframe 完整繁體中文圖文故事章節目錄，從 Orokin 起源、Tenno 覺醒到最新 Void War。",
+  description: "Warframe 完整繁體中文圖文故事，依年代與主線篇章閱讀。",
 };
 
 export default function StoryDirectoryPage() {
   const totalPassages = storyChapters.reduce(
-    (total, chapter) => total + chapter.passages.length,
-    0,
+    (total, chapter) => total + chapter.passages.length, 0,
   );
+  const first = storyChapters[0];
 
   return (
-    <main className={styles.bookPage}>
-      <div className={styles.pageShell}>
-        <section className={styles.directoryHero}>
-          <div className={styles.directoryHeroCopy}>
-            <p className={styles.eyebrow}>
-              <Sparkles aria-hidden="true" />
-              WARFRAME ILLUSTRATED CHRONICLE
+    <main className={styles.commandDeck} aria-label="KETHER 故事資料庫">
+      <section className={styles.spotlight} aria-labelledby="story-heading">
+        <StoryArtwork
+          className={styles.spotlightArt}
+          src={first.heroImage}
+          alt=""
+        />
+        <div className={styles.spotlightGrid} aria-hidden="true" />
+        <div className={styles.spotlightContent}>
+          <p className={styles.microLabel}>
+            <Sparkles size={14} aria-hidden="true" />
+            KETHER · WARFRAME CHRONICLE
+          </p>
+          <div className={styles.titleBlock}>
+            <span className={styles.chapterTag}>TENNO / ARCHIVE / 001</span>
+            <h1 id="story-heading">星海的<span>記憶</span></h1>
+            <p className={styles.headlineEn}>THE ORIGIN CHRONICLES</p>
+            <p className={styles.intro}>
+              從 Orokin 帝國到 Tenno 覺醒，沿著被遺忘的歷史，讀懂始源星系每一道傷痕。
             </p>
-            <h1>
-              Warframe
-              <br />
-              故事全書
-            </h1>
-            <p>
-              從黃金帝國的原罪，到 1999 年跨越時間的反擊。
-              第一頁只作為章節目錄；點進每一卷，閱讀完整圖文故事。
-            </p>
-            <dl className={styles.directoryStats}>
-              <div>
-                <dt>章節</dt>
-                <dd>{storyChapters.length} 卷</dd>
-              </div>
-              <div>
-                <dt>故事段落</dt>
-                <dd>{totalPassages} 章</dd>
-              </div>
-              <div>
-                <dt>更新</dt>
-                <dd>{STORY_BOOK_UPDATED_AT.slice(0, 7)}</dd>
-              </div>
-            </dl>
-            <Link
-              className={styles.startReading}
-              href={"/story/" + storyChapters[0].slug}
-            >
-              從序章開始閱讀
-              <ArrowRight aria-hidden="true" />
+            <div className={styles.stats} aria-label="故事收錄統計">
+              <div><strong>{storyChapters.length.toString().padStart(2,"0")}</strong><span>篇章</span></div>
+              <div><strong>{totalPassages}</strong><span>故事段落</span></div>
+              <div><strong>{STORY_BOOK_UPDATED_AT.slice(0,7)}</strong><span>最後整理</span></div>
+            </div>
+            <Link href={`/story/${first.slug}`} className={styles.primaryAction}>
+              <BookOpenText size={20} aria-hidden="true" />
+              進入序章
+              <ArrowRight size={18} aria-hidden="true" />
             </Link>
           </div>
-
-          <div className={styles.coverStack} aria-label="Warframe 章節封面預覽">
-            {[storyChapters[3], storyChapters[2], storyChapters[4]].map(
-              (chapter, index) => (
-                <figure key={chapter.slug} data-layer={index}>
-                  <StoryArtwork src={chapter.heroImage} alt={chapter.heroAlt} />
-                  <figcaption>
-                    <span>{chapter.number}</span>
-                    {chapter.title}
-                  </figcaption>
-                </figure>
-              ),
-            )}
+          <div className={styles.archiveLinks} aria-label="其他故事閱讀方式">
+            <Link href="/story/side"><Layers3 size={16} aria-hidden="true" /> 支線故事書 <ArrowUpRight size={15} aria-hidden="true" /></Link>
+            <Link href="/story/series"><Layers3 size={16} aria-hidden="true" /> 系列任務 <ArrowUpRight size={15} aria-hidden="true" /></Link>
           </div>
-        </section>
+        </div>
+      </section>
 
-        <aside className={styles.directoryNotice}>
-          <ShieldAlert aria-hidden="true" />
-          <div>
-            <strong>這是一套完整劇透故事書</strong>
-            <p>
-              章節目錄不會暴露重大轉折；進入章節後則會直接顯示完整故事。
-              建議新玩家依 00 → 04 順序閱讀。
-            </p>
-          </div>
-        </aside>
-
-        <section className={styles.readingShelves} aria-label="其他故事書">
-          <article className={styles.readingGuide}>
-            <div>
-              <p className={styles.eyebrow}>SIDE STORY ARCHIVE</p>
-              <h2>主線之外，還有人等待被記住</h2>
-              <p>
-                支線故事書完整收錄有獨立劇情的任務，並依故事年代排列；主線已出現的事件，在支線版會提供更詳細正文。
-              </p>
-            </div>
-            <Link className={styles.startReading} href="/story/side">
-              開啟支線故事書
-              <ArrowRight aria-hidden="true" />
-            </Link>
-          </article>
-          <article className={styles.readingGuide}>
-            <div>
-              <p className={styles.eyebrow}>QUEST SERIES ARCHIVE</p>
-              <h2>沿著同一條因果，把任務一路讀完</h2>
-              <p>
-                系列任務故事書把互相承接的主線與世界事件排成六條航路，適合想理解前置、後續與閱讀順序的
-                Tenno。
-              </p>
-            </div>
-            <Link className={styles.startReading} href="/story/series">
-              開啟系列任務故事書
-              <ArrowRight aria-hidden="true" />
-            </Link>
-          </article>
-        </section>
-
-        <section
-          className={styles.chapterDirectory}
-          aria-labelledby="chapter-directory-title"
-        >
-          <header className={styles.directoryHeading}>
-            <div>
-              <p className={styles.eyebrow}>
-                <Layers3 aria-hidden="true" />
-                CHAPTER DIRECTORY
-              </p>
-              <h2 id="chapter-directory-title">章節目錄</h2>
-            </div>
-            <p>
-              五張封面對應五大篇章；進入篇章後，可從卷內目錄選擇每一個獨立故事頁。
-            </p>
-          </header>
-
-          <div className={styles.chapterGrid}>
-            {storyChapters.map((chapter) => (
-              <Link
-                className={styles.chapterCard}
-                href={"/story/" + chapter.slug}
-                key={chapter.slug}
-                style={{ "--card-accent": chapter.accent } as CSSProperties}
-              >
-                <div className={styles.chapterCardImage}>
-                  <StoryArtwork src={chapter.heroImage} alt="" />
-                  <span>{chapter.number}</span>
+      <section className={styles.directoryPanel} aria-labelledby="directory-heading">
+        <div className={styles.directoryHeader}>
+          <p className={styles.microLabel}>KETHER CHRONICLE INDEX</p>
+          <h2 id="directory-heading">故事篇章 <span>/ {storyChapters.length.toString().padStart(2,"0")}</span></h2>
+          <p>選擇篇章，展開每一卷完整故事與章節目錄。</p>
+        </div>
+        <nav className={styles.chapterList} aria-label="五大篇章目錄">
+          {storyChapters.map((chapter, index) => (
+            <Link className={styles.chapterItem} href={`/story/${chapter.slug}`} key={chapter.slug}>
+              <div className={styles.chapterImage}>
+                <StoryArtwork src={chapter.heroImage} alt="" loading={index === 0 ? "eager" : "lazy"} />
+                <span>{chapter.number}</span>
+              </div>
+              <div className={styles.chapterCopy}>
+                <span className={styles.chapterUpper}>{chapter.label} · {chapter.englishTitle}</span>
+                <h3>{chapter.title}</h3>
+                <p>{chapter.deck}</p>
+                <div className={styles.chapterMeta}>
+                  <span><BookOpenText size={12} aria-hidden="true" /> {chapter.passages.length} 章</span>
+                  <span><Clock3 size={12} aria-hidden="true" /> {chapter.readTime}</span>
                 </div>
-                <div className={styles.chapterCardBody}>
-                  <p>{chapter.label}</p>
-                  <h3>{chapter.title}</h3>
-                  <small>{chapter.englishTitle}</small>
-                  <strong>{chapter.era}</strong>
-                  <span className={styles.chapterDeck}>{chapter.deck}</span>
-                  <footer>
-                    <span>
-                      <BookOpenText aria-hidden="true" />
-                      {chapter.passages.length} 章
-                    </span>
-                    <span>
-                      <Clock3 aria-hidden="true" />
-                      {chapter.readTime}
-                    </span>
-                    <ArrowRight aria-hidden="true" />
-                  </footer>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </section>
-
-        <footer className={styles.bookFooter}>
-          <div>
-            <span className={styles.brandMark}>K</span>
-            <p>
-              <strong>KETHER STORY ARCHIVE</strong>
-              <small>更新至 {STORY_BOOK_UPDATED_AT}</small>
-            </p>
-          </div>
-          <Link href="/">回到資料庫</Link>
-        </footer>
-      </div>
+              </div>
+              <ArrowUpRight className={styles.chapterArrow} size={18} aria-hidden="true" />
+            </Link>
+          ))}
+        </nav>
+        <div className={styles.directoryBottom}>
+          <ShieldAlert size={16} aria-hidden="true" />
+          <span>完整劇透內容 · 建議按 00 → 04 的順序閱讀</span>
+        </div>
+      </section>
     </main>
   );
 }

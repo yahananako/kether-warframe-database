@@ -737,3 +737,118 @@
     transition: none;
   }
 }
+
+
+/* KETHER Incarnon evolution laboratory: persistent filters + independent archive scroller. */
+.archive{
+  display:grid;
+  grid-template-columns:minmax(228px,.27fr) minmax(0,.73fr);
+  grid-template-rows:minmax(0,1fr);
+  gap:9px;
+  width:100%;
+  height:100%;
+  min-height:0;
+  overflow:hidden;
+  --ink:#effafa;
+  --violet:#9ce7e5;
+  --cyan:#9ce7e5;
+}
+.stationLabel{display:flex;align-items:center;gap:7px;color:#e9ca93;font-size:10px;letter-spacing:.14em;font-weight:800;padding:0 3px 13px;border-bottom:1px solid #9ce7e53e;}
+.controls{
+  position:static;top:auto;
+  z-index:auto;display:flex;flex-direction:column;justify-content:flex-start;
+  gap:15px;min-height:0;overflow-y:auto;
+  padding:18px 14px;
+  border-radius:0;
+  border:1px solid #9ce7e57a;
+  background:linear-gradient(158deg,rgba(9,44,58,.83),rgba(6,20,32,.86));
+  box-shadow:inset 0 0 22px #9ce7e515;
+  backdrop-filter:none;
+  -webkit-backdrop-filter:none;
+  scrollbar-width:thin;scrollbar-color:#8bd2cf #0a2738;
+}
+.searchBox{min-height:44px;border:1px solid #9ce7e57a;background:#061f2ed6;border-radius:1px;box-shadow:none;padding:0 10px;}
+.searchBox:focus-within{border-color:#e6c48d;box-shadow:0 0 16px #9ce7e54d;}
+.searchBox input{font-size:12px;color:#f3fbfb;}
+.searchBox input::placeholder{color:#a7c3c8;}
+.categoryTabs{grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;}
+.categoryTabs button{min-height:49px;padding:8px 5px;border:1px solid #9ce7e54b;border-radius:1px;background:#0b2c3aae;font-size:12px;transition:transform .2s,box-shadow .2s,background .2s,border-color .2s;}
+.categoryTabs button:is(:hover,:focus-visible),.categoryTabs .activeTab{transform:translateY(-2px);border-color:#9ce7e5;background:#215a68;color:#fff;box-shadow:inset 0 -2px #e6c48d,0 0 16px #8cfae140;}
+.selectRow{grid-template-columns:minmax(0,1fr);gap:11px;align-items:stretch;}
+.selectRow label{gap:5px;}
+.selectRow label>span{color:#e7c991;font-size:11px;}
+.selectRow select{min-height:40px;background:#0b3243;border:1px solid #9ce7e567;border-radius:1px;color:#f1fbfb;font-size:12px;padding:7px 10px;}
+.selectRow p{min-height:41px;background:#0b3345a8;border:1px solid #9ce7e53a;border-radius:1px;color:#c9e4e4;font-size:12px;}
+.selectRow p strong{color:#ffdcaa;}
+.results{min-height:0;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:#9ce7e5 #0b2937;display:grid;align-content:start;gap:15px;padding:0 4px 6px 0;}
+.categorySection{display:grid;align-content:start;gap:9px;border:1px solid #9ce7e557;background:#071c2ac9;padding:13px;min-width:0;}
+.sectionHeader{align-items:center;border-bottom:1px solid #9ce7e548;padding:0 0 12px;}
+.sectionHeader p{color:#e6c48d;font-size:10px;}
+.sectionHeader h2{font-size:23px;letter-spacing:.03em;color:#f9ffff;}
+.sectionHeader span{font-size:11px;color:#bdd8d8;}
+.sectionHeader>strong{height:38px;min-width:40px;border-radius:0;color:#ffdfa2;background:#123f4d8a;border-color:#9ce7e555;font-size:18px;box-shadow:none;}
+.weaponGrid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px;}
+.weaponCard{content-visibility:visible;contain-intrinsic-size:auto;border:1px solid #9ce7e56b;border-radius:1px;background:linear-gradient(140deg,rgba(18,56,70,.81),rgba(7,28,42,.81));box-shadow:0 8px 24px #0005,inset 0 0 14px #9ce7e50d;}
+.weaponCard[data-kind="natural"]{background:linear-gradient(140deg,rgba(43,51,61,.85),rgba(7,29,44,.86));}
+.weaponDetails{min-width:0;}
+.weaponSummary{min-height:160px;grid-template-columns:minmax(85px,39%) minmax(0,1fr);}
+.imageStage{min-height:160px;padding:7px;}
+.imageStage::before{width:95px;border:1px solid #9ce7e55a;box-shadow:0 0 31px #9ce7e537;}
+.imageStage img{width:min(100%,125px);height:135px;filter:drop-shadow(0 12px 14px #0008);}
+.imageGlow{background:#73d6d74a;}
+.weaponIntro{padding:11px 11px 11px 4px;}
+.badgeRow{gap:3px;}
+.kindBadge,.rotationBadge{min-height:21px;padding:3px 6px;border-radius:0;font-size:10px;background:#124052ab;color:#bff6ec;}
+.rotationBadge{color:#ffe1a9;background:#574a2bb0;}
+.weaponName{margin-top:8px;}
+.weaponName strong{font-size:clamp(15px,1.6vw,22px);color:#fff;line-height:1.15;letter-spacing:0;}
+.weaponName small{font-size:10px;color:#aac7cb;letter-spacing:.06em;}
+.effectBlock{gap:4px;margin-top:9px;}
+.effectBlock>span{font-size:10px;color:#e9c98b;}
+.effectBlock b{font-size:11px;line-height:1.55;-webkit-line-clamp:2;color:#d5eaec;}
+.expandHint{padding-top:8px;font-size:10px;color:#a3f8f0;}
+.weaponDetails[open]{background:#0a2736;}
+.weaponDetails[open] .weaponSummary{background:#20506179;border-bottom:1px solid #9ce7e54f;}
+.evolutionBody{padding:0 12px 12px;}
+.evolutionCard{background:#092b3ac6;border-radius:1px;border-color:#9ce7e54c;}
+.evolutionHeading span{border-radius:1px;background:#225c689a;color:#e7fcfb;}
+.unlockBox{border-radius:1px;background:#10394785;border-left-color:#e6c48d;}
+.abilityItem{border-radius:1px;background:#102f3e9a;border-color:#9ce7e54c;}
+.sourceLink{color:#a7efe9;}
+.emptyState{min-height:170px;border:1px solid #9ce7e54d;border-radius:1px;background:#0a293abf;}
+.emptyState h2{color:#fff;}
+@media(max-width:1100px){
+  .archive{grid-template-columns:minmax(194px,.29fr) minmax(0,.71fr);gap:7px;}
+  .controls{padding:11px;gap:9px;}
+  .weaponGrid{grid-template-columns:1fr;}
+  .weaponSummary{min-height:135px;}
+  .imageStage{min-height:135px;}.imageStage img{height:120px;}
+}
+@media(max-width:740px){
+  .archive{grid-template-columns:1fr;grid-template-rows:auto minmax(0,1fr);gap:6px;}
+  .controls{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-rows:auto auto auto;gap:5px;padding:7px;overflow-y:auto;max-height:min(33dvh,165px);}
+  .stationLabel{grid-column:1/-1;padding-bottom:4px;font-size:9px;}
+  .searchBox{grid-column:1/-1;min-height:30px;}.searchBox input{font-size:11px;}
+  .categoryTabs{grid-column:1/-1;grid-template-columns:repeat(4,minmax(0,1fr));gap:3px;}
+  .categoryTabs button{min-height:29px;padding:4px;font-size:11px;}
+  .categoryTabs button span{display:none;}
+  .categoryTabs button small{display:inline;font-size:10px;}
+  .selectRow{grid-column:1/-1;grid-template-columns:1fr 1fr;gap:5px;}
+  .selectRow label>span{display:none;}
+  .selectRow select{min-height:30px;font-size:10px;padding:4px;}
+  .selectRow p{grid-column:1/-1;min-height:27px;font-size:10px;padding:3px;}
+  .results{gap:7px;}
+  .categorySection{padding:7px;}
+  .sectionHeader{padding-bottom:5px;}
+  .sectionHeader h2{font-size:18px;}
+  .sectionHeader span{display:none;}
+  .sectionHeader>strong{height:28px;min-width:30px;font-size:14px;}
+  .weaponSummary{min-height:125px;grid-template-columns:minmax(75px,37%) minmax(0,1fr);}
+  .imageStage{min-height:125px;padding:6px;}.imageStage img{height:115px;width:100%;}
+  .weaponName strong{font-size:17px;}
+  .effectBlock{margin-top:6px;}
+  .weaponIntro{padding:7px 8px 8px 3px;}
+}
+@media(max-width:420px){.controls{max-height:min(34dvh,172px);}.weaponGrid{grid-template-columns:1fr;}
+ .effectBlock b{-webkit-line-clamp:2;}.evolutionBody{padding:0 7px 9px;}}
+@media(prefers-reduced-motion:reduce){.archive *{animation:none!important;transition:none!important;}}

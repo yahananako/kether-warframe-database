@@ -1,17 +1,10 @@
 import { randomUUID } from "crypto";
+import { sanitizeKetherNextPath } from "../../../../../lib/auth/safeNextPath";
 import { NextRequest, NextResponse } from "next/server";
 
 const DISCORD_AUTHORIZE_URL = "https://discord.com/oauth2/authorize";
 const OAUTH_STATE_COOKIE = "kether_discord_oauth_state";
 const OAUTH_NEXT_COOKIE = "kether_discord_oauth_next";
-
-function sanitizeNext(value: string | null) {
-  if (!value || !value.startsWith("/") || value.startsWith("//")) {
-    return "/profile";
-  }
-
-  return value.slice(0, 500);
-}
 
 export async function GET(request: NextRequest) {
   const clientId = process.env.DISCORD_CLIENT_ID;
@@ -28,7 +21,7 @@ export async function GET(request: NextRequest) {
     );
   }
 
-  const nextPath = sanitizeNext(request.nextUrl.searchParams.get("next"));
+  const nextPath = sanitizeKetherNextPath(request.nextUrl.searchParams.get("next"));
   const configuredCallback = new URL(redirectUri);
 
   if (request.nextUrl.origin !== configuredCallback.origin) {

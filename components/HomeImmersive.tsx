@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { Bell } from "lucide-react";
 import HomeCinema from "./HomeCinema";
+import {useKetherEffects} from "./KetherEffectsProvider";
 import HomeTicker from "./HomeTicker";
 import { homeNotices, HOME_NOTICE_VERSION } from "../data/homeNotices";
 import HomeAuthMini from "./HomeAuthMini";
@@ -79,6 +80,8 @@ function positionMenu(details: HTMLDetailsElement) {
 }
 
 export default function HomeImmersive() {
+  const {effectiveMode}=useKetherEffects();
+  const cinemaVideo=useRef<HTMLVideoElement>(null);
   const [panel, setPanel] = useState<Panel>(null);
   const [query, setQuery] = useState("");
   const [quick, setQuick] = useState<string[]>([]);
@@ -158,6 +161,23 @@ export default function HomeImmersive() {
     return () => { window.removeEventListener("resize", repositionMenus); document.removeEventListener("pointerdown", dismissMenus); document.removeEventListener("keydown", dismissOnEscape); };
   }, []);
 
+  useEffect(()=>{
+    const media=matchMedia("(prefers-reduced-motion: reduce)");
+    function sync(){
+      const v=cinemaVideo.current;
+      if(!v)return;
+      if(document.hidden||effectiveMode==="eco"||media.matches)v.pause();
+      else v.play().catch(()=>{});
+    }
+    sync();
+    media.addEventListener("change",sync);
+    document.addEventListener("visibilitychange",sync);
+    return ()=>{
+      media.removeEventListener("change",sync);
+      document.removeEventListener("visibilitychange",sync);
+    };
+  },[effectiveMode]);
+
   const cards = panel === "catalog" ? categories : panel === "explore" ? explore : panel === "menu" ? [
     ["/", "首頁", "KETHER 入口"],
     ["/search", "資料搜尋", "檢索資料"],
@@ -167,10 +187,10 @@ export default function HomeImmersive() {
   ] as readonly (readonly [string, string, string])[] : intel;
 
   return (
-    <div className={styles.stage}>
+    <div className={styles.stage} data-kether-home>
       <svg width="0" height="0" aria-hidden="true" style={{position:'absolute',pointerEvents:'none'}}><defs>{[['home-remove-white','.68',' .91',' .91'],['home-remove-white-active','1','.84','.55']].map(([id,r,g,b])=><filter key={id} id={id} colorInterpolationFilters="sRGB"><feColorMatrix type="matrix" values={`0 0 0 0 ${r} 0 0 0 0 ${g} 0 0 0 0 ${b} -.3333 -.3333 -.3333 0 1`}/><feComposite in2="SourceAlpha" operator="in"/></filter>)}</defs></svg>
       <div className={styles.background} aria-hidden="true">
-        <video autoPlay muted loop playsInline preload="metadata" poster="/kether-cinema-iceblade-v1.webp"><source src="/kether-cinema-iceblade-v1.mp4" type="video/mp4" /></video>
+        <video ref={cinemaVideo} autoPlay={effectiveMode !== "eco"} muted loop playsInline preload={effectiveMode === "eco" ? "none" : "metadata"} poster="/kether-cinema-iceblade-v1.webp"><source src="/kether-cinema-iceblade-v1.mp4" type="video/mp4" /></video>
         <HomeCinema />
         <div className={styles.aurora}/><div className={styles.lightShafts}/>
         <div className={styles.grid} />

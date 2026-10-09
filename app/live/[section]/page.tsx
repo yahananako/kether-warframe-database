@@ -4,6 +4,7 @@ import { ArrowLeft, ArrowUpRight, Clock3, House, RadioTower } from "lucide-react
 import { notFound } from "next/navigation";
 
 import LiveChrome from "../../../components/LiveChrome";
+import styles from "./signalDetail.module.css";
 import {
   LIVE_STATIONS,
   type Cycle,
@@ -274,7 +275,7 @@ export default async function LiveDetailPage({ params }: PageProps) {
 
   return (
     <LiveChrome>
-      <section className="kether-live-content-shell live-detail-shell">
+      <section className={`kether-live-content-shell live-detail-shell ${styles.detailDeck}`}>
         <header className={`live-detail-hero live-tech-frame live-station-${station.tone}`}>
           <div className="live-detail-breadcrumbs">
             <Link href="/"><House size={15} aria-hidden="true" />首頁</Link>

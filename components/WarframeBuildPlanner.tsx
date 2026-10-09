@@ -71,6 +71,7 @@ export default function WarframeBuildPlanner({
   );
   const [build, setBuild] = useState<BuildState>(() => initialBuild(role));
   const [ready, setReady] = useState(false);
+  const [section, setSection] = useState<"mods" | "arcanes" | "shards">("mods");
   const template = WARFRAME_BUILD_TEMPLATES[role];
 
   useEffect(() => {
@@ -85,7 +86,11 @@ export default function WarframeBuildPlanner({
 
   useEffect(() => {
     if (!ready) return;
-    localStorage.setItem(storageKey, JSON.stringify(build));
+    try {
+      localStorage.setItem(storageKey, JSON.stringify(build));
+    } catch {
+      // Storage may be blocked; allow editing in-memory.
+    }
   }, [build, ready, storageKey]);
 
   const updateArray = (
@@ -121,6 +126,13 @@ export default function WarframeBuildPlanner({
         ))}
       </div>
 
+      <nav className={styles.modeTabs} aria-label="配裝功能切換">
+        <button type="button" aria-pressed={section === "mods"} onClick={() => setSection("mods")}>MOD 與特殊插槽</button>
+        <button type="button" aria-pressed={section === "arcanes"} onClick={() => setSection("arcanes")}>賦能 × 2</button>
+        <button type="button" aria-pressed={section === "shards"} onClick={() => setSection("shards")}>執政官寶石 × 5</button>
+      </nav>
+      <div className={styles.slotWorkspace}>
+      {section === "mods" && <>
       <div className={styles.specialSlots}>
         <OptionSelect
           label="靈氣槽"
@@ -157,8 +169,8 @@ export default function WarframeBuildPlanner({
           ))}
         </div>
       </section>
-
-      <section className={styles.group}>
+      </>}
+      {section === "arcanes" && <section className={styles.group}>
         <header>
           <span>ARCANE SLOTS</span>
           <h3>2 格賦能</h3>
@@ -174,9 +186,8 @@ export default function WarframeBuildPlanner({
             />
           ))}
         </div>
-      </section>
-
-      <section className={styles.group}>
+      </section>}
+      {section === "shards" && <section className={styles.group}>
         <header>
           <span>ARCHON SHARDS</span>
           <h3>5 顆執政官寶石</h3>
@@ -192,8 +203,8 @@ export default function WarframeBuildPlanner({
             />
           ))}
         </div>
-      </section>
-
+      </section>}
+      </div>
       <p className={styles.savedNote}>
         ◆ 此裝置會自動保存 {frameName}{" "}
         的配置；通用範本是起點，可依技能與任務自行替換。

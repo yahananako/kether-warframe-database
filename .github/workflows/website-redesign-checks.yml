@@ -1,0 +1,81 @@
+name: KETHER website redesign checks
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - "app/**"
+      - "components/**"
+      - "data/**"
+      - "lib/**"
+      - "package.json"
+      - "package-lock.json"
+      - "tsconfig.json"
+      - ".github/workflows/website-redesign-checks.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  web-check:
+    name: TypeScript and Next.js build
+    runs-on: ubuntu-latest
+    timeout-minutes: 28
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - name: Install dependencies
+        run: npm ci
+      - name: Redesign source-contract checks
+        run: node scripts/check-redesign-invariants.mjs
+      - name: OAuth same-origin return path regression checks
+        run: node --import tsx scripts/test-safe-next.ts
+      - name: TypeScript check
+        run: npx tsc --noEmit
+      - name: Next.js production build
+        run: npx next build
+      - name: Install Chromium smoke test tools
+        run: |
+          npm install --no-save --ignore-scripts playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - name: Start local preview
+        run: |
+          export SESSION_SECRET="$(openssl rand -hex 32)"
+          echo "::add-mask::$SESSION_SECRET"
+          echo "KETHER_TEST_SESSION_SECRET=$SESSION_SECRET" >> "$GITHUB_ENV"
+          export DISCORD_GUILD_ID="kether-ci-guild"
+          export DISCORD_ALLOWED_ROLE_IDS="kether-ci-role"
+          (npx next start -p 3000 > /tmp/kether-next.log 2>&1 &)
+          for i in $(seq 1 45); do
+            if curl -fsS http://127.0.0.1:3000/ > /dev/null; then
+              echo "Local preview ready"
+              exit 0
+            fi
+            sleep 2
+          done
+          cat /tmp/kether-next.log
+          exit 1
+      - name: Chromium responsive and interaction smoke tests
+        run: node scripts/test-redesign-browser.mjs
+      - name: Real user journeys and persistence tests
+        run: node scripts/test-redesign-journeys.mjs
+      - name: Mocked radio playback and safe auth UI regression tests
+        run: node scripts/test-player-auth-regressions.mjs
+      - name: Archive browser screenshots and report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: kether-browser-smoke-${{ github.sha }}
+          path: |
+            qa/screenshots/
+            qa/report.json
+            qa/journeys.json
+            qa/player-auth-regressions.json
+          if-no-files-found: ignore
+          retention-days: 7

@@ -1,4 +1,5 @@
-import { Search } from "lucide-react";
+import { Search, RadioTower, Database, ArrowUpRight } from "lucide-react";
+import styles from "./searchCommand.module.css";
 import Link from "next/link";
 import { incarnonCatalog } from "../../data/incarnonWeapons";
 import { regularWarframes } from "../../data/regularWarframes";
@@ -148,16 +149,16 @@ export default async function SearchPage({
   const href = (cat: string, p = 1) =>
     `/search?${new URLSearchParams({ q: query, category: cat, page: String(p) })}`;
   return (
-    <main className="search-page">
-      <header className="search-heading">
+    <main className={`search-page ${styles.terminal}`}>
+      <header className={`search-heading ${styles.header}`}>
         <div>
-          <span className="site-eyebrow">TENNO ARCHIVE / SEARCH</span>
+          <span className="site-eyebrow"><Database size={14} /> TENNO ARCHIVE / SEARCH ENGINE</span>
           <h1>資料庫搜尋</h1>
-          <p>搜尋戰甲、武器、MOD、取得來源與靈化能力。</p>
+          <p>統一查詢戰甲、武器、MOD、取得來源與靈化能力。</p>
         </div>
-        <Link href="/database/overview">瀏覽資料總覽</Link>
+        <div className={styles.headerActions}><Link href="/database/overview"><Database size={15} /> 資料總覽 <ArrowUpRight size={14}/></Link><Link href="/bot"><RadioTower size={15}/> KETHER 氏族 BOT <ArrowUpRight size={14}/></Link></div>
       </header>
-      <form action="/search" className="site-search">
+      <form action="/search" className={`site-search ${styles.searchInput}`}>
         <Search aria-hidden="true" />
         <label className="sr-only" htmlFor="database-query">
           搜尋關鍵字
@@ -180,8 +181,8 @@ export default async function SearchPage({
           。目前顯示可取得的資料，稍後可重新搜尋。
         </div>
       )}
-      <div className="search-layout">
-        <nav className="search-filters" aria-label="搜尋分類">
+      <div className={`search-layout ${styles.layout}`}>
+        <nav className={`search-filters ${styles.filters}`} aria-label="搜尋分類">
           <Link
             href={href("all")}
             aria-current={category === "all" ? "page" : undefined}
@@ -203,13 +204,13 @@ export default async function SearchPage({
             </Link>
           ))}
         </nav>
-        <section aria-label="搜尋結果">
+        <section className={styles.resultsPanel} aria-label="搜尋結果">
           <p role="status">
             {query
               ? `「${query}」找到 ${filtered.length} 筆${filtered.length ? `，顯示 ${(page - 1) * perPage + 1}–${Math.min(page * perPage, filtered.length)}` : ""}`
               : "從一個名字，開始探索。"}
           </p>
-          <div className="search-results">
+          <div className={`search-results ${styles.resultCards}`}>
             {results.map((row) => (
               <article className="search-result" key={row.id}>
                 <div>
@@ -248,7 +249,7 @@ export default async function SearchPage({
             </div>
           )}
           {pages > 1 && (
-            <nav className="search-pagination" aria-label="搜尋結果分頁">
+            <nav className={`search-pagination ${styles.pagination}`} aria-label="搜尋結果分頁">
               {page > 1 && (
                 <Link className="site-button" href={href(category, page - 1)}>
                   上一頁

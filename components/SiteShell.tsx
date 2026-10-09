@@ -9,6 +9,8 @@ import { navigationGroups } from "../data/siteNavigation";
 import { KETHER_VERSION_LABEL } from "../data/siteVersion";
 import HomeAuthMini from "./HomeAuthMini";
 import HomeTicker from "./HomeTicker";
+import KetherEffectsMenu from "./KetherEffectsMenu";
+import { useKetherEffects } from "./KetherEffectsProvider";
 const NOTICE_KEY = "kether-home-new-notice-read-version";
 function positionNavigation(menu: HTMLDetailsElement) {
   if (!menu.open) return;
@@ -90,6 +92,7 @@ export function NavigationGroup({
 export default function SiteShell({ children }: { children: ReactNode }) {
   const pathname = usePathname();
   const home = pathname === "/" || pathname === "/home-new";
+  const {effectiveMode} = useKetherEffects();
   const [admin, setAdmin] = useState(false),
     [unread, setUnread] = useState(false);
   const shell = useRef<HTMLDivElement>(null),
@@ -151,7 +154,7 @@ export default function SiteShell({ children }: { children: ReactNode }) {
   useEffect(() => {
     const reduced = matchMedia("(prefers-reduced-motion: reduce)");
     function sync() {
-      if (document.hidden || reduced.matches) video.current?.pause();
+      if (home || document.hidden || reduced.matches || effectiveMode === "eco") video.current?.pause();
       else video.current?.play().catch(() => {});
     }
     sync();
@@ -161,21 +164,20 @@ export default function SiteShell({ children }: { children: ReactNode }) {
       reduced.removeEventListener("change", sync);
       document.removeEventListener("visibilitychange", sync);
     };
-  }, []);
+  }, [effectiveMode, home]);
   function readNotice() {
     setUnread(false);
     try {
       localStorage.setItem(NOTICE_KEY, HOME_NOTICE_VERSION);
     } catch {}
   }
-  if (home) {
-    return <>{children}</>;
-  }
-
   return (
-    <div
+    <>
+      {home ? children : null}
+      <div
       ref={shell}
-      className="site-shell site-interior"
+      className={`site-shell site-interior${home ? " site-shell-inactive" : ""}`}
+      aria-hidden={home ? true : undefined}
     >
       <svg
         width="0"
@@ -228,12 +230,13 @@ export default function SiteShell({ children }: { children: ReactNode }) {
           ))}
         </div>
         <div className="site-tools">
+          <KetherEffectsMenu />
           <Link className="site-icon" href="/search" aria-label="搜尋資料庫">
             <Search size={20} />
           </Link>
           <details
             ref={notice}
-            className="site-utility"
+            className="site-utility site-notification"
             onToggle={(event) => {
               if (event.currentTarget.open) readNotice();
             }}
@@ -242,7 +245,7 @@ export default function SiteShell({ children }: { children: ReactNode }) {
               <Bell size={20} />
               {unread && <i className="site-unread" />}
             </summary>
-            <section className="site-utility-panel">
+            <section className="site-utility-panel site-notice-panel">
               <span className="site-eyebrow">KETHER UPDATE</span>
               <h2>通知中心</h2>
               {homeNotices.map((item) => (
@@ -258,7 +261,7 @@ export default function SiteShell({ children }: { children: ReactNode }) {
             </section>
           </details>
           <div className="site-auth">
-            <HomeAuthMini key={pathname} />
+            <HomeAuthMini />
           </div>
           <details className="site-utility site-all-menu">
             <summary className="site-icon" aria-label="網站選單">
@@ -289,7 +292,7 @@ export default function SiteShell({ children }: { children: ReactNode }) {
         </div>
       </header>
       <div className="site-ticker">
-        <HomeTicker
+        <HomeTicker active={!home}
           onNotice={() => {
             if (notice.current) notice.current.open = true;
             readNotice();
@@ -297,8 +300,13 @@ export default function SiteShell({ children }: { children: ReactNode }) {
           }}
         />
       </div>
-      <div id="site-content" tabIndex={-1} className="site-content">
-        {children}
+      <nav className="site-quicknav" aria-label="內頁三大分類快速導覽">
+        {navigationGroups.map((group) => (
+          <NavigationGroup key={group.label} group={group} />
+        ))}
+      </nav>
+      <div id="site-content" tabIndex={-1} className="site-content site-viewport-content">
+        {home ? null : children}
       </div>
       <footer className="site-footer">
         <span>
@@ -318,5 +326,6 @@ export default function SiteShell({ children }: { children: ReactNode }) {
         </details>
       </footer>
     </div>
+    </>
   );
 }
