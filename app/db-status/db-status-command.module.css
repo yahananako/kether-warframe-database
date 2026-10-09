@@ -1,0 +1,47 @@
+.page{height:100%;min-height:0;width:100%;display:flex;flex-direction:column;gap:9px;overflow:hidden!important;color:#effafa;}
+.header{flex:none;min-height:85px;display:flex;align-items:center;justify-content:space-between;gap:14px;padding:13px 18px;border:1px solid #9ce7e567;background:linear-gradient(106deg,#103847e3,#071c2adc);}
+.header p,.panelHeader p{display:flex;align-items:center;gap:7px;margin:0;color:#e6c48d;font-size:10px;letter-spacing:.13em;font-weight:800;}
+.header h1{font-size:clamp(23px,2.7vw,38px);color:#fff;margin:5px 0;}.header h1 span{color:#b6fff3;}
+.header small{font-size:11px;color:#b5d1d4;}
+.back,.clanLink{display:flex;align-items:center;justify-content:space-between;gap:7px;padding:10px 13px;border:1px solid #9ce7e570;color:#e7faf8;background:#164758af;text-decoration:none;white-space:nowrap;font-size:12px;font-weight:800;transition:background .2s,box-shadow .2s,transform .2s;}
+.back:is(:hover,:focus-visible),.clanLink:is(:hover,:focus-visible){background:#236573;transform:translateY(-2px);box-shadow:0 0 18px #8af4e05b;}
+.dashboard{flex:1 1 auto;min-height:0;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(300px,.95fr);gap:9px;}
+.healthPane,.planPane{display:flex;flex-direction:column;min-width:0;min-height:0;overflow:hidden;border:1px solid #9ce7e562;background:linear-gradient(146deg,#0d3445d5,#071d2ed8);}
+.panelHeader{flex:none;padding:16px;border-bottom:1px solid #9ce7e549;}
+.panelHeader h2{font-size:clamp(19px,1.8vw,26px);margin:5px 0 0;color:#fff;}
+.healthScroll,.planScroll{flex:1 1 auto;min-height:0;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:#9ce7e5 #082635;padding:15px;}
+.healthGood,.healthWarning,.planSuccess,.planWarning{display:flex;align-items:center;gap:14px;padding:17px;border:1px solid #9ce7e56a;background:#133b3abb;}
+.healthWarning,.planWarning{background:#493c29aa;border-color:#e6c48d82;}
+.healthGood>svg,.planSuccess>svg{color:#a0f6e4;flex:none;}.healthWarning>svg,.planWarning>svg{color:#f9d4a4;flex:none;}
+.healthGood h3,.healthWarning h3,.planSuccess h3,.planWarning h3{color:#fff;font-size:18px;margin:0 0 5px;}
+.healthGood p,.healthWarning p,.planSuccess p,.planWarning p{font-size:12px;color:#c5ddde;line-height:1.6;margin:0;}
+.metricRow{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;margin:12px 0;}
+.metricRow article{min-width:0;padding:12px;border:1px solid #9ce7e54c;background:#113747c1;}
+.metricRow span{display:block;font-size:10px;color:#b8d7d7;}
+.metricRow strong{display:block;margin-top:5px;font:700 clamp(14px,1.6vw,21px) Georgia,sans-serif;color:#e9d09f;overflow-wrap:anywhere;}
+.testList{display:grid;gap:7px;}
+.testOk,.testError{display:grid;grid-template-columns:24px minmax(0,1fr) auto;align-items:center;gap:12px;padding:14px;border:1px solid #9ce7e54d;background:#0c3040b9;}
+.testError{border-color:#e6c48d76;background:#42332783;}
+.testOk svg{color:#a1f6eb;}.testError svg{color:#e6c48d;}
+.testOk h3,.testError h3{color:#f4ffff;font-size:14px;margin:0 0 4px;}
+.testOk p,.testError p{font-size:12px;margin:0;color:#c3d6d9;line-height:1.5;overflow-wrap:anywhere;}
+.testOk strong,.testError strong{color:#a3f9e7;font-size:10px;letter-spacing:.05em;}
+.testError strong{color:#f8d49f;}
+.planData{display:grid;gap:0;margin:11px 0 14px;border:1px solid #9ce7e54d;background:#0a2c3cb8;}
+.planData div{display:grid;grid-template-columns:minmax(120px,.4fr) minmax(0,.6fr);gap:10px;padding:10px 12px;border-bottom:1px solid #9ce7e52d;}
+.planData div:last-child{border:0;}
+.planData dt{color:#a9cdd0;font-size:11px;}
+.planData dd{margin:0;color:#f3fafa;font-size:12px;font-weight:800;overflow-wrap:anywhere;}
+.clanLink{max-width:100%;width:fit-content;}
+@media(max-width:900px){.dashboard{grid-template-columns:1fr;grid-template-rows:minmax(145px,40%) minmax(0,1fr);gap:6px;}
+.header{min-height:64px;padding:9px;}.header h1{font-size:22px;}.header small{display:none;}
+.panelHeader{padding:8px 12px;}.panelHeader h2{font-size:18px;}.healthScroll,.planScroll{padding:8px;}
+.healthGood,.healthWarning,.planSuccess,.planWarning{padding:9px;}.healthGood h3,.healthWarning h3,.planSuccess h3,.planWarning h3{font-size:15px;}
+.metricRow{margin:6px 0;}.metricRow article{padding:7px;}.testOk,.testError{padding:8px;}
+}
+@media(max-width:480px){.header h1{font-size:18px;}.header p{font-size:8px;}.back{font-size:10px;padding:6px;}
+.dashboard{grid-template-rows:minmax(137px,38%) minmax(0,1fr);}
+.panelHeader{padding:6px 9px;}.panelHeader h2{font-size:16px;}.metricRow strong{font-size:14px;}
+.healthGood>svg,.healthWarning>svg{width:24px;}.healthGood p,.healthWarning p,.planSuccess p,.planWarning p{font-size:10px;}
+.planData div{grid-template-columns:110px minmax(0,1fr);padding:8px;}.planData dt,.planData dd{font-size:10px;}}
+@media(prefers-reduced-motion:reduce){.page *{transition:none!important;animation:none!important;}}

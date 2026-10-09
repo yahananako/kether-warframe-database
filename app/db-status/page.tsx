@@ -1,5 +1,7 @@
 import Link from "next/link";
-import { Database, ShieldCheck, XCircle, CheckCircle2, KeyRound, Crown } from "lucide-react";
+import { Database, ShieldCheck, XCircle, CheckCircle2, KeyRound, Crown, Activity, ArrowUpRight, RadioTower } from "lucide-react";
+import { KETHER_APP_VERSION, KETHER_BOT_VERSION } from "../../data/siteVersion";
+import styles from "./db-status-command.module.css";
 
 const KETHER_GUILD_ID = "1033399126936789023";
 
@@ -207,74 +209,67 @@ async function checkKetherPlan(): Promise<GuildPlan> {
 }
 
 export default async function DbStatusPage() {
-  const checks = await checkSupabase();
-  const ketherPlan = await checkKetherPlan();
+  const [checks, ketherPlan] = await Promise.all([checkSupabase(), checkKetherPlan()]);
   const allOk = checks.every((item) => item.ok) && ketherPlan.ok;
 
   return (
-    <main className="page-shell db-status-page">
-      <div className="corner corner-lt" />
-      <div className="corner corner-rt" />
-      <div className="corner corner-lb" />
-      <div className="corner corner-rb" />
-
-      <header className="profile-header">
-        <Link href="/" className="db-back">← 返回首頁</Link>
-
+    <main className={styles.page}>
+      <header className={styles.header}>
         <div>
-          <p>KETHER OF PARADISO</p>
-          <h1>資料庫連線狀態</h1>
-          <span>v2.2.1 Supabase、KETHER 免費方案與 Discord 權限狀態檢查頁。</span>
+          <p><Activity size={15}/> KETHER / INFRASTRUCTURE DIAGNOSTICS</p>
+          <h1>資料連線<span>診斷中心</span></h1>
+          <small>伺服器環境、Supabase 連線與氏族方案狀態即時檢查。</small>
         </div>
+        <Link href="/database/overview" className={styles.back}><Database size={16}/> 資料庫總覽 <ArrowUpRight size={14}/></Link>
       </header>
-
-      <section className={allOk ? "db-status-hero ok" : "db-status-hero error"}>
-        {allOk ? <CheckCircle2 size={76} strokeWidth={1.4} /> : <XCircle size={76} strokeWidth={1.4} />}
-        <h2>{allOk ? "資料庫與免費方案已啟用" : "資料庫狀態需要檢查"}</h2>
-        <p>
-          這裡會檢查 Vercel 環境變數、Supabase 連線，以及 KETHER Discord 是否為免費方案。
-        </p>
-      </section>
-
-      <section className="db-status-grid">
-        {checks.map((item) => (
-          <article className={item.ok ? "status-card ok" : "status-card error"} key={item.label}>
-            {item.ok ? <ShieldCheck size={34} /> : <XCircle size={34} />}
-            <div>
-              <h3>{item.label}</h3>
-              <p>{item.detail}</p>
+      <div className={styles.dashboard}>
+        <section className={styles.healthPane} aria-labelledby="system-health-title">
+          <div className={styles.panelHeader}><p>01 / CONNECTION HEALTH</p><h2 id="system-health-title">系統健康監測</h2></div>
+          <div className={styles.healthScroll}>
+            <article className={allOk?styles.healthGood:styles.healthWarning}>
+              {allOk?<CheckCircle2 size={37}/>:<XCircle size={37}/>}
+              <div><h3>{allOk?"資料庫與方案已完成檢查":"部分連線或方案需要檢查"}</h3>
+                <p>檢查結果僅代表目前回應狀態，詳細資訊請查看下方檢測項目。</p></div>
+            </article>
+            <div className={styles.metricRow}>
+              <article><span>網站</span><strong>{KETHER_APP_VERSION}</strong></article>
+              <article><span>Discord BOT</span><strong>{KETHER_BOT_VERSION}</strong></article>
+              <article><span>檢測通過</span><strong>{checks.filter(item=>item.ok).length} / {checks.length}</strong></article>
             </div>
-          </article>
-        ))}
-      </section>
-
-      <section className={ketherPlan.ok ? "kether-plan-card ok" : "kether-plan-card error"}>
-        <Crown size={46} strokeWidth={1.5} />
-        <div>
-          <h2>KETHER Discord 免費方案</h2>
-          <p>{ketherPlan.detail}</p>
-
-          <div className="plan-table">
-            <div><span>Discord 伺服器 ID</span><b>{ketherPlan.guildId}</b></div>
-            <div><span>群組名稱</span><b>{ketherPlan.guildName}</b></div>
-            <div><span>訂閱狀態</span><b>{ketherPlan.subscriptionStatus}</b></div>
-            <div><span>方案</span><b>{ketherPlan.planName}</b></div>
-            <div><span>方案狀態</span><b>{ketherPlan.planStatus}</b></div>
-            <div><span>人數上限</span><b>{ketherPlan.maxMembers}</b></div>
-            <div><span>需要付款</span><b>{ketherPlan.paidRequired}</b></div>
-            <div><span>到期日</span><b>{ketherPlan.expiresAt}</b></div>
+            <div className={styles.testList}>
+              {checks.map(item=>(
+                <article key={item.label} className={item.ok?styles.testOk:styles.testError}>
+                  {item.ok?<ShieldCheck size={21}/>:<XCircle size={21}/>}
+                  <div><h3>{item.label}</h3><p>{item.detail}</p></div>
+                  <strong>{item.ok?"PASS":"CHECK"}</strong>
+                </article>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
-
-      <section className="db-status-next">
-        <Database size={38} />
-        <div>
-          <h2>下一階段</h2>
-          <p>免費方案確認後，可以開始做個人已購買資料 API 與測試寫入。</p>
-        </div>
-        <KeyRound size={34} />
-      </section>
+        </section>
+        <aside className={styles.planPane} aria-labelledby="clan-plan-title">
+          <div className={styles.panelHeader}><p>02 / CLAN SUBSCRIPTION</p><h2 id="clan-plan-title">氏族方案情報</h2></div>
+          <div className={styles.planScroll}>
+            <article className={ketherPlan.ok?styles.planSuccess:styles.planWarning}>
+              <Crown size={28}/><div><h3>{ketherPlan.ok?"KETHER 方案已啟用":"方案狀態需要確認"}</h3>
+                <p>{ketherPlan.detail}</p></div>
+            </article>
+            <dl className={styles.planData}>
+              {[
+                ["Discord 伺服器 ID",ketherPlan.guildId],
+                ["群組名稱",ketherPlan.guildName],
+                ["訂閱狀態",ketherPlan.subscriptionStatus],
+                ["方案",ketherPlan.planName],
+                ["方案狀態",ketherPlan.planStatus],
+                ["人數上限",ketherPlan.maxMembers],
+                ["需要付款",ketherPlan.paidRequired],
+                ["到期日",ketherPlan.expiresAt],
+              ].map(([label,value])=><div key={label}><dt>{label}</dt><dd>{value}</dd></div>)}
+            </dl>
+            <Link href="/clan" className={styles.clanLink}><RadioTower size={17}/> 前往氏族指揮中心 <ArrowUpRight size={15}/></Link>
+          </div>
+        </aside>
+      </div>
     </main>
   );
 }

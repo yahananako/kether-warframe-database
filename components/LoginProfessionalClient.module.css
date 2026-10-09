@@ -249,3 +249,71 @@
     font-size: 26px;
   }
 }
+
+
+/* KETHER identity gateway redesign: keep the five-section consent gate intact. */
+.stage{width:100%;height:100%;min-height:0;overflow:hidden!important;color:#effafa;display:flex;flex-direction:column;}
+.frame{height:100%;min-height:0;display:flex;flex-direction:column;overflow:hidden;}
+.loginStage{display:grid;grid-template-columns:minmax(260px,.85fr) minmax(0,1.15fr);gap:11px;min-height:0;flex:1 1 auto;align-items:stretch;}
+.authCard,.policyCard{
+  min-height:0;min-width:0;
+  overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin;scrollbar-color:#9ce7e5 #0a2936;
+  border:1px solid #9ce7e573;border-radius:0;
+  background:linear-gradient(147deg,rgba(12,47,61,.89),rgba(6,22,35,.90));
+  padding:clamp(13px,2.2vw,29px);box-shadow:inset 0 0 25px #9ce7e512,0 10px 35px #0006;
+}
+.authCard{gap:clamp(10px,2vh,18px);}
+.authHeader{padding-bottom:13px;border-bottom:1px solid #9ce7e547;}
+.authIcon{border-radius:0;width:66px;height:66px;color:#e6c48d;background:#103c4aba;border-color:#e6c48d72;box-shadow:0 0 24px #e6c48d2e;}
+.authHeader p,.policyHeading p{font-size:10px;color:#e9ce9e;letter-spacing:.18em;}
+.authHeader h1,.policyHeading h2{font-size:clamp(24px,2.6vw,38px);line-height:1.18;color:#f6ffff;letter-spacing:.03em;}
+.authSummary,.redirectHint,.policyIntro{color:#c7dfe1;font-size:13px;line-height:1.7;}
+.authFacts{gap:8px;}
+.authFacts>div{padding:12px;background:#0b3444be;border:1px solid #9ce7e543;border-radius:1px;color:#e4f8f6;font-size:12px;}
+.authFacts svg{color:#e6c48d;}
+.scopeBox{border-radius:1px;padding:12px;border:1px solid #9ce7e549;background:#092637c7;}
+.scopeBox>span{color:#c3dde0;font-size:12px;}
+.scopeBox code{color:#a9f5e9;border:1px solid #9ce7e54c;background:#124153bd;padding:5px 7px;}
+.readRequirement{border-radius:1px;padding:12px;background:#3d36279a;border:1px solid #e6c48d64;}
+.readRequirement[data-complete="true"]{color:#9ce7e5;background:#123c39b8;border-color:#9ce7e587;}
+.readRequirement span{font-size:12px;color:#b7d4d6;}
+.consentRow{padding:12px;border:1px solid #9ce7e54a;background:#102e3eae;font-size:12px;line-height:1.5;color:#e7f7f6;}
+.consentRow input{margin:0;accent-color:#9ce7e5;}
+.notice{padding:10px;border:1px solid #e6c48d;border-radius:1px;color:#ffdea7;background:#423826bc;font-size:12px;}
+.loginButton{min-height:51px;border:1px solid #c4fff6;border-radius:1px;background:#216675;color:#f8ffff;box-shadow:0 0 22px #9ce7e54b;font-size:14px;transition:background .2s,transform .2s,box-shadow .2s;}
+.loginButton:is(:hover,:focus-visible){transform:translateY(-2px);background:#318395;box-shadow:0 0 28px #9ce7e58b;}
+.loginButtonDisabled{opacity:.53;box-shadow:none;}
+.policyHeading{border-bottom:1px solid #9ce7e544;padding-bottom:12px;margin-bottom:12px;}
+.policyIntro{margin-bottom:14px;}
+.policyProgress{font-size:11px;color:#e6c48d;}
+.policyList{gap:8px;}
+.policyList details{border:1px solid #9ce7e54d;border-radius:1px;background:#102f40b8;transition:background .2s,border-color .2s;}
+.policyList details[open]{border-color:#a4f8eb;background:#154456b8;}
+.policyList summary{padding:13px;font-size:14px;color:#e8f8f8;transition:background .2s,box-shadow .2s;}
+.policyList summary:is(:hover,:focus-visible){background:#215a69;box-shadow:inset 2px 0 #e6c48d;}
+.policyList details>div{padding:0 13px 13px;font-size:12px;line-height:1.7;color:#c7dcdf;}
+.summaryMeta{color:#a8f5e8;}
+.summaryMeta em{font-size:11px;}
+.policyLink{color:#a6f5e9;font-size:12px;}
+.mobileTabs{flex:none;}
+@media(max-width:850px){
+  .mobileTabs{display:grid;grid-template-columns:1fr 1fr;gap:5px;margin:0 0 6px;}
+  .mobileTabs button{min-width:0;min-height:39px;padding:5px 7px;font-size:12px;border:1px solid #9ce7e55c;background:#0b3142c6;color:#e3f7f5;border-radius:1px;}
+  .mobileTabs button[aria-pressed="true"]{background:#205d6b;border-color:#a7f6e9;box-shadow:inset 0 -2px #e6c48d;}
+  .mobileTabs span{font-size:10px;color:#e7c58d;}
+  .loginStage{display:flex;min-height:0;flex:1 1 auto;overflow:hidden;}
+  .loginStage[data-view="policy"] .authCard,.loginStage[data-view="auth"] .policyCard{display:none;}
+  .authCard,.policyCard{width:100%;height:100%;padding:13px;gap:10px;}
+  .authHeader h1,.policyHeading h2{font-size:23px;}
+  .authIcon{width:43px;height:43px;}
+  .authSummary,.redirectHint,.policyIntro{font-size:11px;}
+  .policyHeading{gap:8px;}
+  .policyList summary{padding:10px;font-size:12px;}
+  .toLogin{display:block;margin:9px 0 0 auto;font-size:12px;}
+}
+@media(max-height:650px) and (min-width:851px){
+  .authCard,.policyCard{padding:12px;}.authIcon{width:42px;height:42px;}
+  .authHeader h1,.policyHeading h2{font-size:23px;}
+  .authFacts>div{padding:7px;}.scopeBox,.readRequirement{padding:8px;}
+}
+@media(prefers-reduced-motion:reduce){.stage *{animation:none!important;transition:none!important;}}
