@@ -2,9 +2,23 @@
 // KETHER QA: isolated player lifecycle and safe authentication UI regression checks.
 import assert from "node:assert/strict";
 import fs from "node:fs/promises";
+import {createHmac} from "node:crypto";
 import {chromium} from "playwright";
 
 const base=process.env.KETHER_TEST_BASE_URL||"http://127.0.0.1:3000";
+const testSecret=process.env.KETHER_TEST_SESSION_SECRET;
+if(!testSecret)throw new Error("Isolated CI test secret is required");
+function session(){
+  const now=Math.floor(Date.now()/1000);
+  const payload={
+    sub:"kether-ci-test-user",username:"kether-ci",globalName:"KETHER QA",
+    guildNickname:"測試成員",avatar:null,banner:null,accentColor:null,
+    avatarDecorationAsset:null,nameplatePalette:null,
+    guildId:"kether-ci-guild",roleIds:["kether-ci-role"],iat:now,exp:now+3600
+  };
+  const body=Buffer.from(JSON.stringify(payload)).toString("base64url");
+  return body+"."+createHmac("sha256",testSecret).update(body).digest("base64url");
+}
 const browser=await chromium.launch({headless:true,args:["--no-sandbox","--disable-dev-shm-usage"]});
 const report={run:"player-and-auth-regression",passed:[],failed:[]};
 const task=async(name,page,fn)=>{
@@ -14,6 +28,7 @@ const task=async(name,page,fn)=>{
 };
 try{
   const context=await browser.newContext({viewport:{width:1280,height:800},reducedMotion:"reduce"});
+  await context.addCookies([{name:"kether_discord_session",value:session(),url:base}]);
   await context.addInitScript(()=>{
     window.__ketherMockPlayerStats={created:0,plays:0,pauses:0,next:0,previous:0,destroyed:0,cued:0};
     window.YT={
