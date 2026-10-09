@@ -56,60 +56,7 @@
 }
 .site-interior .site-footer .site-utility-panel { z-index: 100; }
 
-/* Three homepage-inspired controls, present on every inner route. */
-.site-quicknav {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: clamp(8px, 1.4vw, 18px);
-  width: min(1440px, 100%);
-  padding: 12px clamp(18px, 3.5vw, 60px) 10px;
-  margin: 0 auto;
-  position: relative;
-  z-index: 50;
-  flex: 0 0 auto;
-}
-.site-quicknav .site-menu { min-width: 0; }
-.site-quicknav .site-menu > summary {
-  position: relative;
-  isolation: isolate;
-  overflow: hidden;
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  min-height: 48px;
-  border: 1px solid #81a7aa;
-  border-radius: 4px;
-  color: #f1ffff;
-  background: var(--kether-panel);
-  box-shadow: inset 0 0 12px #9ce7e50c, 0 8px 24px #0006;
-  font-weight: 700;
-  font-size: clamp(12px, 1.08vw, 16px);
-  letter-spacing: .09em;
-  transition: transform .2s, box-shadow .2s, border-color .2s, background .2s;
-}
-.site-quicknav .site-menu > summary::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  background: linear-gradient(100deg, transparent 10%, #b7ffef4d 50%, transparent 90%);
-  transform: translateX(-110%);
-  transition: transform .5s ease;
-}
-.site-quicknav .site-menu > summary:hover,
-.site-quicknav .site-menu > summary:focus-visible,
-.site-quicknav .site-menu[open] > summary {
-  border-color: var(--kether-electric);
-  background: #1a5060e6;
-  box-shadow: 0 0 25px #7befea62, inset 0 0 18px #5fded82f;
-  transform: translateY(-2px);
-}
-.site-quicknav .site-menu > summary:hover::before,
-.site-quicknav .site-menu[open] > summary::before {
-  transform: translateX(110%);
-}
-.site-quicknav .site-menu > summary:active { transform: scale(.985); }
-
+/* Primary navigation lives exclusively in the Header. Keep interiors uncluttered. */
 /* Consolidated interaction language for the existing interior controls. */
 .site-interior :is(.site-icon, .site-button, .site-menu-grid a, .site-utility-panel > a) {
   transition: transform .2s, background .2s, border-color .2s, box-shadow .2s, color .2s;
@@ -168,22 +115,11 @@
 
 @media (max-width: 760px) {
   .site-interior .site-header { min-height: 58px; padding: 8px 12px; }
-  .site-quicknav { gap: 5px; padding: 7px 12px 6px; }
-  .site-quicknav .site-menu > summary {
-    min-height: 41px;
-    padding: 8px 7px;
-    font-size: clamp(10px, 2.6vw, 13px);
-    letter-spacing: 0;
-    gap: 2px;
-  }
-  .site-quicknav .site-menu > summary svg { width: 12px; }
   .site-interior .site-viewport-content { padding: 5px 12px 7px; }
   .site-interior .site-footer { margin: 0 12px; padding: 5px 0; font-size: 10px; gap: 4px; }
 }
 @media (max-height: 670px) {
   .site-interior .site-header { min-height: 50px; padding-block: 4px; }
-  .site-quicknav { padding-block: 5px; }
-  .site-quicknav .site-menu > summary { min-height: 36px; }
   .site-interior .site-viewport-content { padding-block: 4px; }
 }
 @media (prefers-reduced-motion: reduce) {
