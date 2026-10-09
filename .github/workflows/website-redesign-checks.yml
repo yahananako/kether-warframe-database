@@ -34,6 +34,8 @@ jobs:
         run: npm ci
       - name: Redesign source-contract checks
         run: node scripts/check-redesign-invariants.mjs
+      - name: OAuth same-origin return path regression checks
+        run: node --import tsx scripts/test-safe-next.ts
       - name: TypeScript check
         run: npx tsc --noEmit
       - name: Next.js production build
