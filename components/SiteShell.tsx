@@ -233,7 +233,7 @@ export default function SiteShell({ children }: { children: ReactNode }) {
           </Link>
           <details
             ref={notice}
-            className="site-utility"
+            className="site-utility site-notification"
             onToggle={(event) => {
               if (event.currentTarget.open) readNotice();
             }}
@@ -242,7 +242,7 @@ export default function SiteShell({ children }: { children: ReactNode }) {
               <Bell size={20} />
               {unread && <i className="site-unread" />}
             </summary>
-            <section className="site-utility-panel">
+            <section className="site-utility-panel site-notice-panel">
               <span className="site-eyebrow">KETHER UPDATE</span>
               <h2>通知中心</h2>
               {homeNotices.map((item) => (
@@ -258,7 +258,7 @@ export default function SiteShell({ children }: { children: ReactNode }) {
             </section>
           </details>
           <div className="site-auth">
-            <HomeAuthMini key={pathname} />
+            <HomeAuthMini />
           </div>
           <details className="site-utility site-all-menu">
             <summary className="site-icon" aria-label="網站選單">
@@ -297,7 +297,12 @@ export default function SiteShell({ children }: { children: ReactNode }) {
           }}
         />
       </div>
-      <div id="site-content" tabIndex={-1} className="site-content">
+      <nav className="site-quicknav" aria-label="內頁三大分類快速導覽">
+        {navigationGroups.map((group) => (
+          <NavigationGroup key={group.label} group={group} />
+        ))}
+      </nav>
+      <div id="site-content" tabIndex={-1} className="site-content site-viewport-content">
         {children}
       </div>
       <footer className="site-footer">
