@@ -36,6 +36,13 @@ const tests=[
     assert.match(table,/sessionStorage\.setItem\(filterKey,JSON\.stringify\(\{query,filter,sortMode,section\}\)\)/);
     assert.ok(!table.includes("JSON.stringify({ownedMap"));
   }],
+  ["cross-home persistent chrome",()=>{
+    const source=read("components/SiteShell.tsx");
+    assert.ok(source.includes("{home ? children : null}"));
+    assert.ok(source.includes('site-shell-inactive'));
+    assert.ok(source.includes("active={!home}"));
+    assert.ok(read("app/kether-redesign.css").includes(".site-shell-inactive"));
+  }],
   ["viewport shell and eco fallback",()=>{
     const css=read("app/kether-redesign.css");
     assert.ok(css.includes(".site-viewport-content"));

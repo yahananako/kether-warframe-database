@@ -154,7 +154,7 @@ export default function SiteShell({ children }: { children: ReactNode }) {
   useEffect(() => {
     const reduced = matchMedia("(prefers-reduced-motion: reduce)");
     function sync() {
-      if (document.hidden || reduced.matches || effectiveMode === "eco") video.current?.pause();
+      if (home || document.hidden || reduced.matches || effectiveMode === "eco") video.current?.pause();
       else video.current?.play().catch(() => {});
     }
     sync();
@@ -164,21 +164,20 @@ export default function SiteShell({ children }: { children: ReactNode }) {
       reduced.removeEventListener("change", sync);
       document.removeEventListener("visibilitychange", sync);
     };
-  }, [effectiveMode]);
+  }, [effectiveMode, home]);
   function readNotice() {
     setUnread(false);
     try {
       localStorage.setItem(NOTICE_KEY, HOME_NOTICE_VERSION);
     } catch {}
   }
-  if (home) {
-    return <>{children}</>;
-  }
-
   return (
-    <div
+    <>
+      {home ? children : null}
+      <div
       ref={shell}
-      className="site-shell site-interior"
+      className={`site-shell site-interior${home ? " site-shell-inactive" : ""}`}
+      aria-hidden={home ? true : undefined}
     >
       <svg
         width="0"
@@ -293,7 +292,7 @@ export default function SiteShell({ children }: { children: ReactNode }) {
         </div>
       </header>
       <div className="site-ticker">
-        <HomeTicker
+        <HomeTicker active={!home}
           onNotice={() => {
             if (notice.current) notice.current.open = true;
             readNotice();
@@ -307,7 +306,7 @@ export default function SiteShell({ children }: { children: ReactNode }) {
         ))}
       </nav>
       <div id="site-content" tabIndex={-1} className="site-content site-viewport-content">
-        {children}
+        {home ? null : children}
       </div>
       <footer className="site-footer">
         <span>
@@ -327,5 +326,6 @@ export default function SiteShell({ children }: { children: ReactNode }) {
         </details>
       </footer>
     </div>
+    </>
   );
 }

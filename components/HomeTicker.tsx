@@ -6,7 +6,7 @@ import styles from "./HomeImmersive.module.css";
 
 const STORAGE_KEY="kether-ticker-state-v1";
 type TickerState={index:number;paused:boolean};
-export default function HomeTicker({onNotice}:{onNotice:(button:HTMLButtonElement)=>void}){
+export default function HomeTicker({onNotice,active=true}:{onNotice:(button:HTMLButtonElement)=>void;active?:boolean}){
   const {effectiveMode}=useKetherEffects();
   const [index,setIndex]=useState(0);
   const [paused,setPaused]=useState(false);
@@ -15,6 +15,7 @@ export default function HomeTicker({onNotice}:{onNotice:(button:HTMLButtonElemen
   const total=ketherDynamicMessages.length;
 
   useEffect(()=>{
+    if(!active)return;
     try {
       const stored=JSON.parse(localStorage.getItem(STORAGE_KEY)||"null") as TickerState|null;
       if(stored&&Number.isSafeInteger(stored.index)&&total>0)
@@ -22,18 +23,18 @@ export default function HomeTicker({onNotice}:{onNotice:(button:HTMLButtonElemen
       if(stored&&typeof stored.paused==="boolean")setPaused(stored.paused);
     } catch {/* Ticker works without storage. */}
     setRestored(true);
-  },[total]);
+  },[total,active]);
   useEffect(()=>{
-    if(!restored)return;
+    if(!restored||!active)return;
     try {localStorage.setItem(STORAGE_KEY,JSON.stringify({index,paused}));}catch{}
-  },[index,paused,restored]);
+  },[index,paused,restored,active]);
   useEffect(()=>{
-    if(paused||hover||effectiveMode==="eco"||total===0)return;
+    if(!active||paused||hover||effectiveMode==="eco"||total===0)return;
     const timer=window.setInterval(()=>{
       if(!document.hidden)setIndex(i=>(i+1)%total);
     },6500);
     return ()=>window.clearInterval(timer);
-  },[paused,hover,total,effectiveMode]);
+  },[paused,hover,total,effectiveMode,active]);
 
   if(total===0)return null;
   return <section className={styles.ticker} aria-label="KETHER 動態資訊"

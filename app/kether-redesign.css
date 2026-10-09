@@ -249,3 +249,7 @@ html[data-kether-effects="eco"] .site-interior :is(.site-menu > summary, .site-b
 @media (prefers-reduced-motion: reduce) {
   .site-effects-panel button { transition: none; }
 }
+
+
+/* Keep the shared chrome mounted when the special cinematic homepage is active. */
+.site-shell-inactive { display: none !important; }
