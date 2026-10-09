@@ -243,6 +243,7 @@ export default function IncarnonWeaponArchive({
   return (
     <div className={styles.archive}>
       <section className={styles.controls} aria-label="應感武器搜尋與篩選">
+        <div className={styles.stationLabel}><Sparkles size={15} aria-hidden="true" /> KETHER / INCARNON CONTROL</div>
         <label className={styles.searchBox}>
           <Search size={18} aria-hidden="true" />
           <span className={styles.screenReaderOnly}>搜尋應感武器</span>
@@ -309,6 +310,7 @@ export default function IncarnonWeaponArchive({
         </div>
       </section>
 
+      <div className={styles.results} aria-label="靈化武器檔案清單">
       {filteredWeapons.length ? (
         activeSections.map((section) => {
           const sectionWeapons = filteredWeapons.filter(
@@ -357,6 +359,7 @@ export default function IncarnonWeaponArchive({
           </button>
         </section>
       )}
+      </div>
     </div>
   );
 }

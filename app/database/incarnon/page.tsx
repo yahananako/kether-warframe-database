@@ -1,85 +1,33 @@
-import type { Metadata } from "next";
-import Link from "next/link";
-
+import type {Metadata} from "next";
+import {Sparkles,Layers3} from "lucide-react";
 import IncarnonWeaponArchive from "../../../components/IncarnonWeaponArchive";
-import { incarnonCatalog } from "../../../data/incarnonWeapons";
+import {incarnonCatalog} from "../../../data/incarnonWeapons";
 import styles from "./page.module.css";
-
-export const metadata: Metadata = {
-  title: "靈化武器列表",
-  description:
-    "KETHER Warframe 靈化武器列表，依主要、次要、近戰分類，整理武器圖片、靈化特效、進化解鎖條件與進化能力。",
-  alternates: {
-    canonical: "/database/incarnon",
-  },
+export const metadata:Metadata={
+  title:"靈化武器列表",
+  description:"KETHER Warframe 靈化武器列表，依主要、次要、近戰分類，整理圖片、特效、進化條件與能力。",
+  alternates:{canonical:"/database/incarnon"}
 };
-
-export default async function IncarnonDatabasePage({
-  searchParams,
-}: {
-  searchParams: Promise<{ q?: string | string[] }>;
-}) {
-  const params = await searchParams;
-  const q = Array.isArray(params.q) ? params.q[0] || "" : params.q || "";
-  return (
-    <main className="home-new-page">
-      <div className="home-new-shell">
-        <section className={`kether-overview-intro-card ${styles.intro}`}>
-          <div className="kether-database-intro-topline">
-            <p>KETHER INCARNON ARMORY</p>
-            <Link
-              href="/"
-              className="kether-database-home-link"
-              aria-label="回首頁"
-            >
-              <svg
-                viewBox="0 0 24 24"
-                width="18"
-                height="18"
-                aria-hidden="true"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path d="m3 10 9-7 9 7" />
-                <path d="M5 9v11h14V9" />
-                <path d="M9 20v-6h6v6" />
-              </svg>
-              <span>回首頁</span>
-            </Link>
-          </div>
-
-          <h1>靈化武器列表</h1>
-          <span>
-            依主要、次要、近戰三類整理完整應感武器。點開武器卡即可查看圖片、靈化特效、每階進化解鎖條件與全部能力選項。
-          </span>
-
-          <div className={styles.introStats} aria-label="靈化武器分類數量">
-            <div>
-              <strong>{incarnonCatalog.totals.primary}</strong>
-              <span>主要</span>
-            </div>
-            <div>
-              <strong>{incarnonCatalog.totals.secondary}</strong>
-              <span>次要</span>
-            </div>
-            <div>
-              <strong>{incarnonCatalog.totals.melee}</strong>
-              <span>近戰</span>
-            </div>
-            <div>
-              <strong>{incarnonCatalog.totals.all}</strong>
-              <span>全部</span>
-            </div>
-          </div>
-        </section>
-
-        <section className="kether-category-content-shell">
-          <IncarnonWeaponArchive key={q} initialQuery={q} />
-        </section>
+export default async function IncarnonDatabasePage({searchParams}:{searchParams:Promise<{q?:string|string[]}>}){
+  const params=await searchParams,q=Array.isArray(params.q)?params.q[0]||"":params.q||"";
+  return <main className={styles.page}>
+    <header className={styles.hero}>
+      <div className={styles.heroTitle}>
+        <p><Sparkles size={15}/> KETHER / INCARNON EVOLUTION NETWORK</p>
+        <h1>靈化武器 <span>進化研究所</span></h1>
+        <small>靈化形態、進化解鎖條件與全部能力選項，依武器類別即時篩選。</small>
       </div>
-    </main>
-  );
+      <div className={styles.heroStats} aria-label="靈化武器各分類數量">
+        {[
+          ["主要",incarnonCatalog.totals.primary],
+          ["次要",incarnonCatalog.totals.secondary],
+          ["近戰",incarnonCatalog.totals.melee],
+          ["全部",incarnonCatalog.totals.all],
+        ].map(([label,value])=><div key={label}><strong>{value}</strong><span>{label}</span></div>)}
+      </div>
+    </header>
+    <section className={styles.workspace} aria-label="靈化武器搜尋與進化檔案">
+      <IncarnonWeaponArchive initialQuery={q}/>
+    </section>
+  </main>;
 }
