@@ -54,6 +54,7 @@ try{
     await page.waitForFunction(()=>window.__ketherMockPlayerStats.created===1&&document.querySelector(".kether-mini-play:not([disabled])"));
     await page.locator(".kether-mini-play").click();
     await page.waitForFunction(()=>window.__ketherMockPlayerStats.plays>=1);
+    await page.waitForFunction(()=>document.querySelector(".kether-mini-title")?.textContent?.includes("KETHER QA 模擬電台"));
     const title=await page.locator(".kether-mini-title").innerText();
     assert.match(title,/KETHER QA 模擬電台/);
     await page.locator(".site-tools a[aria-label='搜尋資料庫']").click();
@@ -92,7 +93,7 @@ try{
     const sections=login.locator("article[aria-label='登入前資料告知'] details");
     assert.equal(await sections.count(),5,"Login disclosure must include five policy items");
     for(let i=0;i<5;i++)await sections.nth(i).locator("summary").click();
-    await login.getByText("已閱讀 5 / 5").first().waitFor({state:"visible"});
+    await login.locator("[class*=policyProgress][data-complete=true]").waitFor({state:"visible"});
     await login.locator("input[type=checkbox]").check();
     assert.equal(await gate.getAttribute("aria-disabled"),"false");
     const href=await gate.getAttribute("href");
