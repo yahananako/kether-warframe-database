@@ -44,7 +44,7 @@ try {
 
   await task(page,"persistent-client-navigation",async()=>{
     await page.goto(url("/story"),{waitUntil:"domcontentloaded"});
-    await page.waitForSelector(".site-quicknav summary");
+    await page.waitForSelector(".site-navigation .site-menu summary");
     await page.waitForFunction(()=>Boolean(document.querySelector(".site-shell")));
     await page.evaluate(()=>{window.__ketherSavedShell=document.querySelector(".site-shell")});
     const tools=page.locator(".site-tools a[aria-label='搜尋資料庫']");

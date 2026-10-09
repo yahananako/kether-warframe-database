@@ -300,11 +300,6 @@ export default function SiteShell({ children }: { children: ReactNode }) {
           }}
         />
       </div>
-      <nav className="site-quicknav" aria-label="內頁三大分類快速導覽">
-        {navigationGroups.map((group) => (
-          <NavigationGroup key={group.label} group={group} />
-        ))}
-      </nav>
       <div id="site-content" tabIndex={-1} className="site-content site-viewport-content">
         {home ? null : children}
       </div>

@@ -61,12 +61,13 @@ try{
         await target.waitForTimeout(250);
         const dims=await target.evaluate(()=>{
           const root=document.documentElement,body=document.body;
-          const quick=document.querySelector(".site-quicknav");
+          const headerGroups=document.querySelectorAll(".site-header .site-navigation .site-menu").length;
+          const duplicateNav=document.querySelectorAll(".site-quicknav").length;
           const content=document.querySelector(".site-viewport-content");
           return {width:innerWidth,height:innerHeight,
             docH:root.scrollHeight,bodyH:body.scrollHeight,
             docW:root.scrollWidth,bodyW:body.scrollWidth,
-            quickH:quick?.getBoundingClientRect().height||0,
+            headerGroups,duplicateNav,
             contentH:content?.getBoundingClientRect().height||0,
             hasHome:!!document.querySelector("[data-kether-home]")};
         });
@@ -80,7 +81,8 @@ try{
             "mobile radar nav wastes vertical space: "+navHeight);
         }
         if(!home){
-          assert.ok(dims.quickH>=24,"inner 3-category navigation is clipped "+JSON.stringify(dims));
+          assert.equal(dims.headerGroups,3,"Header should retain exactly 3 category menus");
+          assert.equal(dims.duplicateNav,0,"duplicate category toolbar must not return");
           assert.ok(dims.contentH>=40,"inner content clipped "+JSON.stringify(dims));
         }
         const title=await target.locator("h1").first().textContent();
@@ -113,19 +115,19 @@ try{
   page.setDefaultTimeout(10000);
   try{
     await page.goto(new URL("/story",base).href,{waitUntil:"domcontentloaded"});
-    await page.waitForSelector(".site-quicknav summary");
+    await page.waitForSelector(".site-navigation .site-menu summary");
     await page.locator(".site-effects-menu summary").click();
     await page.locator(".site-effects-panel button").filter({hasText:"省電"}).click();
     await page.waitForFunction(()=>document.documentElement.dataset.ketherEffects==="eco");
     await page.goto(new URL("/notifications",base).href,{waitUntil:"domcontentloaded"});
     await page.waitForFunction(()=>document.documentElement.dataset.ketherEffects==="eco");
     report.passed.push({screen:"interaction",path:"performance-mode persistence"});
-    const quick=page.locator(".site-quicknav details").first();
-    await quick.locator("summary").click();
-    assert.equal(await quick.getAttribute("open"),"","3-category menu did not open");
+    const headerMenu=page.locator(".site-navigation .site-menu").first();
+    await headerMenu.locator("summary").click();
+    assert.equal(await headerMenu.getAttribute("open"),"","Header category menu did not open");
     await page.keyboard.press("Escape");
-    assert.equal(await quick.getAttribute("open"),null,"Escape did not close menu");
-    report.passed.push({screen:"interaction",path:"quick navigation menu and Escape"});
+    assert.equal(await headerMenu.getAttribute("open"),null,"Escape did not close Header menu");
+    report.passed.push({screen:"interaction",path:"Header category menu and Escape"});
   }catch(error){failure("interaction","effects and keyboard menus",error);}
   await context.close();
   const denied=await browser.newContext();

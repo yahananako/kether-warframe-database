@@ -16,7 +16,9 @@ const tests=[
     const shell=read("components/SiteShell.tsx");
     assert.ok(shell.includes("<KetherEffectsMenu />"));
     assert.ok(shell.includes("effectiveMode === \"eco\""));
-    assert.ok(shell.includes("site-quicknav"));
+    assert.ok(shell.includes('className="site-navigation"'));
+    assert.ok(!shell.includes('className="site-quicknav"'));
+    assert.ok(!read("app/kether-redesign.css").includes(".site-quicknav"));
   }],
   ["reduced motion and save data fallback",()=>{
     const mode=read("components/KetherEffectsProvider.tsx");
