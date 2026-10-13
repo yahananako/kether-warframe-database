@@ -11,6 +11,7 @@ export type ClanArticle = {
   nextStep?: string;
   sourceUrl: string;
   imageUrl?: string;
+  imageSourceUrl?: string;
   category?: "official-news" | "limited-material" | "urgent-mission";
   sourceItemId?: string;
   materialInfo?: string;
@@ -91,6 +92,7 @@ export function validateBulletin(input: unknown, now = new Date()): ClanBulletin
       summary: text(a.summary, "summary", 700), memberBenefit: text(a.memberBenefit, "memberBenefit", 300),
       nextStep: text(a.nextStep, "nextStep", 200, true) || undefined,
       sourceUrl, imageUrl: a.imageUrl === undefined ? undefined : officialUrl(a.imageUrl, true),
+      imageSourceUrl: a.imageSourceUrl === undefined ? undefined : officialUrl(a.imageSourceUrl),
       category: category as ClanArticle["category"], sourceItemId,
       materialInfo: text(a.materialInfo, "materialInfo", 350, true) || undefined,
       rewards: text(a.rewards, "rewards", 250, true) || undefined,
@@ -115,6 +117,7 @@ export function buildDiscordMessage(b: ClanBulletin) {
       ...(a.expiresAt ? [{ name: "截止時間（台灣）", value: new Intl.DateTimeFormat("zh-TW", { timeZone: "Asia/Taipei", dateStyle: "short", timeStyle: "short", hour12: false }).format(new Date(a.expiresAt)) }] : []),
       { name: "對氏族成員的幫助", value: a.memberBenefit },
       ...(a.nextStep ? [{ name: "建議行動", value: a.nextStep }] : []),
+      ...(a.imageUrl ? [{ name: "圖片來源", value: `[Digital Extremes 官方圖片](${a.imageSourceUrl ?? a.sourceUrl})` }] : [{ name: "配圖", value: "本則未取得可核對的官方圖片。" }]),
     ],
     ...(a.imageUrl ? { image: { url: a.imageUrl } } : {}),
     footer: { text: "Keter BOT · Warframe 氏族情報 · 來源：Digital Extremes" },

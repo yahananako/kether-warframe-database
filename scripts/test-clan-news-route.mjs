@@ -46,6 +46,17 @@ test('disabled production cron never fetches or sends', async () => { const f = 
 test('preview deployment cannot publish even with enabled flag', async () => { const f = setup({ enabled: true, deployment: 'preview' }); const r = await GET(request()); assert.equal((await r.json()).published, false); assert.equal(f.posts(), 0); });
 test('authenticated preview renders bulletin without send', async () => { const f = setup(); const r = await GET(request('preview')); assert.equal(r.status, 200); const b = await r.json(); assert.equal(b.bulletin.date, taipeiDate()); assert.deepEqual(b.message.allowed_mentions.parse, []); assert.equal(f.posts(), 0); });
 test('authenticated status resolves the selected guild channel', async () => { const f = setup(); const r = await GET(request('status')); const s = await r.json(); assert.equal(s.channelId, CLAN_NEWS_CHANNEL_ID); assert.equal(s.guildId, guildId); assert.equal(f.fetches(), 0); assert.equal(f.posts(), 0); });
+test('channel rejection exposes numeric code and stage without raw details', async () => {
+  const f = setup();
+  const original = globalThis.newsMock.bot;
+  globalThis.newsMock.bot = async (path, init) => {
+    if (path.startsWith('/channels/')) throw Object.assign(new Error('private upstream body'), { status: 403, details: JSON.stringify({ code: 50001, message: 'private upstream body' }) });
+    return original(path, init);
+  };
+  const r = await GET(request('status')); const body = await r.text(); const data = JSON.parse(body);
+  assert.equal(data.stage, 'channel-access'); assert.equal(data.discordCode, 50001);
+  assert.equal(body.includes('private upstream body'), false); assert.equal(f.posts(), 0);
+});
 test('invalid action cannot publish', async () => { const f = setup({ enabled: true }); assert.equal((await GET(request('invalid'))).status, 400); assert.equal(f.posts(), 0); });
 test('fresh authenticated production bulletin posts once across cron repeats', async () => { const f = setup({ enabled: true }); const first = await (await GET(request())).json(); const second = await (await GET(request())).json(); assert.equal(first.published, true); assert.equal(second.reason, 'already-published'); assert.equal(f.posts(), 1); });
 test('stale editorial file cannot be sent as todays news', async () => { const f = setup({ enabled: true, stale: true }); const r = await GET(request()); assert.equal(r.status, 502); assert.equal((await r.json()).published, false); assert.equal(f.posts(), 0); });

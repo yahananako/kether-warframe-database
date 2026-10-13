@@ -4,5 +4,5 @@
   "endpoint": "https://kether-warframe-database.vercel.app/api/discord/clan-news",
   "verifiedAt": null,
   "lastVerifiedMessageUrl": null,
-  "reason": "Vercel team access returned 403; production delivery has not been verified."
+  "reason": "Production deployed; BOT identity verified, but Discord GET target channel returned HTTP 403 / code 50001 Missing Access. No message has been sent. Requires channel access before verified delivery."
 }

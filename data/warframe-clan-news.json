@@ -2,6 +2,23 @@
   "date": "2026-10-13",
   "articles": [
     {
+      "title": "Fomorian 開門了：Omega Isotope 和藍馬鈴薯，別只看不下手 😏",
+      "publishedDate": "2026-10-13",
+      "category": "urgent-mission",
+      "summary": "官方即時資料確認Fomorian正在威脅冥王星中繼站，敵人等級20～30。個人目標為單場造成1,000,000傷害，目標獎勵列為20萬現金與Orokin催化劑；艦體若提前被擊破，任務可能提早結束。這次要把火力狠狠灌進核心，別在門口光說不做 😏 配圖為官方歷史示意圖，非本次活動截圖。",
+      "memberBenefit": "可趁活動收集限定Omega Isotope，並完成個人目標取得武器容量升級道具；尚未熟悉Archwing的成員適合跟氏族一起跑。",
+      "nextStep": "先確認Archwing裝備，再把Fomorian Disruptor製作好並裝進道具欄，揪隊友衝核心。",
+      "sourceUrl": "https://api.warframe.com/cdn/worldState.php",
+      "sourceItemId": "6ac8a02ef0725d101ec5276b",
+      "expiresAt": "2026-10-16T19:14:57.067000+00:00",
+      "materialInfo": "Omega Isotope：官方快照列為本活動區域掉落；供Fomorian Disruptor使用。取得方式的既有官方說明：在受威脅星球的非Archwing任務收集。",
+      "rewards": "個人目標：1,000,000傷害；獎勵200,000 Credits＋Orokin催化劑。",
+      "location": "冥王星中繼站受威脅；導航Fomorian活動節點。",
+      "requirements": "需要Archwing與Fomorian Disruptor；實際配方、消耗及任務狀態以遊戲內顯示為準。",
+      "imageUrl": "https://www-static.warframe.com/uploads/thumbnails/7bab307fb331aebac4fbd65537be7378_1600x900.jpg",
+      "imageSourceUrl": "https://www.warframe.com/en/news/fomorian-attack"
+    },
+    {
       "title": "Taubound 限時活動要來了，獎勵可不會等你慢慢摸",
       "publishedDate": "2026-10-08",
       "summary": "官方公告活動期間為10月15日至11月17日，精確時刻尚未公布。完成Eris任務收集Moonflesh，向Praghasa交換披飾、護甲組與增幅器外觀，並體驗限定對話。獎勵都送到眼前了，別只會流口水，該出手就出手 😏",
@@ -11,12 +28,13 @@
       "imageUrl": "https://www-static.warframe.com/uploads/thumbnails/d4940c6cab0ad90994427983cc628371_1600x900.jpg",
       "category": "limited-material",
       "materialInfo": "Moonflesh：活動期間完成Eris任務取得，用於向Praghasa交換活動獎勵。",
-      "requirements": "完成Vor's Prize；活動期間解除Eris一般星圖解鎖限制。"
+      "requirements": "完成Vor's Prize；活動期間解除Eris一般星圖解鎖限制。",
+      "imageSourceUrl": "https://www.warframe.com/en/news/epoch-operation-taubound"
     }
   ],
   "liveIntel": {
-    "status": "unavailable",
-    "checkedAt": "2026-10-13T02:19:43+00:00",
-    "note": "官方世界狀態介面本次回覆403，緊急任務與其他活動材料尚未確認。"
+    "status": "verified",
+    "checkedAt": "2026-10-13T02:43:33.293920+00:00",
+    "note": "已讀取官方世界狀態；Fomorian正在開放，快照與獎勵以遊戲內導航為準。"
   }
 }
