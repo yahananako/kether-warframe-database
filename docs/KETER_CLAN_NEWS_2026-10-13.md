@@ -1,6 +1,6 @@
 # KETER Warframe 每日氏族新聞
 
-小希指定發布頻道：`1034099279708561438`。每則使用「對氏族成員的幫助」，不帶個人晨報、創作或帳號資訊。
+小希指定發布頻道：`1034104146363699281`。每則使用「對氏族成員的幫助」，不帶個人晨報、創作或帳號資訊。
 
 ## 交付流程
 
@@ -39,3 +39,13 @@
 驗證命令：`node --test scripts/test-clan-news*.mjs`。涵蓋核心與HTTP路由測試，路由測試模擬Discord、Neon與新聞下載，不會真實發群。請執行完整repo既有build／typecheck後部署。
 
 正式送達前不要標示完成。對未知/傳送中紀錄須先查Discord訊息及Neon表，核對後人工復原狀態；不要盲目刪除防重複紀錄。
+
+## 10/13 新聞內容修訂
+
+標題固定為「Keter每日新聞」，日期另列。Keter BOT使用調皮、成人曖昧雙關的文案，輸出所有編輯欄位都移除「喵」，不使用小希的人格署名。新增限時材料、緊急任務、任務獎勵、地點、參加條件及精確台灣截止時間。僅依真實資料填寫。
+
+category可為official-news、limited-material、urgent-mission。materialInfo、rewards、location、requirements、expiresAt為選填欄位。expiresAt必需帶Z或明確時區；到期項目在發送時排除。不要把未公布的活動日期補成精確時刻。
+
+即時情報以liveIntel記錄verified/unavailable、當天checkedAt及說明。官方世界狀態來源https://api.warframe.com/cdn/worldState.php須帶sourceItemId、真實expiresAt和已核對的liveIntel；相同API中的不同任務可按ID分開。無法取得即時資料時，寫unavailable，不能假稱今日沒有任務。
+
+追蹤Fomorian、Razorback及其活動限定材料，並留意Forma／催化劑／反應爐等限時獎勵；具體名稱、出現狀態、材料與獎勵以本次官方資料核對，不以口語「福馬林」臆測正在開放的任務。

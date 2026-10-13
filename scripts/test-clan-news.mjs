@@ -74,3 +74,31 @@ test('post succeeded but DB update failed never resends', async () => {
   const f = fixture({ dbFailure: true }); await assert.rejects(deliverBulletin(bulletin(), f.deps)); await deliverBulletin(bulletin(), f.deps); assert.equal(f.posts(), 1); assert.equal(f.row().status, 'sending');
 });
 test('unverified Discord response cannot mark sent', async () => { const f = fixture({ wrongResponse: true }); await assert.rejects(deliverBulletin(bulletin(), f.deps)); assert.equal(f.row().status, 'unknown'); });
+test('BOT heading is exact and cat speech is removed from every editorial field', () => {
+  const b = validateBulletin({ ...bulletin(), articles: [{ ...article, title: '公告喵', materialInfo: '材料喵', rewards: '福馬藍圖喵', location: '地球喵', requirements: '完成前置喵' }], liveIntel: { status: 'unavailable', checkedAt: '2026-10-13T01:30:00Z', note: '暫無法查證喵' } }, now);
+  const msg = buildDiscordMessage(b);
+  assert.ok(msg.content.startsWith('📰 **Keter每日新聞**\n2026/10/13'));
+  assert.equal(JSON.stringify(msg).includes('喵'), false);
+});
+test('expired urgent missions are excluded at actual delivery time', () => {
+  const b = validateBulletin({ ...bulletin(), articles: [{ ...article, category: 'urgent-mission', expiresAt: '2026-10-13T01:00:00Z' }] }, now);
+  assert.equal(b.articles.length, 0); assert.ok(b.noNewsText.includes('已到期'));
+});
+test('deadline must include an explicit timezone', () => assert.throws(() => validateBulletin({ ...bulletin(), articles: [{ ...article, expiresAt: '2026-10-13T12:00:00' }] }, now)));
+test('active material and reward fields appear in Discord embed', () => {
+  const msg = buildDiscordMessage(validateBulletin({ ...bulletin(), articles: [{ ...article, materialInfo: 'Moonflesh：Eris活動任務取得', rewards: '護甲外觀', expiresAt: '2026-10-13T04:00:00Z' }] }, now));
+  assert.ok(msg.embeds[0].fields.some(x => x.name === '限時材料／取得方式'));
+  assert.ok(msg.embeds[0].fields.some(x => x.name === '任務獎勵'));
+  assert.ok(msg.embeds[0].fields.some(x => x.name === '截止時間（台灣）'));
+});
+test('different current alerts can share the official world-state source', () => {
+  const articles = ['alert-a', 'alert-b'].map(sourceItemId => ({ ...article, category: 'urgent-mission', sourceUrl: 'https://api.warframe.com/cdn/worldState.php', sourceItemId, expiresAt: '2026-10-13T04:00:00Z' }));
+  const b = validateBulletin({ ...bulletin(), articles, liveIntel: { status: 'verified', checkedAt: '2026-10-13T01:30:00Z' } }, now);
+  assert.equal(b.articles.length, 2);
+});
+test('unverified live source cannot claim an active alert', () => assert.throws(() => validateBulletin({ ...bulletin(), articles: [{ ...article, sourceUrl: 'https://api.warframe.com/cdn/worldState.php', sourceItemId: 'alert-a', expiresAt: '2026-10-13T04:00:00Z' }], liveIntel: { status: 'unavailable', checkedAt: '2026-10-13T01:30:00Z' } }, now)));
+test('old world-state snapshot cannot masquerade as todays intelligence', () => assert.throws(() => validateBulletin({ ...bulletin(), liveIntel: { status: 'verified', checkedAt: '2026-10-12T01:30:00Z' } }, now)));
+test('duplicate live alert IDs are rejected', () => {
+  const a = { ...article, sourceUrl: 'https://api.warframe.com/cdn/worldState.php', sourceItemId: 'alert-a', expiresAt: '2026-10-13T04:00:00Z' };
+  assert.throws(() => validateBulletin({ ...bulletin(), articles: [a, a], liveIntel: { status: 'verified', checkedAt: '2026-10-13T01:30:00Z' } }, now));
+});

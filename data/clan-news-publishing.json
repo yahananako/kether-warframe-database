@@ -1,6 +1,6 @@
 {
   "enabled": false,
-  "channelId": "1034099279708561438",
+  "channelId": "1034104146363699281",
   "endpoint": "https://kether-warframe-database.vercel.app/api/discord/clan-news",
   "verifiedAt": null,
   "lastVerifiedMessageUrl": null,
