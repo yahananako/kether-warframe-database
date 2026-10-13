@@ -42,6 +42,15 @@ export async function GET(req: Request) {
   } catch (error) {
     // Do not log credentials, Discord response bodies, or third-party error text.
     console.error("KETER clan news failed", { kind: error instanceof Error ? error.name : "unknown" });
-    return reply({ published: false, error: "News validation or delivery failed; check authenticated status and server logs." }, 502);
+    const known = ["DISCORD_GUILD_ID is not configured", "Configured identity is not a Discord BOT", "News destination is not a text/announcement channel in the configured KETER guild", "缺少 DISCORD_BOT_TOKEN，無法操作 Discord 身分組或訊息。"];
+    const message = error instanceof Error ? error.message : "";
+    const upstreamStatus = typeof error === "object" && error ? Number((error as { status?: unknown }).status) : 0;
+    return reply({
+      published: false,
+      error: "News validation or delivery failed; check authenticated status and server logs.",
+      reason: known.includes(message) ? message : error instanceof Error ? error.name : "unknown",
+      ...(Number.isInteger(upstreamStatus) && upstreamStatus >= 400 && upstreamStatus <= 599 ? { upstreamStatus } : {}),
+      config: { guildIdConfigured: Boolean(process.env.DISCORD_GUILD_ID?.trim()), botTokenConfigured: Boolean(process.env.DISCORD_BOT_TOKEN?.trim()), databaseConfigured: Boolean(process.env.DATABASE_URL?.trim()) },
+    }, 502);
   }
 }

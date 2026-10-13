@@ -102,3 +102,7 @@ test('duplicate live alert IDs are rejected', () => {
   const a = { ...article, sourceUrl: 'https://api.warframe.com/cdn/worldState.php', sourceItemId: 'alert-a', expiresAt: '2026-10-13T04:00:00Z' };
   assert.throws(() => validateBulletin({ ...bulletin(), articles: [a, a], liveIntel: { status: 'verified', checkedAt: '2026-10-13T01:30:00Z' } }, now));
 });
+test('copied guild ID whitespace is normalized before destination check', async () => {
+  const f = fixture(); f.deps.guildId = ` ${guildId}\n`;
+  assert.equal((await deliverBulletin(bulletin(), f.deps)).published, true);
+});

@@ -127,6 +127,7 @@ export function buildDiscordMessage(b: ClanBulletin) {
 }
 
 export async function resolveNewsChannel(bot: BotRequest, expectedGuildId: string) {
+  expectedGuildId = expectedGuildId.trim();
   if (!/^\d{17,20}$/.test(expectedGuildId)) throw new Error("DISCORD_GUILD_ID is not configured");
   const user = await bot<{ id: string; bot?: boolean }>("/users/@me", { signal: AbortSignal.timeout(10000) });
   if (user.bot !== true) throw new Error("Configured identity is not a Discord BOT");
