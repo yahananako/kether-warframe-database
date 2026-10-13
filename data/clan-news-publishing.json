@@ -1,0 +1,8 @@
+{
+  "enabled": false,
+  "channelId": "1034099279708561438",
+  "endpoint": "https://kether-warframe-database.vercel.app/api/discord/clan-news",
+  "verifiedAt": null,
+  "lastVerifiedMessageUrl": null,
+  "reason": "Vercel team access returned 403; production delivery has not been verified."
+}
