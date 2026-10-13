@@ -1,0 +1,29 @@
+name: Clan news checks
+on:
+  pull_request:
+    paths:
+      - 'lib/clanNews*'
+      - 'app/api/discord/clan-news/**'
+      - 'scripts/test-clan-news.mjs'
+      - 'scripts/test-clan-news-route.mjs'
+      - '.github/workflows/clan-news-checks.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'lib/clanNews*'
+      - 'app/api/discord/clan-news/**'
+      - 'scripts/test-clan-news.mjs'
+      - 'scripts/test-clan-news-route.mjs'
+      - '.github/workflows/clan-news-checks.yml'
+permissions:
+  contents: read
+jobs:
+  news-safety:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: node --test scripts/test-clan-news*.mjs

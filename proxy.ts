@@ -20,6 +20,7 @@ type DiscordSessionPayload = {
   "/api/market-price",
   "/api/discord",
   "/api/discord/commands",
+  "/api/discord/clan-news",
                 "/api/auth/discord/login",
                   "/api/auth/discord/callback",
                     "/api/auth/logout",
