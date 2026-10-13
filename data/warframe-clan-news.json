@@ -1,40 +1,46 @@
 {
-  "date": "2026-10-13",
+  "date": "2026-10-14",
   "articles": [
     {
-      "title": "Fomorian 開門了：Omega Isotope 和藍馬鈴薯，別只看不下手 😏",
-      "publishedDate": "2026-10-13",
-      "category": "urgent-mission",
-      "summary": "官方即時資料確認Fomorian正在威脅冥王星中繼站，敵人等級20～30。個人目標為單場造成1,000,000傷害，目標獎勵列為20萬現金與Orokin催化劑；艦體若提前被擊破，任務可能提早結束。這次要把火力狠狠灌進核心，別在門口光說不做 😏 配圖為官方歷史示意圖，非本次活動截圖。",
-      "memberBenefit": "可趁活動收集限定Omega Isotope，並完成個人目標取得武器容量升級道具；尚未熟悉Archwing的成員適合跟氏族一起跑。",
-      "nextStep": "先確認Archwing裝備，再把Fomorian Disruptor製作好並裝進道具欄，揪隊友衝核心。",
-      "sourceUrl": "https://api.warframe.com/cdn/worldState.php",
-      "sourceItemId": "6ac8a02ef0725d101ec5276b",
-      "expiresAt": "2026-10-16T19:14:57.067000+00:00",
-      "materialInfo": "Omega Isotope：官方快照列為本活動區域掉落；供Fomorian Disruptor使用。取得方式的既有官方說明：在受威脅星球的非Archwing任務收集。",
-      "rewards": "個人目標：1,000,000傷害；獎勵200,000 Credits＋Orokin催化劑。",
-      "location": "冥王星中繼站受威脅；導航Fomorian活動節點。",
-      "requirements": "需要Archwing與Fomorian Disruptor；實際配方、消耗及任務狀態以遊戲內顯示為準。",
-      "imageUrl": "https://www-static.warframe.com/uploads/thumbnails/7bab307fb331aebac4fbd65537be7378_1600x900.jpg",
-      "imageSourceUrl": "https://www.warframe.com/en/news/fomorian-attack"
+      "title": "近期修正補報｜Icebind 投票先聊清楚，別急著按下去 😏",
+      "publishedDate": "2026-10-08",
+      "category": "official-news",
+      "summary": "10月8日的Hotfix 44.1.1已調整The Icebind投票：全員選好Cryobell不再立刻倒數，房主可以手動開始，但已有3人投票時仍會自動啟動。此次也修正隊員離開導致支線目標卡住，以及特定支線目標敵人不生成的問題。配圖為官方模式介面示意；先把條件講清楚，六個人一起衝才不會有人喘到一半掉隊 😏",
+      "memberBenefit": "氏族揪六人隊時能先討論任務限制與配裝，減少誤投票；修正涵蓋部分進度阻塞，但不代表所有已知問題都已解決。",
+      "nextStep": "揪團時先約好暫緩投票，確認每個人的Cryobell及裝備後再開始；第三票仍會觸發倒數。",
+      "sourceUrl": "https://forums.warframe.com/topic/1527669-iceblade-of-narin-the-icebind-hotfix-4411/",
+      "imageUrl": "https://www-static.warframe.com/uploads/fcbcb356e12efd1149d69cf121dfe486.jpg",
+      "imageSourceUrl": "https://forums.warframe.com/topic/1527298-update-4410-iceblade-of-narin-the-icebind/"
     },
     {
-      "title": "Taubound 限時活動要來了，獎勵可不會等你慢慢摸",
-      "publishedDate": "2026-10-08",
-      "summary": "官方公告活動期間為10月15日至11月17日，精確時刻尚未公布。完成Eris任務收集Moonflesh，向Praghasa交換披飾、護甲組與增幅器外觀，並體驗限定對話。獎勵都送到眼前了，別只會流口水，該出手就出手 😏",
-      "memberBenefit": "本活動不會重跑，限時獎勵和專屬劇情值得提前揪團安排。同日加入的Tau序章則永久保留，另需完成The Hex與The Old Peace。",
-      "nextStep": "等活動開放，拿好裝備一起刷Eris；這回可別只在隊伍裡喊「我準備好了」卻一直不出門 😏",
-      "sourceUrl": "https://www.warframe.com/en/news/epoch-operation-taubound",
-      "imageUrl": "https://www-static.warframe.com/uploads/thumbnails/d4940c6cab0ad90994427983cc628371_1600x900.jpg",
-      "category": "limited-material",
-      "materialInfo": "Moonflesh：活動期間完成Eris任務取得，用於向Praghasa交換活動獎勵。",
-      "requirements": "完成Vor's Prize；活動期間解除Eris一般星圖解鎖限制。",
-      "imageSourceUrl": "https://www.warframe.com/en/news/epoch-operation-taubound"
+      "title": "近期處理結果補報｜Riven 多扣的赤毒已退，快看信箱",
+      "publishedDate": "2026-10-09",
+      "category": "official-news",
+      "summary": "官方10月9日14:15 ET更新：Spliced Riven重洗時錯誤加倍扣除Kuva的補償腳本，已在所有平台執行完畢，受影響玩家應透過遊戲內信件收到退款。這是近期處理結果補報，不是今天新開的全民獎勵；配圖為官方Riven介面示意，非補償信件截圖。赤毒都退到眼前了，別只顧著摸MOD，信箱也摸一下 😏",
+      "memberBenefit": "曾在問題期間重洗拼接Riven的成員可確認是否收到退款，避免把錯誤扣款當作正常成本；沒有受影響的玩家不應預期領到補償。",
+      "nextStep": "登入檢查遊戲內收件匣；若確實曾受影響卻沒收到，保留重洗時間與紀錄，再依官方公告聯絡客服。",
+      "sourceUrl": "https://forums.warframe.com/topic/1527399-psa-spliced-riven-kuva-cost-doubling-resolved-script-complete/",
+      "imageUrl": "https://www-static.warframe.com/uploads/89cc566c1c33fbd786304b797f15b369.jpg",
+      "imageSourceUrl": "https://forums.warframe.com/topic/1527298-update-4410-iceblade-of-narin-the-icebind/"
+    },
+    {
+      "title": "限時提醒｜3隻Conquera玩偶警報，10/16凌晨收工",
+      "publishedDate": "2026-10-14",
+      "category": "urgent-mission",
+      "summary": "官方即時快照仍列出3項Tenno United警報：木星Ganymede中斷、塞德娜Selkie生存、火星Alator攔截，分別獎勵Conquera Kuaka、Sawgaw、Virmink玩偶。三項都在台灣10月16日02:00到期，每項另有10,000 Credits；這是正在開放的限時提醒，不是新公告。喜歡抱軟軟的就先拿回船上，錯過期限可沒得撒嬌補領 😏",
+      "memberBenefit": "可在剩不到兩天的時間內補齊船內裝飾；火星警報敵人等級10～15，較適合邀新成員一起完成。",
+      "nextStep": "打開導航的Tenno United警報，確認尚未完成的獎勵後揪團；不要把一般星圖節點當成警報版本。",
+      "sourceUrl": "https://api.warframe.com/cdn/worldState.php",
+      "sourceItemId": "6abdec7a31ca47b57807bccd,6abded092d8cfe07a40b28b9,6abded73ed45657d35105a73",
+      "expiresAt": "2026-10-15T18:00:00Z",
+      "rewards": "木星：Conquera Kuaka Floof；塞德娜：Conquera Sawgaw Floof；火星：Conquera Virmink Floof。每項另附10,000 Credits。",
+      "location": "Ganymede／木星（中斷，20～30級）；Selkie／塞德娜（生存，15～20級）；Alator／火星（攔截，10～15級）。",
+      "requirements": "完成各自的Tenno United警報任務；能否進入與剩餘時間以遊戲內導航為準。"
     }
   ],
   "liveIntel": {
     "status": "verified",
-    "checkedAt": "2026-10-13T02:43:33.293920+00:00",
-    "note": "已讀取官方世界狀態；Fomorian正在開放，快照與獎勵以遊戲內導航為準。"
+    "checkedAt": "2026-10-13T19:03:06.794735+00:00",
+    "note": "最近24小時未查到新增官方公告，本期補報近期修正與限時提醒。快照仍有Fomorian：Omega Isotope限定掉落，需Archwing與干擾器，目標獎勵20萬現金＋Orokin催化劑，最晚10/17 03:14結束、可能提早擊破；未列Razorback或Forma警報獎勵。"
   }
 }
