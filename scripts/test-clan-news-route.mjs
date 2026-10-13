@@ -16,6 +16,7 @@ const secret = 'test-only-secret-abcdefghijklmnop';
 const guildId = '123456789012345678';
 function setup({ enabled = false, deployment = 'production', stale = false } = {}) {
   process.env.CRON_SECRET = secret;
+  delete process.env.KETER_NEWS_DISPATCH_TOKEN;
   process.env.DISCORD_GUILD_ID = guildId;
   process.env.KETHER_CLAN_NEWS_ENABLED = String(enabled);
   process.env.VERCEL_ENV = deployment;
@@ -42,6 +43,12 @@ const request = (action, token = secret) => new Request(`https://example.vercel.
 
 test('unauthorized request performs no fetch or send', async () => { const f = setup(); const r = await GET(request('', 'wrong')); assert.equal(r.status, 401); assert.equal(f.fetches(), 0); assert.equal(f.posts(), 0); });
 test('missing CRON_SECRET fails closed', async () => { const f = setup(); delete process.env.CRON_SECRET; assert.equal((await GET(request('status'))).status, 401); assert.equal(f.posts(), 0); });
+test('scoped dispatcher secret authorizes only this news route without cron secret', async () => {
+  const f = setup(); delete process.env.CRON_SECRET;
+  process.env.KETER_NEWS_DISPATCH_TOKEN = 'dispatch-only-abcdefghijklmnop';
+  assert.equal((await GET(request('status', process.env.KETER_NEWS_DISPATCH_TOKEN))).status, 200);
+  assert.equal((await GET(request('status', 'wrong'))).status, 401); assert.equal(f.posts(), 0);
+});
 test('disabled production cron never fetches or sends', async () => { const f = setup(); const r = await GET(request()); assert.equal((await r.json()).reason, 'publication-disabled'); assert.equal(f.fetches(), 0); assert.equal(f.posts(), 0); });
 test('preview deployment cannot publish even with enabled flag', async () => { const f = setup({ enabled: true, deployment: 'preview' }); const r = await GET(request()); assert.equal((await r.json()).published, false); assert.equal(f.posts(), 0); });
 test('authenticated preview renders bulletin without send', async () => { const f = setup(); const r = await GET(request('preview')); assert.equal(r.status, 200); const b = await r.json(); assert.equal(b.bulletin.date, taipeiDate()); assert.deepEqual(b.message.allowed_mentions.parse, []); assert.equal(f.posts(), 0); });

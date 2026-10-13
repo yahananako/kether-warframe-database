@@ -1,19 +1,17 @@
 # Keter每日新聞
 
-目的頻道：1034104146363699281。主標題精確為「Keter每日新聞」，日期另列。BOT語氣調皮、輕度曖昧雙關，不加「喵」；幫助欄位為「對氏族成員的幫助」。內容涵蓋官方消息、限定材料、警報、緊急任務與值得參加的獎勵，圖片附官方來源。
+目的頻道：1034104146363699281（📣氏族公告），guild 1033399126936789023，BOT 1523377443107508294。主標題精確為「Keter每日新聞」，日期另列；調皮、輕度曖昧雙關、不加「喵」。每則含「對氏族成員的幫助」，官方圖片與來源。
 
-## 現況（2026-10-13）
+## 正式試發
 
-PR #35已合併並正式部署。Production已有CRON_SECRET、DISCORD_BOT_TOKEN、DISCORD_GUILD_ID及DATABASE_URL設定，新聞預覽通過。BOT身分核對成功，但讀取指定頻道回傳HTTP 403、Discord code 50001（Missing Access）；尚未發訊息，也沒有送達紀錄。準備稿件閘門保持disabled，直到正式試發取得真實Discord訊息連結。
+2026-10-13權限解除後，BOT身分、目的頻道及實際發送均已驗證。今日兩則包含官方即時Fomorian材料與任務情報、10月8日Taubound公告。送達：https://discord.com/channels/1033399126936789023/1034104146363699281/1559409245340835852 。Fomorian配圖為官方歷史示意圖，非本次截圖。發布閘門記錄真實verifiedAt及messageUrl。
 
-今日稿件已核對官方即時World State：Fomorian正在開放，包含Omega Isotope、Archwing及Fomorian Disruptor條件、目標獎勵與期限；並附10月8日Taubound官方公告。Fomorian圖片是官方歷史示意圖，不冒稱本次截圖。
+## 每日流程
 
-## 排程與限制
+單一ChatGPT automation「Keter每日新聞」使用Asia/Taipei，每日03:00與04:00觸發，兩次至少間隔一小時：03:00查證並更新當日GitHub來源；04:00核對預覽、目的頻道及未到期任務後呼叫正式發布API。排程時刻是啟動時刻，實際Discord送達仍受連線及查證耗時影響。Vercel Hobby cron「0 20 * * *」保留作04:00～04:59備援；同日durable delivery表及Discord nonce防止重複訊息。
 
-Vercel cron「0 20 * * *」對應台灣04:00。專案目前Hobby方案，排程可能在04:00～04:59執行，尚不能保證04:00準時送出；不可把設定時刻當成送達證據。獨立03:30準備任務先核對enabled／verifiedAt／lastVerifiedMessageUrl；未驗證時只交付草稿，不更新正式來源。精確04:00發送仍待完成。
+API接受CRON_SECRET或只用於新聞route的KETER_NEWS_DISPATCH_TOKEN，使用timingSafeEqual比對。後者存production encrypted env，授權自動化透過Vercel connector取用；不讀DISCORD_BOT_TOKEN、不輸出任何憑證、不放入Git或排程文字。請用專案ID，不傳已知會造成403的teamId。
 
-## 頻道權限解除後
+## 驗證與錯誤处理
 
-讓現有Keter BOT可以檢視頻道、傳送訊息及嵌入連結，並檢查分類繼承的拒絕權限。以CRON_SECRET授權呼叫/api/discord/clan-news?action=status，確認channelId、guildId與BOT身分，再核對當日preview。使用?action=publish試發，只有published=true及真實messageUrl才表示成功；durable delivery表避免同日重複發送。成功後更新閘門enabled=true、verifiedAt與lastVerifiedMessageUrl，再完成精確04:00排程。
-
-憑證不得提交Git、放入新聞稿或輸出到對話。遇到不明送出結果時先查delivery狀態，不盲目重發。舊日期稿及已到期任務會被拒絕或移除。
+API status須核對channel/guild/BOT；preview不送訊息。published=true及messageUrl才是送達證據；already-published只代表既有送達紀錄，不能另發一則。對未知結果、逾時或5xx先核對durable狀態，不盲目重發。過期稿、舊日期或不可信來源被拒絕。即時World State網頁工具若403，可嘗試直接HTTPS讀官方URL；無法核對時明確標示，不編造任務或材料。

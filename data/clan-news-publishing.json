@@ -1,8 +1,8 @@
 {
-  "enabled": false,
+  "enabled": true,
   "channelId": "1034104146363699281",
   "endpoint": "https://kether-warframe-database.vercel.app/api/discord/clan-news",
-  "verifiedAt": null,
-  "lastVerifiedMessageUrl": null,
-  "reason": "Production deployed; BOT identity verified, but Discord GET target channel returned HTTP 403 / code 50001 Missing Access. No message has been sent. Requires channel access before verified delivery."
+  "verifiedAt": "2026-10-13T03:36:58.945435+00:00",
+  "lastVerifiedMessageUrl": "https://discord.com/channels/1033399126936789023/1034104146363699281/1559409245340835852",
+  "reason": "Production BOT identity, destination guild/channel and actual message delivery verified."
 }

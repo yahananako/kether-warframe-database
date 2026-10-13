@@ -11,11 +11,13 @@ function reply(value: unknown, status = 200) {
   return Response.json(value, { status, headers: { "Cache-Control": "no-store" } });
 }
 function authorized(req: Request) {
-  const secret = process.env.CRON_SECRET?.trim();
-  if (!secret || secret.length < 16) return false;
   const received = Buffer.from(req.headers.get("authorization") ?? "");
-  const expected = Buffer.from(`Bearer ${secret}`);
-  return received.length === expected.length && timingSafeEqual(received, expected);
+  return [process.env.CRON_SECRET, process.env.KETER_NEWS_DISPATCH_TOKEN].some((value) => {
+    const secret = value?.trim();
+    if (!secret || secret.length < 16) return false;
+    const expected = Buffer.from(`Bearer ${secret}`);
+    return received.length === expected.length && timingSafeEqual(received, expected);
+  });
 }
 async function loadBulletin() {
   const response = await fetch(CLAN_NEWS_SOURCE, { cache: "no-store", redirect: "error", signal: AbortSignal.timeout(10000) });
