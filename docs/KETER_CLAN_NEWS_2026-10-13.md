@@ -4,9 +4,9 @@
 
 ## 交付流程
 
-1. 既有 ChatGPT 每日晨報查證官方新聞，另外整理氏族稿。
-2. 確認正式試發成功後，將 `data/clan-news-publishing.json` 的enabled設為true，保存verifiedAt與真實訊息連結。晨報核對該狀態後將當日稿更新到 `data/warframe-clan-news.json`；只需 GitHub 的現有連線，不傳輸 BOT Token。該檔案只有可公開的氏族新聞。
-3. Vercel Cron 於 UTC 02:00（台灣上午10點；Hobby執行可能落在該小時內）呼叫 `/api/discord/clan-news`，讀取當日 JSON，透過現有 KETER BOT 發布一則多張 Embed 的圖文新聞。
+1. 獨立氏族新聞準備排程於台灣03:30查證官方新聞，整理04:00發布稿；個人晨報維持原時間。
+2. 確認正式試發成功後，將 `data/clan-news-publishing.json` 的enabled設為true，保存verifiedAt與真實訊息連結。氏族新聞準備排程核對該狀態後將當日稿更新到 `data/warframe-clan-news.json`；只需 GitHub 的現有連線，不傳輸 BOT Token。該檔案只有可公開的氏族新聞。
+3. Vercel Cron 於 UTC 20:00（台灣次日清晨04:00；Vercel若為Hobby，可能落在04:00～04:59內，精準時刻需核對方案）呼叫 `/api/discord/clan-news`，讀取當日 JSON，透過現有 KETER BOT 發布一則多張 Embed 的圖文新聞。
 4. 同一天同頻道只發一份。Neon原子領取＋持久發送狀態，Discord nonce另處理短時間重試。逾期稿、不明傳送結果不會自動重發。
 
 ## 啟用前必須核對
@@ -49,3 +49,7 @@ category可為official-news、limited-material、urgent-mission。materialInfo�
 即時情報以liveIntel記錄verified/unavailable、當天checkedAt及說明。官方世界狀態來源https://api.warframe.com/cdn/worldState.php須帶sourceItemId、真實expiresAt和已核對的liveIntel；相同API中的不同任務可按ID分開。無法取得即時資料時，寫unavailable，不能假稱今日沒有任務。
 
 追蹤Fomorian、Razorback及其活動限定材料，並留意Forma／催化劑／反應爐等限時獎勵；具體名稱、出現狀態、材料與獎勵以本次官方資料核對，不以口語「福馬林」臆測正在開放的任務。
+
+## 04:00發布與當日補發
+
+使用者於2026/10/13指定台灣清晨04:00發布，準備排程需03:30完成當日稿，以免與發布同時觸發讀到昨日檔案。今天另要求補發測試，不應等到明日；正式連線可用後先核對指定頻道，再補發當日稿並回傳真實訊息連結。精準04:00是否可實現須核對Vercel計畫與Cron限制，不能把Hobby的小時內彈性排程宣稱精準送達。
