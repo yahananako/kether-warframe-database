@@ -9,6 +9,7 @@ import {useKetherEffects} from "./KetherEffectsProvider";
 import HomeTicker from "./HomeTicker";
 import { homeNotices, HOME_NOTICE_VERSION } from "../data/homeNotices";
 import HomeAuthMini from "./HomeAuthMini";
+import KetherEffectsMenu from "./KetherEffectsMenu";
 import { KETHER_VERSION_LABEL } from "../data/siteVersion";
 
 import styles from "./HomeImmersive.module.css";
@@ -205,6 +206,9 @@ export default function HomeImmersive() {
             <small>OF PARADISO · WARFRAME DATABASE</small>
           </Link>
           <div className={styles.topActions}>
+            <div className={styles.effectsControl}>
+              <KetherEffectsMenu variant="home" />
+            </div>
             <button type="button" className={`${styles.control} ${styles.icon}`} onClick={(e) => open("menu", e.currentTarget)} aria-label="開啟選單">☰</button>
             <a href="/notifications" className={`${styles.control} ${styles.icon}`} onClick={(e) => { e.preventDefault(); open("notice", e.currentTarget); }} aria-label="開啟通知"><Bell size={23}/>{unread && <span className={styles.unread} aria-hidden="true" />}</a>
             <div className={styles.auth}><HomeAuthMini /></div>
