@@ -196,6 +196,10 @@ export function classifyDatabaseRow(category: string, row: SheetRow) {
   }
 
   const groups = CATEGORY_TAXONOMY[category];
+  // 靈化創件可適用 Prime 基底；此列仍屬靈化分類，不能被 Prime 別名搶走。
+  if (["primary", "secondary", "melee"].includes(category) && /靈化|應感/.test(row.section)) {
+    return groups.find(group => group.key === "incarnon")!;
+  }
   const haystack = [
     row.section,
     row.chineseName,

@@ -38,6 +38,8 @@ jobs:
         run: node --import tsx scripts/test-safe-next.ts
       - name: TypeScript check
         run: npx tsc --noEmit
+      - name: Incarnon autocomplete and data sync regression checks
+        run: node --import tsx scripts/test-incarnon-sync.ts
       - name: Next.js production build
         run: npx next build
       - name: Install Chromium smoke test tools
