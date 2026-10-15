@@ -1,4 +1,5 @@
 import fs from "node:fs";
+import { buildIncarnonAcquisition } from "../../data/incarnonAcquisition.shared.mjs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -156,8 +157,9 @@ const kuvaCatalog = readExportedArray(
   "KUVA_WEAPONS",
 );
 const codaCatalog = readExportedArray("data/codaWeapons.ts", "CODA_WEAPONS");
+const incarnonAcquisition = buildIncarnonAcquisition(JSON.parse(fs.readFileSync(path.join(siteRoot, "data/incarnonWeapons.generated.json"), "utf8")));
 const equipmentCatalogMap = new Map();
-for (const item of [...baseEquipmentCatalog, ...kuvaCatalog, ...codaCatalog]) {
+for (const item of [...baseEquipmentCatalog, ...kuvaCatalog, ...codaCatalog, ...incarnonAcquisition]) {
   equipmentCatalogMap.set(normalizedEnglishName(item.englishName), item);
 }
 const equipmentCatalog = [...equipmentCatalogMap.values()];
@@ -241,7 +243,7 @@ warframes.push({
 const detailedWeapons = readExportedArray(
   "app/api/discord/data/weapons.ts",
   "WEAPON_ACQUISITION_DATA",
-).filter((record) => record && record.seriesKey !== "kuva");
+).filter((record) => record && record.seriesKey !== "kuva" && record.seriesKey !== "incarnon");
 const detailedWeaponNames = new Set(
   detailedWeapons.map((record) => {
     const english = String(record.name || "")

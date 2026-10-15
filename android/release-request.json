@@ -1,5 +1,5 @@
 {
-  "versionName": "3.0.15",
-  "versionCode": 45,
-  "releaseNotes": "完整新增 14 把勾瘩系列武器的官方繁中名稱、取得方式、A／B 輪換、特性與不可交易說明；同步網站、BOT 與 Android 離線搜尋，新增勾瘩系列分類。"
+  "versionName": "3.0.16",
+  "versionCode": 46,
+  "releaseNotes": "修正靈化查詢名單不全：接通完整 53 組武器（主要17、次要18、近戰18），統一網站、BOT 與 App 資料；修正原生靈化名稱及取得方式，保留 Prime 基底交易資料。"
 }

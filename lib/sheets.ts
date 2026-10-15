@@ -1,4 +1,5 @@
 import { EQUIPMENT_CATALOG } from "../data/equipmentCatalog.generated";
+import { INCARNON_WEAPONS } from "../data/incarnonAcquisition";
 import { CODA_WEAPONS } from "../data/codaWeapons";
 import { KUVA_WEAPONS } from "../data/kuvaWeapons.generated";
 
@@ -267,7 +268,7 @@ function mergeEquipmentCatalog(category: string, sheetRows: SheetRow[]): SheetRo
     EQUIPMENT_CATALOG.map((row) => [normalizedEquipmentName(row.englishName), row]),
   );
 
-  for (const row of [...KUVA_WEAPONS, ...CODA_WEAPONS]) {
+  for (const row of [...KUVA_WEAPONS, ...CODA_WEAPONS, ...INCARNON_WEAPONS]) {
     catalogByEnglishName.set(normalizedEquipmentName(row.englishName), row);
   }
 

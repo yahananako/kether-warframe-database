@@ -1,4 +1,5 @@
 import { EQUIPMENT_CATALOG } from "../../../../data/equipmentCatalog.generated";
+import { INCARNON_WEAPONS } from "../../../../data/incarnonAcquisition";
 import { CODA_WEAPONS } from "../../../../data/codaWeapons";
 import { KUVA_WEAPONS } from "../../../../data/kuvaWeapons.generated";
 import {
@@ -6,7 +7,7 @@ import {
   type WeaponAcquisitionRecord,
 } from "./weapons";
 
-type CatalogWeapon = (typeof EQUIPMENT_CATALOG)[number] | (typeof KUVA_WEAPONS)[number] | (typeof CODA_WEAPONS)[number];
+type CatalogWeapon = (typeof EQUIPMENT_CATALOG)[number] | (typeof KUVA_WEAPONS)[number] | (typeof CODA_WEAPONS)[number] | (typeof INCARNON_WEAPONS)[number];
 
 function recordKey(value: string) {
   return String(value || "")
@@ -79,7 +80,7 @@ function buildAllWeaponRecords() {
   }
 
   // 對手武器清單最後寫入，讓已核對的繁中名稱與最新武器資料成為唯一結果。
-  for (const item of [...KUVA_WEAPONS, ...CODA_WEAPONS]) {
+  for (const item of [...KUVA_WEAPONS, ...CODA_WEAPONS, ...INCARNON_WEAPONS]) {
     records.set(recordKey(item.englishName), catalogToRecord(item));
   }
 
