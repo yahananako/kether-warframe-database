@@ -35,6 +35,7 @@ export const WEAPON_SERIES_CHOICES = [
   { name: "集團", value: "syndicate" },
   { name: "赤毒", value: "kuva" },
   { name: "信條", value: "tenet" },
+  { name: "勾瘩", value: "coda" },
   { name: "靈化", value: "incarnon" },
   { name: "活動 / 特殊", value: "event" },
   { name: "任務 / 掉落", value: "drop" },

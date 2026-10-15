@@ -38,6 +38,13 @@ const weaponGroups = (weaponLabel: string): CategoryGroup[] => [
     patterns: [/信條/i, /tenet/i],
   },
   {
+    key: "coda",
+    label: `勾瘩${weaponLabel}`,
+    description: "技改細胞・勾瘩體活心細胞兌換武器",
+    accent: "pink",
+    patterns: [/勾瘩/i, /\bcoda\b/i],
+  },
+  {
     key: "incarnon",
     label: `靈化${weaponLabel}`,
     description: "靈化武器與靈化轉接器玩法",
