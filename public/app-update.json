@@ -1,8 +1,8 @@
 {
-  "versionCode": 45,
-  "versionName": "3.0.15",
-  "apkUrl": "https://github.com/yahananako/kether-warframe-database/releases/download/app-v3.0.15/KETHER-Warframe-v3.0.15.apk",
-  "sha256": "46b39c4d506a9a0281615305d956e124a7ce158cc62dbe33df1b1956e759f8e7",
+  "versionCode": 46,
+  "versionName": "3.0.16",
+  "apkUrl": "https://github.com/yahananako/kether-warframe-database/releases/download/app-v3.0.16/KETHER-Warframe-v3.0.16.apk",
+  "sha256": "68b724722abb312e709540db10212eef2c5626915f0bfb3706ad8a41403d8b53",
   "required": false,
-  "notes": "完整新增 14 把勾瘩系列武器的官方繁中名稱、取得方式、A／B 輪換、特性與不可交易說明；同步網站、BOT 與 Android 離線搜尋，新增勾瘩系列分類。"
+  "notes": "修正靈化查詢名單不全：接通完整 53 組武器（主要17、次要18、近戰18），統一網站、BOT 與 App 資料；修正原生靈化名稱及取得方式，保留 Prime 基底交易資料。"
 }
