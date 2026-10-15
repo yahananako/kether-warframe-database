@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import { readFile } from "node:fs/promises";
 import vm from "node:vm";
 import { NextRequest } from "next/server";
+import { classifyDatabaseRow } from "../data/categoryTaxonomy";
 import { CODA_WEAPONS } from "../data/codaWeapons";
 import { ALL_WEAPON_ACQUISITION_DATA } from "../app/api/discord/data/allWeapons";
 import { buildWeaponAcquisitionResponse, searchWeaponAcquisitionChoices } from "../app/api/discord/weaponAcquisition";
@@ -22,6 +23,7 @@ async function main() {
   assert.equal(ALL_WEAPON_ACQUISITION_DATA.filter(w => w.seriesKey === "coda").length, 14);
 
   for (const weapon of CODA_WEAPONS) {
+    assert.equal(classifyDatabaseRow(weapon.category, weapon).key, "coda");
     for (const query of [weapon.chineseName, weapon.chineseName.replaceAll(" ", ""), weapon.englishName]) {
       const response = await GET(new NextRequest(`https://kether.test/api/bot-search/weapon?q=${encodeURIComponent(query)}`));
       const payload = await response.json();
