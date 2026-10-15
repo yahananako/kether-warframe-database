@@ -1,4 +1,5 @@
 import { EQUIPMENT_CATALOG } from "../data/equipmentCatalog.generated";
+import { CODA_WEAPONS } from "../data/codaWeapons";
 import { KUVA_WEAPONS } from "../data/kuvaWeapons.generated";
 
 export type SheetRow = {
@@ -36,19 +37,19 @@ export const SHEET_GIDS: Record<string, { gid: string; sheetName: string; title:
     gid: "1365606609",
     sheetName: "主要武器",
     title: "主要武器",
-    subtitle: "主要武器依標準、Prime、赤毒、教條與應感系列分類，附交易價格與市場連結。"
+    subtitle: "主要武器依標準、Prime、赤毒、教條、勾瘩與應感系列分類，附交易價格與市場連結。"
   },
   secondary: {
     gid: "1587192708",
     sheetName: "次要武器",
     title: "次要武器",
-    subtitle: "次要武器依標準、Prime、赤毒、教條與應感系列分類，附交易價格與市場連結。"
+    subtitle: "次要武器依標準、Prime、赤毒、教條、勾瘩與應感系列分類，附交易價格與市場連結。"
   },
   melee: {
     gid: "1282903836",
     sheetName: "近戰武器",
     title: "近戰武器",
-    subtitle: "近戰武器依標準、Prime、赤毒、教條與應感系列分類，附交易價格與市場連結。"
+    subtitle: "近戰武器依標準、Prime、赤毒、教條、勾瘩與應感系列分類，附交易價格與市場連結。"
   },
   companions: {
     gid: "674918338",
@@ -266,7 +267,7 @@ function mergeEquipmentCatalog(category: string, sheetRows: SheetRow[]): SheetRo
     EQUIPMENT_CATALOG.map((row) => [normalizedEquipmentName(row.englishName), row]),
   );
 
-  for (const row of KUVA_WEAPONS) {
+  for (const row of [...KUVA_WEAPONS, ...CODA_WEAPONS]) {
     catalogByEnglishName.set(normalizedEquipmentName(row.englishName), row);
   }
 

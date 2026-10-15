@@ -1,11 +1,12 @@
 import { EQUIPMENT_CATALOG } from "../../../../data/equipmentCatalog.generated";
+import { CODA_WEAPONS } from "../../../../data/codaWeapons";
 import { KUVA_WEAPONS } from "../../../../data/kuvaWeapons.generated";
 import {
   WEAPON_ACQUISITION_DATA,
   type WeaponAcquisitionRecord,
 } from "./weapons";
 
-type CatalogWeapon = (typeof EQUIPMENT_CATALOG)[number] | (typeof KUVA_WEAPONS)[number];
+type CatalogWeapon = (typeof EQUIPMENT_CATALOG)[number] | (typeof KUVA_WEAPONS)[number] | (typeof CODA_WEAPONS)[number];
 
 function recordKey(value: string) {
   return String(value || "")
@@ -77,8 +78,8 @@ function buildAllWeaponRecords() {
     records.set(recordKey(item.englishName), catalogToRecord(item));
   }
 
-  // 赤毒清單最後寫入，讓官方公開匯出的繁中名稱與最新武器資料成為唯一結果。
-  for (const item of KUVA_WEAPONS) {
+  // 對手武器清單最後寫入，讓已核對的繁中名稱與最新武器資料成為唯一結果。
+  for (const item of [...KUVA_WEAPONS, ...CODA_WEAPONS]) {
     records.set(recordKey(item.englishName), catalogToRecord(item));
   }
 

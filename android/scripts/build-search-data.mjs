@@ -155,8 +155,9 @@ const kuvaCatalog = readExportedArray(
   "data/kuvaWeapons.generated.ts",
   "KUVA_WEAPONS",
 );
+const codaCatalog = readExportedArray("data/codaWeapons.ts", "CODA_WEAPONS");
 const equipmentCatalogMap = new Map();
-for (const item of [...baseEquipmentCatalog, ...kuvaCatalog]) {
+for (const item of [...baseEquipmentCatalog, ...kuvaCatalog, ...codaCatalog]) {
   equipmentCatalogMap.set(normalizedEnglishName(item.englishName), item);
 }
 const equipmentCatalog = [...equipmentCatalogMap.values()];

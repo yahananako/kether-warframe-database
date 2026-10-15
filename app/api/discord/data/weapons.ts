@@ -43,22 +43,6 @@ export const WEAPON_SERIES_CHOICES = [
 
 export const WEAPON_ACQUISITION_DATA: WeaponAcquisitionRecord[] = [
   {
-    key: "coda-motovore",
-    name: "Coda Motovore / 勾瘩 鋸獸",
-    aliases: ["Coda Motovore", "CodaMotovore", "Motovore", "勾瘩 鋸獸", "勾瘩鋸獸", "鋸獸"],
-    weaponType: "近戰武器",
-    weaponTypeKey: "melee",
-    series: "勾瘩",
-    seriesKey: "coda",
-    source: "擊殺技改細胞・勾瘩體取得活心細胞，再到霍爾瓦尼亞中央廣場向愛琳娜（Eleanor）以 10 個活心細胞兌換成品。",
-    parts: "直接兌換完整武器，不需藍圖或製作部件；需精通段位 17。",
-    tips: "由機車零組件變異而來的鎚類武器；物理傷害 MOD 加成效果為一般的 6 倍，齒輪會隨主要物理傷害類型變形，並提供對應增益。",
-    notes: "批次 A；商店每 4 天於台灣時間 08:00 輪換，每輪每種武器限購一把，A／B 輪替下同一武器每 8 天重新上架。轉價加成隨商店輪換隨機生成；每次使用 Forma 提高等級上限 2 級，5 次可達 40 級。",
-    price: "不可交易",
-    marketUrl: "",
-    tradeNote: "武器本體不可交易；以活心細胞向愛琳娜兌換。",
-  },
-  {
     key: "torid",
     name: "Torid / 托里德",
     aliases: ["torid", "托里德", "毒榴彈"],
