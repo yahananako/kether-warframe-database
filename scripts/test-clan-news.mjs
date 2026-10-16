@@ -106,3 +106,20 @@ test('copied guild ID whitespace is normalized before destination check', async 
   const f = fixture(); f.deps.guildId = ` ${guildId}\n`;
   assert.equal((await deliverBulletin(bulletin(), f.deps)).published, true);
 });
+
+test('verified market snapshot appears in KETER daily news', () => {
+  const input = { ...bulletin(), market: { status: 'verified', date: '2026-10-13', updatedCount: 341, totalPlatinum: 6482, previousTotalPlatinum: 6480, unpriced: ['Pangolin Prime'] } };
+  const message = buildDiscordMessage(validateBulletin(input, now));
+  assert.match(message.content, /6,482/);
+  assert.match(message.content, /341/);
+  assert.match(message.content, /Pangolin Prime/);
+  assert.match(message.content, /Keter每日新聞/);
+});
+test('unverified market never shows stale figures', () => {
+  const input = { ...bulletin(), market: { status: 'unavailable', date: '2026-10-13' } };
+  const message = buildDiscordMessage(validateBulletin(input, now));
+  assert.match(message.content, /尚未完成驗證/);
+});
+test('market snapshot must match Taiwan bulletin date', () => {
+  assert.throws(() => validateBulletin({ ...bulletin(), market: { status: 'verified', date: '2026-10-12', updatedCount: 1, totalPlatinum: 10 } }, now));
+});
