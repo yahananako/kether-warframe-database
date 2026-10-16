@@ -142,12 +142,12 @@ export function buildDiscordMessage(b: ClanBulletin) {
     : ["今日價格尚未完成驗證，不使用舊價冒充即時行情。"];
   const marketEmbed = {
     title: "📊 Warframe Market 今日白金行情",
-    description: marketLines.join("\\n").slice(0, 4000),
+    description: marketLines.join("\n").slice(0, 4000),
     color: 0x48b8cf,
     url: "https://docs.google.com/spreadsheets/d/1ll27z4P_9a9ly2HsxNJdOHW2mzTL8_BHUqLZUtxy9Lc/edit",
     footer: { text: `KETER · ${b.date} · 價格以當日驗證結果為準` },
   };
-  const content = `📰 **Keter每日新聞**\\n${b.date.replaceAll("-", "/")}${b.articles.length ? "" : `\\n${b.noNewsText}`}${intel}`;
+  const content = `📰 **Keter每日新聞**\n${b.date.replaceAll("-", "/")}${b.articles.length ? "" : `\n${b.noNewsText}`}${intel}`;
   if (content.length > 2000) throw new Error("Daily news content exceeds Discord limit");
   const marketSize = marketEmbed.title.length + marketEmbed.description.length + marketEmbed.footer.text.length;
   if (total + marketSize > 5900) throw new Error("Bulletin with market summary exceeds embed budget");
