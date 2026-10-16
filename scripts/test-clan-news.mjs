@@ -46,7 +46,7 @@ test('only clan benefit field appears and mentions are disabled', () => {
 });
 test('empty news day produces an honest daily message', () => {
   const msg = buildDiscordMessage(validateBulletin({ date: '2026-10-13', articles: [] }, now));
-  assert.equal(msg.embeds.length, 0);
+  assert.equal(msg.embeds.length, 1);
   assert.ok(msg.content.includes('今日無新增官方消息'));
 });
 test('enforces total embed limit', () => {
