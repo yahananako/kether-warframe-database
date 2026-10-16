@@ -64,5 +64,24 @@
       "sourceUrl": "https://forums.warframe.com/topic/1528685-coming-soon-devstream-198-tau-part-one/",
       "expiresAt": "2026-10-30T19:00:00.000Z"
     }
-  ]
+  ],
+  "market": {
+    "status": "verified",
+    "date": "2026-10-16",
+    "updatedCount": 341,
+    "totalPlatinum": 6482,
+    "previousTotalPlatinum": 6480,
+    "unpriced": [
+      "Primed Vigor",
+      "Primed Sure Footed",
+      "Tenet Arca Plasmor",
+      "Tenet Envoy",
+      "Primed Shred",
+      "Tenet Cycron",
+      "Pangolin Prime",
+      "Primed Fury",
+      "Primed Animal Instinct",
+      "Primed Pack Leader"
+    ]
+  }
 }
