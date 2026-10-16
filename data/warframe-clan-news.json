@@ -1,87 +1,60 @@
 {
-  "date": "2026-10-16",
+  "date": "2026-10-17",
   "liveIntel": {
     "status": "verified",
-    "checkedAt": "2026-10-15T19:58:33.143125+00:00",
-    "note": "已核對Taubound、Fomorian、警報與入侵。昨日 Conquera 玩偶警報已到期；本快照未見 Razorback，以及 Forma／Forma 藍圖或 Orokin 催化劑／反應爐的警報、入侵獎勵。Fomorian 催化劑獎勵另列下方。"
+    "checkedAt": "2026-10-16T19:02:38.293332+00:00",
+    "note": "本次快照未列 Fomorian 或 Razorback；未見 Forma／Forma 藍圖、Orokin 催化劑／反應爐的警報或入侵獎勵。Taubound 的 Moonflesh 輪替警報仍有列出，短時任務請依導航；昨日已報的修正與預告不重複刊登。"
   },
   "articles": [
     {
-      "title": "Taubound 正式開跑：Moonflesh 不吃加成，別白白嗑藥",
-      "publishedDate": "2026-10-15",
-      "category": "limited-material",
-      "sourceItemId": "6ad0ea700000000000000000",
-      "summary": "Epoch Operation: Taubound 已上線，完成 Vor's Prize 即可參與，不必先通關 Tau 序章。Moonflesh 可向 Eris 的 Praghasa 兌換獎勵；Contegorus 護甲分別在社群進度 30%、60%、90% 後開放購買，別把尚未解鎖的獎勵當成已到手。",
-      "materialInfo": "Eris 感染者敵人有機率掉落 Moonflesh，蛆蟲除外：一般每次掉落 2、鋼鐵之路 3。輪替活動警報完成獎勵為 50／鋼鐵之路 75，任務內也可掉落；這是活動貨幣，不受資源加成影響。",
-      "rewards": "傳說核心，以及紅、藍、黃三種 Tauforged 執刑官碎片各限兌換一次；另有秘賦、外觀與氏族獎盃進度。",
-      "location": "Eris 任務、導航中的活動警報；Praghasa 兌換處",
-      "requirements": "完成 Vor's Prize。輪替警報依導航實際顯示；護甲需對應社群進度，其他物品依各自兌換限制。",
-      "expiresAt": "2026-11-17T16:00:00.000Z",
-      "memberBenefit": "可把刷材料、換強化道具與氏族獎盃一起推進，也避免為 Moonflesh 額外花費資源加成。",
-      "nextStep": "先看 Praghasa 的兌換清單，再組隊刷 Eris／活動警報，優先存出想換的核心與碎片。",
-      "sourceUrl": "https://forums.warframe.com/topic/1528603-epoch-operation-taubound/",
-      "imageUrl": "https://www-static.warframe.com/uploads/79c892e008be4761b1c7c6500cf4ff40.png",
-      "imageSourceUrl": "https://forums.warframe.com/topic/1528603-epoch-operation-taubound/"
-    },
-    {
-      "title": "44.1.2＋2.1：修掉 Tau 序章崩潰，組隊少被踢下床",
-      "publishedDate": "2026-10-15",
-      "category": "official-news",
-      "summary": "PC 最新修正處理了 Tau 序章 Lua 任務進入 The Dark Refractory 時的崩潰或嚴重效能問題。The Icebind 也修正部分主機遷移後無法抵達寶庫的情況，Nova 朝正上方開蟲洞時位置過遠的問題一併處理。Bronco Prime 槍管的杜卡德價格則由 45 降為 25，清倉前別算錯。",
-      "memberBenefit": "重跑曾卡住的序章與組隊任務有了明確修正依據；整理 Prime 零件時也能用更新後的杜卡德價值估算。",
-      "nextStep": "先更新客戶端；若重現同一崩潰或遷移問題，保留任務、主客機身分與錯誤紀錄再回報。",
-      "sourceUrl": "https://forums.warframe.com/topic/1528620-iceblade-of-narin-the-icebind-hotfix-4412-21/",
-      "imageUrl": "https://www-static.warframe.com/uploads/7f61d1cc8cfc1ab20a2c357bca022e97.png",
-      "imageSourceUrl": "https://forums.warframe.com/topic/1528620-iceblade-of-narin-the-icebind-hotfix-4412-21/"
-    },
-    {
-      "title": "限時提醒｜Fomorian：催化劑在眼前，別只會流口水 😏",
+      "title": "Devourer 單曲上架：還沒出發去 Tau，耳朵先被征服",
       "publishedDate": "2026-10-16",
-      "category": "urgent-mission",
-      "sourceItemId": "6ac8a02ef0725d101ec5276b",
-      "summary": "本次官方 World State 仍列有威脅冥王星中繼站的 Fomorian，達成單場 100 萬傷害目標可領 20 萬現金與 Orokin 催化劑成品。資料標定台灣 10/17 03:14:57 到期，但若艦艇先被摧毀，活動可能提早結束；出發前請再看導航。配圖為 2016 年官方歷史示意，非本次截圖。",
-      "materialInfo": "Omega Isotope 於受 Fomorian 影響星球的非 Archwing 任務取得，本次可查冥王星一般任務；搭配奈米孢子、永凍晶礦製作 Fomorian Disruptor，裝入消耗品欄。材料機制參考歷史官方說明：https://www.warframe.com/en/news/operation-eyes-blight-1 。本次開放與獎勵以即時資料為準。",
-      "rewards": "單場傷害達 1,000,000：200,000 現金＋Orokin 催化劑成品，非藍圖。",
-      "location": "導航 Fomorian 破壞活動節點；受威脅地點：冥王星中繼站",
-      "requirements": "需 Archwing 與裝備 Fomorian Disruptor；任務敵人等級 20–30。",
-      "expiresAt": "2026-10-16T19:14:57.067Z",
-      "memberBenefit": "可補一顆武器容量強化道具；有裝備的老手能帶新成員分工破壞護盾與輸出核心。",
-      "nextStep": "先確認導航仍開放、準備 Disruptor，再找氏族組隊衝單場 100 萬；達標後確認收件匣獎勵。",
-      "sourceUrl": "https://api.warframe.com/cdn/worldState.php",
-      "imageUrl": "https://www-static.warframe.com/uploads/thumbnails/7bab307fb331aebac4fbd65537be7378_1600x900.jpg",
-      "imageSourceUrl": "https://www.warframe.com/en/news/fomorian-attack"
+      "category": "official-news",
+      "summary": "Warframe 音效團隊的新單曲 Devourer 已登上 YouTube Music、Spotify、Apple Music 等串流平台，正是 Taubound 遊戲預告中的歌曲。官方介紹其採慢速、厚重的金屬風格，並以虛空語演唱；這次是正式音樂發布，不是新增遊戲獎勵，也不代表授權玩家任意拿來配片。",
+      "memberBenefit": "想重聽預告配樂可直接找正式版本，不必反覆拖預告進度條；也能更有氣氛地準備 Tau 旅程。",
+      "nextStep": "由官方公告選擇慣用音樂平台試聽；若要拿來直播或剪片，另外確認適用音樂授權，別把能聽當成能任用。",
+      "sourceUrl": "https://www.warframe.com/en/news/devourer-single-release",
+      "imageUrl": "https://www-static.warframe.com/uploads/thumbnails/7f09dc6708e9c624c1aff8dee7b08a60_1600x900.png",
+      "imageSourceUrl": "https://www.warframe.com/en/news/devourer-single-release"
     },
     {
-      "title": "Devstream 198 新預告：Tau 第一彈，完整觀看領碎片抽選",
-      "publishedDate": "2026-10-15",
-      "category": "official-news",
-      "summary": "官方公布 Devstream 198 將於台灣 10/31 02:00–03:00 播出，是兩場 Tau 展示的第一場。從頭看到尾可獲 Tauforged 執刑官碎片 Grab Bag，從紅、黃、藍、橙、紫、綠之中隨機取得一種，不是任選或六種全送。下列截止為直播結束時間；獎勵領取期限須依屆時 Twitch 活動頁確認。",
-      "rewards": "Tauforged 執刑官碎片隨機包，六種顏色之一。",
-      "location": "官方 Twitch：twitch.tv/warframe",
-      "requirements": "依官方公告完整觀看直播；開播前確認 Twitch Drops 的帳號連結與活動資格。",
-      "memberBenefit": "提早掌握 Tau 展示與碎片機會，安排觀看時間，避免只進直播間晃一下就以為獎勵會自己上門。",
-      "nextStep": "先記下 10/31 02:00 開播；當天再查 Twitch Drops 活動頁，確認觀看與領取要求。",
-      "sourceUrl": "https://forums.warframe.com/topic/1528685-coming-soon-devstream-198-tau-part-one/",
-      "expiresAt": "2026-10-30T19:00:00.000Z"
+      "title": "週末到訪提醒｜Scare-o 在冥王星，杜卡德別一口氣榨乾 😏",
+      "publishedDate": "2026-10-17",
+      "category": "limited-material",
+      "sourceItemId": "5d1e07a0a38e4a4fdd7cefca",
+      "summary": "官方即時資料確認 Scare-o Ki'Teer 本週已到冥王星中繼站，這是 10/1 季節公告所列的首週到訪提醒，不是新版本公告。本次清單包含 Primed Regen，售價 300 杜卡德加 220,000 現金，另有萬聖外觀；商品需要購買，並非完成警報就免費送。配圖是官方季節宣傳示意，非本次商店截圖。",
+      "materialInfo": "購買貨幣為杜卡德與遊戲現金，不是白金。杜卡德可將不需要的 Prime 藍圖帶到中繼站兌換機換取；先確認是否要自用或交易。機制延伸閱讀：https://www.warframe.com/en/news/baro-kiteer",
+      "rewards": "本次可購項目舉例：Primed Regen，300 杜卡德＋220,000 現金；不是任務完成獎勵。價格查詢：2026/10/17 官方 World State。",
+      "location": "冥王星中繼站（PlutoHUB）的 Scare-o Ki'Teer",
+      "requirements": "能進入該中繼站，並持有所需杜卡德與現金；購買前確認是否已擁有。實際可進入條件與清單以遊戲為準。",
+      "expiresAt": "2026-10-18T13:00:00.000Z",
+      "memberBenefit": "可在本週離場前補齊缺少的 MOD 或外觀；先核對庫存與貨幣，避免把高價 Prime 零件隨手熔掉。",
+      "nextStep": "先到導航確認商人圖示、檢查 Primed Regen 是否已有；只換確定需要的項目，想要就出手，別只盯著看。",
+      "sourceUrl": "https://api.warframe.com/cdn/worldState.php",
+      "imageUrl": "https://www-static.warframe.com/uploads/f7df53d9f0a2ea50fd80314f23be0eeb.jpg",
+      "imageSourceUrl": "https://www.warframe.com/en/news/warframes-halloween-2026-events"
+    },
+    {
+      "title": "活動提醒｜Hallowed Nightmares：掛飾、搖頭娃娃與 5 萬現金",
+      "publishedDate": "2026-10-17",
+      "category": "urgent-mission",
+      "sourceItemId": "6abe756f0000000000000000",
+      "summary": "10/1 開始的 Hallowed Nightmares 戰術警報仍列在本次官方快照，尚未補領的成員可由導航查看 Jack O'Naut 挑戰。本次獎勵清單為 Jack O'Naut Keychain Sugatra、Jack O'Naut Recall Glyph、Manic Noggle 與 50,000 現金；這是活動提醒，不是今天新增任務。配圖為官方活動宣傳示意，非本次通關截圖。",
+      "materialInfo": "本則是限時戰術警報，不是材料兌換。官方活動公告未列額外兌換材料要求；進入條件請依導航實際顯示確認。",
+      "rewards": "Jack O'Naut Keychain Sugatra、Jack O'Naut Recall Glyph、Manic Noggle，以及 50,000 現金。",
+      "location": "導航 Hallowed Nightmares 戰術警報，來源節點 EventNode35",
+      "requirements": "進入並完成對應活動警報；能否進入、是否已領過獎勵，以遊戲內導航與帳號狀態為準。",
+      "expiresAt": "2026-11-02T16:00:00.000Z",
+      "memberBenefit": "給尚未補齊季節裝飾的成員一個明確目標，也可順手補現金；已領取者不必為同一份獎勵重跑。",
+      "nextStep": "週末組隊前先檢查是否已領取；從活動導航進入警報，不要把普通星圖任務當成活動版本。",
+      "sourceUrl": "https://api.warframe.com/cdn/worldState.php",
+      "imageUrl": "https://www-static.warframe.com/uploads/38ef2e6ba8efc71abaf4e1c3cd03089b.png",
+      "imageSourceUrl": "https://www.warframe.com/en/news/warframes-halloween-2026-events"
     }
   ],
   "market": {
-    "status": "verified",
-    "date": "2026-10-16",
-    "updatedCount": 341,
-    "totalPlatinum": 6482,
-    "previousTotalPlatinum": 6480,
-    "unpriced": [
-      "Primed Vigor",
-      "Primed Sure Footed",
-      "Tenet Arca Plasmor",
-      "Tenet Envoy",
-      "Primed Shred",
-      "Tenet Cycron",
-      "Pangolin Prime",
-      "Primed Fury",
-      "Primed Animal Instinct",
-      "Primed Pack Leader"
-    ]
+    "status": "unavailable",
+    "date": "2026-10-17",
+    "previousTotalPlatinum": 6482
   }
 }
