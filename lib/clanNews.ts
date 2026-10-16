@@ -149,7 +149,8 @@ export function buildDiscordMessage(b: ClanBulletin) {
   };
   const content = `📰 **Keter每日新聞**\\n${b.date.replaceAll("-", "/")}${b.articles.length ? "" : `\\n${b.noNewsText}`}${intel}`;
   if (content.length > 2000) throw new Error("Daily news content exceeds Discord limit");
-  if (total + JSON.stringify(marketEmbed).length > 5900) throw new Error("Bulletin with market summary exceeds embed budget");
+  const marketSize = marketEmbed.title.length + marketEmbed.description.length + marketEmbed.footer.text.length;
+  if (total + marketSize > 5900) throw new Error("Bulletin with market summary exceeds embed budget");
   return { content, embeds: [...embeds, marketEmbed], allowed_mentions: { parse: [] as string[] }, nonce: `keternews:${b.date}`, enforce_nonce: true };
 }
 
