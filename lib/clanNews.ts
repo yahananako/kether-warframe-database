@@ -135,9 +135,22 @@ export function buildDiscordMessage(b: ClanBulletin) {
   const total = embeds.reduce((n, e) => n + e.title.length + e.description.length + e.footer.text.length + e.fields.reduce((m, f) => m + f.name.length + f.value.length, 0), 0);
   if (total > 5900) throw new Error("Bulletin exceeds Discord embed size; shorten the articles");
   const intel = b.liveIntel ? `\n限時材料／緊急任務：${b.liveIntel.status === "verified" ? "已核對本次快照；實際狀態以遊戲內導航為準。" : "即時資料暫時無法核對，別把未確認的獎勵當成已開放。"}${b.liveIntel.note ? ` ${b.liveIntel.note}` : ""}` : "";
-  const market = b.market?.status === "verified" ? `\n📊 **Warframe Market 今日白金行情**\n更新：${b.market.updatedCount} 筆｜總額：${b.market.totalPlatinum?.toLocaleString("en-US")} 白金${b.market.previousTotalPlatinum === undefined ? "" : `｜較前次：${((b.market.totalPlatinum ?? 0) - b.market.previousTotalPlatinum).toLocaleString("en-US")} 白金`}${b.market.unpriced?.length ? `\n無報價：${b.market.unpriced.join("、")}` : ""}` : "\n📊 **Warframe Market 今日白金行情**\n今日價格尚未完成驗證，不使用舊價冒充即時行情。";
-  const content = `📰 **Keter每日新聞**\n${b.date.replaceAll("-", "/")}${b.articles.length ? "" : `\n${b.noNewsText}`}${intel}${market}\n詳細表格：https://docs.google.com/spreadsheets/d/1ll27z4P_9a9ly2HsxNJdOHW2mzTL8_BHUqLZUtxy9Lc/edit`;
-  return { content, embeds, allowed_mentions: { parse: [] as string[] }, nonce: `keternews:${b.date}`, enforce_nonce: true };
+  const marketLines = b.market?.status === "verified"
+    ? [`更新：${b.market.updatedCount} 筆｜總額：${b.market.totalPlatinum?.toLocaleString("en-US")} 白金`,
+       ...(b.market.previousTotalPlatinum === undefined ? [] : [`較前次：${((b.market.totalPlatinum ?? 0) - b.market.previousTotalPlatinum).toLocaleString("en-US")} 白金`]),
+       ...(b.market.unpriced?.length ? [`無報價：${b.market.unpriced.join("、")}`] : [])]
+    : ["今日價格尚未完成驗證，不使用舊價冒充即時行情。"];
+  const marketEmbed = {
+    title: "📊 Warframe Market 今日白金行情",
+    description: marketLines.join("\\n").slice(0, 4000),
+    color: 0x48b8cf,
+    url: "https://docs.google.com/spreadsheets/d/1ll27z4P_9a9ly2HsxNJdOHW2mzTL8_BHUqLZUtxy9Lc/edit",
+    footer: { text: `KETER · ${b.date} · 價格以當日驗證結果為準` },
+  };
+  const content = `📰 **Keter每日新聞**\\n${b.date.replaceAll("-", "/")}${b.articles.length ? "" : `\\n${b.noNewsText}`}${intel}`;
+  if (content.length > 2000) throw new Error("Daily news content exceeds Discord limit");
+  if (total + JSON.stringify(marketEmbed).length > 5900) throw new Error("Bulletin with market summary exceeds embed budget");
+  return { content, embeds: [...embeds, marketEmbed], allowed_mentions: { parse: [] as string[] }, nonce: `keternews:${b.date}`, enforce_nonce: true };
 }
 
 export async function resolveNewsChannel(bot: BotRequest, expectedGuildId: string) {
