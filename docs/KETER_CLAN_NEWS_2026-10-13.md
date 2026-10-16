@@ -14,4 +14,10 @@ API接受CRON_SECRET或只用於新聞route的KETER_NEWS_DISPATCH_TOKEN，使用
 
 ## 驗證與錯誤处理
 
+### 行情補入與實際訊息核對（2026-10-16）
+
+`already-published` 只證明資料庫有送達記錄，不能證明後來新增的行情已出現在 Discord。使用相同授權呼叫 GET `?action=delivery`，會從 Discord 讀回今天 delivery 表指向的原訊息，核對 BOT、頻道、日期與標題，回傳 `marketEmbeds` 與原 `messageId`。
+
+若今日已驗證的行情尚未出現，可 POST `?action=refresh-market`。此操作只更新原訊息的行情 Embed，保留原新聞與文字，禁止新增第二則日報；必須是已啟用的 production。只接受當日 verified 行情。PATCH 後另行 GET 同一則 Discord 訊息，確認行情數值及連結、原新聞與訊息 ID，通過才回傳 `updated=true, verified=true`。GET 不允許觸發行情修改。重複操作會替換行情區塊，不累積重複 Embed。
+
 API status須核對channel/guild/BOT；preview不送訊息。published=true及messageUrl才是送達證據；already-published只代表既有送達紀錄，不能另發一則。對未知結果、逾時或5xx先核對durable狀態，不盲目重發。過期稿、舊日期或不可信來源被拒絕。即時World State網頁工具若403，可嘗試直接HTTPS讀官方URL；無法核對時明確標示，不編造任務或材料。

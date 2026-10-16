@@ -11,7 +11,7 @@ registerHooks({
     return nextResolve(specifier, context);
   },
 });
-const { GET } = await import('../app/api/discord/clan-news/route.ts');
+const { GET, POST } = await import('../app/api/discord/clan-news/route.ts');
 const secret = 'test-only-secret-abcdefghijklmnop';
 const guildId = '123456789012345678';
 function setup({ enabled = false, deployment = 'production', stale = false } = {}) {
@@ -67,3 +67,12 @@ test('channel rejection exposes numeric code and stage without raw details', asy
 test('invalid action cannot publish', async () => { const f = setup({ enabled: true }); assert.equal((await GET(request('invalid'))).status, 400); assert.equal(f.posts(), 0); });
 test('fresh authenticated production bulletin posts once across cron repeats', async () => { const f = setup({ enabled: true }); const first = await (await GET(request())).json(); const second = await (await GET(request())).json(); assert.equal(first.published, true); assert.equal(second.reason, 'already-published'); assert.equal(f.posts(), 1); });
 test('stale editorial file cannot be sent as todays news', async () => { const f = setup({ enabled: true, stale: true }); const r = await GET(request()); assert.equal(r.status, 502); assert.equal((await r.json()).published, false); assert.equal(f.posts(), 0); });
+test('market repair requires POST, authentication and enabled production', async () => {
+  const f = setup({ enabled: true });
+  assert.equal((await GET(request('refresh-market'))).status, 405);
+  const post = token => new Request('https://example.vercel.app/api/discord/clan-news?action=refresh-market', { method: 'POST', headers: { authorization: `Bearer ${token}` } });
+  assert.equal((await POST(post('wrong'))).status, 401);
+  process.env.VERCEL_ENV = 'preview';
+  assert.equal((await (await POST(post(secret))).json()).reason, 'publication-disabled');
+  assert.equal(f.posts(), 0); assert.equal(f.fetches(), 0);
+});

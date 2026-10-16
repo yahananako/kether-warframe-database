@@ -2,6 +2,7 @@ import { timingSafeEqual } from "node:crypto";
 import { buildDiscordMessage, CLAN_NEWS_SOURCE, deliverBulletin, resolveNewsChannel, validateBulletin } from "../../../../lib/clanNews";
 import { clanNewsStore } from "../../../../lib/clanNewsStore";
 import { discordBotFetch } from "../discordApi";
+import { readNewsDelivery, refreshNewsMarket, summarizeNewsDelivery } from "../../../../lib/clanNewsDelivery";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -42,19 +43,23 @@ async function newsBotFetch<T = unknown>(path: string, init?: RequestInit): Prom
   }
 }
 
-export async function GET(req: Request) {
+async function handleRequest(req: Request) {
   if (!authorized(req)) return reply({ error: "Unauthorized" }, 401);
   try {
     const action = new URL(req.url).searchParams.get("action") ?? "publish";
-    if (!["status", "preview", "publish"].includes(action)) return reply({ error: "Invalid action" }, 400);
+    if (!["status", "preview", "publish", "delivery", "refresh-market"].includes(action)) return reply({ error: "Invalid action" }, 400);
+    if ((action === "refresh-market") !== (req.method === "POST")) return reply({ error: "Method not allowed" }, 405);
     if (action === "status") {
       return reply({ ...await resolveNewsChannel(newsBotFetch, process.env.DISCORD_GUILD_ID ?? ""), enabled: process.env.KETHER_CLAN_NEWS_ENABLED === "true" });
     }
-    if (action === "publish" && (process.env.KETHER_CLAN_NEWS_ENABLED !== "true" || process.env.VERCEL_ENV !== "production")) {
+    if (["publish", "refresh-market"].includes(action) && (process.env.KETHER_CLAN_NEWS_ENABLED !== "true" || process.env.VERCEL_ENV !== "production")) {
       return reply({ published: false, reason: "publication-disabled" });
     }
+    const deps = { guildId: process.env.DISCORD_GUILD_ID ?? "", bot: newsBotFetch, store: clanNewsStore };
+    if (action === "delivery") return reply(summarizeNewsDelivery(await readNewsDelivery(deps)));
     const bulletin = await loadBulletin();
     if (action === "preview") return reply({ bulletin, message: buildDiscordMessage(bulletin) });
+    if (action === "refresh-market") return reply(await refreshNewsMarket(bulletin, deps));
     return reply(await deliverBulletin(bulletin, { guildId: process.env.DISCORD_GUILD_ID ?? "", bot: newsBotFetch, store: clanNewsStore }));
   } catch (error) {
     // Do not log credentials, Discord response bodies, or third-party error text.
@@ -74,3 +79,6 @@ export async function GET(req: Request) {
     }, 502);
   }
 }
+
+export const GET = handleRequest;
+export const POST = handleRequest;
