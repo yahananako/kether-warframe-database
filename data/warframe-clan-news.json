@@ -1,73 +1,32 @@
 {
-  "date": "2026-10-17",
+  "date": "2026-10-18",
   "liveIntel": {
     "status": "verified",
-    "checkedAt": "2026-10-16T19:59:00.433756+00:00",
-    "note": "本次快照未列 Fomorian 或 Razorback；未見 Forma／Forma 藍圖、Orokin 催化劑／反應爐的警報或入侵獎勵。Taubound 的 Moonflesh 輪替警報仍有列出，短時任務請依導航；昨日已報的修正與預告不重複刊登。"
+    "checkedAt": "2026-10-17T18:58:47.092061+00:00",
+    "note": "本次未查到新增官方公告或修正，已報內容不重複刊登。快照未列 Fomorian／Razorback；未見 Forma／Forma 藍圖、Orokin 催化劑／反應爐的警報或入侵獎勵。Taubound 輪替警報仍有列出，短時任務請依遊戲導航。"
   },
   "articles": [
     {
-      "title": "Devourer 單曲上架：還沒出發去 Tau，耳朵先被征服",
-      "publishedDate": "2026-10-16",
-      "category": "official-news",
-      "summary": "Warframe 音效團隊的新單曲 Devourer 已登上 YouTube Music、Spotify、Apple Music 等串流平台，正是 Taubound 遊戲預告中的歌曲。官方介紹其採慢速、厚重的金屬風格，並以虛空語演唱；這次是正式音樂發布，不是新增遊戲獎勵，也不代表授權玩家任意拿來配片。",
-      "memberBenefit": "想重聽預告配樂可直接找正式版本，不必反覆拖預告進度條；也能更有氣氛地準備 Tau 旅程。",
-      "nextStep": "由官方公告選擇慣用音樂平台試聽；若要拿來直播或剪片，另外確認適用音樂授權，別把能聽當成能任用。",
-      "sourceUrl": "https://www.warframe.com/en/news/devourer-single-release",
-      "imageUrl": "https://www-static.warframe.com/uploads/thumbnails/7f09dc6708e9c624c1aff8dee7b08a60_1600x900.png",
-      "imageSourceUrl": "https://www.warframe.com/en/news/devourer-single-release"
-    },
-    {
-      "title": "週末到訪提醒｜Scare-o 在冥王星，杜卡德別一口氣榨乾 😏",
-      "publishedDate": "2026-10-17",
+      "title": "最後一天提醒｜Scare-o 今晚 21:00 離場，別等收攤才想掏 😏",
+      "publishedDate": "2026-10-18",
       "category": "limited-material",
       "sourceItemId": "5d1e07a0a38e4a4fdd7cefca",
-      "summary": "官方即時資料確認 Scare-o Ki'Teer 本週已到冥王星中繼站，這是 10/1 季節公告所列的首週到訪提醒，不是新版本公告。本次清單包含 Primed Regen，售價 300 杜卡德加 220,000 現金，另有萬聖外觀；商品需要購買，並非完成警報就免費送。配圖是官方季節宣傳示意，非本次商店截圖。",
-      "materialInfo": "購買貨幣為杜卡德與遊戲現金，不是白金。杜卡德可將不需要的 Prime 藍圖帶到中繼站兌換機換取；先確認是否要自用或交易。機制延伸閱讀：https://www.warframe.com/en/news/baro-kiteer",
-      "rewards": "本次可購項目舉例：Primed Regen，300 杜卡德＋220,000 現金；不是任務完成獎勵。價格查詢：2026/10/17 官方 World State。",
+      "summary": "Scare-o Ki'Teer 首週到訪進入最後一天，本次官方快照仍列在冥王星中繼站，台灣 10/18 晚上 21:00 離場；這是 10/1 公告活動的截止提醒，不是新商品公告。可購清單包含 Primed Regen，需 300 杜卡德加 220,000 現金，商品不是免費任務獎勵。配圖為官方季節宣傳示意，非本次商店截圖。",
+      "materialInfo": "購買使用杜卡德與遊戲現金，不是白金。開啟虛空遺物取得的 Prime 藍圖，可在中繼站兌換機換杜卡德；先確認自用與交易需求。機制延伸閱讀：https://www.warframe.com/en/news/baro-kiteer",
+      "rewards": "可購商品舉例：Primed Regen，300 杜卡德＋220,000 現金；並非任務完成獎勵。查價：2026/10/18 官方 World State。",
       "location": "冥王星中繼站（PlutoHUB）的 Scare-o Ki'Teer",
-      "requirements": "能進入該中繼站，並持有所需杜卡德與現金；購買前確認是否已擁有。實際可進入條件與清單以遊戲為準。",
+      "requirements": "能進入該中繼站，持有所需杜卡德與現金；購買前檢查是否已擁有。實際清單與可進入條件以遊戲為準。",
       "expiresAt": "2026-10-18T13:00:00.000Z",
-      "memberBenefit": "可在本週離場前補齊缺少的 MOD 或外觀；先核對庫存與貨幣，避免把高價 Prime 零件隨手熔掉。",
-      "nextStep": "先到導航確認商人圖示、檢查 Primed Regen 是否已有；只換確定需要的項目，想要就出手，別只盯著看。",
+      "memberBenefit": "還沒補齊 MOD 或萬聖外觀的成員，可趁本週離場前查漏；已買齊就省下貨幣，別把有交易價值的 Prime 藍圖急著換光。",
+      "nextStep": "今天 21:00 前由導航確認商人位置，先檢查 Primed Regen 庫存，再決定是否兌換；看準需要再出手，別只會流口水。",
       "sourceUrl": "https://api.warframe.com/cdn/worldState.php",
       "imageUrl": "https://www-static.warframe.com/uploads/f7df53d9f0a2ea50fd80314f23be0eeb.jpg",
-      "imageSourceUrl": "https://www.warframe.com/en/news/warframes-halloween-2026-events"
-    },
-    {
-      "title": "活動提醒｜Hallowed Nightmares：掛飾、搖頭娃娃與 5 萬現金",
-      "publishedDate": "2026-10-17",
-      "category": "urgent-mission",
-      "sourceItemId": "6abe756f0000000000000000",
-      "summary": "10/1 開始的 Hallowed Nightmares 戰術警報仍列在本次官方快照，尚未補領的成員可由導航查看 Jack O'Naut 挑戰。本次獎勵清單為 Jack O'Naut Keychain Sugatra、Jack O'Naut Recall Glyph、Manic Noggle 與 50,000 現金；這是活動提醒，不是今天新增任務。配圖為官方活動宣傳示意，非本次通關截圖。",
-      "materialInfo": "本則是限時戰術警報，不是材料兌換。官方活動公告未列額外兌換材料要求；進入條件請依導航實際顯示確認。",
-      "rewards": "Jack O'Naut Keychain Sugatra、Jack O'Naut Recall Glyph、Manic Noggle，以及 50,000 現金。",
-      "location": "導航 Hallowed Nightmares 戰術警報，來源節點 EventNode35",
-      "requirements": "進入並完成對應活動警報；能否進入、是否已領過獎勵，以遊戲內導航與帳號狀態為準。",
-      "expiresAt": "2026-11-02T16:00:00.000Z",
-      "memberBenefit": "給尚未補齊季節裝飾的成員一個明確目標，也可順手補現金；已領取者不必為同一份獎勵重跑。",
-      "nextStep": "週末組隊前先檢查是否已領取；從活動導航進入警報，不要把普通星圖任務當成活動版本。",
-      "sourceUrl": "https://api.warframe.com/cdn/worldState.php",
-      "imageUrl": "https://www-static.warframe.com/uploads/38ef2e6ba8efc71abaf4e1c3cd03089b.png",
       "imageSourceUrl": "https://www.warframe.com/en/news/warframes-halloween-2026-events"
     }
   ],
   "market": {
-    "status": "verified",
-    "date": "2026-10-17",
-    "updatedCount": 342,
-    "totalPlatinum": 13391,
-    "previousTotalPlatinum": 6482,
-    "unpriced": [
-      "Primed Vigor",
-      "Primed Sure Footed",
-      "Tenet Arca Plasmor",
-      "Tenet Envoy",
-      "Primed Shred",
-      "Tenet Cycron",
-      "Primed Fury",
-      "Primed Animal Instinct",
-      "Primed Pack Leader"
-    ]
+    "status": "unavailable",
+    "date": "2026-10-18",
+    "previousTotalPlatinum": 13391
   }
 }
