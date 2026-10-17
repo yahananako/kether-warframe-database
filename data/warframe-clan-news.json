@@ -25,8 +25,22 @@
     }
   ],
   "market": {
-    "status": "unavailable",
+    "status": "verified",
     "date": "2026-10-18",
-    "previousTotalPlatinum": 13391
+    "updatedCount": 341,
+    "totalPlatinum": 13301,
+    "previousTotalPlatinum": 13391,
+    "unpriced": [
+      "Primed Vigor",
+      "Primed Sure Footed",
+      "Tenet Arca Plasmor",
+      "Tenet Envoy",
+      "Soma Prime",
+      "Primed Shred",
+      "Tenet Cycron",
+      "Primed Fury",
+      "Primed Animal Instinct",
+      "Primed Pack Leader"
+    ]
   }
 }
