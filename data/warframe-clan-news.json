@@ -1,46 +1,15 @@
 {
-  "date": "2026-10-18",
+  "date": "2026-10-19",
   "liveIntel": {
     "status": "verified",
-    "checkedAt": "2026-10-17T20:00:36.521495+00:00",
-    "note": "本次未查到新增官方公告或修正，已報內容不重複刊登。快照未列 Fomorian／Razorback；未見 Forma／Forma 藍圖、Orokin 催化劑／反應爐的警報或入侵獎勵。Taubound 輪替警報仍有列出，短時任務請依遊戲導航。"
+    "checkedAt": "2026-10-18T19:02:09.067068+00:00",
+    "note": "本次快照未列 Fomorian／Razorback，未見 Forma／Forma 藍圖、Orokin 催化劑／反應爐的警報或入侵獎勵。Taubound 輪替警報仍有列出，短時任務請依導航，不以活動總期限代替個別警報期限。來源：https://api.warframe.com/cdn/worldState.php"
   },
-  "articles": [
-    {
-      "title": "最後一天提醒｜Scare-o 今晚 21:00 離場，別等收攤才想掏 😏",
-      "publishedDate": "2026-10-18",
-      "category": "limited-material",
-      "sourceItemId": "5d1e07a0a38e4a4fdd7cefca",
-      "summary": "Scare-o Ki'Teer 首週到訪進入最後一天，本次官方快照仍列在冥王星中繼站，台灣 10/18 晚上 21:00 離場；這是 10/1 公告活動的截止提醒，不是新商品公告。可購清單包含 Primed Regen，需 300 杜卡德加 220,000 現金，商品不是免費任務獎勵。配圖為官方季節宣傳示意，非本次商店截圖。",
-      "materialInfo": "購買使用杜卡德與遊戲現金，不是白金。開啟虛空遺物取得的 Prime 藍圖，可在中繼站兌換機換杜卡德；先確認自用與交易需求。機制延伸閱讀：https://www.warframe.com/en/news/baro-kiteer",
-      "rewards": "可購商品舉例：Primed Regen，300 杜卡德＋220,000 現金；並非任務完成獎勵。查價：2026/10/18 官方 World State。",
-      "location": "冥王星中繼站（PlutoHUB）的 Scare-o Ki'Teer",
-      "requirements": "能進入該中繼站，持有所需杜卡德與現金；購買前檢查是否已擁有。實際清單與可進入條件以遊戲為準。",
-      "expiresAt": "2026-10-18T13:00:00.000Z",
-      "memberBenefit": "還沒補齊 MOD 或萬聖外觀的成員，可趁本週離場前查漏；已買齊就省下貨幣，別把有交易價值的 Prime 藍圖急著換光。",
-      "nextStep": "今天 21:00 前由導航確認商人位置，先檢查 Primed Regen 庫存，再決定是否兌換；看準需要再出手，別只會流口水。",
-      "sourceUrl": "https://api.warframe.com/cdn/worldState.php",
-      "imageUrl": "https://www-static.warframe.com/uploads/f7df53d9f0a2ea50fd80314f23be0eeb.jpg",
-      "imageSourceUrl": "https://www.warframe.com/en/news/warframes-halloween-2026-events"
-    }
-  ],
+  "articles": [],
   "market": {
-    "status": "verified",
-    "date": "2026-10-18",
-    "updatedCount": 341,
-    "totalPlatinum": 13301,
-    "previousTotalPlatinum": 13391,
-    "unpriced": [
-      "Primed Vigor",
-      "Primed Sure Footed",
-      "Tenet Arca Plasmor",
-      "Tenet Envoy",
-      "Soma Prime",
-      "Primed Shred",
-      "Tenet Cycron",
-      "Primed Fury",
-      "Primed Animal Instinct",
-      "Primed Pack Leader"
-    ]
-  }
+    "status": "unavailable",
+    "date": "2026-10-19",
+    "previousTotalPlatinum": 13301
+  },
+  "noNewsText": "本次未查到新增官方公告或修正，已報內容不重複刊登。Scare-o 首週到訪已於台灣 10/18 21:00 結束，今日不列為可購買。消息先別硬擠，杜卡德也讓它喘口氣 😏 官方消息：https://www.warframe.com/en/news"
 }
