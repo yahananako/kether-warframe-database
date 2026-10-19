@@ -7,9 +7,41 @@
   },
   "articles": [],
   "market": {
-    "status": "unavailable",
+    "status": "verified",
     "date": "2026-10-19",
-    "previousTotalPlatinum": 13301
+    "updatedCount": 344,
+    "totalPlatinum": 13916,
+    "previousTotalPlatinum": 13301,
+    "unpriced": [
+      "Primed Vigor",
+      "Primed Sure Footed",
+      "Tenet Arca Plasmor",
+      "Tenet Envoy",
+      "Kuva Bramma",
+      "Kuva Chakkhurr",
+      "Kuva Drakgoon",
+      "Kuva Hek",
+      "Kuva Hind",
+      "Kuva Karak",
+      "Kuva Kohm",
+      "Kuva Ogris",
+      "Kuva Quartakk",
+      "Kuva Sobek",
+      "Kuva Tonkor",
+      "Kuva Zarr",
+      "Primed Shred",
+      "Tenet Cycron",
+      "Kuva Brakk",
+      "Kuva Kraken",
+      "Kuva Nukor",
+      "Kuva Seer",
+      "Kuva Twin Stubbas",
+      "Kuva Ghoulsaw",
+      "Kuva Shildeg",
+      "Primed Fury",
+      "Kuva Ayanga",
+      "Kuva Grattler"
+    ]
   },
   "noNewsText": "本次未查到新增官方公告或修正，已報內容不重複刊登。Scare-o 首週到訪已於台灣 10/18 21:00 結束，今日不列為可購買。消息先別硬擠，杜卡德也讓它喘口氣 😏 官方消息：https://www.warframe.com/en/news"
 }
