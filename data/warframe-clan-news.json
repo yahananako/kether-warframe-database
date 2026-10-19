@@ -2,8 +2,8 @@
   "date": "2026-10-20",
   "liveIntel": {
     "status": "verified",
-    "checkedAt": "2026-10-19T19:01:54.476955+00:00",
-    "note": "台灣 03:01 核對官方快照：未列 Fomorian／Razorback，未見 Forma／Forma 藍圖、Orokin 催化劑／反應爐的警報或未完成入侵獎勵。已排除 04:00 前到期警報；04:30 生存場須於發布前再核對。來源：https://api.warframe.com/cdn/worldState.php"
+    "checkedAt": "2026-10-19T19:56:25.708800+00:00",
+    "note": "台灣 03:56 核對官方快照：未列 Fomorian／Razorback，未見 Forma／Forma 藍圖、Orokin 催化劑／反應爐的警報或未完成入侵獎勵。已排除 04:00 到期場次；本則殲滅警報開放時段為 04:00–05:30。來源：https://api.warframe.com/cdn/worldState.php"
   },
   "articles": [
     {
@@ -24,21 +24,21 @@
       "expiresAt": "2026-10-20T08:00:00+08:00"
     },
     {
-      "title": "警報提醒｜Moonflesh 生存場，台灣 04:30 收攤",
+      "title": "警報提醒｜Moonflesh 殲滅場，台灣 05:30 收攤",
       "publishedDate": "2026-10-20",
-      "summary": "10/20 03:01 官方快照列出 Eris 的 50 級 Infested 生存警報，完成獎勵為 50 Moonflesh 與 17,000 現金。本場於台灣 10/20 04:30 結束，不能拿 Taubound 整體活動期限當成本場期限；出發前仍須確認導航。配圖沿用 10/15 官方活動宣傳圖作示意，並非這場警報截圖。",
+      "summary": "10/20 03:56 官方快照列出 Eris 的 50 級 Infested 殲滅警報，開放時段為台灣 10/20 04:00–05:30，完成獎勵為 50 Moonflesh 與 17,000 現金。這是本場警報期限，不能拿 Taubound 整體活動期限代替；出發前仍須確認導航。配圖沿用 10/15 官方活動宣傳圖作示意，並非這場警報截圖。",
       "memberBenefit": "把短時警報的固定 Moonflesh 收進口袋，可累積向 Praghasa 兌換活動獎勵的額度；不把這 50 份誤認為 Forma 或催化劑。",
-      "nextStep": "04:30 前到導航活動警報確認 SolNode153 的生存場仍在，再組隊進入；若已消失或過期，不必追找這個舊 ID。",
+      "nextStep": "04:00–05:30 到導航活動警報確認 SolNode173 的殲滅場仍在，再組隊進入；若已消失或過期，不必追找這個舊 ID。",
       "sourceUrl": "https://api.warframe.com/cdn/worldState.php",
       "imageUrl": "https://www-static.warframe.com/uploads/thumbnails/d4940c6cab0ad90994427983cc628371_1600x900.jpg",
       "imageSourceUrl": "https://www.warframe.com/en/news/epoch-operation-taubound",
       "category": "urgent-mission",
-      "sourceItemId": "6ad0d7360dfe89c5d8229144",
+      "sourceItemId": "6ad0d7360dfe89c5d8229148",
       "materialInfo": "完成此警報取得 50 Moonflesh；Eris 的 Infested 也有機率掉落。Moonflesh 可交給 Eris 的 Praghasa 兌換活動物品；機制依官方 Taubound 公告，並非今日新增規則。",
       "rewards": "本場完成獎勵：50 Moonflesh ＋ 17,000 現金；兌換品另須消耗 Moonflesh。",
-      "location": "Eris（鬩神星）→導航活動警報→生存；節點 ID：SolNode153",
+      "location": "Eris（鬩神星）→導航活動警報→殲滅；節點 ID：SolNode173",
       "requirements": "已完成 Vor's Prize；活動期間一般 Eris 星圖／接合點限制解除。本場敵人等級 50。",
-      "expiresAt": "2026-10-20T04:30:00+08:00"
+      "expiresAt": "2026-10-20T05:30:00+08:00"
     }
   ],
   "market": {
