@@ -1,47 +1,49 @@
 {
-  "date": "2026-10-19",
+  "date": "2026-10-20",
   "liveIntel": {
     "status": "verified",
-    "checkedAt": "2026-10-18T20:03:29.016031+00:00",
-    "note": "本次快照未列 Fomorian／Razorback，未見 Forma／Forma 藍圖、Orokin 催化劑／反應爐的警報或入侵獎勵。Taubound 輪替警報仍有列出，短時任務請依導航，不以活動總期限代替個別警報期限。來源：https://api.warframe.com/cdn/worldState.php"
+    "checkedAt": "2026-10-19T19:01:54.476955+00:00",
+    "note": "台灣 03:01 核對官方快照：未列 Fomorian／Razorback，未見 Forma／Forma 藍圖、Orokin 催化劑／反應爐的警報或未完成入侵獎勵。已排除 04:00 前到期警報；04:30 生存場須於發布前再核對。來源：https://api.warframe.com/cdn/worldState.php"
   },
-  "articles": [],
+  "articles": [
+    {
+      "title": "活動提醒｜今晨 04–08 時接力看台，裝飾掉落別只會眼饞 😏",
+      "publishedDate": "2026-10-19",
+      "summary": "官方公布本週慈善直播表：台灣 10/20 04:00–06:00 為 iFlynn，06:00–08:00 接 theragingterror。每場創作者募款直播觀看 30 分鐘，可領一次裝飾隨機袋；池內含 Drum Kit、Electric Keyboard、Orokin Tea Set 等，不能指定或保證抽到哪件。配圖為官方活動宣傳示意圖，不是本次直播截圖；08:00 僅是本則最後一場的結束時間，不是整週活動截止。",
+      "memberBenefit": "不必花白金就有機會補充個人飛船裝飾；兩場各有獨立掉落活動，記得領取，別讓到手的獎勵只停在想像裡。",
+      "nextStep": "先確認 Twitch 已連結 Warframe 帳號；04:00 開 iFlynn、06:00 換 theragingterror，達標後到 Twitch 掉寶庫按領取。",
+      "sourceUrl": "https://forums.warframe.com/topic/1529238-pmcfq-community-fundraising-stream-schedule-october-19-25-2026/",
+      "imageUrl": "https://www-static.warframe.com/uploads/thumbnails/6d87c48b896a106c86985654618531de_1600x900.png",
+      "imageSourceUrl": "https://www.warframe.com/en/news/pmcfq-2026-streamer-schedule",
+      "category": "official-news",
+      "sourceItemId": "1529238",
+      "materialInfo": "非材料任務；不消耗活動材料，以指定直播的有效觀看時間取得 Twitch 掉落。",
+      "rewards": "每場各一次隨機裝飾；獎池內容不等於一次全部送出。",
+      "location": "Twitch：twitch.tv/iflynn → twitch.tv/theragingterror",
+      "requirements": "連結 Twitch／Warframe 帳號；每場觀看 30 分鐘，並在 Twitch 掉寶庫領取。",
+      "expiresAt": "2026-10-20T08:00:00+08:00"
+    },
+    {
+      "title": "警報提醒｜Moonflesh 生存場，台灣 04:30 收攤",
+      "publishedDate": "2026-10-20",
+      "summary": "10/20 03:01 官方快照列出 Eris 的 50 級 Infested 生存警報，完成獎勵為 50 Moonflesh 與 17,000 現金。本場於台灣 10/20 04:30 結束，不能拿 Taubound 整體活動期限當成本場期限；出發前仍須確認導航。配圖沿用 10/15 官方活動宣傳圖作示意，並非這場警報截圖。",
+      "memberBenefit": "把短時警報的固定 Moonflesh 收進口袋，可累積向 Praghasa 兌換活動獎勵的額度；不把這 50 份誤認為 Forma 或催化劑。",
+      "nextStep": "04:30 前到導航活動警報確認 SolNode153 的生存場仍在，再組隊進入；若已消失或過期，不必追找這個舊 ID。",
+      "sourceUrl": "https://api.warframe.com/cdn/worldState.php",
+      "imageUrl": "https://www-static.warframe.com/uploads/thumbnails/d4940c6cab0ad90994427983cc628371_1600x900.jpg",
+      "imageSourceUrl": "https://www.warframe.com/en/news/epoch-operation-taubound",
+      "category": "urgent-mission",
+      "sourceItemId": "6ad0d7360dfe89c5d8229144",
+      "materialInfo": "完成此警報取得 50 Moonflesh；Eris 的 Infested 也有機率掉落。Moonflesh 可交給 Eris 的 Praghasa 兌換活動物品；機制依官方 Taubound 公告，並非今日新增規則。",
+      "rewards": "本場完成獎勵：50 Moonflesh ＋ 17,000 現金；兌換品另須消耗 Moonflesh。",
+      "location": "Eris（鬩神星）→導航活動警報→生存；節點 ID：SolNode153",
+      "requirements": "已完成 Vor's Prize；活動期間一般 Eris 星圖／接合點限制解除。本場敵人等級 50。",
+      "expiresAt": "2026-10-20T04:30:00+08:00"
+    }
+  ],
   "market": {
-    "status": "verified",
-    "date": "2026-10-19",
-    "updatedCount": 344,
-    "totalPlatinum": 13916,
-    "previousTotalPlatinum": 13301,
-    "unpriced": [
-      "Primed Vigor",
-      "Primed Sure Footed",
-      "Tenet Arca Plasmor",
-      "Tenet Envoy",
-      "Kuva Bramma",
-      "Kuva Chakkhurr",
-      "Kuva Drakgoon",
-      "Kuva Hek",
-      "Kuva Hind",
-      "Kuva Karak",
-      "Kuva Kohm",
-      "Kuva Ogris",
-      "Kuva Quartakk",
-      "Kuva Sobek",
-      "Kuva Tonkor",
-      "Kuva Zarr",
-      "Primed Shred",
-      "Tenet Cycron",
-      "Kuva Brakk",
-      "Kuva Kraken",
-      "Kuva Nukor",
-      "Kuva Seer",
-      "Kuva Twin Stubbas",
-      "Kuva Ghoulsaw",
-      "Kuva Shildeg",
-      "Primed Fury",
-      "Kuva Ayanga",
-      "Kuva Grattler"
-    ]
-  },
-  "noNewsText": "本次未查到新增官方公告或修正，已報內容不重複刊登。Scare-o 首週到訪已於台灣 10/18 21:00 結束，今日不列為可購買。消息先別硬擠，杜卡德也讓它喘口氣 😏 官方消息：https://www.warframe.com/en/news"
+    "status": "unavailable",
+    "date": "2026-10-20",
+    "previousTotalPlatinum": 13916
+  }
 }
