@@ -1,49 +1,64 @@
 {
-  "date": "2026-10-20",
+  "date": "2026-10-21",
   "liveIntel": {
     "status": "verified",
-    "checkedAt": "2026-10-19T19:56:25.708800+00:00",
-    "note": "台灣 03:56 核對官方快照：未列 Fomorian／Razorback，未見 Forma／Forma 藍圖、Orokin 催化劑／反應爐的警報或未完成入侵獎勵。已排除 04:00 到期場次；本則殲滅警報開放時段為 04:00–05:30。來源：https://api.warframe.com/cdn/worldState.php"
+    "checkedAt": "2026-10-20T19:04:32.111602+00:00",
+    "note": "台灣03:04核對官方快照：未列Fomorian／Razorback，未見Forma／Forma藍圖、Orokin催化劑／反應爐的警報或未完成入侵獎勵。已排除04:00及以前到期警報；04:30生存場須於發布前複核。裂罅暫停交易提示另已核對官方公告。來源：https://api.warframe.com/cdn/worldState.php"
   },
   "articles": [
     {
-      "title": "活動提醒｜今晨 04–08 時接力看台，裝飾掉落別只會眼饞 😏",
+      "title": "裂罅交易已暫停；週四改制與成品福馬補償是預告",
+      "publishedDate": "2026-10-20",
+      "summary": "裂罅交易已暫停，官方預計週四熱修後恢復，未公布精確時刻。彈藥效率上限75%、裂罅數值範圍統一等同強度1.2仍是熱修預告，尚未實裝。下方截止時間僅指補償登入期限，不是交易恢復時間。",
+      "memberBenefit": "先緩報價，避免用改制前數值成交；Failed to make offer不一定是對方故障。",
+      "nextStep": "保留現有配裝與裂罅數值，等正式熱修；別為未發放的補償臨時購買Splicer。",
+      "sourceUrl": "https://forums.warframe.com/topic/1529475-dev-workshop-ammo-efficiency-changes-riven-disposition-retirement/",
+      "category": "official-news",
+      "sourceItemId": "1529475",
+      "materialInfo": "福馬用於裝備極化；本則是熱修後收件匣補償預告，非現在可刷取的警報。",
+      "rewards": "預告：熱修後登入得1成品福馬＋10萬Kuva；熱修前已安裝Riven Splicer者另得1 Splicer＋10萬Kuva。",
+      "location": "遊戲收件匣；預計美東10/22週四熱修後，台灣啟用時刻未公布。",
+      "requirements": "熱修後於期限前登入；額外信件限熱修前已有Splicer安裝紀錄者。",
+      "expiresAt": "2027-01-01T12:59:00+08:00"
+    },
+    {
+      "title": "活動提醒｜今晨03–09時三場接力，先領再換台 😏",
       "publishedDate": "2026-10-19",
-      "summary": "官方公布本週慈善直播表：台灣 10/20 04:00–06:00 為 iFlynn，06:00–08:00 接 theragingterror。每場創作者募款直播觀看 30 分鐘，可領一次裝飾隨機袋；池內含 Drum Kit、Electric Keyboard、Orokin Tea Set 等，不能指定或保證抽到哪件。配圖為官方活動宣傳示意圖，不是本次直播截圖；08:00 僅是本則最後一場的結束時間，不是整週活動截止。",
-      "memberBenefit": "不必花白金就有機會補充個人飛船裝飾；兩場各有獨立掉落活動，記得領取，別讓到手的獎勵只停在想像裡。",
-      "nextStep": "先確認 Twitch 已連結 Warframe 帳號；04:00 開 iFlynn、06:00 換 theragingterror，達標後到 Twitch 掉寶庫按領取。",
+      "summary": "台灣10/21 03:00–05:00為Disfusional，05:00–07:00為YourLuckyClover，07:00–09:00為viceroycyndr；各場觀看30分鐘可領一次裝飾隨機袋。這是今日場次提醒，不是新獎池；09:00僅代表本則最後一場結束。配圖為官方活動宣傳示意，不是今晨截圖。",
+      "memberBenefit": "三場各有獨立掉落活動，有機會補飛船裝飾；獎勵都送到眼前了，別只會流口水 😏",
+      "nextStep": "確認Twitch與Warframe帳號已連結，完成每場進度後到掉寶庫領取，再切換下一場。",
       "sourceUrl": "https://forums.warframe.com/topic/1529238-pmcfq-community-fundraising-stream-schedule-october-19-25-2026/",
       "imageUrl": "https://www-static.warframe.com/uploads/thumbnails/6d87c48b896a106c86985654618531de_1600x900.png",
       "imageSourceUrl": "https://www.warframe.com/en/news/pmcfq-2026-streamer-schedule",
       "category": "official-news",
       "sourceItemId": "1529238",
-      "materialInfo": "非材料任務；不消耗活動材料，以指定直播的有效觀看時間取得 Twitch 掉落。",
-      "rewards": "每場各一次隨機裝飾；獎池內容不等於一次全部送出。",
-      "location": "Twitch：twitch.tv/iflynn → twitch.tv/theragingterror",
-      "requirements": "連結 Twitch／Warframe 帳號；每場觀看 30 分鐘，並在 Twitch 掉寶庫領取。",
-      "expiresAt": "2026-10-20T08:00:00+08:00"
+      "materialInfo": "非材料任務；不消耗活動材料，以指定直播的有效觀看時間取得掉落。",
+      "rewards": "每位創作者場次各一次隨機裝飾；不是整個獎池全送，也不能指定品項。",
+      "location": "Twitch：Disfusional → YourLuckyClover → viceroycyndr",
+      "requirements": "連結Twitch／Warframe帳號，每場有效觀看30分鐘並於掉寶庫領取。",
+      "expiresAt": "2026-10-21T09:00:00+08:00"
     },
     {
-      "title": "警報提醒｜Moonflesh 殲滅場，台灣 05:30 收攤",
-      "publishedDate": "2026-10-20",
-      "summary": "10/20 03:56 官方快照列出 Eris 的 50 級 Infested 殲滅警報，開放時段為台灣 10/20 04:00–05:30，完成獎勵為 50 Moonflesh 與 17,000 現金。這是本場警報期限，不能拿 Taubound 整體活動期限代替；出發前仍須確認導航。配圖沿用 10/15 官方活動宣傳圖作示意，並非這場警報截圖。",
-      "memberBenefit": "把短時警報的固定 Moonflesh 收進口袋，可累積向 Praghasa 兌換活動獎勵的額度；不把這 50 份誤認為 Forma 或催化劑。",
-      "nextStep": "04:00–05:30 到導航活動警報確認 SolNode173 的殲滅場仍在，再組隊進入；若已消失或過期，不必追找這個舊 ID。",
+      "title": "警報提醒｜Moonflesh生存場，台灣04:30截止",
+      "publishedDate": "2026-10-21",
+      "summary": "10/21 03:04官方快照列出Eris的50級Infested生存警報，完成獎勵為50 Moonflesh與17,000遊戲現金。本場於台灣10/21 04:30結束，不以Taubound整體活動期限替代；出發前仍須確認導航。配圖沿用10/15官方活動宣傳圖作示意，並非本場截圖。",
+      "memberBenefit": "可收取本場固定Moonflesh，累積向Praghasa兌換物品的額度；不是Forma或催化劑掉落。",
+      "nextStep": "04:30前從導航確認SolNode172生存警報仍在，再組隊進入；若已消失或到期就略過。",
       "sourceUrl": "https://api.warframe.com/cdn/worldState.php",
       "imageUrl": "https://www-static.warframe.com/uploads/thumbnails/d4940c6cab0ad90994427983cc628371_1600x900.jpg",
       "imageSourceUrl": "https://www.warframe.com/en/news/epoch-operation-taubound",
       "category": "urgent-mission",
-      "sourceItemId": "6ad0d7360dfe89c5d8229148",
-      "materialInfo": "完成此警報取得 50 Moonflesh；Eris 的 Infested 也有機率掉落。Moonflesh 可交給 Eris 的 Praghasa 兌換活動物品；機制依官方 Taubound 公告，並非今日新增規則。",
-      "rewards": "本場完成獎勵：50 Moonflesh ＋ 17,000 現金；兌換品另須消耗 Moonflesh。",
-      "location": "Eris（鬩神星）→導航活動警報→殲滅；節點 ID：SolNode173",
-      "requirements": "已完成 Vor's Prize；活動期間一般 Eris 星圖／接合點限制解除。本場敵人等級 50。",
-      "expiresAt": "2026-10-20T05:30:00+08:00"
+      "sourceItemId": "6ad0d7370dfe89c5d82291a4",
+      "materialInfo": "完成此場取得50 Moonflesh；Eris的Infested也有機率掉落。Moonflesh可交給Eris的Praghasa兌換活動物品；此機制不是今日新增。",
+      "rewards": "本場完成獎勵：50 Moonflesh＋17,000遊戲現金。",
+      "location": "Eris（鬩神星）→導航活動警報→生存；節點ID：SolNode172",
+      "requirements": "已完成Vor's Prize；活動期間一般Eris星圖／接合點限制解除。本場敵人等級50。",
+      "expiresAt": "2026-10-21T04:30:00+08:00"
     }
   ],
   "market": {
     "status": "unavailable",
-    "date": "2026-10-20",
+    "date": "2026-10-21",
     "previousTotalPlatinum": 13916
   }
 }
