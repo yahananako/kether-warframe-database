@@ -2,8 +2,8 @@
   "date": "2026-10-21",
   "liveIntel": {
     "status": "verified",
-    "checkedAt": "2026-10-20T19:04:32.111602+00:00",
-    "note": "台灣03:04核對官方快照：未列Fomorian／Razorback，未見Forma／Forma藍圖、Orokin催化劑／反應爐的警報或未完成入侵獎勵。已排除04:00及以前到期警報；04:30生存場須於發布前複核。裂罅暫停交易提示另已核對官方公告。來源：https://api.warframe.com/cdn/worldState.php"
+    "checkedAt": "2026-10-20T19:58:36.655330+00:00",
+    "note": "台灣03:58重新核對官方快照：Moonflesh生存警報仍有效至04:30；未列Fomorian／Razorback，未見Forma／Forma藍圖、Orokin催化劑／反應爐的警報或未完成入侵獎勵。裂罅暫停交易提示另已核對官方公告。來源：https://api.warframe.com/cdn/worldState.php"
   },
   "articles": [
     {
