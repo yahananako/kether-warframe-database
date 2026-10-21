@@ -133,3 +133,49 @@
 @media(max-width:600px){.background{background-position:70% center}.background video{object-position:70% center}}
 
 @media(max-width:600px){.actions{display:flex;flex-wrap:wrap;gap:7px}.actions .control{min-height:35px;font-size:12px;padding:7px 10px}}
+
+/* The homepage reuses the exact same global performance mode picker and storage
+ * as every interior page. Placed in the original header actions, not a new row. */
+.effectsControl{position:relative;z-index:35;flex:none}
+.effectsControl :global(.site-effects-menu > summary){
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  min-width:45px;width:auto;min-height:43px;padding:9px 12px;
+  background:#10303ccf;border:1px solid #81a7aa;border-radius:4px;
+  color:#eefafa;font-size:12px;letter-spacing:.03em;font-weight:700;
+  cursor:pointer;transition:transform .18s,background .18s,box-shadow .18s,border-color .18s;
+}
+.effectsControl :global(.site-effects-menu > summary:is(:hover,:focus-visible)),
+.effectsControl :global(.site-effects-menu[open] > summary){
+  transform:translateY(-2px);background:#1a5060;border-color:var(--cyan);
+  box-shadow:0 0 23px #7befea6b;
+}
+.effectsControl :global(.site-effects-menu > summary:active){transform:scale(.97)}
+.effectsControl :global(.site-effects-status){right:5px;bottom:4px}
+.effectsControl :global(.site-effects-panel){
+  position:fixed;top:clamp(60px,8vh,96px);right:clamp(12px,3.5vw,54px);
+  width:min(330px,calc(100vw - 24px));
+  max-height:calc(100dvh - 100px);
+  overflow-y:auto;overscroll-behavior:contain;
+  text-align:left;border-radius:5px;z-index:90;
+}
+@media(max-width:800px){
+  .effectsControl :global(.site-effects-menu > summary){width:40px;min-width:40px;padding:7px}
+  .effectsControl :global(.kether-home-effects-label){display:none}
+}
+@media(max-width:520px){
+  .effectsControl :global(.site-effects-menu > summary){width:36px;min-width:36px;min-height:36px;padding:4px}
+  .effectsControl :global(.site-effects-menu > summary svg){width:18px;height:18px}
+  .effectsControl :global(.site-effects-panel){top:56px;right:12px;max-height:calc(100dvh - 69px)}
+}
+@media(max-width:365px){
+  .effectsControl :global(.site-effects-menu > summary){width:33px;min-width:33px}
+  .topActions{gap:3px}
+  .brand small{display:none}
+  .top{gap:4px}
+}
+@media(max-height:600px){
+  .effectsControl :global(.site-effects-panel){top:49px;max-height:calc(100dvh - 60px)}
+}
+@media(prefers-reduced-motion:reduce){
+  .effectsControl :global(.site-effects-menu > summary){transition:none}
+}

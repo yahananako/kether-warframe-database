@@ -42,6 +42,88 @@ try {
   page.setDefaultTimeout(9000);
   const url=path=>new URL(path,base).href;
 
+  await task(page,"save-data-automatically-downgrades-both-pages",async()=>{
+    const metered=await browser.newContext({reducedMotion:"no-preference"});
+    try {
+      await metered.addInitScript(()=>{
+        Object.defineProperty(navigator,"connection",{value:{saveData:true},configurable:true});
+        localStorage.setItem("kether-effects-mode-v1","full");
+      });
+      const tab=await metered.newPage();
+      for(const path of ["/","/story"]){
+        await tab.goto(url(path),{waitUntil:"domcontentloaded"});
+        await tab.waitForFunction(()=>document.documentElement.dataset.ketherEffects==="eco" &&
+          document.documentElement.dataset.ketherEffectsChoice==="full");
+      }
+    } finally { await metered.close(); }
+  });
+
+  await task(page,"homepage-performance-picker-shares-site-settings",async()=>{
+    await page.emulateMedia({reducedMotion:"no-preference"});
+    await page.goto(url("/"),{waitUntil:"domcontentloaded"});
+    const menu=page.locator("[data-kether-home] .site-effects-menu");
+    const trigger=menu.locator("summary");
+    await trigger.waitFor({state:"visible"});
+    await trigger.click();
+    await menu.locator(".site-effects-panel button").filter({hasText:"華麗"}).click();
+    await page.waitForFunction(()=>
+      document.documentElement.dataset.ketherEffectsChoice==="full" &&
+      localStorage.getItem("kether-effects-mode-v1")==="full"
+    );
+    await page.waitForFunction(()=>document.documentElement.dataset.ketherEffects==="full");
+    await page.reload({waitUntil:"domcontentloaded"});
+    await page.waitForFunction(()=>document.documentElement.dataset.ketherEffects==="full");
+    await page.getByRole("button",{name:"開啟選單",exact:true}).click();
+    await page.getByRole("link",{name:/故事書/}).click();
+    await page.waitForURL("**/story");
+    await page.waitForFunction(()=>document.documentElement.dataset.ketherEffectsChoice==="full");
+    await page.locator(".site-effects-menu:not([aria-hidden]) summary").first().click();
+    await page.locator(".site-effects-panel button").filter({hasText:"平衡"}).first().click();
+    await page.waitForFunction(()=>document.documentElement.dataset.ketherEffectsChoice==="balanced");
+    await page.locator(".site-brand").click();
+    await page.waitForURL(url("/"));
+    await page.waitForFunction(()=>document.documentElement.dataset.ketherEffectsChoice==="balanced");
+    assert.match(await page.locator("[data-kether-home] .site-effects-menu summary").getAttribute("aria-label")||"",/平衡/);
+    await page.reload({waitUntil:"domcontentloaded"});
+    await page.waitForFunction(()=>document.documentElement.dataset.ketherEffects==="balanced");
+    const sibling=await desktop.newPage();
+    try {
+      await sibling.goto(url("/story"),{waitUntil:"domcontentloaded"});
+      await sibling.waitForFunction(()=>document.documentElement.dataset.ketherEffectsChoice==="balanced");
+      await menu.locator("summary").click();
+      await menu.getByRole("button",{name:/省電/}).click();
+      await sibling.waitForFunction(()=>document.documentElement.dataset.ketherEffects==="eco");
+      await page.waitForFunction(()=>document.documentElement.dataset.ketherEffects==="eco");
+    } finally { await sibling.close(); }
+    await page.emulateMedia({reducedMotion:"reduce"});
+  });
+
+  await task(page,"reduced-motion-downgrades-without-erasing-choice",async()=>{
+    await page.emulateMedia({reducedMotion:"no-preference"});
+    await page.goto(url("/"),{waitUntil:"domcontentloaded"});
+    const menu=page.locator("[data-kether-home] .site-effects-menu");
+    await menu.locator("summary").click();
+    await menu.getByRole("button",{name:/華麗/}).click();
+    await page.waitForFunction(()=>document.documentElement.dataset.ketherEffects==="full");
+    await page.emulateMedia({reducedMotion:"reduce"});
+    await page.waitForFunction(()=>document.documentElement.dataset.ketherEffects==="eco" &&
+      document.documentElement.dataset.ketherEffectsChoice==="full" &&
+      localStorage.getItem("kether-effects-mode-v1")==="full" &&
+      document.querySelector("[data-kether-home] video")?.paused);
+    await menu.locator("summary").click();
+    assert.match(await menu.innerText(),/自動套用省電/);
+    await page.keyboard.press("Escape");
+    assert.equal(await menu.getAttribute("open"),null);
+    assert.equal(await menu.locator("summary").evaluate(el=>el===document.activeElement),true);
+    await page.goto(url("/story"),{waitUntil:"domcontentloaded"});
+    await page.waitForFunction(()=>document.documentElement.dataset.ketherEffects==="eco" &&
+      document.documentElement.dataset.ketherEffectsChoice==="full" &&
+      document.querySelector(".site-cinema video")?.paused);
+    await page.emulateMedia({reducedMotion:"no-preference"});
+    await page.waitForFunction(()=>document.documentElement.dataset.ketherEffects==="full");
+    await page.emulateMedia({reducedMotion:"reduce"});
+  });
+
   await task(page,"persistent-client-navigation",async()=>{
     await page.goto(url("/story"),{waitUntil:"domcontentloaded"});
     await page.waitForSelector(".site-navigation .site-menu summary");
@@ -123,6 +205,41 @@ try {
   await mobile.addCookies([{name:"kether_discord_session",value:signedSession(),url:base}]);
   const phone=await mobile.newPage();
   phone.setDefaultTimeout(9000);
+  await task(phone,"mobile-home-performance-picker-stays-onscreen",async()=>{
+    await phone.goto(url("/"),{waitUntil:"domcontentloaded"});
+    const menu=phone.locator("[data-kether-home] .site-effects-menu");
+    await menu.locator("summary").tap();
+    const panel=menu.locator(".site-effects-panel");
+    await panel.waitFor({state:"visible"});
+    const bounds=await panel.boundingBox();
+    assert.ok(bounds,"No visible homepage performance panel");
+    assert.ok(bounds.x>=-1&&bounds.y>=-1&&
+      bounds.x+bounds.width<=391&&bounds.y+bounds.height<=845,
+      "Homepage performance menu clipped on 390px mobile: "+JSON.stringify(bounds));
+    await phone.screenshot({path:"qa/screenshots/home-effects-390.png",animations:"disabled"});
+    await panel.getByRole("button",{name:/省電/}).tap();
+    await phone.waitForFunction(()=>
+      document.documentElement.dataset.ketherEffectsChoice==="eco" &&
+      localStorage.getItem("kether-effects-mode-v1")==="eco"
+    );
+    assert.equal(await menu.getAttribute("open"),null,"Home mode menu should close after selection");
+    await phone.setViewportSize({width:360,height:740});
+    await menu.locator("summary").tap();
+    const small=await menu.locator(".site-effects-panel").boundingBox();
+    assert.ok(small&&small.x>=-1&&small.y>=-1&&small.x+small.width<=361&&small.y+small.height<=741,
+      "Homepage mode menu clipped on 360px screen: "+JSON.stringify(small));
+    await phone.screenshot({path:"qa/screenshots/home-effects-360.png",animations:"disabled"});
+    await panel.getByRole("button",{name:/平衡/}).tap();
+    assert.equal(await menu.getAttribute("open"),null);
+    await phone.reload({waitUntil:"domcontentloaded"});
+    await phone.waitForFunction(()=>document.documentElement.dataset.ketherEffectsChoice==="balanced");
+    await menu.locator("summary").tap();
+    await phone.locator("[data-kether-home] footer span").tap();
+    assert.equal(await menu.getAttribute("open"),null,"Outside touch should dismiss the picker");
+    await phone.setViewportSize({width:390,height:844});
+    await phone.goto(url("/story"),{waitUntil:"domcontentloaded"});
+    await phone.waitForFunction(()=>document.documentElement.dataset.ketherEffectsChoice==="balanced");
+  });
   await task(phone,"mobile-notification-opens-and-closes",async()=>{
     await phone.goto(url("/story"),{waitUntil:"domcontentloaded"});
     const popup=phone.locator(".site-notification");

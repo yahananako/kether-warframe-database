@@ -24,6 +24,14 @@ const tests=[
     const mode=read("components/KetherEffectsProvider.tsx");
     assert.match(mode,/reducedMotion \|\| saveData \? "eco" : mode/);
   }],
+  ["homepage performance picker shares the global provider",()=>{
+    const homepage=read("components/HomeImmersive.tsx");
+    const picker=read("components/KetherEffectsMenu.tsx");
+    assert.ok(homepage.includes('<KetherEffectsMenu variant="home" />'));
+    assert.ok(picker.includes("useKetherEffects()"));
+    assert.ok(picker.includes("setMode(item.id)"));
+    assert.ok(read("components/HomeImmersive.module.css").includes(".effectsControl"));
+  }],
   ["homepage honours mode",()=>{
     assert.ok(read("components/HomeImmersive.tsx").includes("cinemaVideo"));
     assert.ok(read("components/HomeCinema.tsx").includes('effectiveMode==="eco"'));
