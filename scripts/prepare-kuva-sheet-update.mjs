@@ -61,6 +61,19 @@ function stringCell(value) {
     : { userEnteredValue: { stringValue: String(value) } };
 }
 
+
+function priceCell(value) {
+  const number = typeof value === "number"
+    ? value
+    : typeof value === "string" && /^\s*\d+(?:\.\d+)?\s*p?\s*$/i.test(value)
+      ? Number(value.trim().replace(/p$/i, "").trim())
+      : null;
+  if (number !== null && Number.isFinite(number) && number >= 0) {
+    return { userEnteredValue: { numberValue: number } };
+  }
+  return stringCell(value);
+}
+
 function linkCell(label, url) {
   const safeUrl = String(url).replaceAll('"', '""');
   const safeLabel = String(label).replaceAll('"', '""');
@@ -92,7 +105,7 @@ function dataRow(item) {
       stringCell(item.englishName),
       stringCell(item.description),
       stringCell(item.priority),
-      stringCell(item.price),
+      priceCell(item.price),
       linkCell(item.tradeText || "查看玄骸拍賣", item.marketUrl),
       stringCell(item.owned),
       stringCell(item.source),
@@ -147,6 +160,11 @@ function rowHeight(sheetId, startIndex, endIndex, pixelSize) {
 
 function validationRequests(sheetId, startRowIndex, endRowIndex) {
   return [
+    { repeatCell: {
+      range: { sheetId, startRowIndex, endRowIndex, startColumnIndex: 4, endColumnIndex: 5 },
+      cell: { userEnteredFormat: { numberFormat: { type: "NUMBER", pattern: '0.##"p"' } } },
+      fields: "userEnteredFormat.numberFormat",
+    } },
     {
       setDataValidation: {
         range: {

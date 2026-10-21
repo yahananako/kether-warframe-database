@@ -44,6 +44,19 @@ function stringCell(value) {
     : { userEnteredValue: { stringValue: String(value) } };
 }
 
+
+function priceCell(value) {
+  const number = typeof value === "number"
+    ? value
+    : typeof value === "string" && /^\s*\d+(?:\.\d+)?\s*p?\s*$/i.test(value)
+      ? Number(value.trim().replace(/p$/i, "").trim())
+      : null;
+  if (number !== null && Number.isFinite(number) && number >= 0) {
+    return { userEnteredValue: { numberValue: number } };
+  }
+  return stringCell(value);
+}
+
 function linkCell(label, url) {
   if (!url) return stringCell("不可交易");
   const safeUrl = String(url).replaceAll('"', '""');
@@ -72,7 +85,7 @@ function dataRow(item) {
       stringCell(item.englishName),
       stringCell(item.description),
       stringCell(item.priority),
-      stringCell(item.price),
+      priceCell(item.price),
       linkCell(item.tradeText || "開啟交易", item.marketUrl),
       stringCell(item.owned),
       stringCell(item.source),
@@ -246,7 +259,14 @@ function buildRegularSheetRequests(catalog, category) {
     requests.push(rowHeightRequest(config.sheetId, start + position, start + position + 1, 36));
   }
   const absoluteDataRanges = block.dataRanges.map(([a, b]) => [start + a, start + b]);
-  for (const [a, b] of absoluteDataRanges) requests.push(rowHeightRequest(config.sheetId, a, b, 76));
+  for (const [a, b] of absoluteDataRanges) {
+    requests.push(rowHeightRequest(config.sheetId, a, b, 76));
+    requests.push({ repeatCell: {
+      range: { sheetId: config.sheetId, startRowIndex: a, endRowIndex: b, startColumnIndex: 4, endColumnIndex: 5 },
+      cell: { userEnteredFormat: { numberFormat: { type: "NUMBER", pattern: '0.##"p"' } } },
+      fields: "userEnteredFormat.numberFormat",
+    } });
+  }
   requests.push(...validationRequests(config.sheetId, absoluteDataRanges));
 
   return {
@@ -314,7 +334,14 @@ function buildArchwingRequests(catalog) {
     requests.push(rowHeightRequest(config.sheetId, start + position, start + position + 1, 36));
   }
   const absoluteDataRanges = block.dataRanges.map(([a, b]) => [start + a, start + b]);
-  for (const [a, b] of absoluteDataRanges) requests.push(rowHeightRequest(config.sheetId, a, b, 76));
+  for (const [a, b] of absoluteDataRanges) {
+    requests.push(rowHeightRequest(config.sheetId, a, b, 76));
+    requests.push({ repeatCell: {
+      range: { sheetId: config.sheetId, startRowIndex: a, endRowIndex: b, startColumnIndex: 4, endColumnIndex: 5 },
+      cell: { userEnteredFormat: { numberFormat: { type: "NUMBER", pattern: '0.##"p"' } } },
+      fields: "userEnteredFormat.numberFormat",
+    } });
+  }
   requests.push(...validationRequests(config.sheetId, absoluteDataRanges));
 
   return {
