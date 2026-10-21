@@ -2,8 +2,8 @@
   "date": "2026-10-22",
   "liveIntel": {
     "status": "verified",
-    "checkedAt": "2026-10-21T19:03:50.660118+00:00",
-    "note": "台灣03:03核對官方快照：04:30前仍有1場Moonflesh警報；未列Fomorian／Razorback，未見Forma／Forma藍圖、Orokin催化劑／反應爐的警報或未完成入侵獎勵。來源：https://api.warframe.com/cdn/worldState.php"
+    "checkedAt": "2026-10-21T20:05:33.169233+00:00",
+    "note": "台灣04:05重新核對官方快照：目前有3場Moonflesh警報，依序於04:30、05:00、05:30截止；未列Fomorian／Razorback，未見Forma／Forma藍圖、Orokin催化劑／反應爐的警報或未完成入侵獎勵。來源：https://api.warframe.com/cdn/worldState.php"
   },
   "articles": [
     {
@@ -26,7 +26,7 @@
     {
       "title": "警報提醒｜Moonflesh巢穴破壞，台灣04:30截止",
       "publishedDate": "2026-10-22",
-      "summary": "10/22 03:03官方快照列出Eris的50級Infested巢穴破壞警報，完成獎勵為50 Moonflesh與17,000遊戲現金。本場於台灣10/22 04:30結束，不以Taubound整體活動期限替代；出發前仍須確認導航。配圖沿用10/15官方活動宣傳圖作示意，並非本場截圖。",
+      "summary": "10/22 04:05官方快照列出Eris的50級Infested巢穴破壞警報，完成獎勵為50 Moonflesh與17,000遊戲現金。本場於台灣10/22 04:30結束，不以Taubound整體活動期限替代；出發前仍須確認導航。配圖沿用10/15官方活動宣傳圖作示意，並非本場截圖。",
       "memberBenefit": "可收取本場固定Moonflesh，累積向Praghasa兌換物品的額度；不是Forma或催化劑掉落。",
       "nextStep": "04:30前從導航確認SolNode173警報仍在，再組隊進入；若已消失或到期就略過。",
       "sourceUrl": "https://api.warframe.com/cdn/worldState.php",
@@ -39,6 +39,40 @@
       "location": "Eris（鬩神星）→導航活動警報→巢穴破壞；節點ID：SolNode173",
       "requirements": "已完成Vor's Prize；活動期間一般Eris星圖／接合點限制解除。本場敵人等級50。",
       "expiresAt": "2026-10-22T04:30:00+08:00"
+    },
+    {
+      "title": "警報提醒｜Moonflesh生存場，台灣05:00截止",
+      "publishedDate": "2026-10-22",
+      "summary": "10/22 04:05官方快照列出Eris的50級Infested生存警報，完成獎勵為50 Moonflesh與17,000遊戲現金。本場於台灣10/22 05:00結束；警報輪替很會挑時間撩人，想拿就別只在導航前猶豫。配圖沿用10/15官方活動宣傳圖作示意，並非本場截圖。",
+      "memberBenefit": "可再收取50 Moonflesh，和前後場分開計算；不是Forma、催化劑或反應爐獎勵。",
+      "nextStep": "05:00前從導航確認SolNode171警報仍在，再組隊進入；若已消失或到期就略過。",
+      "sourceUrl": "https://api.warframe.com/cdn/worldState.php",
+      "imageUrl": "https://www-static.warframe.com/uploads/thumbnails/d4940c6cab0ad90994427983cc628371_1600x900.jpg",
+      "imageSourceUrl": "https://www.warframe.com/en/news/epoch-operation-taubound",
+      "category": "urgent-mission",
+      "sourceItemId": "6ad0d7370dfe89c5d8229206",
+      "materialInfo": "完成此場取得50 Moonflesh；Moonflesh可交給Eris的Praghasa兌換活動物品。",
+      "rewards": "本場完成獎勵：50 Moonflesh＋17,000遊戲現金。",
+      "location": "Eris（鬩神星）→導航活動警報→生存；節點ID：SolNode171",
+      "requirements": "已完成Vor's Prize；活動期間一般Eris星圖／接合點限制解除。本場敵人等級50。",
+      "expiresAt": "2026-10-22T05:00:00+08:00"
+    },
+    {
+      "title": "警報提醒｜Moonflesh機動防禦，台灣05:30截止",
+      "publishedDate": "2026-10-22",
+      "summary": "10/22 04:05官方快照列出Eris的50級Infested機動防禦警報，完成獎勵為50 Moonflesh與17,000遊戲現金。本場於台灣10/22 05:30結束，是這次快照中最後到期的一場；配圖沿用10/15官方活動宣傳圖作示意，並非本場截圖。",
+      "memberBenefit": "可再補50 Moonflesh；三場全完成時合計150 Moonflesh，但每場仍須各自完成。",
+      "nextStep": "05:30前從導航確認SolNode162警報仍在，再依剩餘時間決定是否揪團。",
+      "sourceUrl": "https://api.warframe.com/cdn/worldState.php",
+      "imageUrl": "https://www-static.warframe.com/uploads/thumbnails/d4940c6cab0ad90994427983cc628371_1600x900.jpg",
+      "imageSourceUrl": "https://www.warframe.com/en/news/epoch-operation-taubound",
+      "category": "urgent-mission",
+      "sourceItemId": "6ad0d7370dfe89c5d8229208",
+      "materialInfo": "完成此場取得50 Moonflesh；Moonflesh可交給Eris的Praghasa兌換活動物品。",
+      "rewards": "本場完成獎勵：50 Moonflesh＋17,000遊戲現金。",
+      "location": "Eris（鬩神星）→導航活動警報→機動防禦；節點ID：SolNode162",
+      "requirements": "已完成Vor's Prize；活動期間一般Eris星圖／接合點限制解除。本場敵人等級50。",
+      "expiresAt": "2026-10-22T05:30:00+08:00"
     }
   ],
   "market": {
