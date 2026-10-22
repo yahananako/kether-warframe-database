@@ -1,83 +1,48 @@
 {
-  "date": "2026-10-22",
+  "date": "2026-10-23",
   "liveIntel": {
     "status": "verified",
-    "checkedAt": "2026-10-21T20:05:33.169233+00:00",
-    "note": "台灣04:05重新核對官方快照：目前有3場Moonflesh警報，依序於04:30、05:00、05:30截止；未列Fomorian／Razorback，未見Forma／Forma藍圖、Orokin催化劑／反應爐的警報或未完成入侵獎勵。來源：https://api.warframe.com/cdn/worldState.php"
+    "checkedAt": "2026-10-22T18:57:56.178509+00:00",
+    "note": "台灣02:58核對官方快照：共4場Moonflesh警報，其中3場於04:00前到期而未列；04:30尚有1場。未列Fomorian／Razorback，未見Forma／Forma藍圖、Orokin催化劑／反應爐的警報或未完成入侵獎勵。"
   },
   "articles": [
     {
-      "title": "活動提醒｜04–08時兩場接力，裝飾掉落別睡過頭 😏",
+      "title": "活動提醒｜08–10時直播掉落，早起的Tenno有裝飾拿 😏",
       "publishedDate": "2026-10-19",
-      "summary": "台灣10/22 04:00–06:00為zatanaa，06:00–08:00為gingythekid；兩場都是官方列出的PMCFQ募款直播。每場有效觀看30分鐘可領一次裝飾隨機袋，兩個創作者各有獨立掉落活動；本則是今日場次提醒，不是新獎池。配圖沿用官方活動宣傳圖作示意，並非今晨直播截圖。",
-      "memberBenefit": "可分兩場各拿一次裝飾隨機袋，替軌道飛行器或氏族場景添點情趣；獎勵送到眼前了，別只會盯著看。",
-      "nextStep": "先確認Twitch與Warframe帳號已連結；每場進度完成後到掉寶庫領取，再切換下一場。",
+      "summary": "台灣10/23 08:00–10:00為WidescreenJohn的官方PMCFQ募款直播，觀看合資格直播30分鐘可取得一次裝飾隨機袋。本則是今日場次提醒，不是新獎池；獎勵送到眼前了，別只會流口水，該領就領。",
+      "memberBenefit": "不用消耗杜卡德或活動材料，就能補一件隨機軌道飛行器裝飾；抽到哪件由獎池決定，不能指定。",
+      "nextStep": "先確認Twitch與Warframe帳號已連結；08:00開播後檢查掉寶進度，完成30分鐘再到掉寶庫領取。",
       "sourceUrl": "https://forums.warframe.com/topic/1529238-pmcfq-community-fundraising-stream-schedule-october-19-25-2026/",
       "imageUrl": "https://www-static.warframe.com/uploads/thumbnails/6d87c48b896a106c86985654618531de_1600x900.png",
       "imageSourceUrl": "https://www.warframe.com/en/news/pmcfq-2026-streamer-schedule",
       "category": "official-news",
-      "sourceItemId": "1529238",
-      "materialInfo": "非材料任務；不消耗活動材料，以指定直播的有效觀看時間取得掉落。",
-      "rewards": "每位創作者場次各一次裝飾隨機袋；每次隨機一件，不能指定品項。",
-      "location": "Twitch：zatanaa → gingythekid",
-      "requirements": "連結Twitch／Warframe帳號，每場有效觀看30分鐘並於掉寶庫領取。",
-      "expiresAt": "2026-10-22T08:00:00+08:00"
+      "materialInfo": "非材料任務；以指定直播的有效觀看時間取得掉落，不消耗Moonflesh或其他活動材料。",
+      "rewards": "裝飾隨機袋1個；隨機取得一件官方獎池物品，不能指定品項。",
+      "location": "Twitch：WidescreenJohn",
+      "requirements": "連結Twitch／Warframe帳號，有效觀看30分鐘並於掉寶庫領取。",
+      "expiresAt": "2026-10-23T10:00:00+08:00"
     },
     {
-      "title": "警報提醒｜Moonflesh巢穴破壞，台灣04:30截止",
-      "publishedDate": "2026-10-22",
-      "summary": "10/22 04:05官方快照列出Eris的50級Infested巢穴破壞警報，完成獎勵為50 Moonflesh與17,000遊戲現金。本場於台灣10/22 04:30結束，不以Taubound整體活動期限替代；出發前仍須確認導航。配圖沿用10/15官方活動宣傳圖作示意，並非本場截圖。",
-      "memberBenefit": "可收取本場固定Moonflesh，累積向Praghasa兌換物品的額度；不是Forma或催化劑掉落。",
-      "nextStep": "04:30前從導航確認SolNode173警報仍在，再組隊進入；若已消失或到期就略過。",
+      "title": "警報提醒｜Moonflesh殲滅，台灣04:30截止",
+      "publishedDate": "2026-10-23",
+      "summary": "10/23 02:58官方World State列出Eris的50級Infested殲滅警報，完成獎勵為50 Moonflesh與17,000遊戲現金。本場於台灣04:30結束；另外三場會在04:00前到期，因此沒有塞進準備稿假裝還能摸。",
+      "memberBenefit": "可快速補50 Moonflesh，累積向Praghasa兌換活動物品的額度；本場不是Forma、催化劑或反應爐獎勵。",
+      "nextStep": "04:30前從遊戲導航確認SolNode173警報仍在，再組隊進入；若標記已消失就直接略過。",
       "sourceUrl": "https://api.warframe.com/cdn/worldState.php",
       "imageUrl": "https://www-static.warframe.com/uploads/thumbnails/d4940c6cab0ad90994427983cc628371_1600x900.jpg",
       "imageSourceUrl": "https://www.warframe.com/en/news/epoch-operation-taubound",
       "category": "urgent-mission",
-      "sourceItemId": "6ad0d7370dfe89c5d8229204",
-      "materialInfo": "完成此場取得50 Moonflesh；Eris的Infested也有機率掉落。Moonflesh可交給Eris的Praghasa兌換活動物品；此機制不是今日新增。",
+      "sourceItemId": "6ad0d7370dfe89c5d8229264",
+      "materialInfo": "完成此場取得50 Moonflesh；Eris的Infested也可能掉落。Moonflesh可交給Eris的Praghasa兌換活動物品。",
       "rewards": "本場完成獎勵：50 Moonflesh＋17,000遊戲現金。",
-      "location": "Eris（鬩神星）→導航活動警報→巢穴破壞；節點ID：SolNode173",
+      "location": "Eris（鬩神星）→Solium／SolNode173→活動警報→殲滅",
       "requirements": "已完成Vor's Prize；活動期間一般Eris星圖／接合點限制解除。本場敵人等級50。",
-      "expiresAt": "2026-10-22T04:30:00+08:00"
-    },
-    {
-      "title": "警報提醒｜Moonflesh生存場，台灣05:00截止",
-      "publishedDate": "2026-10-22",
-      "summary": "10/22 04:05官方快照列出Eris的50級Infested生存警報，完成獎勵為50 Moonflesh與17,000遊戲現金。本場於台灣10/22 05:00結束；警報輪替很會挑時間撩人，想拿就別只在導航前猶豫。配圖沿用10/15官方活動宣傳圖作示意，並非本場截圖。",
-      "memberBenefit": "可再收取50 Moonflesh，和前後場分開計算；不是Forma、催化劑或反應爐獎勵。",
-      "nextStep": "05:00前從導航確認SolNode171警報仍在，再組隊進入；若已消失或到期就略過。",
-      "sourceUrl": "https://api.warframe.com/cdn/worldState.php",
-      "imageUrl": "https://www-static.warframe.com/uploads/thumbnails/d4940c6cab0ad90994427983cc628371_1600x900.jpg",
-      "imageSourceUrl": "https://www.warframe.com/en/news/epoch-operation-taubound",
-      "category": "urgent-mission",
-      "sourceItemId": "6ad0d7370dfe89c5d8229206",
-      "materialInfo": "完成此場取得50 Moonflesh；Moonflesh可交給Eris的Praghasa兌換活動物品。",
-      "rewards": "本場完成獎勵：50 Moonflesh＋17,000遊戲現金。",
-      "location": "Eris（鬩神星）→導航活動警報→生存；節點ID：SolNode171",
-      "requirements": "已完成Vor's Prize；活動期間一般Eris星圖／接合點限制解除。本場敵人等級50。",
-      "expiresAt": "2026-10-22T05:00:00+08:00"
-    },
-    {
-      "title": "警報提醒｜Moonflesh機動防禦，台灣05:30截止",
-      "publishedDate": "2026-10-22",
-      "summary": "10/22 04:05官方快照列出Eris的50級Infested機動防禦警報，完成獎勵為50 Moonflesh與17,000遊戲現金。本場於台灣10/22 05:30結束，是這次快照中最後到期的一場；配圖沿用10/15官方活動宣傳圖作示意，並非本場截圖。",
-      "memberBenefit": "可再補50 Moonflesh；三場全完成時合計150 Moonflesh，但每場仍須各自完成。",
-      "nextStep": "05:30前從導航確認SolNode162警報仍在，再依剩餘時間決定是否揪團。",
-      "sourceUrl": "https://api.warframe.com/cdn/worldState.php",
-      "imageUrl": "https://www-static.warframe.com/uploads/thumbnails/d4940c6cab0ad90994427983cc628371_1600x900.jpg",
-      "imageSourceUrl": "https://www.warframe.com/en/news/epoch-operation-taubound",
-      "category": "urgent-mission",
-      "sourceItemId": "6ad0d7370dfe89c5d8229208",
-      "materialInfo": "完成此場取得50 Moonflesh；Moonflesh可交給Eris的Praghasa兌換活動物品。",
-      "rewards": "本場完成獎勵：50 Moonflesh＋17,000遊戲現金。",
-      "location": "Eris（鬩神星）→導航活動警報→機動防禦；節點ID：SolNode162",
-      "requirements": "已完成Vor's Prize；活動期間一般Eris星圖／接合點限制解除。本場敵人等級50。",
-      "expiresAt": "2026-10-22T05:30:00+08:00"
+      "expiresAt": "2026-10-23T04:30:00+08:00"
     }
   ],
   "market": {
     "status": "unavailable",
-    "date": "2026-10-22",
+    "date": "2026-10-23",
     "previousTotalPlatinum": 13916
   }
 }
