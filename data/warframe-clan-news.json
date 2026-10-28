@@ -1,66 +1,58 @@
 {
-  "date": "2026-10-28",
+  "date": "2026-10-29",
   "liveIntel": {
     "status": "verified",
-    "checkedAt": "2026-10-27T20:05:34Z",
-    "note": "台灣04:05核對：04:30、05:00、05:30尚有3場Moonflesh警報。未見Fomorian／Razorback，亦未見Forma、Orokin催化劑或反應爐警報；現有入侵僅研究材料，未列入日報。"
+    "checkedAt": "2026-10-28T19:00:24Z",
+    "note": "台灣03:00核對：僅列04:00發布後仍有效的04:30 Moonflesh警報。未見Fomorian／Razorback，亦未見Forma、Orokin催化劑或反應爐獎勵；現有入侵僅研究材料與Mutalist Alad V Nav Coordinate，未列入日報。"
   },
   "articles": [
     {
-      "title": "警報提醒｜Moonflesh感染巢穴，台灣04:30截止",
-      "publishedDate": "2026-10-28",
-      "summary": "10/28 04:05官方World State列出Eris的50級Infested感染巢穴警報，完成獎勵為50 Moonflesh與17,000遊戲現金。本場於台灣04:30結束；獎勵都送到眼前了，別只會流口水，該出手就出手 😏",
-      "memberBenefit": "完成可補50 Moonflesh，用於向Eris的Praghasa兌換活動限定品；本場不是Forma、Orokin催化劑或反應爐獎勵。",
-      "nextStep": "04:30前從遊戲導航確認Naeglar警報仍在，再帶清巢穴效率高的配置進場。",
-      "sourceUrl": "https://api.warframe.com/cdn/worldState.php",
-      "imageUrl": "https://www-static.warframe.com/uploads/thumbnails/d4940c6cab0ad90994427983cc628371_1600x900.jpg",
-      "imageSourceUrl": "https://www.warframe.com/en/news/epoch-operation-taubound",
-      "category": "urgent-mission",
-      "sourceItemId": "6ad0d7390dfe89c5d8229444",
-      "materialInfo": "完成本場取得50 Moonflesh；Moonflesh可交給Eris的Praghasa兌換活動限定物品。",
-      "rewards": "本場完成獎勵：50 Moonflesh＋17,000遊戲現金。",
-      "location": "Eris（鬩神星）→Naeglar／SolNode162→活動警報→感染巢穴",
-      "requirements": "已完成Vor's Prize；活動期間一般Eris星圖與接合點限制解除。本場敵人等級50，需完成感染巢穴目標並成功撤離。",
-      "expiresAt": "2026-10-28T04:30:00+08:00"
+      "title": "Hotfix 44.1.4｜Taubound警報與Icebind撤離修正",
+      "publishedDate": "2026-10-27",
+      "summary": "官方Hotfix修正未解鎖Eris的玩家看不到或無法進入Taubound警報，以及Icebind機動防禦特定地圖無法正常撤離的問題；同時修正Amanata Pressure重擊下砸、Valkyr被解除技能後仍殘留Warcry圖示與語音聊天崩潰。Nami Skyla Prime Blade的杜卡德價值由100降至65，準備換杜卡德金幣的成員要重新算帳。",
+      "memberBenefit": "新成員可直接參加活動警報；Icebind與Valkyr玩家較不易被撤離或HUD問題坑到，Prime零件換杜卡德前也能避開舊估值。",
+      "nextStep": "先完成更新再進活動；若仍遇到撤離異常，記下平台、節點與發生時間再回報。",
+      "sourceUrl": "https://forums.warframe.com/topic/1530579-iceblade-of-narin-the-icebind-hotfix-4414/",
+      "category": "official-news"
     },
     {
-      "title": "警報提醒｜Moonflesh生存，台灣05:00截止",
-      "publishedDate": "2026-10-28",
-      "summary": "10/28 04:05官方World State列出Eris的50級Infested生存警報，完成獎勵為50 Moonflesh與17,000遊戲現金。本場於台灣05:00結束；獎勵都送到眼前了，別只會流口水，該出手就出手 😏",
-      "memberBenefit": "完成可再取得50 Moonflesh；與04:30場分開結算，時間較寬裕的成員可優先保住這場。",
-      "nextStep": "05:00前從遊戲導航確認Kala-azar警報仍在，並替本場保留一個完整生存輪次。",
+      "title": "警報提醒｜Moonflesh機動防禦，台灣04:30截止",
+      "publishedDate": "2026-10-29",
+      "summary": "10/29 03:00官方World State列出Eris的50級Infested機動防禦警報，完成獎勵為50 Moonflesh與17,000遊戲現金。本場於台灣04:30結束；獎勵都送到眼前了，別只會流口水，該出手就出手 😏",
+      "memberBenefit": "完成可取得50 Moonflesh，用於向Eris的Praghasa兌換活動限定物品；本場不是Forma、Orokin催化劑或反應爐獎勵。",
+      "nextStep": "04:30前從遊戲導航確認Kala-azar警報仍在，再帶守點效率高的配置進場。",
       "sourceUrl": "https://api.warframe.com/cdn/worldState.php",
       "imageUrl": "https://www-static.warframe.com/uploads/thumbnails/d4940c6cab0ad90994427983cc628371_1600x900.jpg",
       "imageSourceUrl": "https://www.warframe.com/en/news/epoch-operation-taubound",
       "category": "urgent-mission",
-      "sourceItemId": "6ad0d7390dfe89c5d8229446",
+      "sourceItemId": "6ad0d7390dfe89c5d82294a4",
       "materialInfo": "完成本場取得50 Moonflesh；Moonflesh可交給Eris的Praghasa兌換活動限定物品。",
       "rewards": "本場完成獎勵：50 Moonflesh＋17,000遊戲現金。",
-      "location": "Eris（鬩神星）→Kala-azar／SolNode164→活動警報→生存",
-      "requirements": "已完成Vor's Prize；活動期間一般Eris星圖與接合點限制解除。本場敵人等級50，需完成生存目標並成功撤離。",
-      "expiresAt": "2026-10-28T05:00:00+08:00"
-    },
-    {
-      "title": "警報提醒｜Moonflesh機動防禦，台灣05:30截止",
-      "publishedDate": "2026-10-28",
-      "summary": "10/28 04:05官方World State列出Eris的50級Infested機動防禦警報，完成獎勵為50 Moonflesh與17,000遊戲現金。本場於台灣05:30結束；獎勵都送到眼前了，別只會流口水，該出手就出手 😏",
-      "memberBenefit": "三場全完成可合計取得150 Moonflesh與51,000遊戲現金；每場都必須各自完成並成功結算。",
-      "nextStep": "05:30前從遊戲導航確認Nimus警報仍在；時間不夠時放掉前場，先保住這一場。",
-      "sourceUrl": "https://api.warframe.com/cdn/worldState.php",
-      "imageUrl": "https://www-static.warframe.com/uploads/thumbnails/d4940c6cab0ad90994427983cc628371_1600x900.jpg",
-      "imageSourceUrl": "https://www.warframe.com/en/news/epoch-operation-taubound",
-      "category": "urgent-mission",
-      "sourceItemId": "6ad0d7390dfe89c5d8229448",
-      "materialInfo": "完成本場取得50 Moonflesh；Moonflesh可交給Eris的Praghasa兌換活動限定物品。",
-      "rewards": "本場完成獎勵：50 Moonflesh＋17,000遊戲現金。",
-      "location": "Eris（鬩神星）→Nimus／SolNode175→活動警報→機動防禦",
+      "location": "Eris（鬩神星）→Kala-azar／SolNode164→活動警報→機動防禦",
       "requirements": "已完成Vor's Prize；活動期間一般Eris星圖與接合點限制解除。本場敵人等級50，需完成機動防禦目標並成功撤離。",
-      "expiresAt": "2026-10-28T05:30:00+08:00"
+      "expiresAt": "2026-10-29T04:30:00+08:00"
+    },
+    {
+      "title": "掉寶提醒｜dyanasmythe慈善實況，台灣04:00至06:00",
+      "publishedDate": "2026-10-27",
+      "summary": "官方PMCFQ排程顯示dyanasmythe將於台灣10/29 04:00至06:00進行慈善實況。觀看30分鐘可從Domestik Drones Grab Bag隨機取得一件無人機裝飾；每位內容創作者的實況是獨立掉寶活動，本場可領一次。",
+      "memberBenefit": "想裝飾軌道飛行器、宿舍或道場的成員，可用30分鐘觀看換一次隨機無人機裝飾，不必花白金購買。",
+      "nextStep": "先確認Warframe與Twitch已連結，04:00後進入dyanasmythe頻道；滿30分鐘後到Drops頁手動領取。",
+      "sourceUrl": "https://forums.warframe.com/topic/1530491-pmcfq-community-fundraising-stream-schedule-october-26-31-2026/",
+      "imageUrl": "https://www-static.warframe.com/uploads/73747f62e1f657de0f561028588d3682.png",
+      "imageSourceUrl": "https://forums.warframe.com/topic/1530491-pmcfq-community-fundraising-stream-schedule-october-26-31-2026/",
+      "category": "limited-material",
+      "sourceItemId": "PMCFQ-2026-10-28-dyanasmythe",
+      "materialInfo": "觀看本場30分鐘可領1次Domestik Drones Grab Bag；掉寶為隨機一件無人機裝飾。",
+      "rewards": "Domestik Drone、Badboi、Chapp、Snobb、Zoney、Mood、Dais、Ki’Teer、Merulina Panadea等隨機一件。",
+      "location": "Twitch→dyanasmythe頻道",
+      "requirements": "先連結Warframe與Twitch帳號；於本場直播期間觀看30分鐘，之後到Twitch Drops頁手動領取。",
+      "expiresAt": "2026-10-29T06:00:00+08:00"
     }
   ],
   "market": {
     "status": "unavailable",
-    "date": "2026-10-28",
+    "date": "2026-10-29",
     "previousTotalPlatinum": 13916
   }
 }
