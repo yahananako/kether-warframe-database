@@ -36,21 +36,21 @@
       "expiresAt": "2026-11-03T04:00:00+08:00"
     },
     {
-      "title": "警報提醒｜Isos Moonflesh生存，台灣04:30截止",
+      "title": "警報提醒｜3場Moonflesh接力，最晚台灣05:30截止",
       "publishedDate": "2026-10-31",
-      "summary": "10/31 03:03官方World State列出Eris的Isos生存警報，敵人等級50，完成獎勵為50 Moonflesh與17,000遊戲現金。04:00發送時這場仍有效，但只剩30分鐘；獎勵都送到眼前了，別只會流口水，該出手就出手 😏",
-      "memberBenefit": "完成可取得50 Moonflesh，用於向Eris的Praghasa兌換Taubound活動限定物品；本場不是Forma、催化劑或反應爐獎勵。",
-      "nextStep": "04:30前從遊戲導航確認Isos警報仍在，再帶適合生存任務的配置進場並完成撤離。",
+      "summary": "10/31 04:05官方World State列出三場Eris等級50感染者警報：Isos／SolNode162生存至04:30、SolNode171感染巢穴至05:00、SolNode153殲滅至05:30。每場均為50 Moonflesh與17,000遊戲現金；獎勵都送到眼前了，別只會流口水，該出手就出手 😏",
+      "memberBenefit": "三場全收合計150 Moonflesh，可向Eris的Praghasa兌換Taubound活動限定物品；這些警報不是Forma、催化劑或反應爐獎勵。",
+      "nextStep": "先在遊戲導航確認各警報仍存在；時間不足時優先打截止較晚的05:00與05:30場，完成目標並成功撤離。",
       "sourceUrl": "https://api.warframe.com/cdn/worldState.php",
       "imageUrl": "https://www-static.warframe.com/uploads/thumbnails/d4940c6cab0ad90994427983cc628371_800x450.jpg",
       "imageSourceUrl": "https://www.warframe.com/en/news/epoch-operation-taubound",
       "category": "urgent-mission",
-      "sourceItemId": "6ad0d7390dfe89c5d8229564",
-      "materialInfo": "完成本場取得50 Moonflesh；Moonflesh可交給Eris的Praghasa兌換Taubound限定物品。",
-      "rewards": "50 Moonflesh＋17,000遊戲現金。",
-      "location": "Eris（鬩神星）→Isos／SolNode162→活動警報→生存",
-      "requirements": "已完成Vor's Prize；活動期間一般Eris星圖與接合點限制解除。本場敵人等級50，需完成生存目標並成功撤離。",
-      "expiresAt": "2026-10-31T04:30:00+08:00"
+      "sourceItemId": "6ad0d7390dfe89c5d8229564|6ad0d7390dfe89c5d8229566|6ad0d7390dfe89c5d8229568",
+      "materialInfo": "每場完成可得50 Moonflesh；Moonflesh用於向Eris的Praghasa兌換Taubound活動限定獎勵。",
+      "rewards": "每場50 Moonflesh＋17,000遊戲現金；三場全收共150 Moonflesh＋51,000遊戲現金。",
+      "location": "Eris：Isos／SolNode162生存；SolNode171感染巢穴；SolNode153殲滅。",
+      "requirements": "敵人等級50；需在各場截止前由導航進入警報、完成任務目標並成功撤離。",
+      "expiresAt": "2026-10-31T05:30:00+08:00"
     },
     {
       "title": "Warframe: Tau確認12月登上全平台",
@@ -79,8 +79,8 @@
   ],
   "liveIntel": {
     "status": "verified",
-    "checkedAt": "2026-10-30T19:03:55Z",
-    "note": "台灣03:03核對：500,000 Kuva與步槍裂罅MOD警報均至11/3 04:00；04:00發送時僅Isos Moonflesh警報仍有效至04:30。未見Fomorian／Razorback；現有入侵只有研究材料，未見Forma、Orokin催化劑或反應爐。"
+    "checkedAt": "2026-10-30T20:05:45Z",
+    "note": "台灣04:05核對：Kuva與步槍裂罅MOD警報均至11/3 04:00；Moonflesh三場分別至04:30、05:00、05:30。未見Fomorian／Razorback；入侵只有研究材料，未見Forma、Orokin催化劑或反應爐。"
   },
   "market": {
     "status": "unavailable",
