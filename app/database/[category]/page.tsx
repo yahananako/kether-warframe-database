@@ -17,6 +17,7 @@ export default async function DatabaseCategoryPage({params}:{params:Promise<{cat
   const {category}=await params;
   if(!SHEET_GIDS[category])notFound();
   const {config,rows,error}=await fetchSheetRows(category);
+  const hasBlockingError=Boolean(error)&&rows.length===0;
   const current=categories.find(item=>item.key===category);
   return <main className={styles.page}>
     <section className={styles.console} aria-label="KETHER 裝備資料控制台">
@@ -48,9 +49,13 @@ export default async function DatabaseCategoryPage({params}:{params:Promise<{cat
             <h1>{config.title}<span> · 裝備檢索控制台</span></h1>
             <small>{config.subtitle} · 搜尋分類、價格與持有進度。</small>
           </div>
-          <div className={styles.record}><b>{error?"—":rows.length.toLocaleString("zh-TW")}</b><span>資料筆數</span></div>
+          <div className={styles.record}><b>{hasBlockingError?"—":rows.length.toLocaleString("zh-TW")}</b><span>資料筆數</span></div>
         </header>
-        {error?<section className={styles.error} role="alert"><h2>資料來源暫時無法讀取</h2><p>{error}</p>
+        {error&&!hasBlockingError&&<section className={styles.warning} role="status" aria-label="資料來源警告">
+          <p><strong>資料來源暫時異常</strong>：目前顯示可用資料，部分內容可能不完整或尚未更新。</p>
+          <p>{error} <Link href="/db-status">查看資料同步狀態 <ArrowUpRight size={14}/></Link></p>
+        </section>}
+        {hasBlockingError?<section className={styles.error} role="alert"><h2>資料來源暫時無法讀取</h2><p>{error}</p>
           <Link href="/db-status">查看資料同步狀態 <ArrowUpRight size={16}/></Link></section>:
           <div className={styles.board}><DataTable rows={rows} category={category}/></div>}
       </div>
