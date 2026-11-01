@@ -1,10 +1,10 @@
 {
-  "date": "2026-11-01",
+  "date": "2026-11-02",
   "articles": [
     {
       "title": "緊急任務｜500,000 Kuva警報，台灣11月3日04:00截止",
-      "publishedDate": "2026-11-01",
-      "summary": "11/1 03:57官方World State確認，冥王星Palus仍有生存警報，敵人等級10–15，完成可得500,000 Kuva與10,000遊戲現金。期限為台灣11/3 04:00；這把Kuva份量夠重，裂罅拿穩再慢慢揉 😏 配圖為官方Tau公告示意，非本次警報截圖。",
+      "publishedDate": "2026-11-02",
+      "summary": "11/2 03:00官方World State確認，冥王星Palus仍有生存警報，敵人等級10–15，完成可得500,000 Kuva與10,000遊戲現金，期限為台灣11/3 04:00。這把Kuva份量夠重，裂罅拿穩再慢慢揉 😏 配圖為官方Taubound公告示意，非本次警報截圖。",
       "memberBenefit": "Kuva可用於循環（重骰）裂罅MOD的隨機屬性；500,000足以支援多次循環，適合正在調整武器裂罅的成員。",
       "nextStep": "先在導航確認Palus警報仍存在，帶能穩定完成生存目標的配置進場並成功撤離。",
       "sourceUrl": "https://api.warframe.com/cdn/worldState.php",
@@ -20,8 +20,8 @@
     },
     {
       "title": "緊急任務｜步槍裂罅MOD警報，台灣11月3日04:00截止",
-      "publishedDate": "2026-11-01",
-      "summary": "11/1 03:57官方World State確認，虛空Oxomoco仍有殲滅警報，敵人等級10–15，完成可得一張步槍裂罅MOD與10,000遊戲現金。期限同為台灣11/3 04:00；配圖為官方Tau公告示意，非本次警報截圖。",
+      "publishedDate": "2026-11-02",
+      "summary": "11/2 03:00官方World State確認，虛空Oxomoco仍有殲滅警報，敵人等級10–15，完成可得一張步槍裂罅MOD與10,000遊戲現金，期限同為台灣11/3 04:00。配圖為官方Taubound公告示意，非本次警報截圖。",
       "memberBenefit": "可直接補一張步槍裂罅MOD；完成揭示挑戰後會取得對應步槍的隨機屬性，適合擴充裂罅收藏。",
       "nextStep": "在導航確認Oxomoco警報仍在，完成殲滅並撤離；取得後再查看裂罅揭示條件。",
       "sourceUrl": "https://api.warframe.com/cdn/worldState.php",
@@ -36,38 +36,28 @@
       "expiresAt": "2026-11-03T04:00:00+08:00"
     },
     {
-      "title": "警報提醒｜3場Moonflesh接力，最晚台灣05:30截止",
-      "publishedDate": "2026-11-01",
-      "summary": "11/1 03:57官方World State列出三場Eris等級50感染者警報：Nimus／SolNode166移動防禦至04:30、Naeglar／SolNode175殲滅至05:00、Xini／SolNode172生存自04:00開放至05:30。每場均為50 Moonflesh與17,000遊戲現金；獎勵都送到眼前了，別只會流口水，該出手就出手 😏",
-      "memberBenefit": "三場全收合計150 Moonflesh，可向Eris的Praghasa兌換Taubound活動限定物品；這些警報不是Forma、Orokin催化劑或反應爐獎勵。",
-      "nextStep": "04:00後先在導航確認三場均已出現；時間不足時優先打05:00與05:30場，完成目標並成功撤離。",
+      "title": "警報提醒｜Isos感染巢穴送50 Moonflesh，台灣04:30截止",
+      "publishedDate": "2026-11-02",
+      "summary": "11/2 03:00官方World State確認，Eris的Isos／SolNode162有等級50感染者巢穴警報，完成可得50 Moonflesh與17,000遊戲現金，台灣04:30截止。03:30與04:00截止的較早場次不放入04:00稿件，免得獎勵都涼了還叫人伸手。",
+      "memberBenefit": "50 Moonflesh可向Eris的Praghasa兌換Taubound活動限定物品；本警報不是Forma、Orokin催化劑或反應爐獎勵。",
+      "nextStep": "04:00發送前重新確認導航仍有Isos警報；存在才參加，完成三座感染巢穴並成功撤離。",
       "sourceUrl": "https://api.warframe.com/cdn/worldState.php",
       "imageUrl": "https://www-static.warframe.com/uploads/thumbnails/d4940c6cab0ad90994427983cc628371_800x450.jpg",
       "imageSourceUrl": "https://www.warframe.com/en/news/epoch-operation-taubound",
       "category": "urgent-mission",
-      "sourceItemId": "6ad0d73a0dfe89c5d82295c4|6ad0d73a0dfe89c5d82295c6|6ad0d73a0dfe89c5d82295c8",
-      "materialInfo": "每場完成可得50 Moonflesh；Moonflesh用於向Eris的Praghasa兌換Taubound活動限定物品。",
-      "rewards": "每場50 Moonflesh＋17,000遊戲現金；三場全收共150 Moonflesh＋51,000遊戲現金。",
-      "location": "Eris：Nimus移動防禦／Naeglar殲滅／Xini生存",
-      "requirements": "導航中看得到警報即可參加；敵人等級50，完成各任務目標並成功撤離。",
-      "expiresAt": "2026-11-01T05:30:00+08:00"
+      "sourceItemId": "6ad0d73a0dfe89c5d8229624",
+      "materialInfo": "完成Isos感染巢穴警報取得50 Moonflesh；Moonflesh用於向Eris的Praghasa兌換Taubound活動限定物品。",
+      "rewards": "50 Moonflesh＋17,000遊戲現金。",
+      "location": "Eris→Isos／SolNode162→警報→感染巢穴",
+      "requirements": "導航中看得到警報即可參加；敵人等級50，摧毀三座感染巢穴並成功撤離。",
+      "expiresAt": "2026-11-02T04:30:00+08:00"
     },
     {
-      "title": "修正重點｜Hotfix 44.1.4.1移除會讓流氓亡骸機甲無敵的條件",
-      "publishedDate": "2026-10-27",
-      "summary": "官方PC Hotfix 44.1.4.1移除了Cavia賞金的Dismantle Demolishers條件，因其會令流氓亡骸機甲永久無敵；同帖的44.1.4也修正Taubound警報對尚未解鎖Eris玩家不可見、Icebind移動防禦無法正常撤離等問題。這回不是你火力不夠，是Bug真的太硬。",
-      "memberBenefit": "受影響的賞金、Taubound警報與Icebind移動防禦應更容易正常完成；PC玩家也要留意Nami Skyla Prime刀刃杜卡德價值已由100降至65。",
-      "nextStep": "進遊戲前完成平台更新；若仍遇到同類問題，記錄平台、任務與發生步驟後回報官方論壇。",
-      "sourceUrl": "https://forums.warframe.com/topic/1530579-iceblade-of-narin-the-icebind-hotfix-4414-44141/",
-      "category": "official-news",
-      "sourceItemId": "Hotfix-44.1.4.1"
-    },
-    {
-      "title": "活動提醒｜Nights of Naberus與Hallowed Nightmares進入最後兩天",
+      "title": "最後提醒｜Nights of Naberus與Hallowed Nightmares今晚結束",
       "publishedDate": "2026-10-01",
       "summary": "官方活動頁與World State確認，Nights of Naberus及Hallowed Nightmares均於台灣11/3 00:00結束。前者可用Mother Tokens向Daughter兌換季節限定品；後者擊敗Jack O’Naut可取得Jack O’Naut Keychain Sugatra、Jack O’Naut Recall Glyph、Manic Noggle與50,000 Credits。",
-      "memberBenefit": "這是補齊萬聖節限定外觀、吊飾、Glyph與擺飾的最後窗口；提醒項目，不把舊活動冒充今天才開放。",
-      "nextStep": "先盤點想換的Daughter商品與Mother Tokens，再打Cambion Drift賞金或向Grandmother用資源交換代幣；戰術警報也別拖到最後一刻。",
+      "memberBenefit": "這是補齊萬聖節限定外觀、吊飾、Glyph與擺飾的最後窗口；標記為活動提醒，不把10月舊活動冒充今天才開放。",
+      "nextStep": "先盤點想換的Daughter商品與Mother Tokens，再打Cambion Drift賞金或向Grandmother用資源交換代幣；別把最後一晚玩成倉庫清算。",
       "sourceUrl": "https://www.warframe.com/en/news/warframes-halloween-2026-events",
       "imageUrl": "https://www-static.warframe.com/uploads/9be83ae563825eee5c0210a8a910c5f1.jpg",
       "imageSourceUrl": "https://www.warframe.com/en/news/warframes-halloween-2026-events",
@@ -82,12 +72,12 @@
   ],
   "liveIntel": {
     "status": "verified",
-    "checkedAt": "2026-10-31T19:57:18Z",
-    "note": "台灣03:57核對：Kuva與步槍裂罅MOD警報均至11/3 04:00；04:00後Moonflesh三場分別至04:30、05:00、05:30。未見Fomorian／Razorback；入侵未見Forma、Orokin催化劑或反應爐。"
+    "checkedAt": "2026-11-02T03:00:54+08:00",
+    "note": "台灣03:00核對：Kuva與步槍裂罅均至11/3 04:00；04:00後只保留Isos Moonflesh警報至04:30。未見Fomorian／Razorback、Forma、催化劑或反應爐；Proteus入侵可選Dera Vandal或Karak Wraith槍托，但無官方精確期限。"
   },
   "market": {
     "status": "unavailable",
-    "date": "2026-11-01",
+    "date": "2026-11-02",
     "previousTotalPlatinum": 13916
   }
 }
