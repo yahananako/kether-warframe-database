@@ -36,21 +36,21 @@
       "expiresAt": "2026-11-03T04:00:00+08:00"
     },
     {
-      "title": "警報提醒｜Isos感染巢穴送50 Moonflesh，台灣04:30截止",
+      "title": "警報提醒｜3場Moonflesh接力，最晚台灣05:30截止",
       "publishedDate": "2026-11-02",
-      "summary": "11/2 03:00官方World State確認，Eris的Isos／SolNode162有等級50感染者巢穴警報，完成可得50 Moonflesh與17,000遊戲現金，台灣04:30截止。03:30與04:00截止的較早場次不放入04:00稿件，免得獎勵都涼了還叫人伸手。",
-      "memberBenefit": "50 Moonflesh可向Eris的Praghasa兌換Taubound活動限定物品；本警報不是Forma、Orokin催化劑或反應爐獎勵。",
-      "nextStep": "04:00發送前重新確認導航仍有Isos警報；存在才參加，完成三座感染巢穴並成功撤離。",
+      "summary": "11/2 03:59官方World State確認，04:00後有效的Eris等級50感染者警報為：Isos感染巢穴至04:30、Naeglar殲滅至05:00、Nimus移動防禦至05:30。每場均為50 Moonflesh與17,000遊戲現金；獎勵都送到眼前了，別只會流口水，該出手就出手 😏",
+      "memberBenefit": "三場全收合計150 Moonflesh，可向Eris的Praghasa兌換Taubound活動限定物品；這些警報不是Forma、Orokin催化劑或反應爐獎勵。",
+      "nextStep": "04:00後在導航確認三場均存在；時間不足時優先打05:00與05:30場，完成目標並成功撤離。",
       "sourceUrl": "https://api.warframe.com/cdn/worldState.php",
       "imageUrl": "https://www-static.warframe.com/uploads/thumbnails/d4940c6cab0ad90994427983cc628371_800x450.jpg",
       "imageSourceUrl": "https://www.warframe.com/en/news/epoch-operation-taubound",
       "category": "urgent-mission",
-      "sourceItemId": "6ad0d73a0dfe89c5d8229624",
-      "materialInfo": "完成Isos感染巢穴警報取得50 Moonflesh；Moonflesh用於向Eris的Praghasa兌換Taubound活動限定物品。",
-      "rewards": "50 Moonflesh＋17,000遊戲現金。",
-      "location": "Eris→Isos／SolNode162→警報→感染巢穴",
-      "requirements": "導航中看得到警報即可參加；敵人等級50，摧毀三座感染巢穴並成功撤離。",
-      "expiresAt": "2026-11-02T04:30:00+08:00"
+      "sourceItemId": "6ad0d73a0dfe89c5d8229624|6ad0d73a0dfe89c5d8229626|6ad0d73a0dfe89c5d8229628",
+      "materialInfo": "每場完成可得50 Moonflesh；Moonflesh用於向Eris的Praghasa兌換Taubound活動限定物品。",
+      "rewards": "每場50 Moonflesh＋17,000遊戲現金；三場全收共150 Moonflesh＋51,000遊戲現金。",
+      "location": "Eris：Isos感染巢穴／Naeglar殲滅／Nimus移動防禦",
+      "requirements": "導航中看得到警報即可參加；敵人等級50，完成各任務目標並成功撤離。",
+      "expiresAt": "2026-11-02T05:30:00+08:00"
     },
     {
       "title": "最後提醒｜Nights of Naberus與Hallowed Nightmares今晚結束",
@@ -72,8 +72,8 @@
   ],
   "liveIntel": {
     "status": "verified",
-    "checkedAt": "2026-11-02T03:00:54+08:00",
-    "note": "台灣03:00核對：Kuva與步槍裂罅均至11/3 04:00；04:00後只保留Isos Moonflesh警報至04:30。未見Fomorian／Razorback、Forma、催化劑或反應爐；Proteus入侵可選Dera Vandal或Karak Wraith槍托，但無官方精確期限。"
+    "checkedAt": "2026-11-02T03:59:24+08:00",
+    "note": "台灣03:59核對：Kuva與步槍裂罅均至11/3 04:00；04:00後Moonflesh三場分別至04:30、05:00、05:30。未見Fomorian／Razorback、Forma、催化劑或反應爐；Proteus入侵可選Dera Vandal或Karak Wraith槍托，但無官方精確期限。"
   },
   "market": {
     "status": "unavailable",
