@@ -4,7 +4,7 @@
     {
       "title": "限時任務｜3個已製作Forma已開放，台灣11月17日03:00截止",
       "publishedDate": "2026-11-03",
-      "summary": "11/3 03:03官方World State確認，天王星Stephano防禦警報已開放，敵人等級20–30，完成可得3個已製作Forma與10,000遊戲現金，台灣11/17 03:00截止。官方PMCFQ頁也列明這是社群解鎖的Tenno United獎勵；Forma整包送到眼前，別只顧著盯形狀，該拿就拿 😏",
+      "summary": "11/3 03:58官方World State確認，天王星Stephano防禦警報已開放，敵人等級20–30，完成可得3個已製作Forma與10,000遊戲現金，台灣11/17 03:00截止。官方PMCFQ頁也列明這是社群解鎖的Tenno United獎勵；Forma整包送到眼前，別只顧著盯形狀，該拿就拿 😏",
       "memberBenefit": "三個均為已製作Forma，不是藍圖，取得後可直接用於戰甲、武器、同伴等裝備的極化，節省製作時間與白金。",
       "nextStep": "從導航進入天王星Stephano的Tenno United防禦警報，完成任務並確認結算收到3個Forma。",
       "sourceUrl": "https://api.warframe.com/cdn/worldState.php",
@@ -17,21 +17,21 @@
       "expiresAt": "2026-11-17T03:00:00+08:00"
     },
     {
-      "title": "警報提醒｜Brugia 50 Moonflesh，台灣04:30截止",
+      "title": "警報提醒｜3場Moonflesh接力，最晚台灣05:30截止",
       "publishedDate": "2026-11-03",
-      "summary": "11/3 03:03官方World State確認，Eris的Brugia殲滅警報在04:00發稿後仍有效，敵人等級50，完成可得50 Moonflesh與17,000遊戲現金，台灣04:30截止。先前Isos、Solium與Kuva／步槍裂罅警報會在04:00前或整點到期，因此不列為發稿後仍可參加。",
-      "memberBenefit": "50 Moonflesh可向Eris的Praghasa兌換Taubound活動限定物品；本場不是Forma、Orokin催化劑或反應爐獎勵。",
-      "nextStep": "04:00後先在導航確認Brugia警報仍存在，再完成殲滅並撤離；消失就直接略過。",
+      "summary": "11/3 03:58官方World State確認，04:00發稿後有效的Eris等級50感染者警報為：Brugia殲滅至04:30、Saxis生存至05:00、Kala-azar機動防禦至05:30。每場均為50 Moonflesh與17,000遊戲現金；先前Kuva、步槍裂罅與Solium警報均於04:00到期，不列為發稿後仍可參加。",
+      "memberBenefit": "三場全收共150 Moonflesh，可向Eris的Praghasa兌換Taubound活動限定物品；這些警報不是Forma、Orokin催化劑或反應爐獎勵。",
+      "nextStep": "04:00後在導航確認三場均存在；時間不足時優先打05:00與05:30場，完成目標並成功撤離。",
       "sourceUrl": "https://api.warframe.com/cdn/worldState.php",
       "imageUrl": "https://www-static.warframe.com/uploads/thumbnails/d4940c6cab0ad90994427983cc628371_800x450.jpg",
       "imageSourceUrl": "https://www.warframe.com/en/news/epoch-operation-taubound",
       "category": "limited-material",
-      "sourceItemId": "6ad0d73a0dfe89c5d8229684",
-      "materialInfo": "完成Brugia殲滅警報取得50 Moonflesh；Moonflesh用於向Eris的Praghasa兌換Taubound活動限定物品。",
-      "rewards": "50 Moonflesh＋17,000遊戲現金。",
-      "location": "Eris→Brugia／SolNode153→警報→殲滅",
-      "requirements": "導航中看得到警報即可參加；敵人等級50，完成殲滅目標並成功撤離。",
-      "expiresAt": "2026-11-03T04:30:00+08:00"
+      "sourceItemId": "6ad0d73a0dfe89c5d8229684|6ad0d73a0dfe89c5d8229686|6ad0d73a0dfe89c5d8229688",
+      "materialInfo": "每場完成可得50 Moonflesh；Moonflesh用於向Eris的Praghasa兌換Taubound活動限定物品。",
+      "rewards": "每場50 Moonflesh＋17,000遊戲現金；三場全收共150 Moonflesh＋51,000遊戲現金。",
+      "location": "Eris：Brugia殲滅／Saxis生存／Kala-azar機動防禦",
+      "requirements": "導航中看得到警報即可參加；敵人等級50，完成各任務目標並成功撤離。",
+      "expiresAt": "2026-11-03T05:30:00+08:00"
     },
     {
       "title": "修正更新｜Hotfix 44.1.4.1處理無敵敵人與Taubound顯示問題",
@@ -47,8 +47,8 @@
   ],
   "liveIntel": {
     "status": "verified",
-    "checkedAt": "2026-11-03T03:03:01+08:00",
-    "note": "03:03核對：3個已製作Forma至11/17 03:00；04:00後Moonflesh僅Brugia至04:30。未見Fomorian／Razorback、催化劑或反應爐。Keeler與Laomedeia有武器零件入侵，但官方無精確截止時間。"
+    "checkedAt": "2026-11-03T03:57:54+08:00",
+    "note": "03:58核對：3個已製作Forma至11/17 03:00；04:00後Moonflesh三場至04:30、05:00、05:30。未見Fomorian／Razorback、催化劑或反應爐；兩場武器零件入侵無官方精確截止。"
   },
   "market": {
     "status": "unavailable",
