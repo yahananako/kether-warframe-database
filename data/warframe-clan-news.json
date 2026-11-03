@@ -4,7 +4,7 @@
     {
       "title": "提醒｜3個已製作Forma仍可領，台灣11月17日03:00截止",
       "publishedDate": "2026-11-04",
-      "summary": "11/4 02:57官方World State再次確認，天王星Stephano防禦警報仍有效；敵人等級20–30，完成可得3個已製作Forma與10,000遊戲現金，台灣11/17 03:00截止。這是前日已開放的Tenno United獎勵提醒，不冒充今日新活動；好東西都送到眼前了，別只會流口水，該出手就出手 😏",
+      "summary": "11/4 04:01官方World State再次確認，天王星Stephano防禦警報仍有效；敵人等級20–30，完成可得3個已製作Forma與10,000遊戲現金，台灣11/17 03:00截止。這是前日已開放的Tenno United獎勵提醒，不冒充今日新活動；好東西都送到眼前了，別只會流口水，該出手就出手 😏",
       "memberBenefit": "三個都是已製作Forma而非藍圖，可直接用於戰甲、武器或同伴極化，省下三次製作等待。",
       "nextStep": "從導航進入天王星Stephano的Tenno United防禦警報，完成任務並核對結算收到3個Forma。",
       "sourceUrl": "https://api.warframe.com/cdn/worldState.php",
@@ -19,7 +19,7 @@
     {
       "title": "緊急警報｜Xini最後一場50 Moonflesh，04:30截止",
       "publishedDate": "2026-11-04",
-      "summary": "11/4 02:57官方World State顯示，04:00發稿後仍有效的短效警報只剩Eris的Xini生存，敵人等級50，台灣04:30截止。Naeglar、Nimus與Kala-azar場次分別在03:00、03:30與04:00到期，因此不列為發稿後仍可參加；這份名單沒有拿過期任務撐場面。",
+      "summary": "11/4 04:01官方World State顯示，04:00發稿後仍有效的短效警報只剩Eris的Xini生存，敵人等級50，台灣04:30截止。Naeglar、Nimus與Kala-azar場次分別在03:00、03:30與04:00到期，因此不列為發稿後仍可參加；這份名單沒有拿過期任務撐場面。",
       "memberBenefit": "完成可得50 Moonflesh與17,000遊戲現金；Moonflesh可向Eris的Praghasa兌換Taubound限定物品。",
       "nextStep": "04:00後先在導航確認Xini警報仍存在，再進入生存並完成5分鐘目標；若已消失就直接略過。",
       "sourceUrl": "https://api.warframe.com/cdn/worldState.php",
@@ -69,8 +69,8 @@
   ],
   "liveIntel": {
     "status": "verified",
-    "checkedAt": "2026-11-04T02:57:08+08:00",
-    "note": "02:57核對：04:00後僅Xini Moonflesh警報至04:30；3個已製作Forma至11/17 03:00。未見Fomorian／Razorback、催化劑或反應爐；Keeler武器零件入侵無官方精確截止。"
+    "checkedAt": "2026-11-04T04:01:02+08:00",
+    "note": "04:01核對：04:00後僅Xini Moonflesh警報至04:30；3個已製作Forma至11/17 03:00。未見Fomorian／Razorback、催化劑或反應爐；Keeler武器零件入侵無官方精確截止。"
   },
   "market": {
     "status": "unavailable",
