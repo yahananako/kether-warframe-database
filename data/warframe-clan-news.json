@@ -1,58 +1,80 @@
 {
-  "date": "2026-11-03",
+  "date": "2026-11-04",
   "articles": [
     {
-      "title": "限時任務｜3個已製作Forma已開放，台灣11月17日03:00截止",
-      "publishedDate": "2026-11-03",
-      "summary": "11/3 03:58官方World State確認，天王星Stephano防禦警報已開放，敵人等級20–30，完成可得3個已製作Forma與10,000遊戲現金，台灣11/17 03:00截止。官方PMCFQ頁也列明這是社群解鎖的Tenno United獎勵；Forma整包送到眼前，別只顧著盯形狀，該拿就拿 😏",
-      "memberBenefit": "三個均為已製作Forma，不是藍圖，取得後可直接用於戰甲、武器、同伴等裝備的極化，節省製作時間與白金。",
-      "nextStep": "從導航進入天王星Stephano的Tenno United防禦警報，完成任務並確認結算收到3個Forma。",
+      "title": "提醒｜3個已製作Forma仍可領，台灣11月17日03:00截止",
+      "publishedDate": "2026-11-04",
+      "summary": "11/4 02:57官方World State再次確認，天王星Stephano防禦警報仍有效；敵人等級20–30，完成可得3個已製作Forma與10,000遊戲現金，台灣11/17 03:00截止。這是前日已開放的Tenno United獎勵提醒，不冒充今日新活動；好東西都送到眼前了，別只會流口水，該出手就出手 😏",
+      "memberBenefit": "三個都是已製作Forma而非藍圖，可直接用於戰甲、武器或同伴極化，省下三次製作等待。",
+      "nextStep": "從導航進入天王星Stephano的Tenno United防禦警報，完成任務並核對結算收到3個Forma。",
       "sourceUrl": "https://api.warframe.com/cdn/worldState.php",
       "category": "urgent-mission",
       "sourceItemId": "6ae3916ad246f70c6b0c7bd0",
-      "materialInfo": "Forma可調整裝備MOD槽極性並重置其等級；本次警報直接給3個成品，無需製作。",
+      "materialInfo": "Forma用於調整裝備MOD槽極性並重置等級；本次警報直接給3個成品，不需再製作。",
       "rewards": "已製作Forma×3＋10,000遊戲現金。",
-      "location": "Uranus（天王星）→Stephano／SolNode122→Tenno United警報→防禦",
-      "requirements": "需能從導航進入警報；敵人等級20–30，完成防禦目標並成功結算。",
+      "location": "Uranus（天王星）→Stephano／SolNode122→防禦",
+      "requirements": "導航可進入警報；敵人等級20–30，完成6波防禦並成功結算。",
       "expiresAt": "2026-11-17T03:00:00+08:00"
     },
     {
-      "title": "警報提醒｜3場Moonflesh接力，最晚台灣05:30截止",
-      "publishedDate": "2026-11-03",
-      "summary": "11/3 03:58官方World State確認，04:00發稿後有效的Eris等級50感染者警報為：Brugia殲滅至04:30、Saxis生存至05:00、Kala-azar機動防禦至05:30。每場均為50 Moonflesh與17,000遊戲現金；先前Kuva、步槍裂罅與Solium警報均於04:00到期，不列為發稿後仍可參加。",
-      "memberBenefit": "三場全收共150 Moonflesh，可向Eris的Praghasa兌換Taubound活動限定物品；這些警報不是Forma、Orokin催化劑或反應爐獎勵。",
-      "nextStep": "04:00後在導航確認三場均存在；時間不足時優先打05:00與05:30場，完成目標並成功撤離。",
+      "title": "緊急警報｜Xini最後一場50 Moonflesh，04:30截止",
+      "publishedDate": "2026-11-04",
+      "summary": "11/4 02:57官方World State顯示，04:00發稿後仍有效的短效警報只剩Eris的Xini生存，敵人等級50，台灣04:30截止。Naeglar、Nimus與Kala-azar場次分別在03:00、03:30與04:00到期，因此不列為發稿後仍可參加；這份名單沒有拿過期任務撐場面。",
+      "memberBenefit": "完成可得50 Moonflesh與17,000遊戲現金；Moonflesh可向Eris的Praghasa兌換Taubound限定物品。",
+      "nextStep": "04:00後先在導航確認Xini警報仍存在，再進入生存並完成5分鐘目標；若已消失就直接略過。",
       "sourceUrl": "https://api.warframe.com/cdn/worldState.php",
       "imageUrl": "https://www-static.warframe.com/uploads/thumbnails/d4940c6cab0ad90994427983cc628371_800x450.jpg",
       "imageSourceUrl": "https://www.warframe.com/en/news/epoch-operation-taubound",
       "category": "limited-material",
-      "sourceItemId": "6ad0d73a0dfe89c5d8229684|6ad0d73a0dfe89c5d8229686|6ad0d73a0dfe89c5d8229688",
-      "materialInfo": "每場完成可得50 Moonflesh；Moonflesh用於向Eris的Praghasa兌換Taubound活動限定物品。",
-      "rewards": "每場50 Moonflesh＋17,000遊戲現金；三場全收共150 Moonflesh＋51,000遊戲現金。",
-      "location": "Eris：Brugia殲滅／Saxis生存／Kala-azar機動防禦",
-      "requirements": "導航中看得到警報即可參加；敵人等級50，完成各任務目標並成功撤離。",
-      "expiresAt": "2026-11-03T05:30:00+08:00"
+      "sourceItemId": "6ad0d73a0dfe89c5d82296e4",
+      "materialInfo": "完成警報取得50 Moonflesh，用於向Eris的Praghasa兌換Taubound活動限定獎勵。",
+      "rewards": "50 Moonflesh＋17,000遊戲現金。",
+      "location": "Eris→Xini／SolNode172→生存",
+      "requirements": "敵人等級50；完成5分鐘生存並成功撤離。",
+      "expiresAt": "2026-11-04T04:30:00+08:00"
     },
     {
-      "title": "修正更新｜Hotfix 44.1.4.1處理無敵敵人與Taubound顯示問題",
-      "publishedDate": "2026-10-27",
-      "summary": "官方Hotfix 44.1.4與44.1.4.1移除會讓Cavia賞金Rogue Necramech永久無敵的Dismantle Demolishers修正條件，並修復未解鎖Eris的玩家看不到或無法進入Taubound警報、Icebind機動防禦特定地形無法撤離等問題。另修正Valkyr Warcry被Nullifier解除後HUD圖示仍殘留；配圖為官方Taubound活動圖，非Hotfix截圖。",
-      "memberBenefit": "Taubound組隊更不容易因星圖解鎖或撤離問題卡住；常用Valkyr的成員也能更準確判斷Warcry是否仍生效。",
-      "nextStep": "確認遊戲客戶端已更新；若仍無法看到Taubound警報，先重啟遊戲再核對導航與官方已知問題。",
-      "sourceUrl": "https://forums.warframe.com/topic/1530579-iceblade-of-narin-the-icebind-hotfix-4414-44141/",
-      "imageUrl": "https://www-static.warframe.com/uploads/thumbnails/d4940c6cab0ad90994427983cc628371_800x450.jpg",
-      "imageSourceUrl": "https://www.warframe.com/en/news/epoch-operation-taubound",
+      "title": "官方情報｜Devstream 198公開Tau區域、Brysko與永久解封Prime",
+      "publishedDate": "2026-11-02",
+      "summary": "官方Devstream 198整理確認，12月的Tau更新將加入Fornax與Perita兩個可遊玩區域、新集團與第67位戰甲Brysko；開發中的技能數值仍可能調整。官方另表示十套Prime戰甲將永久解封，其遺物會加入Perita獎勵，並提醒想在更新推出後直接開玩的成員先完成Prologue to Tau。",
+      "memberBenefit": "可提早完成主線前置並整理遺物需求；永久解封代表不必因短期輪替消息急著花Regal Aya或追高零件。",
+      "nextStep": "先確認Prologue to Tau已完成；Prime名單與掉落表尚未公布，等官方細節再安排農取。",
+      "sourceUrl": "https://www.warframe.com/en/news/devstream-198-overview",
+      "imageUrl": "https://www-static.warframe.com/uploads/7f93fdf94cb2c98547023eb10d66396e.png",
+      "imageSourceUrl": "https://www.warframe.com/en/news/devstream-198-overview",
+      "category": "official-news"
+    },
+    {
+      "title": "活動提醒｜本週直播最多可領3包Relic Pack",
+      "publishedDate": "2026-11-03",
+      "summary": "官方本週直播掉寶為Relic Pack：Emisión Tenno於台灣11/5 04:00開播，Prime Time #503於11/6 07:00開播；觀看30、60與90分鐘可依序領取一包，活動上限3包，兩場進度可累積。掉寶必須在Twitch Drops頁面手動領取，官方未公布整個Campaign的精確結束時間，因此不自行補截止。",
+      "memberBenefit": "最多三包遺物能補充Prime農取庫存，適合正準備永久解封Prime或缺Void Traces的成員。",
+      "nextStep": "先確認Warframe與Twitch帳號連結；看滿各階段後立刻到Drops Inventory逐包領取。",
+      "sourceUrl": "https://forums.warframe.com/topic/1531432-community-stream-schedule-november-2-8-2026/",
+      "imageUrl": "https://www-static.warframe.com/uploads/dcfc4879ebdf79ffea2ef0467feda2d2.jpg",
+      "imageSourceUrl": "https://forums.warframe.com/topic/1531432-community-stream-schedule-november-2-8-2026/",
+      "category": "official-news"
+    },
+    {
+      "title": "活動提醒｜Movember免費兌換碼與1 Credit鬍子回歸",
+      "publishedDate": "2026-11-02",
+      "summary": "輸入兌換碼MOVEMBER2026，可免費取得Sirius and Orion社群展示圖與三款鬍子展示框；歷年鬍子、社群浮印及Tusker Sumdali也以1 Credit回歸至11月30日。官方沒有公布精確結束時刻，因此不補成午夜；鬍子這次便宜到幾乎貼在臉上，不拿才是真的矜持過頭。",
+      "memberBenefit": "幾乎零成本即可補齊道場、軌道飛行器與戰甲外觀收藏，不需購買慈善周邊才能領遊戲內物品。",
+      "nextStep": "先兌換MOVEMBER2026，再到市場Community Event分頁逐項檢查尚未擁有的1 Credit物品。",
+      "sourceUrl": "https://www.warframe.com/en/news/movember-2026",
+      "imageUrl": "https://www-static.warframe.com/uploads/14ec028261a5f8c6bb627876a890482f.png",
+      "imageSourceUrl": "https://www.warframe.com/en/news/movember-2026",
       "category": "official-news"
     }
   ],
   "liveIntel": {
     "status": "verified",
-    "checkedAt": "2026-11-03T03:57:54+08:00",
-    "note": "03:58核對：3個已製作Forma至11/17 03:00；04:00後Moonflesh三場至04:30、05:00、05:30。未見Fomorian／Razorback、催化劑或反應爐；兩場武器零件入侵無官方精確截止。"
+    "checkedAt": "2026-11-04T02:57:08+08:00",
+    "note": "02:57核對：04:00後僅Xini Moonflesh警報至04:30；3個已製作Forma至11/17 03:00。未見Fomorian／Razorback、催化劑或反應爐；Keeler武器零件入侵無官方精確截止。"
   },
   "market": {
     "status": "unavailable",
-    "date": "2026-11-03",
+    "date": "2026-11-04",
     "previousTotalPlatinum": 13916
   }
 }
