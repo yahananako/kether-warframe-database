@@ -1,6 +1,7 @@
 import crypto from "node:crypto";
 import { after } from "next/server";
 import { buildWarframeAcquisitionResponse, searchWarframeAcquisitionChoices } from "./warframeAcquisition";
+import { KETHER_BOT_VERSION } from "../../../data/siteVersion";
 import { buildMaterialAcquisitionResponse, searchMaterialAcquisitionChoices } from "./materialAcquisition";
 import { buildRelicAcquisitionResponse, searchRelicAcquisitionChoices } from "./relicAcquisition";
 import { buildWeaponAcquisitionResponse, searchWeaponAcquisitionChoices } from "./weaponAcquisition";
@@ -1847,6 +1848,6 @@ export async function POST(request: Request) {
 export async function GET() {
   return jsonResponse({
     ok: true,
-    name: "KETHER Discord Bot v3.5.8 Interaction Endpoint",
+    name: `KETHER Discord Bot ${KETHER_BOT_VERSION} Interaction Endpoint`,
   });
 }
