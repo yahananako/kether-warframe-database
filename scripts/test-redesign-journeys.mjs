@@ -23,6 +23,10 @@ function signedSession(){
 await fs.mkdir("qa/screenshots",{recursive:true});
 const browser=await chromium.launch({headless:true,args:["--no-sandbox","--disable-dev-shm-usage"]});
 const passed=[],failed=[];
+async function waitHomeControl(page){
+  await page.waitForFunction(()=>document.readyState==="complete" &&
+    document.querySelectorAll("[data-kether-home] .site-effects-menu").length===1);
+}
 async function task(page,name,run){
   try {
     await run();
@@ -61,6 +65,7 @@ try {
   await task(page,"homepage-performance-picker-shares-site-settings",async()=>{
     await page.emulateMedia({reducedMotion:"no-preference"});
     await page.goto(url("/"),{waitUntil:"domcontentloaded"});
+    await waitHomeControl(page);
     const menu=page.locator("[data-kether-home] .site-effects-menu");
     const trigger=menu.locator("summary");
     await trigger.waitFor({state:"visible"});
@@ -90,7 +95,8 @@ try {
     try {
       await sibling.goto(url("/story"),{waitUntil:"domcontentloaded"});
       await sibling.waitForFunction(()=>document.documentElement.dataset.ketherEffectsChoice==="balanced");
-      await menu.locator("summary").click();
+      await waitHomeControl(page);
+    await menu.locator("summary").click();
       await menu.getByRole("button",{name:/省電/}).click();
       await sibling.waitForFunction(()=>document.documentElement.dataset.ketherEffects==="eco");
       await page.waitForFunction(()=>document.documentElement.dataset.ketherEffects==="eco");
@@ -101,7 +107,9 @@ try {
   await task(page,"reduced-motion-downgrades-without-erasing-choice",async()=>{
     await page.emulateMedia({reducedMotion:"no-preference"});
     await page.goto(url("/"),{waitUntil:"domcontentloaded"});
+    await waitHomeControl(page);
     const menu=page.locator("[data-kether-home] .site-effects-menu");
+    await waitHomeControl(page);
     await menu.locator("summary").click();
     await menu.getByRole("button",{name:/華麗/}).click();
     await page.waitForFunction(()=>document.documentElement.dataset.ketherEffects==="full");
@@ -110,6 +118,7 @@ try {
       document.documentElement.dataset.ketherEffectsChoice==="full" &&
       localStorage.getItem("kether-effects-mode-v1")==="full" &&
       document.querySelector("[data-kether-home] video")?.paused);
+    await waitHomeControl(page);
     await menu.locator("summary").click();
     assert.match(await menu.innerText(),/自動套用省電/);
     await page.keyboard.press("Escape");
@@ -148,6 +157,20 @@ try {
     assert.match(await page.locator("h1").first().innerText(),/Valkyr/i);
     await page.getByRole("link",{name:/打開獨立配裝/}).click();
     await page.waitForURL("**/database/warframes/valkyr/build");
+  });
+
+  await task(page,"narin-shared-search-and-detail",async()=>{
+    await page.goto(url("/database/warframes"),{waitUntil:"domcontentloaded"});
+    await page.getByRole("textbox",{name:"搜尋戰甲名稱或用途"}).fill("Narin");
+    await page.locator("button[aria-pressed]").filter({hasText:"Narin"}).last().click();
+    await page.getByRole("link",{name:/技能、來源與獨立配裝/}).click();
+    await page.waitForURL("**/database/warframes/narin");
+    assert.match(await page.locator("h1").first().innerText(),/Narin/);
+    const response=await desktop.request.get(url("/api/bot-search/warframe?q="+encodeURIComponent("冰女")));
+    assert.equal(response.status(),200);
+    const result=(await response.json()).results[0];
+    assert.equal(result.name,"Narin");
+    assert.ok(result.details.some(field=>field.label==="取得方式"&&field.value.includes("Entropic Kuva")));
   });
 
   await task(page,"build-mod-and-arcane-persist-after-reload",async()=>{
@@ -207,7 +230,9 @@ try {
   phone.setDefaultTimeout(9000);
   await task(phone,"mobile-home-performance-picker-stays-onscreen",async()=>{
     await phone.goto(url("/"),{waitUntil:"domcontentloaded"});
+    await waitHomeControl(phone);
     const menu=phone.locator("[data-kether-home] .site-effects-menu");
+    await waitHomeControl(phone);
     await menu.locator("summary").tap();
     const panel=menu.locator(".site-effects-panel");
     await panel.waitFor({state:"visible"});
@@ -224,6 +249,7 @@ try {
     );
     assert.equal(await menu.getAttribute("open"),null,"Home mode menu should close after selection");
     await phone.setViewportSize({width:360,height:740});
+    await waitHomeControl(phone);
     await menu.locator("summary").tap();
     const small=await menu.locator(".site-effects-panel").boundingBox();
     assert.ok(small&&small.x>=-1&&small.y>=-1&&small.x+small.width<=361&&small.y+small.height<=741,
@@ -233,6 +259,7 @@ try {
     assert.equal(await menu.getAttribute("open"),null);
     await phone.reload({waitUntil:"domcontentloaded"});
     await phone.waitForFunction(()=>document.documentElement.dataset.ketherEffectsChoice==="balanced");
+    await waitHomeControl(phone);
     await menu.locator("summary").tap();
     await phone.locator("[data-kether-home] footer span").tap();
     assert.equal(await menu.getAttribute("open"),null,"Outside touch should dismiss the picker");

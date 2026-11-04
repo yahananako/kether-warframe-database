@@ -14,6 +14,7 @@
     "sheet:kuva": "node scripts/prepare-kuva-sheet-update.mjs",
     "test:kuva": "node scripts/test-kuva-sync.mjs",
     "test:warframes": "node scripts/test-warframe-details.mjs",
+    "test:warframe-acquisition": "node --import tsx scripts/test-warframe-acquisition.ts",
     "test:android-search": "node android/scripts/test-smart-search.mjs",
     "test:discord-bot": "node --import tsx scripts/test-discord-bot.ts",
     "test:discord-access": "node --import tsx scripts/test-discord-access.ts",

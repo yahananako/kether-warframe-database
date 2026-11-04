@@ -1,8 +1,21 @@
 import { WARFRAME_ACQUISITION_DATA } from "./data/warframes";
 import type { WarframeAcquisitionRecord } from "./data/warframes";
-import { getWarframeDetail } from "../../../data/warframeDetails";
+import { getWarframeDetail, WARFRAME_DETAILS_UPDATED_AT } from "../../../data/warframeDetails";
 
-
+// Discord limits each field to 1024 characters. Split long drop tables without
+// losing locations or silently dropping the end of the parts list.
+function partFields(value: string) {
+  const chunks: string[] = [];
+  let remaining = value;
+  while (remaining.length > 1024) {
+    const boundary = Math.max(remaining.lastIndexOf("\n", 1023), remaining.lastIndexOf("；", 1023));
+    const end = boundary > 0 ? boundary + 1 : 1024;
+    chunks.push(remaining.slice(0, end));
+    remaining = remaining.slice(end);
+  }
+  if (remaining) chunks.push(remaining);
+  return chunks.map((chunk, index) => ({ name: index ? "部件來源（續）" : "部件來源", value: chunk }));
+}
 
 function normalize(value: string) {
   return value
@@ -106,12 +119,12 @@ export function buildWarframeAcquisitionResponse(rawName: string | null | undefi
         {
           title: "⚔️ 戰甲取得查詢",
           description:
-            "請輸入要查詢的戰甲名稱喵。\n\n" +
+            `請輸入要查詢的戰甲名稱喵。收錄 ${WARFRAME_ACQUISITION_DATA.length} 款普通版／Umbra。以下為部分範例：\n\n` +
             buildWarframeListPreview() +
             "\n\n範例：`/戰甲取得 名稱:Rhino`、`/戰甲取得 名稱:摸屍`、`/戰甲取得 名稱:蝶甲`",
           color: 0xf6a6d8,
           footer: {
-            text: "E-10｜戰甲資料擴充＋中文搜尋＋中文自動補全",
+            text: `共享戰甲清單｜掉落資料 ${WARFRAME_DETAILS_UPDATED_AT}`,
           },
         },
       ],
@@ -143,6 +156,7 @@ export function buildWarframeAcquisitionResponse(rawName: string | null | undefi
       {
         title: `⚔️ ${record.name}`,
         description: "KETHER Warframe Database｜戰甲取得方式",
+        ...(detail?.imageUrl ? { thumbnail: { url: detail.imageUrl } } : {}),
         color: 0xf6a6d8,
         fields: [
           {
@@ -153,10 +167,7 @@ export function buildWarframeAcquisitionResponse(rawName: string | null | undefi
             name: "取得方式",
             value: record.source,
           },
-          {
-            name: "部件來源",
-            value: record.parts,
-          },
+          ...partFields(record.parts),
           {
             name: "小希建議",
             value: record.tips,
@@ -164,6 +175,10 @@ export function buildWarframeAcquisitionResponse(rawName: string | null | undefi
           {
             name: "備註",
             value: record.notes,
+          },
+          {
+            name: "資料來源",
+            value: `${detail ? `[戰甲官方頁面](${detail.officialUrl})｜` : ""}[官方掉落表](https://warframe-web-assets.nyc3.cdn.digitaloceanspaces.com/uploads/cms/hnfvc0o3jnfvc873njb03enrf56.html)`,
           },
           ...(marketUrl
             ? [
@@ -175,7 +190,7 @@ export function buildWarframeAcquisitionResponse(rawName: string | null | undefi
             : []),
         ],
         footer: {
-          text: "E-10｜戰甲資料擴充＋中文搜尋＋中文自動補全",
+          text: `共享戰甲清單｜掉落資料 ${WARFRAME_DETAILS_UPDATED_AT}`,
         },
       },
     ],

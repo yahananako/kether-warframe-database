@@ -42,12 +42,12 @@ const assert = (condition, message) => {
 };
 
 assert(
-  regularWarframes.length === 65,
-  `Expected 65 regular Warframes, got ${regularWarframes.length}`,
+  regularWarframes.length >= 66,
+  `Expected at least 66 regular Warframes, got ${regularWarframes.length}`,
 );
 assert(
-  detailData.warframes.length === 66,
-  `Expected 66 detail records, got ${detailData.warframes.length}`,
+  detailData.warframes.length === regularWarframes.length + 1,
+  `Detail catalog must match regular Warframes plus Excalibur Umbra`,
 );
 
 for (const regular of regularWarframes) {

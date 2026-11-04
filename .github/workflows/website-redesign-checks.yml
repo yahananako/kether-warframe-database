@@ -40,6 +40,8 @@ jobs:
         run: npx tsc --noEmit
       - name: Incarnon autocomplete and data sync regression checks
         run: node --import tsx scripts/test-incarnon-sync.ts
+      - name: Warframe shared catalog and BOT acquisition checks
+        run: npm run test:warframes && npm run test:warframe-acquisition
       - name: Next.js production build
         run: npx next build
       - name: Install Chromium smoke test tools
