@@ -101,6 +101,9 @@ try {
   await task(page,"reduced-motion-downgrades-without-erasing-choice",async()=>{
     await page.emulateMedia({reducedMotion:"no-preference"});
     await page.goto(url("/"),{waitUntil:"domcontentloaded"});
+    // A navigation may briefly retain both the outgoing and incoming home.
+    // Require one home control before interacting; a persistent duplicate still fails.
+    await page.waitForFunction(()=>document.querySelectorAll("[data-kether-home] .site-effects-menu").length===1);
     const menu=page.locator("[data-kether-home] .site-effects-menu");
     await menu.locator("summary").click();
     await menu.getByRole("button",{name:/華麗/}).click();
@@ -148,6 +151,20 @@ try {
     assert.match(await page.locator("h1").first().innerText(),/Valkyr/i);
     await page.getByRole("link",{name:/打開獨立配裝/}).click();
     await page.waitForURL("**/database/warframes/valkyr/build");
+  });
+
+  await task(page,"narin-shared-search-and-detail",async()=>{
+    await page.goto(url("/database/warframes"),{waitUntil:"domcontentloaded"});
+    await page.getByRole("textbox",{name:"搜尋戰甲名稱或用途"}).fill("Narin");
+    await page.locator("button[aria-pressed]").filter({hasText:"Narin"}).last().click();
+    await page.getByRole("link",{name:/技能、來源與獨立配裝/}).click();
+    await page.waitForURL("**/database/warframes/narin");
+    assert.match(await page.locator("h1").first().innerText(),/Narin/);
+    const response=await desktop.request.get(url("/api/bot-search/warframe?q="+encodeURIComponent("冰女")));
+    assert.equal(response.status(),200);
+    const result=(await response.json()).results[0];
+    assert.equal(result.name,"Narin");
+    assert.ok(result.details.some(field=>field.label==="取得方式"&&field.value.includes("Entropic Kuva")));
   });
 
   await task(page,"build-mod-and-arcane-persist-after-reload",async()=>{
