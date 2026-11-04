@@ -4,7 +4,7 @@
     {
       "title": "提醒｜3個已製作Forma仍可領，台灣11月17日03:00截止",
       "publishedDate": "2026-11-05",
-      "summary": "11/5 03:00官方World State再次確認，天王星Stephano防禦警報仍有效；敵人等級20–30，完成可得3個已製作Forma與10,000遊戲現金，台灣11/17 03:00截止。這是已開放獎勵的限時提醒，不冒充今日新活動；獎勵都送到眼前了，別只會流口水，該出手就出手 😏",
+      "summary": "11/5 03:57官方World State再次確認，天王星Stephano防禦警報仍有效；敵人等級20–30，完成可得3個已製作Forma與10,000遊戲現金，台灣11/17 03:00截止。這是已開放獎勵的限時提醒，不冒充今日新活動；獎勵都送到眼前了，別只會流口水，該出手就出手 😏",
       "memberBenefit": "三個都是已製作Forma而非藍圖，可直接用於戰甲、武器或同伴極化，省下三次製作等待。",
       "nextStep": "從導航進入天王星Stephano防禦警報，完成任務並核對結算收到3個Forma。",
       "sourceUrl": "https://api.warframe.com/cdn/worldState.php",
@@ -17,11 +17,11 @@
       "expiresAt": "2026-11-17T03:00:00+08:00"
     },
     {
-      "title": "緊急警報｜Kala-azar最後一場50 Moonflesh，04:30截止",
+      "title": "緊急警報｜Kala-azar 50 Moonflesh，04:30截止",
       "publishedDate": "2026-11-05",
-      "summary": "11/5 03:00官方World State顯示，04:00發稿後仍有效的短效警報只剩Eris的Kala-azar殲滅，敵人等級50，台灣04:30截止。Saxis、Solium與Isos場次分別在03:00、03:30與04:00到期，因此不列為發稿後仍可參加；過期的誘惑再香，也不能硬塞進今日名單。",
-      "memberBenefit": "完成可得50 Moonflesh與17,000遊戲現金；Moonflesh可向Eris的Praghasa兌換Taubound限定物品。",
-      "nextStep": "04:00後先在導航確認Kala-azar警報仍存在，再進入殲滅並完成任務；若已消失就直接略過。",
+      "summary": "11/5 03:57官方World State確認，Eris的Kala-azar殲滅警報在04:00發稿後仍可參加，敵人等級50，台灣04:30截止。完成可得50 Moonflesh與17,000遊戲現金；配圖為Taubound官方活動示意圖，非本次警報截圖。",
+      "memberBenefit": "短時間內補進50 Moonflesh，可向Eris的Praghasa兌換Taubound限定物品。",
+      "nextStep": "04:00後先在導航確認警報仍存在，再進入殲滅並完成任務；若已消失就直接改打下一場。",
       "sourceUrl": "https://api.warframe.com/cdn/worldState.php",
       "imageUrl": "https://www-static.warframe.com/uploads/thumbnails/d4940c6cab0ad90994427983cc628371_800x450.jpg",
       "imageSourceUrl": "https://www.warframe.com/en/news/epoch-operation-taubound",
@@ -32,6 +32,40 @@
       "location": "Eris→Kala-azar／SolNode164→殲滅",
       "requirements": "敵人等級50；完成殲滅任務並成功結算。",
       "expiresAt": "2026-11-05T04:30:00+08:00"
+    },
+    {
+      "title": "緊急警報｜Saxis 50 Moonflesh，05:00截止",
+      "publishedDate": "2026-11-05",
+      "summary": "11/5 03:57官方World State確認，Eris的Saxis生存警報在04:00後仍有效，敵人等級50，台灣05:00截止。獎勵為50 Moonflesh與17,000遊戲現金；配圖為Taubound官方活動示意圖，非本次警報截圖。",
+      "memberBenefit": "若錯過04:30前一場，仍可用這場補50 Moonflesh，不必對著過期警報乾瞪眼。",
+      "nextStep": "完成Kala-azar後回導航確認Saxis仍在，再進入生存並成功撤離。",
+      "sourceUrl": "https://api.warframe.com/cdn/worldState.php",
+      "imageUrl": "https://www-static.warframe.com/uploads/thumbnails/d4940c6cab0ad90994427983cc628371_800x450.jpg",
+      "imageSourceUrl": "https://www.warframe.com/en/news/epoch-operation-taubound",
+      "category": "limited-material",
+      "sourceItemId": "6ad0d73b0dfe89c5d8229746",
+      "materialInfo": "完成警報取得50 Moonflesh，用於向Eris的Praghasa兌換Taubound活動限定獎勵。",
+      "rewards": "50 Moonflesh＋17,000遊戲現金。",
+      "location": "Eris→Saxis／SolNode171→生存",
+      "requirements": "敵人等級50；完成生存任務並成功撤離。",
+      "expiresAt": "2026-11-05T05:00:00+08:00"
+    },
+    {
+      "title": "緊急警報｜Nimus 50 Moonflesh，05:30截止",
+      "publishedDate": "2026-11-05",
+      "summary": "11/5 03:57官方World State確認，Eris的Nimus機動防禦警報在04:00後仍有效，敵人等級50，台灣05:30截止。這是本輪三場中最晚到期的一場，獎勵同為50 Moonflesh與17,000遊戲現金；配圖是官方活動示意圖。",
+      "memberBenefit": "提供最寬裕的補領窗口，前兩場來不及時仍能收下50 Moonflesh。",
+      "nextStep": "最晚在05:30前由導航進入Nimus，完成機動防禦並確認獎勵入帳。",
+      "sourceUrl": "https://api.warframe.com/cdn/worldState.php",
+      "imageUrl": "https://www-static.warframe.com/uploads/thumbnails/d4940c6cab0ad90994427983cc628371_800x450.jpg",
+      "imageSourceUrl": "https://www.warframe.com/en/news/epoch-operation-taubound",
+      "category": "limited-material",
+      "sourceItemId": "6ad0d73b0dfe89c5d8229748",
+      "materialInfo": "完成警報取得50 Moonflesh，用於向Eris的Praghasa兌換Taubound活動限定獎勵。",
+      "rewards": "50 Moonflesh＋17,000遊戲現金。",
+      "location": "Eris→Nimus／SolNode166→機動防禦",
+      "requirements": "敵人等級50；完成機動防禦並成功結算。",
+      "expiresAt": "2026-11-05T05:30:00+08:00"
     },
     {
       "title": "活動提醒｜登入獎勵＋雙倍Affinity週末即將開始",
@@ -48,8 +82,8 @@
   ],
   "liveIntel": {
     "status": "verified",
-    "checkedAt": "2026-11-05T03:00:51+08:00",
-    "note": "03:00核對：04:00後僅Kala-azar Moonflesh警報至04:30；3個已製作Forma至11/17 03:00。未見Fomorian／Razorback、Orokin催化劑或反應爐；SolNode62有Latron Wraith藍圖／Snipetron Vandal槍管入侵，但官方未提供精確截止。"
+    "checkedAt": "2026-11-05T03:57:03+08:00",
+    "note": "03:57核對：04:00後有Kala-azar、Saxis、Nimus三場50 Moonflesh警報，依序至04:30、05:00、05:30；3個已製作Forma至11/17 03:00。未見Fomorian／Razorback、Orokin催化劑或反應爐；現有入侵未見值得優先追的限定武器零件。"
   },
   "market": {
     "status": "unavailable",
