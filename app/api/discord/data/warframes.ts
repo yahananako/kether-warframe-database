@@ -1,3 +1,6 @@
+import { regularWarframes } from "../../../../data/regularWarframes";
+import { warframeDetails, toWarframeSlug } from "../../../../data/warframeDetails";
+
 export type WarframeAcquisitionRecord = {
   key: string;
   name: string;
@@ -9,7 +12,7 @@ export type WarframeAcquisitionRecord = {
   notes: string;
 };
 
-export const WARFRAME_ACQUISITION_DATA: WarframeAcquisitionRecord[] = [
+const CURATED_WARFRAME_ACQUISITION_DATA: WarframeAcquisitionRecord[] = [
   {
     key: "rhino",
     name: "Rhino / 犀牛",
@@ -331,3 +334,82 @@ export const WARFRAME_ACQUISITION_DATA: WarframeAcquisitionRecord[] = [
     notes: "偏支援與光束火力玩法。",
   },
 ];
+
+// The shared website catalog defines coverage. Handwritten BOT entries only
+// enrich it with nicknames and advice, and can no longer hide newly added suits.
+const additionalAliases: Record<string, string[]> = {
+  Ash: ["灰燼", "灰烬", "忍者", "煙男"],
+  Atlas: ["石甲", "拳甲"],
+  Baruuk: ["武僧", "和尚"],
+  Caliban: ["卡利班", "卡里班", "融合甲"],
+  Chroma: ["龍甲", "龙甲"],
+  "Cyte-09": ["狙擊甲", "狙击甲"],
+  Dagath: ["無頭騎士", "无头骑士", "馬甲"],
+  Equinox: ["陰陽甲", "阴阳甲"],
+  Excalibur: ["咖哩棒", "咖喱棒", "劍甲", "剑甲"],
+  "Excalibur Umbra": ["Umbra", "暗影咖哩棒", "黑咖哩"],
+  Follie: ["芙莉", "墨甲"],
+  Grendel: ["肥甲", "胖子"],
+  Gyre: ["電女", "电女", "陀螺甲"],
+  Hildryn: ["肌肉女", "盾甲"],
+  Hydroid: ["水男", "海盜", "海盗"],
+  Inaros: ["沙甲", "沙男"],
+  Koumei: ["骰子甲", "命運甲"],
+  Kullervo: ["庫勒沃", "库勒沃", "匕首甲"],
+  Loki: ["洛基", "洛奇", "隱身甲", "隐身甲"],
+  Mag: ["磁妹", "磁女"],
+  Narin: ["娜琳", "奈琳", "冰女", "冰劍甲", "冰剑甲"],
+  Nidus: ["蛆甲", "感染甲"],
+  Nokko: ["蘑菇甲", "菇甲"],
+  Nyx: ["腦溢血", "脑溢血", "精神甲"],
+  Oberon: ["奶爸", "奧伯龍", "奥伯龙"],
+  Octavia: ["音樂甲", "音乐甲", "DJ"],
+  Oraxia: ["蜘蛛甲", "蜘蛛女"],
+  Qorvex: ["核反應爐", "核反应炉", "水泥甲"],
+  "Sirius & Orion": ["Sirius", "Orion", "Sirius and Orion", "雙子甲", "双子甲"],
+  Styanax: ["斯巴達", "斯巴达", "長矛甲"],
+  Temple: ["搖滾甲", "摇滚甲", "吉他甲"],
+  Trinity: ["奶媽", "奶妈", "三位一體"],
+  Uriel: ["烏列爾", "乌列尔", "惡魔甲", "恶魔甲"],
+  Valkyr: ["女武神", "狂喵", "狂戰甲"],
+  Vauban: ["工程師", "工程师", "瓦邦"],
+};
+
+const curatedByName = new Map(
+  CURATED_WARFRAME_ACQUISITION_DATA.map((record) => [record.name.split(" / ")[0], record]),
+);
+function sharedCategory(acquisition: string) {
+  if (/Railjack/.test(acquisition)) return "九重天任務";
+  if (/氏族/.test(acquisition)) return "氏族研究";
+  if (/賞金/.test(acquisition)) return "賞金／兌換";
+  if (/擊敗/.test(acquisition)) return "Boss／特殊任務";
+  if (/兌換|購買/.test(acquisition)) return "任務／商店兌換";
+  return "任務取得";
+}
+const detailsByName = new Map(warframeDetails.map((detail) => [detail.name, detail]));
+const catalog = [
+  ...regularWarframes,
+  { name: "Excalibur Umbra", acquisition: "完成「犧牲」系列任務取得已製作的 Excalibur Umbra；無須另外刷部件設計圖。" },
+];
+
+export const WARFRAME_ACQUISITION_DATA: WarframeAcquisitionRecord[] = catalog.map((warframe) => {
+  const curated = curatedByName.get(warframe.name);
+  const detail = detailsByName.get(warframe.name);
+  const dropLines = detail?.components.flatMap((component) => {
+    if (!component.drops.length) return [];
+    return [`${component.name}：${component.drops.map((drop) =>
+      `${drop.location}${drop.chance === null ? "" : `（${drop.chance}%）`}`,
+    ).join("；")}`];
+  }) ?? [];
+
+  return {
+    key: toWarframeSlug(warframe.name),
+    name: curated?.name ?? warframe.name,
+    aliases: [...new Set([warframe.name, ...(curated?.aliases ?? []), ...(additionalAliases[warframe.name] ?? [])])],
+    category: curated?.category ?? (warframe.name === "Narin" ? "扎日曼任務／兌換" : sharedCategory(warframe.acquisition)),
+    source: warframe.acquisition,
+    parts: dropLines.length ? dropLines.join("\n") : curated?.parts ?? warframe.acquisition,
+    tips: curated?.tips ?? "先確認取得方式列出的任務前置條件；有兌換途徑時，可同步累積兌換資源。",
+    notes: curated?.notes ?? "此為普通版／Umbra 取得方式，並非 Prime 遺物掉落。掉落表僅列部分地點，兌換與任務獎勵請參考取得方式。",
+  };
+});

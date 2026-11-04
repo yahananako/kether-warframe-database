@@ -1,6 +1,6 @@
 {
   "source": "Warframe Stat API / Digital Extremes public game data",
-  "updatedAt": "2026-09-15",
+  "updatedAt": "2026-11-04",
   "warframes": [
     {
       "slug": "ash",
@@ -171,13 +171,7 @@
       "components": [
         {
           "name": "主設計圖",
-          "drops": [
-            {
-              "location": "Cephalon Simaris, Complete The Jordas Precept",
-              "chance": 100,
-              "rarity": "Common"
-            }
-          ]
+          "drops": []
         },
         {
           "name": "機體",
@@ -215,7 +209,7 @@
       "slug": "banshee",
       "name": "Banshee",
       "description": "Banshee 的尖叫預示著死亡。她能夠用聲波攻擊來維持群體控制和識別敵人的弱點。當她的力量襲來，幾乎沒有人能夠站穩腳跟。",
-      "passiveDescription": "消去武器的噪音，讓敵人無法聽見開火的聲音。",
+      "passiveDescription": "Banshee 施放技能時，會刺穿 依技能等級 米範圍內敵人的耳朵，並施加最大層數的 穿刺異常狀態。此外，Banshee 的武器噪音也會減少。",
       "imageUrl": "https://cdn.warframestat.us/img/Banshee.png",
       "officialUrl": "https://www.warframe.com/game/warframes/banshee",
       "hasPrime": true,
@@ -231,7 +225,7 @@
         {
           "number": 1,
           "name": "Sonic Boom",
-          "description": "Banshee 釋放出足以癱瘓或擊殺敵人的強力音速震波，擊倒範圍內的敵人。",
+          "description": "Banshee 釋放一道音波衝擊波，將範圍內的敵人擊退，使其失去戰鬥力並降低他們的護甲。",
           "imageUrl": "https://cdn.warframestat.us/img/BansheeSonicBoom.png"
         },
         {
@@ -243,13 +237,13 @@
         {
           "number": 3,
           "name": "Silence",
-          "description": "Banshee 將自身壟罩在消聲力場中，力場能眩暈敵人並限制其對槍聲和戰甲攻擊的知覺與戰術反應。",
+          "description": "使用靜音會使 Banshee 籠罩在一層光環之中，該光環會眩暈敵人，限制其對槍聲和戰甲攻擊的感知及戰術反應，並使他們無法激活自身的技能。",
           "imageUrl": "https://cdn.warframestat.us/img/BansheeSilence.png"
         },
         {
           "number": 4,
           "name": "Sound Quake",
-          "description": "Banshee 將她所有的聲音能量傳導至周遭環境，使用超聲波反響劇烈撼動地面。",
+          "description": "Banshee 將她所有的聲音能量傳導至周遭環境，使用超聲波反響劇烈撼動目標區域的地面。",
           "imageUrl": "https://cdn.warframestat.us/img/BansheeSoundQuake.png"
         }
       ],
@@ -317,43 +311,19 @@
       "components": [
         {
           "name": "主設計圖",
-          "drops": [
-            {
-              "location": "Vox Solaris, Agent",
-              "chance": 100,
-              "rarity": "Common"
-            }
-          ]
+          "drops": []
         },
         {
           "name": "機體",
-          "drops": [
-            {
-              "location": "Vox Solaris, Hand",
-              "chance": 100,
-              "rarity": "Common"
-            }
-          ]
+          "drops": []
         },
         {
           "name": "頭部神經光元",
-          "drops": [
-            {
-              "location": "Vox Solaris, Hand",
-              "chance": 100,
-              "rarity": "Common"
-            }
-          ]
+          "drops": []
         },
         {
           "name": "系統",
-          "drops": [
-            {
-              "location": "Vox Solaris, Hand",
-              "chance": 100,
-              "rarity": "Common"
-            }
-          ]
+          "drops": []
         }
       ]
     },
@@ -526,43 +496,23 @@
       "components": [
         {
           "name": "主設計圖",
-          "drops": [
-            {
-              "location": "Cephalon Simaris, Complete The New Strange",
-              "chance": 100,
-              "rarity": "Common"
-            }
-          ]
+          "drops": []
         },
         {
           "name": "機體",
-          "drops": [
-            {
-              "location": "Cephalon Simaris, Complete 海王星 Junction",
-              "chance": 100,
-              "rarity": "Common"
-            }
-          ]
+          "drops": []
         },
         {
           "name": "頭部神經光元",
-          "drops": [
-            {
-              "location": "Cephalon Simaris, Complete 天王星 Junction",
-              "chance": 100,
-              "rarity": "Common"
-            }
-          ]
+          "drops": []
         },
         {
           "name": "系統",
-          "drops": [
-            {
-              "location": "Cephalon Simaris, Complete 冥王星 Junction",
-              "chance": 100,
-              "rarity": "Common"
-            }
-          ]
+          "drops": []
+        },
+        {
+          "name": "頭部神經光元",
+          "drops": []
         }
       ]
     },
@@ -573,8 +523,8 @@
       "passiveDescription": "Citrine 使附近的友軍每秒恢復 依技能等級 生命值。撿起生命球以增加 依技能等級 生命恢復速率，最多增加 依技能等級。",
       "imageUrl": "https://cdn.warframestat.us/img/Citrine.png",
       "officialUrl": "https://www.warframe.com/game/warframes/citrine",
-      "hasPrime": false,
-      "marketSlug": "",
+      "hasPrime": true,
+      "marketSlug": "citrine_prime_set",
       "stats": {
         "health": 400,
         "shield": 270,
@@ -1361,13 +1311,7 @@
       "components": [
         {
           "name": "主設計圖",
-          "drops": [
-            {
-              "location": "Cephalon Simaris, Complete Saya's Vigil",
-              "chance": 100,
-              "rarity": "Common"
-            }
-          ]
+          "drops": []
         },
         {
           "name": "機體",
@@ -1491,13 +1435,7 @@
       "components": [
         {
           "name": "主設計圖",
-          "drops": [
-            {
-              "location": "Cephalon Simaris, Complete Vox Solaris (Quest)",
-              "chance": 100,
-              "rarity": "Common"
-            }
-          ]
+          "drops": []
         },
         {
           "name": "機體",
@@ -1693,7 +1631,7 @@
         {
           "number": 4,
           "name": "Regurgitate",
-          "description": "將浸泡在 Grendel 體內消化液裡的一個敵人猛烈吐出，讓這個被吞噬的生物成為一團毒素投射物。其消化液會使附近的敵人減速，並且會溶解他們的護甲。",
+          "description": "將浸泡在 Grendel 體內消化液裡的一個敵人猛烈吐出，讓這個被吞噬的生物成為一團毒素投射物，並基於敵人的最大生命值造成額外傷害。其消化液會使附近的敵人減速，並且會溶解他們的護甲。",
           "imageUrl": "https://cdn.warframestat.us/img/GrendelRegurgitate.png"
         }
       ],
@@ -1838,26 +1776,20 @@
         {
           "number": 3,
           "name": "Thurible",
-          "description": "將 Harrow 的能量導引至「聚能焚爐」以產生增幅效果。一旦導引完成，擊殺敵人就會給予附近友軍能量噴發。導引使用的能量越多，每個擊殺獲得的返還獎勵就越高。爆頭可產生額外能量。",
+          "description": "將 Harrow 的能量導引至「聚能焚爐」以產生增幅效果。一旦導引完成，擊殺敵人就會給予附近友軍能量噴發。導引使用的能量越多，每個擊殺獲得的返還獎勵就越高。弱點擊殺可產生額外能量。",
           "imageUrl": "https://cdn.warframestat.us/img/PriestRavage.png"
         },
         {
           "number": 4,
           "name": "Covenant",
-          "description": "以能量保護附近的友軍，對處於「庇佑聖約」保護下的所有人，可吸收一切傷害並將之轉化為暴擊幾率的加成。爆頭時暴擊幾率將被進一步增幅。",
+          "description": "以能量保護附近的友軍，對處於「庇佑聖約」保護下的所有人，可吸收一切傷害並將之轉化為暴擊幾率的加成。如果擊中弱點，暴擊幾率將被進一步增幅。",
           "imageUrl": "https://cdn.warframestat.us/img/PriestPact.png"
         }
       ],
       "components": [
         {
           "name": "主設計圖",
-          "drops": [
-            {
-              "location": "Cephalon Simaris, Complete Chains of Harrow",
-              "chance": 100,
-              "rarity": "Common"
-            }
-          ]
+          "drops": []
         },
         {
           "name": "機體",
@@ -1956,13 +1888,7 @@
       "components": [
         {
           "name": "主設計圖",
-          "drops": [
-            {
-              "location": "Vox Solaris, Agent",
-              "chance": 100,
-              "rarity": "Common"
-            }
-          ]
+          "drops": []
         },
         {
           "name": "機體",
@@ -2006,8 +1932,8 @@
       "hasPrime": true,
       "marketSlug": "hydroid_prime_set",
       "stats": {
-        "health": 270,
-        "shield": 365,
+        "health": 365,
+        "shield": 270,
         "armor": 240,
         "energy": 140,
         "sprint": 1.05
@@ -2135,43 +2061,19 @@
       "components": [
         {
           "name": "主設計圖",
-          "drops": [
-            {
-              "location": "Cephalon Simaris, Complete Sands of Inaros",
-              "chance": 100,
-              "rarity": "Common"
-            }
-          ]
+          "drops": []
         },
         {
           "name": "機體",
-          "drops": [
-            {
-              "location": "Cephalon Simaris, Complete Sands of Inaros",
-              "chance": 100,
-              "rarity": "Common"
-            }
-          ]
+          "drops": []
         },
         {
           "name": "頭部神經光元",
-          "drops": [
-            {
-              "location": "Cephalon Simaris, Complete Sands of Inaros",
-              "chance": 100,
-              "rarity": "Common"
-            }
-          ]
+          "drops": []
         },
         {
           "name": "系統",
-          "drops": [
-            {
-              "location": "Cephalon Simaris, Complete Sands of Inaros",
-              "chance": 100,
-              "rarity": "Common"
-            }
-          ]
+          "drops": []
         }
       ]
     },
@@ -2303,7 +2205,7 @@
       "slug": "jade",
       "name": "Jade",
       "description": "沉醉於毀滅之歌。通過她，翠玉之光可以成為毀滅之力，也可以成為支持之源。",
-      "passiveDescription": "Jade 對生與死的深刻理解賦予她兩個光環 Mod 槽位。某些技能會施加“審判”，使敵人獲得 依技能等級 易傷，持續 依技能等級 秒。",
+      "passiveDescription": "Jade 對生與死的深刻理解賦予她兩個光環 Mod 槽位。某些技能會施加'審判'，使敵人獲得 依技能等級 易傷，持續 依技能等級 秒。",
       "imageUrl": "https://cdn.warframestat.us/img/Jade.png",
       "officialUrl": "https://www.warframe.com/game/warframes/jade",
       "hasPrime": false,
@@ -2319,7 +2221,7 @@
         {
           "number": 1,
           "name": "Light's Judgment",
-          "description": "創造一口聖光之井治癒友軍並對敵人造成傷害。進入井中的敵人將被“審判”標記。",
+          "description": "創造一口聖光之井治癒友軍並對敵人造成傷害。進入井中的敵人將被\"審判\"標記。",
           "imageUrl": "https://cdn.warframestat.us/img/ChoirAbsolution.png"
         },
         {
@@ -2680,11 +2582,6 @@
           "name": "主設計圖",
           "drops": [
             {
-              "location": "Entrati (Father), Acquaintance",
-              "chance": 100,
-              "rarity": "Common"
-            },
-            {
               "location": "Operation: Orphix Venom, 輪次 A",
               "chance": 11.11,
               "rarity": "Uncommon"
@@ -2704,11 +2601,6 @@
         {
           "name": "機體",
           "drops": [
-            {
-              "location": "Entrati (Father), Associate",
-              "chance": 100,
-              "rarity": "Common"
-            },
             {
               "location": "Operation: Orphix Venom, 輪次 A",
               "chance": 11.11,
@@ -2730,11 +2622,6 @@
           "name": "頭部神經光元",
           "drops": [
             {
-              "location": "Entrati (Father), Associate",
-              "chance": 100,
-              "rarity": "Common"
-            },
-            {
               "location": "Operation: Orphix Venom, 輪次 A",
               "chance": 11.11,
               "rarity": "Uncommon"
@@ -2754,11 +2641,6 @@
         {
           "name": "系統",
           "drops": [
-            {
-              "location": "Entrati (Father), Associate",
-              "chance": 100,
-              "rarity": "Common"
-            },
             {
               "location": "Operation: Orphix Venom, 輪次 A",
               "chance": 11.11,
@@ -2827,33 +2709,15 @@
         },
         {
           "name": "機體",
-          "drops": [
-            {
-              "location": "Cephalon Simaris, Complete The Limbo Theorem",
-              "chance": 100,
-              "rarity": "Common"
-            }
-          ]
+          "drops": []
         },
         {
           "name": "頭部神經光元",
-          "drops": [
-            {
-              "location": "Cephalon Simaris, Complete The Limbo Theorem",
-              "chance": 100,
-              "rarity": "Common"
-            }
-          ]
+          "drops": []
         },
         {
           "name": "系統",
-          "drops": [
-            {
-              "location": "Cephalon Simaris, Complete The Limbo Theorem",
-              "chance": 100,
-              "rarity": "Common"
-            }
-          ]
+          "drops": []
         }
       ]
     },
@@ -3143,11 +3007,93 @@
         },
         {
           "name": "機體",
+          "drops": []
+        },
+        {
+          "name": "頭部神經光元",
+          "drops": []
+        },
+        {
+          "name": "系統",
+          "drops": []
+        }
+      ]
+    },
+    {
+      "slug": "narin",
+      "name": "Narin",
+      "description": "Narin 如旋渦般降臨，她的利刃鋒利無比，如同凜冽的寒風。她能巧妙地運用冰霜防禦，如同她迅捷的細劍攻擊一般。",
+      "passiveDescription": "敵人身上每疊加一層 冰凍異常狀態，生成霜花拾取物的幾率就會提高 依技能等級，並使主武器和副武器獲得額外 冰凍傷害，持續 依技能等級 秒。Narin 的技能也會獲得冰凍傷害加成。",
+      "imageUrl": "https://cdn.warframestat.us/img/Narin.png",
+      "officialUrl": "https://www.warframe.com/game/warframes/narin",
+      "hasPrime": false,
+      "marketSlug": "",
+      "stats": {
+        "health": 270,
+        "shield": 550,
+        "armor": 165,
+        "energy": 200,
+        "sprint": 1.1
+      },
+      "abilities": [
+        {
+          "number": 1,
+          "name": "Neote",
+          "description": "揮舞 Narin 的細劍寒霜疾劍進行突刺，對正前方敵人造成 冰凍傷害以及 冰凍和 穿刺異常狀態。 每擊中一個敵人可獲得冰能量。",
+          "imageUrl": "https://cdn.warframestat.us/img/NarinThrust.png"
+        },
+        {
+          "number": 2,
+          "name": "Naraemagi",
+          "description": "通過吸收附近敵人施加的 冰凍異常狀態來恢復護盾。如果護盾已滿，則獲得 超宏防護。 每擊中一個敵人可獲得冰能量。",
+          "imageUrl": "https://cdn.warframestat.us/img/NarinRiposte.png"
+        },
+        {
+          "number": 3,
+          "name": "Hakchum",
+          "description": "輕按可躍向空中，再次輕按即可落在目標位置。落地時，對大範圍內的敵人施加 冰凍傷害易傷和異常狀態效果。 每擊中一個敵人可獲得冰能量。",
+          "imageUrl": "https://cdn.warframestat.us/img/NarinLeap.png"
+        },
+        {
+          "number": 4,
+          "name": "Nurinarim",
+          "description": "需要滿冰能量才能施放。先祖之靈降臨在 Narin 身上，她隨即開始劍舞，對周圍敵人造成持續傷害。按下攻擊鍵即可發射粉碎性的冰刃斬擊，削弱其護甲和護盾。擊中被凍結的敵人會使其爆炸，造成大範圍 冰凍傷害。攻擊被標記的目標不消耗冰能量，並造成更高傷害。",
+          "imageUrl": "https://cdn.warframestat.us/img/NarinBladeDance.png"
+        }
+      ],
+      "components": [
+        {
+          "name": "主設計圖",
           "drops": [
             {
-              "location": "Cephalon Simaris, Complete Hidden Messages",
-              "chance": 100,
-              "rarity": "Common"
+              "location": "扎日曼/Halako Perimeter (Exterminate)",
+              "chance": 8.89,
+              "rarity": "Rare"
+            },
+            {
+              "location": "扎日曼/The Greenway (Mobile 防禦)",
+              "chance": 8.89,
+              "rarity": "Rare"
+            }
+          ]
+        },
+        {
+          "name": "機體",
+          "drops": [
+            {
+              "location": "扎日曼/Everview Arc (Void Flood), 輪次 A",
+              "chance": 4.23,
+              "rarity": "Rare"
+            },
+            {
+              "location": "扎日曼/Everview Arc (Void Flood), 輪次 B",
+              "chance": 4.6,
+              "rarity": "Rare"
+            },
+            {
+              "location": "扎日曼/Everview Arc (Void Flood), 輪次 C",
+              "chance": 8.33,
+              "rarity": "Rare"
             }
           ]
         },
@@ -3155,9 +3101,19 @@
           "name": "頭部神經光元",
           "drops": [
             {
-              "location": "Cephalon Simaris, Complete Hidden Messages",
-              "chance": 100,
-              "rarity": "Common"
+              "location": "扎日曼/Tuvul Commons (Void Cascade), 輪次 A",
+              "chance": 4.23,
+              "rarity": "Rare"
+            },
+            {
+              "location": "扎日曼/Tuvul Commons (Void Cascade), 輪次 B",
+              "chance": 4.6,
+              "rarity": "Rare"
+            },
+            {
+              "location": "扎日曼/Tuvul Commons (Void Cascade), 輪次 C",
+              "chance": 8.33,
+              "rarity": "Rare"
             }
           ]
         },
@@ -3165,9 +3121,19 @@
           "name": "系統",
           "drops": [
             {
-              "location": "Cephalon Simaris, Complete Hidden Messages",
-              "chance": 100,
-              "rarity": "Common"
+              "location": "扎日曼/Oro Works (Void Armageddon), 輪次 A",
+              "chance": 4.23,
+              "rarity": "Rare"
+            },
+            {
+              "location": "扎日曼/Oro Works (Void Armageddon), 輪次 B",
+              "chance": 4.6,
+              "rarity": "Rare"
+            },
+            {
+              "location": "扎日曼/Oro Works (Void Armageddon), 輪次 C",
+              "chance": 8.33,
+              "rarity": "Rare"
             }
           ]
         }
@@ -3373,13 +3339,7 @@
       "components": [
         {
           "name": "主設計圖",
-          "drops": [
-            {
-              "location": "Cephalon Simaris, Complete The Glast Gambit",
-              "chance": 100,
-              "rarity": "Common"
-            }
-          ]
+          "drops": []
         },
         {
           "name": "機體",
@@ -3915,13 +3875,7 @@
       "components": [
         {
           "name": "主設計圖",
-          "drops": [
-            {
-              "location": "Cephalon Simaris, Complete Octavia's Anthem",
-              "chance": 100,
-              "rarity": "Common"
-            }
-          ]
+          "drops": []
         },
         {
           "name": "機體",
@@ -4105,13 +4059,7 @@
       "components": [
         {
           "name": "主設計圖",
-          "drops": [
-            {
-              "location": "Cephalon Simaris, Complete The Deadlock Protocol",
-              "chance": 100,
-              "rarity": "Common"
-            }
-          ]
+          "drops": []
         },
         {
           "name": "機體",
@@ -4269,13 +4217,7 @@
       "components": [
         {
           "name": "主設計圖",
-          "drops": [
-            {
-              "location": "Cephalon Simaris, Complete Mask of the Revenant",
-              "chance": 100,
-              "rarity": "Common"
-            }
-          ]
+          "drops": []
         },
         {
           "name": "機體",
@@ -4557,13 +4499,7 @@
       "components": [
         {
           "name": "主設計圖",
-          "drops": [
-            {
-              "location": "Cephalon Simaris, Complete Call of the Tempestarii",
-              "chance": 100,
-              "rarity": "Common"
-            }
-          ]
+          "drops": []
         },
         {
           "name": "機體",
@@ -4777,43 +4713,19 @@
       "components": [
         {
           "name": "主設計圖",
-          "drops": [
-            {
-              "location": "Kahl's Garrison (Chipper), Home",
-              "chance": 100,
-              "rarity": "Common"
-            }
-          ]
+          "drops": []
         },
         {
           "name": "機體",
-          "drops": [
-            {
-              "location": "Kahl's Garrison (Chipper), Settlement",
-              "chance": 100,
-              "rarity": "Common"
-            }
-          ]
+          "drops": []
         },
         {
           "name": "頭部神經光元",
-          "drops": [
-            {
-              "location": "Kahl's Garrison (Chipper), Fort",
-              "chance": 100,
-              "rarity": "Common"
-            }
-          ]
+          "drops": []
         },
         {
           "name": "系統",
-          "drops": [
-            {
-              "location": "Kahl's Garrison (Chipper), Encampment",
-              "chance": 100,
-              "rarity": "Common"
-            }
-          ]
+          "drops": []
         }
       ]
     },
@@ -4987,43 +4899,19 @@
       "components": [
         {
           "name": "主設計圖",
-          "drops": [
-            {
-              "location": "Cephalon Simaris, Complete The Silver Grove",
-              "chance": 100,
-              "rarity": "Common"
-            }
-          ]
+          "drops": []
         },
         {
           "name": "機體",
-          "drops": [
-            {
-              "location": "Cephalon Simaris, Complete The Silver Grove",
-              "chance": 100,
-              "rarity": "Common"
-            }
-          ]
+          "drops": []
         },
         {
           "name": "頭部神經光元",
-          "drops": [
-            {
-              "location": "Cephalon Simaris, Complete The Silver Grove",
-              "chance": 100,
-              "rarity": "Common"
-            }
-          ]
+          "drops": []
         },
         {
           "name": "系統",
-          "drops": [
-            {
-              "location": "Cephalon Simaris, Complete The Silver Grove",
-              "chance": 100,
-              "rarity": "Common"
-            }
-          ]
+          "drops": []
         }
       ]
     },
@@ -5157,7 +5045,7 @@
           "name": "機體",
           "drops": [
             {
-              "location": "Roathe",
+              "location": "The Descendia: Roathe",
               "chance": 12.5,
               "rarity": "Uncommon"
             }
@@ -5167,7 +5055,7 @@
           "name": "頭部神經光元",
           "drops": [
             {
-              "location": "Roathe",
+              "location": "The Descendia: Roathe",
               "chance": 12.5,
               "rarity": "Uncommon"
             }
@@ -5177,7 +5065,7 @@
           "name": "系統",
           "drops": [
             {
-              "location": "Roathe",
+              "location": "The Descendia: Roathe",
               "chance": 12.5,
               "rarity": "Uncommon"
             }
@@ -5682,13 +5570,7 @@
       "components": [
         {
           "name": "主設計圖",
-          "drops": [
-            {
-              "location": "Cephalon Simaris, Complete Heart of 火衛二",
-              "chance": 100,
-              "rarity": "Common"
-            }
-          ]
+          "drops": []
         },
         {
           "name": "機體",
@@ -5812,13 +5694,7 @@
       "components": [
         {
           "name": "主設計圖",
-          "drops": [
-            {
-              "location": "Cephalon Simaris, Complete The Waverider",
-              "chance": 100,
-              "rarity": "Common"
-            }
-          ]
+          "drops": []
         },
         {
           "name": "機體",

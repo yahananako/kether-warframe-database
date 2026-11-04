@@ -7,7 +7,7 @@ export const regularWarframes: RegularWarframe[] = [
   {
     name: "Ash",
     acquisition:
-      "完成 Railjack 任務並從指定防禦輪次獎勵取得部件；主設計圖可由商店購買。",
+      "完成金星、海王星與冥王星的 Corpus Railjack 指定任務獎勵取得部件；主設計圖可由商店購買。",
   },
   {
     name: "Atlas",
@@ -21,7 +21,7 @@ export const regularWarframes: RegularWarframe[] = [
   {
     name: "Baruuk",
     acquisition:
-      "提升 Vox Solaris 聲望後向 Little Duck 購買部件設計圖；主設計圖由商店取得。",
+      "提升 Vox Solaris 聲望後，向 Little Duck 購買主設計圖與各部件設計圖。",
   },
   {
     name: "Caliban",
@@ -163,6 +163,11 @@ export const regularWarframes: RegularWarframe[] = [
   {
     name: "Mirage",
     acquisition: "完成「隱藏的信息」系列任務取得主設計圖與部件。",
+  },
+  {
+    name: "Narin",
+    acquisition:
+      "扎日曼任務獎勵可取得主設計圖與部件；也可收集 Entropic Kuva，向 Yuvan Peak 或 Chrysalith 的 Cephalon Melica 兌換全套設計圖。",
   },
   {
     name: "Nekros",
