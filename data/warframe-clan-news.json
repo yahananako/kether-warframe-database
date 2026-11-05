@@ -48,24 +48,44 @@
       "expiresAt": "2026-11-10T03:00:00+08:00"
     },
     {
-      "title": "活動提醒｜MOVEMBER2026免費展示品與1信用點鬍鬚",
-      "publishedDate": "2026-11-02",
-      "summary": "官方Movember公告確認，兌換碼MOVEMBER2026可領四款全新展示品；過往鬍鬚外觀、Tusker Sumdali與社群Glyph等則在遊戲內商店各售1信用點。活動標示持續至11月30日，但官方未提供精確截止時刻，因此不自行補成午夜；配圖為Digital Extremes官方公告圖。",
-      "memberBenefit": "幾乎零成本補齊展示品、Glyph與外觀收藏，氏族成員可先拿實用的免費項目，再決定要不要讓戰甲的上唇放飛自我。",
-      "nextStep": "先兌換MOVEMBER2026，再到遊戲內商店搜尋Movember項目；不要拖到11月30日最後一刻。",
-      "sourceUrl": "https://www.warframe.com/en/news/movember-2026",
-      "imageUrl": "https://www-static.warframe.com/uploads/thumbnails/f5cc778f1b2dcb27b41600933c3462c5_1600x900.png",
-      "imageSourceUrl": "https://www.warframe.com/en/news/movember-2026",
-      "category": "official-news",
-      "materialInfo": "兌換碼MOVEMBER2026取得四款展示品；遊戲內商店另有多款Movember外觀、Glyph與Tusker Sumdali，各1信用點。",
-      "rewards": "免費展示品×4；多款回歸外觀、Glyph與Tusker Sumdali各1信用點。",
-      "requirements": "使用官方兌換碼並登入領取；商店項目需在11月30日活動期內購買。"
+      "title": "緊急警報｜Naeglar 50 Moonflesh，05:00截止",
+      "publishedDate": "2026-11-06",
+      "summary": "11/6 04:04官方World State確認，Eris的Naeglar感染巢穴警報已出現，敵人等級50，台灣05:00截止。完成可得50 Moonflesh與17,000遊戲現金；配圖為Taubound官方活動示意圖，並非本次警報截圖。",
+      "memberBenefit": "錯過04:30前一場仍能補50 Moonflesh；若要連打，這場緊接Brugia，別讓導航空窗把手感弄冷。",
+      "nextStep": "完成Brugia後回導航確認Naeglar仍存在，再進入感染巢穴並於05:00前成功結算。",
+      "sourceUrl": "https://api.warframe.com/cdn/worldState.php",
+      "imageUrl": "https://www-static.warframe.com/uploads/thumbnails/d4940c6cab0ad90994427983cc628371_800x450.jpg",
+      "imageSourceUrl": "https://www.warframe.com/en/news/epoch-operation-taubound",
+      "category": "limited-material",
+      "sourceItemId": "6ad0d73b0dfe89c5d82297a6",
+      "materialInfo": "完成警報取得50 Moonflesh，用於向Eris的Praghasa兌換Taubound活動限定獎勵。",
+      "rewards": "50 Moonflesh＋17,000遊戲現金。",
+      "location": "Eris→Naeglar／SolNode175→感染巢穴",
+      "requirements": "敵人等級50；摧毀感染巢穴目標並成功完成任務。",
+      "expiresAt": "2026-11-06T05:00:00+08:00"
+    },
+    {
+      "title": "緊急警報｜Solium 50 Moonflesh，05:30截止",
+      "publishedDate": "2026-11-06",
+      "summary": "11/6 04:04官方World State確認，Eris的Solium殲滅警報已出現，敵人等級50，台灣05:30截止。這是本輪最晚到期的一場，完成可得50 Moonflesh與17,000遊戲現金；配圖為Taubound官方活動示意圖。",
+      "memberBenefit": "提供最後一個補材料窗口；前兩場來不及時，還能把這50個收入囊中，別只對著獎勵流口水。",
+      "nextStep": "最晚在05:30前由導航進入Solium，完成殲滅並確認Moonflesh入帳。",
+      "sourceUrl": "https://api.warframe.com/cdn/worldState.php",
+      "imageUrl": "https://www-static.warframe.com/uploads/thumbnails/d4940c6cab0ad90994427983cc628371_800x450.jpg",
+      "imageSourceUrl": "https://www.warframe.com/en/news/epoch-operation-taubound",
+      "category": "limited-material",
+      "sourceItemId": "6ad0d73b0dfe89c5d82297a8",
+      "materialInfo": "完成警報取得50 Moonflesh，用於向Eris的Praghasa兌換Taubound活動限定獎勵。",
+      "rewards": "50 Moonflesh＋17,000遊戲現金。",
+      "location": "Eris→Solium／SolNode173→殲滅",
+      "requirements": "敵人等級50；完成殲滅任務並成功結算。",
+      "expiresAt": "2026-11-06T05:30:00+08:00"
     }
   ],
   "liveIntel": {
     "status": "verified",
-    "checkedAt": "2026-11-06T03:03:00+08:00",
-    "note": "03:03核對：04:00後僅Brugia一場50 Moonflesh警報仍有效至04:30；3個已製作Forma至11/17 03:00。未見Fomorian／Razorback、Orokin催化劑或反應爐；現有入侵僅見Fieldron、Detonite Injector與Mutagen Mass，未列為優先。"
+    "checkedAt": "2026-11-06T04:04:02+08:00",
+    "note": "04:04核對：Brugia、Naeglar、Solium三場50 Moonflesh警報依序至04:30、05:00、05:30；3個已製作Forma至11/17 03:00。未見Fomorian／Razorback、Orokin催化劑或反應爐；現有入侵僅見Fieldron、Detonite Injector與Mutagen Mass。"
   },
   "market": {
     "status": "unavailable",
