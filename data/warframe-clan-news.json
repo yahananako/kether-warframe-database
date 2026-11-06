@@ -4,7 +4,7 @@
     {
       "title": "20萬Kuva已開放，雙倍Affinity同步生效至11月10日03:00",
       "publishedDate": "2026-11-07",
-      "summary": "11/7 03:05官方World State確認，海王星Larissa的Gift of the Lotus移動防禦警報已開放，敵人等級10–15，台灣11/10 03:00截止；同一快照亦顯示全域擊殺Affinity倍率為2倍，期限相同。200,000 Kuva都送到眼前了，別只會流口水，該出手就出手 😏",
+      "summary": "11/7 04:04官方World State再次確認，海王星Larissa的Gift of the Lotus移動防禦警報仍開放，敵人等級10–15，台灣11/10 03:00截止；同一快照亦顯示全域擊殺Affinity倍率為2倍，期限相同。200,000 Kuva都送到眼前了，別只會流口水，該出手就出手 😏",
       "memberBenefit": "一次取得大量Kuva可用於Riven循環；雙倍Affinity則適合集中升級新戰甲、武器與Forma重練裝備。",
       "nextStep": "先由導航完成Larissa移動防禦並核對Kuva入帳；活動期間再集中處理待升級與極化裝備。",
       "sourceUrl": "https://api.warframe.com/cdn/worldState.php",
@@ -21,7 +21,7 @@
     {
       "title": "緊急警報｜Solium 50 Moonflesh，04:30截止",
       "publishedDate": "2026-11-07",
-      "summary": "11/7 03:05官方World State確認，Eris的Solium生存警報在04:00發稿後仍有30分鐘參加窗口，敵人等級50，台灣04:30截止。完成可得50 Moonflesh與17,000遊戲現金；配圖為Taubound官方活動示意圖，並非本次警報截圖。",
+      "summary": "11/7 04:04官方World State確認，Eris的Solium生存警報仍有效，敵人等級50，台灣04:30截止。完成可得50 Moonflesh與17,000遊戲現金；配圖為Taubound官方活動示意圖，並非本次警報截圖。",
       "memberBenefit": "這是發稿後仍有效的短時材料窗口，可補50 Moonflesh並用於Praghasa的Taubound活動兌換。",
       "nextStep": "04:00後先在導航確認Solium警報仍存在，再進入生存並於04:30前完成及成功撤離。",
       "sourceUrl": "https://api.warframe.com/cdn/worldState.php",
@@ -36,9 +36,43 @@
       "expiresAt": "2026-11-07T04:30:00+08:00"
     },
     {
+      "title": "緊急警報｜Saxis 50 Moonflesh，05:00截止",
+      "publishedDate": "2026-11-07",
+      "summary": "11/7 04:04官方World State確認，Eris的Saxis殲滅警報已出現，敵人等級50，台灣05:00截止。完成可得50 Moonflesh與17,000遊戲現金；配圖為Taubound官方活動示意圖，並非本次警報截圖。",
+      "memberBenefit": "錯過04:30前一場仍能補50 Moonflesh；這場緊接Solium，適合順著任務輪替繼續收材料。",
+      "nextStep": "完成Solium後回導航確認Saxis仍存在，再進入殲滅並於05:00前成功結算。",
+      "sourceUrl": "https://api.warframe.com/cdn/worldState.php",
+      "imageUrl": "https://www-static.warframe.com/uploads/thumbnails/d4940c6cab0ad90994427983cc628371_800x450.jpg",
+      "imageSourceUrl": "https://www.warframe.com/en/news/epoch-operation-taubound",
+      "category": "limited-material",
+      "sourceItemId": "6ad0d73b0dfe89c5d8229806",
+      "materialInfo": "完成警報取得50 Moonflesh，用於向Eris的Praghasa兌換Taubound活動限定獎勵。",
+      "rewards": "50 Moonflesh＋17,000遊戲現金。",
+      "location": "Eris→Saxis／SolNode171→殲滅",
+      "requirements": "敵人等級50；完成殲滅任務並成功結算。",
+      "expiresAt": "2026-11-07T05:00:00+08:00"
+    },
+    {
+      "title": "緊急警報｜Nimus 50 Moonflesh，05:30截止",
+      "publishedDate": "2026-11-07",
+      "summary": "11/7 04:04官方World State確認，Eris的Nimus移動防禦警報已出現，敵人等級50，台灣05:30截止。這是本輪最晚到期的一場，完成可得50 Moonflesh與17,000遊戲現金；配圖為Taubound官方活動示意圖。",
+      "memberBenefit": "提供最後一個補材料窗口；前兩場來不及時，還能把這50個收入囊中，別只對著獎勵流口水。",
+      "nextStep": "最晚在05:30前由導航進入Nimus，完成移動防禦並確認Moonflesh入帳。",
+      "sourceUrl": "https://api.warframe.com/cdn/worldState.php",
+      "imageUrl": "https://www-static.warframe.com/uploads/thumbnails/d4940c6cab0ad90994427983cc628371_800x450.jpg",
+      "imageSourceUrl": "https://www.warframe.com/en/news/epoch-operation-taubound",
+      "category": "limited-material",
+      "sourceItemId": "6ad0d73b0dfe89c5d8229808",
+      "materialInfo": "完成警報取得50 Moonflesh，用於向Eris的Praghasa兌換Taubound活動限定獎勵。",
+      "rewards": "50 Moonflesh＋17,000遊戲現金。",
+      "location": "Eris→Nimus／SolNode166→移動防禦",
+      "requirements": "敵人等級50；完成移動防禦並成功結算。",
+      "expiresAt": "2026-11-07T05:30:00+08:00"
+    },
+    {
       "title": "提醒｜3個已製作Forma仍可領，11月17日03:00截止",
       "publishedDate": "2026-11-07",
-      "summary": "11/7 03:05官方World State再次確認，天王星Stephano防禦警報仍有效；敵人等級20–30，完成可得3個已製作Forma與10,000遊戲現金，台灣11/17 03:00截止。這是持續開放中的獎勵提醒，不冒充今日新活動。",
+      "summary": "11/7 04:04官方World State再次確認，天王星Stephano防禦警報仍有效；敵人等級20–30，完成可得3個已製作Forma與10,000遊戲現金，台灣11/17 03:00截止。這是持續開放中的獎勵提醒，不冒充今日新活動。",
       "memberBenefit": "三個都是已製作Forma而非藍圖，可直接用於戰甲、武器或同伴極化，省下三次製作等待。",
       "nextStep": "從導航進入天王星Stephano防禦警報，完成6波防禦並核對結算收到3個Forma。",
       "sourceUrl": "https://api.warframe.com/cdn/worldState.php",
@@ -49,42 +83,12 @@
       "location": "Uranus（天王星）→Stephano／SolNode122→防禦",
       "requirements": "導航可進入警報；敵人等級20–30，完成6波防禦並成功結算。",
       "expiresAt": "2026-11-17T03:00:00+08:00"
-    },
-    {
-      "title": "活動提醒｜熱美亞裂縫仍有效，目標獎勵Opticor Vandal",
-      "publishedDate": "2026-11-07",
-      "summary": "11/7 03:05官方World State仍列出Orb Vallis的Heat Fissure活動，台灣11/20 01:00截止；來源明列累積目標100與Opticor Vandal獎勵。這是官方即時事件物件的有效期限與獎勵，不把單純進度條或舊攻略當成開放證據。",
-      "memberBenefit": "尚未取得Opticor Vandal的成員可趁活動期間補進度；已有武器者則不必為了重複獎勵硬刷。",
-      "nextStep": "先由金星Orb Vallis活動介面確認個人進度與裂縫位置，再依遊戲內提示投入冷卻液罐參加。",
-      "sourceUrl": "https://api.warframe.com/cdn/worldState.php",
-      "category": "limited-material",
-      "sourceItemId": "5c7cb0d00000000000000000",
-      "materialInfo": "在Orb Vallis處理熱美亞裂縫並累積活動進度；本次World State列出的目標值為100。",
-      "rewards": "活動目標獎勵：Opticor Vandal。",
-      "location": "Venus（金星）→Orb Vallis／SolNode129",
-      "requirements": "需能進入Orb Vallis；裂縫位置與實際操作條件以遊戲內活動介面為準。",
-      "expiresAt": "2026-11-20T01:00:00+08:00"
-    },
-    {
-      "title": "活動提醒｜食屍鬼清剿已由官方World State確認啟用",
-      "publishedDate": "2026-11-07",
-      "summary": "11/7 03:05官方World State顯示Ghoul Emergence事件已啟用，來源ID為6aed0df6924231c2ac280f51，台灣11/28 02:44:19截止。快照沒有列出本輪各階段賞金明細，因此不自行套用舊攻略或宣稱特定掉落。",
-      "memberBenefit": "想補食屍鬼活動相關賞金與圖鑑內容的成員已有充裕時間，不必和04:30截止的Moonflesh警報搶先後。",
-      "nextStep": "先處理短效Moonflesh；之後到Cetus或Plains of Eidolon查看遊戲內食屍鬼賞金與當輪獎勵。",
-      "sourceUrl": "https://api.warframe.com/cdn/worldState.php",
-      "category": "official-news",
-      "sourceItemId": "6aed0df6924231c2ac280f51",
-      "materialInfo": "本次快照僅確認Ghoul Emergence活動啟用；各階段材料與掉落須以遊戲內當輪賞金表核對。",
-      "rewards": "賞金獎勵依遊戲內當輪階段顯示，本稿不以舊資料代填。",
-      "location": "Earth（地球）→Cetus／Plains of Eidolon",
-      "requirements": "需可進入Cetus與Plains of Eidolon；由遊戲內食屍鬼賞金參加。",
-      "expiresAt": "2026-11-28T02:44:19+08:00"
     }
   ],
   "liveIntel": {
     "status": "verified",
-    "checkedAt": "2026-11-07T03:05:14+08:00",
-    "note": "03:05核對：20萬Kuva與雙倍Affinity至11/10 03:00；Solium Moonflesh至04:30；Forma至11/17 03:00。03:30與04:00到期的兩場Moonflesh未列入04:00稿。未見Fomorian、Razorback、Orokin催化劑或反應爐。"
+    "checkedAt": "2026-11-07T04:04:55+08:00",
+    "note": "04:04核對：20萬Kuva與雙倍Affinity至11/10 03:00；Solium、Saxis、Nimus三場50 Moonflesh依序至04:30、05:00、05:30；Forma至11/17 03:00。未見Fomorian、Razorback、Orokin催化劑或反應爐。限定武器入侵因無Expiry未列期限。"
   },
   "market": {
     "status": "unavailable",
