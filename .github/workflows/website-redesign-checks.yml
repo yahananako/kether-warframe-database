@@ -11,6 +11,7 @@ on:
       - "package.json"
       - "package-lock.json"
       - "tsconfig.json"
+      - "scripts/test-database-fallback.mjs"
       - ".github/workflows/website-redesign-checks.yml"
   workflow_dispatch:
 
@@ -36,6 +37,8 @@ jobs:
         run: node scripts/check-redesign-invariants.mjs
       - name: OAuth same-origin return path regression checks
         run: node --import tsx scripts/test-safe-next.ts
+      - name: Database fallback rendering regression checks
+        run: npm run test:database-fallback
       - name: TypeScript check
         run: npx tsc --noEmit
       - name: Incarnon autocomplete and data sync regression checks
