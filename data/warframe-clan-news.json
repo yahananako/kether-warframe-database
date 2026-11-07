@@ -4,7 +4,7 @@
     {
       "title": "提醒｜20萬Kuva與雙倍Affinity進行中，11月10日03:00截止",
       "publishedDate": "2026-11-08",
-      "summary": "11/8 03:02官方World State再次確認，海王星Larissa的Gift of the Lotus移動防禦仍開放，敵人等級10–15；同一快照顯示全域擊殺Affinity倍率為2倍，兩者皆於台灣11/10 03:00截止。獎勵都送到眼前了，別只會流口水，該出手就出手 😏",
+      "summary": "11/8 03:55官方World State再次確認，海王星Larissa的Gift of the Lotus移動防禦仍開放，敵人等級10–15；同一快照顯示全域擊殺Affinity倍率為2倍，兩者皆於台灣11/10 03:00截止。獎勵都送到眼前了，別只會流口水，該出手就出手 😏",
       "memberBenefit": "一次補進200,000 Kuva可供Riven循環；雙倍Affinity則適合集中升級新戰甲、武器與Forma重練裝備。",
       "nextStep": "先由導航完成Larissa移動防禦並核對Kuva入帳，再於活動期間集中處理待升級與極化裝備。",
       "sourceUrl": "https://api.warframe.com/cdn/worldState.php",
@@ -21,7 +21,7 @@
     {
       "title": "提醒｜3個已製作Forma仍可領，11月17日03:00截止",
       "publishedDate": "2026-11-08",
-      "summary": "11/8 03:02官方World State再次確認，天王星Stephano防禦警報仍有效；敵人等級20–30，完成可得3個已製作Forma與10,000遊戲現金，台灣11/17 03:00截止。這是持續開放中的獎勵提醒，不冒充今日新活動。",
+      "summary": "11/8 03:55官方World State再次確認，天王星Stephano防禦警報仍有效；敵人等級20–30，完成可得3個已製作Forma與10,000遊戲現金，台灣11/17 03:00截止。這是持續開放中的獎勵提醒，不冒充今日新活動。",
       "memberBenefit": "三個都是已製作Forma而非藍圖，可直接用於戰甲、武器或同伴極化，省下三次製作等待。",
       "nextStep": "從導航進入Stephano防禦警報，完成6波防禦並核對結算收到3個Forma。",
       "sourceUrl": "https://api.warframe.com/cdn/worldState.php",
@@ -36,7 +36,7 @@
     {
       "title": "緊急警報｜Brugia 50 Moonflesh，04:30截止",
       "publishedDate": "2026-11-08",
-      "summary": "11/8 03:02官方World State確認，Eris的Brugia移動防禦警報已開放，敵人等級50，台灣04:30截止。完成可得50 Moonflesh與17,000遊戲現金；配圖為Taubound官方活動示意圖，並非本次警報截圖。",
+      "summary": "11/8 03:55官方World State確認，Eris的Brugia移動防禦警報仍有效，敵人等級50，台灣04:30截止。完成可得50 Moonflesh與17,000遊戲現金；配圖為Taubound官方活動示意圖，並非本次警報截圖。",
       "memberBenefit": "這是04:00發稿後仍可參加的短時材料窗口，能補50 Moonflesh用於Praghasa的Taubound活動兌換。",
       "nextStep": "04:00後先在導航確認Brugia警報仍存在，再進入移動防禦並於04:30前完成結算。",
       "sourceUrl": "https://api.warframe.com/cdn/worldState.php",
@@ -51,27 +51,44 @@
       "expiresAt": "2026-11-08T04:30:00+08:00"
     },
     {
-      "title": "提醒｜Epoch Operation: Taubound進入最後10天",
+      "title": "緊急警報｜Naeglar 50 Moonflesh，05:00截止",
       "publishedDate": "2026-11-08",
-      "summary": "11/8 03:02官方World State確認Taubound仍在進行，台灣11/18 00:00結束；官方公告以11/17為最後活動日。Eris任務與輪替戰術警報可取得Moonflesh，再向Praghasa兌換限定獎勵；配圖為官方活動示意圖。",
-      "memberBenefit": "仍有時間補Moonflesh並優先兌換Legendary Core、限定外觀、武器藍圖、Tauforged Archon Shard與Arcane等高價值獎勵。",
-      "nextStep": "先盤點缺少的兌換品，再刷Eris任務與有效戰術警報；不要把材料拖到活動關門後才抱著它發呆。",
+      "summary": "11/8 03:55官方World State確認，Eris的Naeglar生存警報已開放，敵人等級50，台灣05:00截止。完成可得50 Moonflesh與17,000遊戲現金；配圖為Taubound官方活動示意圖，並非本次警報截圖。",
+      "memberBenefit": "Brugia來不及時還能接著補50 Moonflesh，替限定兌換品再添一把火，別讓材料窗口偷偷溜走。",
+      "nextStep": "由導航確認Naeglar警報仍存在，完成5分鐘生存並於05:00前成功撤離。",
       "sourceUrl": "https://api.warframe.com/cdn/worldState.php",
       "imageUrl": "https://www-static.warframe.com/uploads/thumbnails/d4940c6cab0ad90994427983cc628371_800x450.jpg",
       "imageSourceUrl": "https://www.warframe.com/en/news/epoch-operation-taubound",
       "category": "limited-material",
-      "sourceItemId": "6ad0ea700000000000000000",
-      "materialInfo": "Moonflesh可由Eris一般任務、感染者掉落與輪替戰術警報取得，並向Praghasa兌換活動獎勵。",
-      "rewards": "Legendary Core、限定外觀、Spectra Vandal、Basmu藍圖、Tauforged Archon Shard、Arcane等。",
-      "location": "Eris各任務節點與Praghasa活動介面",
-      "requirements": "完成Vor's Prize即可參加；一般星圖與接合點限制於活動期間為Eris開放。",
-      "expiresAt": "2026-11-18T00:00:00+08:00"
+      "sourceItemId": "6ad0d73b0dfe89c5d8229866",
+      "materialInfo": "完成警報取得50 Moonflesh，可交給Eris的Praghasa兌換Taubound限定獎勵。",
+      "rewards": "50 Moonflesh＋17,000遊戲現金。",
+      "location": "Eris→Naeglar／SolNode175→生存",
+      "requirements": "敵人等級50；完成5分鐘生存並成功撤離。",
+      "expiresAt": "2026-11-08T05:00:00+08:00"
+    },
+    {
+      "title": "04:00起｜Isos 50 Moonflesh，05:30截止",
+      "publishedDate": "2026-11-08",
+      "summary": "11/8 03:55官方World State已列出Eris的Isos殲滅警報，官方Activation為台灣04:00，05:30截止，敵人等級50。完成可得50 Moonflesh與17,000遊戲現金；配圖為Taubound官方活動示意圖，並非本次警報截圖。",
+      "memberBenefit": "提供本輪最晚的50 Moonflesh補給窗口；前兩場錯過時，仍能在05:30前把材料帶回家。",
+      "nextStep": "04:00後先在導航確認Isos警報已出現，再完成殲滅並於05:30前成功結算。",
+      "sourceUrl": "https://api.warframe.com/cdn/worldState.php",
+      "imageUrl": "https://www-static.warframe.com/uploads/thumbnails/d4940c6cab0ad90994427983cc628371_800x450.jpg",
+      "imageSourceUrl": "https://www.warframe.com/en/news/epoch-operation-taubound",
+      "category": "limited-material",
+      "sourceItemId": "6ad0d73b0dfe89c5d8229868",
+      "materialInfo": "完成警報取得50 Moonflesh，可交給Eris的Praghasa兌換Taubound限定獎勵。",
+      "rewards": "50 Moonflesh＋17,000遊戲現金。",
+      "location": "Eris→Isos／SolNode162→殲滅",
+      "requirements": "敵人等級50；官方排定04:00啟用，需在導航出現後完成殲滅並成功結算。",
+      "expiresAt": "2026-11-08T05:30:00+08:00"
     }
   ],
   "liveIntel": {
     "status": "verified",
-    "checkedAt": "2026-11-08T03:02:24+08:00",
-    "note": "03:02核對：Kuva與雙倍Affinity、3 Forma、Brugia Moonflesh有效；未見Fomorian、Razorback、Orokin催化劑或反應爐。未完成入侵含限定武器零件等，但World State無Expiry，故未編造截止時間。"
+    "checkedAt": "2026-11-08T03:55:30+08:00",
+    "note": "03:55核對：Kuva、雙倍Affinity、3 Forma、Brugia與Naeglar有效；Isos官方排定04:00啟用。未見Fomorian、Razorback、Orokin催化劑或反應爐；未完成入侵雖含限定零件，但無Expiry，未編造期限。"
   },
   "market": {
     "status": "unavailable",
