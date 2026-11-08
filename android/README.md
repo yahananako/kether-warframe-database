@@ -21,3 +21,7 @@ GitHub Actions 工作流位於 `.github/workflows/release-android.yml`。
 4. 輸入新版本名稱、遞增的 versionCode 與更新說明。
 
 工作流會自動編譯、簽章、驗證 APK、建立 Release、上傳 APK、更新 `public/app-update.json`，再由 Vercel 部署更新清單。
+
+## 版本系列
+
+APP 使用 V4.x.x；V3.x.x 專屬 BOT。V4.0.16 接續舊 Android V3.0.16，versionCode 由 46 增為 47，沿用 tw.kether.app 與既有發布簽章，讓舊安裝可辨識並覆蓋更新。V5.x.x 僅預留，目前尚未規劃。發布成功前保留舊 public/app-update.json，待簽署 APK 可下載後由工作流產生新清單與 SHA256。

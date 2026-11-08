@@ -1,5 +1,5 @@
 {
-  "versionName": "3.0.16",
-  "versionCode": 46,
-  "releaseNotes": "修正靈化查詢名單不全：接通完整 53 組武器（主要17、次要18、近戰18），統一網站、BOT 與 App 資料；修正原生靈化名稱及取得方式，保留 Prime 基底交易資料。"
+  "versionName": "4.0.16",
+  "versionCode": 47,
+  "releaseNotes": "依版本系列規則將 APP 正名為 V4.0.16（V1 表格、V2 網站、V3 BOT、V4 APP、V5 預留）。保留原套件識別與簽章，支援由 3.0.16 覆蓋更新；本次不更動網站及 BOT 版號。"
 }
