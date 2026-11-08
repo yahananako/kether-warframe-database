@@ -25,3 +25,5 @@ GitHub Actions 工作流位於 `.github/workflows/release-android.yml`。
 ## 版本系列
 
 APP 使用 V4.x.x；V3.x.x 專屬 BOT。V4.0.16 接續舊 Android V3.0.16，versionCode 由 46 增為 47，沿用 tw.kether.app 與既有發布簽章，讓舊安裝可辨識並覆蓋更新。V5.x.x 僅預留，目前尚未規劃。發布成功前保留舊 public/app-update.json，待簽署 APK 可下載後由工作流產生新清單與 SHA256。
+
+版本三碼意義為「產品系列．重大更新．修復與小幅新增」：APP 第一碼固定 V4，第二碼僅在重大更新時變動，第三碼在修復或小幅新增時變動。修復範例為 V4.0.16 → V4.0.17；重大更新為 V4.0.x → V4.1.x，第三碼起算值依站主指定。完整規則見 [專案版本規則](../docs/KETER_BOT_PROJECT_BOUNDARY.md)。
