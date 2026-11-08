@@ -6,8 +6,8 @@ export const homeNotices = [
     body: "首頁、搜尋、資料庫、故事與成員服務採用共同導覽。搜尋新增分類筆數、分頁與一般戰甲／靈化資料檢索。",
   },
   {
-    tag: "版本",
-    title: "KETHER V2.6.4 已上線",
+    tag: "APP 更新紀錄",
+    title: "Android APP V3.0.11 下載器修復",
     body: "Android APP 3.0.11 改用系統下載器，加入進度顯示、續接下載與瀏覽器備援。",
   },
   {
