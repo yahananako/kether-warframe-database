@@ -9,6 +9,10 @@
 | 試算表 | v1.x.x |
 | 網站 | v2.x.x |
 | Discord BOT | v3.x.x |
+| APP | v4.x.x |
+| 預留，尚未規劃 | v5.x.x |
+
+版本編碼規則補訂於 2026-11-08：第一碼代表產品系列；第二碼在重大更新時變動；第三碼在修復或小幅新增時變動。完整規則見 [KETER_BOT_PROJECT_BOUNDARY.md](KETER_BOT_PROJECT_BOUNDARY.md)。以下目前狀態為原文件 2026/07/07 的歷史快照，不代表最新發布版本。
 
 ## 目前狀態
 
