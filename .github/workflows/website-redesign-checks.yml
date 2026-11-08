@@ -20,7 +20,8 @@ permissions:
 jobs:
   web-check:
     name: TypeScript and Next.js build
-    runs-on: ubuntu-latest
+    # Playwright 1.56.1 supports Ubuntu 24.04; ubuntu-latest can move ahead.
+    runs-on: ubuntu-24.04
     timeout-minutes: 28
     steps:
       - name: Checkout
