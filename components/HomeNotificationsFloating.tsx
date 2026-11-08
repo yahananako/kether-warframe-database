@@ -6,7 +6,7 @@ import { Bell, X, Sparkles, ExternalLink } from "lucide-react";
 
 const notices = [
   {
-    version: "V2.6.4",
+    version: "APP V3.0.11",
     title: "Android APP 下載器修復",
     content: "APP 3.0.11 改用 Android 系統下載器並顯示真實進度；若下載失敗，可一鍵切換瀏覽器下載。"
   },
