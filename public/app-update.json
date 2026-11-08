@@ -1,8 +1,8 @@
 {
-  "versionCode": 46,
-  "versionName": "3.0.16",
-  "apkUrl": "https://github.com/yahananako/kether-warframe-database/releases/download/app-v3.0.16/KETHER-Warframe-v3.0.16.apk",
-  "sha256": "68b724722abb312e709540db10212eef2c5626915f0bfb3706ad8a41403d8b53",
+  "versionCode": 47,
+  "versionName": "4.0.16",
+  "apkUrl": "https://github.com/yahananako/kether-warframe-database/releases/download/app-v4.0.16/KETHER-Warframe-v4.0.16.apk",
+  "sha256": "f32bc3d4c32123aed8e2a37e043b55391fd199d7619ed3f58628966057bab81c",
   "required": false,
-  "notes": "修正靈化查詢名單不全：接通完整 53 組武器（主要17、次要18、近戰18），統一網站、BOT 與 App 資料；修正原生靈化名稱及取得方式，保留 Prime 基底交易資料。"
+  "notes": "依版本系列規則將 APP 正名為 V4.0.16（V1 表格、V2 網站、V3 BOT、V4 APP、V5 預留）。保留原套件識別與簽章，支援由 3.0.16 覆蓋更新；本次不更動網站及 BOT 版號。"
 }
