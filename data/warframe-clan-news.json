@@ -1,81 +1,32 @@
 {
-  "date": "2026-11-09",
+  "date": "2026-11-10",
   "articles": [
     {
-      "title": "緊急警報｜Brugia 50 Moonflesh，05:30截止",
-      "publishedDate": "2026-11-09",
-      "summary": "11/9 04:00官方World State確認，Eris的Brugia Hive警報已啟用，敵人等級50，台灣05:30截止；完成可得50 Moonflesh與17,000遊戲現金。配圖為Taubound官方活動示意圖，並非本次警報截圖。",
-      "memberBenefit": "發稿後仍有約90分鐘可參加，能快速補50 Moonflesh，用於Praghasa的Taubound活動兌換。",
-      "nextStep": "先在導航確認Brugia警報仍存在，再進入Hive任務並於05:30前完成結算。",
+      "title": "緊急警報｜Kala-azar 50 Moonflesh，04:30截止",
+      "publishedDate": "2026-11-10",
+      "summary": "11/10 03:00官方World State確認，Eris的Kala-azar殲滅警報已啟用，敵人等級50，台灣04:30截止；完成可得50 Moonflesh與17,000遊戲現金。配圖為Taubound官方活動示意圖，並非本次警報截圖。獎勵都送到眼前了，別只會流口水，該出手就出手 😏",
+      "memberBenefit": "04:00發稿後仍有約30分鐘可參加，可快速補50 Moonflesh，用於Praghasa的Taubound活動兌換。",
+      "nextStep": "先在導航確認Kala-azar警報仍存在，再進入殲滅任務並於04:30前完成結算。",
       "sourceUrl": "https://api.warframe.com/cdn/worldState.php",
       "imageUrl": "https://www-static.warframe.com/uploads/thumbnails/d4940c6cab0ad90994427983cc628371_800x450.jpg",
       "imageSourceUrl": "https://www.warframe.com/en/news/epoch-operation-taubound",
       "category": "limited-material",
-      "sourceItemId": "6ad0d73c0dfe89c5d82298c8",
+      "sourceItemId": "6ad0d73c0dfe89c5d8229924",
       "materialInfo": "Moonflesh是Epoch Operation: Taubound活動資源，可在Praghasa處兌換限定外觀、傳說核心、Tauforged執政官源力石等獎勵。",
       "rewards": "Moonflesh×50＋17,000遊戲現金。",
-      "location": "Eris→Brugia／SolNode153→Hive",
-      "requirements": "導航可進入Taubound警報；敵人等級50，摧毀Infested Hives並成功結算。",
-      "expiresAt": "2026-11-09T05:30:00+08:00"
-    },
-    {
-      "title": "提醒｜20萬Kuva與雙倍Affinity剩最後一天",
-      "publishedDate": "2026-11-09",
-      "summary": "11/9 04:00官方World State再次確認，海王星Larissa的Gift of the Lotus移動防禦仍開放，敵人等級10–15；同一快照顯示全域擊殺Affinity倍率為2倍，兩者皆於台灣11/10 03:00截止。獎勵都送到眼前了，別只會流口水，該出手就出手 😏",
-      "memberBenefit": "一次補進200,000 Kuva可供Riven循環；雙倍Affinity則適合集中升級新戰甲、武器與Forma重練裝備。",
-      "nextStep": "先完成Larissa移動防禦並核對Kuva入帳，再於截止前集中處理待升級與極化裝備。",
-      "sourceUrl": "https://api.warframe.com/cdn/worldState.php",
-      "imageUrl": "https://www-static.warframe.com/uploads/4021609a2fa46d0549c9987f865c11a8.png",
-      "imageSourceUrl": "https://www.warframe.com/en/news/devstream-198-overview",
-      "category": "urgent-mission",
-      "sourceItemId": "6ae38ee2bc6a46ffb10743d3 + 6ae39353f23f4859fa0d422b",
-      "materialInfo": "Kuva用於循環Riven Mod屬性；全域2倍Affinity在活動期間自動生效。",
-      "rewards": "200,000 Kuva＋10,000遊戲現金；全域雙倍Affinity。",
-      "location": "Neptune→Larissa／SolNode49→移動防禦",
-      "requirements": "導航可進入Gift of the Lotus警報；完成移動防禦並成功結算。雙倍Affinity自動生效。",
-      "expiresAt": "2026-11-10T03:00:00+08:00"
-    },
-    {
-      "title": "提醒｜3個已製作Forma仍可領",
-      "publishedDate": "2026-11-09",
-      "summary": "11/9 04:00官方World State再次確認，天王星Stephano防禦警報仍有效；敵人等級20–30，完成6波可得3個已製作Forma與10,000遊戲現金，台灣11/17 03:00截止。這是持續開放中的獎勵提醒，不冒充今日新活動。",
-      "memberBenefit": "三個都是已製作Forma而非藍圖，可直接用於戰甲、武器或同伴極化，省下三次製作等待。",
-      "nextStep": "從導航進入Stephano防禦警報，完成6波防禦並核對結算收到3個Forma。",
-      "sourceUrl": "https://api.warframe.com/cdn/worldState.php",
-      "category": "urgent-mission",
-      "sourceItemId": "6ae3916ad246f70c6b0c7bd0",
-      "materialInfo": "Forma用於調整裝備MOD槽極性並重置等級；本次警報直接給3個成品，不需再製作。",
-      "rewards": "已製作Forma×3＋10,000遊戲現金。",
-      "location": "Uranus→Stephano／SolNode122→防禦",
-      "requirements": "導航可進入警報；敵人等級20–30，完成6波防禦並成功結算。",
-      "expiresAt": "2026-11-17T03:00:00+08:00"
-    },
-    {
-      "title": "限時活動｜奧布山谷熱美亞裂縫進行中",
-      "publishedDate": "2026-11-09",
-      "summary": "11/9 04:00官方World State確認，Thermia Fractures仍在奧布山谷開放，台灣11/20 01:00截止。擊倒跟隨剝削者圓蛛的冷卻蛛形機取得冷卻劑罐，帶到橙色裂縫並防守封閉；配圖為歷史官方玩法示意圖。",
-      "memberBenefit": "個人累積5／25／50／75／100分可依序取得活動徽章、四張Amalgam Mod、活動紋章與Opticor Vandal；稀釋熱美亞也能用來挑戰剝削者圓蛛。",
-      "nextStep": "從導航活動頁進入奧布山谷；想省時間可在開始後30秒內投入最多4個冷卻劑罐，提高單次得分。",
-      "sourceUrl": "https://api.warframe.com/cdn/worldState.php",
-      "imageUrl": "https://www-static.warframe.com/uploads/f8103712a85e01493bb063c59014a9e2.png",
-      "imageSourceUrl": "https://www.warframe.com/en/news/a-sentinela-11032024",
-      "category": "limited-material",
-      "sourceItemId": "5c7cb0d00000000000000000",
-      "materialInfo": "冷卻劑罐由冷卻蛛形機掉落；封閉裂縫可取得稀釋熱美亞，後者是挑戰剝削者圓蛛的必要資源。",
-      "rewards": "5分活動徽章；25與50分共四張Amalgam Mod；75分活動紋章；100分Opticor Vandal。",
-      "location": "Venus→Orb Vallis（奧布山谷）→Thermia Fractures",
-      "requirements": "取得冷卻劑罐後插入熱美亞裂縫並完成防守；活動分數為個人累積。",
-      "expiresAt": "2026-11-20T01:00:00+08:00"
+      "location": "Eris→Kala-azar／SolNode164→殲滅",
+      "requirements": "導航可進入Taubound警報；敵人等級50，完成殲滅並成功結算。",
+      "expiresAt": "2026-11-10T04:30:00+08:00"
     }
   ],
   "liveIntel": {
     "status": "verified",
-    "checkedAt": "2026-11-09T04:00:21+08:00",
-    "note": "04:00核對：Kuva、雙倍Affinity、3 Forma、熱美亞裂縫與三則Moonflesh警報有效；稿件採用期限最晚的Brugia（05:30），Xini與Naeglar分別於04:30、05:00截止。未完成入侵含Fieldron×3與Mutagen Mass×1但無Expiry，未編造期限。未見Fomorian、Razorback、催化劑或反應爐。"
+    "checkedAt": "2026-11-10T03:00:24+08:00",
+    "note": "03:00核對：僅採用04:00發稿後仍有效的Kala-azar警報；Isos與Naeglar分別於03:30、04:00到期故排除。3 Forma與熱美亞昨日已報，不重複；入侵無Expiry故不編期限。未見Fomorian、Razorback、催化劑或反應爐。"
   },
   "market": {
     "status": "unavailable",
-    "date": "2026-11-09",
+    "date": "2026-11-10",
     "previousTotalPlatinum": 13916
   }
 }
