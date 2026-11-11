@@ -2,21 +2,21 @@
   "date": "2026-11-12",
   "articles": [
     {
-      "title": "緊急警報｜Solium Moonflesh 04:30截止",
+      "title": "緊急警報｜三班Moonflesh接力，最晚05:30截止",
       "publishedDate": "2026-11-12",
-      "summary": "11/12 03:05官方World State確認，Eris的Solium移動防禦警報仍有效，敵人等級50，需在台灣04:30前完成結算。完成可取得50 Moonflesh與17,000遊戲現金；配圖是Taubound官方活動示意圖，並非本次警報截圖。獎勵都送到眼前了，別只會流口水，該出手就出手 😏",
-      "memberBenefit": "能在活動結束前快速補50 Moonflesh，供Praghasa活動兌換使用；期限短，適合先處理再做一般任務。",
-      "nextStep": "先在導航確認Solium警報仍存在，組好移動防禦配置並於04:30前完成結算。",
+      "summary": "11/12 03:57官方World State確認三則Eris警報有效：Solium移動防禦於04:30、Nimus生存於05:00、Kala-azar殲滅於05:30截止。三關敵人皆為等級50，每關可得50 Moonflesh與17,000遊戲現金；配圖是Taubound官方活動示意圖，並非本次警報截圖。獎勵排好隊等你收，別光盯著看，手要記得動 😏",
+      "memberBenefit": "三關全清可取得150 Moonflesh與51,000遊戲現金，能在活動結束前快速補充Praghasa兌換資源。",
+      "nextStep": "依04:30、05:00、05:30的期限順序清理；進場前先確認警報仍在，並在各自截止前完成結算。",
       "sourceUrl": "https://api.warframe.com/cdn/worldState.php",
       "imageUrl": "https://www-static.warframe.com/uploads/thumbnails/d4940c6cab0ad90994427983cc628371_800x450.jpg",
       "imageSourceUrl": "https://www.warframe.com/en/news/epoch-operation-taubound",
       "category": "limited-material",
-      "sourceItemId": "6ad0d73c0dfe89c5d82299e4",
-      "materialInfo": "Moonflesh是Epoch Operation: Taubound活動資源，可交給Praghasa兌換活動限定獎勵；本次由Solium移動防禦警報取得。",
-      "rewards": "Moonflesh×50＋17,000遊戲現金。",
-      "location": "Eris→Solium（移動防禦）",
-      "requirements": "導航可進入Taubound警報；敵人等級50，完成移動防禦並成功結算。",
-      "expiresAt": "2026-11-12T04:30:00+08:00"
+      "sourceItemId": "6ad0d73c0dfe89c5d82299e4 + 6ad0d73c0dfe89c5d82299e6 + 6ad0d73c0dfe89c5d82299e8",
+      "materialInfo": "Moonflesh是Epoch Operation: Taubound活動資源，可交給Praghasa兌換活動限定獎勵；本輪由三個Eris警報取得。",
+      "rewards": "每關Moonflesh×50＋17,000遊戲現金；三關合計Moonflesh×150＋51,000遊戲現金。",
+      "location": "Eris→Solium移動防禦／Nimus生存／Kala-azar殲滅",
+      "requirements": "導航可進入Taubound警報；敵人等級50，分別完成任務並成功結算。",
+      "expiresAt": "2026-11-12T05:30:00+08:00"
     },
     {
       "title": "官方公告｜熱修暫停至Tau，行動裝置例外",
@@ -47,8 +47,8 @@
   ],
   "liveIntel": {
     "status": "verified",
-    "checkedAt": "2026-11-12T03:05:59+08:00",
-    "note": "03:05核對：只保留04:30到期的Solium警報；03:30與04:00到期項目不納入04:00前有效稿。未見Fomorian、Razorback、GlobalUpgrades、Forma藍圖或Orokin催化劑／反應爐獎勵；入侵無精確Expiry，不自行補期限。"
+    "checkedAt": "2026-11-12T03:57:37+08:00",
+    "note": "03:57核對：保留04:30、05:00、05:30到期的三則Moonflesh警報；04:00到期項目未列。未見Fomorian、Razorback、GlobalUpgrades、Forma藍圖或Orokin催化劑／反應爐獎勵；入侵無精確Expiry，不自行補期限。"
   },
   "market": {
     "status": "unavailable",
