@@ -4,7 +4,7 @@
     {
       "title": "限時提醒｜最後一班Moonflesh警報04:30收線",
       "publishedDate": "2026-11-15",
-      "summary": "11/15 03:00官方World State確認Nimus生存警報已開放：敵人等級50，完成5分鐘可得50 Moonflesh與17,000遊戲現金，台灣04:30截止。Moonflesh可交給Eris的Praghasa兌換Taubound限定獎勵；配圖為Digital Extremes活動示意圖，不是本次警報截圖。這班車很短，想拿就別慢慢挑姿勢 😏",
+      "summary": "11/15 03:56官方World State確認Nimus生存警報已開放：敵人等級50，完成5分鐘可得50 Moonflesh與17,000遊戲現金，台灣04:30截止。Moonflesh可交給Eris的Praghasa兌換Taubound限定獎勵；配圖為Digital Extremes活動示意圖，不是本次警報截圖。這班車很短，想拿就別慢慢挑姿勢 😏",
       "memberBenefit": "只需5分鐘生存即可補50 Moonflesh，用於Praghasa限定兌換；時間成本低，適合活動結束前補缺口。",
       "nextStep": "04:30前完成Nimus生存並結算，之後到Praghasa確認想兌換的限定獎勵；進場前以導航警報為準。",
       "sourceUrl": "https://api.warframe.com/cdn/worldState.php",
@@ -21,7 +21,7 @@
     {
       "title": "緊急提醒｜3個已製作Forma只到11/17 03:00",
       "publishedDate": "2026-11-15",
-      "summary": "11/15 03:00官方World State確認Tenno United警報仍有效：天王星Stephano防禦，完成6波可得3個已製作Forma與10,000遊戲現金，台灣11/17 03:00截止。Forma可調整戰甲、武器或同伴的Mod槽極性；本則未取得可核對的官方配圖。獎勵都送到眼前了，別只會流口水，該出手就出手 😏",
+      "summary": "11/15 03:56官方World State確認Tenno United警報仍有效：天王星Stephano防禦，完成6波可得3個已製作Forma與10,000遊戲現金，台灣11/17 03:00截止。Forma可調整戰甲、武器或同伴的Mod槽極性；本則未取得可核對的官方配圖。獎勵都送到眼前了，別只會流口水，該出手就出手 😏",
       "memberBenefit": "一次完成就拿3個已製作Forma，省去藍圖與逐件製作時間，適合Tau前整理主力配置或補庫存。",
       "nextStep": "在11/17 03:00前進入Stephano完成6波防禦並成功結算；進場前再看遊戲內警報是否仍在。",
       "sourceUrl": "https://api.warframe.com/cdn/worldState.php",
@@ -45,8 +45,8 @@
   ],
   "liveIntel": {
     "status": "verified",
-    "checkedAt": "2026-11-15T03:00:04+08:00",
-    "note": "03:00核對：保留04:30到期的Moonflesh警報與11/17 03:00到期的3 Forma警報；04:00前到期項目未列。未見Fomorian、Razorback、GlobalUpgrades、Forma藍圖或Orokin催化劑／反應爐獎勵；入侵無精確Expiry，不自行補期限。"
+    "checkedAt": "2026-11-15T03:56:29+08:00",
+    "note": "03:56核對：04:30到期的Moonflesh警報與11/17 03:00到期的3 Forma警報仍有效；04:00前到期項目未列。未見Fomorian、Razorback、GlobalUpgrades、Forma藍圖或Orokin催化劑／反應爐獎勵；入侵無精確Expiry，不自行補期限。"
   },
   "market": {
     "status": "unavailable",
