@@ -1,58 +1,56 @@
 {
-  "date": "2026-11-12",
+  "date": "2026-11-15",
   "articles": [
     {
-      "title": "緊急警報｜三班Moonflesh接力，最晚05:30截止",
-      "publishedDate": "2026-11-12",
-      "summary": "11/12 03:57官方World State確認三則Eris警報有效：Solium移動防禦於04:30、Nimus生存於05:00、Kala-azar殲滅於05:30截止。三關敵人皆為等級50，每關可得50 Moonflesh與17,000遊戲現金；配圖是Taubound官方活動示意圖，並非本次警報截圖。獎勵排好隊等你收，別光盯著看，手要記得動 😏",
-      "memberBenefit": "三關全清可取得150 Moonflesh與51,000遊戲現金，能在活動結束前快速補充Praghasa兌換資源。",
-      "nextStep": "依04:30、05:00、05:30的期限順序清理；進場前先確認警報仍在，並在各自截止前完成結算。",
+      "title": "限時提醒｜最後一班Moonflesh警報04:30收線",
+      "publishedDate": "2026-11-15",
+      "summary": "11/15 03:00官方World State確認Nimus生存警報已開放：敵人等級50，完成5分鐘可得50 Moonflesh與17,000遊戲現金，台灣04:30截止。Moonflesh可交給Eris的Praghasa兌換Taubound限定獎勵；配圖為Digital Extremes活動示意圖，不是本次警報截圖。這班車很短，想拿就別慢慢挑姿勢 😏",
+      "memberBenefit": "只需5分鐘生存即可補50 Moonflesh，用於Praghasa限定兌換；時間成本低，適合活動結束前補缺口。",
+      "nextStep": "04:30前完成Nimus生存並結算，之後到Praghasa確認想兌換的限定獎勵；進場前以導航警報為準。",
       "sourceUrl": "https://api.warframe.com/cdn/worldState.php",
       "imageUrl": "https://www-static.warframe.com/uploads/thumbnails/d4940c6cab0ad90994427983cc628371_800x450.jpg",
       "imageSourceUrl": "https://www.warframe.com/en/news/epoch-operation-taubound",
       "category": "limited-material",
-      "sourceItemId": "6ad0d73c0dfe89c5d82299e4 + 6ad0d73c0dfe89c5d82299e6 + 6ad0d73c0dfe89c5d82299e8",
-      "materialInfo": "Moonflesh是Epoch Operation: Taubound活動資源，可交給Praghasa兌換活動限定獎勵；本輪由三個Eris警報取得。",
-      "rewards": "每關Moonflesh×50＋17,000遊戲現金；三關合計Moonflesh×150＋51,000遊戲現金。",
-      "location": "Eris→Solium移動防禦／Nimus生存／Kala-azar殲滅",
-      "requirements": "導航可進入Taubound警報；敵人等級50，分別完成任務並成功結算。",
-      "expiresAt": "2026-11-12T05:30:00+08:00"
+      "sourceItemId": "6ad0d73d0dfe89c5d8229b04",
+      "materialInfo": "Moonflesh是Epoch Operation: Taubound活動資源，可由Eris活動內容與輪替警報取得，並交給Praghasa兌換限定獎勵。",
+      "rewards": "Moonflesh×50＋17,000遊戲現金。",
+      "location": "Eris→Nimus（生存，5分鐘，敵人等級50）",
+      "requirements": "已完成Vor's Prize並可進入活動；完成5分鐘生存並成功結算。",
+      "expiresAt": "2026-11-15T04:30:00+08:00"
     },
     {
-      "title": "官方公告｜熱修暫停至Tau，行動裝置例外",
-      "publishedDate": "2026-11-11",
-      "summary": "Digital Extremes宣布，為準備12月推出的Tau，遊戲熱修將暫停至Tau上線；iOS與Android仍可能收到行動平台專屬效能熱修。下一次認證更新預計包含Yareli與Necramech無法觸發秘奧／Mod、Mecha Empowered不計入套裝加成，以及主機關閉高品質著色器後金屬材質異常等修正。",
-      "memberBenefit": "受上述問題影響的成員可以先避開相關配置，不必每天等不存在的熱修；行動版玩家仍應留意平台專屬更新。",
-      "nextStep": "若常用Yareli、Necramech或Mecha套裝，先保留替代配置，等Tau認證更新正式上線後再測。",
-      "sourceUrl": "https://forums.warframe.com/topic/1532209-psa-hotfixing-paused-until-tau/",
-      "imageUrl": "https://www-static.warframe.com/uploads/4e3431ed13f1272fa6d8b542b74669b9.png",
-      "imageSourceUrl": "https://forums.warframe.com/topic/1532209-psa-hotfixing-paused-until-tau/",
+      "title": "緊急提醒｜3個已製作Forma只到11/17 03:00",
+      "publishedDate": "2026-11-15",
+      "summary": "11/15 03:00官方World State確認Tenno United警報仍有效：天王星Stephano防禦，完成6波可得3個已製作Forma與10,000遊戲現金，台灣11/17 03:00截止。Forma可調整戰甲、武器或同伴的Mod槽極性；本則未取得可核對的官方配圖。獎勵都送到眼前了，別只會流口水，該出手就出手 😏",
+      "memberBenefit": "一次完成就拿3個已製作Forma，省去藍圖與逐件製作時間，適合Tau前整理主力配置或補庫存。",
+      "nextStep": "在11/17 03:00前進入Stephano完成6波防禦並成功結算；進場前再看遊戲內警報是否仍在。",
+      "sourceUrl": "https://api.warframe.com/cdn/worldState.php",
+      "category": "urgent-mission",
+      "sourceItemId": "6ae3916ad246f70c6b0c7bd0",
+      "materialInfo": "Forma可新增或改變裝備的Mod槽極性，通常會讓該裝備回到未升級狀態；本警報直接給已製作Forma。",
+      "rewards": "已製作Forma×3＋10,000遊戲現金。",
+      "location": "天王星→Stephano（Grineer防禦，6波，敵人等級20至30）",
+      "requirements": "Tenno United警報可見；完成6波防禦並成功結算。",
+      "expiresAt": "2026-11-17T03:00:00+08:00"
+    },
+    {
+      "title": "Tau預告｜鋼鐵之路只要解鎖，不必全清",
+      "publishedDate": "2026-11-12",
+      "summary": "Digital Extremes確認，始源星系鋼鐵之路只要已解鎖，就能在Tau進入鋼鐵之路，不要求先完成全部節點。Tau上線時還會強化部分衝擊／穿刺／切割Mod，加入指揮官與漂泊者外觀連結、Voruna狼頭裝飾拆卸，並帶來多項已列出的修正；這些內容尚未在目前正式服生效。",
+      "memberBenefit": "氏族成員不必為了Tau急著清完整張鋼鐵星圖；IPS配裝先保留資源，等正式數值與更新說明再調整。",
+      "nextStep": "檢查導航是否已有鋼鐵之路切換；等Tau正式更新說明公布後，再調整IPS Mod與受影響配置。",
+      "sourceUrl": "https://forums.warframe.com/topic/1532431-tau-update-steel-path-requirement-upcoming-changesfixes-preview/",
       "category": "official-news"
-    },
-    {
-      "title": "活動提醒｜Devstream 199送已製作Omni Forma",
-      "publishedDate": "2026-11-11",
-      "summary": "官方Devstream 199「Tau Part Two」將於台灣11/28 03:00至04:00直播，預告Tau遊戲模式、高速道路系統、Tau鋼鐵之路與下一支Prime預告片。從頭看到尾可取得一個已製作Omni Forma Twitch Drop；配圖為Digital Extremes官方宣傳圖。",
-      "memberBenefit": "已製作Omni Forma可省下製作等待，直播內容也能讓氏族提前安排Tau主線與新玩法準備。",
-      "nextStep": "先確認Warframe與Twitch帳號已連結，11/28 03:00進入官方頻道並完整觀看至04:00。",
-      "sourceUrl": "https://forums.warframe.com/topic/1532211-coming-soon-devstream-199-tau-part-two/",
-      "imageUrl": "https://www-static.warframe.com/uploads/0044d3d15ac96656964970fd372da462.png",
-      "imageSourceUrl": "https://forums.warframe.com/topic/1532211-coming-soon-devstream-199-tau-part-two/",
-      "category": "official-news",
-      "rewards": "已製作Omni Forma×1（Twitch Drop）。",
-      "location": "twitch.tv/warframe",
-      "requirements": "Warframe與Twitch帳號完成連結，從直播開始看到結束。",
-      "expiresAt": "2026-11-28T04:00:00+08:00"
     }
   ],
   "liveIntel": {
     "status": "verified",
-    "checkedAt": "2026-11-12T03:57:37+08:00",
-    "note": "03:57核對：保留04:30、05:00、05:30到期的三則Moonflesh警報；04:00到期項目未列。未見Fomorian、Razorback、GlobalUpgrades、Forma藍圖或Orokin催化劑／反應爐獎勵；入侵無精確Expiry，不自行補期限。"
+    "checkedAt": "2026-11-15T03:00:04+08:00",
+    "note": "03:00核對：保留04:30到期的Moonflesh警報與11/17 03:00到期的3 Forma警報；04:00前到期項目未列。未見Fomorian、Razorback、GlobalUpgrades、Forma藍圖或Orokin催化劑／反應爐獎勵；入侵無精確Expiry，不自行補期限。"
   },
   "market": {
     "status": "unavailable",
-    "date": "2026-11-12",
+    "date": "2026-11-15",
     "previousTotalPlatinum": 13916
   }
 }
