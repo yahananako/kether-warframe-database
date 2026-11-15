@@ -4,7 +4,7 @@
     {
       "title": "限時提醒｜Kala-azar 50 Moonflesh只到04:30",
       "publishedDate": "2026-11-16",
-      "summary": "11/16 03:00官方World State確認Kala-azar移動防禦警報已開放：敵人等級50，完成任務可得50 Moonflesh與17,000遊戲現金，台灣04:30截止。Moonflesh可交給Eris的Praghasa兌換Taubound限定獎勵；配圖為Digital Extremes活動示意圖，不是本次警報截圖。這班車只等到04:30，想拿就別慢慢挑姿勢 😏",
+      "summary": "11/16 04:01官方World State確認Kala-azar移動防禦警報已開放：敵人等級50，完成任務可得50 Moonflesh與17,000遊戲現金，台灣04:30截止。Moonflesh可交給Eris的Praghasa兌換Taubound限定獎勵；配圖為Digital Extremes活動示意圖，不是本次警報截圖。這班車只等到04:30，想拿就別慢慢挑姿勢 😏",
       "memberBenefit": "活動結束前再補50 Moonflesh，用於Praghasa限定兌換；今天這則警報在日報發布後只剩約30分鐘。",
       "nextStep": "04:30前完成Kala-azar移動防禦並成功結算，再到Praghasa確認兌換缺口；進場前以導航警報為準。",
       "sourceUrl": "https://api.warframe.com/cdn/worldState.php",
@@ -21,7 +21,7 @@
     {
       "title": "最後提醒｜3個已製作Forma明日03:00收線",
       "publishedDate": "2026-11-16",
-      "summary": "11/16 03:00官方World State確認Tenno United警報仍有效：天王星Stephano防禦，完成6波可得3個已製作Forma與10,000遊戲現金，台灣11/17 03:00截止。這是已報活動的最後24小時提醒，本則未取得可核對的官方配圖；獎勵都送到眼前了，別只會流口水，該出手就出手 😏",
+      "summary": "11/16 04:01官方World State確認Tenno United警報仍有效：天王星Stephano防禦，完成6波可得3個已製作Forma與10,000遊戲現金，台灣11/17 03:00截止。這是已報活動的最後24小時提醒，本則未取得可核對的官方配圖；獎勵都送到眼前了，別只會流口水，該出手就出手 😏",
       "memberBenefit": "一次完成就拿3個已製作Forma，省去藍圖與逐件製作時間；尚未領取的氏族成員今天應優先處理。",
       "nextStep": "在11/17 03:00前進入Stephano完成6波防禦並成功結算；進場前再看遊戲內警報是否仍在。",
       "sourceUrl": "https://api.warframe.com/cdn/worldState.php",
@@ -36,7 +36,7 @@
     {
       "title": "活動提醒｜熱美亞裂縫到11/20 01:00",
       "publishedDate": "2026-11-16",
-      "summary": "11/16 03:00官方World State確認熱美亞裂縫正在金星Orb Vallis開放，台灣11/20 01:00截止。擊倒跟隨Exploiter Orb的Coolant Raknoid取得冷卻劑罐，放入橘色裂縫並防守；可累積活動里程碑獎勵與Diluted Thermia，本則未取得可核對的本輪官方截圖。",
+      "summary": "11/16 04:01官方World State確認熱美亞裂縫正在金星Orb Vallis開放，台灣11/20 01:00截止。擊倒跟隨Exploiter Orb的Coolant Raknoid取得冷卻劑罐，放入橘色裂縫並防守；可累積活動里程碑獎勵與Diluted Thermia，本則未取得可核對的本輪官方截圖。",
       "memberBenefit": "未拿齊一次性里程碑的成員可補活動徽章、4張Amalgam Mod、活動紋章與Opticor Vandal；Diluted Thermia也可用於挑戰Exploiter Orb。",
       "nextStep": "從導航活動頁進入Orb Vallis，先找Exploiter Orb附近的Coolant Raknoid；依自身進度補到下一個里程碑。",
       "sourceUrl": "https://api.warframe.com/cdn/worldState.php",
@@ -51,7 +51,7 @@
     {
       "title": "活動預告｜Exilus警報11/17 03:00才開放",
       "publishedDate": "2026-11-02",
-      "summary": "Digital Extremes公告，Tenno United的Exilus警報將於台灣11/17 03:00至12/1 03:00開放，可取得1個已製作Warframe Exilus Adapter與2個已製作Weapon Exilus Adapter。11/16 03:00官方World State尚未出現該警報，因此目前不能宣稱已開放，節點與來源ID也要等實際資料確認；本則未取得符合來源白名單的官方配圖。",
+      "summary": "Digital Extremes公告，Tenno United的Exilus警報將於台灣11/17 03:00至12/1 03:00開放，可取得1個已製作Warframe Exilus Adapter與2個已製作Weapon Exilus Adapter。11/16 04:01官方World State尚未出現該警報，因此目前不能宣稱已開放，節點與來源ID也要等實際資料確認；本則未取得符合來源白名單的官方配圖。",
       "memberBenefit": "可一次補齊戰甲與武器的Exilus插槽解鎖道具，適合替常用配置增加機動、實用或武器輔助Mod空間。",
       "nextStep": "11/17 03:00後再查看導航；下一次稿件會用World State核對節點、來源ID與實際Expiry，現在不要提前找不存在的任務。",
       "sourceUrl": "https://forums.warframe.com/topic/1531385-pmcf-quest-2026-wrap-up-thank-you-rewards-info/",
@@ -65,8 +65,8 @@
   ],
   "liveIntel": {
     "status": "verified",
-    "checkedAt": "2026-11-16T03:00:08+08:00",
-    "note": "03:00核對：Moonflesh 04:30、3 Forma 11/17 03:00、熱美亞裂縫11/20 01:00仍有效；Exilus尚未出現。未見Fomorian、Razorback、GlobalUpgrades、Forma藍圖或Orokin催化劑／反應爐；入侵武器零件無精確Expiry，未列。"
+    "checkedAt": "2026-11-16T04:01:01+08:00",
+    "note": "04:01核對：Moonflesh 04:30、3 Forma 11/17 03:00、熱美亞裂縫11/20 01:00仍有效；Exilus尚未出現。未見Fomorian、Razorback、GlobalUpgrades、Forma藍圖或Orokin催化劑／反應爐；入侵武器零件無精確Expiry，未列。"
   },
   "market": {
     "status": "unavailable",
