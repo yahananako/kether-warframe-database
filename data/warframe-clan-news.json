@@ -4,7 +4,7 @@
     {
       "title": "新警報｜Exilus三件套正式開放",
       "publishedDate": "2026-11-17",
-      "summary": "11/17 03:05官方World State確認兩則Tenno United警報已開放：Ceres的Cinxia攔截給1個已製作Warframe Exilus Adapter，Europa的Valefor挖掘給2個已製作Weapon Exilus Adapter，兩關各另有10,000遊戲現金，台灣12/1 03:00截止。昨天還只能預告，今天終於正式張開插槽等你塞滿了；本則未取得符合來源白名單的官方配圖。",
+      "summary": "11/17 04:04官方World State確認兩則Tenno United警報已開放：Ceres的Cinxia攔截給1個已製作Warframe Exilus Adapter，Europa的Valefor挖掘給2個已製作Weapon Exilus Adapter，兩關各另有10,000遊戲現金，台灣12/1 03:00截止。昨天還只能預告，今天終於正式張開插槽等你塞滿了；本則未取得符合來源白名單的官方配圖。",
       "memberBenefit": "一次補齊1個戰甲與2個武器Exilus插槽解鎖道具，能替常用配置增加機動、實用或武器輔助Mod空間。",
       "nextStep": "12/1 03:00前分別完成Cinxia攔截2波與Valefor挖掘5個目標；進場前確認兩則Tenno United警報仍在。",
       "sourceUrl": "https://api.warframe.com/cdn/worldState.php",
@@ -19,7 +19,7 @@
     {
       "title": "最後提醒｜Brugia 50 Moonflesh只到04:30",
       "publishedDate": "2026-11-17",
-      "summary": "11/17 03:05官方World State確認Brugia移動防禦警報已開放：敵人等級50，完成任務可得50 Moonflesh與17,000遊戲現金，台灣04:30截止。Epoch Operation: Taubound本體將於台灣11/18 00:00結束，Praghasa之後不會留下；配圖為Digital Extremes活動示意圖，不是本次警報截圖。最後一班很短，想拿就別只會流口水 😏",
+      "summary": "11/17 04:04官方World State確認Brugia移動防禦警報已開放：敵人等級50，完成任務可得50 Moonflesh與17,000遊戲現金，台灣04:30截止。Epoch Operation: Taubound本體將於台灣11/18 00:00結束，Praghasa之後不會留下；配圖為Digital Extremes活動示意圖，不是本次警報截圖。最後一班很短，想拿就別只會流口水 😏",
       "memberBenefit": "活動結束前再補50 Moonflesh並完成最後兌換；日報發布後本警報只剩約30分鐘，缺口小的成員最值得優先處理。",
       "nextStep": "04:30前完成Brugia移動防禦並成功結算；最晚在11/18 00:00前到Praghasa花完要兌換的Moonflesh。",
       "sourceUrl": "https://api.warframe.com/cdn/worldState.php",
@@ -36,8 +36,8 @@
   ],
   "liveIntel": {
     "status": "verified",
-    "checkedAt": "2026-11-17T03:05:16+08:00",
-    "note": "03:05核對：Exilus雙警報已開放，舊3 Forma已到期移除；Moonflesh 04:30截止，Taubound 11/18 00:00結束。熱美亞仍有效但昨日已報不重複。未見Fomorian、Razorback、GlobalUpgrades、Forma藍圖或Orokin催化劑／反應爐；入侵無精確Expiry，未列。"
+    "checkedAt": "2026-11-17T04:04:29+08:00",
+    "note": "04:04核對：Exilus雙警報仍有效，Moonflesh 04:30截止，Taubound 11/18 00:00結束。熱美亞仍有效但昨日已報不重複。未見Fomorian、Razorback、GlobalUpgrades、Forma藍圖或Orokin催化劑／反應爐；入侵無精確Expiry，未列。"
   },
   "market": {
     "status": "unavailable",
