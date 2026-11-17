@@ -1,12 +1,24 @@
 {
-  "date": "2026-11-17",
+  "date": "2026-11-18",
   "articles": [
     {
-      "title": "新警報｜Exilus三件套正式開放",
-      "publishedDate": "2026-11-17",
-      "summary": "11/17 04:04官方World State確認兩則Tenno United警報已開放：Ceres的Cinxia攔截給1個已製作Warframe Exilus Adapter，Europa的Valefor挖掘給2個已製作Weapon Exilus Adapter，兩關各另有10,000遊戲現金，台灣12/1 03:00截止。昨天還只能預告，今天終於正式張開插槽等你塞滿了；本則未取得符合來源白名單的官方配圖。",
+      "title": "官方更新｜TennoGen Signa永久化，特選品五折",
+      "publishedDate": "2026-11-16",
+      "summary": "Digital Extremes宣布，原本以限時形式加入TennoGen計畫的Signa，現在改為永久可投稿的裝飾類型；同時大量Sentient與Entrati風格TennoGen特選品最高50%折扣，官方統一期限為台灣12/1 00:00，部分品項會因平台不同而不可用。漂亮可以慢慢挑，先確認平台再掏錢，才不會熱情貼上去、錢包先軟掉 😏 本則未取得可直接引用的官方圖片網址。",
+      "memberBenefit": "氏族創作者可把Signa視為長期TennoGen設計方向；想補外觀的成員可先看自己的平台清單，避免買不到或錯把其他未列品項當成折扣。",
+      "nextStep": "有興趣再開官方完整清單，於購買前核對平台、品項與實際結帳折扣；不需要為了期限勉強消費。",
+      "sourceUrl": "https://www.warframe.com/en/news/tennogen-sale-2026",
+      "category": "official-news",
+      "rewards": "特選TennoGen品項最高50%折扣；Signa納入永久TennoGen投稿類型。",
+      "requirements": "特定品項與折扣依平台供應；以各平台商店實際顯示為準。",
+      "expiresAt": "2026-12-01T00:00:00+08:00"
+    },
+    {
+      "title": "活動提醒｜Exilus三件套仍可領到12/1 03:00",
+      "publishedDate": "2026-11-18",
+      "summary": "11/18 03:06官方World State確認兩則Tenno United警報仍有效：Ceres的Cinxia攔截給1個已製作Warframe Exilus Adapter，Europa的Valefor挖掘給2個已製作Weapon Exilus Adapter，兩關各另有10,000遊戲現金，台灣12/1 03:00截止。這是已報活動提醒，本則未取得符合來源白名單的官方配圖。",
       "memberBenefit": "一次補齊1個戰甲與2個武器Exilus插槽解鎖道具，能替常用配置增加機動、實用或武器輔助Mod空間。",
-      "nextStep": "12/1 03:00前分別完成Cinxia攔截2波與Valefor挖掘5個目標；進場前確認兩則Tenno United警報仍在。",
+      "nextStep": "尚未領取者在12/1 03:00前分別完成Cinxia攔截2波與Valefor挖掘5個目標；進場前確認警報仍在。",
       "sourceUrl": "https://api.warframe.com/cdn/worldState.php",
       "category": "urgent-mission",
       "sourceItemId": "6ae391d00626089aa60f1071 + 6ae3922e1fd7fa768c07b109",
@@ -17,31 +29,29 @@
       "expiresAt": "2026-12-01T03:00:00+08:00"
     },
     {
-      "title": "最後提醒｜Brugia 50 Moonflesh只到04:30",
-      "publishedDate": "2026-11-17",
-      "summary": "11/17 04:04官方World State確認Brugia移動防禦警報已開放：敵人等級50，完成任務可得50 Moonflesh與17,000遊戲現金，台灣04:30截止。Epoch Operation: Taubound本體將於台灣11/18 00:00結束，Praghasa之後不會留下；配圖為Digital Extremes活動示意圖，不是本次警報截圖。最後一班很短，想拿就別只會流口水 😏",
-      "memberBenefit": "活動結束前再補50 Moonflesh並完成最後兌換；日報發布後本警報只剩約30分鐘，缺口小的成員最值得優先處理。",
-      "nextStep": "04:30前完成Brugia移動防禦並成功結算；最晚在11/18 00:00前到Praghasa花完要兌換的Moonflesh。",
+      "title": "活動提醒｜熱美亞裂縫剩不到兩天",
+      "publishedDate": "2026-11-18",
+      "summary": "11/18 03:06官方World State確認熱美亞裂縫仍在金星Orb Vallis開放，台灣11/20 01:00截止。擊倒跟隨Exploiter Orb的Coolant Raknoid取得冷卻劑罐，放入橘色裂縫並防守，可累積活動里程碑與Diluted Thermia；本輪沒有可核對的官方截圖。",
+      "memberBenefit": "未拿齊一次性里程碑的成員可補活動徽章、4張Amalgam Mod、活動紋章與Opticor Vandal；Diluted Thermia也能用於挑戰Exploiter Orb。",
+      "nextStep": "從導航活動頁進入Orb Vallis，先找Exploiter Orb附近的Coolant Raknoid；依個人進度補到下一個里程碑。",
       "sourceUrl": "https://api.warframe.com/cdn/worldState.php",
-      "imageUrl": "https://www-static.warframe.com/uploads/thumbnails/d4940c6cab0ad90994427983cc628371_800x450.jpg",
-      "imageSourceUrl": "https://www.warframe.com/en/news/epoch-operation-taubound",
       "category": "limited-material",
-      "sourceItemId": "6ad0d73e0dfe89c5d8229bc4",
-      "materialInfo": "Moonflesh是Epoch Operation: Taubound活動資源，可由Eris活動內容與輪替警報取得，並交給Praghasa兌換限定獎勵。",
-      "rewards": "Moonflesh×50＋17,000遊戲現金。",
-      "location": "Eris→Brugia（移動防禦，敵人等級50）",
-      "requirements": "已完成Vor's Prize並可進入活動；完成移動防禦並成功結算。",
-      "expiresAt": "2026-11-17T04:30:00+08:00"
+      "sourceItemId": "5c7cb0d00000000000000000",
+      "materialInfo": "擊倒Coolant Raknoid取得冷卻劑罐，放進熱美亞裂縫並防守；同一罐封閉4處裂縫可得7點與1個Diluted Thermia。",
+      "rewards": "5點活動徽章；25點與50點共4張Amalgam Mod；75點活動紋章；100點Opticor Vandal。",
+      "location": "金星→Orb Vallis（World State節點SolNode129）",
+      "requirements": "可進入Orb Vallis；攜帶Coolant Canister啟動裂縫並完成防守。",
+      "expiresAt": "2026-11-20T01:00:00+08:00"
     }
   ],
   "liveIntel": {
     "status": "verified",
-    "checkedAt": "2026-11-17T04:04:29+08:00",
-    "note": "04:04核對：Exilus雙警報仍有效，Moonflesh 04:30截止，Taubound 11/18 00:00結束。熱美亞仍有效但昨日已報不重複。未見Fomorian、Razorback、GlobalUpgrades、Forma藍圖或Orokin催化劑／反應爐；入侵無精確Expiry，未列。"
+    "checkedAt": "2026-11-18T03:06:12+08:00",
+    "note": "03:06核對：Exilus雙警報與熱美亞裂縫仍有效；Taubound及Moonflesh已結束移除。未見Fomorian、Razorback、GlobalUpgrades、Forma／Forma藍圖或Orokin催化劑／反應爐；現有入侵無值得列且有精確Expiry的獎勵。"
   },
   "market": {
     "status": "unavailable",
-    "date": "2026-11-17",
+    "date": "2026-11-18",
     "previousTotalPlatinum": 13916
   }
 }
