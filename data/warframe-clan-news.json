@@ -18,7 +18,7 @@
     {
       "title": "活動提醒｜Exilus三件套可領到12/1 03:00",
       "publishedDate": "2026-11-19",
-      "summary": "11/19 03:04官方World State確認兩則Tenno United警報仍有效：Ceres的Cinxia攔截給1個已製作Warframe Exilus Adapter，Europa的Valefor挖掘給2個已製作Weapon Exilus Adapter，兩關各另有10,000遊戲現金，台灣12/1 03:00截止。這是延續中的活動提醒；本則未取得符合官方來源白名單的配圖。",
+      "summary": "11/19 04:00官方World State確認兩則Tenno United警報仍有效：Ceres的Cinxia攔截給1個已製作Warframe Exilus Adapter，Europa的Valefor挖掘給2個已製作Weapon Exilus Adapter，兩關各另有10,000遊戲現金，台灣12/1 03:00截止。這是延續中的活動提醒；本則未取得符合官方來源白名單的配圖。",
       "memberBenefit": "一次補齊1個戰甲與2個武器Exilus插槽解鎖道具，能替常用配置增加機動、實用或武器輔助Mod空間。",
       "nextStep": "尚未領取者在12/1 03:00前分別完成Cinxia攔截2波與Valefor挖掘5個目標；進場前確認警報仍在。",
       "sourceUrl": "https://api.warframe.com/cdn/worldState.php",
@@ -33,7 +33,7 @@
     {
       "title": "活動提醒｜熱美亞裂縫今晚後段截止",
       "publishedDate": "2026-11-19",
-      "summary": "11/19 03:04官方World State確認熱美亞裂縫仍在金星Orb Vallis開放，台灣11/20 01:00截止，剩不到一天。擊倒跟隨Exploiter Orb的Coolant Raknoid取得冷卻劑罐，放入橘色裂縫並防守，可累積里程碑與Diluted Thermia；本輪沒有可核對的官方截圖。",
+      "summary": "11/19 04:00官方World State確認熱美亞裂縫仍在金星Orb Vallis開放，台灣11/20 01:00截止，剩不到一天。擊倒跟隨Exploiter Orb的Coolant Raknoid取得冷卻劑罐，放入橘色裂縫並防守，可累積里程碑與Diluted Thermia；本輪沒有可核對的官方截圖。",
       "memberBenefit": "未拿齊一次性里程碑的成員可補活動徽章、4張Amalgam Mod、活動紋章與Opticor Vandal；Diluted Thermia也能用於挑戰Exploiter Orb。",
       "nextStep": "今天有空就從導航活動頁進入Orb Vallis，先找Exploiter Orb附近的Coolant Raknoid；依個人進度補到下一個里程碑。",
       "sourceUrl": "https://api.warframe.com/cdn/worldState.php",
@@ -48,8 +48,8 @@
   ],
   "liveIntel": {
     "status": "verified",
-    "checkedAt": "2026-11-19T03:04:57+08:00",
-    "note": "03:04核對：Exilus雙警報與熱美亞裂縫仍有效；未見Fomorian、Razorback、GlobalUpgrades、Forma／Forma藍圖或Orokin催化劑／反應爐。現有入侵無精確Expiry，不列為限時推薦。"
+    "checkedAt": "2026-11-19T04:00:29+08:00",
+    "note": "04:00重新核對：Exilus雙警報與熱美亞裂縫仍有效；未見Fomorian、Razorback、GlobalUpgrades、Forma／Forma藍圖或Orokin催化劑／反應爐。現有入侵無精確Expiry，不列為限時推薦。"
   },
   "market": {
     "status": "unavailable",
