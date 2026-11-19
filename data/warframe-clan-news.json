@@ -4,7 +4,7 @@
     {
       "title": "活動提醒｜Gift of the Lotus明晨送20萬Kuva",
       "publishedDate": "2026-11-10",
-      "summary": "官方PSA確認Gift of the Lotus警報將於台灣11/21 03:00開放，至11/24 03:00截止，獎勵為200,000 Kuva與10,000遊戲現金。這是提前提醒，03:03的World State尚未出現該警報，任務節點與模式必須等開放後以遊戲內導航核對；配圖為官方PSA公告圖，不是本次任務截圖。",
+      "summary": "官方PSA確認Gift of the Lotus警報將於台灣11/21 03:00開放，至11/24 03:00截止，獎勵為200,000 Kuva與10,000遊戲現金。這是提前提醒，04:00的World State尚未出現該警報，任務節點與模式必須等開放後以遊戲內導航核對；配圖為官方PSA公告圖，不是本次任務截圖。",
       "memberBenefit": "20萬Kuva可供大量重洗Riven屬性，對正在調整武器配置的成員很實用；三天窗口也比較不必熬夜硬擠。",
       "nextStep": "11/21 03:00後登入並先查看遊戲內Gift of the Lotus警報，確認節點、模式與剩餘時間再完成任務。",
       "sourceUrl": "https://forums.warframe.com/topic/1532209-psa-hotfixing-paused-until-tau/",
@@ -20,7 +20,7 @@
     {
       "title": "活動提醒｜Exilus三件套仍可領到12/1 03:00",
       "publishedDate": "2026-11-20",
-      "summary": "11/20 03:03官方World State確認兩則Tenno United警報仍有效：Ceres的Cinxia攔截給1個已製作Warframe Exilus Adapter，Europa的Valefor挖掘給2個已製作Weapon Exilus Adapter，兩關各另有10,000遊戲現金，台灣12/1 03:00截止。這是延續中的活動提醒；本則未取得符合官方來源白名單的配圖。",
+      "summary": "11/20 04:00官方World State確認兩則Tenno United警報仍有效：Ceres的Cinxia攔截給1個已製作Warframe Exilus Adapter，Europa的Valefor挖掘給2個已製作Weapon Exilus Adapter，兩關各另有10,000遊戲現金，台灣12/1 03:00截止。這是延續中的活動提醒；本則未取得符合官方來源白名單的配圖。",
       "memberBenefit": "一次補齊1個戰甲與2個武器Exilus插槽解鎖道具，能替常用配置增加機動、實用或武器輔助Mod空間。",
       "nextStep": "尚未領取者在12/1 03:00前分別完成Cinxia攔截2波與Valefor挖掘5個目標；進場前確認警報仍在。",
       "sourceUrl": "https://api.warframe.com/cdn/worldState.php",
@@ -35,8 +35,8 @@
   ],
   "liveIntel": {
     "status": "verified",
-    "checkedAt": "2026-11-20T03:03:59+08:00",
-    "note": "03:03核對：熱美亞裂縫已結束移除；Exilus雙警報仍有效。未見Fomorian、Razorback、GlobalUpgrades、Forma／Forma藍圖或Orokin催化劑／反應爐；現有入侵無精確Expiry，不列限時推薦。"
+    "checkedAt": "2026-11-20T04:00:25+08:00",
+    "note": "04:00重新核對：熱美亞裂縫已結束移除；Exilus雙警報仍有效。未見Fomorian、Razorback、GlobalUpgrades、Forma／Forma藍圖或Orokin催化劑／反應爐；現有入侵無精確Expiry，不列限時推薦。"
   },
   "market": {
     "status": "unavailable",
