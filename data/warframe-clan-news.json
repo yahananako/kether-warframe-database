@@ -4,7 +4,7 @@
     {
       "title": "即時警報｜Kappa中斷送20萬Kuva",
       "publishedDate": "2026-11-21",
-      "summary": "11/21 03:05官方World State確認Gift of the Lotus已在Sedna的Kappa開放：Grineer中斷警報，敵人等級10–15，獎勵200,000 Kuva與10,000遊戲現金，台灣11/24 03:00截止。獎勵都送到眼前了，別只會流口水，該出手就出手 😏 配圖為官方PSA公告圖，不是本次任務截圖。",
+      "summary": "11/21 04:00官方World State確認Gift of the Lotus已在Sedna的Kappa開放：Grineer中斷警報，敵人等級10–15，獎勵200,000 Kuva與10,000遊戲現金，台灣11/24 03:00截止。獎勵都送到眼前了，別只會流口水，該出手就出手 😏 配圖為官方PSA公告圖，不是本次任務截圖。",
       "memberBenefit": "20萬Kuva可供大量重洗Riven屬性，對正在調整武器配置的成員很實用；三天窗口不用擠在剛開放時硬打。",
       "nextStep": "從導航警報進入Sedna→Kappa，確認獎勵仍顯示200,000 Kuva後完成中斷任務並成功結算。",
       "sourceUrl": "https://api.warframe.com/cdn/worldState.php",
@@ -21,7 +21,7 @@
     {
       "title": "即時加成｜全域雙倍資源開到11/24 03:00",
       "publishedDate": "2026-11-21",
-      "summary": "11/21 03:05官方World State新增全域加成GAMEPLAY_PICKUP_AMOUNT，倍率為2，對ResourceItem生效，台灣11/24 03:00截止。這是已正式啟動的雙倍資源時段；本則未取得可核對的官方活動圖片。",
+      "summary": "11/21 04:00官方World State新增全域加成GAMEPLAY_PICKUP_AMOUNT，倍率為2，對ResourceItem生效，台灣11/24 03:00截止。這是已正式啟動的雙倍資源時段；本則未取得可核對的官方活動圖片。",
       "memberBenefit": "刷取一般可拾取資源的效率提高，適合集中補氏族研究、鑄造與Helminth常用材料；實際套用仍以任務結算與遊戲內顯示為準。",
       "nextStep": "先選真正缺少的資源與對應節點再開刷，避免被雙倍字樣勾得太興奮，最後倉庫鼓了、需求還是空的。",
       "sourceUrl": "https://api.warframe.com/cdn/worldState.php",
@@ -36,7 +36,7 @@
     {
       "title": "活動提醒｜Exilus三件套仍可領到12/1 03:00",
       "publishedDate": "2026-11-21",
-      "summary": "11/21 03:05官方World State確認兩則Tenno United警報仍有效：Ceres的Cinxia攔截給1個已製作Warframe Exilus Adapter，Europa的Valefor挖掘給2個已製作Weapon Exilus Adapter，兩關各另有10,000遊戲現金，台灣12/1 03:00截止。這是延續中的活動提醒；本則未取得符合官方來源白名單的配圖。",
+      "summary": "11/21 04:00官方World State確認兩則Tenno United警報仍有效：Ceres的Cinxia攔截給1個已製作Warframe Exilus Adapter，Europa的Valefor挖掘給2個已製作Weapon Exilus Adapter，兩關各另有10,000遊戲現金，台灣12/1 03:00截止。這是延續中的活動提醒；本則未取得符合官方來源白名單的配圖。",
       "memberBenefit": "一次補齊1個戰甲與2個武器Exilus插槽解鎖道具，能替常用配置增加機動、實用或武器輔助Mod空間。",
       "nextStep": "尚未領取者在12/1 03:00前分別完成Cinxia攔截2波與Valefor挖掘5個目標；進場前確認警報仍在。",
       "sourceUrl": "https://api.warframe.com/cdn/worldState.php",
@@ -64,8 +64,8 @@
   ],
   "liveIntel": {
     "status": "verified",
-    "checkedAt": "2026-11-21T03:05:32+08:00",
-    "note": "03:05核對：Kuva警報與雙倍資源已開放，Exilus雙警報仍有效；未見Fomorian、Razorback、Forma／Forma藍圖或Orokin催化劑。另有Orokin反應爐藍圖入侵6afffcd6bac8019a80b77ed7，但World State無Expiry，未列限時條目。"
+    "checkedAt": "2026-11-21T04:00:35+08:00",
+    "note": "04:00核對：Kuva警報與雙倍資源已開放，Exilus雙警報仍有效；未見Fomorian、Razorback、Forma／Forma藍圖或Orokin催化劑。另有Orokin反應爐藍圖入侵6afffcd6bac8019a80b77ed7，但World State無Expiry，未列限時條目。"
   },
   "market": {
     "status": "unavailable",
